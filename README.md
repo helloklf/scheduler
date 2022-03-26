@@ -429,18 +429,18 @@ values 特殊格式 标识符特殊用法
         {
           "threshold": [-1, 15],
           "note": "[capacity] < MAX && [capacity] >= 15, Removing GPU restrictions",
-          "set_value": {
-            "/proc/mali/dvfs_enable": "1",
-            "/proc/gpufreq/gpufreq_opp_freq": "0"
+          "enter": [
+            ["/proc/mali/dvfs_enable", "1"],
+            ["/proc/gpufreq/gpufreq_opp_freq", "0"]
           }
         },
         {
           "threshold": [16, -1],
           "note": "[capacity] < 16 && [capacity] >= MIN, GPU limited to 370Mhz",
-          "set_value": {
-            "/proc/mali/dvfs_enable": "0",
-            "/proc/gpufreq/gpufreq_opp_freq": "370000"
-          }
+          "enter": [
+            ["/proc/mali/dvfs_enable", "0"],
+            ["/proc/gpufreq/gpufreq_opp_freq", "370000"]
+          ]
         }
       ]
     }
