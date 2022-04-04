@@ -430,7 +430,7 @@ values 特殊格式 标识符特殊用法
 ```json
 {
   "friendly": "原神",
-  "match": ["miHoYo"],
+  "scene": "Scene-For-YS",
   "packages": [
     "com.miHoYo.Yuanshen",
     "com.miHoYo.ys.mi",
@@ -487,7 +487,7 @@ values 特殊格式 标识符特殊用法
 ```json
 {
   "friendly": "原神",
-  "match": ["miHoYo"],
+  "scene": "Scene-For-YS",
   "packages": [
     "com.miHoYo.Yuanshen",
     "com.miHoYo.ys.mi",
@@ -504,14 +504,56 @@ values 特殊格式 标识符特殊用法
 > leave   离开指定应用后，自动停止当前scene-scheduler<br>
 
 
+### 线程CPU亲和 `affinity`
+- 你可能听说过，绝大多数书Unity游戏，都有个叫`UnityMain`的线程CPU占用极高
+- 大多数情况下，内核会根据实际负载需要决定要不要将任务迁移到`Big`核心
+- 但不排除有些时候，系统会为了节省电力故意降低调用`Big`核心的积极性
+- 对于这种情况，我们可能会手动改变线程的放置来提高游戏流畅性
+- Scene提供的CPU亲和设置配置格式如下：
+
+```json
+{
+  "friendly": "原神",
+  "scene": "Scene-For-YS",
+  "packages": [
+    "com.miHoYo.Yuanshen",
+  ],
+  "affinity": {
+    "comm": {
+      "80": ["UnityMain"],
+      "70": ["UnityGfxDevice", "UnityMultiRende", "mali-cmar-backe"],
+      "F": ["Worker Thread", "AudioTrack", "Audio"]
+    },
+    "other": "7f"
+  }
+}
+```
+
+- `other` 配置是可选的，为空或不配置时将略过名称未出现在`comm`配置中的线程
+
+
+- 你没看懂上面这些 `80`、`70`、`F`、`7f` 是什么意思？
+  > 这是一个16进制数，表示的是用哪些核心，比如<br>
+  > 把`80`转成2进制，就是 `10000000`，8位数字，这下是否明白了呢？<br>
+  > 把`70`转成2进制，就是 `1110000`，7位数，补1个0，补够8位即`01110000`<br>
+  > 把`f`转成2进制，就是 `1111`，4位数，补4个0，补够8位即`00001111`<br>
+
+- 想必这下你已经看明白了，它其实是用`0`和`1`来表示是否使用某个核心<br>
+  > `80`即`10000000`，表示`CPU7`<br>
+  > `70`即`01110000`，表示`CPU6~4`<br>
+  > `f`即`00001111`，表示`CPU3~0`
+
+
 ### 特定场景下5个模式的微调
 - 我们准备对`原神`做一些针对性调整，并应用于`powersave`和`balance`模式
+- 针对一个场景下的某一个模式(powersave、balance等)，
+- 可以配置`call`, `booster` 以及 `affinity`
 - 示例如下：
 
 ```json
 {
   "friendly": "原神",
-  "match": ["miHoYo"],
+  "scene": "Scene-For-YS",
   "packages": [
     "com.miHoYo.Yuanshen",
     "com.miHoYo.ys.mi",
@@ -523,6 +565,7 @@ values 特殊格式 标识符特殊用法
       "mode": ["powersave", "balance"],
       "logger": false,
       "disable": false,
+      "call": [],
       "affinity": {
         "comm": {
           "80": ["UnityMain"],
@@ -542,6 +585,39 @@ values 特殊格式 标识符特殊用法
 }
 ```
 
+- 如果同时存在场景级(`app`)的`affinity`配置和[mode]级的`affinity`配置，那么会优先使用[mode]级的配置
+- 你也可以配置场景级的`affinity`，再针对某个`mode`单独调整`affinity`，例如
+```json
+{
+  "friendly": "原神",
+  "scene": "Scene-For-YS",
+  "packages": ["com.miHoYo.Yuanshen"],
+  "affinity": {
+    "comm": {
+      "80": ["UnityMain"],
+      "40": ["UnityGfxDevice"],
+      "3F": ["UnityMultiRende"],
+      "F": ["Worker Thread", "AudioTrack", "Audio"]
+    },
+    "other": "7f"
+  },
+  "modes": [
+    {
+      "mode": ["powersave", "balance"],
+      "affinity": {
+        "comm": {
+          "80": ["UnityMain"],
+          "70": ["UnityGfxDevice", "UnityMultiRende"],
+          "F": ["Worker Thread", "AudioTrack", "Audio"]
+        },
+        "other": "7f"
+      }
+    }
+  ]
+}
+```
+
+
 - mode 可以指定多个模式，但如果你想让这组配置匹配所有模式，可不用五个模式都写上去，你可以直接写["*"]
 ```json
 {
@@ -559,36 +635,6 @@ values 特殊格式 标识符特殊用法
   ]
 }
 ```
-
-#### 线程CPU亲和 `affinity`
-- 你可能听说过，绝大多数书Unity游戏，都有个叫`UnityMain`的线程CPU占用极高
-- 大多数情况下，内核会根据实际负载需要决定要不要将任务迁移到`Big`核心
-- 但不排除有些时候，系统会为了节省电力故意降低调用`Big`核心的积极性
-- 对于这种情况，我们可能会手动改变线程的放置来提高游戏流畅性
-- Scene提供的CPU亲和设置配置格式如下：
-
-```json
-"affinity": {
-  "comm": {
-    "80": ["UnityMain"],
-    "70": ["UnityGfxDevice", "UnityMultiRende", "mali-cmar-backe"],
-    "F": ["Worker Thread", "AudioTrack", "Audio"]
-  },
-  "other": "7f"
-}
-```
-
-- 你没看懂上面这些 `80`、`70`、`F`、`7f` 是什么意思？
-  > 这是一个16进制数，表示的是用哪些核心，比如<br>
-  > 把`80`转成2进制，就是 `10000000`，8位数字，这下是否明白了呢？<br>
-  > 把`70`转成2进制，就是 `1110000`，7位数，补1个0，补够8位即`01110000`<br>
-  > 把`f`转成2进制，就是 `1111`，4位数，补4个0，补够8位即`00001111`<br>
-
-- 想必这下你已经看明白了，它其实是用`0`和`1`来表示是否使用某个核心<br>
-  > `80`即`10000000`，表示`CPU7`<br>
-  > `70`即`01110000`，表示`CPU6~4`<br>
-  > `f`即`00001111`，表示`CPU3~0`
-
 
 #### 辅助升频 `booster`
 - Scene提供了辅助升频，不过目前只实现了监听`InputDevice`作为触发条件(也就是增强版的触摸升频)
