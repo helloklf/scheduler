@@ -391,7 +391,10 @@ values 特殊格式 标识符特殊用法
         "com.miHoYo.ys.bilibili",
         "com.miHoYo.GenshinImpact"
       ],
-      "call": []
+      "call": [],
+      "sensors": [],
+      "affinity": {},
+      "booster": {}
     }
   ]
 }
@@ -420,7 +423,6 @@ values 特殊格式 标识符特殊用法
 }
 ```
 - 不过，`场景`的匹配过程是自上而下进行的，所以你应当把通配的场景设定放在最后
-
 
 ### 传感器 `sensors`
 - Scene实现录简单的数值监听。注意，是数值，也就是说监听的值必须是个数字！
@@ -544,99 +546,7 @@ values 特殊格式 标识符特殊用法
   > `f`即`00001111`，表示`CPU3~0`
 
 
-### 特定场景下5个模式的微调
-- 我们准备对`原神`做一些针对性调整，并应用于`powersave`和`balance`模式
-- 针对一个场景下的某一个模式(powersave、balance等)，
-- 可以配置`call`, `booster` 以及 `affinity`
-- 示例如下：
-
-```json
-{
-  "friendly": "原神",
-  "scene": "Scene-For-YS",
-  "packages": [
-    "com.miHoYo.Yuanshen",
-    "com.miHoYo.ys.mi",
-    "com.miHoYo.ys.bilibili",
-    "com.miHoYo.GenshinImpact"
-  ],
-  "modes": [
-    {
-      "mode": ["powersave", "balance"],
-      "logger": false,
-      "disable": false,
-      "call": [],
-      "affinity": {
-        "comm": {
-          "80": ["UnityMain"],
-          "70": ["UnityGfxDevice", "UnityMultiRende"],
-          "F": ["Worker Thread", "AudioTrack", "Audio"]
-        },
-        "other": "7f"
-      },
-      "booster": {
-        "events": ["touch", "buttons"],
-        "duration": 2000,
-        "enter": [],
-        "exit": []
-      }
-    }
-  ]
-}
-```
-
-- 如果同时存在场景级(`app`)的`affinity`配置和[mode]级的`affinity`配置，那么会优先使用[mode]级的配置
-- 你也可以配置场景级的`affinity`，再针对某个`mode`单独调整`affinity`，例如
-```json
-{
-  "friendly": "原神",
-  "scene": "Scene-For-YS",
-  "packages": ["com.miHoYo.Yuanshen"],
-  "affinity": {
-    "comm": {
-      "80": ["UnityMain"],
-      "40": ["UnityGfxDevice"],
-      "3F": ["UnityMultiRende"],
-      "F": ["Worker Thread", "AudioTrack", "Audio"]
-    },
-    "other": "7f"
-  },
-  "modes": [
-    {
-      "mode": ["powersave", "balance"],
-      "affinity": {
-        "comm": {
-          "80": ["UnityMain"],
-          "70": ["UnityGfxDevice", "UnityMultiRende"],
-          "F": ["Worker Thread", "AudioTrack", "Audio"]
-        },
-        "other": "7f"
-      }
-    }
-  ]
-}
-```
-
-
-- mode 可以指定多个模式，但如果你想让这组配置匹配所有模式，可不用五个模式都写上去，你可以直接写["*"]
-```json
-{
-  "modes": [
-    {
-      "mode": ["powersave", "balance"],
-      "affinity": {
-      }
-    },
-    {
-      "mode": ["*"],
-      "affinity": {
-      }
-    }
-  ]
-}
-```
-
-#### 辅助升频 `booster`
+### 辅助升频 `booster`
 - Scene提供了辅助升频，不过目前只实现了监听`InputDevice`作为触发条件(也就是增强版的触摸升频)
 - 使用方法例如：
 
@@ -687,6 +597,136 @@ values 特殊格式 标识符特殊用法
       ["@cpu_freq_min", "300Mhz"]
     ]
   }
+}
+```
+
+
+### 场景下的模式细分 `modes`
+- 我们准备对`原神`做一些针对性调整，并应用于`powersave`和`balance`模式
+- 针对一个场景下的某一个模式(powersave、balance等)，
+- 可以配置`call`, `booster`, `affinity`, `sensors`
+- 示例如下：
+
+```json
+{
+  "friendly": "原神",
+  "scene": "Scene-For-YS",
+  "packages": [
+    "com.miHoYo.Yuanshen",
+    "com.miHoYo.ys.mi",
+    "com.miHoYo.ys.bilibili",
+    "com.miHoYo.GenshinImpact"
+  ],
+  "modes": [
+    {
+      "mode": ["powersave", "balance"],
+      "logger": false,
+      "disable": false,
+      "call": [],
+      "affinity": {
+        "comm": {
+          "80": ["UnityMain"],
+          "70": ["UnityGfxDevice", "UnityMultiRende"],
+          "F": ["Worker Thread", "AudioTrack", "Audio"]
+        },
+        "other": "7f"
+      },
+      "booster": {
+        "events": ["touch", "buttons"],
+        "duration": 2000,
+        "enter": [],
+        "exit": []
+      }
+    }
+  ]
+}
+```
+
+#### 精确到[mode]的affinity配置
+- 如果同时存在场景级(`app`)的`affinity`配置和[mode]级的`affinity`配置，那么会优先使用[mode]级的配置
+- 你也可以配置场景级的`affinity`，再针对某个`mode`单独设置`affinity`，例如
+```json
+{
+  "friendly": "原神",
+  "scene": "Scene-For-YS",
+  "packages": ["com.miHoYo.Yuanshen"],
+  "affinity": {
+    "comm": {
+      "80": ["UnityMain"],
+      "40": ["UnityGfxDevice"],
+      "3F": ["UnityMultiRende"],
+      "F": ["Worker Thread", "AudioTrack", "Audio"]
+    },
+    "other": "7f"
+  },
+  "modes": [
+    {
+      "mode": ["powersave", "balance"],
+      "affinity": {
+        "comm": {
+          "80": ["UnityMain"],
+          "70": ["UnityGfxDevice", "UnityMultiRende"],
+          "F": ["Worker Thread", "AudioTrack", "Audio"]
+        },
+        "other": "7f"
+      }
+    }
+  ]
+}
+```
+
+#### 精确到[mode]的sensors配置
+- 如果同时存在场景级(`app`)的`sensors`配置和[mode]级的`sensors`配置，那么会优先使用[mode]级的配置
+- 你也可以配置场景级的`sensors`，再针对某个`mode`单独设置`sensors`，例如
+```json
+{
+  "friendly": "原神",
+  "scene": "Scene-For-YS",
+  "packages": ["com.miHoYo.Yuanshen"],
+  "sensors": [],
+  "modes": [
+    {
+      "mode": ["powersave", "balance"],
+      "sensors": []
+    }
+  ]
+}
+```
+
+#### 精确到[mode]的booster配置
+- 如果同时存在场景级(`app`)的`booster`配置和[mode]级的`booster`配置，那么会优先使用[mode]级的配置
+- 你也可以配置场景级的`booster`，再针对某个`mode`单独设置`booster`，例如
+```json
+{
+  "friendly": "原神",
+  "scene": "Scene-For-YS",
+  "packages": ["com.miHoYo.Yuanshen"],
+  "booster": {},
+  "modes": [
+    {
+      "mode": ["powersave", "balance"],
+      "booster": {},
+    }
+  ]
+}
+```
+
+#### 模式通配
+- `mode` 属性可以指定多个模式，但如果你想让这组配置匹配所有模式，可不用五个模式都写上去，你可以直接写["*"]
+```json
+{
+  "modes": [
+    {
+      "mode": ["powersave", "balance"],
+      "affinity": {
+      }
+    },
+    {
+      "mode": ["*"],
+      "affinity": {
+      }
+    }
+  ]
 }
 ```
 
