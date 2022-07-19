@@ -1,0 +1,14 @@
+.scheme-form input {
+  font-size: 12px !important;
+  padding: 8px 14px;
+}
+.MuiInputBase-sizeSmall {
+  font-size: 12px !important;
+}
+input.MuiInputBase-sizeSmall {
+  padding: 8px 14px;
+}
+.scheme-form .MuiInputLabel-root,
+.MuiInputLabel-sizeSmall {
+  font-size: 12px !important;
+}

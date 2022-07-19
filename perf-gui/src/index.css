@@ -1,0 +1,34 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.full-size-tab {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+.full-size-tab > .MuiBox-root,
+.full-size-tab > .MuiBox-root > .MuiTypography-root,
+.full-size-tab > .MuiBox-root > .MuiTypography-root > iframe {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  border: none;
+  display: block;
+}
+
+.MuiFormHelperText-sizeSmall {
+  font-size: 9px !important;
+  margin-left: 0 !important;
+  margin-bottom: 10px !important;
+}
