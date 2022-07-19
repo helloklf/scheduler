@@ -1,19 +1,44 @@
 ## 适用版本
-- 本文档适用于Scene5.2.0 (framework版本号 `110` )
+- 本文档适用于Scene5.3.0 (framework版本号 `130` )
+
+### framework 130 新增特性
+- features 新的根配置
+- features.high_rate 拓展特性，屏幕刷新率控制函数@high_rate的相关配置
+- features.processes 拓展特性，用于指定重要安卓APP进程所属的cpuset
+- features.charge_control 拓展特性，充电控制函数@charge的相关配置
+- affiniy.cpuset_mode 让cpuset协同affiniy，形成更强力的线程放置约束
+- affiniy.heavy_thread 指定重负载线程的名称
+- affiniy.heavy_mask 指定重负载线程的affiniy mask
+- affiniy.unity_main 指定UnityMain线程的affiniy mask
+- cpuset 通过cpuset为应用的线程指定核心
+- import 通过import，可将对app的配置拆分为单独文件
+- booster.events 预设增加presets
+- presets 新的根配置，用于创建一组预设，并可通过[@preset] [name]来使用
+- sensor.props 指定一组将要修改的属性
+- sensor.rules.values 指定一组属性的值
+- sensor.rules.enter_once 只执行一次的Enter配置
+- @governor 新的函数，用于同时切换所有cluster的调速器
+- @high_rate 切换高刷/低刷状态
+- @charge 充电控制函数
+
+### framework 130 移除特性
+- @refresh_rate 改变屏幕刷新率函数，现已被弃用
+- stop_on 该配置已不再推荐使用，相关说明已从文档移除
+
 
 ## 创建一个配置文件
 - 在开始之前，你起码应该稍微了解JSON的格式规范
 - 如下所示，这是一个空的配置文件
 > `platform` 属性标识该配置用于`msm8998`平台，是必需的<br>
-> **platformName** 是一个说明性属性，方便使用者理解**msm8998**是什么<br>
+> **platform_name** 是一个说明性属性，方便使用者理解**msm8998**是什么<br>
 > `framework` 属性用于标注该配置适用的调度框架版本号<br>
 > `schemes` 下则是对SCENE5中5个模式的配置
 
 ```json
 {
   "platform": "msm8998",
-  "platformName": "骁龙835",
-  "framework": 110,
+  "platform_name": "骁龙835",
+  "framework": 130,
   "schemes": {
     "powersave": {
       "call": []
@@ -186,22 +211,6 @@
 - clusterExpr说明
   与CPU频率设置类似，不再赘述
 
-### 刷新率 `@refresh_rate`
-- 参数格式为 **@refresh_rate [60]**
-- 例如，我准备在省电模式下将刷新率限制为60
-```json
-{
-  "platform": "msm8998",
-  "schemes": {
-    "powersave": {
-      "call": [
-        ["@refresh_rate", "60"]
-      ]
-    }
-  }
-}
-```
-
 #### 补充说明
 - 近似刷新率档位
 > 在可以的情况下，会优先匹配完全一致的刷新率档位<br>
@@ -241,7 +250,7 @@
 ```json
 {
   "platform": "lahaina",
-  "platformName": "骁龙888",
+  "platform_name": "骁龙888",
   "schemes": {
     "performance": {
       "call": [
@@ -259,7 +268,7 @@
 ```json
 {
   "platform": "lahaina",
-  "platformName": "骁龙888",
+  "platform_name": "骁龙888",
   "schemes": {
     "performance": {
       "call": [
@@ -380,7 +389,7 @@ values 特殊格式 标识符特殊用法
 ```json
 {
   "platform": "mt6893",
-  "platformName": "D1200",
+  "platform_name": "D1200",
   "apps": [
     {
       "friendly": "原神",
@@ -411,7 +420,7 @@ values 特殊格式 标识符特殊用法
 ```json
 {
   "platform": "mt6893",
-  "platformName": "D1200",
+  "platform_name": "D1200",
   "apps": [
     {
       "friendly": "通用",
@@ -445,22 +454,27 @@ values 特殊格式 标识符特殊用法
       "logger": false,
       "disable": false,
       "interval": 5000,
+      "props": [],
       "rules": [
         {
           "threshold": [-1, 15],
           "note": "[capacity] < MAX && [capacity] >= 15, Removing GPU restrictions",
+          "enter_once" : [],
           "enter": [
             ["/proc/mali/dvfs_enable", "1"],
             ["/proc/gpufreq/gpufreq_opp_freq", "0"]
-          ]
+          ],
+          "values": []
         },
         {
           "threshold": [16, -1],
           "note": "[capacity] < 16 && [capacity] >= MIN, GPU limited to 370Mhz",
+          "enter_once" : [],
           "enter": [
             ["/proc/mali/dvfs_enable", "0"],
             ["/proc/gpufreq/gpufreq_opp_freq", "370000"]
-          ]
+          ],
+          "values": []
         }
       ]
     }
@@ -474,36 +488,32 @@ values 特殊格式 标识符特殊用法
 
 > threshold是个范围，由两个值组成，判断逻辑为 ＜ [value1] && >= [value2]，其中 `-1` 表示无限制<br>
 > interval指轮询间隔，单位是毫秒<br>
+> enter 规则命中时执行的属性修改和函数调用，连续命中同一规则会重复执行<br>
+> enter_once 规则命中时执行的属性修改和函数调用，连续命中同一规则时只会执行一次<br>
 > note是个注释属性，与运行逻辑无关<br>
+> props 规则将要修改的属性 *该配置只与values相关，与enter和enter_once无关<br>
+> values 与props对应的各个值<br>
 
-- Sensor不支持[call]配置，也就是不能调用内置函数
-- 这是因为，内置函数的逻辑非常复杂，很难实现值校验和恢复
-- 因此，只用[set_value]意图会更加明确，过程也更加可控
-
-
-### 自动退出 `stop_on`
-- 场景配置中，`sensors`和`affinity`都有定时轮询机制
-- 利用[stop_on]配置，可以让调度框架在不再需要时自动退出
-- 完整用法 如：
+#### sensor rule配置改进写法
+- 大多数情况下，rule所做的事都是对同一属性进行修改
+- 因此enter配置这种需要重复指定属性和值的做法略显啰嗦
+- 因此它可以被简化为单独指定props，和不同rule下的values
+- 例如，我想根据电池温度来改变处理器性能，可以
 
 ```json
 {
-  "friendly": "原神",
-  "scene": "Scene-For-YS",
-  "packages": [
-    "com.miHoYo.Yuanshen",
-    "com.miHoYo.ys.mi",
-    "com.miHoYo.ys.bilibili",
-    "com.miHoYo.GenshinImpact"
-  ],
-  "stop_on": ["display", "leave", "scene"]
+  "sensor": "/sys/class/power_supply/battery/temp",
+  "interval": 2000,
+  "props": ["$gpu_freq", "$ddr_freq_min", "$cpu_max_0", "$cpu_max_4", "$cpu_max_7"],
+  "rules": [
+    { "threshold": [ -1, 491], "values": ["3200000000", "1800000", "1700000", "1800000"] },
+    { "threshold": [490, 471], "values": ["3200000000", "1800000", "1800000", "2000000"] },
+    { "threshold": [470, 441], "values": ["4266000000", "1900000", "2000000", "2100000"] },
+    { "threshold": [440,  -1], "values": ["4266000000", "2000000", "2150000", "2300000"] }
+  ]
 }
 ```
 
-- stop_on有效值
-> display 屏幕关闭后，自动停止当前scene-scheduler<br>
-> scene   调度命中的场景改变后，自动停止当前scene-scheduler<br>
-> leave   离开指定应用后，自动停止当前scene-scheduler<br>
 
 
 ### 线程CPU亲和 `affinity`
@@ -517,13 +527,16 @@ values 特殊格式 标识符特殊用法
 {
   "friendly": "原神",
   "scene": "Scene-For-YS",
-  "packages": [
-    "com.miHoYo.Yuanshen",
-  ],
+  "packages": ["com.miHoYo.Yuanshen"],
   "affinity": {
+    "repeat": 0,
+    "interval": 5000,
+    "cpuset_mode": "off",
+    "unity_main": "80",
+    "heavy_thread": "UnityGfx",
+    "heavy_mask": "70",
     "comm": {
-      "80": ["UnityMain"],
-      "70": ["UnityGfxDevice", "UnityMultiRende", "mali-cmar-backe"],
+      "70": ["UnityMultiRende", "mali-cmar-backe"],
       "F": ["Worker Thread", "AudioTrack", "Audio"]
     },
     "other": "7f"
@@ -532,7 +545,15 @@ values 特殊格式 标识符特殊用法
 ```
 
 - `other` 配置是可选的，为空或不配置时将略过名称未出现在`comm`配置中的线程
-
+- `unity_main` 配置也是可选的，用于指定UnityMain线程的Affinity mask。如果进程中存在多个UnityMain线程，则只会命中负载最高的那一个。
+- `heavy_thread` 配置也是可选的，需与heavy_thread配合使用，用于指定重负载线程的名称。如果进程中存在多个同名线程，则只会命中负载最高的那一个。
+- `heavy_mask` 需与heavy_thread配合使用，用于指定重负载线程的Affinity mask。
+- `repeat` 是重复检查线程亲和设置的最大次数，配置为`0`表示无限次，默认为0
+- `interval` 是线程亲和设置检查时间间隔，最小值为`50` 默认值为`5000`，单位是毫秒
+- `cpuset_mode` 是framework 130中新增的属性，可设为 coexist | always | off
+> coexist 使用affinity设置的同时，同时使用cpuset加强约束，二者协同让线程放置更加稳固 <br>
+> always 使用cpuset代替affinity，相当于自动翻译成cpuset配置 <br>
+> off 默认
 
 - 你没看懂上面这些 `80`、`70`、`F`、`7f` 是什么意思？
   > 这是一个16进制数，表示的是用哪些核心，比如<br>
@@ -546,6 +567,43 @@ values 特殊格式 标识符特殊用法
   > `f`即`00001111`，表示`CPU3~0`
 
 
+### 线程CPU核心配置 `cpuset`
+- 它的作用与affinity类似，都是用于限制或指定线程使用的CPU核心
+- 而区别在于cpuset模式具有更强的约束，用于对抗系统自身对affinity的修改
+- 它的配置方式与affinity非常相似，
+- 它使用类似于0-7的方式表示核心，而非像affinity一样使用16进制的mask
+
+```json
+{
+  "friendly": "原神",
+  "scene": "Scene-For-YS",
+  "packages": ["com.miHoYo.Yuanshen"],
+  "cpuset": {
+    "repeat": 0,
+    "interval": 5000,
+    "comm": {
+      "7": ["UnityMain"],
+      "4-6": ["UnityGfxDevice", "UnityMultiRende", "mali-cmar-backe"],
+      "0-3": ["Worker Thread", "AudioTrack", "Audio"]
+    },
+    "other": "0-6"
+  }
+}
+```
+
+- `other` 配置是可选的，为空或不配置时将略过名称未出现在`comm`配置中的线程
+- `unity_main` 配置也是可选的，用于指定UnityMain线程可以使用的cpu核心。如果进程中存在多个UnityMain线程，则只会命中负载最高的那一个。
+- `heavy_thread` 配置也是可选的，需与heavy_thread配合使用，用于指定重负载线程的名称。如果进程中存在多个同名线程，则只会命中负载最高的那一个。
+- `heavy_mask` 需与heavy_thread配合使用，用于指定重负载线程可以使用的cpu核心。
+- `repeat` 是重复检查线程亲和设置的最大次数，配置为`0`表示无限次，默认为0
+- `interval` 是线程亲和设置检查时间间隔，最小值为`50` 默认值为`5000`，单位是毫秒
+
+
+> 需要注意的是，cpuset并非affinity的完美替代 <br>
+> 例如，我们指定一个线程可以运行在0-6，但系统可以设定该线程affinity mask为f<br>
+> 因此，该线程可能会一直运行在小核上，而不是我们预期的使用核心0-6
+
+
 ### 辅助升频 `booster`
 - Scene提供了辅助升频，不过目前只实现了监听`InputDevice`作为触发条件(也就是增强版的触摸升频)
 - 使用方法例如：
@@ -553,8 +611,9 @@ values 特殊格式 标识符特殊用法
 ```json
 {
   "booster": {
-    "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+    "events": ["presets"],
     "duration": 3000,
+    "idle_delay": 5000,
     "enter": [
       ["/sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq", "951000"]
     ],
@@ -565,12 +624,13 @@ values 特殊格式 标识符特殊用法
 }
 ```
 - 配置格式一目了然，通过[events]指定设备触发升频的事件
-> 其中 `touch`、`buttons` 是Scene预设的输入事件，分别相应代表触摸和按键按下<br>
+> 其中 `touch`、`buttons`、`presets` 是Scene预设的输入事件，分别代表 触摸、按键按下、触摸和按键按下，<br>
 > 某些时候，Scene可能会无法正确找到`touch`、`buttons`对应的输入设备<br>
 > 因此，你还可以在[events]中指定具体输入设备名称，让Scene去监听它来响应输入升频
-- [duration]是升频持续时长，单位为毫秒
-- [enter]用于配置进入boost状态要执行的属性修改，支持像[Call]一样调用内置函数(但不建议使用)
-- [exit]用于配置退出boost状态要执行的属性修改，支持像[Call]一样调用内置函数(但不建议使用)
+- [duration] 是boost持续时长，单位为毫秒
+- [enter] 用于配置进入boost状态要执行的属性修改，支持像[Call]一样调用内置函数(但不建议使用)
+- [exit] 用于配置退出boost状态要执行的属性修改，支持像[Call]一样调用内置函数(但不建议使用)
+- [idle_delay] 指定用户打开应用多少毫秒后，从未有过触摸/按键操作，执行退出boost状态的修改
 
 ##### 自动备份/恢复
 - Scene在执行进入boost状态执行[enter]指定的修改前，
@@ -588,7 +648,7 @@ values 特殊格式 标识符特殊用法
 ```json
 {
   "booster": {
-    "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+    "events": ["presets"],
     "duration": 3000,
     "enter": [
       ["@cpu_freq_min", "1.4Ghz"]
@@ -731,5 +791,156 @@ values 特殊格式 标识符特殊用法
 ```
 
 
+### Utilization Clamping @uclamp
+- uclamp作为schedtune的替代方案，在Linux Kernel中引入
+- 因此，并非所有设备都能使用该特性
+- @uclamp具有至多3个参数，用法非常简单
+- 例如：
+```json
+["@uclamp", "0.00~max", "0.00~max", "0.00~max"]
+```
+- 3个参数分别对应cpuctl中background、foreground、top-app的cpu.uclamp.min和cpu.uclamp.max，两个值之间以 ~ 符号分隔
+
+### 经典调速器 @classical
+- 该函数用于降指定核心的调速器切换为`conservative`或相似的调速器，并设定相关参数
+- 用法如：
+```json
+["@classical", "cpu0", "70", "60", "3", "1"]
+```
+- 5个参数分别代表 [CPU核心或丛集] [up_threshold] [down_threshold] [freq_step] [sampling_down_factor]
+- 此处[CPU核心或丛集] 的表述方式与@cpufreq相同，支持 `cpu4` `policy4` `cluster1`这些格式
+- 该函数会将conservative调速器的sampling_rate会统一设为8ms，ignore_nice_load 设为0
+
+
+### 高刷切换 `@high_rate`
+- 通过 @high_rate "on"|"off"在高低刷新率之间切换
+- 这对某些刷新率管理不完善的系统非常有用，但只建议在搭载LTPS OLED屏幕的设备上使用
+- 但在使用该函数之前，你需要通过features按设备(device)配置高/低刷新率状态对应的DisplayModeID
+
+```json
+{
+  "platform": "mt6895",
+  "platform_name": "D8100",
+  "framework": 130,
+  "features": {
+    "high_rate": {
+      "enable": true,
+      "enable_control": "/data/local/tmp/scene_refresh_rate",
+      "device_policy": [
+        { "device": "rubens", "enable": true, "mode_high_rate": "1", "mode_low_rate": "0" },
+        { "device": "OP5565", "enable": true, "mode_high_rate": "1", "mode_low_rate": "0" }
+      ]
+    }
+  }
+}
+```
+
+- device 可以通过 `getprop ro.product.device` 获取
+- mode_high_rate 高刷状态的DisplayModeID
+- mode_low_rate 低刷状态的DisplayModeID
+- enable_control 指定一个控制@high_rate函数启用状态的额外控制文件
+    > enable_control 通常固定为 /data/local/tmp/scene_refresh_rate<br>
+    > 如果指定了文件则必须向该文件写入1才能启用@high_rate函数
+
+
+### 充电控制 `@charge_control`
+- 通过 @charge "suspend"|"normal"切换两种模式
+- 但该函数并未提供具体的实现，因此你需要在suspend和normal节点配置实际要进行的修改操作
+
+```json
+{
+  "platform": "mt6895",
+  "platform_name": "D8100",
+  "framework": 130,
+  "features": {
+    "charge_control": {
+      "enable": true,
+      "enable_control": "/data/local/tmp/scene_charge_control",
+      "suspend": [
+        ["$charge_limit", "15"],
+        ["$night_charging", "1"]
+      ],
+      "normal": [
+        ["$charge_limit", "0"],
+        ["$night_charging", "0"]
+      ]
+    }
+  },
+  "schemes": {
+    "powersave": {
+      "call": [
+        ["@charge", "normal"]
+      ]
+    }
+  }
+}
+```
+
+- enable_control 指定一个控制@high_rate函数启用状态的额外控制文件
+    > enable_control 通常固定为 /data/local/tmp/scene_charge_control<br>
+    > 如果指定了文件则必须向该文件写入1才能启用@high_rate函数
+
+
+### 预设 `@preset`
+- 如果你有一些需要重复使用的公共设定，那么通过预设引用将会非常方便
+- 例如，这是一段不使用预设的原始配置：
+```json
+{
+  "schemes": {
+    "powersave": {
+      "call": [
+        ["$cpufreq", "0 450000 2000000"],
+        ["$cpufreq", "4 200000 2850000"],
+        ["$cpufreq", "7 500000 2850000"],
+        ["@uclamp", "0.00~max", "0.00~max", "0.1~max"],
+        ["@cpuset", "2-3", "0-4", "0-6", "0-7"]
+      ]
+    },
+    "balance": {
+      "call": [
+        ["$cpufreq", "0 450000 2000000"],
+        ["$cpufreq", "4 200000 2850000"],
+        ["$cpufreq", "7 500000 2850000"],
+        ["@uclamp", "0.00~max", "0.00~max", "0.1~max"],
+        ["@cpuset", "0-3", "0-4", "0-6", "0-7"]
+      ]
+    },
+  }
+}
+```
+- 你看，这里有非常多的重复代码。因此，你为这些重复的内容创建一组预设，就像这样：
+```json
+{
+  "presets": {
+    "set_001": [
+      ["$cpufreq", "0 450000 2000000"],
+      ["$cpufreq", "4 200000 2850000"],
+      ["$cpufreq", "7 500000 2850000"],
+      ["@uclamp", "0.00~max", "0.00~max", "0.1~max"]
+    ]
+  },
+  "schemes": {
+    "powersave": {
+      "call": [
+        ["@preset", "set_001"],
+        ["@cpuset", "2-3", "0-4", "0-6", "0-7"]
+      ]
+    },
+    "balance": {
+      "call": [
+        ["@preset", "set_001"],
+        ["@cpuset", "0-3", "0-4", "0-6", "0-7"]
+      ]
+    },
+  }
+}
+```
+- 看起来是不是好多了，同时`@preset`函数还支持一次性使用多个预设，像 `["@preset", "set_001", "set_002"]` 这样
+
+
+### 非核心函数
+- 出现于SCENE自带配置中且未列入文档的函数，通常由严格的设备和SOC幸好要求
+- 该类函数不作为框架的主要特性，也不保证其用法和作用会始终保持一致
+
 ## 结尾
-- 注意，文中所有示例代码，仅用于展示框架功能
+- 注意，文中所有示例代码，仅用于展示框架功能，并非性能优化最佳实践
