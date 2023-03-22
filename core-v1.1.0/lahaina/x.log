@@ -1,0 +1,113 @@
+# YuanShen
+yuan_shen_opt_run() {
+  if [[ $(getprop vtools.powercfg_app | grep miHoYo) == "" ]]; then
+    return
+  fi
+
+  # top -H -p $(pgrep -ef Yuanshen)
+  # pid=$(pgrep -ef Yuanshen)
+  pid=$(pgrep -ef miHoYo)
+  # mask=`echo "obase=16;$((num=2#11110000))" | bc` # F0 (cpu 7-4)
+  # mask=`echo "obase=16;$((num=2#10000000))" | bc` # 80 (cpu 7)
+  # mask=`echo "obase=16;$((num=2#01110000))" | bc` # 70 (cpu 6-4)
+  # mask=`echo "obase=16;$((num=2#01111111))" | bc` # 7F (cpu 6-0)
+
+  if [[ "$pid" != "" ]]; then
+    if [[ "$taskset_effective" == "" ]]; then
+      taskset_test $pid
+      if [[ "$?" == '1' ]]; then
+        taskset_effective=1
+        if [[ "$mode" == 'balance' ]]; then
+          sched_config "55 49" "72 65" "300" "400"
+        elif [[ "$mode" == 'powersave' ]]; then
+          sched_config "55 53" "72 68" "300" "400"
+        fi
+      else
+        taskset_effective=0
+        exit
+      fi
+    fi
+
+    local mode=$(getprop vtools.powercfg)
+    taskset -p "FF" "$pid" > /dev/null 2>&1
+    if [[ "$mode" == 'powersave' ]]; then
+      for tid in $(ls "/proc/$pid/task/"); do
+        if [[ "$tid" == "$pid" ]]; then
+          taskset -p "FF" "$tid" > /dev/null 2>&1
+          continue
+        fi
+        if [[ -f "/proc/$pid/task/$tid/comm" ]]; then
+          comm=$(cat /proc/$pid/task/$tid/comm)
+
+          case "$comm" in
+           "UnityMain")
+             taskset -p "80" "$tid" > /dev/null 2>&1 || taskset -p "F0" "$tid" > /dev/null 2>&1
+           ;;
+           # "UnityGfxDevice"*|"UnityMultiRende"*|"NativeThread"*|"UnityChoreograp"*)
+           "UnityGfxDevice"*|"UnityMultiRende"*)
+             taskset -p "f0" "$tid" > /dev/null 2>&1
+           ;;
+           # "Worker Thread"|"AudioTrack"|"Audio"*)
+           "Worker Thread")
+             taskset -p "F" "$tid" > /dev/null 2>&1
+           ;;
+           *)
+             taskset -p "7F" "$tid" > /dev/null 2>&1
+           ;;
+          esac
+        fi
+      done
+    elif [[ "$mode" == 'performance' ]] || [[ "$mode" == 'balance' ]]; then
+      for tid in $(ls "/proc/$pid/task/"); do
+        if [[ "$tid" == "$pid" ]]; then
+          taskset -p "FF" "$tid" > /dev/null 2>&1
+          continue
+        fi
+        if [[ -f "/proc/$pid/task/$tid/comm" ]]; then
+          comm=$(cat /proc/$pid/task/$tid/comm)
+
+          case "$comm" in
+           "UnityMain")
+             taskset -p "80" "$tid" > /dev/null 2>&1 || taskset -p "F0" "$tid" > /dev/null 2>&1
+           ;;
+           "UnityGfxDevice"*|"UnityMultiRende"*)
+             taskset -p "F0" "$tid" > /dev/null 2>&1
+           ;;
+           "AudioTrack"|"Audio"*|"tp_schedule"*|"MIHOYO_NETWORK"|"FMOD"*|"NativeThread"|"UnityChoreograp"|"UnityPreload")
+             taskset -p "F" "$tid" > /dev/null 2>&1
+           ;;
+           *)
+             taskset -p "7F" "$tid" > /dev/null 2>&1
+           ;;
+          esac
+        fi
+      done
+    else
+      for tid in $(ls "/proc/$pid/task/"); do
+        if [[ "$tid" == "$pid" ]]; then
+          taskset -p "FF" "$tid" > /dev/null 2>&1
+          continue
+        fi
+        if [[ -f "/proc/$pid/task/$tid/comm" ]]; then
+          comm=$(cat /proc/$pid/task/$tid/comm)
+
+          case "$comm" in
+           "UnityMain")
+             taskset -p "80" "$tid" > /dev/null 2>&1 || taskset -p "F0" "$tid" > /dev/null 2>&1
+           ;;
+           "Worker Thread")
+             taskset -p "F0" "$tid" > /dev/null 2>&1
+           ;;
+           # "UnityGfxDevice"*|"UnityMultiRende"*|"NativeThread"*|"UnityChoreograp"*)
+           "UnityGfxDevice"*|"UnityMultiRende"*)
+             taskset -p "F0" "$tid" > /dev/null 2>&1
+           ;;
+           *)
+             taskset -p "7F" "$tid" > /dev/null 2>&1
+           ;;
+          esac
+        fi
+      done
+    fi
+  fi
+}

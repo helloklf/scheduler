@@ -1,0 +1,96 @@
+{
+  "friendly": "原神",
+  "limiters": [
+    { "id": "ys-p1:cpu4", "step_shift": -1, "max_freq": 2450000, "min_freq": 1300000, "margin_mhz": 200, "smoothness": 8 },
+    { "id": "ys-p1:cpu7", "step_shift": -0.9, "max_freq": 2450000, "min_freq": 1500000, "margin_mhz": 220, "smoothness": 10 },
+
+    { "id": "ys-p2:cpu4", "active_interval": 40, "max_freq": 2850000, "min_freq": 2450000, "margin_mhz": 230, "smoothness": 6 },
+    { "id": "ys-p2:cpu7", "active_interval": 40, "max_freq": 2850000, "min_freq": 2450000, "margin_mhz": 260, "smoothness": 6 },
+
+    { "id": "ys-p3:cpu4", "active_interval": 40, "max_freq": 2450000, "margin_mhz": 250, "mode": "BOTTOM", "smoothness": 6 },
+    { "id": "ys-p3:cpu7", "active_interval": 40, "max_freq": 2650000, "margin_mhz": 260, "mode": "BOTTOM", "smoothness": 6 },
+
+    { "id": "ys-p4:cpu4", "active_interval": 40, "mode": "BOTTOM", "max_freq": 2650000, "margin_mhz": 300, "smoothness": 6 },
+    { "id": "ys-p4:cpu7", "active_interval": 40, "mode": "BOTTOM", "max_freq": 2850000, "margin_mhz": 350, "smoothness": 6 }
+  ],
+  "call": [
+    ["@cpuset", "1", "0-3", "0-5", "0-7"]
+  ],
+  "affinity": {
+    "unity_main": "40",
+    "comm": {
+      "80": ["UnityGfx"],
+      "30": ["UnityMultiRende", "UnityChoreograp", "Worker Thread"],
+      "3F": ["FMOD", "ged-swd", "AsyncReadManage", "NativeThread", "mali-", "UnityPreload"]
+    },
+    "other": "3F"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "ys-p1:cpu4", "ys-p1:cpu7"],
+        ["$cpu_min_0", "#1200000"], ["$cpu_min_4", "#800000"], ["$cpu_min_7", "#900000"],
+        ["@mtk_feas", "12"]
+      ],
+      "booster": {
+        "events": ["presets"],
+        "duration": 20000,
+        "idle_delay": 20000,
+        "enter": [
+          ["$uclamp_top_max", "max"]
+        ],
+        "exit": [
+          ["$uclamp_top_max", "5.0"]
+        ]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "ys-p2:cpu4", "ys-p2:cpu7"],
+        ["$cpu_min_0", "#1200000"], ["$cpu_min_4", "#900000"], ["$cpu_min_7", "#1100000"],
+        ["@mtk_feas", "2"]
+      ],
+      "booster": {
+        "events": ["presets"],
+        "duration": 20000,
+        "idle_delay": 20000,
+        "enter": [
+          ["$ddr_freq_min", "#5500000000"],
+          ["$uclamp_top_max", "max"]
+        ],
+        "exit": [
+          ["$ddr_freq_min", "#800000000"],
+          ["$uclamp_top_max", "20.00"]
+        ]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "ys-p3:cpu4", "ys-p3:cpu7"]
+      ],
+      "booster": {
+        "events": ["presets"],
+        "duration": 5000,
+        "idle_delay": 5000,
+        "enter": [["$ddr_freq_min", "#5500000000"]],
+        "exit": [["$ddr_freq_min", "#800000000"]]
+      }
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@limiters", "ys-p4:cpu4", "ys-p4:cpu7"]
+      ],
+      "booster": {
+        "events": ["presets"],
+        "duration": 5000,
+        "idle_delay": 5000,
+        "enter": [["$ddr_freq_min", "#5500000000"]],
+        "exit": [["$ddr_freq_min", "#800000000"]]
+      }
+    }
+  ]
+}

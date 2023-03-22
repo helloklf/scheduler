@@ -1,0 +1,66 @@
+{
+    "friendly": "王者荣耀",
+    "limiters": [
+      {"id": "sgame3:cpu4", "active_interval": 40, "step_shift": -1, "mode": "BOTTOM",
+        "max_freq": 2246400, "min_freq": 1612800, "margin_mhz": 455, "smoothness": 12},
+  
+      {"id": "sgame4:cpu4", "active_interval": 40, "step_shift": -1, "mode": "BOTTOM",
+        "max_freq": 2450000, "min_freq": 1843200, "margin_mhz": 465, "smoothness": 22}
+    ],
+    "affinity": {
+      "unity_main": "80",
+      "heavy_thread": "Thread-",
+      "heavy_mask": "40",
+      "comm": {
+        "40": ["UnityGfx"],
+        "30": ["CoreThread", "UnityPreload", "Worker Thread", "NativeThread"],
+        "3F": ["FMOD", "UnityChoreograp", "AsyncReadManage"],
+        "F": ["Audio", "tp_schedule"]
+      },
+      "other": "3F"
+    },
+    "modes": [{
+        "mode": ["powersave"],
+        "sensors": [{
+          "sensor": "fps",
+          "interval": 10000,
+          "props": ["$cpu_min_0", "$cpu_min_4",  "$cpu_max_0", "$cpu_max_4"],
+          "rules": [{
+            "threshold": [-1, 35],
+            "values": ["1420800", "1843200",    "1766400", "2649600"]
+          }, {
+            "threshold": [35, -1],
+            "values": ["1228800", "1612800",    "1766400", "2323200"]
+          }]
+        }]
+      }, {
+        "mode": ["balance"],
+        "sensors": [{
+          "sensor": "fps",
+          "interval": 10000,
+          "props": ["$cpu_min_0", "$cpu_min_4",  "$cpu_max_0", "$cpu_max_4"],
+          "rules": [{
+            "threshold": [-1, 35],
+            "values": ["1420800", "1843200",    "1766400", "2803200"]
+          }, {
+            "threshold": [35, -1],
+            "values": ["1228800", "1612800",    "1766400", "2476800"]
+          }]
+        }]
+      }, {
+        "mode": ["performance"],
+        "call": [
+            ["@cpu_freq", "cpu0", "1420800", "1766400"],
+            ["@cpu_freq", "cpu4", "1612800", "2803200"],
+            ["@limiters", "sgame3:cpu4"]
+        ]
+      }, {
+        "mode": ["*"],
+        "call": [
+            ["@cpu_freq", "cpu0", "1420800", "1766400"],
+            ["@cpu_freq", "cpu4", "1612800", "2803200"],
+            ["@limiters", "sgame4:cpu4"]
+        ]
+      }
+    ]
+}

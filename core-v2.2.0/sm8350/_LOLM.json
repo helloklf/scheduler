@@ -1,0 +1,45 @@
+{
+  "friendly": "LOL Mobile",
+  "packages": ["com.tencent.lolm"],
+  "call": [
+    ["@thermal_disguise", "true"],
+    ["$mi_thermal", "13"],
+    ["@high_rate", "on"],
+    ["@uclamp", "0.00~1.00", "0.00~max", "1.00~max"],
+    ["@values", "max_freq", "1804800", "2342400", "2496000"]
+  ],
+  "limiters": [
+    {"id": "lol1:cpu4", "active_interval": 20, "step_shift": -1, "boost_freq": 1766400, "max_freq": 1670400, "min_freq": 844800, "margin_mhz": 260, "smoothness": 6},
+    {"id": "lol1:cpu7", "active_interval": 20, "step_shift": -1, "boost_freq": 2035200, "max_freq": 1900800, "margin_mhz": 280, "smoothness": 6},
+    {"id": "lol2:cpu4", "active_interval": 20, "step_shift": -1, "boost_freq": 1766400, "max_freq": 1670400, "min_freq": 844800, "margin_mhz": 300, "smoothness": 6},
+    {"id": "lol2:cpu7", "active_interval": 20, "step_shift": -1, "boost_freq": 2265600, "max_freq": 1900800, "min_freq": 960000, "margin_mhz": 310, "smoothness": 6}
+  ],
+  "affinity": {
+    "interval": 3000,
+    "heavy_thread": "Thread-",
+    "heavy_mask": "40",
+    "comm": {
+      "80": ["UnityMain"],
+      "F0": ["UnityPreload"],
+      "70": ["UnityGfx"],
+      "30": ["NativeThread", "CoreThread"],
+      "7F": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read", "Worker Thread"]
+    },
+    "other": "7F"
+  },
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["@sched_limit", "0 0", "0 4000", "0 4000"],
+      ["@limiters", "lol1:cpu4", "lol1:cpu7"],
+      ["@gpu_freq", "min", "315000"]
+    ]
+  },{
+    "mode": ["balance"],
+    "call": [
+      ["@sched_limit", "0 0", "0 2000", "0 2000"],
+      ["@gpu_freq", "min", "491000"],
+      ["@limiters", "lol2:cpu4", "lol2:cpu7"]
+    ]
+  }]
+}

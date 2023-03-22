@@ -1,0 +1,229 @@
+{
+  "friendly": "王者荣耀/LOL",
+  "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
+  "sensors": [],
+  "call": [
+    ["$gpu_fixed", "-1"],
+    ["$core_ctl_0", "0"], ["$core_ctl_4", "0"], ["$core_ctl_7", "0"],
+    ["@cpuset", "0", "3-4", "0-5", "0-7"]
+  ],
+  "affinity": {
+    "interval": 1000,
+    "comm": {
+      "80": ["UnityMain"],
+      "F0": ["UnityPreload"],
+      "70": ["Thread-", "UnityGfx", "CoreThread"],
+      "7F": ["mali-", "Apollo", "Worker Thread"]
+    },
+    "__F": ["FMOD mixer", "FMOD stream", "Audio", "tp_schedule", "NDK Media", "GVoice", "ff_read", "Binder:", "NDK MediaCode", "tp_worker", "tp_cs2", "ged-swd", "sensor_task"],
+    "other": "7f"
+  },
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["@classical", "cpu0", "70", "60", "6", "1"],
+      ["@classical", "cpu4", "70", "61", "2", "4"],
+      ["@classical", "cpu7", "70", "60", "2", "5"],
+      ["@cpu_freq", "cpu0", "800000", "1.4Ghz"],
+      ["@cpu_freq", "cpu4", "800000", "2100000"],
+      ["@cpu_freq", "cpu7", "1300000", "2000000"],
+      ["@perf_turbo", "mt6983", "silent", "12"],
+      ["$core_ctl_4", "0"], ["$core_ctl_7", "0"],
+      ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
+      ["$mi_thermal", "13"],
+      ["$boost_affinity", "#0"],
+      ["@high_rate", "on"]
+    ],
+    "booster": {
+      "events": ["touch", "buttons"],
+      "duration": 3000,
+      "idle_delay": 3000,
+      "enter": [
+      ],
+      "exit": [
+      ]
+    },
+    "sensors": [{
+      "sensor": "fps",
+      "interval": 5000,
+      "props": [
+        "$cpu_min_0", "$cpu_min_4", "$cpu_min_7",
+        "$cpu_max_0", "$cpu_max_4", "$cpu_max_7",
+        "$ddr_freq_min", "$dcs_mode", "$fpsgo"
+      ],
+      "rules": [{
+        "threshold": [-1, 100],
+        "values": [
+          "#800000", "#1100000", "#1300000",
+          "#1400000", "#2100000", "#2100000",
+          "3200000000", "#0", "1"
+        ]
+      },
+        {
+          "threshold": [99, 75],
+          "values": [
+            "#1000000", "#1100000", "#1300000",
+            "#1400000", "#2000000", "#2000000",
+            "2667000000", "#0", "1"
+          ]
+        },
+        {
+          "threshold": [70, -1],
+          "values": [
+            "#800000", "#800000", "#1300000",
+            "#1400000", "2000000", "2000000",
+            "1866000000", "#0", "1"
+          ]
+        }]
+    }]
+  }, {
+    "mode": ["balance"],
+    "call": [
+      ["@perf_turbo", "mt6983", "silent", "12"],
+      ["$core_ctl_4", "0"], ["$core_ctl_7", "0"],
+      ["@cpu_freq", "cpu0", "800000", "1.6Ghz"],
+      ["@cpu_freq", "cpu4", "800000", "2650000"],
+      ["@cpu_freq", "cpu7", "1300000", "2000000"],
+      ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
+      ["$mi_thermal", "13"],
+      ["$ddr_freq_min", "2133000000"],
+      ["$boost_affinity", "#0"]
+    ],
+    "sensors": [{
+      "sensor": "fps",
+      "interval": 5000,
+      "rules": [{
+        "threshold": [-1, 100],
+        "enter": [
+          ["$cpu_min_0", "#1000000"], ["$cpu_min_4", "#1500000"], ["$cpu_min_7", "#1500000"],
+          ["$cpu_max_0", "#1500000"], ["$cpu_max_4", "#2650000"], ["$cpu_max_7", "#2650000"],
+          ["$ddr_freq_min", "3200000000"], ["$dcs_mode", "#0"], ["$fpsgo", "1"]
+        ]
+      },
+        {
+          "threshold": [99, 75],
+          "enter": [
+            ["$cpu_min_0", "#1000000"], ["$cpu_min_4", "#1200000"], ["$cpu_min_7", "#1300000"],
+            ["$cpu_max_0", "#1400000"], ["$cpu_max_4", "#2400000"], ["$cpu_max_7", "#2400000"],
+            ["$ddr_freq_min", "2667000000"], ["$dcs_mode", "#0"], ["$fpsgo", "1"]
+          ]
+        },
+        {
+          "threshold": [70, -1],
+          "enter": [
+            ["$cpu_min_0", "#1000000"], ["$cpu_min_4", "#900000"], ["$cpu_min_7", "#1300000"],
+            ["$cpu_max_0", "#1400000"], ["$cpu_max_4", "#2200000"], ["$cpu_max_7", "#2200000"],
+            ["$ddr_freq_min", "2133000000"], ["$dcs_mode", "#1"]
+          ]
+        }]
+    }],
+    "booster": {
+      "events": ["touch", "buttons"],
+      "duration": 5000,
+      "idle_delay": 5000,
+      "enter": [
+        ["$cpu_min_4", "800000"]
+      ],
+      "exit": [
+        ["$cpu_min_4", "400000"]
+      ]
+    }
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["@perf_turbo", "mt6983", "silent", "12"],
+      ["@cpu_freq", "cpu0", "1Ghz", "1.6Ghz"],
+      ["@cpu_freq", "cpu4", "1Ghz", "2.85Ghz"],
+      ["@cpu_freq", "cpu7", "1300000", "2.85Ghz"],
+      ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
+      ["$mi_thermal", "13"],
+      ["$gpu_dvfs_margin", "20"],
+      ["$boost_affinity", "#0"]
+    ],
+    "sensors": [{
+      "sensor": "fps",
+      "interval": 5000,
+      "rules": [{
+        "threshold": [-1, 100],
+        "enter": [
+          ["$cpu_max_0", "#1500000"], ["$cpu_max_4", "#2850000"], ["$cpu_max_7", "#2850000"],
+          ["$ddr_freq_min", "3200000000"], ["$fpsgo", "1"]
+        ]
+      },
+        {
+          "threshold": [99, 75],
+          "enter": [
+            ["$cpu_max_0", "#1500000"], ["$cpu_max_4", "#2650000"], ["$cpu_max_7", "#2650000"],
+            ["$ddr_freq_min", "3200000000"], ["$fpsgo", "1"]
+          ]
+        },
+        {
+          "threshold": [70, -1],
+          "enter": [
+            ["$cpu_max_0", "#1500000"], ["$cpu_max_4", "#2400000"], ["$cpu_max_7", "#2400000"],
+            ["$ddr_freq_min", "2667000000"]
+          ]
+        }]
+    }]
+  }, {
+    "mode": ["fast"],
+    "call": [
+      ["@perf_turbo", "mt6983", "on", "5"],
+      ["@cpu_freq", "cpu0", "1Ghz", "max"],
+      ["$gpu_dvfs_margin", "25"],
+      ["@uclamp", "0.00~max", "0.00~max", "2.0~max"],
+      ["$boost_affinity", "#0"]
+    ],
+    "sensors": [{
+      "sensor": "fps",
+      "interval": 5000,
+      "rules": [{
+        "threshold": [-1, 100],
+        "enter": [
+          ["$cpu_min_4", "#1500000"], ["$cpu_min_7", "#1500000"],
+          ["$cpu_max_4", "#2850000"], ["$cpu_max_7", "#3000000"],
+          ["$ddr_freq_min", "4266000000"], ["$fpsgo", "1"]
+        ]
+      },
+        {
+          "threshold": [99, 75],
+          "enter": [
+            ["$cpu_min_4", "#1300000"], ["$cpu_min_7", "#1400000"],
+            ["$cpu_max_4", "#2850000"], ["$cpu_max_7", "#2850000"],
+            ["$ddr_freq_min", "4266000000"], ["$fpsgo", "1"]
+          ]
+        },
+        {
+          "threshold": [70, -1],
+          "enter": [
+            ["$cpu_min_4", "#1000000"], ["$cpu_min_7", "#1400000"],
+            ["$cpu_max_4", "#2650000"], ["$cpu_max_7", "#2650000"],
+            ["$ddr_freq_min", "3200000000"], ["$fpsgo", "1"]
+          ]
+        }]
+    }]
+  }, {
+    "mode": ["pedestal"],
+    "call": [
+      ["@perf_turbo", "mt6983", "on", "0"],
+      ["@uclamp", "0.00~max", "3.0~max", "9.0~max"],
+      ["$boost_affinity", "#0"]
+    ],
+    "booster": {
+      "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys", "mtk-pmic-keys", "Headset", "mtk-kpd"],
+      "duration": 10000,
+      "enter": [
+        ["@cpuset", "0-2", "3-4", "0-7", "0-7"],
+        ["@cpu_freq", "cpu0", "1.6Ghz", "max"],
+        ["@cpu_freq", "cpu4", "2.2Ghz", "max"],
+        ["@cpu_freq", "cpu7", "2.2Ghz", "max"]
+      ],
+      "exit": [
+        ["@cpuset", "0-2", "3-4", "0-7", "0-7"],
+        ["@cpu_freq", "cpu0", "1.6Ghz", "max"],
+        ["@cpu_freq", "cpu4", "1.9Ghz", "max"],
+        ["@cpu_freq", "cpu7", "1.9Ghz", "max"]
+      ]
+    }
+  }]
+}

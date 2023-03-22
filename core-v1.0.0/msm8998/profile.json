@@ -1,0 +1,258 @@
+{
+  "platform": "mt6893",
+  "platformName": "D1200",
+  "alias": {
+    "target_loads_cpu0": "/sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads",
+    "target_loads_cpu4": "/sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads"
+  },
+  "apps": [
+    {
+      "friendly": "原神",
+      "match": ["miHoYo"],
+      "packages": [
+        "com.miHoYo.Yuanshen",
+        "com.miHoYo.ys.mi",
+        "com.miHoYo.ys.bilibili",
+        "com.miHoYo.GenshinImpact"
+      ],
+      "stop_on": ["display", "leave", "scene"],
+      "stop_on_enum": [
+        "display 屏幕关闭后，自动停止scene-scheduler",
+        "scene   SCENE切换了调度配置后，自动停止scene-scheduler",
+        "leave   离开指定应用后，自动停止scene-scheduler"
+      ],
+      "sensors": [],
+      "profiles": [
+        {
+          "mode": ["*"],
+          "logger": false,
+          "enable": true,
+          "comm": {
+            "80": ["UnityMain"],
+            "40": ["UnityGfxDevice"],
+            "60": ["UnityMultiRende", "Worker Thread"],
+            "3": ["Timer", "Thread-", "AudioTrack", "Audio", "MIHOYO_NETWORK", "tp_schedule"],
+            "F": []
+          },
+          "other": "3f"
+        }
+      ]
+    },
+    {
+      "friendly": "王者荣耀",
+      "match": ["sgame"],
+      "packages": ["com.tencent.tmgp.sgame"],
+      "stop_on": ["display", "leave", "scene"],
+      "stop_on_enum": [
+        "display 屏幕关闭后，自动停止scene-scheduler",
+        "scene   SCENE切换了调度配置后，自动停止scene-scheduler",
+        "leave   离开指定应用后，自动停止scene-scheduler"
+      ],
+      "sensors": [],
+      "profiles": [
+        {
+          "mode": ["*"],
+          "logger": false,
+          "enable": true,
+          "interval": 1000,
+          "comm": {
+            "80": ["UnityMain"],
+            "40": ["UnityPreload","Thread-", "CoreThread-"],
+            "30": ["UnityGfx", "UnityMultiRende","Worker Thread"],
+            "38": ["NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+          },
+          "other": "1C"
+        }
+      ]
+    },
+    {
+      "friendly": "极速响应",
+      "match": [],
+      "packages": [
+        "com.miui.home",
+        "com.meizu.flyme.launcher",
+        "net.oneplus.launcher",
+        "com.oppo.launcher",
+        "ch.deletescape.lawnchair.ci",
+        "com.mi.android.globallauncher",
+        "com.teslacoilsw.launcher",
+        "com.android.quicksearchbox",
+        "net.oneplus.h2launcher",
+        "com.oneplus.hydrogen.launcher",
+        "com.microsoft.launcher",
+        "org.lineageos.trebuchet",
+        "org.mokee.lawnchair",
+        "com.google.android.apps.nexuslauncher"
+      ],
+      "stop_on": [],
+      "stop_on_enum": [
+        "display 屏幕关闭后，自动停止scene-scheduler",
+        "scene   SCENE切换了调度配置后，自动停止scene-scheduler",
+        "leave   离开指定应用后，自动停止scene-scheduler"
+      ],
+      "sensors": [],
+      "profiles": [{
+        "mode": ["powersave"],
+        "logger": false,
+        "enable": true,
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 3000,
+          "enter": {
+            "$stune_top_perf": "1",
+            "$sched_boost": "2",
+            "/dev/cpuset/top-app/cpus": "0-7",
+            "/dev/cpuset/foreground/cpus": "0-7",
+            "$msm_cpu_max": "0:1824000 1:1824000 2:1824000 3:1824000 4:2265600 5:2265600 6:2265600 7:2265600",
+            "$cpu_max_0": "1824000",
+            "$cpu_max_4": "2265600"
+          }
+        },
+        "exit": {
+          "$cpu_min_0": "300000",
+          "$cpu_min_4": "300000"
+        }
+      },{
+        "mode": ["balance"],
+        "logger": false,
+        "enable": true,
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 3000,
+          "enter": {
+            "$stune_top_perf": "1",
+            "$sched_boost": "2",
+            "/dev/cpuset/top-app/cpus": "0-7",
+            "/dev/cpuset/foreground/cpus": "0-7",
+            "$cpu_min_0": "1670400",
+            "$cpu_min_4": "1804800",
+            "$msm_cpu_max": "0:1900800 1:1900800 2:1900800 3:1900800 4:2457600 5:2457600 6:2457600 7:2457600",
+            "$cpu_max_0": "1900800",
+            "$cpu_max_4": "2457600"
+          },
+          "exit": {
+            "$cpu_min_0": "300000",
+            "$cpu_min_4": "300000"
+          }
+        }
+      },{
+        "mode": ["performance", "fast"],
+        "logger": false,
+        "enable": true,
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 3000,
+          "enter": {
+            "/dev/cpuset/top-app/cpus": "0-7",
+            "/dev/cpuset/foreground/cpus": "0-7",
+            "$sched_boost": "2",
+            "$stune_top_boost": "70",
+            "$stune_top_perf": "1",
+            "$cpu_min_0": "1824000",
+            "$cpu_min_4": "2112000",
+            "$msm_cpu_max": "0:1900800 1:1900800 2:1900800 3:1900800 4:3300000 5:3300000 6:3300000 7:3300000",
+            "$cpu_max_0": "1900800",
+            "$cpu_max_4": "3300000"
+          }
+        }
+      }]
+    },
+    {
+      "friendly": "All",
+      "match": [],
+      "packages": ["*"],
+      "stop_on": ["display"],
+      "stop_on_enum": [
+        "display 屏幕关闭后，自动停止scene-scheduler",
+        "scene   SCENE切换了调度配置后，自动停止scene-scheduler",
+        "leave   离开指定应用后，自动停止scene-scheduler"
+      ],
+      "sensors": [
+        {
+          "sensor": "/sys/class/power_supply/usb/online",
+          "logger": false,
+          "enable": false,
+          "interval": 1000,
+          "rules": [
+            {
+              "threshold": [-1, 1],
+              "note": "[sensor] < value1 && [sensor] >= value2",
+              "set_value": {
+                "/sys/devices/system/cpu/cpufreq/policy0/scaling_governor": "performance",
+                "/sys/devices/system/cpu/cpufreq/policy4/scaling_governor": "performance",
+                "/sys/class/kgsl/kgsl-3d0/max_pwrlevel": "0"
+              },
+              "lock_value": {
+              }
+            },
+            {
+              "threshold": [1, 0],
+              "set_value": {
+                "/sys/devices/system/cpu/cpufreq/policy0/scaling_governor": "interactive",
+                "/sys/devices/system/cpu/cpufreq/policy4/scaling_governor": "interactive"
+              },
+              "lock_value": {}
+            }
+          ]
+        }
+      ],
+      "profiles": [{
+        "mode": ["powersave", "balance"],
+        "logger": false,
+        "enable": true,
+        "booster": {
+          "events": ["touch", "buttons", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": {
+            "$stune_top_boost": "10",
+            "$stune_top_perf": "1",
+            "$target_loads_cpu0": "30",
+            "$target_loads_cpu4": "35",
+            "/sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy": "1",
+            "/sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy": "1"
+          },
+          "exit": {
+          }
+        }
+      },{
+        "mode": ["performance"],
+        "logger": false,
+        "enable": true,
+        "booster": {
+          "events": ["touch", "buttons", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": {
+            "$stune_top_boost": "100",
+            "$stune_top_perf": "1",
+            "$target_loads_cpu0": "28",
+            "$target_loads_cpu4": "30",
+            "/sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy": "1",
+            "/sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy": "1",
+            "$sched_boost": "2"
+          },
+          "exit": {
+          }
+        }
+      },{
+        "mode": ["fast"],
+        "logger": false,
+        "enable": true,
+        "booster": {
+          "events": ["touch", "buttons", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": {
+            "$stune_top_boost": "100",
+            "$stune_top_perf": "1",
+            "$target_loads_cpu0": "25",
+            "$target_loads_cpu4": "28",
+            "/sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy": "1",
+            "/sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy": "1",
+            "$sched_boost": "2"
+          },
+          "exit": {
+          }
+        }
+      }]
+    }
+  ]
+}

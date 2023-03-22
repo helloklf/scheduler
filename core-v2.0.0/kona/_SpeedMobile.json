@@ -1,0 +1,39 @@
+{
+  "friendly": "QQ飞车",
+  "packages": ["com.tencent.tmgp.speedmobile"],
+  "limiters": [
+    {"id": "gboost3:cpu4", "step_shift": -1, "mode": "BOTTOM", "max_freq": 2419200, "min_freq": 1056000, "margin_mhz": 695, "smoothness": 15},
+    {"id": "gboost4:cpu4", "step_shift": -1, "mode": "BOTTOM", "max_freq": 2419200, "min_freq": 1670400, "margin_mhz": 695, "smoothness": 15},
+    {"id": "gboost4:cpu7", "step_shift": -1, "mode": "BOTTOM", "max_freq": 2841600, "min_freq": 1747200, "margin_mhz": 695, "smoothness": 15}
+  ],
+  "affinity": {
+    "interval": 3000,
+    "unity_main": "80",
+    "comm": {
+      "40": ["UnityGfx"],
+      "80": ["UnityMain"]
+    },
+    "other": "3f"
+  },
+  "call": [
+    ["@preset", "bw_boost"],
+    ["@limiters", "gboost3:cpu4", "gboost4:cpu7"]
+  ],
+  "modes": [
+    {
+      "mode": ["balance"],
+      "enter": [
+        ["$cpu_min_0", "1075200"], ["$cpu_min_4", "1056000"], ["$cpu_min_7", "1747200"]
+      ],
+      "exit": [ ["$cpu_min_4", "825600"] ]
+    },
+    {
+      "mode": ["*"],
+      "enter": [
+        ["$cpu_min_0", "1075200"], ["$cpu_min_4", "1171200"], ["$cpu_min_7", "1977600"],
+        ["$stune_top_boost", "10"], ["$stune_top_perf", "1"]
+      ],
+      "exit": [ ["$cpu_min_4", "825600"] ]
+    }
+  ]
+}

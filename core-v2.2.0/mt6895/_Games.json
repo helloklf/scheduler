@@ -1,0 +1,29 @@
+{
+  "friendly": "游戏",
+  "limiters": [
+    {"id": "gboost3:cpu7", "step_shift": -1, "mode": "BOTTOM", "ddr_boost": true,
+      "boost_freq": 2650000, "max_freq": 2400000, "min_freq": 500000, "margin_mhz": 385, "smoothness": 6},
+
+    {"id": "gboost4:cpu7", "step_shift": -1, "mode": "BOTTOM", "ddr_boost": true,
+      "boost_freq": 2650000, "max_freq": 2400000, "min_freq": 700000, "margin_mhz": 485, "smoothness": 6},
+
+    {"id": "gboost5:cpu7", "step_shift": -1, "mode": "BOTTOM", "ddr_boost": true,
+      "boost_freq": 2650000, "max_freq": 2400000, "min_freq": 1000000, "margin_mhz": 585, "smoothness": 6}
+  ],
+  "modes": [{
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "gboost3:cpu7"]
+      ]
+    }, {
+      "mode": ["fast"],
+      "call": [
+        ["@limiters", "gboost4:cpu7"]
+      ]
+    }, {
+    "mode": ["pedestal"],
+    "call": [
+      ["@limiters", "gboost5:cpu7"]
+    ]
+  }]
+}

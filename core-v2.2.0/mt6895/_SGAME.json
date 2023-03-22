@@ -1,0 +1,135 @@
+{
+  "friendly": "王者荣耀/LOL",
+  "limiters": [
+    {"id": "sgame2:cpu4", "step_shift": -1, "mode": "BOTTOM",
+      "max_freq": 2200000, "min_freq": 700000, "margin_mhz": 435, "smoothness": 6},
+    {"id": "sgame2:cpu7", "step_shift": -1, "mode": "BOTTOM", "ddr_boost": true,
+      "boost_freq": 2400000, "max_freq": 2150000, "min_freq": 1300000, "margin_mhz": 435, "smoothness": 6},
+
+    {"id": "sgame3:cpu4", "active_interval": 40, "step_shift": -1, "mode": "BOTTOM",
+      "boost_freq": 2650000, "max_freq": 2250000, "min_freq": 1300000, "margin_mhz": 535, "smoothness": 8},
+    {"id": "sgame3:cpu7", "active_interval": 40, "step_shift": -1, "mode": "BOTTOM", "ddr_boost": true,
+      "boost_freq": 2650000, "max_freq": 2400000, "min_freq": 1300000, "margin_mhz": 535, "smoothness": 8}
+  ],
+  "affinity": {
+    "heavy_thread": "Thread-",
+    "heavy_mask": "40",
+    "interval": 1000,
+    "comm": {
+      "80": ["UnityMain"],
+      "F0": ["UnityPreload"],
+      "40": ["UnityGfx"],
+      "30": ["CoreThread", "Worker Thread"],
+      "3F": ["NativeThread", "mali-", "Apollo"]
+    },
+    "other": "3F"
+  },
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["@cpu_freq", "policy0", "500000", "1800000"],
+      ["@cpu_freq", "policy4", "400000", "2200000"],
+      ["@cpu_freq", "policy7", "500000", "2650000"],
+      ["@limiters", "sgame2:cpu4", "sgame2:cpu7"],
+      ["$fpsgo", "#0"]
+    ]
+  },{
+    "mode": ["balance"],
+    "call": [
+      ["$boost_affinity", "#0"],
+      ["@cpu_freq", "cpu0", "1000000", "2000000"],
+      ["@cpu_freq", "cpu4", "400000", "2450000"],
+      ["@cpu_freq", "cpu7", "500000", "2850000"],
+      ["$fpsgo", "0"]
+    ],
+    "sensors": [{
+      "sensor": "fps",
+      "interval": 5000,
+      "rules": [{
+        "threshold": [-1, 100],
+        "enter_once": [ ["@limiters", "sgame3:cpu4", "sgame3:cpu7"] ]
+      },
+      {
+        "threshold": [99, 75],
+        "enter_once": [ ["@limiters", "sgame3:cpu4", "sgame3:cpu7"] ]
+      },
+      {
+        "threshold": [70, -1],
+        "enter_once": [ ["@limiters", "sgame2:cpu4", "sgame2:cpu7"] ]
+      }]
+    }]
+  },{
+    "mode": ["performance"],
+    "call": [
+      ["@cpu_freq", "policy4", "min", "2550000"],
+      ["@cpu_freq", "cpu0", "1000000", "2000000"],
+      ["@cpu_freq", "cpu4", "500000", "2650000"],
+      ["@cpu_freq", "cpu7", "500000", "2850000"],
+      ["@preset", "kpi_on"],
+      ["$limit_cfreq", "#2300000"], ["$limit_rfreq", "#2650000"],
+      ["$limit_cfreq_m", "#2400000"], ["$limit_rfreq_m", "#2650000"]
+    ],
+    "sensors": [{
+      "sensor": "fps",
+      "interval": 5000,
+      "rules": [{
+          "threshold": [-1, 100],
+          "enter_once": [
+            ["@values", "max_freq", "#2000000", "#2550000", "#2850000"],
+            ["@values", "min_freq", "#1200000", "#1300000", "#1600000"]
+          ]
+        },
+        {
+          "threshold": [99, 75],
+          "enter_once": [
+            ["@values", "max_freq", "#2000000", "#2450000", "#2850000"],
+            ["@values", "min_freq", "#1100000", "#1100000", "#1400000"]
+          ]
+        },
+        {
+          "threshold": [70, -1],
+          "enter_once": [
+            ["@values", "max_freq", "#2000000", "#2350000", "#2650000"],
+            ["@values", "min_freq", "#1000000", "#900000", "#1000000"]
+          ]
+        }
+      ]
+    }]
+  }, {
+    "mode": ["*"],
+    "call": [
+      ["@cpu_freq", "policy4", "1400000", "max"],
+      ["@cpu_freq", "policy7", "1600000", "max"],
+      ["@preset", "kpi_on"],
+      ["$limit_cfreq", "#2450000"], ["$limit_rfreq", "#2850000"],
+      ["$limit_cfreq_m", "#2450000"], ["$limit_rfreq_m", "#2850000"]
+    ],
+    "sensors": [{
+      "sensor": "fps",
+      "interval": 5000,
+      "props": ["$cpu_min_0", "$cpu_min_4", "$cpu_min_7",  "$cpu_max_0", "$cpu_max_4", "$cpu_max_7", "$ddr_freq_min"],
+      "rules": [{
+          "threshold": [-1, 100],
+          "enter_once": [
+            ["@values", "max_freq", "#2000000", "#2650000", "#2850000"],
+            ["@values", "min_freq", "#1200000", "#1400000", "#1600000"]
+          ]
+        },
+        {
+          "threshold": [99, 75],
+          "enter_once": [
+            ["@values", "max_freq", "#2000000", "#2450000", "#2850000"],
+            ["@values", "min_freq", "#1100000", "#1200000", "#1400000"]
+          ]
+        },
+        {
+          "threshold": [70, -1],
+          "enter_once": [
+            ["@values", "max_freq", "#2000000", "#2450000", "#2850000"],
+            ["@values", "min_freq", "#1000000", "#1000000", "#1000000"]
+          ]
+        }
+      ]
+    }]
+  }]
+}

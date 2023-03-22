@@ -1,0 +1,49 @@
+{
+  "friendly": "极速响应",
+  "modes": [{
+    "mode": ["powersave"],
+    "booster": {
+      "events": ["presets"],
+      "duration": 3000,
+      "idle_delay": 500,
+      "enter": [
+        ["@preset", "powersave_active"],
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode_change 0"]
+      ],
+      "exit": [
+        ["@preset", "powersave_inactive"],
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 0|cm_mgr_perf_enable 0|dsu_mode_change 0"]
+      ]
+    }
+  }, {
+    "mode": ["balance"],
+    "booster": {
+      "events": ["presets"],
+      "duration": 3000,
+      "idle_delay": 500,
+      "enter": [
+        ["@preset", "balance_active"],
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode_change 0"]
+      ],
+      "exit": [
+        ["@preset", "balance_inactive"],
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 0|cm_mgr_perf_enable 0|dsu_mode_change 0"]
+      ]
+    }
+  }, {
+    "mode": ["performance", "fast"],
+    "booster": {
+      "events": ["presets"],
+      "duration": 4000,
+      "idle_delay": 500,
+      "enter": [
+        ["@preset", "fast_active"],
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode_change 0"]
+      ],
+      "exit": [
+        ["@preset", "fast_inactive"],
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 0|cm_mgr_perf_enable 0|dsu_mode_change 0"]
+      ]
+    }
+  }]
+}

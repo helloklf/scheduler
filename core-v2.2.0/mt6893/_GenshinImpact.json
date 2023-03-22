@@ -1,0 +1,130 @@
+{
+  "friendly": "原神",
+  "affinity": {
+    "interval": 2000,
+    "heavy_thread": "UnityGfx",
+    "heavy_mask": "80",
+    "unity_main": "40",
+    "comm": {
+      "30": ["UnityPreload", "UnityMultiRende"],
+      "3F": ["FMOD", "UnityChoreograp", "ged-swd", "Worker Thread"],
+      "F": ["Thread-", "MIHOYO_NETWORK", "mali-cmar-backe", "mali-event-", "mali-cpu-", "mali-mem-", "Audio", "tp_schedule", "NativeThread", "AsyncReadManage"]
+    },
+    "other": "3F"
+  },
+  "limiters": [
+    { "id": "ys-p2:cpu4", "max_freq": 2354000, "min_freq": 1537000, "margin_mhz": 450 },
+    { "id": "ys-p2:cpu7", "max_freq": 2463000, "min_freq": 1632000, "margin_mhz": 500 },
+
+    { "id": "ys-p3:cpu4", "max_freq": 2510000, "min_freq": 1900000, "margin_mhz": 450 },
+    { "id": "ys-p3:cpu7", "max_freq": 2600000, "min_freq": 1800000, "margin_mhz": 600 },
+
+    { "id": "ys-p4:cpu4", "mode": "BOTTOM", "max_freq": 2600000, "min_freq": 1400000, "margin_mhz": 450 },
+    { "id": "ys-p4:cpu7", "mode": "BOTTOM", "max_freq": 2800000, "min_freq": 1400000, "margin_mhz": 400 }
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "booster": {
+        "events": ["presets"],
+        "duration": 20000,
+        "enter": [
+          ["$min_cpu_freq", "0 1525000|1 902000|2 659000"],
+          ["$max_cpu_freq", "0 2000000|1 1624000|2 1985000"],
+          ["$gpu_max_opp", "32"],
+          ["$deisolation", "4|5|6|7"]
+        ],
+        "exit": [
+          ["$min_cpu_freq", "0 500000|1 437000|2 659000"],
+          ["$max_cpu_freq", "0 1525000|1 902000|2 921000"],
+          ["$gpu_max_opp", "40"],
+          ["$deisolation", "4|5|6|7"]
+        ]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "ys-p2:cpu4", "ys-p2:cpu7"],
+        ["$max_cpu_freq", "0 2000000|1 1855000|2 2284000"]
+      ],
+      "booster": {
+        "events": ["presets"],
+        "duration": 30000,
+        "enter": [
+          ["$min_cpu_freq", "0 1525000|1 1451000|2 1258000"],
+          ["$gpu_max_opp", "27"],
+          ["$deisolation", "4|5|6|7"]
+        ],
+        "exit": [
+          ["$min_cpu_freq", "0 500000|1 437000|2 659000"],
+          ["$gpu_max_opp", "40"],
+          ["$deisolation", "4|5|6|7"]
+        ]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "ys-p3:cpu4", "ys-p3:cpu7"]
+      ],
+      "sensors": [
+        {
+          "sensor": "mtktscpu",
+          "interval": 100,
+          "props": ["$gpu_max_opp"],
+          "rules": [
+            { "threshold": [    -1, 110000], "values": ["35"] },
+            { "threshold": [110000, 105000], "values": ["32"] },
+            { "threshold": [105000, 95000 ], "values": ["28"] },
+            { "threshold": [95000,  90000 ], "values": ["25"] },
+            { "threshold": [90000,  85000 ], "values": ["21"] },
+            { "threshold": [83000,  -1    ], "values": ["16"] }
+          ]
+        }
+      ],
+      "booster": {
+        "events": ["presets"],
+        "duration": 30000,
+        "enter": [
+          ["$deisolation", "4|5|6|7"]
+        ],
+        "exit": [
+          ["$deisolation", "4|5|6|7"]
+        ]
+      }
+    },
+    {
+      "mode": ["fast", "pedestal"],
+      "call": [
+        ["@limiters", "ys-p4:cpu4", "ys-p4:cpu7"]
+      ],
+      "sensors": [
+        {
+          "sensor": "mtktscpu",
+          "disable": false,
+          "interval": 200,
+          "props": ["$gpu_max_opp", "$max_cpu_freq"],
+          "rules": [
+            { "threshold": [    -1, 110000], "values": ["33", "1 1740000|2 1998000"] },
+            { "threshold": [110000, 105000], "values": ["28", "1 1985000|2 2284000"] },
+            { "threshold": [105000, 970000], "values": ["28", "1 2354000|2 2284000"] },
+            { "threshold": [970000, 92000 ], "values": ["28", "1 2507000|2 2600000"] },
+            { "threshold": [92000,  87000 ], "values": ["21", "1 2600000|2 2713000"] },
+            { "threshold": [83000,  -1    ], "values": ["07", "1 2600000|2 3000000"] }
+          ]
+        }
+      ],
+      "booster": {
+        "events": ["presets"],
+        "duration": 30000,
+        "enter": [
+          ["$deisolation", "4|5|6|7"]
+        ],
+        "exit": [
+          ["$deisolation", "4|5|6|7"]
+        ]
+      }
+    }
+  ]
+}

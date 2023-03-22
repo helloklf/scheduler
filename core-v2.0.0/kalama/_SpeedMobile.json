@@ -1,0 +1,58 @@
+{
+  "friendly": "QQ飞车",
+  "cpuset": {
+    "unity_main": "7",
+    "comm": {
+      "6": ["UnityGfx"],
+      "3-5": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
+    },
+    "other": "3-5"
+  },
+  "limiters": [
+    {"id": "speedmobile:cpu3", "step_shift": -1,
+      "max_freq": 2100000, "min_freq": 1700000, "margin_mhz": 400, "smoothness": 6},
+    {"id": "speedmobile:cpu7", "step_shift": -1,
+      "max_freq": 2400000, "min_freq": 1900000, "margin_mhz": 230, "smoothness": 6},
+
+    {"id": "speedmobile1:cpu3", "step_shift": -1,
+      "max_freq": 2300000, "min_freq": 1900000, "margin_mhz": 400, "smoothness": 6},
+    {"id": "speedmobile1:cpu7", "step_shift": -1,
+      "max_freq": 2650000, "min_freq": 2100000, "margin_mhz": 260, "smoothness": 6},
+
+    {"id": "speedmobile2:cpu3", "step_shift": -1,
+      "max_freq": 2650000, "min_freq": 2100000, "margin_mhz": 400, "smoothness": 6},
+    {"id": "speedmobile2:cpu7", "step_shift": -1,
+      "max_freq": 2800000, "min_freq": 2300000, "margin_mhz": 280, "smoothness": 6},
+
+    {"id": "speedmobile3:cpu7", "step_shift": -1, "mode": "BOTTOM",
+      "boost_freq": 2650000, "max_freq": 1700000, "margin_mhz": 250, "smoothness": 6}
+  ],
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["@values", "max_freq", "#1400000", "#2100000", "#2400000"],
+      ["@limiters", "speedmobile:cpu3", "speedmobile:cpu7"],
+      ["@msm_feas", "10"]
+    ]
+  }, {
+    "mode": ["balance"],
+    "call": [
+      ["@values", "max_freq", "#1500000", "#2300000", "#2650000"],
+      ["@limiters", "speedmobile1:cpu3", "speedmobile1:cpu7"],
+      ["@msm_feas", "0"]
+    ]
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["@values", "max_freq", "#1600000", "#2450000", "#2800000"],
+      ["@limiters", "speedmobile1:cpu3", "speedmobile2:cpu7"],
+      ["@msm_feas", "0"]
+    ]
+  }, {
+    "mode": ["fast"],
+    "call": [
+      ["@values", "max_freq", "#1600000", "#2650000", "#3000000"],
+      ["@limiters", "speedmobile2:cpu3", "speedmobile3:cpu7"]
+    ]
+  }]
+}

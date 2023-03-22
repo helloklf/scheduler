@@ -1,0 +1,76 @@
+{
+  "friendly": "LOL Mobile",
+  "packages": ["com.tencent.lolm"],
+  "affinity": {
+    "heavy_thread": "Thread-",
+    "heavy_mask": "40",
+    "comm": {
+      "80": ["UnityMain"],
+      "F0": ["UnityPreload"],
+      "70": ["UnityGfx"],
+      "30": ["NativeThread", "CoreThread"],
+      "7F": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read", "Worker Thread"]
+    },
+    "other": "7F"
+  },
+  "modes": [{
+    "mode": ["powersave", "balance"],
+    "fas": {
+      "_60": ["1785600", "1766400", "-1"],
+      "_90": ["2035200", "1881600", "-3"],
+      "_120": ["2150400", "1996800", "-3"]
+    },
+    "call": [
+      ["@high_rate", "energy"],
+      ["@high_rate", "energy"],
+      ["@sched_limit", "0 0", "0 4000", "0 4000"],
+      ["@limiters", "lol1:cpu4", "lol1:cpu7"],
+      ["@gpu_freq", "min", "315000"]
+    ],
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 3000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"]] },
+          { "threshold": [99,  75], "enter_once": [["@preset", "bw_low"]] },
+          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["@gpu_freq", "min", "400000"]
+    ],
+    "fas": {
+      "governor": "performance",
+      "_60": ["1785600", "1766400", "-1"],
+      "_90": ["2150400", "1881600", "-1"],
+      "_120": ["2265600", "1996800", "-1"]
+    },
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 3000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"]] },
+          { "threshold": [99,  75], "enter_once": [["@preset", "bw_low"]] },
+          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["*"],
+    "call": [
+      ["@gpu_freq", "min", "540000"]
+    ],
+    "fas": {
+      "governor": "performance",
+      "mode": "fps",
+      "_60": ["1785600", "1766400", "-1"],
+      "_90": ["2265600", "1881600", "-1"],
+      "_120": ["2496000", "1996800", "-1"]
+    }
+  }]
+}

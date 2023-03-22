@@ -1,0 +1,232 @@
+{
+  "friendly": "原神",
+  "packages": ["com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact"],
+  "call": [
+    ["$gpu_fixed", "-1"],
+    ["@cpuset", "0-2", "1-4", "0-5", "0-7"],
+    ["@uclamp", "0.00~1.00", "0.0~max", "0.00~max"],
+    ["@high_rate", "off", "3000"]
+  ],
+  "sensors": [],
+  "affinity": {
+    "interval": 1000,
+    "unity_main": "80",
+    "comm": {
+      "40": ["UnityGfx"],
+      "30": ["UnityMultiRende", "UnityPreload"],
+      "3F": [
+        "FMOD", "UnityChoreograp", "AsyncReadManage", "Worker Thread", "Thread-",
+        "mali-cmar-backe", "mali-event-", "mali-cpu-", "mali-mem-", "ged-swd", "NativeThread"
+      ],
+      "F": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK"]
+    },
+    "other": "3F"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@classical", "cpu0", "80", "60", "5", "1"],
+        ["@classical", "cpu4", "89", "75", "3", "2"],
+        ["@classical", "cpu7", "89", "75", "3", "2"],
+        ["@perf_turbo", "mt6983", "gaming", "20"],
+        ["$cpu_max_0", "#1200000"], ["$cpu_max_4", "#2100000"], ["$cpu_max_7", "#2100000"],
+        ["$mi_thermal", "13"]
+      ],
+      "sensors": [
+        {
+          "sensor": "/sys/class/power_supply/battery/temp",
+          "interval": 2000,
+          "props": ["$gpu_freq"],
+          "rules": [
+            { "threshold": [-1, 501], "values": ["27"] },
+            { "threshold": [500, 471], "values": ["27"] },
+            { "threshold": [470, 431], "values": ["20"]},
+            { "threshold": [420, -1], "values": ["16"]}
+          ]
+        }
+      ],
+      "booster": {
+        "events": ["presets"],
+        "duration": 30000,
+        "idle_delay": 30000,
+        "enter": [ ["$uclamp_top_max", "max"], ["$cpu_min_0", "#800000"] ],
+        "exit": [ ["$uclamp_top_max", "10.00"], ["$cpu_min_0", "#400000"] ]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@classical", "cpu0", "80", "60", "5", "1"],
+        ["@classical", "cpu4", "89", "75", "3", "2"],
+        ["@classical", "cpu7", "89", "75", "3", "2"],
+        ["@perf_turbo", "mt6983", "on", "20"],
+        ["$mi_thermal", "13"],
+        ["$fps_go", "1"],
+        ["$cpu_min_0", "#800000"], ["$cpu_min_4", "#600000"]
+      ],
+      "sensors": [
+        {
+          "sensor": "/sys/class/power_supply/battery/temp",
+          "interval": 2000,
+          "props": ["$gpu_freq", "$ddr_freq_min", "$cpu_max_0", "$cpu_max_4", "$cpu_max_7"],
+          "rules": [
+            { "threshold": [ -1, 491], "values": ["27", "3200000000", "#1400000", "#1700000", "#1800000"] },
+            { "threshold": [490, 481], "values": ["27", "3200000000", "#1400000", "#1800000", "#1800000"] },
+            { "threshold": [480, 471], "values": ["20", "3200000000", "#1500000", "#1900000", "#1900000"] },
+            { "threshold": [470, 461], "values": ["15", "3200000000", "#1500000", "#2000000", "#2000000"] },
+            { "threshold": [460, 401], "values": ["15", "4266000000", "#1600000", "#2100000", "#2100000"] },
+            { "threshold": [400,  -1], "values": ["15", "4266000000", "#1600000", "#2300000", "#2300000"] }
+          ]
+        }
+      ],
+      "booster": {
+        "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys", "mtk-pmic-keys", "Headset", "mtk-kpd"],
+        "duration": 15000,
+        "idle_delay": 15000,
+        "enter": [ ["$uclamp_top_max", "max"] ],
+        "exit": [ ["$uclamp_top_max", "20.00"] ]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@perf_turbo", "mt6983", "on", "10"], ["$mi_thermal", "13"],
+        ["@classical", "cpu0", "80", "60", "5", "1"],
+        ["@classical", "cpu4", "86", "72", "3", "2"],
+        ["@classical", "cpu7", "86", "72", "3", "2"]
+      ],
+      "sensors": [
+        {
+          "sensor": "soc_max",
+          "interval": 200,
+          "rules": [
+            { "threshold": [-1, 100000], "enter": [["$gpu_freq", "27"]] },
+            { "threshold": [96000, 91000], "enter": [["$gpu_freq", "20"]]},
+            { "threshold": [90000, 85000], "enter": [["$gpu_freq", "15"]]},
+            { "threshold": [80000, -1], "enter": [["$gpu_freq", "10"]]}
+          ]
+        },
+        {
+          "sensor": "/sys/class/power_supply/battery/temp",
+          "interval": 2000,
+          "props": ["$ddr_freq_min", "$cpu_max_0", "$cpu_max_4", "$cpu_max_7"],
+          "rules": [
+            { "threshold": [ -1, 511], "values": ["3200000000", "#1400000", "#1900000", "#1700000"] },
+            { "threshold": [510, 501], "values": ["3200000000", "#1400000", "#1900000", "#1800000"] },
+            { "threshold": [500, 481], "values": ["3200000000", "#1400000", "#2100000", "#2000000"] },
+            { "threshold": [480, 471], "values": ["3200000000", "#1500000", "#2100000", "#2100000"] },
+            { "threshold": [470, 461], "values": ["4266000000", "#1500000", "#2200000", "#2200000"] },
+            { "threshold": [460, 451], "values": ["4266000000", "#1500000", "#2300000", "#2300000"] },
+            { "threshold": [450, 441], "values": ["4266000000", "#1600000", "#2300000", "#2400000"] },
+            { "threshold": [440, 411], "values": ["4266000000", "#1600000", "#2650000", "#2650000"] },
+            { "threshold": [410,  -1], "values": ["4266000000", "#1700000", "#2650000", "#2800000"] }
+          ]
+        }
+      ],
+      "booster": {
+        "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys", "mtk-pmic-keys", "Headset", "mtk-kpd"],
+        "duration": 4000,
+        "idle_delay": 4000,
+        "enter": [
+          ["$cpu_min_0", "#1200000"], ["$cpu_min_4", "#1400000"], ["$cpu_min_7", "#1400000"]
+        ],
+        "exit": [
+          ["$cpu_min_0", "#800000"], ["$cpu_min_4", "#600000"], ["$cpu_min_7", "#1300000"]
+        ]
+      }
+    },
+    {
+      "mode": ["fast"],
+      "call": [
+        ["@perf_turbo", "mt6983", "on", "0"], ["$mi_thermal", "10"],
+        ["@classical", "cpu0", "75", "60", "5", "1"],
+        ["@classical", "cpu4", "83", "70", "3", "2"],
+        ["@classical", "cpu7", "83", "70", "3", "2"]
+      ],
+      "sensors": [
+        {
+          "sensor": "soc_max",
+          "interval": 200,
+          "rules": [
+            { "threshold": [-1, 100000], "enter": [["$gpu_freq", "20"]] },
+            { "threshold": [96000, 91000], "enter": [["$gpu_freq", "18"]]},
+            { "threshold": [90000, 85000], "enter": [["$gpu_freq", "15"]]},
+            { "threshold": [80000, -1], "enter": [["$gpu_freq", "10"]]}
+          ]
+        },
+        {
+          "sensor": "/sys/class/power_supply/battery/temp",
+          "interval": 2000,
+          "props": ["$ddr_freq_min", "$cpu_max_0", "$cpu_max_4", "$cpu_max_7"],
+          "rules": [
+            { "threshold": [ -1, 521], "values": ["3200000000", "#1400000", "#1900000", "#1700000"] },
+            { "threshold": [520, 501], "values": ["3200000000", "#1400000", "#2100000", "#2000000"] },
+            { "threshold": [500, 491], "values": ["4266000000", "#1500000", "#2100000", "#2100000"] },
+            { "threshold": [490, 481], "values": ["4266000000", "#1500000", "#2200000", "#2200000"] },
+            { "threshold": [480, 471], "values": ["4266000000", "#1500000", "#2300000", "#2300000"] },
+            { "threshold": [470, 441], "values": ["4266000000", "#1600000", "#2300000", "#2400000"] },
+            { "threshold": [440, 421], "values": ["5500000000", "#1600000", "#2650000", "#2650000"] },
+            { "threshold": [420, 411], "values": ["5500000000", "#1700000", "#2650000", "#2800000"] },
+            { "threshold": [410,  -1], "values": ["5500000000", "#1700000", "#2850000", "#3000000"] }
+          ]
+        }
+      ],
+      "booster": {
+        "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys", "mtk-pmic-keys", "Headset", "mtk-kpd"],
+        "duration": 4000,
+        "idle_delay": 4000,
+        "enter": [
+          ["$cpu_min_0", "#1200000"], ["$cpu_min_4", "#1600000"], ["$cpu_min_7", "#1500000"]
+        ],
+        "exit": [
+          ["$cpu_min_0", "#1000000"], ["$cpu_min_4", "#800000"], ["$cpu_min_7", "#1300000"]
+        ]
+      }
+    },
+    {
+      "mode": ["pedestal"],
+      "call": [
+        ["@perf_turbo", "mt6983", "on", "0"],
+        ["$ddr_freq_min", "6400000000"]
+      ],
+      "sensors": [
+        {
+          "sensor": "soc_max",
+          "interval": 200,
+          "rules": [
+            { "threshold": [-1, 100000], "enter": [["$gpu_freq", "20"]] },
+            { "threshold": [96000, 91000], "enter": [["$gpu_freq", "18"]]},
+            { "threshold": [90000, 85000], "enter": [["$gpu_freq", "15"]]},
+            { "threshold": [80000, -1], "enter": [["$gpu_freq", "10"]]}
+          ]
+        },
+        {
+          "sensor": "/sys/class/power_supply/battery/temp",
+          "interval": 2000,
+          "props": ["$ddr_freq_min", "$cpu_max_0", "$cpu_max_4", "$cpu_max_7"],
+          "rules": [
+            { "threshold": [ -1, 501], "values": ["4266000000", "#1400000", "#2100000", "#2100000"] },
+            { "threshold": [500, 491], "values": ["4266000000", "#1500000", "#2100000", "#2100000"] },
+            { "threshold": [490, 481], "values": ["4266000000", "#1500000", "#2300000", "#2300000"] },
+            { "threshold": [480, 471], "values": ["5500000000", "#1500000", "#2300000", "#2300000"] },
+            { "threshold": [470, 441], "values": ["5500000000", "#1600000", "#2650000", "#2400000"] },
+            { "threshold": [430, 411], "values": ["5500000000", "#1600000", "#2650000", "#2600000"] },
+            { "threshold": [410,  -1], "values": ["5500000000", "#1800000", "#2850000", "#3000000"] }
+          ]
+        }
+      ],
+      "booster": {
+        "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys", "mtk-pmic-keys", "Headset", "mtk-kpd"],
+        "duration": 40000,
+        "enter": [
+          ["$cpu_min_0", "#1600000"], ["$cpu_min_4", "#1800000"], ["$cpu_min_7", "#1800000"],
+          ["$cpu_max_0", "#1800000"], ["$cpu_max_4", "#2850000"], ["$cpu_max_7", "#3000000"]
+        ],
+        "exit": [
+          ["$cpu_max_4", "#2000000"], ["$cpu_max_7", "#2400000"]
+        ]
+      }
+    }
+  ]
+}

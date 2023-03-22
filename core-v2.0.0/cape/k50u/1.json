@@ -1,0 +1,74 @@
+[
+    {
+      "permission": "root",
+      "cmd": "sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq#1670400"
+    },
+    {
+      "permission": "root",
+      "cmd": "sys/module/perfmgr/parameters/perfmgr_enable#1"
+    },
+    {
+      "permission": "root",
+      "cmd": "sys/module/perfmgr/parameters/load_scaling_y#1"
+    },
+    {
+      "permission": "root",
+      "cmd": "sys/module/perfmgr/parameters/min_freq_limit_level#0"
+    },
+    {
+      "permission": "root",
+      "cmd": "sys/module/perfmgr/parameters/boost_minfreq#0"
+    },
+    {
+      "permission": "root",
+      "cmd": "sys/devices/system/cpu/cpu4/cpufreq/walt/target_loads#0 1881600:-10 2227200:-20"
+    },
+    {
+      "permission": "root",
+      "cmd": "sys/devices/system/cpu/cpu7/cpufreq/walt/target_loads#0 2284800:-10 2630400:-20"
+    },
+    {
+      "permission": "root",
+      "cmd": "sys/devices/system/cpu/cpu7/core_ctl/enable#0"
+    },
+    {
+      "permission": "root",
+      "cmd": "sys/module/perfmgr/parameters/normal_frame_keep_count#12"
+    },
+    {
+      "permission": "root",
+      "cmd": "sys/module/perfmgr/parameters/scaling_a#400"
+    },
+    {
+      "permission": "root",
+      "cmd": "sys/module/perfmgr/parameters/scaling_b#-75"
+    },
+    {
+      "permission": "root",
+      "cmd": "sys/module/perfmgr/parameters/scaling_a_thres#580"
+    },
+    {
+      "permission": "root",
+      "cmd": "sys/module/perfmgr/parameters/predict_freq_level#1"
+    },
+    {
+      "permission": "root",
+      "cmd": "dev/cpuset/foreground/cpus#0-7"
+    },
+    {
+      "permission": "root",
+      "cmd": "sys/devices/system/cpu/cpu0/cpufreq/walt/rtg_boost_freq#1000000"
+    },
+    {
+      "permission": "root",
+      "cmd": "sys/devices/system/cpu/cpu0/cpufreq/walt/target_loads#0"
+    },
+    {
+      "permission": "root",
+      "cmd": "proc/sys/walt/sched_asymcap_booster#1"
+    },
+    {
+      "permission": "root",
+      "cmd": "perflock#40C20100_55_40C20200_46_40C1C100_5F_40C1C200_50#0"
+    }
+]

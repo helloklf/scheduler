@@ -1,0 +1,65 @@
+{
+  "friendly": "王者荣耀/LOL",
+  "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
+  "affinity": {
+    "interval": 1000,
+    "heavy_thread": "Thread-",
+    "heavy_mask": "70",
+    "comm": {
+      "80": ["UnityMain","UnityPreload"],
+      "70": ["NativeThread", "UnityGfx", "UnityMultiRende", "Worker Thread"],
+      "7F": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+    },
+    "other": "7F"
+  },
+  "call": [
+    ["$core_ctl_7", "0"]
+  ],
+  "modes": [{
+    "mode": ["powersave", "balance"],
+    "call": [
+      ["$cpu_max_0", "1785600"],
+      ["$cpu_max_4", "2227200"],
+      ["$cpu_max_7", "2227200"]
+    ],
+    "booster": {
+      "events": ["presets"],
+      "duration": 6000,
+      "idle_delay": 6000,
+      "enter": [
+        ["$core_ctl_7", "0"]
+      ],
+      "batter": 6,
+      "infinite": [
+        ["$cpu_min_0", "1305600"],
+        ["$cpu_min_4", "1286400"],
+        ["$cpu_min_7", "1286400"],
+        ["$stune_top_boost", "30"],
+        ["$stune_top_perf", "1"]
+      ],
+      "exit": [
+        ["$cpu_min_0", "300000"],
+        ["$cpu_min_4", "710400"],
+        ["$cpu_min_7", "825600"]
+      ]
+    }
+  },{
+    "mode": ["performance", "fast", "pedestal"],
+    "call": [
+      ["$sched_boost", "0"]
+    ],
+    "booster": {
+      "events": ["presets"],
+      "duration": 2000,
+      "enter": [
+        ["$cpu_min_0", "1478400"],
+        ["$cpu_min_4", "1708800"],
+        ["$cpu_min_7", "1708800"],
+        ["$stune_top_boost", "30"],
+        ["$stune_top_perf", "1"]
+      ],
+      "exit": [
+      ]
+    }
+  }]
+}

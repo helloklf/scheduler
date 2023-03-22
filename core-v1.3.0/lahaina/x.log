@@ -1,0 +1,361 @@
+# YuanShen
+yuan_shen_opt_run() {
+  if [[ $(getprop vtools.powercfg_app | grep miHoYo) == "" ]]; then
+    return
+  fi
+
+  # top -H -p $(pgrep -ef Yuanshen)
+  # pid=$(pgrep -ef Yuanshen)
+  pid=$(pgrep -ef miHoYo)
+  # mask=`echo "obase=16;$((num=2#11110000))" | bc` # F0 (cpu 7-4)
+  # mask=`echo "obase=16;$((num=2#10000000))" | bc` # 80 (cpu 7)
+  # mask=`echo "obase=16;$((num=2#01110000))" | bc` # 70 (cpu 6-4)
+  # mask=`echo "obase=16;$((num=2#01111111))" | bc` # 7F (cpu 6-0)
+
+  if [[ "$pid" != "" ]]; then
+    if [[ "$taskset_effective" == "" ]]; then
+      taskset_test $pid
+      if [[ "$?" == '1' ]]; then
+        taskset_effective=1
+        if [[ "$mode" == 'balance' ]]; then
+          sched_config "55 49" "72 65" "300" "400"
+        elif [[ "$mode" == 'powersave' ]]; then
+          sched_config "55 53" "72 68" "300" "400"
+        fi
+      else
+        taskset_effective=0
+        exit
+      fi
+    fi
+
+    local mode=$(getprop vtools.powercfg)
+    taskset -p "FF" "$pid" > /dev/null 2>&1
+    if [[ "$mode" == 'powersave' ]]; then
+      for tid in $(ls "/proc/$pid/task/"); do
+        if [[ "$tid" == "$pid" ]]; then
+          taskset -p "FF" "$tid" > /dev/null 2>&1
+          continue
+        fi
+        if [[ -f "/proc/$pid/task/$tid/comm" ]]; then
+          comm=$(cat /proc/$pid/task/$tid/comm)
+
+          case "$comm" in
+           "UnityMain")
+             echo $tid
+             taskset -p "80" "$tid" > /dev/null 2>&1 || taskset -p "F0" "$tid" > /dev/null 2>&1
+           ;;
+           # "UnityGfxDevice"*|"UnityMultiRende"*|"NativeThread"*|"UnityChoreograp"*)
+           "UnityGfxDevice"*|"UnityMultiRende"*)
+             taskset -p "f0" "$tid" > /dev/null 2>&1
+           ;;
+           # "Worker Thread"|"AudioTrack"|"Audio"*)
+           "Worker Thread")
+             taskset -p "F" "$tid" > /dev/null 2>&1
+           ;;
+           *)
+             taskset -p "7F" "$tid" > /dev/null 2>&1
+           ;;
+          esac
+        fi
+      done
+    elif [[ "$mode" == 'performance' ]] || [[ "$mode" == 'balance' ]]; then
+      for tid in $(ls "/proc/$pid/task/"); do
+        if [[ "$tid" == "$pid" ]]; then
+          taskset -p "FF" "$tid" > /dev/null 2>&1
+          continue
+        fi
+        if [[ -f "/proc/$pid/task/$tid/comm" ]]; then
+          comm=$(cat /proc/$pid/task/$tid/comm)
+
+          case "$comm" in
+           "UnityMain")
+             taskset -p "80" "$tid" > /dev/null 2>&1 || taskset -p "F0" "$tid" > /dev/null 2>&1
+           ;;
+           "UnityGfxDevice"*|"UnityMultiRende"*)
+             taskset -p "F0" "$tid" > /dev/null 2>&1
+           ;;
+           "AudioTrack"|"Audio"*|"tp_schedule"*|"MIHOYO_NETWORK"|"FMOD"*|"NativeThread"|"UnityChoreograp"|"UnityPreload")
+             taskset -p "F" "$tid" > /dev/null 2>&1
+           ;;
+           *)
+             taskset -p "7F" "$tid" > /dev/null 2>&1
+           ;;
+          esac
+        fi
+      done
+    else
+      for tid in $(ls "/proc/$pid/task/"); do
+        if [[ "$tid" == "$pid" ]]; then
+          taskset -p "FF" "$tid" > /dev/null 2>&1
+          continue
+        fi
+        if [[ -f "/proc/$pid/task/$tid/comm" ]]; then
+          comm=$(cat /proc/$pid/task/$tid/comm)
+
+          case "$comm" in
+           "UnityMain")
+             taskset -p "80" "$tid" > /dev/null 2>&1 || taskset -p "F0" "$tid" > /dev/null 2>&1
+           ;;
+           "Worker Thread")
+             taskset -p "F0" "$tid" > /dev/null 2>&1
+           ;;
+           # "UnityGfxDevice"*|"UnityMultiRende"*|"NativeThread"*|"UnityChoreograp"*)
+           "UnityGfxDevice"*|"UnityMultiRende"*)
+             taskset -p "F0" "$tid" > /dev/null 2>&1
+           ;;
+           *)
+             taskset -p "7F" "$tid" > /dev/null 2>&1
+           ;;
+          esac
+        fi
+      done
+    fi
+  fi
+}
+
+
+# watch_app [on_tick] [on_change]
+watch_app() {
+  local interval=120
+  local on_tick="$1"
+  local on_change="$2"
+  local app=$top_app
+  local current_pid=$$
+
+  if [[ "$on_tick" == "" ]] || [[ "$app" == "" ]]; then
+    return
+  fi
+
+  if [[ "$task" != "" ]]; then
+    pgrep -f com.omarea.*powercfg.sh | grep -v $current_pid | while read pid; do
+      local cmdline=$(cat /proc/$pid/cmdline | grep -a task)
+      if [[ "$cmdline" != '' ]] && [[ $(echo $cmdline | grep $task) == '' ]];then
+        kill -9 $pid 2> /dev/null
+      fi
+    done
+  fi
+
+  if [[ $(getprop vtools.powercfg_app) == "$app" ]]; then
+    $on_tick
+  fi
+
+  ticks=0
+  while true
+  do
+    if [[ $ticks -gt 3 ]]; then
+      sleep $interval
+    elif [[ $ticks -gt 0 ]]; then
+      sleep 30
+    else
+      sleep 10
+    fi
+    ticks=$((ticks + 1))
+
+    current=$(getprop vtools.powercfg_app)
+    if [[ "$current" == "$app" ]]; then
+      $on_tick
+    else
+      if [[ "$on_change" ]]; then
+        $on_change $current
+      fi
+      return
+    fi
+  done
+}
+
+conservative_mode() {
+  local policy=/sys/devices/system/cpu/cpufreq/policy
+  # local down="$1"
+  # local up="$2"
+  #
+  # if [[ "$down" == "" ]]; then
+  #   local down="20"
+  # fi
+  # if [[ "$up" == "" ]]; then
+  #   local up="60"
+  # fi
+
+  for cluster in 0 4 7; do
+    echo $cluster
+    echo 'conservative' > ${policy}${cluster}/scaling_governor
+    # echo $down > ${policy}${cluster}/conservative/down_threshold
+    # echo $up > ${policy}${cluster}/conservative/up_threshold
+    echo 0 > ${policy}${cluster}/conservative/ignore_nice_load
+    echo 1000 > ${policy}${cluster}/conservative/sampling_rate # 1000us = 1ms
+    echo 2 > ${policy}${cluster}/conservative/freq_step
+  done
+
+  echo $1 > ${policy}0/conservative/down_threshold
+  echo $2 > ${policy}0/conservative/up_threshold
+  echo $1 > ${policy}0/conservative/down_threshold
+  echo $2 > ${policy}0/conservative/up_threshold
+
+  echo $3 > ${policy}4/conservative/down_threshold
+  echo $4 > ${policy}4/conservative/up_threshold
+  echo $3 > ${policy}4/conservative/down_threshold
+  echo $4 > ${policy}4/conservative/up_threshold
+
+  echo $5 > ${policy}7/conservative/down_threshold
+  echo $6 > ${policy}7/conservative/up_threshold
+  echo $5 > ${policy}7/conservative/down_threshold
+  echo $6 > ${policy}7/conservative/up_threshold
+}
+
+
+
+# Unity'Games
+unity_opt_run () {
+  local current_app=$top_app
+
+  # mask=`echo "obase=16;$((num=2#11110000))" | bc` # F0 (cpu 7-4)
+  # mask=`echo "obase=16;$((num=2#10000000))" | bc` # 80 (cpu 7)
+  # mask=`echo "obase=16;$((num=2#01110000))" | bc` # 70 (cpu 6-4)
+  # mask=`echo "obase=16;$((num=2#01111111))" | bc` # 7F (cpu 6-0)
+
+  ps -ef -o PID,NAME | grep -e "$current_app$" | egrep -o '[0-9]{1,}' | while read pid; do
+    for tid in $(ls "/proc/$pid/task/"); do
+      if [[ "$tid" == "$pid" ]]; then
+        taskset -p "FF" "$tid" > /dev/null 2>&1
+        continue
+      fi
+      if [[ -f "/proc/$pid/task/$tid/comm" ]]; then
+        comm=$(cat /proc/$pid/task/$tid/comm)
+
+        case "$comm" in
+          "RenderThread"*|"UnityMain")
+            taskset -p "80" "$tid" > /dev/null 2>&1
+          ;;
+          "UnityGfxDevice"*|"UnityMultiRende"*)
+            taskset -p "F0" "$tid" > /dev/null 2>&1
+          ;;
+        esac
+      fi
+    done
+  done
+}
+
+# Check whether the taskset command is useful
+taskset_test() {
+  local pid="$1"
+  if [[ "$pid" == "" ]]; then
+    return 2
+  fi
+
+  # Compatibility Test
+  any_tid=$(ls /proc/$pid/task | head -n 1)
+  if [[ "$any_tid" != "" ]]; then
+    test_fail=$(taskset -p ff $any_tid 2>&1 | grep 'Operation not permitted')
+    if [[ "$test_fail" != "" ]]; then
+      echo 'taskset Cannot run on your device!' 1>&2
+      return 0
+    fi
+  fi
+  return 1
+}
+
+
+# GPU频率表
+gpu_freqs=`cat /sys/class/kgsl/kgsl-3d0/devfreq/available_frequencies`
+# GPU最大频率
+gpu_max_freq='840000000'
+# GPU最小频率
+gpu_min_freq='315000000'
+# GPU最小 power level
+gpu_min_pl=8
+# GPU最大 power level
+gpu_max_pl=0
+
+# MaxFrequency, MinFrequency
+for freq in $gpu_freqs; do
+  if [[ $freq -gt $gpu_max_freq ]]; then
+    gpu_max_freq=$freq
+  fi;
+  if [[ $freq -lt $gpu_min_freq ]]; then
+    gpu_min_freq=$freq
+  fi;
+done
+
+# Power Levels
+if [[ -f /sys/class/kgsl/kgsl-3d0/num_pwrlevels ]];then
+  gpu_min_pl=`cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels`
+  gpu_min_pl=`expr $gpu_min_pl - 1`
+fi;
+if [[ "$gpu_min_pl" -lt 0 ]];then
+  gpu_min_pl=0
+fi
+
+# [min/max/def] pl(number)
+set_gpu_pl(){
+  echo $2 > /sys/class/kgsl/kgsl-3d0/${1}_pwrlevel
+}
+
+# GPU MinPowerLevel To Up
+gpu_pl_up() {
+  offset="$1"
+  if [[ "$offset" != "" ]] && [[ ! "$offset" -gt "$gpu_min_pl" ]]; then
+    echo `expr $gpu_min_pl - $offset` > /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+  elif [[ "$offset" -gt "$gpu_min_pl" ]]; then
+    echo 0 > /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+  else
+    echo $gpu_min_pl > /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+  fi
+}
+
+# GPU MinPowerLevel To Down
+gpu_pl_down() {
+  offset="$1"
+  if [[ "$offset" != "" ]] && [[ ! "$offset" -gt "$gpu_min_pl" ]]; then
+    echo $offset > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+  elif [[ "$offset" -gt "$gpu_min_pl" ]]; then
+    echo $gpu_min_pl > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+  else
+    echo $gpu_min_pl > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+  fi
+}
+
+
+set_gpu_max_freq () {
+  echo $1 > /sys/class/kgsl/kgsl-3d0/devfreq/max_freq
+  pl=-1
+
+  for freq in $gpu_freqs; do
+    pl=$((pl + 1))
+    if [[ $freq -lt $1 ]] || [[ $freq == $1 ]]; then
+      break
+    fi;
+  done
+  if [[ $pl -gt -1 ]]; then
+    echo $pl > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+  fi
+}
+
+set_gpu_min_freq() {
+  index=$1
+
+  # GPU频率表
+  gpu_freqs=`cat /sys/class/kgsl/kgsl-3d0/devfreq/available_frequencies`
+
+  target_freq=$(echo $gpu_freqs | awk "{print \$${index}}")
+  if [[ "$target_freq" != "" ]]; then
+    echo $target_freq > /sys/class/kgsl/kgsl-3d0/devfreq/min_freq
+  fi
+
+  # gpu_max_freq=`cat /sys/class/kgsl/kgsl-3d0/devfreq/max_freq`
+  # gpu_min_freq=`cat /sys/class/kgsl/kgsl-3d0/devfreq/min_freq`
+  # echo "Frequency: ${gpu_min_freq} ~ ${gpu_max_freq}"
+}
+
+
+
+
+# GPU
+gpu_governor=`cat /sys/class/kgsl/kgsl-3d0/devfreq/governor`
+if [[ ! "$gpu_governor" = "msm-adreno-tz" ]]; then
+  echo 'msm-adreno-tz' > /sys/class/kgsl/kgsl-3d0/devfreq/governor
+fi
+echo $gpu_max_freq > /sys/class/kgsl/kgsl-3d0/devfreq/max_freq
+echo $gpu_min_freq > /sys/class/kgsl/kgsl-3d0/devfreq/min_freq
+echo $gpu_min_pl > /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+echo $gpu_max_pl > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+echo 100 > /sys/class/kgsl/kgsl-3d0/devfreq/mod_percent
+set_input_boost_freq 0 0 0 0

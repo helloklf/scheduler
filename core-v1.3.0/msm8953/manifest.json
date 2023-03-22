@@ -1,0 +1,13 @@
+{
+  "version": "5.3",
+  "versionCode": 20220313001,
+  "author": "SCENE5",
+  "project_url": "http://vtools.omarea.com/",
+  "features": {
+    "strict": false,
+    "pedestal": true
+  },
+  "current": "vtools.powercfg",
+  "files": [],
+  "entry": "conservative.sh"
+}

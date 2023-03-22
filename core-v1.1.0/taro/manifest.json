@@ -1,0 +1,18 @@
+{
+  "version": "5.2.1",
+  "versionCode": 20220327001,
+  "author": "SCENE5",
+  "project_url": "http://vtools.omarea.com/",
+  "features": {
+    "strict": true,
+    "pedestal": true
+  },
+  "features_note": {
+    "strict": "表示此配置支持[增强调度(严格模式)]特性",
+    "pedestal": "表示此配置支持[底座模式]特性"
+  },
+  "current": "vtools.powercfg",
+  "current_note": "当前调度模式取值，支持Prop如[vtools.powercfg], 或路径如[/sdcard/yc/uperf/cur_powermode]",
+  "files": [],
+  "entry": "conservative.sh"
+}

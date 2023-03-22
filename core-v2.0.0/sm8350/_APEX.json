@@ -1,0 +1,33 @@
+{
+  "friendly": "APEX",
+  "affinity": {
+    "heavy_thread": "Thread-",
+    "heavy_mask": "80",
+    "comm": {
+      "70": ["RHIThread", "RenderThread", "TaskGraphNP", "NativeThread", "MainThread-UE4"]
+    },
+    "other": "7F"
+  },
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["@cpu_freq", "policy0", "1.2Ghz", "max"],
+      ["@cpu_freq", "policy4", "710400", "1881600"],
+      ["@cpu_freq", "policy7", "844800", "2035200"]
+    ]
+  }, {
+    "mode": ["balance"],
+    "call": [
+      ["@cpu_freq", "policy0", "1.2Ghz", "max"],
+      ["@cpu_freq", "policy4", "1000MHz", "1900000"],
+      ["@cpu_freq", "policy7", "1000MHz", "2200000"]
+    ]
+  },{
+    "mode": ["performance"],
+    "call": [
+      ["@cpu_freq", "policy0", "1497600", "max"],
+      ["@cpu_freq", "policy4", "1440MHz", "2419200"],
+      ["@cpu_freq", "policy7", "1555200", "2496000"]
+    ]
+  }]
+}

@@ -1,0 +1,16 @@
+/sys/module/pcie_aspm/parameters/policy
+[default] performance powersave powersupersave
+
+
+王者测试
+
+"affinity": {
+    "interval": 1000,
+    "comm": {
+    "80": ["UnityMain"],
+    "F0": ["UnityPreload"],
+    "70": ["NativeThread", "Thread-","UnityGfxDevice", "UnityMultiRende", "Worker Thread"],
+    "F": ["FMOD mixer", "FMOD stream", "Audio", "NDK Media", "GVoice", "ff_read", "Binder:", "mali-", "Apollo", "NDK MediaCode", "tp_worker", "tp_cs2", "ged-swd"]
+    },
+    "other": "7F"
+}

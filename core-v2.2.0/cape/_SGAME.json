@@ -1,0 +1,38 @@
+{
+  "friendly": "王者荣耀",
+  "affinity": {
+    "unity_main": "80",
+    "heavy_thread": "Thread-",
+    "heavy_mask": "70",
+    "comm": {
+      "80": ["UnityPreload"],
+      "70": ["NativeThread", "UnityGfx", "Worker Thread"],
+      "7F": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+    },
+    "other": "7F"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@values", "latency", "0", "1000", "0", "2000", "0", "2000"],
+        ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
+        ["@msm_feas", "10"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@values", "latency", "0", "1000", "0", "2000", "0", "2000"],
+        ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
+        ["@msm_feas", "6"]
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@msm_feas", "3"]
+      ]
+    }
+  ]
+}

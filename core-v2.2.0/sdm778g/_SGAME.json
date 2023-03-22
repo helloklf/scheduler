@@ -1,0 +1,121 @@
+{
+  "friendly": "王者荣耀/LOL",
+  "limiters": [
+    {"id": "sgame1:cpu4", "active_interval": 60, "step_shift": -1, "mode": "BOTTOM",
+      "max_freq": 2054400, "min_freq": 691200, "margin_mhz": 485, "smoothness": 6},
+    {"id": "sgame1:cpu7", "active_interval": 60, "step_shift": -1, "mode": "BOTTOM",
+      "max_freq": 2208000, "min_freq": 806400, "margin_mhz": 485, "smoothness": 6},
+
+    {"id": "sgame2:cpu4", "step_shift": -1, "mode": "BOTTOM", "max_freq": 2131200, "min_freq": 1344000, "margin_mhz": 545, "smoothness": 6},
+    {"id": "sgame2:cpu7", "step_shift": -1, "mode": "BOTTOM", "max_freq": 2400000, "min_freq": 1324800, "margin_mhz": 545, "smoothness": 6},
+
+    {"id": "sgame3:cpu4", "active_interval": 60, "step_shift": -1, "mode": "BOTTOM",
+      "max_freq": 2400000, "min_freq": 1516800, "margin_mhz": 545, "smoothness": 12},
+    {"id": "sgame3:cpu7", "active_interval": 60, "step_shift": -1, "mode": "BOTTOM",
+      "max_freq": 2500000, "min_freq": 1516800, "margin_mhz": 545, "smoothness": 12},
+
+    {"id": "sgame4:cpu4", "active_interval": 40, "step_shift": -1, "mode": "BOTTOM",
+      "max_freq": 2400000, "min_freq": 1516800, "margin_mhz": 605, "smoothness": 22},
+    {"id": "sgame4:cpu7", "active_interval": 40, "step_shift": -0.93, "mode": "BOTTOM",
+      "max_freq": 2500000, "min_freq": 1516800, "margin_mhz": 605, "smoothness": 22}
+  ],
+  "affinity": {
+    "interval": 2000,
+    "unity_main": "80",
+    "heavy_thread": "Thread-",
+    "heavy_mask": "40",
+    "comm": {
+      "F0": ["UnityPreload"],
+      "40": ["UnityGfx"],
+      "30": ["CoreThread"],
+      "3F": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+    },
+    "other": "3F"
+  },
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["@sched_limit", "0 0", "0 8000", "0 8000"],
+      ["$core_ctl_4", "0"], ["$core_ctl_7", "0"],
+      ["@gpu_freq", "min", "450000"]
+    ],
+    "booster": {
+      "events": ["presets"],
+      "duration": 3000,
+      "idle_delay": 3000,
+      "enter": [
+        ["@limiters", "sgame1:cpu4", "sgame1:cpu7"]
+      ],
+      "exit": [
+        ["@limiters", "NONE"],
+        ["@values", "min_freq", "806400", "710400", "710400"]
+      ]
+    },
+    "sensors": [{
+      "sensor": "fps",
+      "interval": 5000,
+      "props": ["$cpu_max_0", "$cpu_max_4", "$cpu_max_7"],
+      "rules": [
+        { "threshold": [-1, 100], "values": ["1612800", "2131200", "2380800"] },
+        { "threshold": [99, 75], "values": ["1612800", "2054400", "1900800"] },
+        { "threshold": [70, -1], "values": ["1612800", "1900800", "1900800"] }
+      ]
+    }]
+  }, {
+    "mode": ["balance"],
+    "call": [
+      ["@sched_limit", "0 0", "0 1000", "0 1000"],
+      ["@limiters", "sgame2:cpu4", "sgame2:cpu7"]
+    ],
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 5000,
+        "props": ["$cpu_max_0", "$cpu_max_4", "$cpu_max_7"],
+        "rules": [
+          { "threshold": [-1, 100], "values": ["1804800", "#2400000", "#2500000"] },
+          { "threshold": [99, 75], "values": ["1804800", "#2131200", "#2400000"] },
+          { "threshold": [70, -1], "values": ["1804800", "#1900800", "#2035200"] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["$sched_boost", "0"],
+      ["@sched_limit", "0 0", "0 1000", "0 1000"],
+      ["@limiters", "sgame3:cpu4", "sgame3:cpu7"]
+    ],
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 5000,
+        "props": ["$cpu_max_0", "$cpu_max_4", "$cpu_max_7"],
+        "rules": [
+          { "threshold": [-1, 100], "values": ["1804800", "#2400000", "#2500000"] },
+          { "threshold": [99, 75], "values": ["1804800", "#2400000", "#2500000"] },
+          { "threshold": [70, -1], "values": ["1804800", "#2054400", "#2035200"] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["*"],
+    "call": [
+      ["$sched_boost", "0"],
+      ["@sched_limit", "0 0", "0 0", "0 0"],
+      ["@limiters", "sgame4:cpu4", "sgame4:cpu7"]
+    ],
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 5000,
+        "props": ["$cpu_max_0", "$cpu_max_4", "$cpu_max_7"],
+        "rules": [
+          { "threshold": [-1, 100], "values": ["1804800", "#2400000", "#2500000"] },
+          { "threshold": [99, 75], "values": ["1804800", "#2400000", "#2500000"] },
+          { "threshold": [70, -1], "values": ["1804800", "#2054400", "#2035200"] }
+        ]
+      }
+    ]
+  }]
+}

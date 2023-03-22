@@ -1,0 +1,36 @@
+{
+  "friendly": "相机",
+  "call": [
+    ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
+    ["@cpuset", "0-1", "0-4", "0-7", "0-7"]
+  ],
+  "modes": [{
+    "mode": ["powersave", "balance"],
+    "booster": {
+      "events": ["presets"],
+      "duration": 3000,
+      "idle_delay": 8000,
+      "enter": [
+        ["@cpu_freq", "policy0", "1700MHz", "max"],
+        ["@cpu_freq", "policy4", "1800MHz", "2.6Ghz"],
+        ["@cpu_freq", "policy7", "1800MHz", "2.6Ghz"],
+        ["@high_rate", "on"],
+        ["$ddr_freq_min", "4266000000"]
+      ],
+      "exit": [
+        ["@cpu_freq", "policy0", "min", "max"],
+        ["@cpu_freq", "policy4", "min", "2000MHz"],
+        ["@cpu_freq", "policy7", "min", "2000MHz"],
+        ["@high_rate", "off"],
+        ["$ddr_freq_min", "2133000000"]
+      ]
+    }
+  }],
+  "booster": {
+    "events": ["touch", "buttons"],
+    "duration": 2000,
+    "idle_delay": 2000,
+    "enter": [ ["@high_rate", "on"], ["$ddr_freq_min", "4266000000"] ],
+    "exit": [ ["@high_rate", "off"], ["$ddr_freq_min", "2133000000"] ]
+  }
+}

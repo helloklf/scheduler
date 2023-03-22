@@ -1,0 +1,84 @@
+{
+  "friendly": "王者荣耀/LOL",
+  "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
+  "call": [["$mi_thermal", "13"]],
+  "affinity": {
+    "interval": 1000,
+    "comm": {
+      "80": ["UnityMain"],
+      "F0": ["UnityPreload"],
+      "70": ["Thread-", "UnityGfx", "CoreThread", "Worker Thread"],
+      "7F": ["NativeThread", "mali-", "Apollo"],
+      "F": ["Audio", "tp_schedule"]
+    },
+    "other": "7F"
+  },
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["@perf_turbo", "mt6895", "gaming", "11"],
+      ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
+      ["$boost_affinity", "0"],
+      ["$ddr_freq_min", "2133000000"]
+    ],
+    "booster": {
+      "events": ["touch", "buttons"],
+      "duration": 2000,
+      "idle_delay": 2000,
+      "enter": [
+        ["@high_rate", "on"]
+      ],
+      "exit": [
+        ["@high_rate", "off"]
+      ]
+    }
+  },{
+    "mode": ["balance"],
+    "call": [
+      ["@perf_turbo", "mt6895", "gaming", "7"],
+      ["$ddr_freq_min", "3200000000"],
+      ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
+      ["$boost_affinity", "0"]
+    ]
+  },{
+    "mode": ["performance"],
+    "call": [
+      ["@cpu_freq", "policy4", "min", "2550000"],
+      ["@perf_turbo", "mt6895", "on", "7"],
+      ["@uclamp", "0.00~max", "0.00~max", "2.00~max"]
+    ],
+    "sensors": [{
+      "sensor": "fps",
+      "interval": 5000,
+      "props": ["$cpu_min_0", "$cpu_min_4", "$cpu_min_7",  "$cpu_max_0", "$cpu_max_4", "$cpu_max_7"],
+      "rules": [{
+        "threshold": [-1, 100],
+        "values": ["#1200000", "#1400000", "#1400000",    "#2000000", "#2650000", "#2850000"]
+      },
+        {
+          "threshold": [99, 75],
+          "values": ["#1100000", "#1200000", "#1200000",    "#2000000", "#2650000", "#2850000"]
+        },
+        {
+          "threshold": [70, -1],
+          "values": ["#1000000", "#1000000", "#1000000",    "#1800000", "#2650000", "#2850000"]
+        }]
+    }]
+  },{
+    "mode": ["fast"],
+    "call": [
+      ["@cpu_freq", "policy4", "1.4Ghz", "max"],
+      ["@cpu_freq", "policy7", "1.6Ghz", "max"],
+      ["@perf_turbo", "mt6895", "on", "5"],
+      ["@uclamp", "0.00~max", "0.00~max", "2.0~max"]
+    ]
+  },{
+    "mode": ["pedestal"],
+    "call": [
+      ["@cpu_freq", "policy4", "1.8Ghz", "max"],
+      ["@cpu_freq", "policy7", "2.0Ghz", "max"],
+      ["@perf_turbo", "mt6895", "on", "0"],
+      ["@uclamp", "0.00~max", "0.0~max", "9.0~max"]
+    ]
+  }]
+}

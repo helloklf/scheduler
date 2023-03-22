@@ -1,0 +1,133 @@
+{
+  "friendly": "王者荣耀CN",
+  "affinity": {
+    "interval": 1000,
+    "heavy_thread": "Thread-",
+    "heavy_mask": "40",
+    "comm": {
+      "80": ["UnityMain"],
+      "F0": ["UnityPreload"],
+      "40": ["UnityGfx"],
+      "30": ["CoreThread", "Apollo", "Worker Thread", "NativeThread"],
+      "3f": ["mali-"]
+    },
+    "other": "3f"
+  },
+  "limiters": [
+    {"id": "sgame1:cpu4", "step_shift": -1, "mode": "BOTTOM",
+      "max_freq": 2050000, "min_freq": 700000, "margin_mhz": 405, "smoothness": 6},
+    {"id": "sgame1:cpu7", "step_shift": -1, "mode": "BOTTOM", "ddr_boost": true,
+      "max_freq": 2250000, "min_freq": 1300000, "margin_mhz": 435, "smoothness": 10},
+
+    {"id": "sgame2:cpu4", "step_shift": -1, "mode": "BOTTOM",
+      "max_freq": 2200000, "min_freq": 700000, "margin_mhz": 435, "smoothness": 6},
+    {"id": "sgame2:cpu7", "step_shift": -1, "mode": "BOTTOM", "ddr_boost": true,
+      "boost_freq": 2300000, "max_freq": 2150000, "min_freq": 1300000, "margin_mhz": 435, "smoothness": 6},
+
+    {"id": "sgame3:cpu4", "active_interval": 40, "step_shift": -1, "mode": "BOTTOM",
+      "boost_freq": 2450000, "max_freq": 2250000, "min_freq": 1300000, "margin_mhz": 535, "smoothness": 8},
+    {"id": "sgame3:cpu7", "active_interval": 40, "step_shift": -1, "mode": "BOTTOM", "ddr_boost": true,
+      "max_freq": 2400000, "min_freq": 1300000, "margin_mhz": 535, "smoothness": 8},
+
+    {"id": "sgame4:cpu4", "active_interval": 40, "step_shift": -1, "mode": "BOTTOM",
+      "max_freq": 2450000, "min_freq": 1300000, "margin_mhz": 605, "smoothness": 15},
+    {"id": "sgame4:cpu7", "active_interval": 40, "step_shift": -0.93, "mode": "BOTTOM", "ddr_boost": true,
+      "max_freq": 2650000, "min_freq": 1300000, "margin_mhz": 605, "smoothness": 15}
+  ],
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["$boost_affinity", "#0"],
+      ["@cpu_freq", "cpu0", "400000", "1400000"],
+      ["@cpu_freq", "cpu4", "400000", "2200000"],
+      ["@cpu_freq", "cpu7", "1300000", "2400000"],
+      ["@limiters", "sgame1:cpu4", "sgame1:cpu7"],
+      ["$fpsgo", "#0"]
+    ],
+    "sensors": [{
+      "sensor": "fps",
+      "interval": 10000,
+      "rules": [
+        { "threshold": [-1, 100], "enter_once": [["$dcs_mode", "#0"], ["@mtk_feas", "12", "", "120"]] },
+        { "threshold": [99,  75], "enter_once": [["$dcs_mode", "#0"], ["@mtk_feas", "15", "", "90"]] },
+        { "threshold": [70,  -1], "enter_once": [["$dcs_mode", "#1"], ["@mtk_feas", "18", "", "60"]] }
+      ]
+    }]
+  }, {
+    "mode": ["balance"],
+    "call": [
+      ["$boost_affinity", "#0"],
+      ["@cpu_freq", "cpu0", "800000", "1500000"],
+      ["@cpu_freq", "cpu4", "400000", "2450000"],
+      ["@cpu_freq", "cpu7", "1300000", "2650000"],
+      ["@limiters", "sgame2:cpu4", "sgame2:cpu7"],
+      ["$fpsgo", "#0"]
+    ],
+    "sensors": [{
+      "sensor": "fps",
+      "interval": 10000,
+      "rules": [
+        { "threshold": [-1, 100], "enter_once": [["$dcs_mode", "#0"], ["@mtk_feas", "8", "", "120"]] },
+        { "threshold": [99,  75], "enter_once": [["$dcs_mode", "#0"], ["@mtk_feas", "11", "", "90"]] },
+        { "threshold": [70,  -1], "enter_once": [["$dcs_mode", "#1"], ["@mtk_feas", "15", "", "60"]] }
+      ]
+    }]
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["@cpu_freq", "cpu0", "800000", "1600000"],
+      ["@cpu_freq", "cpu4", "500000", "2650000"],
+      ["@cpu_freq", "cpu7", "1300000", "2800000"],
+      ["$boost_affinity", "#0"],
+      ["$fpsgo", "0"]
+    ],
+    "sensors": [{
+      "disable": false,
+      "sensor": "fps",
+      "interval": 5000,
+      "rules": [{
+        "threshold": [-1, 100],
+        "enter_once": [
+          ["@limiters", "sgame3:cpu4", "sgame3:cpu7"], ["$dcs_mode", "#0"], ["@mtk_feas", "4", "", "120"]
+        ]
+      },
+      {
+        "threshold": [99, 75],
+        "enter_once": [
+          ["@limiters", "sgame3:cpu4", "sgame3:cpu7"], ["$dcs_mode", "#0"], ["@mtk_feas", "9", "", "90"]
+        ]
+      },
+      {
+        "threshold": [70, -1],
+        "enter_once": [
+          ["@limiters", "sgame2:cpu4", "sgame2:cpu7"], ["$dcs_mode", "#1"], ["@mtk_feas", "14", "", "60"]
+        ]
+      }]
+    }]
+  }, {
+    "mode": ["*"],
+    "call": [
+      ["@cpu_freq", "cpu0", "1000000", "1600000"],
+      ["@cpu_freq", "cpu4", "500000", "2850000"],
+      ["@cpu_freq", "cpu7", "1300000", "3000000"],
+      ["$boost_affinity", "#0"],
+      ["$fpsgo", "0"]
+    ],
+    "sensors": [{
+      "sensor": "fps",
+      "interval": 5000,
+      "rules": [{
+        "threshold": [-1, 100],
+        "enter_once": [ ["@limiters", "sgame4:cpu4", "sgame4:cpu7"], ["$dcs_mode", "#0"] ]
+      },
+      {
+        "threshold": [99, 75],
+        "enter_once": [ ["@limiters", "sgame3:cpu4", "sgame3:cpu7"], ["$dcs_mode", "#0"] ]
+      },
+      {
+        "threshold": [70, -1],
+        "enter_once": [ ["@limiters", "sgame2:cpu4", "sgame2:cpu7"], ["$dcs_mode", "#1"] ]
+      }]
+    }]
+  }]
+}

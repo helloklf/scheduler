@@ -1,0 +1,27 @@
+{
+  "friendly": "和平精英",
+  "cpuset": {
+    "interval": 1000,
+    "comm": {
+      "7": ["RenderThread"],
+      "4-6": ["Thread-", "TaskGraphNP"]
+    },
+    "other": "0-6"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "cpuset": {
+        "interval": 1000,
+        "comm": {
+          "4-7": ["RenderThread"],
+          "4-6": ["Thread-", "TaskGraphNP"]
+        },
+        "other": "0-6"
+      }
+    },
+    {
+      "mode": ["*"]
+    }
+  ]
+}

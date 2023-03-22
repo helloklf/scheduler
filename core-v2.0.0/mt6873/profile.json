@@ -1,0 +1,378 @@
+{
+  "platform": "mt6768",
+  "platform_name": "MTK P65&G80&G85",
+  "framework": 210,
+  "alias": {
+    "min_cpu_freq": "/proc/ppm/policy/hard_userlimit_min_cpu_freq",
+    "max_cpu_freq": "/proc/ppm/policy/hard_userlimit_max_cpu_freq",
+    "gpu_dvfs_margin": "/sys/kernel/ged/hal/timer_base_dvfs_margin",
+    "gpu_max_opp": "/sys/kernel/ged/hal/custom_upbound_gpu_freq",
+    "util_max_top": "/dev/stune/top-app/schedtune.util.max",
+    "util_max_fg": "/dev/stune/foreground/schedtune.util.max",
+    "util_max_bg": "/dev/stune/background/schedtune.util.max",
+    "util_min_top": "/dev/stune/top-app/schedtune.util.min",
+    "util_min_fg": "/dev/stune/foreground/schedtune.util.min",
+    "util_min_bg": "/dev/stune/background/schedtune.util.min",
+    "deisolation": "/sys/devices/system/cpu/sched/set_sched_deisolation",
+    "setolation": "/sys/devices/system/cpu/sched/set_sched_isolation",
+    "fpsgo_enable": "/sys/kernel/fpsgo/common/fpsgo_enable",
+    "stune_boost": "/dev/stune/top-app/schedtune.boost",
+    "dram_boost": "/sys/devices/platform/boot_dramboost/dramboost/dramboost",
+    "cci_mode": "/proc/cpufreq/cpufreq_cci_mode"
+  },
+  "features": {
+    "high_rate": {
+      "enable": false,
+      "enable_control": "/data/local/tmp/scene_refresh_rate",
+      "device_policy": []
+    },
+    "limiter": {
+      "active_interval": 20,
+      "inactive_interval": 150,
+      "logger": false,
+      "params": [
+        { "id": "p1:cpu0", "max_freq": 2000000, "min_freq": 1708000, "margin_mhz": 600 },
+        { "id": "p1:cpu4", "max_freq": 2200000, "min_freq": 1451000, "margin_mhz": 600 },
+
+        { "id": "p2:cpu0", "max_freq": 2000000, "min_freq": 1708000, "margin_mhz": 600 },
+        { "id": "p2:cpu4", "max_freq": 2600000, "min_freq": 1998000, "margin_mhz": 600 },
+
+        { "id": "idle:cpu0", "max_freq": 1625000, "margin_mhz": 130 },
+        { "id": "idle:cpu4", "max_freq": 1624000, "margin_mhz": 150 }
+      ]
+    }
+  },
+  "presets": {
+    "util_active": [
+      ["$util_max_fg", "1024"], ["$util_min_fg", "0"],
+      ["$util_max_top", "1024"], ["$util_min_top", "0"],
+      ["$util_min_bg", "0"], ["$util_max_bg", "1024"]
+    ],
+    "util_fg_opt": [
+      ["$util_max_fg", "1024"], ["$util_min_fg", "0"],
+      ["$util_max_top", "1024"], ["$util_min_top", "0"],
+      ["$util_max_bg", "200"], ["$util_min_bg", "0"]
+    ],
+    "util_idle": [
+      ["$stune_top_boost", "0"],
+      ["$stune_top_perf", "0"],
+      ["$util_max_fg", "100"], ["$util_min_fg", "0"],
+      ["$util_max_top", "1024"], ["$util_min_top", "0"],
+      ["$util_max_bg", "100"], ["$util_min_bg", "0"]
+    ],
+    "common_active": [
+      ["$max_cpu_freq", "0 2000000"],
+      ["@cpuset", "1-3", "0-4", "0-7", "0-7"],
+      ["$deisolation", "4|5|6|7"],
+      ["@preset", "util_active"],
+      ["$stune_top_boost", "10"],
+      ["@high_rate", "on"]
+    ],
+    "common_inactive": [
+      ["@cpuset", "1", "0-4", "0-7", "0-7"],
+      ["$stune_top_boost", "0"],
+      ["$stune_top_perf", "0"],
+      ["$min_cpu_freq", "0 500000|1 774000"]
+    ],
+
+    "powersave_active": [
+      ["@limiters", "p1:cpu0", "p1:cpu4"],
+      ["@preset", "common_active"],
+      ["$min_cpu_freq", "0 1287000|1 1048000"],
+      ["@preset", "util_active"]
+    ],
+    "powersave_inactive": [
+      ["@limiters", "idle:cpu0", "idle:cpu4"],
+      ["@preset", "common_inactive"],
+      ["$min_cpu_freq", "0 500000|1 774000"],
+      ["@preset", "util_fg_opt"],
+      ["@high_rate", "off"]
+    ],
+    "balance_active": [
+      ["@limiters", "p2:cpu0", "p2:cpu4"],
+      ["@preset", "common_active"],
+      ["$min_cpu_freq", "0 1287000|1 1367000"],
+      ["@preset", "util_active"]
+    ],
+    "balance_inactive": [
+      ["@preset", "common_inactive"],
+      ["$max_cpu_freq", "0 2000000|1 1750000"],
+      ["$min_cpu_freq", "0 500000|1 774000"],
+      ["@preset", "util_fg_opt"],
+      ["@high_rate", "off"]
+    ],
+    "performance_active": [
+      ["@preset", "common_active"],
+      ["@limiters", "NONE"],
+      ["$max_cpu_freq", "0 2000000|1 2600000"],
+      ["$min_cpu_freq", "0 1287000|1 1537000"],
+      ["@preset", "util_active"]
+    ],
+    "performance_inactive": [
+      ["@preset", "common_inactive"],
+      ["$max_cpu_freq", "0 2000000|1 2245000"],
+      ["$min_cpu_freq", "0 500000|1 774000"],
+      ["@preset", "util_fg_opt"]
+    ],
+    "fast_active": [
+      ["@limiters", "NONE"],
+      ["@preset", "common_active"],
+      ["$max_cpu_freq", "0 2000000|1 2600000"],
+      ["$min_cpu_freq", "0 1287000|1 1537000"],
+      ["@preset", "util_active"]
+    ],
+    "fast_inactive": [
+      ["@limiters", "NONE"],
+      ["@preset", "common_inactive"],
+      ["$max_cpu_freq", "0 2000000|1 2354000"],
+      ["$min_cpu_freq", "0 500000|1 774000"],
+      ["@preset", "util_fg_opt"]
+    ]
+  },
+  "schemes": {
+    "powersave": {
+      "call": [
+        ["@thermal_threshold", "-1"],
+        ["@preset", "powersave_active"],
+        ["cci_mode", "0"],
+        ["dram_boost", "0"]
+      ]
+    },
+    "balance": {
+      "call": [
+        ["@thermal_threshold", "-1"],
+        ["@preset", "balance_active"],
+        ["cci_mode", "0"],
+        ["dram_boost", "0"]
+      ]
+    },
+    "performance": {
+      "call": [
+        ["@thermal_threshold", "-1"],
+        ["@preset", "performance_active"]
+      ],
+      "app": [
+        ["cci_mode", "0"],
+        ["dram_boost", "0"]
+      ],
+      "game": [
+        ["cci_mode", "1"],
+        ["dram_boost", "1"]
+      ]
+    },
+    "fast": {
+      "call": [
+        ["@thermal_threshold", "-1"],
+        ["@preset", "fast_active"]
+      ],
+      "app": [
+        ["cci_mode", "0"],
+        ["dram_boost", "0"]
+      ],
+      "game": [
+        ["cci_mode", "1"],
+        ["dram_boost", "1"]
+      ]
+    },
+    "pedestal": {
+      "call": [
+        ["@thermal_threshold", "-1"],
+        ["@preset", "pedestal_active"]
+      ],
+      "app": [
+        ["cci_mode", "0"],
+        ["dram_boost", "0"]
+      ],
+      "game": [
+        ["cci_mode", "1"],
+        ["dram_boost", "1"]
+      ]
+    }
+  },
+  "apps": [
+    {
+      "friendly": "视频/短视频/滚动优化/社交/",
+      "categories": ["Video", "ShortVideo", "ScrollOpt", "IM"],
+      "import": "_Apps.json"
+    },
+    {
+      "friendly": "极速响应",
+      "categories": ["Launcher"],
+      "modes": [{
+        "mode": ["powersave"],
+        "booster": {
+          "events": ["presets"],
+          "duration": 3000,
+          "idle_delay": 1000,
+          "enter": [
+            ["$gpu_dvfs_margin", "40"],
+            ["@preset", "performance_active"]
+          ],
+          "exit": [
+            ["$gpu_dvfs_margin", "10"],
+            ["@preset", "powersave_inactive"]
+          ]
+        }
+      },{
+        "mode": ["balance"],
+        "booster": {
+          "events": ["presets"],
+          "duration": 3000,
+          "idle_delay": 2000,
+          "enter": [
+            ["@preset", "performance_active"],
+            ["$gpu_dvfs_margin", "50"]
+          ],
+          "exit": [
+            ["@preset", "powersave_inactive"],
+            ["$gpu_dvfs_margin", "10"]
+          ]
+        }
+      },{
+        "mode": ["performance"],
+        "booster": {
+          "events": ["presets"],
+          "duration": 4000,
+          "idle_delay": 2000,
+          "enter": [
+            ["$gpu_dvfs_margin", "70"],
+            ["@preset", "fast_active"]
+          ],
+          "exit": [
+            ["@preset", "balance_inactive"],
+            ["$gpu_dvfs_margin", "15"],
+            ["@high_rate", "off"]
+          ]
+        }
+      },{
+        "mode": ["fast"],
+        "booster": {
+          "events": ["presets"],
+          "duration": 4000,
+          "idle_delay": 2000,
+          "enter": [
+            ["$gpu_dvfs_margin", "130"],
+            ["@preset", "fast_active"]
+          ],
+          "exit": [
+            ["$gpu_dvfs_margin", "35"],
+            ["@preset", "balance_inactive"],
+            ["@high_rate", "off"]
+          ]
+        }
+      }]
+    },
+    {
+      "friendly": "扫码",
+      "categories": ["Scanner"],
+      "call": [
+        ["$util_max_top", "1024"],
+        ["$util_max_bg", "100"],
+        ["$util_max_fg", "1024"],
+        ["@cpuset", "0", "0-4", "0-7", "0-7"],
+        ["$max_cpu_freq", "0 2000000|1 2600000"],
+        ["$min_cpu_freq", "0 1725000|1 1855000"],
+        ["$mi_thermal", "10"]
+      ],
+      "modes": [{
+        "mode": ["*"],
+        "booster": {
+          "events": ["presets"],
+          "duration": 2000,
+          "idle_delay": 2000,
+          "enter": [ ["@high_rate", "on"] ],
+          "exit": [ ["@high_rate", "off"] ]
+        }
+      }]
+    },
+    {
+      "friendly": "相机",
+      "categories": ["Camera"],
+      "call": [
+        ["$util_max_top", "1024"],
+        ["$util_max_bg", "100"],
+        ["$util_max_fg", "1024"],
+        ["@cpuset", "0-1", "0-4", "0-7", "0-7"]
+      ],
+      "modes": [{
+        "mode": ["powersave", "balance"],
+        "booster": {
+          "events": ["presets"],
+          "duration": 3000,
+          "idle_delay": 4000,
+          "enter": [
+            ["$max_cpu_freq", "0 2000000|1 2600000"],
+            ["$min_cpu_freq", "0 1725000|1 1855000"],
+            ["@high_rate", "on"]
+          ],
+          "exit": [
+            ["$max_cpu_freq", "0 2000000|1 1985000"],
+            ["$min_cpu_freq", "0 1000000|1 700000"],
+            ["@high_rate", "off"]
+          ]
+        }
+      }, {
+        "mode": ["*"],
+        "booster": {
+          "events": ["presets"],
+          "duration": 2000,
+          "idle_delay": 2000,
+          "enter": [ ["@high_rate", "on"] ],
+          "exit": [ ["@high_rate", "off"] ]
+        }
+      }]
+    },
+    {
+      "friendly": "狗屎/毒瘤",
+      "categories": ["MiniProgram"],
+      "modes": [{
+        "mode": ["powersave", "balance"],
+        "call": [
+          ["$stune_top_boost", "10"],
+          ["$util_max_top", "1024"],
+          ["$util_max_bg", "100"],
+          ["$util_max_fg", "1024"],
+          ["@cpuset", "0", "0-4", "0-7", "0-7"],
+          ["$max_cpu_freq", "0 2000000|1 2400000"],
+          ["$min_cpu_freq", "0 1287000|1 1046000"],
+          ["$mi_thermal", "10"]
+        ],
+        "booster": {
+          "events": ["presets"],
+          "duration": 2000,
+          "idle_delay": 2000,
+          "enter": [ ["@high_rate", "on"] ],
+          "exit": [ ["@high_rate", "off"] ]
+        }
+      }, {
+        "mode": ["*"],
+        "booster": {
+          "events": ["presets"],
+          "duration": 2000,
+          "idle_delay": 2000,
+          "enter": [ ["@high_rate", "on"] ],
+          "exit": [ ["@high_rate", "off"] ]
+        }
+      }]
+    },
+    {
+      "friendly": "备份还原",
+      "packages": ["com.miui.huanji", "com.miui.backup"],
+      "call": [
+        ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
+        ["@high_rate", "off", "2000"]
+      ]
+    },
+    {
+      "friendly": "All",
+      "packages": ["*"],
+      "import": "_Apps.json"
+    }
+  ],
+  "games": [
+    {
+      "friendly": "All",
+      "packages": ["*"]
+    }
+  ]
+}

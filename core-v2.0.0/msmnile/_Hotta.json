@@ -1,0 +1,18 @@
+{
+  "friendly": "幻塔",
+  "match": ["hotta"],
+  "packages": [
+    "com.dw.h5yvzr.yt",
+    "com.pwrd.hotta.laohu",
+    "com.hottagames.hotta.bilibili",
+    "com.hottagames.hotta.mi"
+  ],
+  "affinity": {
+    "interval": 1000,
+    "comm": {
+      "80": ["GameThread"],
+      "70": ["RenderThread", "RHIThread"]
+    },
+    "other": "ff"
+  }
+}

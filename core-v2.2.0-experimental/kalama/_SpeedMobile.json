@@ -1,0 +1,55 @@
+{
+  "friendly": "QQ飞车",
+  "cpuset": {
+    "unity_main": "7",
+    "comm": {
+      "6": ["UnityGfx"],
+      "3-5": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
+    },
+    "other": "3-5"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "recent_frames": 10, "fast_down_rate": 7, "slow_down_rate": 2.0,
+        "governor": "performance",
+        "_60": ["1977600", "1920000", "-2"],
+        "_90": ["1977600", "1920000", "-2"],
+        "_120": ["1977600", "1920000", "-2"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "recent_frames": 10, "fast_down_rate": 7, "slow_down_rate": 2.0,
+        "governor": "performance",
+        "_60": ["2342400", "2188800", "-2"],
+        "_90": ["2342400", "2188800", "-2"],
+        "_120": ["2342400", "2188800", "-2"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "recent_frames": 10, "fast_down_rate": 7, "slow_down_rate": 2.0,
+        "mode": "fps",
+        "governor": "performance",
+        "_60": ["2592000", "2323200", "-2"],
+        "_90": ["2592000", "2323200", "-2"],
+        "_120": ["2592000", "2457600", "-2"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "fas": {
+        "recent_frames": 10, "fast_down_rate": 7, "slow_down_rate": 2.0,
+        "mode": "fps",
+        "governor": "performance",
+        "_60": ["2822400", "2592000", "-2"],
+        "_90": ["2822400", "2592000", "-2"],
+        "_120": ["2822400", "2592000", "-2"]
+      }
+    }
+  ]
+}

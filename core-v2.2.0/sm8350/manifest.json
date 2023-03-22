@@ -1,0 +1,13 @@
+{
+  "version": "6.1 Beta",
+  "versionCode": 20221231001,
+  "author": "SCENE6",
+  "project_url": "http://vtools.omarea.com/",
+  "features": {
+    "strict": true,
+    "pedestal": false
+  },
+  "current": "vtools.powercfg",
+  "files": [],
+  "entry": "conservative.sh"
+}

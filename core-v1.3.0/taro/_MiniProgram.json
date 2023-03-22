@@ -1,0 +1,25 @@
+{
+  "friendly": "狗屎/毒瘤",
+  "packages": [
+    "com.tencent.mm:appbrand",
+    "com.tencent.mm:toolsmp"
+  ],
+  "booster": {
+    "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys", "mtk-pmic-keys", "Headset", "mtk-kpd"],
+    "duration": 2000,
+    "idle_delay": 2000,
+    "enter": [ ["@high_rate", "on"] ],
+    "exit": [ ["@high_rate", "off"] ]
+  },
+  "modes": [{
+    "mode": ["powersave", "balance"],
+    "call": [
+      ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
+      ["@cpuset", "0", "0-4", "0-7", "0-7"],
+      ["@cpu_freq", "policy0", "1075200", "1689600"],
+      ["@cpu_freq", "policy4", "min", "2227200"],
+      ["@cpu_freq", "policy7", "min", "2227200"],
+      ["$mi_thermal", "10"]
+    ]
+  }]
+}

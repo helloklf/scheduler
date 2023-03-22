@@ -1,0 +1,778 @@
+{
+  "platform": "msmnile",
+  "platform_name": "855/855+",
+  "framework": 110,
+  "alias": {
+    "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
+    "cpu0_offline": "/sys/devices/system/cpu/cpu0/core_ctl/enable",
+    "cpu4_offline": "/sys/devices/system/cpu/cpu4/core_ctl/enable",
+    "cpu7_offline": "/sys/devices/system/cpu/cpu4/core_ctl/enable",
+    "mi_thermal": "/sys/class/thermal/thermal_message/sconfig"
+  },
+  "schemes": {
+    "powersave": {
+      "call": [
+        ["$cpu4_offline", "1"],
+        ["$cpu7_offline", "1"],
+        ["@gpu_freq", "min", "510MHz"],
+        ["@thermal_threshold", "90000"]
+      ]
+    },
+    "balance": {
+      "call": [
+        ["$cpu4_offline", "0"],
+        ["$cpu7_offline", "1"],
+        ["@gpu_freq", "min", "610MHz"],
+        ["@thermal_threshold", "95000"]
+      ]
+    },
+    "performance": {
+      "call": [
+        ["$cpu4_offline", "0"],
+        ["$cpu7_offline", "0"],
+        ["@gpu_freq", "300MHz", "max"],
+        ["@thermal_threshold", "97000"],
+        ["$mi_thermal", "10"]
+      ]
+    },
+    "fast": {
+      "call": [
+        ["$cpu4_offline", "0"],
+        ["$cpu7_offline", "0"],
+        ["@gpu_freq", "400MHz", "max"],
+        ["@thermal_threshold", "100000"],
+        ["$mi_thermal", "10"]
+      ]
+    },
+    "pedestal": {
+      "call": [
+        ["$cpu4_offline", "0"],
+        ["$cpu7_offline", "0"],
+        ["@gpu_freq", "600MHz", "max"],
+        ["@thermal_threshold", "105000"],
+        ["$mi_thermal", "10"]
+      ]
+    }
+  },
+  "apps": [
+    {
+      "friendly": "原神",
+      "match": ["miHoYo"],
+      "packages": [
+        "com.miHoYo.Yuanshen",
+        "com.miHoYo.ys.mi",
+        "com.miHoYo.ys.bilibili",
+        "com.miHoYo.GenshinImpact"
+      ],
+      "logger": true,
+      "sensors": [],
+      "affinity": {
+        "unity_main": "80",
+        "comm": {
+          "40": ["UnityGfxDevice"],
+          "30": ["UnityMultiRende", "UnityPreload"],
+          "3F": ["MIHOYO_NETWORK", "FMOD", "UnityChoreograp", "AsyncReadManage", "Worker Thread", "NativeThread"],
+          "F": ["AudioTrack", "Audio", "tp_schedule"]
+        },
+        "other": "f"
+      },
+      "modes": [
+        {
+          "mode": ["performance", "fast", "pedestal"],
+          "logger": true,
+          "sensors": [
+            {
+              "sensor": "cpu",
+              "interval": 100,
+              "rules": [
+                { "threshold": [-1, 96000], "enter": [["$gpu_max_khz", "450000000"]] },
+                { "threshold": [95000, 89000], "enter": [["$gpu_max_khz", "530000000"]] },
+                { "threshold": [88000, 83000], "enter": [["$gpu_max_khz", "630000000"]] },
+                { "threshold": [78000, -1], "enter": [["$gpu_max_khz", "780000000"]] }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "friendly": "幻塔",
+      "match": ["hotta"],
+      "packages": [
+        "com.dw.h5yvzr.yt",
+        "com.pwrd.hotta.laohu",
+        "com.hottagames.hotta.bilibili",
+        "com.hottagames.hotta.mi"
+      ],
+      "call": [ ["@cpuset", "0", "0", "0-7", "0-7"] ],
+      "affinity": {
+        "interval": 1000,
+        "comm": {
+          "80": ["GameThread"],
+          "70": ["RenderThread", "RHIThread"]
+        },
+        "other": "ff"
+      }
+    },
+    {
+      "friendly": "和平精英",
+      "match": ["pubgmhd"],
+      "packages": [
+        "com.tencent.tmgp.pubgmhd",
+        "com.tencent.ig"
+      ],
+      "affinity": {
+        "interval": 1000,
+        "comm": {
+          "80": ["RenderThread"],
+          "70": ["Thread-", "TaskGraphNP"]
+        },
+        "other": "7f"
+      },
+      "sensors": [],
+      "modes": [
+        {
+          "mode": ["powersave"],
+          "logger": false,
+          "affinity": {
+            "interval": 1000,
+            "comm": {
+              "F0": ["RenderThread"],
+              "70": ["Thread-", "TaskGraphNP"]
+            },
+            "other": "7f"
+          }
+        },
+        {
+          "mode": ["performance"],
+          "logger": false,
+          "booster": {
+            "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+            "duration": 2000,
+            "enter": [
+              ["$stune_top_boost", "10"]
+            ],
+            "exit": [
+              ["$sched_boost", "0"]
+            ]
+          }
+        },
+        {
+          "mode": ["fast"],
+          "logger": false,
+          "booster": {
+            "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+            "duration": 2000,
+            "enter": [
+              ["$stune_top_boost", "60"]
+            ],
+            "exit": [
+              ["$sched_boost", "0"]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "friendly": "QQ飞车",
+      "match": ["speedmobile"],
+      "packages": ["com.tencent.tmgp.speedmobile"],
+      "sensors": [],
+      "affinity": {
+        "interval": 5000,
+        "comm": {
+          "80": ["UnityMain"]
+        },
+        "other": "ff"
+      }
+    },
+    {
+      "friendly": "王者荣耀/LOL",
+      "match": [],
+      "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
+      "sensors": [],
+      "modes": [{
+        "mode": ["powersave", "balance"],
+        "logger": false,
+        "call": [
+        ],
+        "affinity": {
+          "interval": 1000,
+          "comm": {
+            "80": ["UnityMain","UnityPreload"],
+            "70": ["NativeThread", "Thread-","UnityGfxDevice", "UnityMultiRende", "Worker Thread"],
+            "7F": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+          },
+          "other": "7F"
+        },
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 3000,
+          "enter": [
+            ["$uclamp_fg_max", "max"],
+            ["$uclamp_fg_min", "0.0"],
+            ["$uclamp_bg_max", "max"],
+            ["$uclamp_bg_min", "0.0"],
+            ["$uclamp_top_max", "max"],
+            ["$uclamp_top_min", "1.0"],
+            ["$core_ctl_4", "0"],
+            ["$core_ctl_7", "0"]
+          ],
+          "batter": 6,
+          "infinite": [
+            ["$uclamp_top_min", "max"],
+            ["$cpu_min_0", "1708800"],
+            ["$cpu_min_4", "1497600"],
+            ["$cpu_min_7", "1401600"],
+            ["$cpu_max_0", "1785600"],
+            ["$cpu_max_4", "2227200"],
+            ["$cpu_max_7", "2227200"],
+            ["$stune_top_boost", "30"],
+            ["$stune_top_perf", "1"]
+          ],
+          "exit": [
+            ["$cpu_min_0", "300000"],
+            ["$cpu_min_4", "710400"],
+            ["$cpu_min_7", "825600"]
+          ]
+        }
+      },{
+        "mode": ["performance", "fast", "pedestal"],
+        "logger": false,
+        "call": [
+        ],
+        "affinity": {
+          "interval": 1000,
+          "comm": {
+            "80": ["UnityMain","UnityPreload"],
+            "70": ["NativeThread", "Thread-","UnityGfxDevice", "UnityMultiRende", "Worker Thread"],
+            "7F": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+          },
+          "other": "7F"
+        },
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": [
+            ["$sched_boost", "0"]
+          ],
+          "batter": 6,
+          "infinite": [
+            ["$cpu_min_0", "1708800"],
+            ["$cpu_min_4", "1708800"],
+            ["$cpu_min_7", "1708800"],
+            ["$uclamp_fg_max", "max"],
+            ["$uclamp_fg_min", "0.0"],
+            ["$uclamp_top_max", "max"],
+            ["$uclamp_top_min", "max"],
+            ["$uclamp_bg_max", "max"],
+            ["$uclamp_bg_min", "0.0"],
+            ["$stune_top_boost", "30"],
+            ["$stune_top_perf", "1"]
+          ],
+          "exit": [
+            ["$sched_boost", "0"]
+          ]
+        }
+      }]
+    },
+    {
+      "friendly": "抖音、西瓜、快手",
+      "match": [],
+      "packages": ["com.ss.android.ugc.aweme", "com.ss.android.ugc.aweme.lite", "com.ss.android.article.video", "com.smile.gifmaker"],
+      "sensors": [],
+      "modes": [{
+        "mode": ["powersave"],
+        "logger": false,
+        "call": [ ["$cpu4_offline", "0"] ],
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": [
+            ["$cpuset_top", "0-7"],
+            ["$cpuset_fg", "0-7"],
+            ["$core_ctl_4", "0"],
+            ["$core_ctl_7", "0"],
+            ["$cpu_max_0", "1708800"],
+            ["$cpu_max_4", "1612800"],
+            ["$cpu_max_7", "1497600"],
+            ["$stune_top_perf", "1"]
+          ],
+          "exit": [
+            ["$cpuset_top", "0-7"],
+            ["$cpuset_fg", "0-3"],
+            ["$cpu_max_0", "1708800"],
+            ["$cpu_max_4", "1497600"],
+            ["$cpu_max_7", "940800"],
+            ["$stune_top_boost", "0"],
+            ["$stune_top_perf", "0"]
+          ]
+        }
+      }, {
+        "mode": ["balance"],
+        "logger": false,
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": [
+            ["$cpuset_top", "0-7"],
+            ["$cpuset_fg", "0-3"],
+            ["$cpu_max_0", "1785600"],
+            ["$cpu_max_4", "1804800"],
+            ["$cpu_max_7", "1804800"],
+            ["$stune_top_boost", "1"],
+            ["$stune_top_perf", "1"]
+          ],
+          "exit": [
+            ["$cpuset_top", "0-7"],
+            ["$cpuset_fg", "0-7"],
+            ["$cpu_max_0", "1708800"],
+            ["$cpu_max_4", "1612800"],
+            ["$cpu_max_7", "1612800"],
+            ["$stune_top_boost", "0"],
+            ["$stune_top_perf", "0"]
+          ]
+        }
+      }, {
+        "mode": ["performance", "fast"],
+        "logger": false,
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": [ ["$cpuset_top", "0-7"], ["$stune_top_boost", "10"], ["$stune_top_perf", "1"] ]
+        }
+      }]
+    },
+    {
+      "friendly": "视频应用",
+      "match": [],
+      "packages": [
+        "tv.danmaku.bili",
+        "com.tencent.qqlive",
+        "com.ss.android.article.video",
+        "com.qiyi.video",
+        "com.qiyi.video.lite",
+        "com.qiyi.video.sdkplayer",
+        "com.dianshijia.newlive",
+        "com.duowan.kiwi",
+        "air.tv.douyu.android",
+        "com.douyu.rush",
+        "com.youku.phone",
+        "org.telegram.messenger",
+        "com.hunantv.imgo.activity",
+        "com.ss.android.article.video"
+      ],
+      "sensors": [],
+      "modes": [{
+        "mode": ["powersave"],
+        "logger": false,
+        "call": [ ["$cpu4_offline", "0"] ],
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": [
+            ["$cpuset_top", "0-7"],
+            ["$cpuset_fg", "0-7"],
+            ["$core_ctl_4", "0"],
+            ["$core_ctl_7", "0"],
+            ["$cpu_max_0", "1708800"],
+            ["$cpu_max_4", "1612800"],
+            ["$cpu_max_7", "1497600"]
+          ],
+          "exit": [
+            ["$cpuset_top", "0-7"],
+            ["$cpuset_fg", "0-3"],
+            ["$cpu_max_0", "1708800"],
+            ["$cpu_max_4", "1497600"],
+            ["$cpu_max_7", "940800"],
+            ["$stune_top_boost", "0"],
+            ["$stune_top_perf", "0"]
+          ]
+        }
+      }, {
+        "mode": ["balance"],
+        "logger": false,
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": [
+            ["$cpuset_top", "0-7"],
+            ["$cpuset_fg", "0-3"],
+            ["$cpu_max_0", "1785600"],
+            ["$cpu_max_4", "1804800"],
+            ["$cpu_max_7", "1804800"],
+            ["$stune_top_boost", "1"],
+            ["$stune_top_perf", "0"]
+          ],
+          "exit": [
+            ["$cpuset_top", "0-7"],
+            ["$cpuset_fg", "0-7"],
+            ["$cpu_max_0", "1708800"],
+            ["$cpu_max_4", "1612800"],
+            ["$cpu_max_7", "1612800"],
+            ["$stune_top_boost", "0"],
+            ["$stune_top_perf", "0"]
+          ]
+        }
+      }, {
+        "mode": ["performance", "fast"],
+        "logger": false,
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": [ ["$cpuset_top", "0-7"], ["$stune_top_boost", "10"], ["$stune_top_perf", "1"] ]
+        }
+      }]
+    },
+    {
+      "friendly": "社交APP",
+      "match": [],
+      "packages": [
+        "com.tencent.mobileqq",
+        "com.tencent.mm",
+        "com.tencent.tim",
+        "org.telegram.messenger"
+      ],
+      "stop_on": [],
+      "sensors": [],
+      "modes": [{
+        "mode": ["powersave"],
+        "logger": false,
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 1500,
+          "enter": [
+          ],
+          "exit": [
+          ]
+        }
+      },{
+        "mode": ["balance"],
+        "logger": false
+      }]
+    },
+    {
+      "friendly": "提高滑动性能",
+      "match": [],
+      "packages": [
+        "com.taobao.idlefish",
+        "com.taobao.taobao",
+        "com.android.browser",
+        "com.baidu.tieba_mini",
+        "com.baidu.tieba",
+        "com.jingdong.app.mall",
+        "com.tmall.wireless",
+        "com.sankuai.meituan",
+        "com.pupumall.customer",
+        "com.eg.android.AlipayGphone",
+        "com.android.vending",
+        "cn.xiaochuankeji.tieba",
+        "com.mfw.roadbook"
+      ],
+      "sensors": [],
+      "modes": [{
+        "mode": ["powersave"],
+        "logger": false,
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": [
+            ["$core_ctl_4", "0"],
+            ["$core_ctl_7", "0"],
+            ["$stune_top_perf", "1"],
+            ["$stune_top_boost", "10"],
+            ["$cpuset_top", "0-7"],
+            ["$cpuset_fg", "0-7"],
+            ["$cpu_min_0", "1708800"],
+            ["$cpu_max_0", "1785600"],
+            ["$cpu_max_4", "2131200"],
+            ["$cpu_max_7", "2131200"]
+          ],
+          "exit": [
+            ["$cpu_min_0", "300000"],
+            ["$cpu_min_4", "710400"],
+            ["$cpu_min_7", "825600"]
+          ]
+        }
+      },{
+        "mode": ["balance"],
+        "logger": false,
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": [
+            ["$stune_top_perf", "1"],
+            ["$stune_top_boost", "10"],
+            ["$cpuset_top", "0-7"],
+            ["$cpuset_fg", "0-7"],
+            ["$cpu_min_0", "1708800"],
+            ["$cpu_min_4", "1612800"],
+            ["$cpu_min_7", "1670400"],
+            ["$cpu_max_0", "1785600"],
+            ["$cpu_max_4", "2323200"],
+            ["$cpu_max_7", "2323200"]
+          ],
+          "exit": [
+            ["$cpu_min_0", "300000"],
+            ["$cpu_min_4", "710400"],
+            ["$cpu_min_7", "825600"]
+          ]
+        }
+      },{
+        "mode": ["performance", "fast"],
+        "logger": false,
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": [
+            ["$cpuset_top", "0-7"],
+            ["$cpuset_fg", "0-7"],
+            ["$stune_top_boost", "100"], ["$stune_top_perf", "1"], ["$sched_boost", "2"],
+            ["$cpu_max_0", "1785600"],
+            ["$cpu_max_4", "2419200"],
+            ["$cpu_max_7", "3300000"]
+          ]
+        }
+      }]
+    },
+    {
+      "friendly": "极速响应",
+      "match": [],
+      "packages": [
+        "com.miui.home",
+        "com.meizu.flyme.launcher",
+        "net.oneplus.launcher",
+        "com.oppo.launcher",
+        "ch.deletescape.lawnchair.ci",
+        "com.mi.android.globallauncher",
+        "com.teslacoilsw.launcher",
+        "com.android.quicksearchbox",
+        "net.oneplus.h2launcher",
+        "com.oneplus.hydrogen.launcher",
+        "com.microsoft.launcher",
+        "org.lineageos.trebuchet",
+        "org.mokee.lawnchair",
+        "com.google.android.apps.nexuslauncher"
+      ],
+      "sensors": [],
+      "modes": [{
+        "mode": ["powersave"],
+        "logger": false,
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 3000,
+          "enter": [
+            ["/sys/devices/platform/soc/1d84000.ufshc/clkscale_enable", "0"],
+            ["/sys/devices/platform/soc/1d84000.ufshc/clkgate_enable", "0"],
+            ["/sys/devices/platform/soc/1d84000.ufshc/hibern8_on_idle_enable", "0"],
+            ["/sys/class/devfreq/1d84000.ufshc/min_freq", "300000000"],
+            ["$core_ctl_4", "0"],
+            ["$core_ctl_7", "0"],
+            ["$stune_top_perf", "1"],
+            ["$stune_top_boost", "10"],
+            ["$cpuset_top", "0-7"],
+            ["$cpuset_fg", "0-7"],
+            ["$cpu_min_0", "1708800"],
+            ["$cpu_max_0", "1785600"],
+            ["$cpu_max_4", "2131200"],
+            ["$cpu_max_7", "2131200"]
+          ],
+          "exit": [
+            ["$cpu_min_0", "300000"],
+            ["$cpu_min_4", "710400"],
+            ["$cpu_min_7", "825600"]
+          ]
+        }
+      }, {
+        "mode": ["balance"],
+        "logger": false,
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 3000,
+          "enter": [
+            ["/sys/devices/platform/soc/1d84000.ufshc/clkscale_enable", "0"],
+            ["/sys/devices/platform/soc/1d84000.ufshc/clkgate_enable", "0"],
+            ["/sys/devices/platform/soc/1d84000.ufshc/hibern8_on_idle_enable", "0"],
+            ["/sys/class/devfreq/1d84000.ufshc/min_freq", "300000000"],
+            ["$stune_top_perf", "1"],
+            ["$stune_top_boost", "10"],
+            ["$cpuset_top", "0-7"],
+            ["$cpuset_fg", "0-7"],
+            ["$cpu_min_0", "1708800"],
+            ["$cpu_min_4", "1612800"],
+            ["$cpu_min_7", "1670400"],
+            ["$cpu_max_0", "1785600"],
+            ["$cpu_max_4", "2323200"],
+            ["$cpu_max_7", "2323200"]
+          ],
+          "exit": [
+            ["$cpu_min_0", "300000"],
+            ["$cpu_min_4", "710400"],
+            ["$cpu_min_7", "825600"]
+          ]
+        }
+      }, {
+        "mode": ["performance", "fast"],
+        "logger": false,
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 3000,
+          "enter": [
+            ["$cpuset_top", "0-7"], ["$cpuset_fg", "0-7"],
+            ["$stune_top_boost", "100"], ["$stune_top_perf", "1"], ["$sched_boost", "2"],
+            ["$cpu_max_0", "1785600"],
+            ["$cpu_max_4", "2419200"],
+            ["$cpu_max_7", "3300000"]
+          ]
+        }
+      }]
+    },
+    {
+      "friendly": "扫码",
+      "packages": [
+        "com.tencent.mm.plugin.scanner.ui.BaseScanUI",
+        "com.tencent.mobileqq.olympic.activity.ScanTorchActivity",
+        "com.tencent.mobileqq.olympic.activity.ScanTorchActivity",
+        "com.alipay.mobile.scan.as.main.MainCaptureActivity",
+        "com.jd.lib.scan.lib.zxing.client.android.CaptureActivity",
+        "com.etao.feimagesearch.capture.CaptureActivity"
+      ],
+      "call": [
+        ["$offline_cpu0", "0"],
+        ["$offline_cpu4", "0"],
+        ["$offline_cpu7", "0"],
+        ["@cpuset", "0", "0-4", "0-7", "0-7"],
+        ["@cpu_freq", "policy0", "1.6Ghz", "max"],
+        ["@cpu_freq", "policy4", "2.3Ghz", "max"],
+        ["@cpu_freq", "policy7", "2.3Ghz", "max"],
+        ["$mi_thermal", "10"]
+      ]
+    },
+    {
+      "friendly": "相机",
+      "packages": [
+        "com.tencent.mm.plugin.recordvideo.activity.MMRecordUI",
+        "com.tencent.aelight.camera.aebase.QIMCameraCaptureActivity",
+        "dov.com.qq.im.QIMCameraCaptureActivity",
+        "com.googleCamera.Wichaya8",
+        "com.accordion.analogcam.cn",
+        "org.codeaurora.snapcam",
+        "com.android.camera",
+        "com.xiaomi.scanner",
+        "com.blink.academy.protake",
+        "com.benqu.wuta",
+        "com.gorgeous.lite",
+        "com.kwai.m2u",
+        "com.meitu.meiyancamera",
+        "com.yiruike.sodacn.android",
+        "com.lemon.faceu",
+        "com.mt.mtxx.mtxx"
+      ],
+      "call": [
+        ["@cpuset", "0-1", "0-4", "0-7", "0-7"]
+      ],
+      "modes": [{
+        "mode": ["powersave", "balance"],
+        "logger": false,
+        "enable": true,
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 3000,
+          "idle_delay": 8000,
+          "enter": [
+            ["@cpu_freq", "policy0", "1500MHz", "max"],
+            ["@cpu_freq", "policy4", "1800MHz", "2.5Ghz"],
+            ["@cpu_freq", "policy7", "1800MHz", "2.85Ghz"]
+          ],
+          "exit": [
+            ["@cpu_freq", "policy0", "min", "1800MHz"],
+            ["@cpu_freq", "policy4", "min", "2200MHz"],
+            ["@cpu_freq", "policy7", "min", "2300MHz"]
+          ]
+        }
+      }]
+    },
+    {
+      "friendly": "狗屎/毒瘤",
+      "packages": [
+        "com.tencent.mm:appbrand",
+        "com.tencent.mm:toolsmp"
+      ],
+      "modes": [{
+        "mode": ["powersave", "balance"],
+        "call": [
+          ["$offline_cpu0", "0"],
+          ["$offline_cpu4", "0"],
+          ["$offline_cpu7", "0"],
+          ["@cpuset", "0", "0-4", "0-7", "0-7"],
+          ["@cpu_freq", "policy0", "1.4Ghz", "max"],
+          ["@cpu_freq", "policy4", "1Ghz", "2.4Ghz"],
+          ["@cpu_freq", "policy7", "min", "2.4Ghz"],
+          ["$mi_thermal", "10"]
+        ]
+      }]
+    },
+    {
+      "friendly": "All",
+      "match": [],
+      "packages": ["*"],
+      "sensors": [],
+      "modes": [{
+        "mode": ["powersave"],
+        "logger": false,
+        "disable": true,
+        "call": [  ],
+        "booster": {
+          "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": [ ["$stune_top_boost", "1"] ],
+          "exit": []
+        }
+      }, {
+        "mode": ["balance"],
+        "logger": false,
+        "disable": false,
+        "call": [  ],
+        "booster": {
+          "events": ["buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": [ ["$stune_top_boost", "10"] ],
+          "exit": []
+        }
+      }, {
+        "mode": ["performance"],
+        "logger": false,
+        "disable": false,
+        "call": [  ],
+        "booster": {
+          "events": ["buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": [ ["$stune_top_boost", "10"], ["$stune_top_perf", "1"] ],
+          "exit": []
+        }
+      }, {
+        "mode": ["fast"],
+        "logger": false,
+        "disable": false,
+        "call": [ ],
+        "booster": {
+          "events": ["buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": [ ["$stune_top_boost", "20"], ["$stune_top_perf", "1"], ["$sched_boost", "2"] ],
+          "exit": []
+        }
+      }, {
+        "mode": ["pedestal"],
+        "logger": false,
+        "disable": false,
+        "call": [ ],
+        "booster": {
+          "events": ["buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+          "duration": 2000,
+          "enter": [ ["$stune_top_boost", "100"], ["$stune_top_perf", "1"], ["$sched_boost", "2"] ],
+          "exit": []
+        }
+      }]
+    }
+  ]
+}

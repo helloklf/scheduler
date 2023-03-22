@@ -1,0 +1,54 @@
+{
+    "friendly": "QQ飞车",
+    "cpuset": {
+      "interval": 5000,
+      "unity_main": "7",
+      "heavy_thread": "UnityGfx",
+      "heavy_cores": "6",
+      "other": "0-5"
+    },
+    "limiters": [
+      {"id": "speedmobile:cpu4", "step_shift": -1, "mode": "UPPER",
+        "boost_freq": 2450000, "max_freq": 2200000, "min_freq": 1500000, "margin_mhz": 305},
+      {"id": "speedmobile:cpu7", "step_shift": -1, "mode": "UPPER", "ddr_boost": true,
+        "boost_freq": 2450000, "max_freq": 2000000, "min_freq": 1500000, "margin_mhz": 285},
+
+      {"id": "speedmobile1:cpu4", "step_shift": -1, "mode": "UPPER",
+        "boost_freq": 2450000, "max_freq": 2200000, "min_freq": 1500000, "margin_mhz": 365},
+      {"id": "speedmobile1:cpu7", "step_shift": -1, "mode": "UPPER", "ddr_boost": true,
+        "boost_freq": 2850000, "max_freq": 2400000, "min_freq": 1700000, "margin_mhz": 285, "smoothness": 3},
+
+      {"id": "speedmobile2:cpu7", "step_shift": -1, "mode": "BOTTOM", "ddr_boost": true,
+        "max_freq": 2650000, "min_freq": 1600000, "margin_mhz": 405, "smoothness": 6},
+
+      {"id": "speedmobile3:cpu7", "step_shift": -1, "mode": "BOTTOM", "ddr_boost": true,
+        "max_freq": 2650000, "min_freq": 1600000, "margin_mhz": 500, "smoothness": 6}
+    ],
+    "modes": [{
+      "mode": ["powersave"],
+      "call": [
+        ["@values", "max_freq", "#2000000", "#2200000", "#2650000"],
+        ["@limiters", "speedmobile:cpu4", "speedmobile:cpu7"],
+        ["@mtk_feas", "10"]
+      ]
+    }, {
+      "mode": ["balance"],
+      "call": [
+        ["@values", "max_freq", "#2000000", "#2200000", "#2750000"],
+        ["@limiters", "speedmobile1:cpu4", "speedmobile1:cpu7"],
+        ["@mtk_feas", "2"]
+      ]
+    }, {
+      "mode": ["performance"],
+      "call": [
+        ["@values", "max_freq", "#2000000", "#2400000", "#2850000"],
+        ["@limiters", "speedmobile2:cpu7"],
+        ["@mtk_feas", "0"]
+      ]
+    }, {
+      "mode": ["*"],
+      "call": [
+        ["@limiters", "speedmobile3:cpu7"]
+      ]
+    }]
+}

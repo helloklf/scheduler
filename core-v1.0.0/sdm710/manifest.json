@@ -1,0 +1,11 @@
+{
+  "version": "",
+  "versionCode": 202203121,
+  "files": {
+    "active.sh": "",
+    "conservative.sh": "",
+    "powercfg-base.sh": "",
+    "powercfg-utils.sh": "",
+    "profile.json": ""
+  }
+}

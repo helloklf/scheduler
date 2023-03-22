@@ -1,0 +1,40 @@
+{
+  "friendly": "一般应用",
+  "modes": [{
+    "mode": ["powersave"],
+    "booster": {
+      "events": ["presets"],
+      "duration": 2000,
+      "idle_delay": 1000,
+      "enter": [["@preset", "powersave_active"]],
+      "exit": [["@preset", "powersave_inactive"]]
+    }
+  }, {
+    "mode": ["balance"],
+    "booster": {
+      "events": ["presets"],
+      "duration": 2000,
+      "idle_delay": 2000,
+      "enter": [["@preset", "balance_active"]],
+      "exit": [["@preset", "balance_inactive"]]
+    }
+  }, {
+    "mode": ["performance"],
+    "booster": {
+      "events": ["presets"],
+      "duration": 2000,
+      "idle_delay": 2000,
+      "enter": [["@preset", "performance_active"]],
+      "exit": [["@preset", "performance_inactive"]]
+    }
+  }, {
+    "mode": ["*"],
+    "booster": {
+      "events": ["presets"],
+      "duration": 2000,
+      "idle_delay": 2000,
+      "enter": [["@preset", "fast_active"]],
+      "exit": [["@preset", "performance_inactive"]]
+    }
+  }]
+}

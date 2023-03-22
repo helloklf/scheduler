@@ -1,0 +1,40 @@
+{
+  "friendly": "原神",
+  "call": [
+    ["@high_rate", "off"],
+    ["@cpuset", "0-2", "0-3", "0-5", "0-7"],
+    ["$bus_ddr_min", "#2736000"]
+  ],
+  "cpuset": {
+    "unity_main": "6",
+    "heavy_thread": "UnityGfx",
+    "heavy_cores": "7",
+    "heavy_switch": false,
+    "comm": {
+      "4-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"],
+      "0-5": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"]
+    },
+    "other": "4-5"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
+        ["@msm_feas", "12"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"], ["@msm_feas", "8"]]
+    },
+    {
+      "mode": ["performance"],
+      "call": [["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"], ["@msm_feas", "5"]]
+    },
+    {
+      "mode": ["*"],
+      "call": [["@limiters", "p4:cpu0", "p4:cpu4", "p4:cpu7"], ["@msm_feas", "0"]]
+    }
+  ]
+}

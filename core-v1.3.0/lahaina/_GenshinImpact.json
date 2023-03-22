@@ -1,0 +1,278 @@
+{
+  "friendly": "原神",
+  "packages": [
+    "com.miHoYo.Yuanshen",
+    "com.miHoYo.ys.mi",
+    "com.miHoYo.ys.bilibili",
+    "com.miHoYo.GenshinImpact"
+  ],
+  "call": [
+    ["$mi_thermal", "13"],
+    ["@high_rate", "off", "3000"],
+    ["@cpuset", "0", "0", "0-5", "0-7"],
+    ["@uclamp", "0.00~10.00", "0.00~max", "0.00~max"]
+  ],
+  "affinity": {
+    "unity_main": "80",
+    "comm": {
+      "40": ["UnityGfx"],
+      "30": ["UnityMultiRende", "UnityPreload"],
+      "3F": ["UnityChoreograp", "ged-swd", "AsyncReadManage", "Worker Thread", "NativeThread"],
+      "F": ["MIHOYO_NETWORK", "Audio", "tp_schedule", "FMOD"]
+    },
+    "other": "f"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["$core_ctl_4", "0"], ["$core_ctl_7", "0"],
+        ["@sched_limit", "0 0", "0 3000", "0 3000"],
+        ["@cpu_freq", "cpu0", "1036800", "1804800"],
+        ["@cpu_freq", "cpu4", "710400", "1996800"],
+        ["@cpu_freq", "cpu7", "844800", "2496000"]
+      ],
+      "sensors": [
+        {
+          "sensor": "cpu",
+          "interval": 100,
+          "props": ["$gpu_max_khz", "$up_rate_limit_4", "$up_rate_limit_7", "$cpu_max_4", "$cpu_max_7"],
+          "rules": [
+            {
+              "threshold": [-1, 81000],
+              "values": [ "315000000", "24000", "24000", "1555200", "1670400" ]
+            },
+            {
+              "threshold": [81000, 76000],
+              "values": [ "315000000", "24000", "24000", "1670400", "1785600" ]
+            },
+            {
+              "threshold": [76000, 71000],
+              "values": [ "379000000", "20000", "20000", "1766400", "2035200" ]
+            },
+            {
+              "threshold": [71000, 63000],
+              "values": [ "443000000", "15000", "15000", "1881600", "2265600" ]
+            },
+            {
+              "threshold": [63000, -1],
+              "values": [ "491000000", "10000", "10000", "1996800", "2496000" ]
+            }
+          ]
+        }
+      ],
+      "booster": {
+        "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+        "duration": 20000,
+        "enter": [
+          ["$uclamp_fg_max", "max"], ["$uclamp_top_max", "max"], ["$uclamp_bg_max", "max"], ["$cpuset_top", "0-7"]
+        ],
+        "exit": [
+          ["$cpuset_top", "1-4"], ["$uclamp_fg_max", "0.00"], ["$uclamp_top_max", "0.00"], ["$uclamp_bg_max", "0.00"]
+        ]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@sched_limit", "0 0", "0 3000", "0 3000"],
+        ["@cpu_freq", "cpu0", "1036800", "1804800"],
+        ["@cpu_freq", "cpu4", "710400", "1996800"],
+        ["@cpu_freq", "cpu7", "844800", "2496000"]
+      ],
+      "sensors": [
+        {
+          "sensor": "cpu",
+          "interval": 100,
+          "props": ["$gpu_max_khz", "$up_rate_limit_4", "$up_rate_limit_7", "$cpu_max_4", "$cpu_max_7"],
+          "rules": [
+            {
+              "threshold": [-1, 85000],
+              "values": [ "315000000", "24000", "24000", "1670400", "1785600" ]
+            },
+            {
+              "threshold": [80000, 75000],
+              "values": [ "379000000", "20000", "20000", "1766400", "2035200" ]
+            },
+            {
+              "threshold": [75000, 68000],
+              "values": [ "443000000", "15000", "15000", "1881600", "2265600" ]
+            },
+            {
+              "threshold": [68000, -1],
+              "values": [ "540000000", "10000", "10000", "1996800", "2496000" ]
+            }
+          ]
+        }
+      ],
+      "booster": {
+        "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+        "duration": 20000,
+        "enter": [
+          ["$cpuset_top", "0-7"], ["$uclamp_fg_max", "max"], ["$uclamp_top_max", "max"], ["$uclamp_bg_max", "max"], ["$cpu_min_0", "1804800"]
+        ],
+        "exit": [
+          ["$cpuset_top", "1-5"], ["$uclamp_fg_max", "1.00"], ["$uclamp_top_max", "1.00"], ["$uclamp_bg_max", "0.00"], ["$cpu_min_0", "1305600"]
+        ]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@gpu_freq", "min", "608000"],
+        ["$stune_top_boost", "0"],
+        ["@sched_limit", "5000 0", "0 2000", "0 500"],
+        ["@cpu_freq", "cpu0", "1036800", "1804800"],
+        ["@cpu_freq", "cpu4", "710400", "2419200"],
+        ["@cpu_freq", "cpu7", "844800", "2841600"]
+      ],
+      "sensors": [
+        {
+          "sensor": "cpu",
+          "friendly": "MIUI 13 Thermal",
+          "interval": 200,
+          "os_whitelist": ["Android12_130"],
+          "call": [["$stune_top_boost", "0"]],
+          "props": ["$gpu_max_khz", "$up_rate_limit_4", "$up_rate_limit_7", "$cpu_max_4", "$cpu_max_7"],
+          "rules": [
+            {
+              "threshold": [-1, 80000],
+              "values": ["315000000", "24000", "24000", "1670400", "1785600"]
+            },
+            {
+              "threshold": [80000, 75000],
+              "values": ["315000000", "24000", "24000", "1766400", "2035200"]
+            },
+            {
+              "threshold": [75000, 72000],
+              "values": ["379000000", "20000", "20000", "1881600", "2265600"]
+            },
+            {
+              "threshold": [72000, 69000],
+              "values": ["443000000", "16000", "16000", "1996800", "2496000"]
+            },
+            {
+              "threshold": [69000, -1],
+              "values": ["608000000", "12000", "12000", "2342400", "2496000"]
+            }
+          ]
+        },
+        {
+          "sensor": "battery",
+          "interval": 2000,
+          "os_blacklist": ["Android12_130"],
+          "props": ["$cpu_max_4", "$cpu_max_7"],
+          "rules": [
+            { "threshold": [   -1, 47100], "values": ["1555200", "1670400"] },
+            { "threshold": [47000, 46100], "values": ["1670400", "1785600"] },
+            { "threshold": [46000, 45100], "values": ["1766400", "2035200"] },
+            { "threshold": [45000, 43100], "values": ["1881600", "2265600"] },
+            { "threshold": [43000, 41500], "values": ["1996800", "2496000"] },
+            { "threshold": [41000,    -1], "values": ["2342400", "2496000"] }
+          ]
+        },
+        {
+          "sensor": "cpu",
+          "friendly": "Common Thermal",
+          "interval": 200,
+          "os_blacklist": ["Android12_130"],
+          "props": ["$gpu_max_khz"],
+          "rules": [
+            { "threshold": [   -1, 95000], "values": ["315000000"] },
+            { "threshold": [94000, 90000], "values": ["379000000"] },
+            { "threshold": [98000, 85000], "values": ["443000000"] },
+            { "threshold": [84000, 80000], "values": ["491000000"] },
+            { "threshold": [78000,    -1], "values": ["608000000"] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["fast"],
+      "call": [
+        ["$stune_top_boost", "0"], ["$stune_top_perf", "0"],
+        ["@gpu_freq", "min", "738000"],
+        ["@cpu_freq", "cpu0", "1036800", "1804800"],
+        ["@cpu_freq", "cpu4", "1075200", "2419200"],
+        ["@cpu_freq", "cpu7", "1075200", "3200000"],
+        ["@sched_limit", "5000 0", "0 1000", "0 500"]
+      ],
+      "sensors": [
+        {
+          "sensor": "cpu",
+          "friendly": "MIUI 13 Thermal",
+          "interval": 100,
+          "os_whitelist": ["Android12_130"],
+          "call": [["$stune_top_boost", "0"]],
+          "props": ["$gpu_max_khz", "$up_rate_limit_4", "$up_rate_limit_7", "$cpu_max_4", "$cpu_max_7"],
+          "rules": [
+            {
+              "threshold": [-1, 80000],
+              "values": ["315000000", "24000", "24000", "1670400", "1785600"]
+            },
+            {
+              "threshold": [80000, 75000],
+              "values": ["379000000", "20000", "20000", "1766400", "2035200"]
+            },
+            {
+              "threshold": [75000, 72000],
+              "values": ["379000000", "16000", "16000", "1881600", "2265600"]
+            },
+            {
+              "threshold": [72000, 69000],
+              "values": ["443000000", "16000", "16000", "1996800", "2496000"]
+            },
+            {
+              "threshold": [69000, -1],
+              "values": ["608000000", "12000", "12000", "2342400", "2496000"]
+            }
+          ]
+        },
+        {
+          "sensor": "battery",
+          "interval": 2000,
+          "os_blacklist": ["Android12_130"],
+          "props": ["$cpu_max_4", "$cpu_max_7"],
+          "rules": [
+            { "threshold": [   -1, 48100], "values": ["1555200", "1670400"] },
+            { "threshold": [47000, 46100], "values": ["1670400", "1785600"] },
+            { "threshold": [46000, 45100], "values": ["1766400", "2035200"] },
+            { "threshold": [45000, 44100], "values": ["1881600", "2265600"] },
+            { "threshold": [44000, 43100], "values": ["1996800", "2496000"] },
+            { "threshold": [42000,    -1], "values": ["2419200", "2841600"]}
+          ]
+        },
+        {
+          "sensor": "cpu",
+          "friendly": "Common Thermal",
+          "interval": 200,
+          "os_blacklist": ["Android12_130"],
+          "call": [["$stune_top_boost", "0"]],
+          "props": ["$gpu_max_khz", "$up_rate_limit_4", "$up_rate_limit_7"],
+          "rules": [
+            {
+              "threshold": [-1, 94000],
+              "values": ["379000000", "24000", "24000"]
+            },
+            {
+              "threshold": [92000, 87000],
+              "values": ["491000000", "20000", "20000"]
+            },
+            {
+              "threshold": [86000, 81000],
+              "values": ["608000000", "100000", "100000"]
+            },
+            {
+              "threshold": [75000, -1],
+              "values": ["738000000", "2000", "2000"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["pedestal"],
+      "logger": false
+    }
+  ]
+}

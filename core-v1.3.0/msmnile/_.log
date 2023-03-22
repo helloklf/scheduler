@@ -1,0 +1,144 @@
+# GPU频率表
+gpu_freqs=`cat /sys/class/kgsl/kgsl-3d0/devfreq/available_frequencies`
+# GPU最大频率
+gpu_max_freq='585000000'
+# GPU最小频率
+gpu_min_freq='257000000'
+# GPU最小 power level
+gpu_min_pl=5
+# GPU最大 power level
+gpu_max_pl=0
+
+# MaxFrequency、MinFrequency
+for freq in $gpu_freqs; do
+  if [[ $freq -gt $gpu_max_freq ]]; then
+    gpu_max_freq=$freq
+  fi;
+  if [[ $freq -lt $gpu_min_freq ]]; then
+    gpu_min_freq=$freq
+  fi;
+done
+
+# Power Levels
+if [[ -f /sys/class/kgsl/kgsl-3d0/num_pwrlevels ]];then
+  gpu_min_pl=`cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels`
+  gpu_min_pl=`expr $gpu_min_pl - 1`
+fi;
+if [[ "$gpu_min_pl" -lt 0 ]];then
+  gpu_min_pl=0
+fi
+
+
+set_gpu_min_freq() {
+  index=$1
+
+  # GPU频率表
+  gpu_freqs=`cat /sys/class/kgsl/kgsl-3d0/devfreq/available_frequencies`
+
+  target_freq=$(echo $gpu_freqs | awk "{print \$${index}}")
+  if [[ "$target_freq" != "" ]]; then
+    echo $target_freq > /sys/class/kgsl/kgsl-3d0/devfreq/min_freq
+  fi
+
+  # gpu_max_freq=`cat /sys/class/kgsl/kgsl-3d0/devfreq/max_freq`
+  # gpu_min_freq=`cat /sys/class/kgsl/kgsl-3d0/devfreq/min_freq`
+  # echo "Frequency: ${gpu_min_freq} ~ ${gpu_max_freq}"
+}
+
+
+# [min/max/def] pl(number)
+set_gpu_pl(){
+  echo $2 > /sys/class/kgsl/kgsl-3d0/${1}_pwrlevel
+}
+
+# GPU MinPowerLevel To Up
+gpu_pl_up() {
+  local offset="$1"
+  if [[ "$offset" != "" ]] && [[ ! "$offset" -gt "$gpu_min_pl" ]]; then
+    echo `expr $gpu_min_pl - $offset` > /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+  elif [[ "$offset" -gt "$gpu_min_pl" ]]; then
+    echo 0 > /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+  else
+    echo $gpu_min_pl > /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+  fi
+}
+
+# GPU MinPowerLevel To Down
+gpu_pl_down() {
+  local offset="$1"
+  if [[ "$offset" != "" ]] && [[ ! "$offset" -gt "$gpu_min_pl" ]]; then
+    echo $offset > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+  elif [[ "$offset" -gt "$gpu_min_pl" ]]; then
+    echo $gpu_min_pl > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+  else
+    echo $gpu_min_pl > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+  fi
+}
+
+echo $gpu_max_freq > /sys/class/kgsl/kgsl-3d0/devfreq/max_freq
+echo $gpu_min_freq > /sys/class/kgsl/kgsl-3d0/devfreq/min_freq
+echo $gpu_min_pl > /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+echo $gpu_max_pl > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+
+
+
+uninstall_mi_opt() {
+  # pm uninstall --user 0 -k com.miui.daemon >/dev/null 2>&1
+  # pm uninstall --user 0 -k com.xiaomi.joyose >/dev/null 2>&1
+  pm uninstall --user 0 com.miui.daemon >/dev/null 2>&1
+  pm uninstall --user 0 com.xiaomi.joyose >/dev/null 2>&1
+}
+
+reinstall_mi_opt() {
+  uninstall_mi_opt
+  pm install-existing --user 0 com.miui.daemon >/dev/null 2>&1
+  pm install-existing --user 0 com.xiaomi.joyose >/dev/null 2>&1
+}
+
+disable_mi_opt() {
+  if [[ "$manufacturer" == "Xiaomi" ]]; then
+    # pm disable com.xiaomi.gamecenter.sdk.service/.PidService 2>/dev/null
+    pm disable com.xiaomi.joyose/.smartop.gamebooster.receiver.BoostRequestReceiver >/dev/null 2>&1
+    pm disable com.xiaomi.joyose/.smartop.SmartOpService >/dev/null 2>&1
+    # pm disable com.xiaomi.joyose.smartop.smartp.SmartPAlarmReceiver >/dev/null 2>&1
+    pm disable com.xiaomi.joyose.sysbase.MetokClService >/dev/null 2>&1
+
+    pm disable com.miui.daemon/.performance.cloudcontrol.CloudControlSyncService >/dev/null 2>&1
+    pm disable com.miui.daemon/.performance.statistics.services.GraphicDumpService >/dev/null 2>&1
+    pm disable com.miui.daemon/.performance.statistics.services.AtraceDumpService >/dev/null 2>&1
+    pm disable com.miui.daemon/.performance.SysoptService >/dev/null 2>&1
+    pm disable com.miui.daemon/.performance.MiuiPerfService >/dev/null 2>&1
+    pm disable com.miui.daemon/.performance.server.ExecutorService >/dev/null 2>&1
+    pm disable com.miui.daemon/.mqsas.jobs.EventUploadService >/dev/null 2>&1
+    pm disable com.miui.daemon/.mqsas.jobs.FileUploadService >/dev/null 2>&1
+    pm disable com.miui.daemon/.mqsas.jobs.HeartBeatUploadService >/dev/null 2>&1
+    pm disable com.miui.daemon/.mqsas.providers.MQSProvider >/dev/null 2>&1
+    pm disable com.miui.daemon/.performance.provider.PerfTurboProvider >/dev/null 2>&1
+    pm disable com.miui.daemon/.performance.system.am.SysoptjobService >/dev/null 2>&1
+    pm disable com.miui.daemon/.performance.system.am.MemCompactService >/dev/null 2>&1
+    pm disable com.miui.daemon/.performance.statistics.services.FreeFragDumpService >/dev/null 2>&1
+    pm disable com.miui.daemon/.performance.statistics.services.DefragService >/dev/null 2>&1
+    pm disable com.miui.daemon/.performance.statistics.services.MeminfoService >/dev/null 2>&1
+    pm disable com.miui.daemon/.performance.statistics.services.IonService >/dev/null 2>&1
+    pm disable com.miui.daemon/.performance.statistics.services.GcBoosterService >/dev/null 2>&1
+    pm disable com.miui.daemon/.mqsas.OmniTestReceiver >/dev/null 2>&1
+    pm disable com.miui.daemon/.performance.MiuiPerfService >/dev/null 2>&1
+    killall -9 com.miui.daemon >/dev/null 2>&1
+  fi
+}
+
+# Disable MIUI's daemon\joyose
+# disable_mi_opt &
+
+# Uninstall MIUI's daemon\joyose
+version=$(getprop ro.miui.ui.version.name)
+if [[ "$varsion" == "V130" ]]; then
+  # mi_joyose_opt &
+  echo 'mi_joyose_opt'
+elif [[ "$version" == "V12" ]]; then
+  # uninstall_mi_opt &
+  echo 'uninstall_mi_opt'
+elif [[ "$version" == "V125" ]]; then
+  uninstall_mi_opt &
+  echo 'uninstall_mi_opt'
+fi

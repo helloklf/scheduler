@@ -1,0 +1,12 @@
+{
+  "friendly": "幻塔",
+  "sensors": [],
+  "affinity": {
+    "interval": 1000,
+    "comm": {
+      "80": ["GameThread"],
+      "F0": ["RenderThread", "RHIThread"]
+    },
+    "other": "7f"
+  }
+}

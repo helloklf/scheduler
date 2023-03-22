@@ -1,0 +1,75 @@
+{
+  "friendly": "LOL Mobile",
+  "affinity": {
+    "interval": 3000,
+    "heavy_thread": "Thread-",
+    "heavy_mask": "40",
+    "comm": {
+      "80": ["UnityMain"],
+      "F0": ["UnityPreload"],
+      "70": ["UnityGfx"],
+      "30": ["NativeThread", "CoreThread"],
+      "7F": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read", "Worker Thread"]
+    },
+    "other": "7F"
+  },
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["@limiters", "g1:cpu0", "g1:cpu4", "g1:cpu7"],
+      ["@gpu_freq", "min", "315000"]
+    ],
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 3000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"]] },
+          { "threshold": [99,  75], "enter_once": [["@preset", "bw_low"]] },
+          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"]] }
+        ]
+      }
+    ]
+  },{
+    "mode": ["balance"],
+    "call": [
+      ["@limiters", "g2:cpu0", "g2:cpu4", "g2:cpu7"],
+      ["@gpu_freq", "min", "491000"],
+      ["@limiters", "lol2:cpu4", "lol2:cpu7"]
+    ],
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 3000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"]] },
+          { "threshold": [99,  75], "enter_once": [["@preset", "bw_low"]] },
+          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"],
+      ["@gpu_freq", "min", "400000"]
+    ],
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 3000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"]] },
+          { "threshold": [99,  75], "enter_once": [["@preset", "bw_low"]] },
+          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["*"],
+    "call": [
+      ["@limiters", "g4:cpu0", "g4:cpu4", "g4:cpu7"],
+      ["@gpu_freq", "min", "540000"]
+    ]
+  }]
+}

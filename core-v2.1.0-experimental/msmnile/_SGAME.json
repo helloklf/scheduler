@@ -1,0 +1,52 @@
+{
+  "friendly": "王者荣耀/LOL",
+  "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
+  "affinity": {
+    "interval": 1000,
+    "heavy_thread": "Thread-",
+    "heavy_mask": "70",
+    "comm": {
+      "80": ["UnityMain","UnityPreload"],
+      "70": ["NativeThread", "UnityGfx", "UnityMultiRende", "Worker Thread"],
+      "7F": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+    },
+    "other": "7F"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "_60": ["2016000", "1804800", "-2"],
+        "_90": ["2016000", "1804800", "-2"],
+        "_120": ["2016000", "1804800", "-2"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "mode": "fps",
+        "_60": ["2419200", "2227200", "-2"],
+        "_90": ["2419200", "2227200", "-2"],
+        "_120": ["2419200", "2227200", "-2"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "mode": "fps",
+        "_60": ["2649600", "2419200", "-2"],
+        "_90": ["2649600", "2419200", "-2"],
+        "_120": ["2649600", "2419200", "-2"]
+      }
+    },
+    {
+      "mode": ["fast"],
+      "fas": {
+        "mode": "fps",
+        "_60": ["2841600", "2419200", "-2"],
+        "_90": ["2841600", "2419200", "-2"],
+        "_120": ["2841600", "2419200", "-2"]
+      }
+    }
+  ]
+}

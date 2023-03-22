@@ -1,0 +1,187 @@
+{
+  "platform": "mt6853",
+  "platformName": "MTK d720&800U",
+  "framework": 110,
+  "alias": {
+  },
+  "schemes": {
+    "powersave": {
+      "call": [
+        ["@cpu_freq", "policy0", "min", "-300MHz"],
+        ["@cpu_freq", "policy6", "min", "-500MHz"],
+        ["@gpu_freq", "min", "400MHz"],
+        ["@set_priority", "top-app", "normal"],
+        ["@set_priority", "foreground", "low"],
+        ["@set_priority", "background", "min"]
+      ],
+      "values": []
+    },
+    "balance": {
+      "call": [
+        ["@cpu_freq", "policy0", "min", "-200MHz"],
+        ["@cpu_freq", "policy6", "min", "-300MHz"],
+        ["@gpu_freq", "min", "500MHz"],
+        ["@set_priority", "top-app", "normal"],
+        ["@set_priority", "foreground", "normal"],
+        ["@set_priority", "background", "low"]
+      ],
+      "values": []
+    },
+    "performance": {
+      "call": [
+        ["@cpu_freq", "policy0", "min", "max"],
+        ["@cpu_freq", "policy6", "min", "max"],
+        ["@gpu_freq", "min", "700MHz"],
+        ["@set_priority", "top-app", "high"],
+        ["@set_priority", "foreground", "normal"],
+        ["@set_priority", "background", "low"]
+      ],
+      "values": []
+    },
+    "fast": {
+      "call": [
+        ["@cpu_freq", "policy0", "max", "max"],
+        ["@cpu_freq", "policy6", "max", "max"],
+        ["@gpu_freq", "min", "900MHz"],
+        ["@set_priority", "top-app", "max"],
+        ["@set_priority", "foreground", "high"],
+        ["@set_priority", "background", "normal"]
+      ],
+      "values": []
+    },
+    "pedestal": {
+      "call": [
+        ["@cpu_freq", "policy0", "max", "max"],
+        ["@cpu_freq", "policy6", "max", "max"],
+        ["@gpu_freq", "min", "900MHz"],
+        ["@set_priority", "top-app", "max"],
+        ["@set_priority", "foreground", "high"],
+        ["@set_priority", "background", "normal"]
+      ],
+      "values": []
+    }
+  },
+  "apps": [
+    {
+      "friendly": "原神",
+      "match": ["miHoYo"],
+      "packages": [
+        "com.miHoYo.Yuanshen",
+        "com.miHoYo.ys.mi",
+        "com.miHoYo.ys.bilibili",
+        "com.miHoYo.GenshinImpact"
+      ],
+      "stop_on": ["display", "leave", "scene"],
+      "stop_on_enum": [
+        "display 屏幕关闭后，自动停止scene-scheduler",
+        "scene   SCENE切换了调度配置后，自动停止scene-scheduler",
+        "leave   离开指定应用后，自动停止scene-scheduler"
+      ],
+      "sensors": [],
+      "modes": [
+        {
+          "mode": ["powersave", "balance", "performance"],
+          "logger": false,
+          "affinity": {
+            "comm": {
+              "C0": ["UnityMain"],
+              "40": ["UnityGfxDevice"],
+              "20": ["UnityMultiRende"],
+              "1C": ["Worker Thread"]
+            },
+            "other": "3F"
+          }
+        },
+        {
+          "mode": ["fast", "pedestal"],
+          "logger": false,
+          "affinity": {
+            "comm": {
+              "C0": ["UnityMain"],
+              "40": ["UnityGfxDevice", "UnityMultiRende"]
+            },
+            "other": "ff"
+          }
+        }
+      ]
+    },
+    {
+      "friendly": "王者荣耀",
+      "match": ["sgame"],
+      "packages": ["com.tencent.tmgp.sgame"],
+      "stop_on": ["display", "leave", "scene"],
+      "stop_on_enum": [
+        "display 屏幕关闭后，自动停止scene-scheduler",
+        "scene   SCENE切换了调度配置后，自动停止scene-scheduler",
+        "leave   离开指定应用后，自动停止scene-scheduler"
+      ],
+      "sensors": [],
+      "modes": [
+        {
+          "mode": ["*"],
+          "logger": false,
+          "affinity": {
+            "interval": 1000,
+            "comm": {
+              "C0": ["UnityMain","UnityPreload","Thread-"],
+              "40": ["UnityGfxDevice", "UnityMultiRende"],
+              "38": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+            },
+            "other": "FF"
+          }
+        }
+      ]
+    },
+    {
+      "friendly": "和平精英",
+      "match": ["pubgmhd"],
+      "packages": [
+        "com.tencent.tmgp.pubgmhd",
+        "com.tencent.ig"
+      ],
+      "stop_on": ["display", "leave", "scene"],
+      "stop_on_enum": [
+        "display 屏幕关闭后，自动停止scene-scheduler",
+        "scene   SCENE切换了调度配置后，自动停止scene-scheduler",
+        "leave   离开指定应用后，自动停止scene-scheduler"
+      ],
+      "sensors": [],
+      "modes": [
+        {
+          "mode": ["fast"],
+          "logger": false,
+          "affinity": {
+            "interval": 1000,
+            "comm": {
+              "80": ["RenderThread"],
+              "70": ["Thread-", "TaskGraphNP"]
+            },
+            "other": "3F"
+          },
+          "booster": {
+            "events": ["touch", "buttons", "qpnp_pon", "synaptics", "uinput-fpc", "gpio-keys"],
+            "duration": 2000,
+            "enter": [
+              ["$stune_top_boost", "60"]
+            ],
+            "exit": [
+              ["$sched_boost", "0"]
+            ]
+          }
+        },
+        {
+          "mode": ["*"],
+          "logger": false,
+          "affinity": {
+            "interval": 1000,
+            "comm": {
+              "80": ["RenderThread"],
+              "70": ["Thread-", "TaskGraphNP"]
+            },
+            "other": "3F"
+          }
+        }
+      ]
+    }
+  ]
+}

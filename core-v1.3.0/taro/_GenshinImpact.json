@@ -1,0 +1,115 @@
+{
+  "friendly": "原神",
+  "packages": [
+    "com.miHoYo.Yuanshen",
+    "com.miHoYo.ys.mi",
+    "com.miHoYo.ys.bilibili",
+    "com.miHoYo.GenshinImpact"
+  ],
+  "call": [
+    ["@uclamp", "0.00~5.00", "0.00~max", "0.00~max"],
+    ["@cpuset", "0", "0-2", "0-5", "0-7"],
+    ["@high_rate", "off", "3000"]
+  ],
+  "sensors": [],
+  "affinity": {
+    "unity_main": "80",
+    "comm": {
+      "40": ["UnityGfx"],
+      "30": ["UnityMultiRende", "UnityPreload"],
+      "3F": ["MIHOYO_NETWORK", "FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage", "Worker Thread"],
+      "F": ["Audio", "tp_schedule"]
+    },
+    "other": "f"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1075200", "1574400"],
+        ["@cpu_freq", "cpu4", "633600", "1651200"],
+        ["@cpu_freq", "cpu7", "806400", "1958400"],
+        ["$core_ctl_7", "0"]
+      ],
+      "booster": {
+        "events": ["presets"],
+        "duration": 30000,
+        "idle": 30000,
+        "enter": [
+          ["$uclamp_fg_max", "max"],
+          ["$uclamp_top_max", "max"],
+          ["$uclamp_bg_max", "max"],
+          ["$cpuset_top", "0-7"],
+          ["$gpu_mod_percent", "100"]
+        ],
+        "exit": [
+          ["$gpu_mod_percent", "0"],
+          ["$cpuset_top", "1-4"],
+          ["$uclamp_fg_max", "0.00"],
+          ["$uclamp_top_max", "0.00"],
+          ["$uclamp_bg_max", "0.00"]
+        ]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1075200", "1689600"],
+        ["@cpu_freq", "cpu4", "633600", "1766400"],
+        ["@cpu_freq", "cpu7", "806400", "2284800"]
+      ],
+      "booster": {
+        "events": ["presets"],
+        "duration": 40000,
+        "idle": 40000,
+        "enter": [
+          ["$cpuset_top", "0-7"],
+          ["$gpu_mod_percent", "100"],
+          ["$uclamp_fg_max", "max"],
+          ["$uclamp_top_max", "max"],
+          ["$uclamp_bg_max", "max"]
+        ],
+        "exit": [
+          ["$cpuset_top", "1-5"],
+          ["$gpu_mod_percent", "0"],
+          ["$uclamp_fg_max", "1.00"],
+          ["$uclamp_top_max", "1.00"],
+          ["$uclamp_bg_max", "0.00"]
+        ]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1075200", "1689600"],
+        ["@cpu_freq", "cpu4", "633600", "2112000"],
+        ["@cpu_freq", "cpu7", "806400", "2400000"]
+      ],
+      "booster": {
+        "events": ["presets"],
+        "duration": 60000,
+        "idle": 60000,
+        "enter": [
+          ["$gpu_mod_percent", "100"],
+          ["$uclamp_fg_max", "max"],
+          ["$uclamp_top_max", "max"],
+          ["$uclamp_bg_max", "max"]
+        ],
+        "exit": [
+          ["$gpu_mod_percent", "0"],
+          ["$uclamp_fg_max", "1.00"],
+          ["$uclamp_top_max", "1.00"],
+          ["$uclamp_bg_max", "0.00"]
+        ]
+      }
+    },
+    {
+      "mode": ["fast", "pedestal"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1075200", "1785600"],
+        ["@cpu_freq", "cpu4", "1113600", "2227200"],
+        ["@cpu_freq", "cpu7", "1056000", "2822400"]
+      ]
+    }
+  ]
+}
