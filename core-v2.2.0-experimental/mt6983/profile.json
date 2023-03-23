@@ -41,12 +41,13 @@
     },
     "limiter": {
       "active_interval": 20,
+      "gaming_interval": 30,
       "inactive_interval": 150,
       "max_margin_ratio": 0.45,
       "ddr_boost": true,
       "logger": false,
       "params": [
-        { "id": "p1:cpu0", "max_freq": 1400000, "min_freq": 400000, "margin_mhz": 250 },
+        { "id": "p1:cpu0", "max_freq": 1400000, "min_freq": 500000, "margin_mhz": 250 },
         { "id": "p1:cpu4", "max_freq": 2150000, "min_freq": 700000, "margin_mhz": 300 },
         { "id": "p1:cpu7", "max_freq": 2300000, "min_freq": 1300000, "margin_mhz": 400 },
 
@@ -54,13 +55,13 @@
         { "id": "p2:cpu4", "max_freq": 2400000, "min_freq": 2050000, "margin_mhz": 400 },
         { "id": "p2:cpu7", "max_freq": 2650000, "min_freq": 2100000, "margin_mhz": 400 },
 
-        { "id": "p3:cpu0", "max_freq": 1600000, "min_freq": 1400000, "margin_mhz": 400 },
-        { "id": "p3:cpu4", "max_freq": 2650000, "min_freq": 2400000, "margin_mhz": 400 },
-        { "id": "p3:cpu7", "max_freq": 2800000, "min_freq": 2400000, "margin_mhz": 400 },
+        { "id": "p3:cpu0", "max_freq": 1600000, "min_freq": 1400000, "margin_mhz": 300 },
+        { "id": "p3:cpu4", "max_freq": 2650000, "min_freq": 2400000, "margin_mhz": 300 },
+        { "id": "p3:cpu7", "max_freq": 2800000, "min_freq": 2400000, "margin_mhz": 300 },
 
-        { "id": "p4:cpu0", "max_freq": 1600000, "min_freq": 1500000, "margin_mhz": 400 },
-        { "id": "p4:cpu4", "max_freq": 2650000, "min_freq": 2650000, "margin_mhz": 400 },
-        { "id": "p4:cpu7", "max_freq": 2800000, "min_freq": 2650000, "margin_mhz": 400 },
+        { "id": "p4:cpu0", "max_freq": 1600000, "min_freq": 1500000, "margin_mhz": 300 },
+        { "id": "p4:cpu4", "max_freq": 2650000, "min_freq": 2650000, "margin_mhz": 300 },
+        { "id": "p4:cpu7", "max_freq": 2800000, "min_freq": 2650000, "margin_mhz": 300 },
 
         { "id": "inactive:cpu0", "step_shift": -1, "max_freq": 1500000, "min_freq": 400000, "margin_mhz": 100 },
         { "id": "inactive:cpu4", "step_shift": -1, "max_freq": 2100000, "min_freq": 400000, "margin_mhz": 100 },
@@ -80,8 +81,8 @@
   "presets": {
     "reset": [
       ["@mtk_reset"],
+      ["@governor", "schedutil"],
       ["$boost_affinity", "0"],
-      ["$max_cpus_cpu7", "1"],
       ["$ddr_force_opp", "999"],
       ["$ddr_freq_cust", "0"],
       ["/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq", "#5500000000"]
@@ -108,14 +109,12 @@
       ["$gpu_min_opp", "99"]
     ],
     "comm_app": [
-      ["@governor", "sugov_ext"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 0|cm_mgr_perf_enable 0|dsu_mode_change 0"],
       ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
       ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#30"],
       ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#4"]
     ],
     "comm_gaming": [
-      ["@governor", "schedutil"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode_change 0"],
       ["@limiters", "NONE"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#0"],

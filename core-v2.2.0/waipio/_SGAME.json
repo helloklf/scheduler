@@ -1,17 +1,17 @@
 {
   "friendly": "王者荣耀",
   "limiters": [
-    { "id": "sgame1:cpu0", "step_shift": -1, "max_freq": 1574400, "min_freq": 729600, "margin_mhz": 265, "smoothness": 8 },
-    { "id": "sgame1:cpu4", "step_shift": -1, "max_freq": 1651200, "min_freq": 883200, "margin_mhz": 285, "smoothness": 4 },
-    { "id": "sgame1:cpu7", "step_shift": -1, "max_freq": 1728000, "min_freq": 806400, "margin_mhz": 185, "smoothness": 4, "mode": "BOTTOM" },
+    { "id": "sgame1:cpu0", "step_shift": -1, "max_freq": 1574400, "min_freq": 729600, "margin_mhz": 265, "smoothness": 8, "mode": "performance" },
+    { "id": "sgame1:cpu4", "step_shift": -1, "max_freq": 1651200, "min_freq": 768000, "margin_mhz": 285, "smoothness": 4, "mode": "performance" },
+    { "id": "sgame1:cpu7", "step_shift": -1, "max_freq": 1728000, "min_freq": 806400, "margin_mhz": 185, "smoothness": 4, "mode": "performance" },
 
-    { "id": "sgame2:cpu0", "step_shift": -1, "max_freq": 1574400, "min_freq": 960000, "margin_mhz": 265, "smoothness": 8 },
-    { "id": "sgame2:cpu4", "step_shift": -1, "max_freq": 1881600, "min_freq": 883200, "margin_mhz": 285, "smoothness": 5 },
-    { "id": "sgame2:cpu7", "step_shift": -1, "max_freq": 1958400, "min_freq": 940800, "margin_mhz": 225, "smoothness": 5, "mode": "BOTTOM" },
+    { "id": "sgame2:cpu0", "step_shift": -1, "max_freq": 1574400, "min_freq": 960000, "margin_mhz": 265, "smoothness": 8, "mode": "performance" },
+    { "id": "sgame2:cpu4", "step_shift": -1, "max_freq": 1881600, "min_freq": 768000, "margin_mhz": 285, "smoothness": 5, "mode": "performance" },
+    { "id": "sgame2:cpu7", "step_shift": -1, "max_freq": 1958400, "min_freq": 940800, "margin_mhz": 225, "smoothness": 5, "mode": "performance" },
 
-    { "id": "sgame3:cpu0", "step_shift": -1, "max_freq": 1574400, "min_freq": 960000, "margin_mhz": 280, "smoothness": 8 },
-    { "id": "sgame3:cpu4", "step_shift": -1, "max_freq": 1881600, "min_freq": 883200, "margin_mhz": 285, "smoothness": 8 },
-    { "id": "sgame3:cpu7", "step_shift": -1, "max_freq": 1958400, "min_freq": 940800, "margin_mhz": 285, "smoothness": 8, "mode": "BOTTOM" }
+    { "id": "sgame3:cpu0", "step_shift": -1, "max_freq": 1574400, "min_freq": 960000, "margin_mhz": 280, "smoothness": 8, "mode": "performance" },
+    { "id": "sgame3:cpu4", "step_shift": -1, "max_freq": 1881600, "min_freq": 883200, "margin_mhz": 285, "smoothness": 8, "mode": "performance" },
+    { "id": "sgame3:cpu7", "step_shift": -1, "max_freq": 1958400, "min_freq": 940800, "margin_mhz": 285, "smoothness": 8, "mode": "performance" }
   ],
   "cpuset": {
     "unity_main": "7",

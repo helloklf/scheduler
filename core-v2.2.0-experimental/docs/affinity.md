@@ -1,4 +1,4 @@
-* 值得注意的是，尽管SCENE6依然保留了`affinity`配置，但并不推荐继续使用。
+* 值得注意的是，尽管SCENE6依然兼容`affinity`配置，但并不推荐继续使用。
 * 因为 `affinity` 通过 mask 指定核心，非常不利于阅读。
 * 目前 `affinity` 和 `cpuset` 配置的作用是完全相同的，因此推荐配置 `cpuset`。
 

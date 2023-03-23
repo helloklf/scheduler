@@ -4,8 +4,8 @@
     "mode": ["powersave"],
     "booster": {
       "events": ["presets"],
-      "duration": 1300,
-      "idle_delay": 500,
+      "duration": 1800,
+      "idle_delay": 1000,
       "enter": [
         ["@preset", "powersave_active"]
       ],
