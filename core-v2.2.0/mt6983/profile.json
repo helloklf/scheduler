@@ -100,7 +100,7 @@
     },
     "gesture_boost": {
       "enable": true,
-      "enter": [ ["$ddr_freq_cust", "5500000000"] ],
+      "enter": [ ["$ddr_freq_cust", "4266000000"] ],
       "exit": [["$ddr_freq_cust", "#0"] ]
     }
   },
@@ -108,6 +108,7 @@
     "reset": [
       ["@mtk_reset"],
       ["@governor", "schedutil"],
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode_change 0"],
       ["$ddr_force_opp", "999"],
       ["$ddr_freq_cust", "0"],
       ["$perfmgr_enable", "#0"]

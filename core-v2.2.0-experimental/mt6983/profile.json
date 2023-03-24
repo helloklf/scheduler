@@ -74,7 +74,7 @@
     },
     "gesture_boost": {
       "enable": true,
-      "enter": [ ["$ddr_freq_cust", "5500000000"] ],
+      "enter": [ ["$ddr_freq_cust", "4266000000"] ],
       "exit": [["$ddr_freq_cust", "#0"] ]
     }
   },
