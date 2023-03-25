@@ -22,14 +22,7 @@
     "high_rate": {
       "enable": true,
       "enable_control": "/data/local/tmp/scene_refresh_rate",
-      "device_policy": [{
-        "device": "rubens", "name": "K50", "enable": true,
-        "mode_high_rate": "1", "mode_low_rate": "0", "mode_standby": "1",
-        "1440P60Hz": "0", "1440P120Hz": "1", "1080P120Hz": "2", "1080P60Hz": "3"
-      }, {
-        "device": "OP5565", "name": "OnePlus ACE", "enable": true,
-        "mode_high_rate": "1", "mode_low_rate": "0"
-      }]
+      "device_policy": []
     },
     "cpus_control": {
       "enable": true,
@@ -49,7 +42,10 @@
     },
     "limiter": {
       "active_interval": 20,
+      "gaming_interval": 30,
       "inactive_interval": 150,
+      "max_margin_ratio": 0.45,
+      "ddr_boost": true,
       "logger": false,
       "params": [
         { "id": "p1:cpu4", "max_freq": 2100000, "min_freq": 1800000, "margin_mhz": 350 },
@@ -86,8 +82,14 @@
     },
     "gesture_boost": {
       "enable": true,
-      "enter": [ ["$ddr_freq_cust", "5500000000"] ],
-      "exit": [["$ddr_freq_cust", "#0"] ]
+      "enter": [
+        ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "24"],
+        ["$ddr_freq_cust", "4266000000"]
+      ],
+      "exit": [
+        ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
+        ["$ddr_freq_cust", "#0"]
+      ]
     }
   },
   "presets": {
@@ -96,7 +98,8 @@
       ["@governor", "schedutil"],
       ["$uclamp_heavy_max", "max"],
       ["$perfmgr_enable", "#0"],
-      ["$boost_affinity", "#0"]
+      ["$boost_affinity", "#0"],
+      ["$ddr_max", "#5500000000"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
@@ -113,26 +116,25 @@
       ["$ged_kpi", "#0"]
     ],
     "common_actvie": [
-      ["$ddr_max", "#5500000000"],
       ["$cpu_max_0", "2000000"],
       ["@high_rate", "on"]
     ],
     "common_inactvie": [
       ["$ddr_freq_min", "#800000000"],
-      ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"]
+      ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
+      ["@high_rate", "auto"]
     ],
     "common_app": [
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 0|cm_mgr_perf_enable 0"],
       ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
+      ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#15"],
       ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#30"],
-      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#6"],
-      ["$ddr_freq_cust", "0"]
+      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#6"]
     ],
     "common_gaming": [
       ["$uclamp_heavy", "0"],
       ["@preset", "kpi_off"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1"],
-      ["$ddr_max", "#5500000000"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#0"],
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
       ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
@@ -151,9 +153,7 @@
     "powersave_inactive": [
       ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
       ["@values", "min_freq", "450000", "200000", "500000"],
-      ["@high_rate", "auto"],
-      ["@preset", "common_inactvie"],
-      ["$ddr_max", "800000000"]
+      ["@preset", "common_inactvie"]
     ],
     "balance_active": [
       ["@limiters", "p2:cpu4", "p2:cpu7"],
@@ -164,8 +164,7 @@
     "balance_inactive": [
       ["@limiters", "inactive:cpu0", "inactive:cpu4", "inactive:cpu7"],
       ["@values", "min_freq", "450000", "200000", "500000"],
-      ["@preset", "common_inactvie"],
-      ["@high_rate", "auto"]
+      ["@preset", "common_inactvie"]
     ],
     "performance_active": [
       ["@limiters", "p3:cpu4", "p3:cpu7"],
@@ -176,8 +175,7 @@
     "performance_inactive": [
       ["@limiters", "p2:cpu4", "p2:cpu7"],
       ["@values", "min_freq", "450000", "400000", "500000"],
-      ["@preset", "common_inactvie"],
-      ["@high_rate", "auto"]
+      ["@preset", "common_inactvie"]
     ],
     "fast_active": [
       ["@cpu_freq", "policy0", "1200000", "2000000"],
@@ -189,21 +187,6 @@
     "fast_inactive": [
       ["@limiters", "p3:cpu4", "p3:cpu7"],
       ["@values", "min_freq", "450000", "400000", "500000"],
-      ["@preset", "common_inactvie"],
-      ["@high_rate", "auto"]
-    ],
-    "pedestal_active": [
-      ["@limiters", "NONE"],
-      ["@cpu_freq", "policy0", "1800000", "2000000"],
-      ["@cpu_freq", "policy4", "1800000", "2850000"],
-      ["@cpu_freq", "policy7", "2100000", "2850000"],
-      ["$ddr_freq_min", "5500000000"],
-      ["@preset", "common_actvie"]
-    ],
-    "pedestal_inactive": [
-      ["@cpu_freq", "policy0", "1600000", "2000000"],
-      ["@cpu_freq", "policy4", "1600000", "2850000"],
-      ["@cpu_freq", "policy7", "1600000", "2850000"],
       ["@preset", "common_inactvie"]
     ]
   },
@@ -216,7 +199,7 @@
         ["@charge", "normal"]
       ],
       "app": [
-        ["@preset", "comm_app"]
+        ["@preset", "common_app"]
       ],
       "game": [
         ["@preset", "common_gaming"],
@@ -233,7 +216,7 @@
         ["@charge", "normal"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["$uclamp_heavy", "1.00"]
       ],
       "game": [
@@ -251,7 +234,7 @@
         ["$uclamp_heavy", "1.00"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["@charge", "normal"],
         ["$uclamp_heavy", "1.00"]
       ],
@@ -270,7 +253,7 @@
         ["@preset", "fast_active"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["@charge", "normal"],
         ["$uclamp_heavy", "1.00"]
       ],
@@ -282,26 +265,6 @@
         ["@values", "min_freq", "1600000", "1800000", "1800000"],
         ["@values", "max_freq", "#2000000", "#2850000", "#3100000"],
         ["@values", "min_freq", "#1600000", "#1800000", "#1800000"]
-      ]
-    },
-    "pedestal": {
-      "call": [
-        ["@preset", "reset"],
-        ["@preset", "pedestal_active"],
-        ["$uclamp_heavy", "1.00"]
-      ],
-      "app": [
-        ["@preset", "comm_app"],
-        ["@charge", "normal"]
-      ],
-      "game": [
-        ["@preset", "common_gaming"],
-        ["@charge", "suspend"],
-        ["$mi_thermal", "10"],
-        ["@limiters", "NONE"],
-        ["@values", "min_freq", "1400000", "1800000", "1900000"],
-        ["@values", "max_freq", "#2000000", "#2850000", "#2850000"],
-        ["@values", "min_freq", "#1400000", "#1800000", "#1900000"]
       ]
     }
   },

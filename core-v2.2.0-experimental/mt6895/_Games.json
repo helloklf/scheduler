@@ -20,10 +20,6 @@
       "call": [
         ["@limiters", "gboost4:cpu7"]
       ]
-    }, {
-    "mode": ["pedestal"],
-    "call": [
-      ["@limiters", "gboost5:cpu7"]
-    ]
-  }]
+    }
+  ]
 }

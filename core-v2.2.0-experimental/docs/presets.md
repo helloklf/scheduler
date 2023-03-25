@@ -4,6 +4,9 @@
 
 ```json
 {
+  "alias": {
+    "cpufreq": "/proc/cpudvfs/cpufreq_debug"
+  },
   "schemes": {
     "powersave": {
       "call": [
@@ -32,6 +35,9 @@
 
 ```json
 {
+  "alias": {
+    "cpufreq": "/proc/cpudvfs/cpufreq_debug"
+  },
   "presets": {
     "set_001": [
       ["$cpufreq", "0 450000 2000000"],
@@ -57,4 +63,50 @@
 }
 ```
 
-- `@preset`函数还支持一次性使用多个预设，例如：`["@preset", "set_001", "set_002"]` 这样
+- `@preset`函数还支持一次性使用多个预设，格式像是 `["@preset", "set_001", "set_001"...]` 这样
+
+
+
+
+### 替换值 `@values`
+- 它是增强版的`@preset`，允许在使用预设时再传入值，这样就可以实现像是自定义函数的效果
+- 但它不支持指定多个预设，从参数3开始会被解析为要传给(参数2指定)预设的值，
+- 像是这样 `["@values", "set_001", "value_001", "value_002"...]`
+
+```json
+{
+  "presets": {
+    "min_freq": [
+      ["/sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq"],
+      ["/sys/devices/system/cpu/cpufreq/policy4/scaling_min_freq"],
+      ["/sys/devices/system/cpu/cpufreq/policy7/scaling_min_freq"]
+    ],
+    "max_freq": [
+      ["/sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq", "1600000"],
+      ["/sys/devices/system/cpu/cpufreq/policy4/scaling_max_freq", "2100000"],
+      ["/sys/devices/system/cpu/cpufreq/policy7/scaling_max_freq", "2300000"]
+    ],
+  },
+  "schemes": {
+    "powersave": {
+      "call": [
+        ["@values", "min_freq", "300000", "500000", "500000"],
+        ["@values", "max_freq", "1500000", "1800000", "1800000"]
+      ]
+    },
+    "powersave": {
+      "call": [
+        ["@values", "min_freq", "400000", "700000", "700000"],
+        ["@values", "max_freq"]
+      ]
+    },
+    "performance": {
+      "call": [
+        ["@values", "min_freq", "500000", "900009", "1100000"],
+        ["@values", "max_freq", "1800000", "2400000", "2800000"]
+      ]
+    }
+  }
+}
+```
+

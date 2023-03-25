@@ -72,21 +72,21 @@
         { "id": "p4:cpu7", "max_freq": 2800000, "min_freq": 2650000, "margin_mhz": 300 },
 
 
-        { "id": "g1:cpu0", "max_freq": 1400000, "min_freq": 500000,  "margin_mhz": 250, "mode": "performance", "step_shift": -1 },
-        { "id": "g1:cpu4", "max_freq": 1900000, "min_freq": 700000,  "margin_mhz": 230, "mode": "performance", "step_shift": -1 },
-        { "id": "g1:cpu7", "max_freq": 2100000, "min_freq": 1300000, "margin_mhz": 250, "mode": "performance", "step_shift": -1 },
+        { "id": "g1:cpu0", "max_freq": 1400000, "min_freq": 500000, "margin_mhz": 250, "mode": "upper", "step_shift": -1 },
+        { "id": "g1:cpu4", "max_freq": 2100000, "turning_freq": 1800000, "min_freq": 700000,  "margin_mhz": 230, "mode": "performance", "step_shift": -1 },
+        { "id": "g1:cpu7", "max_freq": 2100000, "turning_freq": 1800000, "min_freq": 1300000, "margin_mhz": 250, "mode": "performance", "step_shift": -1 },
 
-        { "id": "g2:cpu0", "max_freq": 1500000, "min_freq": 800000,  "margin_mhz": 250, "mode": "performance", "step_shift": -1 },
-        { "id": "g2:cpu4", "max_freq": 2100000, "min_freq": 1000000, "margin_mhz": 265, "mode": "performance", "step_shift": -1 },
-        { "id": "g2:cpu7", "max_freq": 2400000, "min_freq": 1300000, "margin_mhz": 265, "mode": "performance", "step_shift": -1 },
+        { "id": "g2:cpu0", "max_freq": 1500000, "min_freq": 800000,  "margin_mhz": 250, "mode": "upper", "step_shift": -1 },
+        { "id": "g2:cpu4", "max_freq": 2300000, "turning_freq": 2300000, "min_freq": 1000000, "margin_mhz": 265, "mode": "performance", "step_shift": -1 },
+        { "id": "g2:cpu7", "max_freq": 2450000, "turning_freq": 2100000, "min_freq": 1300000, "margin_mhz": 265, "mode": "performance", "step_shift": -1 },
 
-        { "id": "g3:cpu0", "max_freq": 1600000, "min_freq": 800000,  "margin_mhz": 250, "mode": "performance", "step_shift": -1 },
-        { "id": "g3:cpu4", "max_freq": 2400000, "min_freq": 1400000, "margin_mhz": 300, "mode": "performance", "step_shift": -1 },
-        { "id": "g3:cpu7", "max_freq": 2650000, "min_freq": 1600000, "margin_mhz": 300, "mode": "performance", "step_shift": -1 },
+        { "id": "g3:cpu0", "max_freq": 1800000, "turning_freq": 1600000, "min_freq": 800000,  "margin_mhz": 250, "mode": "performance", "step_shift": -1 },
+        { "id": "g3:cpu4", "max_freq": 2650000, "turning_freq": 2450000, "min_freq": 1400000, "margin_mhz": 300, "mode": "performance", "step_shift": -1 },
+        { "id": "g3:cpu7", "max_freq": 2650000, "turning_freq": 2400000, "min_freq": 1600000, "margin_mhz": 300, "mode": "performance", "step_shift": -1 },
 
-        { "id": "g4:cpu0", "max_freq": 1600000, "min_freq": 1050000, "margin_mhz": 280, "mode": "performance", "step_shift": -1 },
-        { "id": "g4:cpu4", "max_freq": 2650000, "min_freq": 1400000, "margin_mhz": 300, "mode": "performance", "step_shift": -1 },
-        { "id": "g4:cpu7", "max_freq": 2800000, "min_freq": 1600000, "margin_mhz": 300, "mode": "performance", "step_shift": -1 },
+        { "id": "g4:cpu0", "max_freq": 1800000, "turning_freq": 1600000, "min_freq": 1050000, "margin_mhz": 280, "mode": "upper", "step_shift": -1 },
+        { "id": "g4:cpu4", "max_freq": 2850000, "turning_freq": 2650000, "min_freq": 1400000, "margin_mhz": 400, "mode": "performance", "step_shift": -1 },
+        { "id": "g4:cpu7", "max_freq": 2800000, "turning_freq": 2650000, "min_freq": 1600000, "margin_mhz": 400, "mode": "performance", "step_shift": -1 },
 
 
         { "id": "inactive:cpu0", "step_shift": -1, "max_freq": 1500000, "min_freq": 400000, "margin_mhz": 100 },
@@ -100,8 +100,14 @@
     },
     "gesture_boost": {
       "enable": true,
-      "enter": [ ["$ddr_freq_cust", "4266000000"] ],
-      "exit": [["$ddr_freq_cust", "#0"] ]
+      "enter": [
+        ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "28"],
+        ["$ddr_freq_cust", "4266000000"]
+      ],
+      "exit": [
+        ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
+        ["$ddr_freq_cust", "#0"]
+      ]
     }
   },
   "presets": {

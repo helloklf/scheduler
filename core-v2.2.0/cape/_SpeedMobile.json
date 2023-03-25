@@ -24,7 +24,7 @@
       "max_freq": 2800000, "min_freq": 2300000, "margin_mhz": 280, "smoothness": 6},
 
     {"id": "speedmobile3:cpu7", "step_shift": -1, "mode": "BOTTOM",
-      "boost_freq": 2650000, "max_freq": 1700000, "margin_mhz": 250, "smoothness": 6}
+      "max_freq": 2650000, "min_freq": 1700000, "margin_mhz": 250, "smoothness": 6}
   ],
   "modes": [{
     "mode": ["powersave"],

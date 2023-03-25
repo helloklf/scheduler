@@ -369,7 +369,7 @@ umount /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 echo 0 > /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 
 mount -t debugfs none /sys/kernel/debug
-lock_value 0 /sys/kernel/ged/hal/custom_upbound_gpu_freq
+# lock_value 0 /sys/kernel/ged/hal/custom_upbound_gpu_freq
 dvfs_loading_mode=/sys/kernel/ged/hal/dvfs_loading_mode
 if [[ $(cat $dvfs_loading_mode) != "0" ]]; then
   chmod 777 $dvfs_loading_mode

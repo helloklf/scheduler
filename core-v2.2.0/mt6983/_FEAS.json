@@ -18,7 +18,7 @@
       "max_freq": 3200000, "min_freq": 2800000, "margin_mhz": 300, "smoothness": 6},
 
     {"id": "gboost5:cpu7", "step_shift": -1, "mode": "BOTTOM", "ddr_boost": true,
-      "boost_freq": 2650000, "max_freq": 2400000, "margin_mhz": 485, "smoothness": 6}
+      "max_freq": 2650000, "turning_freq": 2400000, "margin_mhz": 485, "smoothness": 6}
   ],
   "modes": [
     {

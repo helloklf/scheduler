@@ -15,13 +15,13 @@
     { "id": "ys-p2:cpu4", "step_shift": -1, "max_freq": 1881600, "min_freq": 1209600, "margin_mhz": 150, "mode": "performance", "smoothness": 5 },
     { "id": "ys-p2:cpu7", "step_shift": -1, "max_freq": 1958400, "min_freq": 806400, "margin_mhz": 120, "mode": "performance", "smoothness": 5 },
 
-    { "id": "ys-p3:cpu0", "step_shift": -1, "boost_freq": 1574400, "max_freq": 1478400, "min_freq": 1075200, "margin_mhz": 300, "smoothness": 5 },
-    { "id": "ys-p3:cpu4", "step_shift": -1, "boost_freq": 2112000, "max_freq": 1996800, "min_freq": 1209600, "margin_mhz": 150, "smoothness": 5 },
-    { "id": "ys-p3:cpu7", "step_shift": -1, "boost_freq": 2169600, "max_freq": 2054400, "min_freq": 1056000, "margin_mhz": 140, "mode": "performance", "smoothness": 5},
+    { "id": "ys-p3:cpu0", "step_shift": -1, "max_freq": 1574400, "turning_freq": 1478400, "min_freq": 1075200, "margin_mhz": 300, "smoothness": 5 },
+    { "id": "ys-p3:cpu4", "step_shift": -1, "max_freq": 2112000, "turning_freq": 1996800, "min_freq": 1209600, "margin_mhz": 150, "smoothness": 5 },
+    { "id": "ys-p3:cpu7", "step_shift": -1, "max_freq": 2169600, "turning_freq": 2054400, "min_freq": 1056000, "margin_mhz": 140, "mode": "performance", "smoothness": 5},
 
-    { "id": "ys-p4:cpu0", "boost_freq": 1574400, "max_freq": 1478400, "min_freq": 1075200, "margin_mhz": 300, "active_interval": 48, "smoothness": 5 },
-    { "id": "ys-p4:cpu4", "boost_freq": 2227200, "max_freq": 1996800, "min_freq": 1324800, "margin_mhz": 150, "active_interval": 48, "smoothness": 5 },
-    { "id": "ys-p4:cpu7", "boost_freq": 2400000, "max_freq": 2054400, "min_freq": 1056000, "margin_mhz": 150, "mode": "performance", "active_interval": 48, "smoothness": 5 },
+    { "id": "ys-p4:cpu0", "max_freq": 1574400, "turning_freq": 1478400, "min_freq": 1075200, "margin_mhz": 300, "active_interval": 48, "smoothness": 5 },
+    { "id": "ys-p4:cpu4", "max_freq": 2227200, "turning_freq": 1996800, "min_freq": 1324800, "margin_mhz": 150, "active_interval": 48, "smoothness": 5 },
+    { "id": "ys-p4:cpu7", "max_freq": 2400000, "turning_freq": 2054400, "min_freq": 1056000, "margin_mhz": 150, "mode": "performance", "active_interval": 48, "smoothness": 5 },
 
     { "id": "ys-p5:cpu0", "mode": "RANGE", "max_freq": 1785600, "min_freq": 1075200, "margin_mhz": 300, "smoothness": 5 },
     { "id": "ys-p5:cpu4", "mode": "RANGE", "max_freq": 2419200, "min_freq": 1555200, "margin_mhz": 300, "active_interval": 48, "smoothness": 5 },
