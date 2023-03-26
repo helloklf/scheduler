@@ -1,0 +1,40 @@
+{
+  "friendly": "原神",
+  "call": [
+    ["@high_rate", "off"],
+    ["@gpu_freq", "min", "max"],
+    ["@sched_limit", "0 0", "0 0", "0 0"]
+  ],
+  "limiters": [
+    {"id": "ys1:cpu4", "step_shift": -1, "max_freq": 2200000, "min_freq": 1400000, "margin_mhz": 220, "smoothness": 6, "mode": "BOTTOM"},
+    {"id": "ys1:cpu7", "step_shift": -1, "max_freq": 2200000, "min_freq": 1400000, "margin_mhz": 200, "smoothness": 6, "mode": "BOTTOM"},
+
+    {"id": "ys2:cpu4", "max_freq": 2400000, "min_freq": 1800000, "margin_mhz": 355, "smoothness": 6, "mode": "BOTTOM"},
+    {"id": "ys2:cpu7", "max_freq": 2500000, "min_freq": 1800000, "margin_mhz": 350, "smoothness": 4, "mode": "BOTTOM"}
+  ],
+  "affinity": {
+    "interval": 1000,
+    "unity_main": "40",
+    "heavy_thread": "UnityGfx",
+    "heavy_mask": "80",
+    "comm": {
+      "30": ["UnityPreload", "FMOD", "UnityChoreograp", "NativeThread", "Worker Thread"],
+      "20": ["UnityMultiRende"],
+      "F": [
+        "mali-event-", "AsyncReadManage",
+        "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"
+      ]
+    },
+    "other": "F"
+  },
+  "modes": [
+    {
+      "mode": ["powersave", "balance"],
+      "call": [["@limiters", "ys1:cpu4", "ys1:cpu7"]]
+    },
+    {
+      "mode": ["*"],
+      "call": [["@limiters", "ys2:cpu4", "ys2:cpu7"]]
+    }
+  ]
+}

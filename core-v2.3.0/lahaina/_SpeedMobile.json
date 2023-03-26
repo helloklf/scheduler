@@ -1,0 +1,54 @@
+{
+  "friendly": "QQ飞车",
+  "cpuset": {
+    "comm": {
+      "7": ["UnityMain"],
+      "6": ["UnityGfx"]
+    },
+    "other": "0-5"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 3000,
+          "rules": [
+            { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"]] },
+            { "threshold": [99,  75], "enter_once": [["@preset", "bw_low"]] },
+            { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 3000,
+          "rules": [
+            { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"]] },
+            { "threshold": [99,  75], "enter_once": [["@preset", "bw_normal"]] },
+            { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["*"],
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 3000,
+          "rules": [
+            { "threshold": [-1, 100], "enter_once": [["@preset", "bw_boost"]] },
+            { "threshold": [99,  75], "enter_once": [["@preset", "bw_normal"]] },
+            { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"]] }
+          ]
+        }
+      ]
+    }
+  ]
+}

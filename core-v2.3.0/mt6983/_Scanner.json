@@ -1,0 +1,21 @@
+{
+  "friendly": "扫码",
+  "call": [
+    ["@limiters", "NONE"],
+    ["$uclamp_heavy", "1"],
+    ["@governor", "schedutil"],
+    ["@cpuset", "0", "3-4", "0-7", "0-7"],
+    ["@cpu_freq", "cpu0", "1.6Ghz", "max"],
+    ["@cpu_freq", "cpu4", "2.3Ghz", "max"],
+    ["@cpu_freq", "cpu7", "2.3Ghz", "3000000"],
+    ["$mi_thermal", "10"],
+    ["@high_rate", "off"]
+  ],
+  "booster": {
+    "events": ["touch", "buttons"],
+    "duration": 2000,
+    "idle_delay": 2000,
+    "enter": [ ["@high_rate", "on"] ],
+    "exit": [ ["@high_rate", "off"] ]
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "friendly": "王者荣耀",
+  "limiters": [
+    { "id": "sgame1:cpu0", "step_shift": -1, "max_freq": 1574400, "min_freq": 729600, "margin_mhz": 265, "smoothness": 8, "mode": "performance" },
+    { "id": "sgame1:cpu4", "step_shift": -1, "max_freq": 1651200, "min_freq": 768000, "margin_mhz": 285, "smoothness": 4, "mode": "performance" },
+    { "id": "sgame1:cpu7", "step_shift": -1, "max_freq": 1728000, "min_freq": 806400, "margin_mhz": 185, "smoothness": 4, "mode": "performance" },
+
+    { "id": "sgame2:cpu0", "step_shift": -1, "max_freq": 1574400, "min_freq": 960000, "margin_mhz": 265, "smoothness": 8, "mode": "performance" },
+    { "id": "sgame2:cpu4", "step_shift": -1, "max_freq": 1881600, "min_freq": 768000, "margin_mhz": 285, "smoothness": 5, "mode": "performance" },
+    { "id": "sgame2:cpu7", "step_shift": -1, "max_freq": 1958400, "min_freq": 940800, "margin_mhz": 225, "smoothness": 5, "mode": "performance" },
+
+    { "id": "sgame3:cpu0", "step_shift": -1, "max_freq": 1574400, "min_freq": 960000, "margin_mhz": 280, "smoothness": 8, "mode": "performance" },
+    { "id": "sgame3:cpu4", "step_shift": -1, "max_freq": 1881600, "min_freq": 883200, "margin_mhz": 285, "smoothness": 8, "mode": "performance" },
+    { "id": "sgame3:cpu7", "step_shift": -1, "max_freq": 1958400, "min_freq": 940800, "margin_mhz": 285, "smoothness": 8, "mode": "performance" }
+  ],
+  "cpuset": {
+    "unity_main": "7",
+    "heavy_thread": "Thread-",
+    "heavy_mask": "6",
+    "comm": {
+      "4-7": ["UnityPreload"],
+      "6": ["UnityGfx"],
+      "4-5": ["NativeThread", "Worker Thread", "CoreThread"],
+      "0-5": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+    },
+    "other": "0-5"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@values", "max_freq", "1574400", "1651200", "1728000"],
+        ["@limiters", "sgame1:cpu0", "sgame1:cpu4", "sgame1:cpu7"],
+        ["@values", "latency", "0", "3000", "0", "3000", "0", "3000"]
+      ],
+      "sensors": [{
+        "sensor": "fps",
+        "interval": 5000,
+        "rules": [
+          {
+            "threshold": [-1, 100],
+            "enter_once": [
+              ["@values", "max_freq", "1574400", "1651200", "1728000"],
+              ["@limiters", "sgame2:cpu0", "sgame2:cpu4", "sgame2:cpu7"]
+            ]
+          },
+          {
+            "threshold": [-1, 75],
+            "enter_once": [
+              ["@values", "max_freq", "1574400", "1555200", "1612800"],
+              ["@limiters", "sgame1:cpu0", "sgame1:cpu4", "sgame1:cpu7"]
+            ]
+          },
+          {
+            "threshold": [70, -1],
+            "enter_once": [
+              ["@values", "max_freq", "1363200", "1324800", "1497600"],
+              ["@limiters", "sgame1:cpu0", "sgame1:cpu4", "sgame1:cpu7"]
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "sgame2:cpu0", "sgame2:cpu4", "sgame2:cpu7"],
+        ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
+      ],
+      "sensors": [{
+        "sensor": "fps",
+        "interval": 5000,
+        "rules": [
+          {
+            "threshold": [-1, 100],
+            "enter_once": [
+              ["@values", "max_freq", "1574400", "1881600", "1958400"],
+              ["@limiters", "sgame2:cpu0", "sgame2:cpu4", "sgame2:cpu7"]
+            ]
+          },
+          {
+            "threshold": [-1, 75],
+            "enter_once": [
+              ["@values", "max_freq", "1574400", "1651200", "1728000"],
+              ["@limiters", "sgame1:cpu0", "sgame1:cpu4", "sgame1:cpu7"]
+            ]
+          },
+          {
+            "threshold": [70, -1],
+            "enter_once": [
+              ["@values", "max_freq", "1363200", "1324800", "1497600"],
+              ["@limiters", "sgame1:cpu0", "sgame1:cpu4", "sgame1:cpu7"]
+            ]
+          }
+        ]
+      }]
+    },
+    {
+      "mode": ["*"],
+      "sensors": [{
+        "sensor": "fps",
+        "interval": 5000,
+        "rules": [
+          {
+            "threshold": [-1, 100],
+            "enter_once": [
+              ["@values", "max_freq", "1574400", "2112000", "2400000"],
+              ["@limiters", "sgame3:cpu0", "sgame3:cpu4", "sgame3:cpu7"]
+            ]
+          },
+          {
+            "threshold": [-1, 75],
+            "enter_once": [
+              ["@values", "max_freq", "1574400", "1996800", "2169600"],
+              ["@limiters", "sgame2:cpu0", "sgame2:cpu4", "sgame2:cpu7"]
+            ]
+          },
+          {
+            "threshold": [70, -1],
+            "enter_once": [
+              ["@values", "max_freq", "1574400", "1651200", "1728000"],
+              ["@limiters", "sgame1:cpu0", "sgame1:cpu4", "sgame1:cpu7"]
+            ]
+          }
+        ]
+      }]
+    }
+  ]
+}

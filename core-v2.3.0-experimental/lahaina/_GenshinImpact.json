@@ -1,0 +1,57 @@
+{
+  "friendly": "原神",
+  "call": [
+    ["@high_rate", "off", "1000"]
+  ],
+  "cpuset": {
+    "unity_main": "6-7",
+    "comm": {
+      "6-7": ["UnityGfx"],
+      "4-5": ["UnityMultiRende", "UnityPreload", "FMOD", "UnityChoreograp", "NativeThread", "Worker Thread"],
+      "0-3": ["AsyncReadManage", "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"]
+    },
+    "other": "0-3"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@gpu_freq", "min", "608000"]
+      ],
+      "fas": {
+        "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 2.2,
+        "governor": "performance",
+        "_60": ["2150400", "1996800"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@gpu_freq", "min", "676000000"]
+      ],
+      "fas": {
+        "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 2.0,
+        "governor": "performance",
+        "_60": ["2265600", "2227200"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 2.0,
+        "mode": "fps",
+        "governor": "performance",
+        "_60": ["2496000", "2419200"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "fas": {
+        "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 2.0,
+        "mode": "fps",
+        "governor": "performance",
+        "_60": ["2496000", "2841600"]
+      }
+    }
+  ]
+}

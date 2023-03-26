@@ -1,0 +1,28 @@
+{
+  "friendly": "Games",
+  "limiters": [
+  ],
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
+      ["@limiters", "g1:cpu0", "g1:cpu3", "g1:cpu7"]
+    ]
+  }, {
+    "mode": ["balance"],
+    "call": [
+      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
+      ["@limiters", "g2:cpu0", "g2:cpu3", "g2:cpu7"]
+    ]
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["@limiters", "g3:cpu0", "g3:cpu3", "g3:cpu7"]
+    ]
+  }, {
+    "mode": ["*"],
+    "call": [
+      ["@limiters", "g5:cpu0", "g5:cpu3", "g5:cpu7"]
+    ]
+  }]
+}

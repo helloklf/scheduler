@@ -1,0 +1,33 @@
+{
+  "friendly": "原神",
+  "call": [["@high_rate", "on"]],
+  "packages": [
+    "com.miHoYo.Yuanshen",
+    "com.miHoYo.ys.mi",
+    "com.miHoYo.ys.bilibili",
+    "com.miHoYo.GenshinImpact"
+  ],
+  "affinity": {
+    "comm": {
+      "70": ["UnityGfx", "UnityMain", "UnityMultiRende"],
+      "3F": ["Worker Thread", "AudioTrack", "Audio"],
+      "F": ["Thread-", "MIHOYO_NETWORK", "mali-cmar-backe", "Audio", "tp_schedule", "NativeThread", "AsyncReadManage"]
+    },
+    "other": "3f"
+  },
+  "modes": [
+    {
+      "mode": ["*"],
+      "booster": {
+        "events": ["presets"],
+        "duration": 20000,
+        "enter": [
+          ["$deisolation", "4|5|6|7"]
+        ],
+        "exit": [
+          ["$deisolation", "4|5|6|7"]
+        ]
+      }
+    }
+  ]
+}

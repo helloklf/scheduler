@@ -1,0 +1,68 @@
+{
+  "friendly": "原神",
+  "limiters": [
+    { "id": "ys-p1:cpu4", "step_shift": -1, "max_freq": 2450000, "min_freq": 1300000, "margin_mhz": 200, "smoothness": 8 },
+    { "id": "ys-p1:cpu7", "step_shift": -0.9, "max_freq": 2450000, "min_freq": 1500000, "margin_mhz": 220, "smoothness": 10 },
+
+    { "id": "ys-p2:cpu4", "max_freq": 2450000, "mode": "performance", "margin_mhz": 250, "smoothness": 6 },
+    { "id": "ys-p2:cpu7", "max_freq": 2650000, "mode": "performance", "margin_mhz": 260, "smoothness": 6 },
+
+    { "id": "ys-p3:cpu4", "max_freq": 2850000, "margin_mhz": 250, "mode": "performance", "smoothness": 6 },
+    { "id": "ys-p3:cpu7", "max_freq": 2850000, "margin_mhz": 260, "mode": "performance", "smoothness": 6 },
+
+    { "id": "ys-p4:cpu4", "mode": "performance", "max_freq": 3000000, "margin_mhz": 300, "smoothness": 6 },
+    { "id": "ys-p4:cpu7", "mode": "performance", "max_freq": 3100000, "margin_mhz": 350, "smoothness": 6 }
+  ],
+  "affinity": {
+    "unity_main": "40",
+    "comm": {
+      "80": ["UnityGfx"],
+      "30": ["UnityMultiRende", "UnityChoreograp", "Worker Thread"],
+      "3F": ["FMOD", "ged-swd", "AsyncReadManage", "NativeThread", "mali-", "UnityPreload"]
+    },
+    "other": "3F"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "limiters": ["ys-p1:cpu4", "ys-p1:cpu7"],
+        "_60": ["2100000", "2100000"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "booster": {
+        "events": ["presets"],
+        "duration": 5000,
+        "idle_delay": 5000,
+        "enter": [["$ddr_freq_min", "#5500000000"]],
+        "exit": [["$ddr_freq_min", "#1866000000"]]
+      },
+      "fas": {
+        "limiters": ["ys-p2:cpu4", "ys-p2:cpu7"],
+        "_60": ["2450000", "2450000"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["$ddr_freq_min", "#5500000000"]
+      ],
+      "fas": {
+        "limiters": ["ys-p3:cpu4", "ys-p3:cpu7"],
+        "_60": ["2650000", "2650000"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["$ddr_freq_min", "#5500000000"]
+      ],
+      "fas": {
+        "limiters": ["ys-p4:cpu4", "ys-p4:cpu7"],
+        "_60": ["3100000", "2850000"]
+      }
+    }
+  ]
+}

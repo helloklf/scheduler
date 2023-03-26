@@ -1,0 +1,88 @@
+{
+  "friendly": "原神",
+  "limiters": [
+    { "id": "ys1:cpu4", "mode": "RANGE", "max_freq": 2419200, "min_freq": 1056000, "margin_mhz": 250, "smoothness": 5 },
+    { "id": "ys1:cpu7", "mode": "RANGE", "max_freq": 2649600, "min_freq": 1075200, "margin_mhz": 220, "smoothness": 4 },
+
+    { "id": "ys2:cpu4", "mode": "RANGE", "max_freq": 2419200, "min_freq": 1766400, "margin_mhz": 400, "smoothness": 4 },
+    { "id": "ys2:cpu7", "mode": "RANGE", "max_freq": 3200000, "min_freq": 2073600, "margin_mhz": 350, "smoothness": 4 },
+
+    { "id": "ys3:cpu4", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max_freq": 2419200, "min_freq": 1056000, "margin_mhz": 300, "smoothness": 8 },
+    { "id": "ys3:cpu7", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max_freq": 2841600, "min_freq": 1075200, "margin_mhz": 300, "smoothness": 8 },
+
+    { "id": "ys4:cpu4", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max_freq": 2419200, "min_freq": 1056000, "margin_mhz": 400, "smoothness": 8 },
+    { "id": "ys4:cpu7", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max_freq": 3200000, "min_freq": 1075200, "margin_mhz": 400, "smoothness": 8 }
+  ],
+  "call": [
+    ["$stune_top_boost", "0"], ["$stune_top_perf", "0"]
+  ],
+  "cpuset": {
+    "unity_main": "6-7",
+    "comm": {
+      "6-7": ["UnityGfx"],
+      "4-5": ["UnityMultiRende", "UnityPreload"],
+      "0-5": ["MIHOYO_NETWORK", "FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage", "Worker Thread"],
+      "0-3": ["Audio", "tp_schedule"]
+    },
+    "other": "0-5"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "ys1:cpu4", "ys1:cpu7"]
+      ],
+      "cpuset": {
+        "unity_main": "7",
+        "comm": {
+          "6": ["UnityGfx"],
+          "4-5": ["UnityMultiRende", "UnityPreload"],
+          "0-5": ["MIHOYO_NETWORK", "FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage", "Worker Thread"],
+          "0-3": ["Audio", "tp_schedule"]
+        },
+        "other": "0-5"
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "ys2:cpu4", "ys2:cpu7"]
+      ],
+      "cpuset": {
+        "unity_main": "7",
+        "comm": {
+          "6": ["UnityGfx"],
+          "4-5": ["UnityMultiRende", "UnityPreload"],
+          "0-5": ["MIHOYO_NETWORK", "FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage", "Worker Thread"],
+          "0-3": ["Audio", "tp_schedule"]
+        },
+        "other": "0-5"
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "ys3:cpu4", "ys3:cpu7"]
+      ]
+    },
+    {
+      "mode": ["*"],
+      "_affinity": {
+        "unity_main": "40",
+        "comm": {
+          "80": ["UnityGfx"],
+          "30": ["UnityMultiRende", "UnityPreload"],
+          "3F": ["MIHOYO_NETWORK", "FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage", "Worker Thread"],
+          "F": ["Audio", "tp_schedule"]
+        },
+        "other": "3F"
+      },
+      "call": [
+        ["@cpu_freq", "cpu0", "1420800", "1804800"],
+        ["@cpu_freq", "cpu4", "1670400", "2419200"],
+        ["@cpu_freq", "cpu7", "1632000", "max"],
+        ["@limiters", "ys4:cpu4", "ys4:cpu7"]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+    "friendly": "游戏",
+    "modes": [{
+      "mode": ["fast"],
+      "call": [
+        ["@limiters", "boost:cpu4", "boost:cpu7"]
+      ]
+    }]
+}

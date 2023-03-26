@@ -1,0 +1,96 @@
+{
+  "friendly": "原神",
+  "limiter": [
+    { "id": "ys2:cpu4", "mode": "RANGE", "max_freq": 2419200, "min_freq": 1401600, "margin_mhz": 400, "smoothness": 8 },
+    { "id": "ys2:cpu7", "mode": "RANGE", "max_freq": 2649600, "min_freq": 1497600, "margin_mhz": 400, "smoothness": 8 },
+
+    { "id": "ys3:cpu4", "mode": "BOTTOM", "max_freq": 2419200, "min_freq": 1401600, "margin_mhz": 400, "smoothness": 8 },
+    { "id": "ys3:cpu7", "mode": "BOTTOM", "max_freq": 2841600, "min_freq": 1497600, "margin_mhz": 400, "smoothness": 8 },
+
+    { "id": "ys4:cpu4", "mode": "BOTTOM", "max_freq": 2419200, "min_freq": 1401600, "margin_mhz": 600, "smoothness": 6 },
+    { "id": "ys4:cpu7", "mode": "BOTTOM", "max_freq": 3200000, "min_freq": 1497600, "margin_mhz": 600, "smoothness": 6 }
+  ],
+  "call": [
+    ["@cpuset", "0", "0-3", "0-7", "0-7"],
+    ["$sched_boost", "0"],
+    ["$stune_top_boost", "0"]
+  ],
+  "affinity": {
+    "interval": 5000,
+    "unity_main": "80",
+    "heavy_thread": "UnityGfx",
+    "heavy_mask": "40",
+    "comm": {
+      "30": ["UnityPreload", "FMOD", "UnityChoreograp", "NativeThread", "Worker Thread"],
+      "20": ["UnityMultiRende"],
+      "F": [
+        "AsyncReadManage", "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"
+      ]
+    },
+    "other": "F"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1036800", "1785600"],
+        ["@cpu_freq", "cpu4", "1056000", "2227200"],
+        ["@cpu_freq", "cpu7", "1056000", "2419200"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1209600", "1785600"],
+        ["@cpu_freq", "cpu4", "1056000", "2419200"],
+        ["@cpu_freq", "cpu7", "1056000", "3000000"],
+        ["@limiters", "ys2:cpu4", "ys2:cpu7"]
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@values", "bw", "2288", "15258", "2288", "15258"],
+        ["@sched_limit", "8000 0", "4000 0", "8000 0"],
+        ["@cpu_freq", "cpu0", "1209600", "1785600"],
+        ["@cpu_freq", "cpu4", "1056000", "2419200"],
+        ["@cpu_freq", "cpu7", "1056000", "3000000"],
+        ["$stune_top_perf", "10"],
+        ["@limiters", "ys3:cpu4", "ys3:cpu7"]
+      ],
+      "sensors": [
+        {
+          "sensor": "cpu",
+          "interval": 100,
+          "rules": [
+            { "threshold": [-1, 97000], "enter": [["$gpu_max_khz", "510000000"]] },
+            { "threshold": [97000, 95000], "enter": [["$gpu_max_khz", "560000000"]] },
+            { "threshold": [90000, 85000], "enter": [["$gpu_max_khz", "630000000"]] },
+            { "threshold": [85000, -1], "enter": [["$gpu_max_khz", "780000000"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["fast", "pedestal"],
+      "call": [
+        ["@values", "bw", "2288", "15258", "2288", "15258"],
+        ["@sched_limit", "8000 0", "6000 0", "16000 0"],
+        ["$stune_top_perf", "50"],
+        ["@limiters", "ys4:cpu4", "ys4:cpu7"]
+      ],
+      "sensors": [
+        {
+          "sensor": "cpu",
+          "interval": 100,
+          "rules": [
+            { "threshold": [-1, 97000], "enter": [["$gpu_max_khz", "510000000"]] },
+            { "threshold": [97000, 95000], "enter": [["$gpu_max_khz", "560000000"]] },
+            { "threshold": [90000, 85000], "enter": [["$gpu_max_khz", "630000000"]] },
+            { "threshold": [85000, -1], "enter": [["$gpu_max_khz", "780000000"]] }
+          ]
+        }
+      ]
+    }
+  ]
+}

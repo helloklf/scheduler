@@ -1,0 +1,42 @@
+{
+  "friendly": "QQ飞车",
+  "cpuset": {
+    "unity_main": "7",
+    "comm": {
+      "6": ["UnityGfx"],
+      "4-5": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
+    },
+    "other": "0-5"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "max_level": 90,
+        "_60": ["2208000", "2054400"],
+        "_90": ["2380800", "2131200", "-2"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "mode": "fps",
+        "recent_frames": 10, "fast_down_rate": 5, "slow_down_rate": 0.6,
+        "max_level": 90,
+        "_60": ["2208000", "2054400"],
+        "_90": ["2500000", "2131200", "-2"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "fas": {
+        "mode": "fps",
+        "governor": "performance",
+        "recent_frames": 10, "fast_down_rate": 5, "slow_down_rate": 0.6,
+        "_60": ["2208000", "2054400", "-2"],
+        "_90": ["2500000", "2400000", "-2"],
+        "_120": ["2500000", "2400000", "-2"]
+      }
+    }
+  ]
+}

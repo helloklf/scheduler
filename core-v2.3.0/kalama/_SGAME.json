@@ -1,0 +1,60 @@
+{
+  "friendly": "王者荣耀",
+  "cpuset": {
+    "unity_main": "7",
+    "heavy_thread": "Thread-",
+    "heavy_cores": "3-6",
+    "comm": {
+      "3-6": ["UnityPreload", "NativeThread", "UnityGfx", "Worker Thread",
+              "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+    },
+    "other": "3-6"
+  },
+  "limiters": [
+    { "id": "sgame2:cpu0", "step_shift": -0.5, "max_freq": 1459200, "min_freq": 441600, "margin_mhz": 200 },
+    { "id": "sgame2:cpu3", "max_freq": 2054400, "min_freq": 940800, "margin_mhz": 240 },
+    { "id": "sgame2:cpu7", "max_freq": 2092800, "min_freq": 1248000, "margin_mhz": 200 }
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@values", "latency", "0", "1000", "0", "2000", "0", "2000"]
+      ],
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 5000,
+          "rules": [
+            { "threshold": [-1, 100], "enter_once": [["@limiters", "g1:cpu0", "g1:cpu3", "g1:cpu7"], ["@msm_feas", "10"]] },
+            { "threshold": [99,  75], "enter_once": [["@limiters", "g1:cpu0", "g1:cpu3", "g1:cpu7"], ["@msm_feas", "13"]] },
+            { "threshold": [70,  -1], "enter_once": [["@limiters", "g0:cpu0", "g0:cpu3", "g0:cpu7"], ["@msm_feas", "15"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@values", "latency", "0", "1000", "0", "2000", "0", "2000"]
+      ],
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 5000,
+          "rules": [
+            { "threshold": [-1, 100], "enter_once": [["@limiters", "g2:cpu0", "g2:cpu3", "g2:cpu7"], ["@msm_feas", "8"]] },
+            { "threshold": [99,  75], "enter_once": [["@limiters", "g1:cpu0", "g1:cpu3", "g1:cpu7"], ["@msm_feas", "11"]] },
+            { "threshold": [70,  -1], "enter_once": [["@limiters", "g0:cpu0", "g0:cpu3", "g0:cpu7"], ["@msm_feas", "15"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@msm_feas", "3"]
+      ]
+    }
+  ]
+}
