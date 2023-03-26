@@ -15,8 +15,7 @@
       ["@cpu_freq", "cpu7", "806400", "2284800"],
       ["$uclamp_bg_max", "max"],
       ["$uclamp_fg_max", "max"],
-      ["$uclamp_top_max", "max"],
-      ["@high_rate", "on"]
+      ["$uclamp_top_max", "max"]
     ],
     "burst": [
       ["@cpuset", "0-6", "0-6", "0-7", "0-7"],
@@ -26,8 +25,7 @@
       ["$uclamp_bg_min", "max"],
       ["$uclamp_fg_min", "max"],
       ["$uclamp_top_min", "max"],
-      ["$uclamp_bg_max", "max"],
-      ["@high_rate", "on"]
+      ["$uclamp_bg_max", "max"]
     ],
     "exit": [
       ["$core_ctl_7", "1"],
@@ -37,8 +35,7 @@
       ["@cpu_freq", "cpu7", "806400", "1286400"],
       ["$uclamp_bg_max", "9.00"],
       ["$uclamp_fg_max", "max"],
-      ["$uclamp_top_max", "max"],
-      ["@high_rate", "off"]
+      ["$uclamp_top_max", "max"]
     ]
   }
 }

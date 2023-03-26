@@ -1,7 +1,6 @@
 {
   "friendly": "原神",
   "call": [
-    ["@high_rate", "off"],
     ["@gpu_freq", "min", "max"],
     ["@sched_limit", "0 0", "0 0", "0 0"]
   ],

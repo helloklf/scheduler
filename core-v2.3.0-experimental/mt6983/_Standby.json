@@ -12,20 +12,17 @@
     "enter": [
       ["@cpu_freq", "cpu0", "800000", "1800MHz"],
       ["@cpu_freq", "cpu4", "1000MHz", "2200MHz"],
-      ["@cpu_freq", "cpu7", "1300MHz", "2200MHz"],
-      ["@high_rate", "on"]
+      ["@cpu_freq", "cpu7", "1300MHz", "2200MHz"]
     ],
     "burst": [
       ["@cpu_freq", "cpu0", "800000", "1800MHz"],
       ["@cpu_freq", "cpu4", "1200MHz", "2200MHz"],
-      ["@cpu_freq", "cpu7", "1500MHz", "2200MHz"],
-      ["@high_rate", "on"]
+      ["@cpu_freq", "cpu7", "1500MHz", "2200MHz"]
     ],
     "exit": [
       ["@cpu_freq", "cpu0", "min", "1800MHz"],
       ["@cpu_freq", "cpu4", "min", "1800MHz"],
       ["@cpu_freq", "cpu7", "1300000", "1800MHz"],
-      ["@high_rate", "off"],
       ["@mtk_renew"]
     ]
   }

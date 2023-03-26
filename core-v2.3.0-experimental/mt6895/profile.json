@@ -116,8 +116,7 @@
       ["$ged_kpi", "#0"]
     ],
     "common_actvie": [
-      ["$cpu_max_0", "2000000"],
-      ["@high_rate", "on"]
+      ["$cpu_max_0", "2000000"]
     ],
     "common_inactvie": [
       ["$ddr_freq_min", "#800000000"],

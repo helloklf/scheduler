@@ -7,7 +7,6 @@
   "modes": [{
     "mode": ["*"],
     "call": [
-      ["@high_rate", "on"],
       ["$charge_limit", "0"],
       ["$night_charging", "0"],
       ["$core_ctl_4", "1"],
@@ -46,7 +45,6 @@
         ["@cpu_freq", "policy4", "min", "1800MHz"],
         ["@cpu_freq", "policy7", "min", "1800MHz"],
         ["@uclamp", "0.00~0.00", "0.00~0.00", "0.00~max"],
-        ["@high_rate", "off"],
         ["@mtk_renew"]
       ]
     }

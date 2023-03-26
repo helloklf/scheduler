@@ -120,7 +120,6 @@
     ],
     "comm_active": [
       ["$cpu_max_0", "1804800"],
-      ["@high_rate", "on"],
       ["@preset", "cores_force_on"],
       ["@sched_limit", "0 0", "0 0", "0 0"],
       ["@cpuset", "1-3", "1-3", "0-7", "0-7"],
@@ -226,7 +225,6 @@
         ["@values", "hispeed_freq", "1497600", "1209600", "1190400"],
         ["@values", "hispeed_load", "90", "90", "90"],
         ["@values", "sched_boost", "1", "0", "0", "0"],
-        ["@high_rate", "on"],
         ["@preset", "bw_max"]
       ],
       "app": [
@@ -305,7 +303,6 @@
         ["@values", "hispeed_load", "80", "80", "80"],
         ["@values", "sched_boost", "1", "0", "1", "40"],
         ["@gpu_freq", "443000", "max"],
-        ["@high_rate", "on"],
         ["@preset", "bw_max"]
       ],
       "app": [

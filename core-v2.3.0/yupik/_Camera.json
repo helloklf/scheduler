@@ -12,14 +12,12 @@
     "enter": [
       ["@cpu_freq", "policy0", "1200MHz", "max"],
       ["@cpu_freq", "policy4", "1600MHz", "2.4Ghz"],
-      ["@cpu_freq", "policy7", "1600MHz", "2.5Ghz"],
-      ["@high_rate", "on"]
+      ["@cpu_freq", "policy7", "1600MHz", "2.5Ghz"]
     ],
     "exit": [
       ["@cpu_freq", "policy0", "min", "max"],
       ["@cpu_freq", "policy4", "min", "1800MHz"],
-      ["@cpu_freq", "policy7", "min", "1800MHz"],
-      ["@high_rate", "off"]
+      ["@cpu_freq", "policy7", "min", "1800MHz"]
     ]
   }
 }

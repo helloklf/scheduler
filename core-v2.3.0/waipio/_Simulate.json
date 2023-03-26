@@ -3,7 +3,6 @@
   "packages": ["xyz.aethersx2.android", "com.aiwu.dolphinemu"],
   "sensors": [],
   "call": [
-    ["@high_rate", "off"],
     ["@uclamp", "0.00~10.00", "0.00~max", "1.00~max"]
   ],
   "cpuset": {

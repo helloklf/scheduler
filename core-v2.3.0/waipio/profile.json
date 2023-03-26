@@ -139,7 +139,6 @@
       ["$max_cpus_cpu7", "1"]
     ],
     "common_active": [
-      ["@high_rate", "on"],
       ["@preset", "cpu7_on"],
       ["@uclamp", "0.00~max", "0.10~max", "1.00~max"],
       ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],

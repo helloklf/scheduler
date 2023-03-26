@@ -151,7 +151,6 @@
     ],
     "common_actvie": [
       ["@preset", "cpu7_on"],
-      ["@high_rate", "on"],
       ["$ddr_max", "#5500000000"]
     ],
     "common_inactvie": [

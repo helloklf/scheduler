@@ -104,7 +104,6 @@
       ["$cpu_max_0"], ["$cpu_max_3"], ["$cpu_max_7"]
     ],
     "common_active": [
-      ["@high_rate", "on"],
       ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],
       ["@uclamp", "0.00~max", "0.00~max", "0.5~max"]
     ],

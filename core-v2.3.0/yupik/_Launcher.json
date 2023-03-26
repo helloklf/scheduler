@@ -33,8 +33,7 @@
         ["@preset", "comm_active"]
       ],
       "exit": [
-        ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
-        ["@high_rate", "off"]
+        ["@uclamp", "0.00~max", "0.00~max", "0.00~max"]
       ]
     }
   }]

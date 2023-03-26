@@ -12,22 +12,18 @@
       "enter": [
         ["@cpu_freq", "policy0", "1500MHz", "max"],
         ["@cpu_freq", "policy4", "1800MHz", "2.5Ghz"],
-        ["@cpu_freq", "policy7", "1800MHz", "2.85Ghz"],
-        ["@high_rate", "on"]
+        ["@cpu_freq", "policy7", "1800MHz", "2.85Ghz"]
       ],
       "exit": [
         ["@cpu_freq", "policy0", "min", "1800MHz"],
         ["@cpu_freq", "policy4", "min", "2200MHz"],
-        ["@cpu_freq", "policy7", "min", "2300MHz"],
-        ["@high_rate", "off"]
+        ["@cpu_freq", "policy7", "min", "2300MHz"]
       ]
     }
   }],
   "booster": {
     "events": ["touch", "buttons"],
     "duration": 2000,
-    "idle_delay": 2000,
-    "enter": [ ["@high_rate", "on"] ],
-    "exit": [ ["@high_rate", "off"] ]
+    "idle_delay": 2000
   }
 }

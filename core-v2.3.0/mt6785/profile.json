@@ -65,8 +65,7 @@
       ["@cpuset", "1-3", "0-4", "0-7", "0-7"],
       ["$deisolation", "4|5|6|7"],
       ["@preset", "util_active"],
-      ["$stune_top_boost", "10"],
-      ["@high_rate", "on"]
+      ["$stune_top_boost", "10"]
     ],
     "common_inactive": [
       ["@cpuset", "1", "0-4", "0-7", "0-7"],
@@ -85,8 +84,7 @@
       ["@limiters", "idle:cpu0", "idle:cpu4"],
       ["@preset", "common_inactive"],
       ["$min_cpu_freq", "0 500000|1 774000"],
-      ["@preset", "util_fg_opt"],
-      ["@high_rate", "off"]
+      ["@preset", "util_fg_opt"]
     ],
     "balance_active": [
       ["@limiters", "p2:cpu0", "p2:cpu4"],
@@ -98,8 +96,7 @@
       ["@preset", "common_inactive"],
       ["$max_cpu_freq", "0 2000000|1 1750000"],
       ["$min_cpu_freq", "0 500000|1 774000"],
-      ["@preset", "util_fg_opt"],
-      ["@high_rate", "off"]
+      ["@preset", "util_fg_opt"]
     ],
     "performance_active": [
       ["@preset", "common_active"],
@@ -279,9 +276,7 @@
         "booster": {
           "events": ["presets"],
           "duration": 2000,
-          "idle_delay": 2000,
-          "enter": [ ["@high_rate", "on"] ],
-          "exit": [ ["@high_rate", "off"] ]
+          "idle_delay": 2000
         }
       }]
     },
@@ -316,9 +311,7 @@
         "booster": {
           "events": ["presets"],
           "duration": 2000,
-          "idle_delay": 2000,
-          "enter": [ ["@high_rate", "on"] ],
-          "exit": [ ["@high_rate", "off"] ]
+          "idle_delay": 2000
         }
       }]
     },
@@ -340,18 +333,14 @@
         "booster": {
           "events": ["presets"],
           "duration": 2000,
-          "idle_delay": 2000,
-          "enter": [ ["@high_rate", "on"] ],
-          "exit": [ ["@high_rate", "off"] ]
+          "idle_delay": 2000
         }
       }, {
         "mode": ["*"],
         "booster": {
           "events": ["presets"],
           "duration": 2000,
-          "idle_delay": 2000,
-          "enter": [ ["@high_rate", "on"] ],
-          "exit": [ ["@high_rate", "off"] ]
+          "idle_delay": 2000
         }
       }]
     },

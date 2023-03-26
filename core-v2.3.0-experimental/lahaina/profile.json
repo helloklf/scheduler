@@ -139,7 +139,6 @@
     ],
     "comm_active": [
       ["$cpu_max_0", "1804800"],
-      ["@high_rate", "on"],
       ["@preset", "cores_force_on"],
       ["@sched_limit", "0 0", "0 1000", "0 1000"],
       ["@cpuset", "1-3", "0-3", "1-7", "0-7"],
@@ -240,7 +239,6 @@
         ["@preset", "balance_active"],
         ["@values", "hispeed_freq", "1497600", "1209600", "1190400"],
         ["@values", "hispeed_load", "90", "90", "90"],
-        ["@high_rate", "on"],
         ["@preset", "bw_normal"]
       ],
       "app": [

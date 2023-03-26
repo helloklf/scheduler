@@ -108,8 +108,7 @@
       ["$max_cpus_cpu7", "0"]
     ],
     "common_actvie": [
-      ["@preset", "cpu7_on"],
-      ["@high_rate", "on"]
+      ["@preset", "cpu7_on"]
     ],
     "common_inactvie": [
       ["$gpu_min_opp", "99"]
