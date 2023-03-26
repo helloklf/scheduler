@@ -237,7 +237,6 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "powersave_active"],
-        ["@charge", "normal"],
         ["$gpu_freq", "20"]
       ],
       "app": [
@@ -255,7 +254,6 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "balance_active"],
-        ["@charge", "normal"],
         ["$gpu_freq", "15"]
       ],
       "app": [
@@ -276,16 +274,14 @@
         ["$gpu_freq", "10"]
       ],
       "app": [
-        ["@preset", "comm_app"],
-        ["@charge", "normal"]
+        ["@preset", "comm_app"]
       ],
       "game": [
         ["$mi_thermal", "13"],
         ["@preset", "comm_gaming"],
         ["@cpu_freq", "cpu0", "800000", "1600000"],
         ["@cpu_freq", "cpu4", "1000000", "2650000"],
-        ["@cpu_freq", "cpu7", "1300000", "2800000"],
-        ["@charge", "suspend"]
+        ["@cpu_freq", "cpu7", "1300000", "2800000"]
       ]
     },
     "fast": {
@@ -295,8 +291,7 @@
         ["$gpu_freq", "0"]
       ],
       "app": [
-        ["@preset", "comm_app"],
-        ["@charge", "normal"]
+        ["@preset", "comm_app"]
       ],
       "game": [
         ["$mi_thermal", "10"],
@@ -304,8 +299,7 @@
         ["@cpu_freq", "cpu0", "1000000", "1600000"],
         ["@cpu_freq", "cpu4", "1000000", "2850000"],
         ["@cpu_freq", "cpu7", "1300000", "3000000"],
-        ["$ddr_freq_min", "#2667000000"],
-        ["@charge", "suspend"]
+        ["$ddr_freq_min", "#2667000000"]
       ]
     }
   },

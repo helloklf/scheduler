@@ -247,7 +247,6 @@
         ["@values", "hispeed_freq", "1075200", "940800", "1075200"],
         ["@values", "hispeed_load", "90", "90", "90"],
         ["@gpu_freq", "min", "500000"],
-        ["@charge", "normal"],
         ["@values", "target_loads", "80", "80", "80"],
         ["@preset", "bw_max"]
       ],
@@ -272,7 +271,6 @@
         ["@values", "hispeed_freq", "1612800", "1478400", "1632000"],
         ["@values", "hispeed_load", "90", "90", "90"],
         ["@gpu_freq", "min", "630000"],
-        ["@charge", "normal"],
         ["@preset", "bw_max"]
       ],
       "app": [
@@ -302,12 +300,10 @@
         ["@preset", "comm_app"],
         ["@values", "sched_boost", "1", "0", "0", "0"],
         ["@preset", "bw_max"],
-        ["@charge", "normal"],
         ["@values", "target_loads", "75", "75", "75"]
       ],
       "game": [
         ["@preset", "comm_gaming"],
-        ["@charge", "suspend"],
         ["@repeat", "sched_config", "65 70", "72 80", "150", "400"],
         ["@cpu_freq", "cpu0", "1344000", "1804800"],
         ["@cpu_freq", "cpu4", "825600", "2419200"],
@@ -328,13 +324,11 @@
       "app": [
         ["@preset", "comm_app"],
         ["@values", "sched_boost", "1", "0", "1", "10"],
-        ["@charge", "normal"],
         ["@preset", "bw_max"]
       ],
       "game": [
         ["@preset", "comm_gaming"],
         ["$mi_thermal", "13"],
-        ["@charge", "suspend"],
         ["@repeat", "sched_config", "65 63", "70 70", "150", "400"],
         ["@cpu_freq", "cpu0", "1420800", "1804800"],
         ["@cpu_freq", "cpu4", "1478400", "2419200"],

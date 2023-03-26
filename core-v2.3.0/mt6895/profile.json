@@ -199,8 +199,7 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "powersave_active"],
-        ["$uclamp_heavy", "0"],
-        ["@charge", "normal"]
+        ["$uclamp_heavy", "0"]
       ],
       "app": [
         ["@preset", "common_app"]
@@ -216,8 +215,7 @@
     "balance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "balance_active"],
-        ["@charge", "normal"]
+        ["@preset", "balance_active"]
       ],
       "app": [
         ["@preset", "common_app"],
@@ -239,12 +237,10 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@charge", "normal"],
         ["$uclamp_heavy", "1.00"]
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@charge", "suspend"],
         ["@limiters", "NONE"],
         ["@values", "min_freq", "800000", "700000", "900000"],
         ["@values", "max_freq", "#2000000", "#2650000", "#2850000"],
@@ -258,12 +254,10 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@charge", "normal"],
         ["$uclamp_heavy", "1.00"]
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@charge", "suspend"],
         ["$mi_thermal", "10"],
         ["@limiters", "NONE"],
         ["@values", "min_freq", "1600000", "1800000", "1800000"],

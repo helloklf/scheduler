@@ -261,13 +261,11 @@
         ["@gpu_freq", "min", "750MHz"]
       ],
       "app": [
-        ["@charge", "normal"],
         ["$bus_ddr", "2736000"]
       ],
       "game": [
         ["@preset", "common_gaming"],
         ["$mi_thermal", "13"],
-        ["@charge", "suspend"],
         ["$bus_ddr", "2736000"],
         ["$mod_percent", "92"],
         ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
@@ -289,7 +287,6 @@
         ["$bus_ddr_min", "2736000"],
         ["@preset", "common_gaming"],
         ["$mi_thermal", "10"],
-        ["@charge", "suspend"],
         ["$mod_percent", "93"],
         ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
       ]

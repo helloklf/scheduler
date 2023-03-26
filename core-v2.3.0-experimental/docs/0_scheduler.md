@@ -8,9 +8,9 @@
 ## [CPUSET](./cpuset.md)
 ## [Affinity *已弃用](./affinity.md)
 ## [触摸升频](./booster.md)
-## [可选功能](./optional.md)
 ## [预设](./presets.md)
 ## [别名](./alias.md)
+## [新特性](./new_features.md)
 ## [拓展函数](./kernel_features.md)
 
 ## 重要提示

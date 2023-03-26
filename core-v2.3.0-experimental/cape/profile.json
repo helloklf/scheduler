@@ -251,8 +251,7 @@
         ["$bus_ddr", "2736000"]
       ],
       "app": [
-        ["@preset", "common_app"],
-        ["@charge", "normal"]
+        ["@preset", "common_app"]
       ],
       "game": [
         ["@preset", "common_gaming"],
@@ -260,8 +259,7 @@
         ["@cpu_freq", "cpu4", "633600", "2572800"],
         ["@cpu_freq", "cpu7", "787200", "2707200"],
         ["$mi_thermal", "13"],
-        ["$l3_boost", "#0"],
-        ["@charge", "suspend"]
+        ["$l3_boost", "#0"]
       ]
     },
     "fast": {
@@ -273,8 +271,7 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$bus_ddr", "3196000"],
-        ["@charge", "normal"]
+        ["$bus_ddr", "3196000"]
       ],
       "game": [
         ["$perfmgr_enable", "#0"],
@@ -285,8 +282,7 @@
         ["@cpu_freq", "cpu0", "1056000", "1804800"],
         ["@cpu_freq", "cpu4", "1209600", "2745600"],
         ["@cpu_freq", "cpu7", "1171200", "2995200"],
-        ["$mi_thermal", "10"],
-        ["@charge", "suspend"]
+        ["$mi_thermal", "10"]
       ]
     }
   },

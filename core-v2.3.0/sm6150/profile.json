@@ -177,8 +177,7 @@
         ["@values", "hispeed_load", "90", "90"],
         ["@values", "sched_boost", "0", "0", "0", "0"],
         ["@gpu_freq", "min", "500000"],
-        ["@preset", "bw_low"],
-        ["@charge", "normal"]
+        ["@preset", "bw_low"]
       ],
       "game": [
         ["@limiters", "NONE"],
@@ -194,8 +193,7 @@
         ["@values", "hispeed_load", "90", "90"],
         ["@values", "sched_boost", "1", "0", "0", "0"],
         ["@gpu_freq", "min", "630000"],
-        ["@preset", "bw_max"],
-        ["@charge", "normal"]
+        ["@preset", "bw_max"]
       ],
       "game": [
         ["@limiters", "NONE"],
@@ -221,8 +219,7 @@
         ["@limiters", "NONE"],
         ["@cpu_freq", "cpu0", "300000", "1804800"],
         ["@cpu_freq", "cpu6", "300000", "2208000"],
-        ["$mi_thermal", "13"],
-        ["@charge", "suspend"]
+        ["$mi_thermal", "13"]
       ]
     },
     "fast": {
@@ -242,8 +239,7 @@
         ["@limiters", "NONE"],
         ["@cpu_freq", "cpu0", "1708800", "1804800"],
         ["@cpu_freq", "cpu6", "1939200", "2208000"],
-        ["$mi_thermal", "13"],
-        ["@charge", "suspend"]
+        ["$mi_thermal", "13"]
       ]
     },
     "pedestal": {
@@ -261,8 +257,7 @@
         ["@limiters", "NONE"],
         ["@cpu_freq", "cpu0", "1804800", "1804800"],
         ["@cpu_freq", "cpu6", "2208000", "2208000"],
-        ["$mi_thermal", "10"],
-        ["@charge", "suspend"]
+        ["$mi_thermal", "10"]
       ]
     }
   },
