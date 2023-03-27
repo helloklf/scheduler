@@ -11,16 +11,5 @@
     ["$max_cpus_cpu7", "1"],
     ["$mi_thermal", "10"],
     ["$ddr_freq_min", "4266000000"]
-  ],
-  "booster": {
-    "events": ["touch", "buttons"],
-    "duration": 5000,
-    "idle_delay": 5000,
-    "enter": [
-      ["@high_rate", "on"]
-    ],
-    "exit": [
-      ["@high_rate", "off"]
-    ]
-  }
+  ]
 }

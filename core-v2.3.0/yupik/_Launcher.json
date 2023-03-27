@@ -1,8 +1,8 @@
 {
   "friendly": "极速响应",
   "limiters": [
-    {"id": "launcher:cpu4", "max_freq": 2400000, "min_freq": 2131200, "margin_mhz": 400},
-    {"id": "launcher:cpu7", "max_freq": 2400000, "min_freq": 2208000, "margin_mhz": 400}
+    {"id": "launcher:cpu4", "max": 2400000, "min": 2131200, "margin": 400},
+    {"id": "launcher:cpu7", "max": 2400000, "min": 2208000, "margin": 400}
   ],
   "modes": [{
     "mode": ["powersave", "balance"],

@@ -2,9 +2,9 @@
   "friendly": "QQ飞车",
   "packages": ["com.tencent.tmgp.speedmobile"],
   "limiters": [
-    {"id": "gboost3:cpu4", "step_shift": -1, "mode": "BOTTOM", "max_freq": 2419200, "min_freq": 1056000, "margin_mhz": 695, "smoothness": 15},
-    {"id": "gboost4:cpu4", "step_shift": -1, "mode": "BOTTOM", "max_freq": 2419200, "min_freq": 1670400, "margin_mhz": 695, "smoothness": 15},
-    {"id": "gboost4:cpu7", "step_shift": -1, "mode": "BOTTOM", "max_freq": 2841600, "min_freq": 1747200, "margin_mhz": 695, "smoothness": 15}
+    {"id": "gboost3:cpu4", "step": -1, "mode": "BOTTOM", "max": 2419200, "min": 1056000, "margin": 695, "smoothness": 15},
+    {"id": "gboost4:cpu4", "step": -1, "mode": "BOTTOM", "max": 2419200, "min": 1670400, "margin": 695, "smoothness": 15},
+    {"id": "gboost4:cpu7", "step": -1, "mode": "BOTTOM", "max": 2841600, "min": 1747200, "margin": 695, "smoothness": 15}
   ],
   "affinity": {
     "interval": 3000,

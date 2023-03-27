@@ -15,7 +15,6 @@
   "modes": [{
     "mode": ["powersave"],
     "call": [
-      ["@high_rate", "energy"],
       ["@gpu_freq", "min", "350000"]
     ],
     "fas": {

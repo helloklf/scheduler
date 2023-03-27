@@ -24,21 +24,21 @@
       "inactive_interval": 100,
       "logger": false,
       "params": [
-        { "id": "p1:cpu6", "max_freq": 1900800, "min_freq": 1728000, "margin_mhz": 350 },
-        { "id": "p1:cpu7", "max_freq": 2188800, "min_freq": 1766400, "margin_mhz": 350 },
+        { "id": "p1:cpu6", "max": 1900800, "min": 1728000, "margin": 350 },
+        { "id": "p1:cpu7", "max": 2188800, "min": 1766400, "margin": 350 },
 
-        { "id": "p2:cpu6", "max_freq": 2208000, "min_freq": 1939200, "margin_mhz": 550 },
-        { "id": "p2:cpu7", "max_freq": 2304000, "min_freq": 1939200, "margin_mhz": 550 },
+        { "id": "p2:cpu6", "max": 2208000, "min": 1939200, "margin": 550 },
+        { "id": "p2:cpu7", "max": 2304000, "min": 1939200, "margin": 550 },
 
-        { "id": "p3:cpu6", "max_freq": 2208000, "min_freq": 2092800, "margin_mhz": 550 },
-        { "id": "p3:cpu7", "max_freq": 2400000, "min_freq": 2304000, "margin_mhz": 550 },
+        { "id": "p3:cpu6", "max": 2208000, "min": 2092800, "margin": 550 },
+        { "id": "p3:cpu7", "max": 2400000, "min": 2304000, "margin": 550 },
 
-        { "id": "p4:cpu6", "max_freq": 0, "min_freq": 2092800, "margin_mhz": 550 },
-        { "id": "p4:cpu7", "max_freq": 0, "min_freq": 2304000, "margin_mhz": 550 },
+        { "id": "p4:cpu6", "max": 0, "min": 2092800, "margin": 550 },
+        { "id": "p4:cpu7", "max": 0, "min": 2304000, "margin": 550 },
 
-        { "id": "idle:cpu0", "max_freq": 1612800, "min_freq": 576000, "margin_mhz": 100 },
-        { "id": "idle:cpu6", "max_freq": 1939200, "min_freq": 300000, "margin_mhz": 50 },
-        { "id": "idle:cpu7", "max_freq": 1996800, "min_freq": 300000, "margin_mhz": 50 }
+        { "id": "idle:cpu0", "max": 1612800, "min": 576000, "margin": 100 },
+        { "id": "idle:cpu6", "max": 1939200, "min": 300000, "margin": 50 },
+        { "id": "idle:cpu7", "max": 1996800, "min": 300000, "margin": 50 }
       ]
     }
   },

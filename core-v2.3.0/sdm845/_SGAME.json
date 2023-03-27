@@ -1,11 +1,11 @@
 {
     "friendly": "王者荣耀",
     "limiters": [
-      {"id": "sgame3:cpu4", "active_interval": 40, "step_shift": -1, "mode": "BOTTOM",
-        "max_freq": 2246400, "min_freq": 1612800, "margin_mhz": 455, "smoothness": 12},
+      {"id": "sgame3:cpu4", "active_interval": 40, "step": -1, "mode": "BOTTOM",
+        "max": 2246400, "min": 1612800, "margin": 455, "smoothness": 12},
   
-      {"id": "sgame4:cpu4", "active_interval": 40, "step_shift": -1, "mode": "BOTTOM",
-        "max_freq": 2450000, "min_freq": 1843200, "margin_mhz": 465, "smoothness": 22}
+      {"id": "sgame4:cpu4", "active_interval": 40, "step": -1, "mode": "BOTTOM",
+        "max": 2450000, "min": 1843200, "margin": 465, "smoothness": 22}
     ],
     "affinity": {
       "unity_main": "80",

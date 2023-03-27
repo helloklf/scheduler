@@ -1,8 +1,5 @@
 {
   "friendly": "原神",
-  "call": [
-    ["@high_rate", "off", "1000"]
-  ],
   "cpuset": {
     "unity_main": "6-7",
     "comm": {

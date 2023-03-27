@@ -1,14 +1,14 @@
 {
   "friendly": "原神",
   "limiter": [
-    { "id": "ys2:cpu4", "mode": "RANGE", "max_freq": 2419200, "min_freq": 1401600, "margin_mhz": 400, "smoothness": 8 },
-    { "id": "ys2:cpu7", "mode": "RANGE", "max_freq": 2649600, "min_freq": 1497600, "margin_mhz": 400, "smoothness": 8 },
+    { "id": "ys2:cpu4", "mode": "RANGE", "max": 2419200, "min": 1401600, "margin": 400, "smoothness": 8 },
+    { "id": "ys2:cpu7", "mode": "RANGE", "max": 2649600, "min": 1497600, "margin": 400, "smoothness": 8 },
 
-    { "id": "ys3:cpu4", "mode": "BOTTOM", "max_freq": 2419200, "min_freq": 1401600, "margin_mhz": 400, "smoothness": 8 },
-    { "id": "ys3:cpu7", "mode": "BOTTOM", "max_freq": 2841600, "min_freq": 1497600, "margin_mhz": 400, "smoothness": 8 },
+    { "id": "ys3:cpu4", "mode": "BOTTOM", "max": 2419200, "min": 1401600, "margin": 400, "smoothness": 8 },
+    { "id": "ys3:cpu7", "mode": "BOTTOM", "max": 2841600, "min": 1497600, "margin": 400, "smoothness": 8 },
 
-    { "id": "ys4:cpu4", "mode": "BOTTOM", "max_freq": 2419200, "min_freq": 1401600, "margin_mhz": 600, "smoothness": 6 },
-    { "id": "ys4:cpu7", "mode": "BOTTOM", "max_freq": 3200000, "min_freq": 1497600, "margin_mhz": 600, "smoothness": 6 }
+    { "id": "ys4:cpu4", "mode": "BOTTOM", "max": 2419200, "min": 1401600, "margin": 600, "smoothness": 6 },
+    { "id": "ys4:cpu7", "mode": "BOTTOM", "max": 3200000, "min": 1497600, "margin": 600, "smoothness": 6 }
   ],
   "call": [
     ["@cpuset", "0", "0-3", "0-7", "0-7"],

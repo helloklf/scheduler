@@ -1,6 +1,5 @@
 {
   "friendly": "原神",
-  "call": [["@high_rate", "on"]],
   "packages": [
     "com.miHoYo.Yuanshen",
     "com.miHoYo.ys.mi",

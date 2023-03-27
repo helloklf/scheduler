@@ -1,30 +1,30 @@
 {
   "friendly": "王者荣耀/LOL",
   "limiters": [
-    {"id": "sgame0:cpu4", "step_shift": -1, "mode": "performance",
-      "max_freq": 1996800, "min_freq": 710400, "margin_mhz": 225, "smoothness": 6},
-    {"id": "sgame0:cpu7", "step_shift": -1, "mode": "performance",
-      "max_freq": 2150400, "min_freq": 844800, "margin_mhz": 265, "smoothness": 6},
+    {"id": "sgame0:cpu4", "step": -1, "mode": "performance",
+      "max": 1996800, "min": 710400, "margin": 225, "smoothness": 6},
+    {"id": "sgame0:cpu7", "step": -1, "mode": "performance",
+      "max": 2150400, "min": 844800, "margin": 265, "smoothness": 6},
 
-    {"id": "sgame1:cpu4", "step_shift": -1, "mode": "performance",
-      "max_freq": 1996800, "min_freq": 844800, "margin_mhz": 245, "smoothness": 4},
-    {"id": "sgame1:cpu7", "step_shift": -1, "mode": "performance",
-      "max_freq": 2150400, "min_freq": 1075200, "margin_mhz": 265, "smoothness": 4},
+    {"id": "sgame1:cpu4", "step": -1, "mode": "performance",
+      "max": 1996800, "min": 844800, "margin": 245, "smoothness": 4},
+    {"id": "sgame1:cpu7", "step": -1, "mode": "performance",
+      "max": 2150400, "min": 1075200, "margin": 265, "smoothness": 4},
 
-    {"id": "sgame2:cpu4", "step_shift": -1, "mode": "performance",
-      "max_freq": 2112000, "min_freq": 1075200, "margin_mhz": 345, "smoothness": 4, "max_margin_ratio": 0.4},
-    {"id": "sgame2:cpu7", "step_shift": -1, "mode": "performance",
-      "max_freq": 2265600, "min_freq": 1075200, "margin_mhz": 345, "smoothness": 4, "max_margin_ratio": 0.4},
+    {"id": "sgame2:cpu4", "step": -1, "mode": "performance",
+      "max": 2112000, "min": 1075200, "margin": 345, "smoothness": 4, "max_margin_ratio": 0.4},
+    {"id": "sgame2:cpu7", "step": -1, "mode": "performance",
+      "max": 2265600, "min": 1075200, "margin": 345, "smoothness": 4, "max_margin_ratio": 0.4},
 
-    {"id": "sgame3:cpu4", "step_shift": -1, "mode": "performance",
-      "max_freq": 2342400, "min_freq": 1075200, "margin_mhz": 345, "smoothness": 6, "max_margin_ratio": 0.4},
-    {"id": "sgame3:cpu7", "step_shift": -1, "mode": "performance",
-      "max_freq": 2496000, "min_freq": 1420800, "margin_mhz": 345, "smoothness": 6, "max_margin_ratio": 0.4},
+    {"id": "sgame3:cpu4", "step": -1, "mode": "performance",
+      "max": 2342400, "min": 1075200, "margin": 345, "smoothness": 6, "max_margin_ratio": 0.4},
+    {"id": "sgame3:cpu7", "step": -1, "mode": "performance",
+      "max": 2496000, "min": 1420800, "margin": 345, "smoothness": 6, "max_margin_ratio": 0.4},
 
-    {"id": "sgame4:cpu4", "step_shift": -1, "mode": "performance",
-      "max_freq": 2419200, "min_freq": 1324800, "margin_mhz": 365, "smoothness": 16},
-    {"id": "sgame4:cpu7", "step_shift": -0.93, "mode": "performance",
-      "max_freq": 2841600, "min_freq": 1440000, "margin_mhz": 385, "smoothness": 16}
+    {"id": "sgame4:cpu4", "step": -1, "mode": "performance",
+      "max": 2419200, "min": 1324800, "margin": 365, "smoothness": 16},
+    {"id": "sgame4:cpu7", "step": -0.93, "mode": "performance",
+      "max": 2841600, "min": 1440000, "margin": 385, "smoothness": 16}
   ],
   "affinity": {
     "unity_main": "80",

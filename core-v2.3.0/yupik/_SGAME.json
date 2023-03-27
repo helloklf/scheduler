@@ -1,23 +1,23 @@
 {
   "friendly": "王者荣耀/LOL",
   "limiters": [
-    {"id": "sgame1:cpu4", "active_interval": 60, "step_shift": -1, "mode": "BOTTOM",
-      "max_freq": 2054400, "min_freq": 691200, "margin_mhz": 485, "smoothness": 6},
-    {"id": "sgame1:cpu7", "active_interval": 60, "step_shift": -1, "mode": "BOTTOM",
-      "max_freq": 2208000, "min_freq": 806400, "margin_mhz": 485, "smoothness": 6},
+    {"id": "sgame1:cpu4", "active_interval": 60, "step": -1, "mode": "BOTTOM",
+      "max": 2054400, "min": 691200, "margin": 485, "smoothness": 6},
+    {"id": "sgame1:cpu7", "active_interval": 60, "step": -1, "mode": "BOTTOM",
+      "max": 2208000, "min": 806400, "margin": 485, "smoothness": 6},
 
-    {"id": "sgame2:cpu4", "step_shift": -1, "mode": "BOTTOM", "max_freq": 2131200, "min_freq": 1344000, "margin_mhz": 545, "smoothness": 6},
-    {"id": "sgame2:cpu7", "step_shift": -1, "mode": "BOTTOM", "max_freq": 2400000, "min_freq": 1324800, "margin_mhz": 545, "smoothness": 6},
+    {"id": "sgame2:cpu4", "step": -1, "mode": "BOTTOM", "max": 2131200, "min": 1344000, "margin": 545, "smoothness": 6},
+    {"id": "sgame2:cpu7", "step": -1, "mode": "BOTTOM", "max": 2400000, "min": 1324800, "margin": 545, "smoothness": 6},
 
-    {"id": "sgame3:cpu4", "active_interval": 60, "step_shift": -1, "mode": "BOTTOM",
-      "max_freq": 2400000, "min_freq": 1516800, "margin_mhz": 545, "smoothness": 12},
-    {"id": "sgame3:cpu7", "active_interval": 60, "step_shift": -1, "mode": "BOTTOM",
-      "max_freq": 2500000, "min_freq": 1516800, "margin_mhz": 545, "smoothness": 12},
+    {"id": "sgame3:cpu4", "active_interval": 60, "step": -1, "mode": "BOTTOM",
+      "max": 2400000, "min": 1516800, "margin": 545, "smoothness": 12},
+    {"id": "sgame3:cpu7", "active_interval": 60, "step": -1, "mode": "BOTTOM",
+      "max": 2500000, "min": 1516800, "margin": 545, "smoothness": 12},
 
-    {"id": "sgame4:cpu4", "active_interval": 40, "step_shift": -1, "mode": "BOTTOM",
-      "max_freq": 2400000, "min_freq": 1516800, "margin_mhz": 605, "smoothness": 22},
-    {"id": "sgame4:cpu7", "active_interval": 40, "step_shift": -0.93, "mode": "BOTTOM",
-      "max_freq": 2500000, "min_freq": 1516800, "margin_mhz": 605, "smoothness": 22}
+    {"id": "sgame4:cpu4", "active_interval": 40, "step": -1, "mode": "BOTTOM",
+      "max": 2400000, "min": 1516800, "margin": 605, "smoothness": 22},
+    {"id": "sgame4:cpu7", "active_interval": 40, "step": -0.93, "mode": "BOTTOM",
+      "max": 2500000, "min": 1516800, "margin": 605, "smoothness": 22}
   ],
   "affinity": {
     "interval": 2000,

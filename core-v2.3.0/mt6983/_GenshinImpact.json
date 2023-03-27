@@ -5,25 +5,25 @@
     ["$boost_affinity", "#0"]
   ],
   "limiters": [
-    {"id": "ys1:cpu0", "step_shift": -0.7, "max_freq": 1600000, "turning_freq": 1500000, "min_freq": 800000, "margin_mhz": 300, "smoothness": 6},
-    {"id": "ys1:cpu4", "step_shift": -0.9, "max_freq": 2100000, "turning_freq": 1700000, "min_freq": 1000000, "margin_mhz": 160, "smoothness": 6, "mode": "RANGE"},
-    {"id": "ys1:cpu7", "step_shift": -0.9, "max_freq": 2100000, "turning_freq": 1700000, "margin_mhz": 150, "smoothness": 6, "mode": "RANGE"},
+    {"id": "ys1:cpu0", "step": -0.7, "max": 1600000, "turning": 1500000, "min": 800000, "margin": 300, "smoothness": 6},
+    {"id": "ys1:cpu4", "step": -0.9, "max": 2100000, "turning": 1700000, "min": 1000000, "margin": 160, "smoothness": 6, "mode": "RANGE"},
+    {"id": "ys1:cpu7", "step": -0.9, "max": 2100000, "turning": 1700000, "margin": 150, "smoothness": 6, "mode": "RANGE"},
 
-    {"id": "ys2:cpu0", "step_shift": -0.7, "max_freq": 1600000, "turning_freq": 1500000, "min_freq": 800000,  "margin_mhz": 300, "smoothness": 6},
-    {"id": "ys2:cpu4", "step_shift": -0.9, "max_freq": 2450000, "turning_freq": 1900000, "min_freq": 1400000, "margin_mhz": 180, "smoothness": 6},
-    {"id": "ys2:cpu7", "step_shift": -0.9, "max_freq": 2300000, "turning_freq": 1900000, "min_freq": 1400000, "margin_mhz": 160, "smoothness": 6},
+    {"id": "ys2:cpu0", "step": -0.7, "max": 1600000, "turning": 1500000, "min": 800000,  "margin": 300, "smoothness": 6},
+    {"id": "ys2:cpu4", "step": -0.9, "max": 2450000, "turning": 1900000, "min": 1400000, "margin": 180, "smoothness": 6},
+    {"id": "ys2:cpu7", "step": -0.9, "max": 2300000, "turning": 1900000, "min": 1400000, "margin": 160, "smoothness": 6},
 
-    {"id": "ys3:cpu0", "step_shift": -0.7, "max_freq": 1600000, "turning_freq": 1500000, "min_freq": 800000, "margin_mhz": 300, "smoothness": 6},
-    {"id": "ys3:cpu4", "step_shift": -1.0, "max_freq": 2650000, "turning_freq": 2100000, "min_freq": 1700000, "margin_mhz": 230, "smoothness": 6},
-    {"id": "ys3:cpu7", "step_shift": -1.0, "max_freq": 2650000, "turning_freq": 2100000, "min_freq": 1700000, "margin_mhz": 200, "smoothness": 6},
+    {"id": "ys3:cpu0", "step": -0.7, "max": 1600000, "turning": 1500000, "min": 800000, "margin": 300, "smoothness": 6},
+    {"id": "ys3:cpu4", "step": -1.0, "max": 2650000, "turning": 2100000, "min": 1700000, "margin": 230, "smoothness": 6},
+    {"id": "ys3:cpu7", "step": -1.0, "max": 2650000, "turning": 2100000, "min": 1700000, "margin": 200, "smoothness": 6},
 
-    {"id": "ys4:cpu0", "step_shift": -0.7, "max_freq": 1800000, "turning_freq": 1600000, "min_freq": 1000000, "margin_mhz": 300, "smoothness": 6},
-    {"id": "ys4:cpu4", "step_shift": -1.0, "max_freq": 2850000, "turning_freq": 2650000, "min_freq": 1800000, "margin_mhz": 400, "smoothness": 6},
-    {"id": "ys4:cpu7", "step_shift": -1.0, "max_freq": 3000000, "turning_freq": 2650000, "min_freq": 1800000, "margin_mhz": 300, "smoothness": 6},
+    {"id": "ys4:cpu0", "step": -0.7, "max": 1800000, "turning": 1600000, "min": 1000000, "margin": 300, "smoothness": 6},
+    {"id": "ys4:cpu4", "step": -1.0, "max": 2850000, "turning": 2650000, "min": 1800000, "margin": 400, "smoothness": 6},
+    {"id": "ys4:cpu7", "step": -1.0, "max": 3000000, "turning": 2650000, "min": 1800000, "margin": 300, "smoothness": 6},
 
-    {"id": "ys5:cpu0", "step_shift": -1.0, "max_freq": 1800000, "turning_freq": 1600000, "min_freq": 1500000, "margin_mhz": 300, "smoothness": 6},
-    {"id": "ys5:cpu4", "step_shift": -1.0, "max_freq": 2850000, "turning_freq": 2650000, "min_freq": 2400000, "margin_mhz": 400, "smoothness": 6},
-    {"id": "ys5:cpu7", "step_shift": -1.0, "max_freq": 3000000, "turning_freq": 2650000, "min_freq": 2400000, "margin_mhz": 300, "smoothness": 6}
+    {"id": "ys5:cpu0", "step": -1.0, "max": 1800000, "turning": 1600000, "min": 1500000, "margin": 300, "smoothness": 6},
+    {"id": "ys5:cpu4", "step": -1.0, "max": 2850000, "turning": 2650000, "min": 2400000, "margin": 400, "smoothness": 6},
+    {"id": "ys5:cpu7", "step": -1.0, "max": 3000000, "turning": 2650000, "min": 2400000, "margin": 300, "smoothness": 6}
   ],
   "affinity": {
     "interval": 5000,

@@ -15,13 +15,13 @@
       "inactive_interval": 150,
       "logger": false,
       "params": [
-        { "id": "p1:cpu0", "step_shift": -1, "max_freq": 1555200, "min_freq": 691200, "margin_mhz": 250 },
-        { "id": "p1:cpu4", "step_shift": -0.7, "max_freq": 2112000, "min_freq": 768000, "margin_mhz": 270 },
-        { "id": "p1:cpu7", "step_shift": -0.2, "max_freq": 2246400, "min_freq": 1171200, "margin_mhz": 250 },
+        { "id": "p1:cpu0", "step": -1, "max": 1555200, "min": 691200, "margin": 250 },
+        { "id": "p1:cpu4", "step": -0.7, "max": 2112000, "min": 768000, "margin": 270 },
+        { "id": "p1:cpu7", "step": -0.2, "max": 2246400, "min": 1171200, "margin": 250 },
 
-        { "id": "idle:cpu0", "max_freq": 1440000, "margin_mhz": 70 },
-        { "id": "idle:cpu4", "max_freq": 1555200, "margin_mhz": 70 },
-        { "id": "idle:cpu7", "max_freq": 1536000, "margin_mhz": 80 }
+        { "id": "idle:cpu0", "max": 1440000, "margin": 70 },
+        { "id": "idle:cpu4", "max": 1555200, "margin": 70 },
+        { "id": "idle:cpu7", "max": 1536000, "margin": 80 }
       ]
     }
   },

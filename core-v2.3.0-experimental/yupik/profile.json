@@ -29,27 +29,27 @@
       "active_interval": 24,
       "inactive_interval": 150,
       "params": [
-        { "id": "active:cpu0", "max_freq": 1804800, "min_freq": 1152000, "margin_mhz": 400 },
+        { "id": "active:cpu0", "max": 1804800, "min": 1152000, "margin": 400 },
 
-        { "id": "p1:cpu4", "max_freq": 1900800, "min_freq": 940800, "margin_mhz": 280 },
-        { "id": "p1:cpu7", "max_freq": 2035200, "min_freq": 1516800, "margin_mhz": 300 },
+        { "id": "p1:cpu4", "max": 1900800, "min": 940800, "margin": 280 },
+        { "id": "p1:cpu7", "max": 2035200, "min": 1516800, "margin": 300 },
 
-        { "id": "p2:cpu4", "max_freq": 2131200, "min_freq": 1516800, "margin_mhz": 300 },
-        { "id": "p2:cpu7", "max_freq": 2380800, "min_freq": 1766400, "margin_mhz": 400 },
+        { "id": "p2:cpu4", "max": 2131200, "min": 1516800, "margin": 300 },
+        { "id": "p2:cpu7", "max": 2380800, "min": 1766400, "margin": 400 },
 
-        { "id": "p3:cpu4", "max_freq": 2400000, "min_freq": 1900800, "margin_mhz": 400 },
-        { "id": "p3:cpu7", "max_freq": 2400000, "min_freq": 2208000, "margin_mhz": 400 },
+        { "id": "p3:cpu4", "max": 2400000, "min": 1900800, "margin": 400 },
+        { "id": "p3:cpu7", "max": 2400000, "min": 2208000, "margin": 400 },
 
-        { "id": "p4:cpu4", "max_freq": 2400000, "min_freq": 2112000, "margin_mhz": 400 },
-        { "id": "p4:cpu7", "max_freq": 2500000, "min_freq": 2380800, "margin_mhz": 400 },
+        { "id": "p4:cpu4", "max": 2400000, "min": 2112000, "margin": 400 },
+        { "id": "p4:cpu7", "max": 2500000, "min": 2380800, "margin": 400 },
 
-        { "id": "inactive:cpu0", "max_freq": 1804800, "min_freq": 806400, "margin_mhz": 150 },
-        { "id": "inactive:cpu4", "max_freq": 1900800, "margin_mhz": 100 },
-        { "id": "inactive:cpu7", "max_freq": 2035200, "margin_mhz": 150 },
+        { "id": "inactive:cpu0", "max": 1804800, "min": 806400, "margin": 150 },
+        { "id": "inactive:cpu4", "max": 1900800, "margin": 100 },
+        { "id": "inactive:cpu7", "max": 2035200, "margin": 150 },
 
-        { "id": "idle:cpu0", "max_freq": 1804800, "min_freq": 806400, "margin_mhz": 130 },
-        { "id": "idle:cpu4", "max_freq": 1516800, "margin_mhz": 80 },
-        { "id": "idle:cpu7", "max_freq": 1766400, "margin_mhz": 130 }
+        { "id": "idle:cpu0", "max": 1804800, "min": 806400, "margin": 130 },
+        { "id": "idle:cpu4", "max": 1516800, "margin": 80 },
+        { "id": "idle:cpu7", "max": 1766400, "margin": 130 }
       ]
     }
   },
@@ -147,7 +147,6 @@
     ],
     "powersave_inactive": [
       ["@limiters", "idle:cpu0", "idle:cpu4"],
-      ["@high_rate", "auto"],
       ["@preset", "cores_force_off"],
       ["@preset", "comm_inactive"]
     ],
@@ -161,8 +160,7 @@
     "balance_inactive": [
       ["@limiters", "inactive:cpu0", "inactive:cpu4", "inactive:cpu7"],
       ["@preset", "comm_inactive"],
-      ["@preset", "cores_auto_off"],
-      ["@high_rate", "auto"]
+      ["@preset", "cores_auto_off"]
     ],
 
     "performance_active": [
@@ -174,8 +172,7 @@
     "performance_inactive": [
       ["@limiters", "NONE"],
       ["@preset", "comm_inactive"],
-      ["@values", "max_freq", "1804800", "1900800", "2035200"],
-      ["@high_rate", "auto"]
+      ["@values", "max_freq", "1804800", "1900800", "2035200"]
     ],
 
     "fast_active": [
@@ -188,8 +185,7 @@
     "fast_inactive": [
       ["@limiters", "NONE"],
       ["@preset", "comm_inactive"],
-      ["@values", "max_freq", "1804800", "2131200", "2380800"],
-      ["@high_rate", "auto"]
+      ["@values", "max_freq", "1804800", "2131200", "2380800"]
     ]
   },
   "schemes": {
@@ -204,7 +200,6 @@
       ],
       "app": [
         ["@gpu_freq", "min", "608000"],
-        ["@high_rate", "off", "3000"],
         ["@preset", "bw_low"]
       ],
       "game": [
@@ -249,8 +244,7 @@
         ["@sched_limit", "0 0", "0 0", "0 0"],
         ["@values", "hispeed_freq", "1497600", "1440000", "1420800"],
         ["@values", "hispeed_load", "87", "87", "87"],
-        ["@values", "sched_boost", "1", "0", "0", "0"],
-        ["@high_rate", "on"]
+        ["@values", "sched_boost", "1", "0", "0", "0"]
       ],
       "app": [
         ["@gpu_freq", "min", "608000"],
@@ -274,8 +268,7 @@
         ["@preset", "fast_active"],
         ["@values", "hispeed_freq", "1324800", "1516800", "1516800"],
         ["@values", "hispeed_load", "85", "85", "85"],
-        ["@values", "sched_boost", "1", "0", "1", "10"],
-        ["@high_rate", "on"]
+        ["@values", "sched_boost", "1", "0", "1", "10"]
       ],
       "app": [
         ["@gpu_freq", "min", "778000"],
@@ -350,8 +343,7 @@
       "friendly": "备份还原",
       "packages": ["com.miui.huanji", "com.miui.backup"],
       "call": [
-        ["@uclamp", "0.00~max", "max~max", "max~max"],
-        ["@high_rate", "off", "2000"]
+        ["@uclamp", "0.00~max", "max~max", "max~max"]
       ]
     },
     {

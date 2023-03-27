@@ -11,9 +11,9 @@
     "other": "3-6"
   },
   "limiters": [
-    { "id": "sgame2:cpu0", "step_shift": -0.5, "max_freq": 1459200, "min_freq": 441600, "margin_mhz": 200 },
-    { "id": "sgame2:cpu3", "max_freq": 2054400, "min_freq": 940800, "margin_mhz": 240 },
-    { "id": "sgame2:cpu7", "max_freq": 2092800, "min_freq": 1248000, "margin_mhz": 200 }
+    { "id": "sgame2:cpu0", "step": -0.5, "max": 1459200, "min": 441600, "margin": 200 },
+    { "id": "sgame2:cpu3", "max": 2054400, "min": 940800, "margin": 240 },
+    { "id": "sgame2:cpu7", "max": 2092800, "min": 1248000, "margin": 200 }
   ],
   "modes": [
     {

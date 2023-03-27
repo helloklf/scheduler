@@ -1,8 +1,5 @@
 {
   "friendly": "原神",
-  "call": [
-    ["@high_rate", "off"]
-  ],
   "affinity": {
     "unity_main": "40",
     "heavy_thread": "UnityGfx",

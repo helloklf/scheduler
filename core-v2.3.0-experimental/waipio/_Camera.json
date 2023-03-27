@@ -19,15 +19,13 @@
         ["@cpu_freq", "policy0", "1200MHz", "max"],
         ["@cpu_freq", "policy4", "1600MHz", "2299MHz"],
         ["@cpu_freq", "policy7", "1600MHz", "2.3Ghz"],
-        ["$max_cpus_cpu7", "1"],
-        ["@high_rate", "on"]
+        ["$max_cpus_cpu7", "1"]
       ],
       "exit": [
         ["@cpu_freq", "policy0", "min", "max"],
         ["@cpu_freq", "policy4", "min", "2299MHz"],
         ["@cpu_freq", "policy7", "min", "800MHz"],
-        ["$max_cpus_cpu7", "0"],
-        ["@high_rate", "off"]
+        ["$max_cpus_cpu7", "0"]
       ]
     }
   }]

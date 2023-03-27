@@ -48,36 +48,36 @@
       "ddr_boost": true,
       "logger": false,
       "params": [
-        { "id": "p1:cpu4", "max_freq": 2100000, "min_freq": 1800000, "margin_mhz": 350 },
-        { "id": "p1:cpu7", "max_freq": 2400000, "min_freq": 2100000, "margin_mhz": 300 },
+        { "id": "p1:cpu4", "max": 2100000, "min": 1800000, "margin": 350 },
+        { "id": "p1:cpu7", "max": 2400000, "min": 2100000, "margin": 300 },
 
-        { "id": "p2:cpu4", "max_freq": 2450000, "min_freq": 2200000, "margin_mhz": 650 },
-        { "id": "p2:cpu7", "max_freq": 2650000, "min_freq": 2450000, "margin_mhz": 650 },
+        { "id": "p2:cpu4", "max": 2450000, "min": 2200000, "margin": 650 },
+        { "id": "p2:cpu7", "max": 2650000, "min": 2450000, "margin": 650 },
 
-        { "id": "p3:cpu4", "max_freq": 2650000, "min_freq": 2450000, "margin_mhz": 650 },
-        { "id": "p3:cpu7", "max_freq": 2850000, "min_freq": 2650000, "margin_mhz": 650 },
-
-
-        { "id": "g1:cpu4", "max_freq": 2450000, "min_freq": 2000000, "margin_mhz": 300 },
-        { "id": "g1:cpu7", "max_freq": 2450000, "min_freq": 2000000, "margin_mhz": 400 },
-
-        { "id": "g2:cpu4", "max_freq": 2650000, "min_freq": 2450000, "margin_mhz": 300 },
-        { "id": "g2:cpu7", "max_freq": 2650000, "min_freq": 2450000, "margin_mhz": 400 },
-
-        { "id": "g3:cpu4", "max_freq": 2850000, "min_freq": 2650000, "margin_mhz": 300 },
-        { "id": "g3:cpu7", "max_freq": 2850000, "min_freq": 2650000, "margin_mhz": 400 },
-
-        { "id": "g4:cpu4", "max_freq": 3000000, "min_freq": 2650000, "margin_mhz": 400 },
-        { "id": "g4:cpu7", "max_freq": 3100000, "min_freq": 2650000, "margin_mhz": 400 },
+        { "id": "p3:cpu4", "max": 2650000, "min": 2450000, "margin": 650 },
+        { "id": "p3:cpu7", "max": 2850000, "min": 2650000, "margin": 650 },
 
 
-        { "id": "inactive:cpu0", "max_freq": 1800000, "min_freq": 1000000, "margin_mhz": 200 },
-        { "id": "inactive:cpu4", "max_freq": 1900000, "min_freq": 400000, "margin_mhz": 180 },
-        { "id": "inactive:cpu7", "max_freq": 2300000, "min_freq": 500000, "margin_mhz": 220 },
+        { "id": "g1:cpu4", "max": 2450000, "min": 2000000, "margin": 300 },
+        { "id": "g1:cpu7", "max": 2450000, "min": 2000000, "margin": 400 },
 
-        { "id": "idle:cpu0", "max_freq": 1600000, "min_freq": 600000, "margin_mhz": 120 },
-        { "id": "idle:cpu4", "max_freq": 1800000, "min_freq": 400000, "margin_mhz": 100 },
-        { "id": "idle:cpu7", "max_freq": 2000000, "min_freq": 500000, "margin_mhz": 120 }
+        { "id": "g2:cpu4", "max": 2650000, "min": 2450000, "margin": 300 },
+        { "id": "g2:cpu7", "max": 2650000, "min": 2450000, "margin": 400 },
+
+        { "id": "g3:cpu4", "max": 2850000, "min": 2650000, "margin": 300 },
+        { "id": "g3:cpu7", "max": 2850000, "min": 2650000, "margin": 400 },
+
+        { "id": "g4:cpu4", "max": 3000000, "min": 2650000, "margin": 400 },
+        { "id": "g4:cpu7", "max": 3100000, "min": 2650000, "margin": 400 },
+
+
+        { "id": "inactive:cpu0", "max": 1800000, "min": 1000000, "margin": 200 },
+        { "id": "inactive:cpu4", "max": 1900000, "min": 400000, "margin": 180 },
+        { "id": "inactive:cpu7", "max": 2300000, "min": 500000, "margin": 220 },
+
+        { "id": "idle:cpu0", "max": 1600000, "min": 600000, "margin": 120 },
+        { "id": "idle:cpu4", "max": 1800000, "min": 400000, "margin": 100 },
+        { "id": "idle:cpu7", "max": 2000000, "min": 500000, "margin": 120 }
       ]
     },
     "gesture_boost": {
@@ -120,8 +120,7 @@
     ],
     "common_inactvie": [
       ["$ddr_freq_min", "#800000000"],
-      ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
-      ["@high_rate", "auto"]
+      ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"]
     ],
     "common_app": [
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 0|cm_mgr_perf_enable 0"],

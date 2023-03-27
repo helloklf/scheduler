@@ -2,7 +2,6 @@
   "friendly": "原神",
   "call": [
     ["@cpuset", "1", "0-2", "0-5", "0-7"],
-    ["@high_rate", "off", "1000"],
     ["$l3_boost", "0"]
   ],
   "cpuset": {

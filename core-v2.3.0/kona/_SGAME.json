@@ -1,17 +1,17 @@
 {
   "friendly": "王者荣耀",
   "limiters": [
-    {"id": "sgame2:cpu4", "step_shift": -1, "mode": "BOTTOM", "max_freq": 2150400, "min_freq": 710400, "margin_mhz": 605, "smoothness": 15},
-    {"id": "sgame2:cpu7", "step_shift": -1, "mode": "BOTTOM", "max_freq": 2361600, "min_freq": 844800, "margin_mhz": 605, "smoothness": 16},
+    {"id": "sgame2:cpu4", "step": -1, "mode": "BOTTOM", "max": 2150400, "min": 710400, "margin": 605, "smoothness": 15},
+    {"id": "sgame2:cpu7", "step": -1, "mode": "BOTTOM", "max": 2361600, "min": 844800, "margin": 605, "smoothness": 16},
 
-    {"id": "sgame3:cpu4", "step_shift": -1, "mode": "BOTTOM", "max_freq": 1958400, "min_freq": 1574400, "margin_mhz": 695, "smoothness": 15},
-    {"id": "sgame3:cpu7", "step_shift": -1, "mode": "BOTTOM", "max_freq": 2457600, "min_freq": 1747200, "margin_mhz": 695, "smoothness": 16},
+    {"id": "sgame3:cpu4", "step": -1, "mode": "BOTTOM", "max": 1958400, "min": 1574400, "margin": 695, "smoothness": 15},
+    {"id": "sgame3:cpu7", "step": -1, "mode": "BOTTOM", "max": 2457600, "min": 1747200, "margin": 695, "smoothness": 16},
 
-    {"id": "sgame4:cpu4", "active_interval": 32, "step_shift": -1, "mode": "BOTTOM", "max_freq": 2246400, "min_freq": 1670400, "margin_mhz": 695, "smoothness": 15},
-    {"id": "sgame4:cpu7", "active_interval": 32, "step_shift": -1, "mode": "BOTTOM", "max_freq": 2649600, "min_freq": 1862400, "margin_mhz": 695, "smoothness": 15},
+    {"id": "sgame4:cpu4", "active_interval": 32, "step": -1, "mode": "BOTTOM", "max": 2246400, "min": 1670400, "margin": 695, "smoothness": 15},
+    {"id": "sgame4:cpu7", "active_interval": 32, "step": -1, "mode": "BOTTOM", "max": 2649600, "min": 1862400, "margin": 695, "smoothness": 15},
 
-    {"id": "sgame5:cpu4", "active_interval": 32, "step_shift": -1, "mode": "BOTTOM", "max_freq": 2342400, "min_freq": 1862400, "margin_mhz": 1000, "smoothness": 15},
-    {"id": "sgame5:cpu7", "active_interval": 32, "step_shift": -1, "mode": "BOTTOM", "max_freq": 2841600, "min_freq": 1862400, "margin_mhz": 1000, "smoothness": 15}
+    {"id": "sgame5:cpu4", "active_interval": 32, "step": -1, "mode": "BOTTOM", "max": 2342400, "min": 1862400, "margin": 1000, "smoothness": 15},
+    {"id": "sgame5:cpu7", "active_interval": 32, "step": -1, "mode": "BOTTOM", "max": 2841600, "min": 1862400, "margin": 1000, "smoothness": 15}
   ],
   "cpuset": {
     "unity_main": "7",

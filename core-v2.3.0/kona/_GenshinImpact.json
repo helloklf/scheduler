@@ -1,17 +1,17 @@
 {
   "friendly": "原神",
   "limiters": [
-    { "id": "ys1:cpu4", "mode": "RANGE", "max_freq": 2419200, "min_freq": 1056000, "margin_mhz": 250, "smoothness": 5 },
-    { "id": "ys1:cpu7", "mode": "RANGE", "max_freq": 2649600, "min_freq": 1075200, "margin_mhz": 220, "smoothness": 4 },
+    { "id": "ys1:cpu4", "mode": "RANGE", "max": 2419200, "min": 1056000, "margin": 250, "smoothness": 5 },
+    { "id": "ys1:cpu7", "mode": "RANGE", "max": 2649600, "min": 1075200, "margin": 220, "smoothness": 4 },
 
-    { "id": "ys2:cpu4", "mode": "RANGE", "max_freq": 2419200, "min_freq": 1766400, "margin_mhz": 400, "smoothness": 4 },
-    { "id": "ys2:cpu7", "mode": "RANGE", "max_freq": 3200000, "min_freq": 2073600, "margin_mhz": 350, "smoothness": 4 },
+    { "id": "ys2:cpu4", "mode": "RANGE", "max": 2419200, "min": 1766400, "margin": 400, "smoothness": 4 },
+    { "id": "ys2:cpu7", "mode": "RANGE", "max": 3200000, "min": 2073600, "margin": 350, "smoothness": 4 },
 
-    { "id": "ys3:cpu4", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max_freq": 2419200, "min_freq": 1056000, "margin_mhz": 300, "smoothness": 8 },
-    { "id": "ys3:cpu7", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max_freq": 2841600, "min_freq": 1075200, "margin_mhz": 300, "smoothness": 8 },
+    { "id": "ys3:cpu4", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max": 2419200, "min": 1056000, "margin": 300, "smoothness": 8 },
+    { "id": "ys3:cpu7", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max": 2841600, "min": 1075200, "margin": 300, "smoothness": 8 },
 
-    { "id": "ys4:cpu4", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max_freq": 2419200, "min_freq": 1056000, "margin_mhz": 400, "smoothness": 8 },
-    { "id": "ys4:cpu7", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max_freq": 3200000, "min_freq": 1075200, "margin_mhz": 400, "smoothness": 8 }
+    { "id": "ys4:cpu4", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max": 2419200, "min": 1056000, "margin": 400, "smoothness": 8 },
+    { "id": "ys4:cpu7", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max": 3200000, "min": 1075200, "margin": 400, "smoothness": 8 }
   ],
   "call": [
     ["$stune_top_boost", "0"], ["$stune_top_perf", "0"]

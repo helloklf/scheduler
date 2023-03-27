@@ -17,8 +17,7 @@
       "idle_delay": 1000,
       "enter": [ ["@preset", "fast_active"] ],
       "exit": [
-        ["@preset", "balance_inactive"],
-        ["@high_rate", "off"]
+        ["@preset", "balance_inactive"]
       ]
     }
   }]

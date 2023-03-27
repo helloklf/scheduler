@@ -21,7 +21,6 @@
       "_120": ["2150400", "1996800", "-3"]
     },
     "call": [
-      ["@high_rate", "energy"],
       ["@sched_limit", "0 0", "0 4000", "0 4000"],
       ["@limiters", "lol1:cpu4", "lol1:cpu7"],
       ["@gpu_freq", "min", "315000"]

@@ -72,8 +72,7 @@
       ["$l3_boost", "0"],
       ["@governor", "walt"],
       ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],
-      ["$mod_percent", "100"],
-      ["@values", "target_loads", "0", "0", "0"]
+      ["$mod_percent", "100"]
     ],
 
     "hispeed_freq": [
@@ -93,11 +92,6 @@
       ["/sys/devices/system/cpu/cpufreq/policy4/walt/up_rate_limit_us"],
       ["/sys/devices/system/cpu/cpufreq/policy7/walt/down_rate_limit_us"],
       ["/sys/devices/system/cpu/cpufreq/policy7/walt/up_rate_limit_us"]
-    ],
-    "target_loads": [
-      ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_loads"],
-      ["/sys/devices/system/cpu/cpu4/cpufreq/walt/target_loads"],
-      ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_loads"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]

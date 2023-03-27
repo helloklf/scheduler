@@ -1,20 +1,20 @@
 {
   "friendly": "王者荣耀/LOL",
   "limiters": [
-    {"id": "sgame1:cpu4", "step_shift": -1, "mode": "performance",
-      "max_freq": 2200000, "min_freq": 700000, "margin_mhz": 405, "smoothness": 6},
-    {"id": "sgame1:cpu7", "step_shift": -1, "mode": "performance", "ddr_boost": true,
-      "max_freq": 2650000, "min_freq": 1300000, "margin_mhz": 455, "smoothness": 6},
+    {"id": "sgame1:cpu4", "step": -1, "mode": "performance",
+      "max": 2200000, "min": 700000, "margin": 405, "smoothness": 6},
+    {"id": "sgame1:cpu7", "step": -1, "mode": "performance", "ddr_boost": true,
+      "max": 2650000, "min": 1300000, "margin": 455, "smoothness": 6},
 
-    {"id": "sgame2:cpu4", "step_shift": -1, "mode": "BOTTOM",
-      "max_freq": 2200000, "min_freq": 700000, "margin_mhz": 435, "smoothness": 6},
-    {"id": "sgame2:cpu7", "step_shift": -1, "mode": "BOTTOM", "ddr_boost": true,
-      "max_freq": 2400000, "min_freq": 1300000, "margin_mhz": 435, "smoothness": 6},
+    {"id": "sgame2:cpu4", "step": -1, "mode": "BOTTOM",
+      "max": 2200000, "min": 700000, "margin": 435, "smoothness": 6},
+    {"id": "sgame2:cpu7", "step": -1, "mode": "BOTTOM", "ddr_boost": true,
+      "max": 2400000, "min": 1300000, "margin": 435, "smoothness": 6},
 
-    {"id": "sgame3:cpu4", "active_interval": 40, "step_shift": -1, "mode": "BOTTOM",
-      "max_freq": 2650000, "turning_freq": 2250000, "min_freq": 1300000, "margin_mhz": 535, "smoothness": 8},
-    {"id": "sgame3:cpu7", "active_interval": 40, "step_shift": -1, "mode": "BOTTOM", "ddr_boost": true,
-      "max_freq": 2650000, "turning_freq": 2400000, "min_freq": 1300000, "margin_mhz": 535, "smoothness": 8}
+    {"id": "sgame3:cpu4", "active_interval": 40, "step": -1, "mode": "BOTTOM",
+      "max": 2650000, "turning": 2250000, "min": 1300000, "margin": 535, "smoothness": 8},
+    {"id": "sgame3:cpu7", "active_interval": 40, "step": -1, "mode": "BOTTOM", "ddr_boost": true,
+      "max": 2650000, "turning": 2400000, "min": 1300000, "margin": 535, "smoothness": 8}
   ],
   "affinity": {
     "heavy_thread": "Thread-",
