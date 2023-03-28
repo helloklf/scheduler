@@ -11,20 +11,19 @@
     {"id": "ys2:cpu4", "max": 2400000, "min": 1800000, "margin": 355, "smoothness": 6, "mode": "BOTTOM"},
     {"id": "ys2:cpu7", "max": 2500000, "min": 1800000, "margin": 350, "smoothness": 4, "mode": "BOTTOM"}
   ],
-  "affinity": {
-    "interval": 1000,
-    "unity_main": "40",
+  "cpuset": {
+    "unity_main": "6",
     "heavy_thread": "UnityGfx",
-    "heavy_mask": "80",
+    "heavy_cores": "7",
     "comm": {
-      "30": ["UnityPreload", "FMOD", "UnityChoreograp", "NativeThread", "Worker Thread"],
-      "20": ["UnityMultiRende"],
-      "F": [
+      "4-5": ["UnityPreload", "FMOD", "UnityChoreograp", "NativeThread", "Worker Thread"],
+      "5": ["UnityMultiRende"],
+      "0-3": [
         "mali-event-", "AsyncReadManage",
         "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"
       ]
     },
-    "other": "F"
+    "other": "0-3"
   },
   "modes": [
     {

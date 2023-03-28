@@ -1,14 +1,14 @@
 {
   "friendly": "王者荣耀/LOL",
-  "affinity": {
-    "unity_main": "80",
+  "cpuset": {
+    "unity_main": "7",
     "heavy_thread": "Thread-",
-    "heavy_mask": "40",
+    "heavy_cores": "6",
     "comm": {
-      "F0": ["UnityPreload"],
-      "40": ["UnityGfx"],
-      "30": ["CoreThread"],
-      "3F": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+      "4-7": ["UnityPreload"],
+      "6": ["UnityGfx"],
+      "4-5": ["CoreThread"],
+      "0-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
     },
     "other": "3F"
   },

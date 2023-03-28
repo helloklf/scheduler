@@ -1,17 +1,17 @@
 {
   "friendly": "王者荣耀CN",
-  "affinity": {
+  "cpuset": {
     "interval": 1000,
     "heavy_thread": "Thread-",
-    "heavy_mask": "40",
+    "heavy_cores": "6",
     "comm": {
-      "80": ["UnityMain"],
-      "F0": ["UnityPreload"],
-      "40": ["UnityGfx"],
-      "30": ["CoreThread", "Apollo", "Worker Thread", "NativeThread"],
-      "3f": ["mali-"]
+      "7": ["UnityMain"],
+      "4-7": ["UnityPreload"],
+      "6": ["UnityGfx"],
+      "4-5": ["CoreThread", "Apollo", "Worker Thread", "NativeThread"],
+      "0-5": ["mali-"]
     },
-    "other": "3f"
+    "other": "0-5"
   },
   "call": [
     ["$boost_affinity", "#0"]

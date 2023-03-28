@@ -304,10 +304,10 @@
     {
       "friendly": "QQ飞车",
       "packages": ["com.tencent.tmgp.speedmobile"],
-      "affinity": {
+      "cpuset": {
         "interval": 2000,
-        "unity_main": "80",
-        "other": "7F"
+        "unity_main": "7",
+        "other": "0-6"
       }
     },
     {

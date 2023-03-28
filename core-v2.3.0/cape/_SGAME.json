@@ -1,15 +1,15 @@
 {
   "friendly": "王者荣耀",
-  "affinity": {
-    "unity_main": "80",
+  "cpuset": {
+    "unity_main": "7",
     "heavy_thread": "Thread-",
-    "heavy_mask": "70",
+    "heavy_cores": "4-6",
     "comm": {
-      "80": ["UnityPreload"],
-      "70": ["NativeThread", "UnityGfx", "Worker Thread"],
-      "7F": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+      "7": ["UnityPreload"],
+      "4-6": ["NativeThread", "UnityGfx", "Worker Thread"],
+      "0-6": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
     },
-    "other": "7F"
+    "other": "0-6"
   },
   "modes": [
     {

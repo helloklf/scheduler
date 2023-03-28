@@ -26,19 +26,19 @@
     { "id": "ys-p5:cpu4", "mode": "RANGE", "max": 2419200, "min": 1555200, "margin": 300, "active_interval": 48, "smoothness": 5 },
     { "id": "ys-p5:cpu7", "mode": "RANGE", "max": 2630400, "min": 1056000, "margin": 300, "active_interval": 48, "smoothness": 5 }
   ],
-  "affinity": {
-    "unity_main": "80",
+  "cpuset": {
+    "unity_main": "7",
     "heavy_thread": "UnityGfx",
-    "heavy_mask": "40",
+    "heavy_cores": "6",
     "heavy_switch": true,
     "comm": {
-      "30": ["UnityMultiRende"],
-      "3F": ["Worker Thread", "UnityPreload", "NativeThread", "FMOD", "UnityChoreograp"],
-      "F": [
+      "4-5": ["UnityMultiRende"],
+      "0-5": ["Worker Thread", "UnityPreload", "NativeThread", "FMOD", "UnityChoreograp"],
+      "0-3": [
         "AsyncReadManage", "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"
       ]
     },
-    "other": "3F"
+    "other": "0-5"
   },
   "modes": [
     {

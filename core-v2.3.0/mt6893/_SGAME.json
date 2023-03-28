@@ -6,18 +6,17 @@
     { "id": "sgame:cpu4", "mode": "BOTTOM", "max": 2354000, "min": 1162000, "margin": 535 },
     { "id": "sgame:cpu7", "mode": "BOTTOM", "max": 2463000, "min": 1370000, "margin": 545 }
   ],
-  "affinity": {
-    "interval": 1000,
-    "unity_main": "80",
+  "cpuset": {
+    "unity_main": "7",
     "heavy_thread": "Thread-",
-    "heavy_mask": "40",
+    "heavy_cores": "6",
     "comm": {
-      "F0": ["UnityPreload"],
-      "40": ["UnityGfx"],
-      "30": ["CoreThread", "Worker Thread"],
-      "3F": ["NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+      "4-7": ["UnityPreload"],
+      "6": ["UnityGfx"],
+      "4-5": ["CoreThread", "Worker Thread"],
+      "0-5": ["NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
     },
-    "other": "3F"
+    "other": "0-5"
   },
   "modes": [{
     "mode": ["powersave"],

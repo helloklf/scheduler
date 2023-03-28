@@ -6,13 +6,13 @@
     "com.miHoYo.ys.bilibili",
     "com.miHoYo.GenshinImpact"
   ],
-  "affinity": {
+  "cpuset": {
     "comm": {
-      "70": ["UnityGfx", "UnityMain", "UnityMultiRende"],
-      "3F": ["Worker Thread", "AudioTrack", "Audio"],
-      "F": ["Thread-", "MIHOYO_NETWORK", "mali-cmar-backe", "Audio", "tp_schedule", "NativeThread", "AsyncReadManage"]
+      "4-6": ["UnityGfx", "UnityMain", "UnityMultiRende"],
+      "0-5": ["Worker Thread", "AudioTrack", "Audio"],
+      "0-3": ["Thread-", "MIHOYO_NETWORK", "mali-cmar-backe", "Audio", "tp_schedule", "NativeThread", "AsyncReadManage"]
     },
-    "other": "3f"
+    "other": "0-5"
   },
   "modes": [
     {

@@ -16,7 +16,7 @@
   "cpuset": {
     "unity_main": "7",
     "heavy_thread": "Thread-",
-    "heavy_mask": "6",
+    "heavy_cores": "6",
     "comm": {
       "4-7": ["UnityPreload"],
       "6": ["UnityGfx"],

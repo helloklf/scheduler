@@ -6,17 +6,17 @@
     "com.miHoYo.ys.bilibili",
     "com.miHoYo.GenshinImpact"
   ],
-  "affinity": {
+  "cpuset": {
     "interval": 2000,
     "heavy_thread": "UnityGfx",
-    "heavy_mask": "80",
-    "unity_main": "40",
+    "heavy_cores": "7",
+    "unity_main": "6",
     "comm": {
-      "30": ["UnityPreload", "UnityMultiRende"],
-      "3F": ["FMOD", "UnityChoreograp", "ged-swd", "Worker Thread"],
-      "F": ["Thread-", "MIHOYO_NETWORK", "mali-cmar-backe", "mali-event-", "mali-cpu-", "mali-mem-", "Audio", "tp_schedule", "NativeThread", "AsyncReadManage"]
+      "4-5": ["UnityPreload", "UnityMultiRende"],
+      "0-5": ["FMOD", "UnityChoreograp", "ged-swd", "Worker Thread"],
+      "0-3": ["Thread-", "MIHOYO_NETWORK", "mali-cmar-backe", "mali-event-", "mali-cpu-", "mali-mem-", "Audio", "tp_schedule", "NativeThread", "AsyncReadManage"]
     },
-    "other": "3F"
+    "other": "0-5"
   },
   "limiters": [
     { "id": "ys-p2:cpu4", "max": 2354000, "min": 1537000, "margin": 450 },

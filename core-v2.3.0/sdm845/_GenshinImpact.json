@@ -7,14 +7,14 @@
       ["$stune_top_boost", "100"]
     ],
     "sensors": [],
-    "affinity": {
-      "unity_main": "80",
+    "cpuset": {
+      "unity_main": "7",
       "comm": {
-        "40": ["UnityGfx"],
-        "F0": ["UnityMultiRende", "Timer"],
-        "3F": ["Worker Thread", "NativeThread"],
-        "F": ["Thread-", "Audio", "MIHOYO_NETWORK", "tp_schedule"]
+        "6": ["UnityGfx"],
+        "4-7": ["UnityMultiRende", "Timer"],
+        "0-5": ["Worker Thread", "NativeThread"],
+        "0-3": ["Thread-", "Audio", "MIHOYO_NETWORK", "tp_schedule"]
       },
-      "other": "3F"
+      "other": "0-5"
     }
 }

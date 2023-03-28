@@ -7,13 +7,13 @@
     "com.hottagames.hotta.mi"
   ],
   "sensors": [],
-  "affinity": {
+  "cpuset": {
     "interval": 1000,
     "comm": {
-      "80": ["GameThread"],
-      "70": ["RenderThread", "RHIThread"]
+      "7": ["GameThread"],
+      "4-6": ["RenderThread", "RHIThread"]
     },
-    "other": "ff"
+    "other": "0-7"
   },
   "modes": [
     {

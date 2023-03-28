@@ -6,7 +6,6 @@
 ## [场景](./apps.md)
 ## [传感器](./sensor.md)
 ## [CPUSET](./cpuset.md)
-## [Affinity *已弃用](./affinity.md)
 ## [触摸升频](./booster.md)
 ## [预设](./presets.md)
 ## [别名](./alias.md)

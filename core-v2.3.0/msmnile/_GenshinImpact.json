@@ -15,19 +15,19 @@
     ["$sched_boost", "0"],
     ["$stune_top_boost", "0"]
   ],
-  "affinity": {
+  "cpuset": {
     "interval": 5000,
-    "unity_main": "80",
+    "unity_main": "7",
     "heavy_thread": "UnityGfx",
-    "heavy_mask": "40",
+    "heavy_cores": "6",
     "comm": {
-      "30": ["UnityPreload", "FMOD", "UnityChoreograp", "NativeThread", "Worker Thread"],
-      "20": ["UnityMultiRende"],
-      "F": [
+      "4-5": ["UnityPreload", "FMOD", "UnityChoreograp", "NativeThread", "Worker Thread"],
+      "5": ["UnityMultiRende"],
+      "0-3": [
         "AsyncReadManage", "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"
       ]
     },
-    "other": "F"
+    "other": "0-3"
   },
   "modes": [
     {

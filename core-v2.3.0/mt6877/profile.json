@@ -63,24 +63,24 @@
       "modes": [
         {
           "mode": ["powersave", "balance", "performance"],
-          "affinity": {
+          "cpuset": {
             "comm": {
-              "C0": ["UnityMain"],
-              "40": ["UnityGfx"],
-              "20": ["UnityMultiRende"],
-              "1C": ["Worker Thread"]
+              "6-7": ["UnityMain"],
+              "6": ["UnityGfx"],
+              "5": ["UnityMultiRende"],
+              "2-4": ["Worker Thread"]
             },
-            "other": "3F"
+            "other": "0-5"
           }
         },
         {
           "mode": ["fast", "pedestal"],
-          "affinity": {
+          "cpuset": {
             "comm": {
-              "C0": ["UnityMain"],
-              "40": ["UnityGfx", "UnityMultiRende"]
+              "6-7": ["UnityMain"],
+              "6": ["UnityGfx", "UnityMultiRende"]
             },
-            "other": "ff"
+            "other": "0-7"
           }
         }
       ]
@@ -88,25 +88,25 @@
     {
       "friendly": "王者荣耀",
       "packages": ["com.tencent.tmgp.sgame"],
-      "affinity": {
+      "cpuset": {
         "interval": 1000,
         "comm": {
-          "C0": ["UnityGfx", "UnityMain", "UnityPreload", "Thread-"],
-          "38": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+          "6-7": ["UnityGfx", "UnityMain", "UnityPreload", "Thread-"],
+          "3-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
         },
-        "other": "FF"
+        "other": "0-7"
       }
     },
     {
       "friendly": "和平精英",
       "packages": ["com.tencent.tmgp.pubgmhd",  "com.tencent.ig"],
-      "affinity": {
+      "cpuset": {
         "interval": 1000,
         "comm": {
-          "80": ["RenderThread"],
-          "70": ["Thread-", "TaskGraphNP"]
+          "7": ["RenderThread"],
+          "4-6": ["Thread-", "TaskGraphNP"]
         },
-        "other": "3F"
+        "other": "0-5"
       },
       "sensors": [],
       "modes": [

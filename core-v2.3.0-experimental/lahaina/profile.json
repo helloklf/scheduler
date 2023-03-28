@@ -50,12 +50,12 @@
         { "id": "p4:cpu7", "max": 2841600, "min": 2496000, "margin": 550 },
 
         { "id": "inactive:cpu0", "max": 1612800, "min": 800000, "margin": 240 },
-        { "id": "inactive:cpu4", "step": -0.7, "max": 1670400, "margin": 200 },
-        { "id": "inactive:cpu7", "step": -0.7, "max": 1785600, "margin": 200 },
+        { "id": "inactive:cpu4", "max": 1670400, "margin": 200 },
+        { "id": "inactive:cpu7", "max": 1785600, "margin": 200 },
 
         { "id": "idle:cpu0", "max": 1612800, "min": 800000, "margin": 200 },
-        { "id": "idle:cpu4", "step": -0.9, "max": 1440000, "margin": 100 },
-        { "id": "idle:cpu7", "step": -0.9, "max": 1670400, "margin": 120 }
+        { "id": "idle:cpu4", "max": 1440000, "margin": 100 },
+        { "id": "idle:cpu7", "max": 1670400, "margin": 120 }
       ]
     }
   },

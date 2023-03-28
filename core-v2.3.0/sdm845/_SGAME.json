@@ -7,17 +7,17 @@
       {"id": "sgame4:cpu4", "active_interval": 40, "step": -1, "mode": "BOTTOM",
         "max": 2450000, "min": 1843200, "margin": 465, "smoothness": 22}
     ],
-    "affinity": {
-      "unity_main": "80",
+    "cpuset": {
+      "unity_main": "7",
       "heavy_thread": "Thread-",
-      "heavy_mask": "40",
+      "heavy_cores": "6",
       "comm": {
-        "40": ["UnityGfx"],
-        "30": ["CoreThread", "UnityPreload", "Worker Thread", "NativeThread"],
-        "3F": ["FMOD", "UnityChoreograp", "AsyncReadManage"],
-        "F": ["Audio", "tp_schedule"]
+        "6": ["UnityGfx"],
+        "4-5": ["CoreThread", "UnityPreload", "Worker Thread", "NativeThread"],
+        "0-5": ["FMOD", "UnityChoreograp", "AsyncReadManage"],
+        "0-3": ["Audio", "tp_schedule"]
       },
-      "other": "3F"
+      "other": "0-5"
     },
     "modes": [{
         "mode": ["powersave"],

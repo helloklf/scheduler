@@ -16,14 +16,14 @@
   "call": [
     ["@cpuset", "1", "0-3", "0-5", "0-7"]
   ],
-  "affinity": {
-    "unity_main": "40",
+  "cpuset": {
+    "unity_main": "6",
     "comm": {
-      "80": ["UnityGfx"],
-      "30": ["UnityMultiRende", "UnityChoreograp", "Worker Thread"],
-      "3F": ["FMOD", "ged-swd", "AsyncReadManage", "NativeThread", "mali-", "UnityPreload"]
+      "7": ["UnityGfx"],
+      "4-5": ["UnityMultiRende", "UnityChoreograp", "Worker Thread"],
+      "0-5": ["FMOD", "ged-swd", "AsyncReadManage", "NativeThread", "mali-", "UnityPreload"]
     },
-    "other": "3F"
+    "other": "0-5"
   },
   "modes": [
     {

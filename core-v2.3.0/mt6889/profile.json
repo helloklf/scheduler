@@ -377,11 +377,11 @@
         "com.hottagames.hotta.bilibili",
         "com.hottagames.hotta.mi"
       ],
-      "affinity": {
+      "cpuset": {
         "comm": {
-          "70": ["GameThread", "RenderThread", "RHIThread"]
+          "4-6": ["GameThread", "RenderThread", "RHIThread"]
         },
-        "other": "ff"
+        "other": "0-7"
       }
     },
     {

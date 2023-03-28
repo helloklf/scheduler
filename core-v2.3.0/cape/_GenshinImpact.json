@@ -1,8 +1,6 @@
 {
   "friendly": "原神",
   "call": [
-    ["@uclamp", "0.00~5.00", "0.00~max", "0.00~max"],
-    ["@cpuset", "0-2", "0-3", "0-5", "0-7"],
     ["$l3_boost", "1804800"]
   ],
   "limiters": [
@@ -22,17 +20,16 @@
     {"id": "ys4:cpu4", "step": -1.0, "max": 2745600, "min": 1400000, "margin": 400, "smoothness": 6, "mode": "BOTTOM"},
     {"id": "ys4:cpu7", "step": -1.0, "max": 2995200, "min": 1200000, "margin": 300, "smoothness": 6, "mode": "BOTTOM"}
   ],
-  "affinity": {
-    "interval": 5000,
-    "unity_main": "40",
+  "cpuset": {
+    "unity_main": "6",
     "heavy_thread": "UnityGfx",
-    "heavy_mask": "80",
+    "heavy_cores": "7",
     "heavy_switch": false,
     "comm": {
-      "30": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende"],
-      "3F": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-", "FMOD", "UnityPreload", "AsyncReadManage"]
+      "4-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende"],
+      "0-5": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-", "FMOD", "UnityPreload", "AsyncReadManage"]
     },
-    "other": "F"
+    "other": "0-3"
   },
   "modes": [
     {

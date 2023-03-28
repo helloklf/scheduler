@@ -68,14 +68,14 @@
     {
       "mode": ["*"],
       "_affinity": {
-        "unity_main": "40",
+        "unity_main": "6",
         "comm": {
-          "80": ["UnityGfx"],
-          "30": ["UnityMultiRende", "UnityPreload"],
-          "3F": ["MIHOYO_NETWORK", "FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage", "Worker Thread"],
-          "F": ["Audio", "tp_schedule"]
+          "7": ["UnityGfx"],
+          "4-5": ["UnityMultiRende", "UnityPreload"],
+          "0-5": ["MIHOYO_NETWORK", "FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage", "Worker Thread"],
+          "0-3": ["Audio", "tp_schedule"]
         },
-        "other": "3F"
+        "other": "0-5"
       },
       "call": [
         ["@cpu_freq", "cpu0", "1420800", "1804800"],

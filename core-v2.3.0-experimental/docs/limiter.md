@@ -66,25 +66,24 @@
 | :- | :- | :-: |
 | id | 格式为`**:[clusterExpr]`，必须在整套配置里保持不重名 | string |
 | mode | 工作模式 | string |
-| step_shift | 连续升频时的跳频力度微调，范围 `-1 ~ 1` | float |
-| max_freq | 最高频率限制，0或不配置为不限制 | int |
-| min_freq | 最低频率限制，0或不配置为不限制 | int |
-| margin_mhz | 固定的余量 | int |
-| perfect_freq | 能效/功耗最佳平衡频率，默认是CPU支持的最高频率×0.8 | int |
+| step | 连续升频时的跳频力度微调，范围 `-1 ~ 1` | float |
+| max | 最高频率限制，0或不配置为不限制 | int |
+| min | 最低频率限制，0或不配置为不限制 | int |
+| margin | 固定的余量(M Cycles) | int |
+| perfect | 能效/功耗最佳平衡频率，默认是CPU支持的最高频率×0.8 | int |
 | smoothness | 频率平滑度，默认`4`，最小为`1` | int |
-| margin_ratio | 余量比例，`0 ~ 1` | float |
 
 
 #### 连续升频
 - 使用Limiter通常是为了减少CPU余量降低功耗
 - 因此经常把`margin`设置的非常小，这导致升频变得非常谨慎和缓慢
 - 为了解决这个问题，limiter在连续的上调频率时，会不断加大升频幅度
-- 如果频率低于`perfect_freq`，跳频策略就会生效，这对减少卡顿非常有用
-- step_shift 在跳频过程的大致作用，可以通过一段假代码来描述
+- 跳频机制只会在用户操作手机，且当前频率低于`perfect`时生效，这对减少卡顿非常有用
+- `step`(**stepAdj**)参数在跳频过程的大致作用，可以通过一段假代码来描述
 
   ```
-  nextFreq = currentFreq * loadRatio + marginMHz
-  scale = 1 + ((连续升频次数 / 0.1) * (1 + stepShift))
+  nextFreq = currentFreq * loadRatio + margin
+  scale = 1 + ((连续升频次数 / 0.1) * (1 + stepAdj))
   if gaming {
     nextFreq = nextFreq * scale
   } else {
@@ -95,7 +94,7 @@
   > 建议
   - 从上面的代码就可以看出来，判定为`游戏`时跳频力度会有所收敛，
   - 这是因为游戏的负载通常趋于稳定，减少跳频可以有效降低功耗，
-  - 有些游戏，甚至可以将`step_shift`设置为`-1`来完全禁止跳频
+  - 有些游戏，甚至可以将`step`设置为`-1`来完全禁止跳频
   - 但在平常多任务切换的使用中，限制跳频并且余量也很小的话就容易发生卡顿
 
 #### 频率平滑度
@@ -106,10 +105,39 @@
 
 #### 余量
 - Limiter没有复杂的能效模型，也不会刻意限制使用更高的频率，因此余量的设置至关重要
-- 但 max_margin_ratio 和 margin_mhz 有区别？ 
+- 同时，Limiter不支持百分比余量，而是使用了固定余量。这么做会有什么好处呢？
+
+#### Limiter的固定余量
+- 先来看看Limiter的固定余量运算逻辑
+
+  ```
+  loadRatio = 0.8
+  margin = 288
+
+  currentFreq = 700
+  expectCycles = currentFreq * loadRatio      // 560
+  nextFreq = expectCycles + margin            // 848
+  // expectCycles ÷ nextFreq = 0.66
+
+  currentFreq = 1200
+  expectCycles = currentFreq * loadRatio      // 960
+  nextFreq = expectCycles + margin            // 1248
+  // expectCycles ÷ nextFreq = 0.77
+
+  currentFreq = 2450
+  expectCycles = currentFreq * loadRatio      // 1960
+  nextFreq = expectCycles + margin            // 2248
+  // expectCycles ÷ nextFreq = 0.87
+  ```
+
+  - 可以看出来，Limiter采用的固定余量，实际上会产生一个低频更激进高频更保守的效果
+  - 这让没有能源模型的Limiter也有了少许的高频抑制效果
+
+
 
 #### 百分比余量
-- 假设，我们期望CPU负载达到70%时升频，所以margin_ratio应设为0.3，看看运算逻辑
+- 作为对比，百分比余量会有什么缺点，为什么Limiter不采用呢？
+- 假设，我们期望CPU负载达到70%时升频，所以marginRatio应该是0.3，看看运算逻辑
 
   ```
   loadRatio = 0.8
@@ -131,31 +159,4 @@
   // nextFreq - nextFreq = 588，expectCycles ÷ nextFreq = 0.77
   ```
 
-  - 可以看出来，按比例设置余量并不科学，这会导致频率越高浪费的性能越多
-
-
-#### 固定余量
-- 现在换成通过margin_mhz设置余量，看看运算逻辑
-
-  ```
-  loadRatio = 0.8
-  marginMHz = 288
-
-  currentFreq = 700
-  expectCycles = currentFreq * loadRatio      // 560
-  nextFreq = expectCycles + marginMHz         // 848
-  // expectCycles ÷ nextFreq = 0.66
-
-  currentFreq = 1200
-  expectCycles = currentFreq * loadRatio      // 960
-  nextFreq = expectCycles + marginMHz         // 1248
-  // expectCycles ÷ nextFreq = 0.77
-
-  currentFreq = 2450
-  expectCycles = currentFreq * loadRatio      // 1960
-  nextFreq = expectCycles + marginMHz         // 2248
-  // expectCycles ÷ nextFreq = 0.87
-  ```
-
-  - 可以看出来，通过margin_mhz设置固定余量，实际上会产生一个低频更激进高频更保守的效果
-  - 这让没有能源模型的Limiter也有了少许的高频抑制效果
+  - 可以看出来，按比例设置余量并不科学，这会导致频率越高CPU的空余性能越多

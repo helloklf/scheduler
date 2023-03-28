@@ -25,20 +25,20 @@
     {"id": "ys5:cpu4", "step": -1.0, "max": 2850000, "turning": 2650000, "min": 2400000, "margin": 400, "smoothness": 6},
     {"id": "ys5:cpu7", "step": -1.0, "max": 3000000, "turning": 2650000, "min": 2400000, "margin": 300, "smoothness": 6}
   ],
-  "affinity": {
+  "cpuset": {
     "interval": 5000,
-    "unity_main": "80",
+    "unity_main": "7",
     "heavy_thread": "UnityGfx",
-    "heavy_mask": "40",
+    "heavy_cores": "6",
     "heavy_switch": true,
     "comm": {
-      "30": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende"],
-      "F": [
+      "4-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende"],
+      "0-3": [
         "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"
       ],
-      "3F": ["FMOD", "UnityPreload", "mali-event-", "AsyncReadManage", "mali-cmar-backe", "mali-cpu-", "mali-mem-", "ged-swd"]
+      "0-5": ["FMOD", "UnityPreload", "mali-event-", "AsyncReadManage", "mali-cmar-backe", "mali-cpu-", "mali-mem-", "ged-swd"]
     },
-    "other": "F"
+    "other": "0-3"
   },
   "modes": [
     {
@@ -91,19 +91,19 @@
       "call": [
         ["@limiters", "ys3:cpu0", "ys3:cpu4", "ys3:cpu7"]
       ],
-      "affinity": {
+      "cpuset": {
         "interval": 5000,
-        "unity_main": "40",
+        "unity_main": "6",
         "heavy_thread": "UnityGfx",
-        "heavy_mask": "80",
+        "heavy_cores": "7",
         "comm": {
-          "30": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende"],
-          "F": [
+          "4-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende"],
+          "0-3": [
             "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"
           ],
-          "3F": ["FMOD", "UnityPreload", "mali-event-", "AsyncReadManage", "mali-cmar-backe", "mali-cpu-", "mali-mem-", "ged-swd"]
+          "0-5": ["FMOD", "UnityPreload", "mali-event-", "AsyncReadManage", "mali-cmar-backe", "mali-cpu-", "mali-mem-", "ged-swd"]
         },
-        "other": "F"
+        "other": "0-3"
       },
       "sensors": [
         {

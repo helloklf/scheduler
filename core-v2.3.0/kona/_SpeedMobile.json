@@ -6,14 +6,13 @@
     {"id": "gboost4:cpu4", "step": -1, "mode": "BOTTOM", "max": 2419200, "min": 1670400, "margin": 695, "smoothness": 15},
     {"id": "gboost4:cpu7", "step": -1, "mode": "BOTTOM", "max": 2841600, "min": 1747200, "margin": 695, "smoothness": 15}
   ],
-  "affinity": {
-    "interval": 3000,
-    "unity_main": "80",
+  "cpuset": {
+    "unity_main": "7",
     "comm": {
-      "40": ["UnityGfx"],
-      "80": ["UnityMain"]
+      "6": ["UnityGfx"],
+      "7": ["UnityMain"]
     },
-    "other": "3f"
+    "other": "0-5"
   },
   "call": [
     ["@preset", "bw_boost"],

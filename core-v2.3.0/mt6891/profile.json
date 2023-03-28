@@ -409,13 +409,13 @@
     {
       "friendly": "APEX",
       "packages": ["com.levelinfinite.apexlegendsmobile", "com.ea.gp.apexlegendsmobilefps", "com.tw.fivexgames.apexlegendsmobile"],
-      "affinity": {
+      "cpuset": {
         "heavy_thread": "Thread-",
-        "heavy_mask": "80",
+        "heavy_cores": "7",
         "comm": {
-          "70": ["RHIThread", "RenderThread", "TaskGraphNP", "NativeThread", "MainThread-UE4"]
+          "4-6": ["RHIThread", "RenderThread", "TaskGraphNP", "NativeThread", "MainThread-UE4"]
         },
-        "other": "7F"
+        "other": "0-6"
       }
     },
     {

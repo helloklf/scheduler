@@ -358,28 +358,27 @@
       "friendly": "王者荣耀",
       "packages": ["com.tencent.tmgp.sgame"],
       "sensors": [],
-      "affinity": {
-        "interval": 1000,
+      "cpuset": {
         "heavy_tread": "Thread-",
-        "heavy_mask": "C0",
+        "heavy_cores": "6-7",
         "comm": {
-          "C0": ["UnityGfx", "UnityMain", "UnityPreload"],
-          "3F": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+          "6-7": ["UnityGfx", "UnityMain", "UnityPreload"],
+          "0-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
         },
-        "other": "3F"
+        "other": "0-5"
       }
     },
     {
       "friendly": "和平精英",
       "packages": ["com.tencent.tmgp.pubgmhd",  "com.tencent.ig"],
       "sensors": [],
-      "affinity": {
+      "cpuset": {
         "interval": 1000,
         "comm": {
-          "80": ["RenderThread"],
-          "70": ["Thread-", "TaskGraphNP"]
+          "7": ["RenderThread"],
+          "4-6": ["Thread-", "TaskGraphNP"]
         },
-        "other": "3F"
+        "other": "0-5"
       },
       "modes": [
         {

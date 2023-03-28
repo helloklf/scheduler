@@ -2,24 +2,24 @@
   "friendly": "和平精英",
   "packages": ["com.tencent.tmgp.pubgmhd",  "com.tencent.ig"],
   "sensors": [],
-  "affinity": {
+  "cpuset": {
     "interval": 1000,
     "comm": {
-      "80": ["RenderThread"],
-      "70": ["Thread-", "TaskGraphNP"]
+      "7": ["RenderThread"],
+      "4-6": ["Thread-", "TaskGraphNP"]
     },
-    "other": "7f"
+    "other": "0-6"
   },
   "modes": [
     {
       "mode": ["powersave"],
-      "affinity": {
+      "cpuset": {
         "interval": 1000,
         "comm": {
-          "F0": ["RenderThread"],
-          "70": ["Thread-", "TaskGraphNP"]
+          "4-7": ["RenderThread"],
+          "4-6": ["Thread-", "TaskGraphNP"]
         },
-        "other": "7f"
+        "other": "0-6"
       }
     },
     {

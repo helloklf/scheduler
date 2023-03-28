@@ -1,16 +1,16 @@
 {
   "friendly": "王者荣耀/LOL",
   "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
-  "affinity": {
+  "cpuset": {
     "interval": 1000,
     "heavy_thread": "Thread-",
-    "heavy_mask": "70",
+    "heavy_cores": "4-6",
     "comm": {
-      "80": ["UnityMain","UnityPreload"],
-      "70": ["NativeThread", "UnityGfx", "UnityMultiRende", "Worker Thread"],
-      "7F": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+      "7": ["UnityMain","UnityPreload"],
+      "4-6": ["NativeThread", "UnityGfx", "UnityMultiRende", "Worker Thread"],
+      "0-6": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
     },
-    "other": "7F"
+    "other": "0-6"
   },
   "call": [
     ["$core_ctl_7", "0"]

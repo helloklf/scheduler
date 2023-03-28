@@ -1,14 +1,13 @@
 {
   "friendly": "和平精英",
   "packages": ["com.tencent.tmgp.pubgmhd",  "com.tencent.ig"],
-  "affinity": {
-    "interval": 1000,
+  "cpuset": {
     "heavy_thread": "Thread-",
-    "heavy_mask": "80",
+    "heavy_cores": "7",
     "comm": {
-      "70": ["RenderThread", "TaskGraphNP"]
+      "4-6": ["RenderThread", "TaskGraphNP"]
     },
-    "other": "7f"
+    "other": "0-6"
   },
   "call": [
     ["@limiters", "NONE"],
