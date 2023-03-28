@@ -351,13 +351,6 @@
       }]
     },
     {
-      "friendly": "备份还原",
-      "packages": ["com.miui.huanji", "com.miui.backup"],
-      "call": [
-        ["@uclamp", "0.00~max", "0.00~max", "0.00~max"]
-      ]
-    },
-    {
       "friendly": "All",
       "packages": ["*"],
       "import": "_Apps.json"

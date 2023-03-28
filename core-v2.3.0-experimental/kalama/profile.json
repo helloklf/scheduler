@@ -326,18 +326,6 @@
       "import": "_Standby.json"
     },
     {
-      "friendly": "备份还原",
-      "packages": ["com.miui.huanji", "com.miui.backup"],
-      "call": [
-        ["@uclamp", "0.00~max", "0.00~max", "0.00~max"]
-      ]
-    },
-    {
-      "friendly": "白名单应用",
-      "packages": ["com.android.providers.downloads.ui", "android.process.mediaUI"],
-      "import": "_WhiteList.json"
-    },
-    {
       "friendly": "All",
       "packages": ["*"],
       "import": "_Apps.json"

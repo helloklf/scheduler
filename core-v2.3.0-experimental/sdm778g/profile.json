@@ -340,18 +340,6 @@
       "import": "_MiniProgram.json"
     },
     {
-      "friendly": "备份还原",
-      "packages": ["com.miui.huanji", "com.miui.backup"],
-      "call": [
-        ["@uclamp", "0.00~max", "max~max", "max~max"]
-      ]
-    },
-    {
-      "friendly": "Benchmark",
-      "categories": ["CPUBenchmark", "GPUBenchmark"],
-      "import": "_Games.json"
-    },
-    {
       "friendly": "All",
       "packages": ["*"],
       "import": "_Apps.json"

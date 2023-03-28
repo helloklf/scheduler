@@ -376,12 +376,6 @@
       "import": "_Standby.json"
     },
     {
-      "friendly": "备份还原",
-      "packages": ["com.miui.huanji", "com.miui.backup"],
-      "call": [
-      ]
-    },
-    {
       "friendly": "All",
       "packages": ["*"],
       "import": "_Apps.json"

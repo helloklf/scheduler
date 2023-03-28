@@ -289,10 +289,6 @@
       "import": "_MiniProgram.json"
     },
     {
-      "friendly": "备份还原",
-      "packages": ["com.miui.huanji", "com.miui.backup"]
-    },
-    {
       "friendly": "All",
       "packages": ["*"],
       "import": "_Apps.json"

@@ -63,13 +63,13 @@
         { "id": "p4:cpu4", "max": 2650000, "min": 2650000, "margin": 300 },
         { "id": "p4:cpu7", "max": 2800000, "min": 2650000, "margin": 300 },
 
-        { "id": "inactive:cpu0", "step": -1, "max": 1500000, "min": 400000, "margin": 100 },
-        { "id": "inactive:cpu4", "step": -1, "max": 2100000, "min": 400000, "margin": 100 },
-        { "id": "inactive:cpu7", "step": -1, "max": 2100000, "min": 1300000, "margin": 130 },
+        { "id": "inactive:cpu0", "max": 1500000, "min": 400000, "margin": 100 },
+        { "id": "inactive:cpu4", "max": 2100000, "min": 400000, "margin": 100 },
+        { "id": "inactive:cpu7", "max": 2100000, "min": 1300000, "margin": 130 },
 
-        { "id": "idle:cpu0", "step": -1, "max": 1200000, "min": 400000, "margin": 50 },
-        { "id": "idle:cpu4", "step": -1, "max": 1800000, "min": 400000, "margin": 60 },
-        { "id": "idle:cpu7", "step": -1, "max": 1800000, "min": 1300000, "margin": 70 }
+        { "id": "idle:cpu0", "max": 1200000, "min": 400000, "margin": 50 },
+        { "id": "idle:cpu4", "max": 1800000, "min": 400000, "margin": 60 },
+        { "id": "idle:cpu7", "max": 1800000, "min": 1300000, "margin": 70 }
       ]
     },
     "gesture_boost": {
@@ -275,10 +275,6 @@
       "friendly": "相机",
       "categories": ["Camera"],
       "import": "_Camera.json"
-    },
-    {
-      "friendly": "备份还原",
-      "packages": ["com.miui.huanji", "com.miui.backup"]
     },
     {
       "friendly": "All",
