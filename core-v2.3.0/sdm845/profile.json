@@ -197,9 +197,7 @@
         ["@gpu_freq", "min", "730000"],
         ["@preset", "bw_max"]
       ],
-      "app": [
-        ["@charge", "normal"]
-      ],
+      "app": [],
       "game": [
         ["@limiters", "NONE"],
         ["@cpu_freq", "cpu0", "300000", "max"],

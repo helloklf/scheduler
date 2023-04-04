@@ -2,8 +2,7 @@
   "friendly": "待机",
   "packages": ["standby"],
   "call": [
-    ["@limiters", "NONE"],
-    ["@charge", "normal"]
+    ["@limiters", "NONE"]
   ],
   "booster": {
     "duration": 3500,

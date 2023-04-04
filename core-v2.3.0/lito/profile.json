@@ -215,9 +215,7 @@
         ["@gpu_freq", "min", "730000"],
         ["@preset", "bw_max"]
       ],
-      "app": [
-        ["@charge", "normal"]
-      ],
+      "app": [],
       "game": [
         ["@limiters", "NONE"],
         ["@cpu_freq", "cpu0", "300000", "1804800"],
@@ -236,9 +234,7 @@
         ["@gpu_freq", "min", "max"],
         ["@preset", "bw_max"]
       ],
-      "app": [
-        ["@charge", "normal"]
-      ],
+      "app": [],
       "game": [
         ["@limiters", "NONE"],
         ["@cpu_freq", "cpu0", "1651200", "1804800"],
@@ -268,16 +264,6 @@
     }
   },
   "apps": [
-    {
-      "friendly": "抖音、西瓜、快手",
-      "categories": ["ShortVideo"],
-      "import": "_Apps.json"
-    },
-    {
-      "friendly": "视频应用",
-      "categories": ["Video"],
-      "import": "_Apps.json"
-    },
     {
       "friendly": "极速响应",
       "categories": ["Launcher"],
@@ -319,39 +305,7 @@
     {
       "friendly": "All",
       "packages": ["*"],
-      "modes": [{
-        "mode": ["powersave"],
-        "booster": {
-          "duration": 2000,
-          "idle_delay": 2000,
-          "enter": [["@preset", "powersave_active"]],
-          "exit": [["@preset", "powersave_inactive"]]
-        }
-      }, {
-        "mode": ["balance"],
-        "booster": {
-          "duration": 3000,
-          "idle_delay": 2000,
-          "enter": [["@preset", "balance_active"]],
-          "exit": [["@preset", "balance_inactive"]]
-        }
-      },{
-        "mode": ["performance"],
-        "booster": {
-          "duration": 4000,
-          "idle_delay": 2000,
-          "enter": [["@preset", "performance_active"]],
-          "exit": [["@preset", "performance_inactive"]]
-        }
-      },{
-        "mode": [ "fast"],
-        "booster": {
-          "duration": 5000,
-          "idle_delay": 2000,
-          "enter": [["@preset", "fast_active"]],
-          "exit": [["@preset", "fast_inactive"]]
-        }
-      }]
+      "import": "_Apps.json"
     }
   ],
   "games": [

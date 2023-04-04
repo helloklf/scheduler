@@ -209,9 +209,7 @@
         ["@gpu_freq", "min", "730000"],
         ["@preset", "bw_max"]
       ],
-      "app": [
-        ["@charge", "normal"]
-      ],
+      "app": [],
       "game": [
         ["@limiters", "NONE"],
         ["@cpu_freq", "cpu0", "300000", "1804800"],
@@ -229,9 +227,7 @@
         ["@gpu_freq", "min", "max"],
         ["@preset", "bw_max"]
       ],
-      "app": [
-        ["@charge", "normal"]
-      ],
+      "app": [],
       "game": [
         ["@limiters", "NONE"],
         ["@cpu_freq", "cpu0", "1708800", "1804800"],
@@ -259,16 +255,6 @@
     }
   },
   "apps": [
-    {
-      "friendly": "抖音、西瓜、快手",
-      "categories": ["ShortVideo"],
-      "import": "_Apps.json"
-    },
-    {
-      "friendly": "视频应用",
-      "categories": ["Video"],
-      "import": "_Apps.json"
-    },
     {
       "friendly": "极速响应",
       "categories": ["Launcher"],
