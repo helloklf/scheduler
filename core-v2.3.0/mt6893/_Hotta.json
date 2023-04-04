@@ -19,7 +19,6 @@
     {
       "mode": ["*"],
       "booster": {
-        "events": ["presets"],
         "duration": 20000,
         "enter": [
           ["$util_max_top", "1024"],

@@ -21,7 +21,6 @@
   "modes": [{
     "mode": ["powersave"],
     "booster": {
-      "events": ["presets"],
       "duration": 3000,
       "enter": [
         ["$deisolation", "4|5|6|7"]
@@ -46,7 +45,6 @@
       ["@limiters", "sgame:cpu0", "sgame:cpu4", "sgame:cpu7"]
     ],
     "booster": {
-      "events": ["presets"],
       "duration": 3000,
       "enter": [
         ["$deisolation", "4|5|6|7"]
@@ -71,7 +69,6 @@
       ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"]
     ],
     "booster": {
-      "events": ["presets"],
       "duration": 3000,
       "enter": [
         ["$deisolation", "4|5|6|7"]
@@ -107,7 +104,6 @@
       ]
     }],
     "booster": {
-      "events": ["presets"],
       "duration": 2000,
       "enter": [
         ["$deisolation", "4|5|6|7"]

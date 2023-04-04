@@ -7,7 +7,6 @@
     "mode": ["powersave"],
     "logger": false,
     "booster": {
-      "events": ["presets"],
       "duration": 2000,
       "enter": [
         ["$cpuset_top", "0-7"],
@@ -32,7 +31,6 @@
     "mode": ["balance"],
     "logger": false,
     "booster": {
-      "events": ["presets"],
       "duration": 2000,
       "enter": [
         ["$cpuset_top", "0-7"],
@@ -57,7 +55,6 @@
     "mode": ["performance", "fast"],
     "logger": false,
     "booster": {
-      "events": ["presets"],
       "duration": 2000,
       "enter": [ ["$cpuset_top", "0-7"], ["$stune_top_boost", "10"], ["$stune_top_perf", "1"] ]
     }

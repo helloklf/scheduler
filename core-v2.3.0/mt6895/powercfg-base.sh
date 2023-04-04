@@ -4,21 +4,6 @@ killall scene-scheduler 2>/dev/null
 
 # rm /data/system/mcd/*
 if [[ -e /data/system/mcd ]]; then
-qt='[CUSTOMIZE_FILTER]
-com.tencent.tmgp.speedmobile="1 2 2.0 6.0"
-com.miHoYo.Yuanshen="1 1 0.0 4.0"
-com.netease.jddsaef="2 1 -2.0 2.0"
-com.tencent.tmgp.sgame="1 2 0.0 4.0"
-'
-glt='[com.tencent.tmgp.speedmobile]
-glt=disable
-[com.netease.jddsaef]
-glt=disable
-[com.tencent.tmgp.sgame]
-glt=disable
-[com.miHoYo.Yuanshen]
-glt=disable
-'
 
 migl='yuanshen 1600 720 -1
 pubg -1 -1 -1
@@ -30,24 +15,12 @@ pubg -1 -1 -1
   echo -n "$migl" > /data/system/mcd/migl
   chmod 444 /data/system/mcd/migl
 
-  chmod 664 /data/system/mcd/qt.cfg
-  echo -n "$qt" > /data/system/mcd/qt.cfg
-  chmod 444 /data/system/mcd/qt.cfg
-
-  chmod 664 /data/system/mcd/glt.cfg
-  echo -n "$glt" > /data/system/mcd/glt.cfg
-  chmod 444 /data/system/mcd/glt.cfg
-
   if [[ -e /data/system/mcd/df ]]; then
     chattr -i /data/system/mcd/df
     rm /data/system/mcd/df
     echo '' > /data/system/mcd/df
     chattr +i /data/system/mcd/df
   fi
-  # echo "$qt" > /data/system/mcd/qt.cfg
-fi
-if [[ -e /data/system/migt/migt ]]; then
-  rm -rf /data/system/migt/migt
 fi
 
 set_value() {
@@ -89,7 +62,7 @@ mk_cpuctl () {
   # echo $5 > /dev/cpuctl/$1/cpu.uclamp.max
 }
 
-lock_value() {
+lock_value () {
   if [[ -f $2 ]];then
     chmod 644 $2
     echo $1 > $2
@@ -117,39 +90,6 @@ hide_value() {
   else
     echo "$1" Not Found!
   fi
-}
-
-# set_task_affinity $pid $use_cores[cpu7~cpu0]
-set_task_affinity() {
-  pid=$1
-  if [[ "$pid" != "" ]]; then
-    mask=`echo "obase=16;$((num=2#$2))" | bc`
-    for tid in $(ls "/proc/$pid/task/"); do
-      taskset -p "$mask" "$tid" 1>/dev/null
-    done
-    taskset -p "$mask" "$pid" 1>/dev/null
-  fi
-}
-
-tcp_low_latency() {
-  if [[ "$1" == '1' ]]; then
-    echo 1 > /proc/sys/net/ipv4/tcp_low_latency
-    echo 0 > /proc/sys/net/ipv4/tcp_slow_start_after_idle
-  else
-    echo 0 > /proc/sys/net/ipv4/tcp_low_latency
-    echo 1 > /proc/sys/net/ipv4/tcp_slow_start_after_idle
-  fi
-}
-
-set_cpuset(){
-  pidof $1 | while read pid; do
-    echo $pid > /dev/cpuset/$2/cgroup.procs
-    # echo $pid > /dev/stune/$2/cgroup.procs
-    ls /proc/$pid/task | while read tid
-    do
-      echo $tid > /dev/cpuset/$2/tasks
-    done
-  done
 }
 
 # Derived from uperf
@@ -187,27 +127,6 @@ move_to_heavy() {
   done
 }
 
-process_renice() {
-  # pidof $1 | while read pid; do
-  for pid in $(echo "$ps_cache" | grep -i -E "$1" | awk '{print $1}'); do
-    renice -n $2 $pid
-  done
-}
-
-for index in 0 1 2 3 4 5 6 7; do
-  hide_value /sys/devices/system/cpu/cpu$index/online 1
-done
-
-# CPU
-cpu_governor='schedutil' # sugov_ext is too slow, schedutil is too fast
-for policy in 0 4 7
-do
-  cur_governor=$(cat /sys/devices/system/cpu/cpufreq/policy${policy}/scaling_governor)
-  if [[ "$cur_governor" != $cpu_governor ]]; then
-    echo $cpu_governor > /sys/devices/system/cpu/cpufreq/policy${policy}/scaling_governor
-  fi
-done
-
 process_opt() {
   sleep 20
 
@@ -226,35 +145,9 @@ process_opt() {
   move_to_heavy 'android:ui'
   move_cpuctl 'aal_sof|kfps|wlan%d' 'background'
 
-  kernel_thread_set
-
-  miui_home=$(pidof com.miui.home)
-  if [[ "$miui_home" != "" ]]; then
-    memcg=/dev/memcg
-    mem_fg=$memcg/scene_fg
-    if [[ -d $memcg ]] && [[ ! -e "$mem_fg" ]]; then
-      mkdir -p $mem_fg
-      echo 0 > $mem_fg/memory.swappiness
-      echo 1 > $mem_fg/memory.oom_control
-      echo 1 > $mem_fg/memory.use_hierarchy
-      echo 1 >  $mem_fg/memory.move_charge_at_immigrate
-    fi
-    echo $miui_home > $mem_fg/cgroup.procs
-  fi
-}
-
-kernel_thread_set(){
-  pgrep -ef 'kcompactd0' | while read pid
+  for name in 'kcompactd0' 'aal_sof' 'kfps' 'kworker'
   do
-    taskset -p 3f $pid > /dev/null
-  done
-  pgrep -ef 'aal_sof' | while read pid
-  do
-    taskset -p 3f $pid > /dev/null
-  done
-  pgrep -ef 'kfps' | while read pid
-  do
-    taskset -p 3f $pid > /dev/null
+    taskset -p 3f $(pgrep -ef $name) > /dev/null
   done
 }
 
@@ -267,44 +160,24 @@ process_opt &
 
 core_ctl_preset(){
   cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
-  echo 10 > $cpu7_core_ctl_dir/offline_throttle_ms
+  echo 20 > $cpu7_core_ctl_dir/offline_throttle_ms
   echo 0 > $cpu7_core_ctl_dir/enable
   echo 1 > $cpu7_core_ctl_dir/max_cpus
-  lock_value 0 $cpu7_core_ctl_dir/min_cpus
-  # echo 95 > $cpu7_core_ctl_dir/thermal_up_thres
-  echo 70 > $cpu7_core_ctl_dir/up_thres
+  echo 0 > $cpu7_core_ctl_dir/min_cpus
+  echo 80 > $cpu7_core_ctl_dir/up_thres
   echo 1 > $cpu7_core_ctl_dir/not_preferred
 
   cpu4_core_ctl_dir=/sys/devices/system/cpu/cpu4/core_ctl
-  echo 20 > $cpu4_core_ctl_dir/offline_throttle_ms
   echo 0 > $cpu4_core_ctl_dir/enable
-  echo 3 > $cpu4_core_ctl_dir/max_cpus
-  lock_value 0 $cpu4_core_ctl_dir/min_cpus
-  # echo 95 > $cpu4_core_ctl_dir/thermal_up_thres
-  echo 85 > $cpu4_core_ctl_dir/up_thres
-  echo 1 1 1 > $cpu4_core_ctl_dir/not_preferred
 
   cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
-  echo 100 > $cpu0_core_ctl_dir/offline_throttle_ms
   echo 0 > $cpu0_core_ctl_dir/enable
-  echo 4 > $cpu0_core_ctl_dir/max_cpus
-  lock_value 1 $cpu0_core_ctl_dir/min_cpus
-  # echo 95 > $cpu0_core_ctl_dir/thermal_up_thres
-  echo 75 > $cpu0_core_ctl_dir/up_thres
-  echo 0 1 1 1 > $cpu0_core_ctl_dir/not_preferred
 
   # core_ctl_policy on
 }
 
 core_ctl_preset
 
-# stop miuibooster
-
-module=/data/adb/modules/scene_systemless
-
-# echo 0 > /proc/sys/kernel/sched_util_clamp_min
-# echo 1-4 > /dev/cpuset/restricted/cpus
-# echo 0 > /dev/cpuset/restricted/sched_load_balance
 if [[ $(cat /dev/cpuset/background/untrustedapp/cgroup.procs) == "" ]]; then
   rmdir /dev/cpuset/background/untrustedapp
 fi
@@ -324,49 +197,23 @@ fi
 hide_value $t_message/market_download_limit 0
 hide_value $t_message/modem_limit 0
 
-# experimental
-# echo 1 > /sys/class/misc/mali0/device/csg_scheduling_period
-# echo 5 > /sys/class/misc/mali0/device/idle_hysteresis_time
-# echo coarse_demand > /sys/class/misc/mali0/device/power_policy
-#  hide_value /sys/devices/platform/soc/1c00f000.dvfsrc/mtk-dvfsrc-devfreq/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq 0
-# echo 1 > /proc/displowpower/hrt_lp
-# echo 31 > /proc/displowpower/idletime
-# hide_value /sys/class/devfreq/13000000.mali/min_freq 0
-# hide_value /sys/class/devfreq/13000000.mali/max_freq 0
-# hide_value /sys/module/ged/parameters/gpu_cust_boost_freq 0 # important, Do not block
-# hide_value /sys/kernel/fpsgo/fbt/switch_idleprefer 0
-# hide_value /sys/kernel/fpsgo/minitop/enable 0
-# hide_value /proc/cpudvfs/cpufreq_debug '4 400000 2850000'
 lock_value 0 /sys/kernel/fpsgo/fbt/switch_idleprefer
-
-echo 128 > /dev/cpuctl/background/cpu.shares
-echo 384 > /dev/cpuctl/system-background/cpu.shares
-echo 1024 > /dev/cpuctl/foreground/cpu.shares
-# rmdir /dev/cpuset/background/untrustedapp
-
-for group in background foreground top-app system system-background ui
-do
-  echo 0 > /dev/cpuctl/$group/cpu.uclamp.latency_sensitive
-done
-
-# resetprop persist.sys.miui.adj_update_foreground_state.enable.delayMs 100
 
 setprop persist.sys.miui_animator_sched.bigcores 4-7
 
-# lock_value 240 /sys/kernel/fpsgo/fstb/set_render_max_fps
-# lock_value 1 /sys/kernel/fpsgo/fstb/set_render_no_ctrl
-# lock_value 0 /sys/kernel/fpsgo/fstb/fstb_self_ctrl_fps_enable
-# lock_value '1 240-10' /sys/kernel/fpsgo/fstb/fstb_soft_level
 echo 41 > /sys/module/mtk_fpsgo/parameters/max_freq_limit_level # default 42
 echo 2 > /sys/module/mtk_fpsgo/parameters/min_freq_limit_level # default 2
 echo 10 > /sys/module/mtk_fpsgo/parameters/variance # default 40
-
 # lock_value 0 /sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled
-# lock_value 0 /sys/kernel/fpsgo/common/fpsgo_enable
+lock_value 0 /sys/kernel/fpsgo/common/fpsgo_enable
+
+hide_value /sys/kernel/fpsgo/fbt/limit_cfreq 0
+hide_value /sys/kernel/fpsgo/fbt/limit_rfreq 0
+hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
+hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
 
 # FEAS dependence, But it will not work if you change the frequency, So disable it
-umount /sys/module/mtk_fpsgo/parameters/perfmgr_enable
-echo 0 > /sys/module/mtk_fpsgo/parameters/perfmgr_enable
+lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 
 mount -t debugfs none /sys/kernel/debug
 # lock_value 0 /sys/kernel/ged/hal/custom_upbound_gpu_freq
@@ -377,19 +224,23 @@ if [[ $(cat $dvfs_loading_mode) != "0" ]]; then
 fi
 chmod 000 $dvfs_loading_mode
 
-# killall vendor.mediatek.hardware.mtkpower@1.0-service
+# echo 0 > /sys/module/millet_core/parameters/millet_freeze_switch
 
 module=/data/adb/modules/scene_systemless
 module_system_etc=$module/system/etc
 module_vendor_etc=$module/system/vendor/etc
 
-if [[ -d /data/adb/modules/extreme_gt ]]; then
-  rm -rf /data/adb/modules/extreme_gt
-fi
-
 for file in powercontable.xml power_app_cfg.xml powerscntbl.xml
 do
-  find /data/adb/modules -name $file | grep -v pandora | while read found; do
+  find /data/adb/modules -name $file | grep -v pandora | grep -v scene | while read found; do
     rm -f $found
   done
 done
+
+if [[ -d $module ]]; then
+  mkdir -p $module_system_etc
+  mkdir -p $module_vendor_etc
+  if [[ -f $cfg_dir/powerscntbl.xml ]];then
+    cp $cfg_dir/powerscntbl.xml $module_vendor_etc/
+  fi
+fi

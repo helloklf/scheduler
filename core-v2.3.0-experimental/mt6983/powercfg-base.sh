@@ -187,3 +187,22 @@ echo 0 > /sys/module/ged/parameters/gpu_cust_boost_freq
 # dsu_mode_change [0|1]
 
 echo 1  > /proc/displowpower/hrt_lp
+
+module=/data/adb/modules/scene_systemless
+module_system_etc=$module/system/etc
+module_vendor_etc=$module/system/vendor/etc
+
+for file in powercontable.xml power_app_cfg.xml powerscntbl.xml
+do
+  find /data/adb/modules -name $file | grep -v pandora | grep -v scene | while read found; do
+    rm -f $found
+  done
+done
+
+if [[ -d $module ]]; then
+  mkdir -p $module_system_etc
+  mkdir -p $module_vendor_etc
+  if [[ -f $cfg_dir/powerscntbl.xml ]];then
+    cp $cfg_dir/powerscntbl.xml $module_vendor_etc/
+  fi
+fi

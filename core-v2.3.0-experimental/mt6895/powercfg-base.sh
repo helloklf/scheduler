@@ -4,6 +4,17 @@ killall scene-scheduler 2>/dev/null
 
 # rm /data/system/mcd/*
 if [[ -e /data/system/mcd ]]; then
+
+migl='yuanshen 1600 720 -1
+pubg -1 -1 -1
+'
+  if [[ -f /data/system/mcd/migl ]]; then
+    chmod 666 /data/system/mcd/migl
+  fi
+  chmod 664 /data/system/mcd/migl
+  echo -n "$migl" > /data/system/mcd/migl
+  chmod 444 /data/system/mcd/migl
+
   if [[ -e /data/system/mcd/df ]]; then
     chattr -i /data/system/mcd/df
     rm /data/system/mcd/df
@@ -203,7 +214,7 @@ hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
 lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 
 mount -t debugfs none /sys/kernel/debug
-lock_value 0 /sys/kernel/ged/hal/custom_upbound_gpu_freq
+# lock_value 0 /sys/kernel/ged/hal/custom_upbound_gpu_freq
 dvfs_loading_mode=/sys/kernel/ged/hal/dvfs_loading_mode
 if [[ $(cat $dvfs_loading_mode) != "0" ]]; then
   chmod 777 $dvfs_loading_mode
@@ -212,3 +223,22 @@ fi
 chmod 000 $dvfs_loading_mode
 
 # echo 0 > /sys/module/millet_core/parameters/millet_freeze_switch
+
+module=/data/adb/modules/scene_systemless
+module_system_etc=$module/system/etc
+module_vendor_etc=$module/system/vendor/etc
+
+for file in powercontable.xml power_app_cfg.xml powerscntbl.xml
+do
+  find /data/adb/modules -name $file | grep -v pandora | grep -v scene | while read found; do
+    rm -f $found
+  done
+done
+
+if [[ -d $module ]]; then
+  mkdir -p $module_system_etc
+  mkdir -p $module_vendor_etc
+  if [[ -f $cfg_dir/powerscntbl.xml ]];then
+    cp $cfg_dir/powerscntbl.xml $module_vendor_etc/
+  fi
+fi

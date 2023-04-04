@@ -275,7 +275,6 @@
       "modes": [{
         "mode": ["powersave"],
         "booster": {
-          "events": ["presets"],
           "duration": 3000,
           "enter": [
             ["$sched_down", "45 52"],
@@ -298,7 +297,6 @@
       },{
         "mode": ["balance"],
         "booster": {
-          "events": ["presets"],
           "duration": 3000,
           "enter": [
             ["$sched_down", "40 52"],
@@ -321,7 +319,6 @@
       },{
         "mode": ["performance", "fast"],
         "booster": {
-          "events": ["presets"],
           "duration": 3000,
           "enter": [
             ["$cpuset_top", "0-7"],
@@ -396,7 +393,6 @@
         {
           "mode": ["fast"],
           "booster": {
-            "events": ["presets"],
             "duration": 2000,
             "enter": [
               ["$stune_top_boost", "60"]

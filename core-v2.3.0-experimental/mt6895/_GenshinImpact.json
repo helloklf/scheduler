@@ -33,7 +33,6 @@
     {
       "mode": ["balance"],
       "booster": {
-        "events": ["presets"],
         "duration": 5000,
         "idle_delay": 5000,
         "enter": [["$ddr_freq_min", "#5500000000"]],

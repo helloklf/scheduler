@@ -25,7 +25,6 @@
     {
       "mode": ["performance"],
       "booster": {
-        "events": ["presets"],
         "duration": 2000,
         "enter": [ ["$stune_top_boost", "10"] ],
         "exit": [ ["$sched_boost", "0"] ]
@@ -34,7 +33,6 @@
     {
       "mode": ["fast"],
       "booster": {
-        "events": ["presets"],
         "duration": 2000,
         "enter": [ ["$stune_top_boost", "60"] ],
         "exit": [ ["$sched_boost", "0"] ]

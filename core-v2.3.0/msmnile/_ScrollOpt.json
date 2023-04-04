@@ -19,7 +19,6 @@
     "mode": ["powersave"],
     "logger": false,
     "booster": {
-      "events": ["presets"],
       "duration": 2000,
       "idle_delay": 2000,
       "enter": [
@@ -42,7 +41,6 @@
   }, {
     "mode": ["balance"],
     "booster": {
-      "events": ["presets"],
       "duration": 2000,
       "idle_delay": 2000,
       "enter": [
@@ -66,7 +64,6 @@
   }, {
     "mode": ["performance", "fast"],
     "booster": {
-      "events": ["presets"],
       "duration": 2000,
       "idle_delay": 2000,
       "enter": [

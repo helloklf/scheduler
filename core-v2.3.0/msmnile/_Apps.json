@@ -7,7 +7,6 @@
     "mode": ["powersave"],
     "call": [  ],
     "booster": {
-      "events": ["presets"],
       "duration": 1500,
       "idle_delay": 800,
       "enter": [["@preset", "powersave_active"]],
@@ -16,7 +15,6 @@
   }, {
     "mode": ["balance"],
     "booster": {
-      "events": ["presets"],
       "duration": 2000,
       "idle_delay": 1000,
       "enter": [["@preset", "balance_active"]],
@@ -25,7 +23,6 @@
   }, {
     "mode": ["performance"],
     "booster": {
-      "events": ["presets"],
       "duration": 2000,
       "idle_delay": 1000,
       "enter": [["@preset", "performance_active"]],
@@ -34,7 +31,6 @@
   }, {
     "mode": ["fast"],
     "booster": {
-      "events": ["presets"],
       "duration": 2000,
       "idle_delay": 1000,
       "enter": [ ["@preset", "fast_active"], ["$stune_top_boost", "20"], ["$stune_top_perf", "1"], ["$sched_boost", "2"] ],
@@ -44,7 +40,6 @@
     "mode": ["pedestal"],
     "call": [ ],
     "booster": {
-      "events": ["presets"],
       "duration": 2200,
       "idle_delay": 1000,
       "enter": [ ["@preset", "pedestal_active"], ["$stune_top_boost", "100"], ["$stune_top_perf", "1"], ["$sched_boost", "2"] ],

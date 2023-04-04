@@ -29,7 +29,6 @@
       "mode": ["performance"],
       "logger": false,
       "booster": {
-        "events": ["presets"],
         "duration": 2000,
         "enter": [
           ["$stune_top_boost", "10"]
@@ -43,7 +42,6 @@
       "mode": ["fast"],
       "logger": false,
       "booster": {
-        "events": ["presets"],
         "duration": 2000,
         "enter": [
           ["$stune_top_boost", "60"]

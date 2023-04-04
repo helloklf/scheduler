@@ -4,7 +4,6 @@
   "modes": [{
     "mode": ["powersave"],
     "booster": {
-      "events": ["presets"],
       "duration": 2000,
       "idle_delay": 700,
       "enter": [
@@ -17,7 +16,6 @@
   }, {
     "mode": ["balance"],
     "booster": {
-      "events": ["presets"],
       "duration": 3000,
       "idle_delay": 1000,
       "enter": [
@@ -30,7 +28,6 @@
   }, {
     "mode": ["performance"],
     "booster": {
-      "events": ["presets"],
       "duration": 2000,
       "idle_delay": 1000,
       "enter": [
@@ -43,7 +40,6 @@
   }, {
     "mode": ["fast", "pedestal"],
     "booster": {
-      "events": ["presets"],
       "duration": 2000,
       "idle_delay": 1000,
       "enter": [

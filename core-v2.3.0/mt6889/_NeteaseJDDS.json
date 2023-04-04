@@ -8,7 +8,6 @@
   },
   "call": [ ["$dram_boost", "1"] ],
   "booster": {
-    "events": ["presets"],
     "duration": 3000,
     "enter": [ ["$deisolation", "4|5|6|7"] ],
     "exit": [ ["$deisolation", "4|5|6|7"] ]

@@ -17,7 +17,6 @@
     {
       "mode": ["balance"],
       "booster": {
-        "events": ["presets"],
         "duration": 2000,
         "enter": [
           ["$cpu_min_4", "1555200"],
@@ -32,7 +31,6 @@
     {
       "mode": ["performance"],
       "booster": {
-        "events": ["presets"],
         "duration": 2000,
         "enter": [
           ["$cpu_min_4", "1766400"],

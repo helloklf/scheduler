@@ -32,7 +32,6 @@
     {
       "mode": ["powersave"],
       "booster": {
-        "events": ["presets"],
         "duration": 20000,
         "enter": [
           ["$min_cpu_freq", "0 1525000|1 902000|2 659000"],
@@ -55,7 +54,6 @@
         ["$max_cpu_freq", "0 2000000|1 1855000|2 2284000"]
       ],
       "booster": {
-        "events": ["presets"],
         "duration": 30000,
         "enter": [
           ["$min_cpu_freq", "0 1525000|1 902000|2 659000"],
@@ -90,7 +88,6 @@
         }
       ],
       "booster": {
-        "events": ["presets"],
         "duration": 30000,
         "enter": [
           ["$deisolation", "4|5|6|7"]
@@ -122,7 +119,6 @@
         }
       ],
       "booster": {
-        "events": ["presets"],
         "duration": 30000,
         "enter": [
           ["$deisolation", "4|5|6|7"]

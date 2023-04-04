@@ -114,7 +114,6 @@
           "mode": ["fast"],
           "logger": false,
           "booster": {
-            "events": ["presets"],
             "duration": 2000,
             "enter": [
               ["$stune_top_boost", "60"]

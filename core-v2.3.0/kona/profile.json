@@ -403,11 +403,6 @@
       "import": "_SGAME.json"
     },
     {
-      "friendly": "APEX",
-      "packages": ["com.levelinfinite.apexlegendsmobile", "com.ea.gp.apexlegendsmobilefps", "com.tw.fivexgames.apexlegendsmobile"],
-      "import": "_APEX.json"
-    },
-    {
       "friendly": "All",
       "packages": ["*"],
       "import": "_GAMES.json"

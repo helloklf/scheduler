@@ -3,7 +3,6 @@
   "modes": [{
     "mode": ["powersave", "balance"],
     "booster": {
-      "events": ["presets"],
       "duration": 3000,
       "idle_delay": 700,
       "enter": [["@preset", "performance_active"]],
@@ -12,7 +11,6 @@
   }, {
     "mode": ["*"],
     "booster": {
-      "events": ["presets"],
       "duration": 3500,
       "idle_delay": 1000,
       "enter": [["@preset", "fast_active"]],

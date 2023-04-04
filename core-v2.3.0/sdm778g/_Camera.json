@@ -6,7 +6,6 @@
     ["@cpuset", "0-1", "0-4", "0-7", "0-7"]
   ],
   "booster": {
-    "events": ["presets"],
     "duration": 3000,
     "idle_delay": 4000,
     "enter": [

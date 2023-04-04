@@ -34,7 +34,6 @@
         ["@mtk_feas", "12"]
       ],
       "booster": {
-        "events": ["presets"],
         "duration": 20000,
         "idle_delay": 20000,
         "enter": [
@@ -53,7 +52,6 @@
         ["@mtk_feas", "2"]
       ],
       "booster": {
-        "events": ["presets"],
         "duration": 20000,
         "idle_delay": 20000,
         "enter": [
@@ -72,7 +70,6 @@
         ["@limiters", "ys-p3:cpu4", "ys-p3:cpu7"]
       ],
       "booster": {
-        "events": ["presets"],
         "duration": 5000,
         "idle_delay": 5000,
         "enter": [["$ddr_freq_min", "#5500000000"]],
@@ -85,7 +82,6 @@
         ["@limiters", "ys-p4:cpu4", "ys-p4:cpu7"]
       ],
       "booster": {
-        "events": ["presets"],
         "duration": 5000,
         "idle_delay": 5000,
         "enter": [["$ddr_freq_min", "#5500000000"]],

@@ -284,7 +284,6 @@
       "modes": [{
         "mode": ["powersave"],
         "booster": {
-          "events": ["presets"],
           "duration": 3000,
           "enter": [
             ["@preset", "performance_active"]
@@ -296,7 +295,6 @@
       },{
         "mode": ["balance"],
         "booster": {
-          "events": ["presets"],
           "duration": 3000,
           "enter": [
             ["@preset", "fast_active"]
@@ -308,7 +306,6 @@
       },{
         "mode": ["*"],
         "booster": {
-          "events": ["presets"],
           "duration": 3000,
           "enter": [
             ["@preset", "fast_active"]
@@ -325,7 +322,6 @@
       "modes": [{
         "mode": ["powersave"],
         "booster": {
-          "events": ["presets"],
           "duration": 2000,
           "idle_delay": 2000,
           "enter": [["@preset", "powersave_active"]],
@@ -334,7 +330,6 @@
       }, {
         "mode": ["balance"],
         "booster": {
-          "events": ["presets"],
           "duration": 3000,
           "idle_delay": 2000,
           "enter": [["@preset", "balance_active"]],
@@ -343,7 +338,6 @@
       },{
         "mode": ["performance"],
         "booster": {
-          "events": ["presets"],
           "duration": 4000,
           "idle_delay": 2000,
           "enter": [["@preset", "performance_active"]],
@@ -352,7 +346,6 @@
       },{
         "mode": [ "fast"],
         "booster": {
-          "events": ["presets"],
           "duration": 5000,
           "idle_delay": 2000,
           "enter": [["@preset", "fast_active"]],
@@ -409,7 +402,6 @@
         {
           "mode": ["fast"],
           "booster": {
-            "events": ["presets"],
             "duration": 2000,
             "enter": [
               ["$stune_top_boost", "60"]
@@ -427,7 +419,6 @@
       "modes": [{
         "mode": ["powersave"],
         "booster": {
-          "events": ["presets"],
           "duration": 2000,
           "enter": [
             ["$cpu_max_0", "1804800"],
@@ -445,7 +436,6 @@
       }, {
         "mode": ["balance"],
         "booster": {
-          "events": ["presets"],
           "duration": 2000,
           "enter": [
             ["$cpu_max_0", "1804800"],
@@ -469,7 +459,6 @@
         "mode": ["powersave"],
         "logger": false,
         "booster": {
-          "events": ["presets"],
           "duration": 2000,
           "enter": [
             ["$cpu_max_0", "1804800"],
@@ -497,7 +486,6 @@
       }, {
         "mode": ["balance"],
         "booster": {
-          "events": ["presets"],
           "duration": 2000,
           "enter": [
             ["$cpu_max_0", "1804800"],
@@ -530,7 +518,6 @@
       "modes": [{
         "mode": ["powersave"],
         "booster": {
-          "events": ["presets"],
           "duration": 3000,
           "enter": [
             ["$sched_down", "45 52"],
@@ -553,7 +540,6 @@
       },{
         "mode": ["balance"],
         "booster": {
-          "events": ["presets"],
           "duration": 3000,
           "enter": [
             ["$sched_down", "40 52"],
@@ -576,7 +562,6 @@
       },{
         "mode": ["performance", "fast"],
         "booster": {
-          "events": ["presets"],
           "duration": 3000,
           "enter": [
             ["$cpuset_top", "0-7"],

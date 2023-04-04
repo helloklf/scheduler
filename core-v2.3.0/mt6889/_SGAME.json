@@ -15,7 +15,6 @@
   "modes": [{
     "mode": ["powersave"],
     "booster": {
-      "events": ["presets"],
       "duration": 3000,
       "enter": [
         ["$deisolation", "4|5|6|7"]
@@ -37,7 +36,6 @@
   }, {
     "mode": ["balance"],
     "booster": {
-      "events": ["presets"],
       "duration": 3000,
       "enter": [
         ["$deisolation", "4|5|6|7"]
@@ -63,7 +61,6 @@
       ["@limiters", "g4:cpu0", "g4:cpu4"]
     ],
     "booster": {
-      "events": ["presets"],
       "duration": 2000,
       "enter": [
         ["$deisolation", "4|5|6|7"]
