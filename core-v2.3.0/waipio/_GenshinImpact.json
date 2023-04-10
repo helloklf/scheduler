@@ -55,7 +55,7 @@
           "interval": 5000,
           "rules": [
             { "threshold": [ -1, 45000], "enter_once": [["@limiters", "ys-p1:cpu0", "ys-p1:cpu4", "ys-p1:cpu7"]] },
-            { "threshold": [45000,  -1], "enter_once": [["@limiters", "ys-p2:cpu4", "ys-p2:cpu7"]] }
+            { "threshold": [45000,  -1], "enter_once": [["@limiters", "ys-p2:cpu0", "ys-p2:cpu4", "ys-p2:cpu7"]] }
           ]
         }
       ]
@@ -69,8 +69,8 @@
           "interval": 5000,
           "rules": [
             { "threshold": [   -1, 46500], "enter_once": [["@limiters", "ys-p1:cpu0", "ys-p1:cpu4", "ys-p1:cpu7"]] },
-            { "threshold": [46500, 43500], "enter_once": [["@limiters", "ys-p2:cpu4", "ys-p2:cpu7"]] },
-            { "threshold": [43500,    -1], "enter_once": [["@limiters", "ys-p3:cpu4", "ys-p3:cpu7"]] }
+            { "threshold": [46500, 43500], "enter_once": [["@limiters", "ys-p2:cpu0", "ys-p2:cpu4", "ys-p2:cpu7"]] },
+            { "threshold": [43500,    -1], "enter_once": [["@limiters", "ys-p3:cpu0", "ys-p3:cpu4", "ys-p3:cpu7"]] }
           ]
         }
       ]
@@ -83,10 +83,10 @@
           "interval": 5000,
           "rules": [
             { "threshold": [   -1, 50100], "enter_once": [["@limiters", "ys-p1:cpu0", "ys-p1:cpu4", "ys-p1:cpu7"]] },
-            { "threshold": [50000, 45000], "enter_once": [["@limiters", "ys-p2:cpu4", "ys-p2:cpu7"]] },
-            { "threshold": [45000, 41500], "enter_once": [["@limiters", "ys-p3:cpu4", "ys-p3:cpu7"]] },
-            { "threshold": [41500, 37500], "enter_once": [["@limiters", "ys-p4:cpu4", "ys-p4:cpu7"]] },
-            { "threshold": [37500,    -1], "enter_once": [["@limiters", "ys-p5:cpu4", "ys-p5:cpu7"]] }
+            { "threshold": [50000, 45000], "enter_once": [["@limiters", "ys-p1:cpu0", "ys-p2:cpu4", "ys-p2:cpu7"]] },
+            { "threshold": [45000, 41500], "enter_once": [["@limiters", "ys-p3:cpu0", "ys-p3:cpu4", "ys-p3:cpu7"]] },
+            { "threshold": [41500, 37500], "enter_once": [["@limiters", "ys-p4:cpu0", "ys-p4:cpu4", "ys-p4:cpu7"]] },
+            { "threshold": [37500,    -1], "enter_once": [["@limiters", "ys-p5:cpu0", "ys-p5:cpu4", "ys-p5:cpu7"]] }
           ]
         }
       ]

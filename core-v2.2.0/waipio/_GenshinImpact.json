@@ -27,19 +27,19 @@
     { "id": "ys-p5:cpu4", "mode": "RANGE", "max_freq": 2419200, "min_freq": 1555200, "margin_mhz": 300, "active_interval": 48, "smoothness": 5 },
     { "id": "ys-p5:cpu7", "mode": "RANGE", "max_freq": 2630400, "min_freq": 1056000, "margin_mhz": 300, "active_interval": 48, "smoothness": 5 }
   ],
-  "affinity": {
-    "unity_main": "80",
+  "cpuset": {
+    "unity_main": "7",
     "heavy_thread": "UnityGfx",
-    "heavy_mask": "40",
+    "heavy_cores": "6",
     "heavy_switch": true,
     "comm": {
-      "30": ["UnityMultiRende"],
-      "3F": ["Worker Thread", "UnityPreload", "NativeThread", "FMOD", "UnityChoreograp"],
-      "F": [
+      "4-5": ["UnityMultiRende"],
+      "0-5": ["Worker Thread", "UnityPreload", "NativeThread", "FMOD", "UnityChoreograp"],
+      "0-3": [
         "AsyncReadManage", "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"
       ]
     },
-    "other": "3F"
+    "other": "0-5"
   },
   "modes": [
     {
@@ -56,7 +56,7 @@
           "interval": 5000,
           "rules": [
             { "threshold": [ -1, 45000], "enter_once": [["@limiters", "ys-p1:cpu0", "ys-p1:cpu4", "ys-p1:cpu7"]] },
-            { "threshold": [45000,  -1], "enter_once": [["@limiters", "ys-p2:cpu4", "ys-p2:cpu7"]] }
+            { "threshold": [45000,  -1], "enter_once": [["@limiters", "ys-p2:cpu0", "ys-p2:cpu4", "ys-p2:cpu7"]] }
           ]
         }
       ]
@@ -70,8 +70,8 @@
           "interval": 5000,
           "rules": [
             { "threshold": [   -1, 46500], "enter_once": [["@limiters", "ys-p1:cpu0", "ys-p1:cpu4", "ys-p1:cpu7"]] },
-            { "threshold": [46500, 43500], "enter_once": [["@limiters", "ys-p2:cpu4", "ys-p2:cpu7"]] },
-            { "threshold": [43500,    -1], "enter_once": [["@limiters", "ys-p3:cpu4", "ys-p3:cpu7"]] }
+            { "threshold": [46500, 43500], "enter_once": [["@limiters", "ys-p2:cpu0", "ys-p2:cpu4", "ys-p2:cpu7"]] },
+            { "threshold": [43500,    -1], "enter_once": [["@limiters", "ys-p3:cpu0", "ys-p3:cpu4", "ys-p3:cpu7"]] }
           ]
         }
       ]
@@ -84,10 +84,10 @@
           "interval": 5000,
           "rules": [
             { "threshold": [   -1, 50100], "enter_once": [["@limiters", "ys-p1:cpu0", "ys-p1:cpu4", "ys-p1:cpu7"]] },
-            { "threshold": [50000, 45000], "enter_once": [["@limiters", "ys-p2:cpu4", "ys-p2:cpu7"]] },
-            { "threshold": [45000, 41500], "enter_once": [["@limiters", "ys-p3:cpu4", "ys-p3:cpu7"]] },
-            { "threshold": [41500, 37500], "enter_once": [["@limiters", "ys-p4:cpu4", "ys-p4:cpu7"]] },
-            { "threshold": [37500,    -1], "enter_once": [["@limiters", "ys-p5:cpu4", "ys-p5:cpu7"]] }
+            { "threshold": [50000, 45000], "enter_once": [["@limiters", "ys-p1:cpu0", "ys-p2:cpu4", "ys-p2:cpu7"]] },
+            { "threshold": [45000, 41500], "enter_once": [["@limiters", "ys-p3:cpu0", "ys-p3:cpu4", "ys-p3:cpu7"]] },
+            { "threshold": [41500, 37500], "enter_once": [["@limiters", "ys-p4:cpu0", "ys-p4:cpu4", "ys-p4:cpu7"]] },
+            { "threshold": [37500,    -1], "enter_once": [["@limiters", "ys-p5:cpu0", "ys-p5:cpu4", "ys-p5:cpu7"]] }
           ]
         }
       ]

@@ -33,7 +33,7 @@
       "params": [
         { "id": "p1:cpu0", "step": -0.9, "max": 1267200, "turning": 1075200, "min": 614400, "margin": 160 },
         { "id": "p1:cpu4", "step": -0.9, "max": 1766400, "turning": 1555200, "min": 768000, "margin": 250 },
-        { "id": "p1:cpu7", "step": -0.9, "max": 1843200, "turning": 1612800, "min": 1171200, "margin": 300 },
+        { "id": "p1:cpu7", "step": -0.9, "max": 1843200, "turning": 1612800, "min": 806400, "margin": 300 },
 
         { "id": "p2:cpu0", "step": -0.8, "max": 1478400, "turning": 1075200, "min": 729600, "margin": 210 },
         { "id": "p2:cpu4", "step": -0.5, "max": 2112000, "turning": 1766400, "min": 1209600, "margin": 300 },
@@ -75,10 +75,10 @@
       ]
     },
     "gesture_boost": {
-      "enable": true,
+      "enable": false,
       "enter": [
         ["/sys/kernel/msm_performance/parameters/cpu_max_freq",
-         "0:1785600 1:1785600 2:1785600 3:1785600 4:2496000 5:2496000 6:2496000 7:2995200"],
+         "0:1574400 1:1574400 2:1574400 3:1574400 4:2112000 5:2112000 6:2112000 7:2400000"],
         ["/sys/kernel/msm_performance/parameters/cpu_min_freq",
          "0:1171200 1:1171200 2:1171200 3:1171200 4:1113600 5:1113600 6:1113600 7:1171200"]
       ],
@@ -197,8 +197,8 @@
     "performance_inactive": [
       ["@preset", "common_inactive"],
       ["@values", "min_freq", "307200", "633600", "806400"],
-      ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
-      ["@values", "hispeed_freq", "1075200", "1324800", "1286400"],
+      ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
+      ["@values", "hispeed_freq", "614400", "633600", "806400"],
       ["@values", "hispeed_load", "82", "82", "82"]
     ],
 
@@ -211,8 +211,8 @@
     "fast_inactive": [
       ["@preset", "common_inactive"],
       ["@values", "min_freq", "614400", "633600", "806400"],
-      ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
-      ["@values", "hispeed_freq", "1075200", "1324800", "1286400"],
+      ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
+      ["@values", "hispeed_freq", "614400", "633600", "806400"],
       ["@values", "hispeed_load", "82", "82", "82"]
     ]
   },

@@ -5,7 +5,6 @@
   "sensors": [],
   "modes": [{
     "mode": ["powersave"],
-    "call": [  ],
     "booster": {
       "duration": 1500,
       "idle_delay": 800,
@@ -35,15 +34,6 @@
       "idle_delay": 1000,
       "enter": [ ["@preset", "fast_active"], ["$stune_top_boost", "20"], ["$stune_top_perf", "1"], ["$sched_boost", "2"] ],
       "exit": [["@preset", "fast_inactive"]]
-    }
-  }, {
-    "mode": ["pedestal"],
-    "call": [ ],
-    "booster": {
-      "duration": 2200,
-      "idle_delay": 1000,
-      "enter": [ ["@preset", "pedestal_active"], ["$stune_top_boost", "100"], ["$stune_top_perf", "1"], ["$sched_boost", "2"] ],
-      "exit": [["@preset", "pedestal_inactive"]]
     }
   }]
 }

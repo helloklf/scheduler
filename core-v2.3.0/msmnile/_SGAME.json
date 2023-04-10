@@ -43,7 +43,7 @@
       ]
     }
   },{
-    "mode": ["performance", "fast", "pedestal"],
+    "mode": ["performance", "*"],
     "call": [
       ["$sched_boost", "0"]
     ],

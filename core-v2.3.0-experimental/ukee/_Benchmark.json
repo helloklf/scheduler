@@ -1,0 +1,24 @@
+{
+  "friendly": "Benchmark",
+  "call": [
+    ["@limiters", "NONE"],
+    ["$bus_ddr", "3196000"]
+  ],
+  "modes": [{
+    "mode": ["powersave"],
+    "call": []
+  }, {
+    "mode": ["balance"],
+    "call": []
+  }, {
+    "mode": ["performance"],
+    "call": []
+  }, {
+    "mode": [ "*"],
+    "call": [
+      ["@cpu_freq", "cpu0", "1056000", "2016000"],
+      ["@cpu_freq", "cpu4", "1209600", "2745600"],
+      ["@cpu_freq", "cpu7", "1171200", "3200000"]
+    ]
+  }]
+}
