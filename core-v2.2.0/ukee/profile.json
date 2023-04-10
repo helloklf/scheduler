@@ -19,15 +19,7 @@
       "enable": true,
       "logger": true,
       "enable_control": "/data/local/tmp/scene_refresh_rate",
-      "device_policy": [{
-        "device": "mayfly", "name": "Mi 12S", "enable": true,
-        "mode_high_rate": "1", "mode_low_rate": "0", "mode_standby": "0",
-        "1080P120Hz": "1", "1080P90Hz": "2", "1080P60Hz": "0"
-      }, {
-        "device": "diting", "name": "K50U", "enable": true,
-        "mode_high_rate": "1", "mode_low_rate": "0", "mode_energy": "2", "mode_standby": "0",
-        "1220P120Hz": "1", "1220P90Hz": "2", "1220P60Hz": "0"
-      }]
+      "device_policy": []
     },
     "cpus_control": {
       "enable": true,
@@ -278,7 +270,7 @@
       ],
       "game": [
         ["$perfmgr_enable", "#0"],
-        ["$l3_boost", "#1804800"],
+        ["$l3_boost", "#1708800"],
         ["@preset", "common_gaming"],
         ["$bus_ddr", "3196000"],
         ["$bus_ddr_min", "2736000"],

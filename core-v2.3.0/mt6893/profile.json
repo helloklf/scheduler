@@ -24,13 +24,7 @@
     "high_rate": {
       "enable": true,
       "enable_control": "/data/local/tmp/scene_refresh_rate",
-      "device_policy": [{
-        "device": "RE5469", "name": "Realme GT NEO+", "enable": true,
-        "mode_high_rate": "0", "mode_low_rate": "1"
-      }, {
-        "device": "M2012K10C", "name": "K40G", "enable": true,
-        "mode_high_rate": "0", "mode_low_rate": "1"
-      }]
+      "device_policy": []
     },
     "cpus_control": {
       "enable": true,
