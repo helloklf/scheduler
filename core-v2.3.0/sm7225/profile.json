@@ -24,11 +24,11 @@
       "params": [
         { "id": "p1:cpu6", "max": 1939200, "min": 1708800, "margin": 350 },
 
-        { "id": "p2:cpu6", "max": 2208000, "min": 1939200, "margin": 550 },
+        { "id": "p2:cpu6", "max": 2208000, "min": 1939200, "margin": 450 },
 
-        { "id": "p3:cpu6", "max": 2208000, "min": 2208000, "margin": 550 },
+        { "id": "p3:cpu6", "max": 2208000, "min": 2208000, "margin": 450 },
 
-        { "id": "p4:cpu6", "max": 0, "min": 2208000, "margin": 550 },
+        { "id": "p4:cpu6", "max": 0, "min": 2208000, "margin": 450 },
 
         { "id": "idle:cpu0", "max": 1612800, "min": 576000, "margin": 100 },
         { "id": "idle:cpu6", "max": 1939200, "min": 300000, "margin": 50 }
