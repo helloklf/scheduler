@@ -20,19 +20,7 @@
       "enable": true,
       "logger": false,
       "enable_control": "/data/local/tmp/scene_refresh_rate",
-      "device_policy": [
-        { "device": "OnePlus9R", "enable": true, "mode_high_rate": "1", "mode_low_rate": "0" },
-        { "device": "OnePlus8T", "enable": true, "mode_high_rate": "1", "mode_low_rate": "0" },
-        { "device": "kebab", "name": "OnePlus8T", "enable": true, "mode_high_rate": "1", "mode_low_rate": "0" },
-        { "device": "psyche", "name": "Mi 12X",  "enable": true, "mode_high_rate": "1", "mode_low_rate": "0" },
-        { "device": "munch", "name": "K40S",  "enable": true, "mode_high_rate": "1", "mode_low_rate": "0" },
-        { "device": "meizu17", "name": "meizu17",  "enable": true, "mode_high_rate": "1", "mode_low_rate": "2" },
-        { "device": "RMX2071CN", "name": "Realme RMX2071CN",  "enable": true, "mode_high_rate": "1", "mode_low_rate": "0" },
-        { "device": "RE5473", "name": "Realme GTNEO2",  "enable": true, "mode_high_rate": "0", "mode_low_rate": "2", "mode_middle_rate": "1" },
-        { "device": "RE879AL1", "name": "Realme GTNEO2(EN)",  "enable": true, "mode_high_rate": "0", "mode_low_rate": "2", "mode_middle_rate": "1" },
-        { "device": "PFEM10", "name": "OPPO PFEM10",  "enable": true, "mode_high_rate": "1", "mode_low_rate": "0" },
-        { "device": "RE546F", "name": "Realme GT Master Explorer Edition",  "enable": true, "mode_high_rate": "0", "mode_low_rate": "2", "mode_middle_rate": "1" }
-      ]
+      "device_policy": []
     },
     "cpus_control": {
       "enable": true,
