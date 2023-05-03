@@ -11,25 +11,25 @@
   "modes": [{
     "mode": ["powersave"],
     "call": [
-      ["@limiters", "g1:cpu0", "g1:cpu3", "g1:cpu7"],
+      ["@limiters", "g0:cpu0", "g0:cpu3", "g0:cpu7"],
       ["@msm_feas", "10"]
     ]
   }, {
     "mode": ["balance"],
     "call": [
-      ["@limiters", "g2:cpu0", "g2:cpu3", "g2:cpu7"],
+      ["@limiters", "g1:cpu0", "g1:cpu3", "g1:cpu7"],
       ["@msm_feas", "7"]
     ]
   }, {
     "mode": ["performance"],
     "call": [
-      ["@limiters", "g3:cpu0", "g3:cpu3", "g3:cpu7"],
+      ["@limiters", "g2:cpu0", "g2:cpu3", "g2:cpu7"],
       ["@msm_feas", "0"]
     ]
   }, {
     "mode": ["fast"],
     "call": [
-      ["@limiters", "g4:cpu0", "g4:cpu3", "g4:cpu7"]
+      ["@limiters", "g3:cpu0", "g3:cpu3", "g3:cpu7"]
     ]
   }]
 }

@@ -1,0 +1,114 @@
+{
+  "friendly": "原神",
+  "call": [
+    ["$l3_boost", "1804800"]
+  ],
+  "limiters": [
+    {"id": "ys1:cpu0", "step": -0.90, "max": 1600000, "min": 500000, "margin": 200, "smoothness": 6},
+    {"id": "ys1:cpu4", "step": -0.95, "max": 2100000, "min": 1100000, "margin": 160, "smoothness": 6, "mode": "RANGE"},
+    {"id": "ys1:cpu7", "step": -0.95, "max": 2100000, "margin": 150, "smoothness": 6, "mode": "RANGE"},
+
+    {"id": "ys2:cpu0", "step": -0.90, "max": 1700000, "min": 800000,  "margin": 400, "smoothness": 6},
+    {"id": "ys2:cpu4", "step": -0.95, "max": 2450000, "min": 1100000, "margin": 180, "smoothness": 6, "mode": "RANGE"},
+    {"id": "ys2:cpu7", "step": -0.95, "max": 2300000, "min": 1100000, "margin": 160, "smoothness": 6, "mode": "RANGE"},
+
+    {"id": "ys3:cpu0", "step": -0.7, "max": 1800000, "min": 800000,  "margin": 500, "smoothness": 6},
+    {"id": "ys3:cpu4", "step": -1.0, "max": 2650000, "min": 1400000, "margin": 230, "smoothness": 6, "mode": "BOTTOM"},
+    {"id": "ys3:cpu7", "step": -1.0, "max": 2650000, "min": 1100000, "margin": 200, "smoothness": 6, "mode": "BOTTOM"},
+
+    {"id": "ys4:cpu0", "step": -0.7, "max": 1800000, "min": 1000000, "margin": 300, "smoothness": 6},
+    {"id": "ys4:cpu4", "step": -1.0, "max": 2745600, "min": 1400000, "margin": 400, "smoothness": 6, "mode": "BOTTOM"},
+    {"id": "ys4:cpu7", "step": -1.0, "max": 2995200, "min": 1200000, "margin": 300, "smoothness": 6, "mode": "BOTTOM"}
+  ],
+  "cpuset": {
+    "unity_main": "6",
+    "heavy_thread": "UnityGfx",
+    "heavy_cores": "7",
+    "heavy_switch": false,
+    "comm": {
+      "4-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende"],
+      "0-5": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-", "FMOD", "UnityPreload", "AsyncReadManage"]
+    },
+    "other": "0-3"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["$cpu_max_0", "#1400000"], ["$cpu_max_4", "#1900000"], ["$cpu_max_7", "#2100000"],
+        ["@limiters", "ys1:cpu0", "ys1:cpu4", "ys1:cpu7"],
+        ["@msm_feas", "5"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "sensors": [
+        {
+          "sensor": "/sys/class/power_supply/battery/temp",
+          "interval": 2000,
+          "rules": [
+            { "threshold": [ -1, 451],
+              "enter_once": [["@limiters", "ys1:cpu0", "ys1:cpu4", "ys1:cpu7"], ["@msm_feas", "5"]]
+            },
+            { "threshold": [450,  -1],
+              "enter_once": [["@limiters", "ys2:cpu0", "ys2:cpu4", "ys2:cpu7"], ["@msm_feas", "3"]]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "ys3:cpu0", "ys3:cpu4", "ys3:cpu7"]
+      ],
+      "sensors": [
+        {
+          "sensor": "/sys/class/power_supply/battery/temp",
+          "interval": 2000,
+          "rules": [
+            { "threshold": [-1, 486],
+              "enter_once": [["@limiters", "ys1:cpu0", "ys1:cpu4", "ys1:cpu7"], ["@msm_feas", "5"]]
+            },
+            { "threshold": [485, 451],
+              "enter_once": [["@limiters", "ys2:cpu0", "ys2:cpu4", "ys2:cpu7"], ["@msm_feas", "3"]]
+            },
+            { "threshold": [450,  -1],
+              "enter_once": [["@limiters", "ys3:cpu0", "ys3:cpu4", "ys3:cpu7"], ["@msm_feas", "0"]]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1056000", "1689600"],
+        ["@cpu_freq", "cpu4", "1113600", "2745600"],
+        ["@cpu_freq", "cpu7", "1036800", "2918400"],
+        ["@limiters", "ys4:cpu0", "ys4:cpu4", "ys4:cpu7"]
+      ],
+      "sensors": [
+        {
+          "disable": false,
+          "sensor": "/sys/class/power_supply/battery/temp",
+          "interval": 2000,
+          "rules": [
+            { "threshold": [-1, 501],
+              "enter_once": [["@limiters", "ys1:cpu0", "ys1:cpu4", "ys1:cpu7"], ["@msm_feas", "8"]]
+            },
+            { "threshold": [500, 481],
+              "enter_once": [["@limiters", "ys2:cpu0", "ys2:cpu4", "ys2:cpu7"], ["@msm_feas", "5"]]
+            },
+            { "threshold": [480, 441],
+              "enter_once": [["@limiters", "ys3:cpu0", "ys3:cpu4", "ys3:cpu7"], ["@msm_feas", "5"]]
+            },
+            { "threshold": [440,  -1],
+              "enter_once": [["@limiters", "ys4:cpu0", "ys4:cpu4", "ys4:cpu7"], ["@msm_feas", "0"]]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -13,9 +13,6 @@
     { "id": "ys-p4:cpu4", "active_interval": 40, "mode": "BOTTOM", "max": 2650000, "margin": 300, "smoothness": 6 },
     { "id": "ys-p4:cpu7", "active_interval": 40, "mode": "BOTTOM", "max": 2850000, "margin": 350, "smoothness": 6 }
   ],
-  "call": [
-    ["@cpuset", "1", "0-3", "0-5", "0-7"]
-  ],
   "cpuset": {
     "unity_main": "6",
     "comm": {

@@ -39,8 +39,8 @@
         ["$night_charging", "1"]
       ],
       "normal": [
-        ["$charge_limit", "0"],
-        ["$night_charging", "0"]
+        ["$night_charging", "0"],
+        ["$charge_limit", "0"]
       ]
     },
     "limiter": {
