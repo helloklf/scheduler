@@ -1,7 +1,7 @@
 {
   "platform": "lahaina",
   "platform_name": "888/888+",
-  "framework": 210,
+  "framework": 220,
   "alias": {
     "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
     "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
@@ -12,13 +12,7 @@
     "charge_limit": "/sys/class/power_supply/battery/charge_control_limit",
     "night_charging": "/sys/class/power_supply/battery/night_charging",
     "msm_min_freq": "/sys/module/msm_performance/parameters/cpu_min_freq",
-    "msm_max_freq": "/sys/module/msm_performance/parameters/cpu_max_freq",
-    "llcc_ddr_max": "/sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/max_freq",
-    "cpu_llcc_max": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/max_freq",
-    "llcc_ddr_min": "/sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/min_freq",
-    "cpu_llcc_min": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/min_freq",
-    "l3_lat_max": "/sys/class/devfreq/18590100.qcom,cpu7-cpu-l3-latfloor/max_freq",
-    "l3_lat_min": "/sys/class/devfreq/18590100.qcom,cpu7-cpu-l3-latfloor/min_freq"
+    "msm_max_freq": "/sys/module/msm_performance/parameters/cpu_max_freq"
   },
   "features": {
     "high_rate": {
@@ -32,25 +26,30 @@
     },
     "limiter": {
       "logger": false,
-      "active_interval": 20,
+      "active_interval": 24,
       "inactive_interval": 150,
       "params": [
-        { "id": "p1:cpu4", "max": 1900800, "min": 1651200, "margin": 350 },
-        { "id": "p1:cpu7", "max": 2035200, "min": 1766400, "margin": 300 },
+        { "id": "active:cpu0", "max": 1804800, "min": 1152000, "margin": 400 },
 
-        { "id": "p2:cpu4", "max": 2131200, "min": 2054400, "margin": 550 },
-        { "id": "p2:cpu7", "max": 2380800, "min": 2208000, "margin": 400 },
+        { "id": "p1:cpu4", "max": 1900800, "min": 940800, "margin": 280 },
+        { "id": "p1:cpu7", "max": 2035200, "min": 1516800, "margin": 300 },
 
-        { "id": "p3:cpu4", "max": 2400000, "min": 2112000, "margin": 550 },
-        { "id": "p3:cpu7", "max": 2500000, "min": 2380800, "margin": 450 },
+        { "id": "p2:cpu4", "max": 2131200, "min": 1516800, "margin": 300 },
+        { "id": "p2:cpu7", "max": 2380800, "min": 1766400, "margin": 400 },
 
-        { "id": "inactive:cpu0", "max": 1804800, "min": 806400, "margin": 240 },
-        { "id": "inactive:cpu4", "max": 1900800, "margin": 200 },
-        { "id": "inactive:cpu7", "max": 2035200, "margin": 200 },
+        { "id": "p3:cpu4", "max": 2400000, "min": 1900800, "margin": 400 },
+        { "id": "p3:cpu7", "max": 2400000, "min": 2208000, "margin": 400 },
 
-        { "id": "idle:cpu0", "max": 1804800, "min": 806400, "margin": 200 },
-        { "id": "idle:cpu4", "max": 1516800, "margin": 100 },
-        { "id": "idle:cpu7", "max": 1766400, "margin": 120 }
+        { "id": "p4:cpu4", "max": 2400000, "min": 2112000, "margin": 400 },
+        { "id": "p4:cpu7", "max": 2500000, "min": 2380800, "margin": 400 },
+
+        { "id": "inactive:cpu0", "max": 1804800, "min": 806400, "margin": 150 },
+        { "id": "inactive:cpu4", "max": 1900800, "margin": 100 },
+        { "id": "inactive:cpu7", "max": 2035200, "margin": 150 },
+
+        { "id": "idle:cpu0", "max": 1804800, "min": 806400, "margin": 130 },
+        { "id": "idle:cpu4", "max": 1516800, "margin": 80 },
+        { "id": "idle:cpu7", "max": 1766400, "margin": 130 }
       ]
     }
   },
@@ -94,19 +93,40 @@
       ["$core_ctl_7", "1"], ["$min_cpus_cpu7", "0"], ["$max_cpus_cpu7", "1"]
     ],
     "bw_max": [
-      ["$llcc_ddr_max", "#9999"], ["$cpu_llcc_max", "#99999"],
-      ["$llcc_ddr_min",   "#762"], ["$cpu_llcc_min", "#2288"],
-      ["$l3_lat_max", "1516800000"], ["$l3_lat_min", "300000000"]
+      ["/sys/class/devfreq/18590100.qcom,snoop-l3-bw/min_freq", "46289"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-cpu-ddr-latfloor/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-cpu-llcc-lat/min_freq", "2288"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-llcc-ddr-lat/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-ddr-latfloor/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-lat/min_freq", "2288"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-latfloor/min_freq", "2288"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-llcc-ddr-lat/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu7-cpu-ddr-latfloor/min_freq", "762"],
+      ["/sys/class/devfreq/18590100.qcom,cpu7-cpu-l3-latfloor/min_freq", "300000000"]
     ],
     "bw_low": [
-      ["$llcc_ddr_min",  "#762"], ["$cpu_llcc_min", "#2288"],
-      ["$llcc_ddr_max", "#8136"], ["$cpu_llcc_max", "#16265"],
-      ["$l3_lat_max", "1516800000"], ["$l3_lat_min", "300000000"]
+      ["/sys/class/devfreq/18590100.qcom,snoop-l3-bw/min_freq", "46289"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-cpu-ddr-latfloor/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-cpu-llcc-lat/min_freq", "2288"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-llcc-ddr-lat/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-ddr-latfloor/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-lat/min_freq", "2288"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-latfloor/min_freq", "2288"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-llcc-ddr-lat/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu7-cpu-ddr-latfloor/min_freq", "762"],
+      ["/sys/class/devfreq/18590100.qcom,cpu7-cpu-l3-latfloor/min_freq", "300000000"]
     ],
     "bw_boost": [
-      ["$llcc_ddr_max", "#99999"], ["$cpu_llcc_max", "#99999"],
-      ["$llcc_ddr_min", "#99999"], ["$cpu_llcc_min", "#99999"],
-      ["$l3_lat_max", "9999900000"], ["$l3_lat_min", "9999900000"]
+      ["/sys/class/devfreq/18590100.qcom,snoop-l3-bw/min_freq", "46289"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-cpu-ddr-latfloor/min_freq", "12191"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-cpu-llcc-lat/min_freq", "16265"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-llcc-ddr-lat/min_freq", "12191"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-ddr-latfloor/min_freq", "12191"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-lat/min_freq", "16265"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-latfloor/min_freq", "16265"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-llcc-ddr-lat/min_freq", "12191"],
+      ["/sys/class/devfreq/soc:qcom,cpu7-cpu-ddr-latfloor/min_freq", "12191"],
+      ["/sys/class/devfreq/18590100.qcom,cpu7-cpu-l3-latfloor/min_freq", "1516800000"]
     ],
     "comm_active": [
       ["$cpu_max_0", "1804800"],
@@ -130,7 +150,7 @@
     ],
 
     "powersave_active": [
-      ["@limiters", "p1:cpu4", "p1:cpu7"],
+      ["@limiters", "active:cpu0", "p1:cpu4", "p1:cpu7"],
       ["@preset", "comm_active"],
       ["@values", "min_freq", "940800", "691200", "806400"],
       ["@repeat", "sched_config", "75 75", "85 85", "150", "400"]
@@ -166,7 +186,7 @@
     ],
 
     "fast_active": [
-      ["@limiters", "NONE"],
+      ["@limiters", "p4:cpu4", "p4:cpu7"],
       ["@preset", "comm_active"],
       ["@values", "min_freq", "2000000", "2400000", "2500000"],
       ["@values", "min_freq", "1516800", "1516800", "1324800"],
@@ -189,7 +209,8 @@
         ["@gpu_freq", "min", "608000"]
       ],
       "app": [
-        ["@gpu_freq", "min", "608000"]
+        ["@gpu_freq", "min", "608000"],
+        ["@preset", "bw_low"]
       ],
       "game": [
         ["@preset", "bw_max"],

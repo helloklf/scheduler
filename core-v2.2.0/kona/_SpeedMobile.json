@@ -22,18 +22,22 @@
   "modes": [
     {
       "mode": ["balance"],
-      "enter": [
-        ["$cpu_min_0", "1075200"], ["$cpu_min_4", "1056000"], ["$cpu_min_7", "1747200"]
-      ],
-      "exit": [ ["$cpu_min_4", "825600"] ]
+      "booster": {
+        "enter": [
+          ["$cpu_min_0", "1075200"], ["$cpu_min_4", "1056000"], ["$cpu_min_7", "1747200"]
+        ],
+        "exit": [ ["$cpu_min_4", "825600"] ]
+      }
     },
     {
       "mode": ["*"],
-      "enter": [
-        ["$cpu_min_0", "1075200"], ["$cpu_min_4", "1171200"], ["$cpu_min_7", "1977600"],
-        ["$stune_top_boost", "10"], ["$stune_top_perf", "1"]
-      ],
-      "exit": [ ["$cpu_min_4", "825600"] ]
+      "booster": {
+        "enter": [
+          ["$cpu_min_0", "1075200"], ["$cpu_min_4", "1171200"], ["$cpu_min_7", "1977600"],
+          ["$stune_top_boost", "10"], ["$stune_top_perf", "1"]
+        ],
+        "exit": [ ["$cpu_min_4", "825600"] ]
+      }
     }
   ]
 }

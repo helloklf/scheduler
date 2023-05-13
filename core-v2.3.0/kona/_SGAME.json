@@ -27,17 +27,8 @@
   },
   "modes": [{
     "mode": ["powersave"],
-    "sensors": [
-      {
-        "sensor": "fps",
-        "interval": 10000,
-        "props": ["$cpu_max_0", "$cpu_max_4", "$cpu_max_7"],
-        "rules": [
-          { "threshold": [-1, 100], "values": ["1804800", "1958400", "2457600"] },
-          { "threshold": [99,  75], "values": ["1804800", "1958400", "2265600"] },
-          { "threshold": [70,  -1], "values": ["1804800", "1766400", "2073600"] }
-        ]
-      }
+    "call": [
+      ["@limiters", "g1:cpu4", "g1:cpu7"]
     ]
   }, {
     "mode": ["balance"],

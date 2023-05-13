@@ -66,7 +66,7 @@
       ["/sys/devices/platform/soc/1d84000.ufshc/hibern8_on_idle_enable", "1"],
       ["/sys/class/devfreq/1d84000.ufshc/min_freq", "37500000"]
     ],
-    "sched_config": [
+    "_sched_config": [
       ["/proc/sys/kernel/sched_downmigrate"],
       ["/proc/sys/kernel/sched_upmigrate"],
       ["/proc/sys/kernel/sched_group_downmigrate"],

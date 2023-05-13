@@ -105,17 +105,27 @@
       ["/sys/class/devfreq/18590100.qcom,cpu7-cpu-l3-latfloor/min_freq", "300000000"]
     ],
     "bw_low": [
+      ["/sys/class/devfreq/18590100.qcom,snoop-l3-bw/min_freq", "46289"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-cpu-ddr-latfloor/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-cpu-llcc-lat/min_freq", "2288"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-llcc-ddr-lat/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-ddr-latfloor/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-lat/min_freq", "2288"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-latfloor/min_freq", "2288"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-llcc-ddr-lat/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu7-cpu-ddr-latfloor/min_freq", "762"],
+      ["/sys/class/devfreq/18590100.qcom,cpu7-cpu-l3-latfloor/min_freq", "300000000"]
     ],
     "bw_boost": [
       ["/sys/class/devfreq/18590100.qcom,snoop-l3-bw/min_freq", "46289"],
-      ["/sys/class/devfreq/soc:qcom,cpu0-cpu-ddr-latfloor/min_freq", "8136"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-cpu-ddr-latfloor/min_freq", "12191"],
       ["/sys/class/devfreq/soc:qcom,cpu0-cpu-llcc-lat/min_freq", "16265"],
-      ["/sys/class/devfreq/soc:qcom,cpu0-llcc-ddr-lat/min_freq", "8136"],
-      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-ddr-latfloor/min_freq", "8136"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-llcc-ddr-lat/min_freq", "12191"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-ddr-latfloor/min_freq", "12191"],
       ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-lat/min_freq", "16265"],
       ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-latfloor/min_freq", "16265"],
-      ["/sys/class/devfreq/soc:qcom,cpu4-llcc-ddr-lat/min_freq", "8136"],
-      ["/sys/class/devfreq/soc:qcom,cpu7-cpu-ddr-latfloor/min_freq", "8136"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-llcc-ddr-lat/min_freq", "12191"],
+      ["/sys/class/devfreq/soc:qcom,cpu7-cpu-ddr-latfloor/min_freq", "12191"],
       ["/sys/class/devfreq/18590100.qcom,cpu7-cpu-l3-latfloor/min_freq", "1516800000"]
     ],
     "comm_active": [

@@ -94,19 +94,40 @@
       ["$core_ctl_7", "1"], ["$min_cpus_cpu7", "0"], ["$max_cpus_cpu7", "1"]
     ],
     "bw_max": [
-      ["$llcc_ddr_max", "#9999"], ["$cpu_llcc_max", "#99999"],
-      ["$llcc_ddr_min",   "#762"], ["$cpu_llcc_min", "#2288"],
-      ["$l3_lat_max", "1516800000"], ["$l3_lat_min", "300000000"]
+      ["/sys/class/devfreq/18590100.qcom,snoop-l3-bw/min_freq", "46289"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-cpu-ddr-latfloor/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-cpu-llcc-lat/min_freq", "2288"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-llcc-ddr-lat/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-ddr-latfloor/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-lat/min_freq", "2288"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-latfloor/min_freq", "2288"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-llcc-ddr-lat/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu7-cpu-ddr-latfloor/min_freq", "762"],
+      ["/sys/class/devfreq/18590100.qcom,cpu7-cpu-l3-latfloor/min_freq", "300000000"]
     ],
     "bw_low": [
-      ["$llcc_ddr_min",  "#762"], ["$cpu_llcc_min", "#2288"],
-      ["$llcc_ddr_max", "#8136"], ["$cpu_llcc_max", "#16265"],
-      ["$l3_lat_max", "1516800000"], ["$l3_lat_min", "300000000"]
+      ["/sys/class/devfreq/18590100.qcom,snoop-l3-bw/min_freq", "46289"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-cpu-ddr-latfloor/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-cpu-llcc-lat/min_freq", "2288"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-llcc-ddr-lat/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-ddr-latfloor/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-lat/min_freq", "2288"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-latfloor/min_freq", "2288"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-llcc-ddr-lat/min_freq", "762"],
+      ["/sys/class/devfreq/soc:qcom,cpu7-cpu-ddr-latfloor/min_freq", "762"],
+      ["/sys/class/devfreq/18590100.qcom,cpu7-cpu-l3-latfloor/min_freq", "300000000"]
     ],
     "bw_boost": [
-      ["$llcc_ddr_max", "#99999"], ["$cpu_llcc_max", "#99999"],
-      ["$llcc_ddr_min", "#99999"], ["$cpu_llcc_min", "#99999"],
-      ["$l3_lat_max", "9999900000"], ["$l3_lat_min", "9999900000"]
+      ["/sys/class/devfreq/18590100.qcom,snoop-l3-bw/min_freq", "46289"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-cpu-ddr-latfloor/min_freq", "12191"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-cpu-llcc-lat/min_freq", "16265"],
+      ["/sys/class/devfreq/soc:qcom,cpu0-llcc-ddr-lat/min_freq", "12191"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-ddr-latfloor/min_freq", "12191"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-lat/min_freq", "16265"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-latfloor/min_freq", "16265"],
+      ["/sys/class/devfreq/soc:qcom,cpu4-llcc-ddr-lat/min_freq", "12191"],
+      ["/sys/class/devfreq/soc:qcom,cpu7-cpu-ddr-latfloor/min_freq", "12191"],
+      ["/sys/class/devfreq/18590100.qcom,cpu7-cpu-l3-latfloor/min_freq", "1516800000"]
     ],
     "comm_active": [
       ["$cpu_max_0", "1804800"],

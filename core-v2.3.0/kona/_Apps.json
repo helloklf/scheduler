@@ -3,34 +3,58 @@
   "modes": [{
     "mode": ["powersave"],
     "booster": {
-      "duration": 1600,
-      "idle_delay": 700,
-      "enter": [["@preset", "powersave_active"]],
-      "exit": [["@preset", "powersave_inactive"]]
+      "duration": 2000,
+      "idle_delay": 1000,
+      "enter": [
+        ["@preset", "powersave_active"],
+        ["@values", "target_loads", "80", "80", "80"]
+      ],
+      "exit": [
+        ["@preset", "powersave_inactive"],
+        ["@values", "target_loads", "95", "95", "95"]
+      ]
     }
   }, {
     "mode": ["balance"],
     "booster": {
       "duration": 2000,
       "idle_delay": 1000,
-      "enter": [["@preset", "balance_active"]],
-      "exit": [["@preset", "balance_inactive"]]
+      "enter": [
+        ["@preset", "balance_active"],
+        ["@values", "target_loads", "80", "80", "80"]
+      ],
+      "exit": [
+        ["@preset", "balance_inactive"],
+        ["@values", "target_loads", "90", "90", "90"]
+      ]
     }
   },{
     "mode": ["performance"],
     "booster": {
       "duration": 2000,
       "idle_delay": 1000,
-      "enter": [["@preset", "performance_active"]],
-      "exit": [["@preset", "performance_inactive"]]
+      "enter": [
+        ["@preset", "performance_active"],
+        ["@values", "target_loads", "75", "75", "75"]
+      ],
+      "exit": [
+        ["@preset", "performance_inactive"],
+        ["@values", "target_loads", "85", "85", "85"]
+      ]
     }
   },{
     "mode": [ "*"],
     "booster": {
       "duration": 3000,
       "idle_delay": 1000,
-      "enter": [["@preset", "fast_active"]],
-      "exit": [["@preset", "fast_inactive"]]
+      "enter": [
+        ["@preset", "fast_active"],
+        ["@values", "target_loads", "50", "60", "60"]
+      ],
+      "exit": [
+        ["@preset", "fast_inactive"],
+        ["@values", "target_loads", "80", "80", "80"]
+      ]
     }
   }]
 }

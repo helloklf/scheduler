@@ -25,6 +25,7 @@
     },
     "cpus_control": {
       "enable": true,
+      "render_boost": false,
       "enable_control": "/data/local/tmp/scene_cpus_control"
     },
     "charge_control": {

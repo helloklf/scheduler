@@ -263,7 +263,7 @@ hide_value $t_message/temp_state 0
 hide_value $t_message/market_download_limit 0
 hide_value $t_message/cpu_nolimit_temp 47500
 
-hide_value /sys/module/perfmgr/parameters/perfmgr_enable 0
+umount /sys/module/perfmgr/parameters/perfmgr_enable
 
 core_ctl_preset
 disable_migt

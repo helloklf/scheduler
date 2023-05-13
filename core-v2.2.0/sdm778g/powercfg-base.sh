@@ -2,6 +2,69 @@ target=`getprop ro.board.platform`
 
 killall scene-scheduler 2>/dev/null
 
+manufacturer=$(getprop ro.product.manufacturer)
+
+set_value() {
+  value=$1
+  path=$2
+  if [[ -f $path ]]; then
+    current_value="$(cat $path)"
+    if [[ ! "$current_value" = "$value" ]]; then
+      chmod 0664 "$path"
+      echo "$value" > "$path"
+    fi;
+  fi;
+}
+
+cpuctl () {
+  # echo $xxx > /dev/cpuctl/$1/cpu.uclamp.sched_boost_no_override
+  # echo $xxx > /dev/cpuctl/$1/cpu.uclamp.latency_sensitive
+  echo $2 > /dev/cpuctl/$1/cpu.uclamp.min
+  echo $3 > /dev/cpuctl/$1/cpu.uclamp.max
+  echo $2 > /dev/cpuctl/$1/cpu.uclamp.min
+}
+mk_stune () {
+  mkdir -p "/dev/stune/$1"
+  echo $2 > "/dev/stune/$1/schedtune.prefer_idle"
+  echo $3 > "/dev/stune/$1/schedtune.boost"
+}
+mk_cpuctl () {
+  mkdir -p "/dev/cpuctl/$1"
+  echo $2 > /dev/cpuctl/$1/cpu.uclamp.sched_boost_no_override
+  echo $3 > /dev/cpuctl/$1/cpu.uclamp.latency_sensitive
+  echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
+  echo $5 > /dev/cpuctl/$1/cpu.uclamp.max
+  echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
+}
+
+lock_value() {
+  if [[ -f $2 ]];then
+    chmod 644 $2
+    echo $1 > $2
+    chmod 444 $2
+  fi
+}
+
+# hide_value /sys/module/task_turbo/parameters/feats [write_value]
+hide_value() {
+  if [[ -e "$1" ]]; then
+    umount "$1" 2>/dev/null
+    c_path="/cache${1}"
+    if [[ ! -f "$c_path" ]]; then
+      mkdir -p "$c_path"
+      rm -r "$c_path"
+    fi
+    chattr -i "$c_path"
+    cp -f "$1" "$c_path"
+    if [[ "$2" != "" ]]; then
+      lock_value "$2" "$1"
+    fi
+    mount --bind "$c_path" "$1"
+  else
+    echo "$1" Not Found!
+  fi
+}
+
 
 echo "0:1708800 1:0 2:0 3:0 4:2342400 5:0 6:0 7:2496000" > /sys/devices/system/cpu/cpu_boost/powerkey_input_boost_freq
 echo 400 > /sys/devices/system/cpu/cpu_boost/powerkey_input_boost_ms
@@ -111,13 +174,6 @@ move_to_heavy() {
     do
       echo $tid > /dev/cpuctl/heavy/tasks
     done
-  done
-}
-
-governor_cover() {
-  policy=/sys/devices/system/cpu/cpufreq/policy
-  ls $policy* | while read cluster; do
-    hide_value ${policy}${cluster}/scaling_governor $1
   done
 }
 
@@ -249,3 +305,30 @@ perfhal_stop
 perfhal_start
 
 setprop persist.sys.miui_animator_sched.bigcores 4-7
+
+
+for dir in /sys/class/devfreq/*l3-lat; do
+  lock_value 1516800000 $dir/max_freq
+  lock_value 300000000 $dir/min_freq
+done
+for dir in /sys/class/devfreq/*llcc-lat; do
+  lock_value 16265 $dir/max_freq
+  lock_value 2288 $dir/min_freq
+done
+# 2288 4577 7110 9155 12298 14236 16265
+lock_value 16265 /sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/max_freq
+
+
+# MI_CIVI 762 1720 2086 2597 2929 3879 5161 5931 6515 7980 8136
+# iQOO_Z5 762 1720 2086 2597 2929 5931 6515 7980 10437 12191
+llcc_ddr=/sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw
+ddr_max=$(cat $llcc_ddr/available_frequencies | awk -F ' ' '{print $NF}')
+
+for dir in $(ls /sys/class/devfreq | grep ddr-lat | grep -v npu); do
+  lock_value $ddr_max /sys/class/devfreq/$dir/max_freq
+  lock_value 762 /sys/class/devfreq/$dir/min_freq
+done
+lock_value $ddr_max /sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/max_freq
+
+# 9155 16992 19921 23437 25781 28710 32226 36328 39843 42773 46289
+lock_value 46289 /sys/class/devfreq/18590100.qcom,snoop-l3-bw/max_freq

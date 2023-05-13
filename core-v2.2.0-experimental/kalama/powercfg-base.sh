@@ -132,7 +132,7 @@ hide_value $t_message/temp_state 0
 hide_value $t_message/market_download_limit 0
 hide_value $t_message/cpu_nolimit_temp 47500
 
-hide_value /sys/module/perfmgr/parameters/perfmgr_enable 0
+umount /sys/module/perfmgr/parameters/perfmgr_enable
 
 cpu3_core_ctl_dir=/sys/devices/system/cpu/cpu3/core_ctl
 lock_value 0 $cpu3_core_ctl_dir/min_cpus

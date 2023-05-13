@@ -45,7 +45,7 @@
             ]
           },
           {
-            "threshold": [-1, 75],
+            "threshold": [100, 75],
             "enter_once": [
               ["@values", "max_freq", "1574400", "1555200", "1612800"],
               ["@limiters", "sgame1:cpu0", "sgame1:cpu4", "sgame1:cpu7"]
@@ -79,7 +79,7 @@
             ]
           },
           {
-            "threshold": [-1, 75],
+            "threshold": [100, 75],
             "enter_once": [
               ["@values", "max_freq", "1574400", "1651200", "1728000"],
               ["@limiters", "sgame1:cpu0", "sgame1:cpu4", "sgame1:cpu7"]
@@ -109,7 +109,7 @@
             ]
           },
           {
-            "threshold": [-1, 75],
+            "threshold": [100, 75],
             "enter_once": [
               ["@values", "max_freq", "1574400", "1996800", "2169600"],
               ["@limiters", "sgame2:cpu0", "sgame2:cpu4", "sgame2:cpu7"]

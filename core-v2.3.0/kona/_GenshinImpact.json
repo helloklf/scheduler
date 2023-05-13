@@ -1,11 +1,11 @@
 {
   "friendly": "原神",
   "limiters": [
-    { "id": "ys1:cpu4", "mode": "RANGE", "max": 2419200, "min": 1056000, "margin": 250, "smoothness": 5 },
-    { "id": "ys1:cpu7", "mode": "RANGE", "max": 2649600, "min": 1075200, "margin": 220, "smoothness": 4 },
+    { "id": "ys1:cpu4", "mode": "powersave", "max": 2419200, "min": 1056000, "margin": 250, "smoothness": 5 },
+    { "id": "ys1:cpu7", "mode": "powersave", "max": 2649600, "min": 1075200, "margin": 220, "smoothness": 4 },
 
-    { "id": "ys2:cpu4", "mode": "RANGE", "max": 2419200, "min": 1766400, "margin": 400, "smoothness": 4 },
-    { "id": "ys2:cpu7", "mode": "RANGE", "max": 3200000, "min": 2073600, "margin": 350, "smoothness": 4 },
+    { "id": "ys2:cpu4", "mode": "powersave", "max": 2419200, "min": 1766400, "margin": 400, "smoothness": 4 },
+    { "id": "ys2:cpu7", "mode": "powersave", "max": 3200000, "min": 2073600, "margin": 350, "smoothness": 4 },
 
     { "id": "ys3:cpu4", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max": 2419200, "min": 1056000, "margin": 300, "smoothness": 8 },
     { "id": "ys3:cpu7", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max": 2841600, "min": 1075200, "margin": 300, "smoothness": 8 },
