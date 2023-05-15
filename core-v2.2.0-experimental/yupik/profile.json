@@ -401,7 +401,8 @@
     },
     {
       "friendly": "All",
-      "packages": ["*"]
+      "packages": ["*"],
+      "import": "_FAS.json"
     }
   ]
 }

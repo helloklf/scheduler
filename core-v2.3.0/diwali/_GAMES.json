@@ -6,28 +6,28 @@
     {
       "mode": ["powersave"],
       "call": [
-        ["@values", "max_freq", "1574400", "1651200", "1728000"],
+        ["@values", "max_freq", "1555200", "1651200", "1766400"],
         ["@limiters", "g1:cpu0", "g1:cpu4", "g1:cpu7"]
       ]
     },
     {
       "mode": ["balance"],
       "call": [
-        ["@values", "max_freq", "1574400", "1881600", "1958400"],
+        ["@values", "max_freq", "1574400", "1804800", "1977600"],
         ["@limiters", "g2:cpu0", "g2:cpu4", "g2:cpu7"]
       ]
     },
     {
       "mode": ["performance"],
       "call": [
-        ["@values", "max_freq", "1689600", "1996800", "2169600"],
+        ["@values", "max_freq", "1651200", "2054400", "2169600"],
         ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"]
       ]
     },
     {
       "mode": ["*"],
       "call": [
-        ["@values", "max_freq", "1689600", "2112000", "2400000"],
+        ["@values", "max_freq", "1804800", "2361600", "2400000"],
         ["@limiters", "g4:cpu0", "g4:cpu4", "g4:cpu7"]
       ]
     }

@@ -24,11 +24,11 @@
       "inactive_interval": 100,
       "logger": false,
       "params": [
-        { "id": "iactive:cpu0", "max": 1766400, "min": 576000, "margin": 250 },
+        { "id": "active:cpu0", "max": 1766400, "min": 576000, "margin": 300 },
   
         { "id": "p1:cpu4", "max": 2169600, "min": 1056000, "margin": 300 },
 
-        { "id": "p2:cpu4", "max": 2400000, "min": 1920000, "margin": 300 },
+        { "id": "p2:cpu4", "max": 2400000, "min": 1766400, "margin": 300 },
 
         { "id": "p3:cpu4", "max": 2649600, "min": 2323200, "margin": 200 },
 
@@ -99,7 +99,7 @@
 
     "powersave_active": [
       ["@preset", "common_actvie"],
-      ["@limiters", "iactive:cpu0", "p1:cpu4"],
+      ["@limiters", "active:cpu0", "p1:cpu4"],
       ["@values", "min_freq", "1094400", "844800"],
       ["@repeat", "sched_config", "70", "80", "150", "400"],
       ["@sched_limit", "0 0", "0 0"]
