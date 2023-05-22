@@ -28,6 +28,7 @@
     },
     "cpus_control": {
       "enable": true,
+      "render_boost": true,
       "enable_control": "/data/local/tmp/scene_cpus_control"
     },
     "limiter": {
@@ -35,7 +36,7 @@
       "inactive_interval": 150,
       "logger": false,
       "params": [
-        { "id": "p1:cpu0", "max": 2200000, "min": 1800000, "margin": 600 },
+        { "id": "p1:cpu0", "max": 2000000, "min": 1800000, "margin": 600 },
         { "id": "p1:cpu4", "max": 2200000, "min": 1451000, "margin": 600 },
         { "id": "p1:cpu7", "max": 2284000, "min": 1632000, "margin": 600 },
 

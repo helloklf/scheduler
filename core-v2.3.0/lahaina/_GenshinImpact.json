@@ -1,17 +1,20 @@
 {
   "friendly": "原神",
   "limiters": [
-    {"id": "ys1:cpu4", "step": -1, "max": 1766400, "margin": 100, "smoothness": 6, "mode": "performance"},
-    {"id": "ys1:cpu7", "step": -1, "max": 1785600, "margin": 100, "smoothness": 6, "mode": "performance"},
+    {"id": "ys1:cpu4", "step": -1, "max": 1766400, "turning": 1440000, "margin": 150, "smoothness": 6, "mode": "performance"},
+    {"id": "ys1:cpu7", "step": -1, "max": 1785600, "turning": 1420800, "margin": 150, "smoothness": 6, "mode": "performance"},
 
-    {"id": "ys2:cpu4", "step": -1, "max": 1996800, "margin": 150, "smoothness": 6, "mode": "performance"},
-    {"id": "ys2:cpu7", "step": -1, "max": 2035200, "margin": 150, "smoothness": 6, "mode": "performance"},
+    {"id": "ys2:cpu4", "step": -1, "max": 1996800, "turning": 1766400, "margin": 150, "smoothness": 6, "mode": "performance"},
+    {"id": "ys2:cpu7", "step": -1, "max": 2035200, "turning": 1785600, "margin": 150, "smoothness": 6, "mode": "performance"},
 
-    {"id": "ys3:cpu4", "step": -1, "max": 2227200, "margin": 180, "smoothness": 6, "mode": "performance"},
-    {"id": "ys3:cpu7", "step": -1, "max": 2265600, "margin": 180, "smoothness": 6, "mode": "performance"},
+    {"id": "ys3:cpu4", "step": -1, "max": 2227200, "turning": 1996800, "margin": 180, "smoothness": 6, "mode": "performance"},
+    {"id": "ys3:cpu7", "step": -1, "max": 2265600, "turning": 2035200, "margin": 180, "smoothness": 6, "mode": "performance"},
 
-    {"id": "ys4:cpu4", "step": -1, "max": 2419200, "margin": 200, "smoothness": 6, "mode": "performance"},
-    {"id": "ys4:cpu7", "step": -1, "max": 2496000, "margin": 220, "smoothness": 6, "mode": "performance"}
+    {"id": "ys4:cpu4", "step": -1, "max": 2419200, "turning": 2112000, "margin": 200, "smoothness": 6, "mode": "performance"},
+    {"id": "ys4:cpu7", "step": -1, "max": 2496000, "turning": 2265600, "margin": 220, "smoothness": 6, "mode": "performance"}
+  ],
+  "call": [
+    ["$mod_percent", "92"]
   ],
   "cpuset": {
     "unity_main": "6",
@@ -48,10 +51,10 @@
           "interval": 200,
           "props": ["$gpu_max_khz"],
           "rules": [
-            { "threshold": [   -1, 92000], "values": ["443000000"] },
-            { "threshold": [92000, 88000], "values": ["491000000"] },
-            { "threshold": [88000, 83000], "values": ["540000000"] },
-            { "threshold": [83000,    -1], "values": ["608000000"] }
+            { "threshold": [   -1, 93000], "values": ["443000000"] },
+            { "threshold": [93000, 87000], "values": ["491000000"] },
+            { "threshold": [87000, 80000], "values": ["540000000"] },
+            { "threshold": [80000,    -1], "values": ["608000000"] }
           ]
         }
       ]
@@ -72,8 +75,7 @@
             { "threshold": [   -1, 92000], "values": ["443000000"] },
             { "threshold": [92000, 88000], "values": ["491000000"] },
             { "threshold": [88000, 83000], "values": ["540000000"] },
-            { "threshold": [83000, 78000], "values": ["608000000"] },
-            { "threshold": [78000,    -1], "values": ["738000000"] }
+            { "threshold": [83000,    -1], "values": ["608000000"] }
           ]
         }
       ]
@@ -91,11 +93,9 @@
           "interval": 50,
           "props": ["$gpu_max_khz"],
           "rules": [
-            { "threshold": [   -1, 94500], "values": ["443000000"] },
-            { "threshold": [94500, 90000], "values": ["491000000"] },
-            { "threshold": [90000, 85000], "values": ["540000000"] },
-            { "threshold": [85000, 80000], "values": ["608000000"] },
-            { "threshold": [80000,    -1], "values": ["738000000"] }
+            { "threshold": [   -1, 93000], "values": ["491000000"] },
+            { "threshold": [93000, 85000], "values": ["540000000"] },
+            { "threshold": [85000,    -1], "values": ["608000000"] }
           ]
         }
       ]

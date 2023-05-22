@@ -17,28 +17,38 @@
     "cpu_llcc_min": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/min_freq"
   },
   "features": {
+    "cpus_control": {
+      "enable": true,
+      "render_boost": true,
+      "enable_control": "/data/local/tmp/scene_cpus_control"
+    },
     "limiter": {
       "active_interval": 20,
       "inactive_interval": 100,
       "logger": false,
       "params": [
-        { "id": "p1:cpu6", "max": 1939200, "min": 1708800, "margin": 350 },
+        { "id": "p1:cpu0", "max": 1804800, "turning": 1612800, "min": 768000, "margin": 450, "mode": "upper" },
+        { "id": "p1:cpu6", "max": 2208000, "turning": 1708800, "min": 979200, "margin": 450, "mode": "upper" },
 
-        { "id": "p2:cpu6", "max": 2208000, "min": 1939200, "margin": 550 },
+        { "id": "p2:cpu0", "max": 1804800, "turning": 1612800, "min": 1248000, "margin": 500, "mode": "upper" },
+        { "id": "p2:cpu6", "max": 2208000, "turning": 1939200, "min": 1708800, "margin": 550, "mode": "upper" },
 
-        { "id": "p3:cpu6", "max": 2208000, "min": 2208000, "margin": 550 },
+        { "id": "p3:cpu0", "max": 1804800, "turning": 1612800, "min": 1017600, "margin": 550, "mode": "bottom" },
+        { "id": "p3:cpu6", "min": 2208000, "margin": 550, "mode": "bottom" },
 
-        { "id": "p4:cpu6", "max": 0, "min": 2208000, "margin": 550 },
+        { "id": "p4:cpu0", "max": 1804800, "turning": 1612800, "min": 1248000, "margin": 600, "mode": "bottom" },
+        { "id": "p4:cpu6", "min": 2208000, "margin": 550, "mode": "bottom" },
 
         { "id": "idle:cpu0", "max": 1612800, "min": 576000, "margin": 100 },
-        { "id": "idle:cpu6", "max": 1939200, "min": 300000, "margin": 50 }
+        { "id": "idle:cpu6", "max": 1939200, "min": 300000, "margin": 100 }
       ]
     }
   },
   "presets": {
     "reset": [
       ["@msm_reset"],
-      ["@governor", "schedutil"]
+      ["@governor", "schedutil"],
+      ["@sched_limit", "0 0", "0 0"]
     ],
     "hispeed_freq": [
       ["/sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq"],
@@ -69,7 +79,7 @@
     "common_actvie": [
       ["$cpu_max_0", "1804800"],
       ["@preset", "cores_force_on"],
-      ["@cpuset", "0-3", "0-3", "0-7", "0-7"]
+      ["@cpuset", "0-3", "0-3", "0-5", "0-7"]
     ],
     "common_inactvie": [
       ["@cpuset", "0-3", "0-3", "0-5", "0-7"]
@@ -103,70 +113,61 @@
 
     "powersave_active": [
       ["@preset", "common_actvie"],
-      ["@limiters", "p1:cpu6"],
+      ["@limiters", "p1:cpu0", "p1:cpu6"],
       ["@values", "min_freq", "1094400", "844800"],
-      ["@repeat", "sched_config", "70", "80", "150", "400"],
-      ["@sched_limit", "0 0", "0 0"]
+      ["@repeat", "sched_config", "70", "80", "150", "400"]
     ],
     "powersave_inactive": [
       ["@limiters", "idle:cpu0", "idle:cpu6"],
       ["@values", "min_freq", "300000", "710400"],
-      ["@preset", "cores_force_off"],
-      ["@repeat", "sched_config", "85", "95", "150", "400"],
-      ["@sched_limit", "0 0", "0 4000"]
+      ["@preset", "cores_auto_off"],
+      ["@repeat", "sched_config", "85", "95", "150", "400"]
     ],
     "powersave_idle": [
       ["@limiters", "idle:cpu0", "idle:cpu6"],
       ["@preset", "common_inactvie"],
       ["@values", "min_freq", "300000", "710400"],
-      ["@preset", "cores_force_off"],
-      ["@repeat", "sched_config", "85", "95", "150", "400"],
-      ["@sched_limit", "0 0", "0 8000"]
+      ["@preset", "cores_auto_off"],
+      ["@repeat", "sched_config", "85", "95", "150", "400"]
     ],
 
     "balance_active": [
       ["@preset", "common_actvie"],
-      ["@limiters", "p2:cpu6"],
+      ["@limiters", "p2:cpu0", "p2:cpu6"],
       ["@values", "min_freq", "1209600", "960000"],
-      ["@repeat", "sched_config", "65", "75", "150", "400"],
-      ["@sched_limit", "0 0", "0 0"]
+      ["@repeat", "sched_config", "65", "75", "150", "400"]
     ],
     "balance_inactive": [
       ["@limiters", "NONE"],
       ["@preset", "common_inactvie"],
       ["@values", "min_freq", "300000", "710400"],
-      ["@repeat", "sched_config", "85", "95", "150", "400"],
-      ["@sched_limit", "0 0", "0 4000"]
+      ["@repeat", "sched_config", "85", "95", "150", "400"]
     ],
 
     "performance_active": [
       ["@preset", "common_actvie"],
-      ["@limiters", "p3:cpu6"],
+      ["@limiters", "p3:cpu0", "p3:cpu6"],
       ["@values", "min_freq", "1401600", "1075200"],
-      ["@repeat", "sched_config", "62", "70", "150", "400"],
-      ["@sched_limit", "0 0", "0 0"]
+      ["@repeat", "sched_config", "62", "70", "150", "400"]
     ],
     "performance_inactive": [
       ["@limiters", "NONE"],
       ["@preset", "common_inactvie"],
       ["@values", "min_freq", "1209600", "710400"],
-      ["@repeat", "sched_config", "85", "95", "150", "400"],
-      ["@sched_limit", "0 0", "0 4000"]
+      ["@repeat", "sched_config", "85", "95", "150", "400"]
     ],
 
     "fast_active": [
       ["@preset", "common_actvie"],
-      ["@limiters", "p4:cpu6"],
+      ["@limiters", "p4:cpu0", "p4:cpu6"],
       ["@values", "min_freq", "1497600", "1440000"],
-      ["@repeat", "sched_config", "62 62", "70 78", "300", "400"],
-      ["@sched_limit", "4000 0", "4000 0"]
+      ["@repeat", "sched_config", "62 62", "70 78", "300", "400"]
     ],
     "fast_inactive": [
       ["@limiters", "NONE"],
       ["@preset", "common_inactvie"],
       ["@values", "min_freq", "1209600", "710400"],
-      ["@repeat", "sched_config", "85", "95", "150", "400"],
-      ["@sched_limit", "0 0", "0 4000"]
+      ["@repeat", "sched_config", "85", "95", "150", "400"]
     ]
   },
   "schemes": {
@@ -247,7 +248,7 @@
       "modes": [{
         "mode": ["powersave"],
         "booster": {
-          "duration": 3000,
+          "duration": 4000,
           "enter": [
             ["@preset", "performance_active"]
           ],
@@ -258,7 +259,7 @@
       },{
         "mode": ["balance"],
         "booster": {
-          "duration": 3000,
+          "duration": 4000,
           "enter": [
             ["@preset", "fast_active"]
           ],

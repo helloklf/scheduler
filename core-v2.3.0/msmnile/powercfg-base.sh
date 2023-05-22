@@ -115,16 +115,6 @@ process_opt(){
 set_value 8000000 /proc/sys/kernel/sched_latency_ns
 set_value 2000000 /proc/sys/kernel/sched_min_granularity_ns
 
-governor_cover schedutil
-if [[ -f /sys/module/msm_performance/parameters/cpu_max_freq ]]; then
-  hide_value /sys/module/msm_performance/parameters/cpu_max_freq '0:4294967295 1:4294967295 2:4294967295 3:4294967295 4:4294967295 5:4294967295 6:4294967295 7:4294967295'
-  chattr +i  /sys/module/msm_performance/parameters/cpu_max_freq
-  hide_value /sys/module/msm_performance/parameters/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
-  chattr +i  /sys/module/msm_performance/parameters/cpu_min_freq
-fi
-
-hide_value /sys/class/kgsl/kgsl-3d0/devfreq/governor 'msm-adreno-tz'
-
 set_value "0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0" /sys/module/cpu_boost/parameters/input_boost_freq
 set_value 0 /sys/module/cpu_boost/parameters/input_boost_ms
 set_value 0 /sys/module/cpu_boost/parameters/sched_boost_on_input
@@ -194,52 +184,21 @@ core_ctl_preset() {
   echo 1 > $cpu7_core_ctl_dir/not_preferred
   echo 1 > $cpu7_core_ctl_dir/max_cpus
   echo 0 > $cpu7_core_ctl_dir/min_cpus
-  # echo 1 > $cpu7_core_ctl_dir/nr_prev_assist_thresh
-  echo 1 > $cpu7_core_ctl_dir/task_thres
   echo 30 > $cpu7_core_ctl_dir/busy_down_thres
   echo 60 > $cpu7_core_ctl_dir/busy_up_thres
-  # echo 1 > $cpu7_core_ctl_dir/enable
 
   cpu4_core_ctl_dir=/sys/devices/system/cpu/cpu4/core_ctl
-  echo 50 > $cpu4_core_ctl_dir/offline_delay_ms
-  echo 1 1 1 > $cpu4_core_ctl_dir/not_preferred
   echo 3 > $cpu4_core_ctl_dir/max_cpus
-  echo 0 > $cpu4_core_ctl_dir/min_cpus
-  # echo 4294967295 > $cpu4_core_ctl_dir/nr_prev_assist_thresh
-  echo 3 > $cpu4_core_ctl_dir/task_thres
-  echo 15 > $cpu4_core_ctl_dir/busy_down_thres
-  echo 20 > $cpu4_core_ctl_dir/busy_up_thres
-  # echo 1 > $cpu4_core_ctl_dir/enable
+  echo 3 > $cpu4_core_ctl_dir/min_cpus
+  echo 0 > $cpu4_core_ctl_dir/enable
 
   cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
-  echo 50 > $cpu0_core_ctl_dir/offline_delay_ms
-  echo 0 1 1 1 > $cpu0_core_ctl_dir/not_preferred
   echo 4 > $cpu0_core_ctl_dir/max_cpus
-  echo 1 > $cpu0_core_ctl_dir/min_cpus
-  # echo 4294967295 > $cpu0_core_ctl_dir/nr_prev_assist_thresh
-  # echo 3 > $cpu0_core_ctl_dir/task_thres
-  echo 15 > $cpu0_core_ctl_dir/busy_down_thres
-  echo 20 > $cpu0_core_ctl_dir/busy_up_thres
-  # echo 1 > $cpu0_core_ctl_dir/enable
+  echo 4 > $cpu0_core_ctl_dir/min_cpus
+  echo 0 > $cpu0_core_ctl_dir/enable
 }
 
 core_ctl_preset
 set_hispeed_freq 0 0 0
-
-uninstall_mi_opt() {
-  pm uninstall --user 0 com.miui.daemon >/dev/null 2>&1
-  pm uninstall --user 0 com.xiaomi.joyose >/dev/null 2>&1
-}
-
-reinstall_mi_opt() {
-  uninstall_mi_opt
-  pm install-existing --user 0 com.miui.daemon >/dev/null 2>&1
-  pm install-existing --user 0 com.xiaomi.joyose >/dev/null 2>&1
-}
-
-version=$(getprop ro.miui.ui.version.name)
-if [[ "$varsion" == "V125" ]] || [[ "$varsion" == "V130" ]]; then
-  uninstall_mi_opt &
-fi
 
 process_opt &

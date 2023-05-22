@@ -21,6 +21,11 @@
     "cci_mode": "/proc/cpufreq/cpufreq_cci_mode"
   },
   "features": {
+    "cpus_control": {
+      "enable": true,
+      "render_boost": true,
+      "enable_control": "/data/local/tmp/scene_cpus_control"
+    },
     "high_rate": {
       "enable": false,
       "enable_control": "/data/local/tmp/scene_refresh_rate",

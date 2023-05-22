@@ -4,6 +4,13 @@
   "framework": 210,
   "alias": {
   },
+  "features": {
+    "cpus_control": {
+      "enable": true,
+      "render_boost": true,
+      "enable_control": "/data/local/tmp/scene_cpus_control"
+    }
+  },
   "schemes": {
     "powersave": {
       "call": [

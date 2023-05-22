@@ -94,3 +94,14 @@ fi
 disable_migt
 # Reinstall MIUI's daemon\joyose
 # reinstall_mi_opt &
+
+echo 6 > /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
+echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/enable
+
+# Core control parameters on gold
+echo 1 1 > /sys/devices/system/cpu/cpu6/core_ctl/not_preferred
+echo 0 > /sys/devices/system/cpu/cpu6/core_ctl/min_cpus
+echo 90 > /sys/devices/system/cpu/cpu6/core_ctl/busy_up_thres
+echo 65 > /sys/devices/system/cpu/cpu6/core_ctl/busy_down_thres
+echo 20 > /sys/devices/system/cpu/cpu6/core_ctl/offline_delay_ms
+echo 1 > /sys/devices/system/cpu/cpu6/core_ctl/enable

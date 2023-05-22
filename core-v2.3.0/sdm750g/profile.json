@@ -17,6 +17,11 @@
     "cpu_llcc_min": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/min_freq"
   },
   "features": {
+    "cpus_control": {
+      "enable": true,
+      "render_boost": true,
+      "enable_control": "/data/local/tmp/scene_cpus_control"
+    },
     "limiter": {
       "active_interval": 20,
       "inactive_interval": 100,
@@ -99,7 +104,7 @@
     "powersave_inactive": [
       ["@limiters", "idle:cpu0", "idle:cpu6"],
       ["@values", "min_freq", "300000", "710400"],
-      ["@preset", "cores_force_off"],
+      ["@preset", "cores_auto_off"],
       ["@repeat", "sched_config", "85", "95", "150", "400"],
       ["@sched_limit", "0 0", "0 4000"]
     ],
