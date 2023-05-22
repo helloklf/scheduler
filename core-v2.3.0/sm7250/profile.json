@@ -304,7 +304,13 @@
           "3-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
         },
         "other": "0-6"
-      }
+      },
+      "modes": [
+        {
+          "mode": ["powersave"],
+          "call": [["@limiters", "p1:cpu6", "p1:cpu7"]]
+        }
+      ]
     },
     {
       "friendly": "和平精英",

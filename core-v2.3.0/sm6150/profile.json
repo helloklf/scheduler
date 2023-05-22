@@ -291,7 +291,6 @@
       "friendly": "王者荣耀",
       "packages": ["com.tencent.tmgp.sgame"],
       "cpuset": {
-        "interval": 1000,
         "comm": {
           "6-7": ["UnityGfx", "UnityMain", "UnityPreload", "Thread-"],
           "3-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]

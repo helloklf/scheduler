@@ -298,25 +298,18 @@
     {
       "friendly": "原神",
       "categories": ["GenshinImpact"],
-      "sensors": [],
-      "modes": [
-        {
-          "mode": ["*"],
-          "cpuset": {
-            "comm": {
-              "6-7": ["UnityMain"],
-              "6": ["UnityGfx", "UnityMultiRende"],
-              "0-5": ["Timer"]
-            },
-            "other": "0-5"
-          }
-        }
-      ]
+      "cpuset": {
+        "comm": {
+          "6-7": ["UnityMain"],
+          "6": ["UnityGfx", "UnityMultiRende"],
+          "0-5": ["Timer"]
+        },
+        "other": "0-5"
+      }
     },
     {
       "friendly": "王者荣耀",
       "packages": ["com.tencent.tmgp.sgame"],
-      "sensors": [],
       "cpuset": {
         "comm": {
           "7": ["UnityMain"],

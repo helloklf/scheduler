@@ -1,10 +1,6 @@
 killall scene-scheduler 2>/dev/null
 
 
-# /sys/class/kgsl/kgsl-3d0/devfreq/available_frequencies
-# 840000000 778000000 738000000 676000000 608000000 540000000 491000000 443000000 379000000 315000000
-
-
 # [none] intra-slot inter-slot full full-reset
 serialize_jobs(){
   echo $1 > /sys/devices/platform/13000000.mali/scheduling/serialize_jobs
@@ -20,15 +16,15 @@ cpu_power_mode() {
 
 # sched_deisolation [cpuIndex]
 sched_deisolation() {
-  echo $1 > /sys/devices/system/cpu/sched/set_sched_deisolation
+  set_value $1 /sys/devices/system/cpu/sched/set_sched_deisolation
 }
 # sched_isolation [cpuIndex]
 sched_isolation() {
-  echo $1 > /sys/devices/system/cpu/sched/set_sched_isolation
+  set_value $1 /sys/devices/system/cpu/sched/set_sched_isolation
 }
 sched_isolation_disable() {
   for i in 0 1 2 3 4 5 6 7; do
-    echo $i > /sys/devices/system/cpu/sched/set_sched_deisolation
+    set_value $i /sys/devices/system/cpu/sched/set_sched_deisolation
   done
   chmod 000 /sys/devices/system/cpu/sched/set_sched_isolation
 }
@@ -153,8 +149,8 @@ echo 0 > /sys/devices/system/cpu/perf/fuel_gauge_enable
 echo 0 > /sys/devices/system/cpu/perf/gpu_pmu_enable
 
 echo 90 > /sys/module/ged/parameters/g_fb_dvfs_threshold
-echo 350000 > /sys/module/ged/parameters/gpu_bottom_freq
-echo 886000 > /sys/module/ged/parameters/gpu_cust_upbound_freq
+echo 200000 > /sys/module/ged/parameters/gpu_bottom_freq
+echo 990000 > /sys/module/ged/parameters/gpu_cust_upbound_freq
 echo 1 > /proc/perfmgr/syslimiter/syslimiter_force_disable
 echo 0 > /proc/perfmgr/boost_ctrl/cpu_ctrl/cfp_enable
 echo 0 > /sys/kernel/eara_thermal/enable
@@ -162,25 +158,25 @@ echo 0 > /sys/kernel/fpsgo/common/fpsgo_enable
 # 0: 0ff 1:on 2:free
 echo 2 > /sys/kernel/fpsgo/common/force_onoff
 echo 250 > /sys/kernel/fpsgo/fbt/thrm_activate_fps
-echo 2600000 > /sys/kernel/fpsgo/fbt/limit_cfreq
-echo 2600000 > /sys/kernel/fpsgo/fbt/limit_rfreq
-echo 2600000 > /sys/kernel/fpsgo/fbt/limit_cfreq_m
-echo 2600000 > /sys/kernel/fpsgo/fbt/limit_rfreq_m
+# echo 2050000 > /sys/kernel/fpsgo/fbt/limit_cfreq
+# echo 2050000 > /sys/kernel/fpsgo/fbt/limit_rfreq
+# echo 2050000 > /sys/kernel/fpsgo/fbt/limit_cfreq_m
+# echo 2050000 > /sys/kernel/fpsgo/fbt/limit_rfreq_m
 
 echo 0 > /sys/module/fbt_cpu/parameters/boost_affinity
 echo 0 > /sys/module/fbt_cpu/parameters/boost_affinity_90
 echo 0 > /sys/module/fbt_cpu/parameters/boost_affinity_120
 
-echo 0 > /sys/kernel/fpsgo/fbt/enable_switch_cap_margin
-echo 0 > /sys/kernel/fpsgo/fbt/enable_switch_sync_flag
-echo 0 > /sys/kernel/fpsgo/fbt/enable_switch_cap_margin
-echo 0 > /sys/kernel/fpsgo/fbt/light_loading_policy
-echo 0 > /sys/kernel/fpsgo/fbt/llf_task_policy
-echo 0 > /sys/kernel/fpsgo/fbt/switch_idleprefer
+# echo 0 > /sys/kernel/fpsgo/fbt/enable_switch_cap_margin
+# echo 0 > /sys/kernel/fpsgo/fbt/enable_switch_sync_flag
+# echo 0 > /sys/kernel/fpsgo/fbt/enable_switch_cap_margin
+# echo 0 > /sys/kernel/fpsgo/fbt/light_loading_policy
+# echo 0 > /sys/kernel/fpsgo/fbt/llf_task_policy
+# echo 0 > /sys/kernel/fpsgo/fbt/switch_idleprefer
 echo 100 > /sys/kernel/fpsgo/fbt/thrm_temp_th
 echo -1 > /sys/kernel/fpsgo/fbt/thrm_limit_cpu
 echo -1 > /sys/kernel/fpsgo/fbt/thrm_sub_cpu
-echo 0 > /sys/kernel/fpsgo/fbt/ultra_rescue
+# echo 0 > /sys/kernel/fpsgo/fbt/ultra_rescue
 
 echo 0 > /sys/devices/system/cpu/sched/hint_enable
 # echo 5 > /sys/devices/system/cpu/sched/hint_load_thresh
@@ -192,7 +188,7 @@ echo 0 > /proc/sys/kernel/launcher_boost_enabled
 
 serialize_jobs none
 
-for i in 0 4 7; do
+for i in 0 6; do
   chmod 444 /sys/devices/system/cpu/cpufreq/policy$i/scaling_min_freq
   chmod 444 /sys/devices/system/cpu/cpufreq/policy$i/scaling_max_freq
 done
@@ -203,7 +199,6 @@ done
 for i in 'hard_userlimit_cpu_freq' 'hard_userlimit_freq_limit_by_others'; do
   echo 0 -1 > /proc/ppm/policy/$i
   echo 1 -1 > /proc/ppm/policy/$i
-  echo 2 -1 > /proc/ppm/policy/$i
   chmod 444 /proc/ppm/policy/$i
   # cat /proc/ppm/policy/$i
 done
@@ -247,7 +242,13 @@ echo 8000000 > /proc/sys/kernel/sched_latency_ns
 echo 2000000 > /proc/sys/kernel/sched_min_granularity_ns
 
 ctl_off cpu0
-ctl_off cpu4
-ctl_off cpu7
+ctl_off cpu6
 process_opt &
 # voltage_offset &
+
+# Test using 1200 simulation 6+2
+if [[ $(getprop ro.vendor.mediatek.platform) == 'MT6893']]; then
+  sched_isolation 5
+  sched_isolation 4
+  hide_value /sys/devices/system/cpu/sched/set_sched_deisolation 0
+fi

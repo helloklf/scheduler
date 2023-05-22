@@ -1,62 +1,114 @@
 killall scene-scheduler 2>/dev/null
 
 
-target=`getprop ro.board.platform`
+# /sys/class/kgsl/kgsl-3d0/devfreq/available_frequencies
+# 840000000 778000000 738000000 676000000 608000000 540000000 491000000 443000000 379000000 315000000
 
-eem_offset() {
-  if [[ $(cat /proc/eem/EEM_DET_$1/eem_offset) == 0 ]]; then
-    echo $2 > /proc/eem/EEM_DET_$1/eem_offset
-  fi
-}
-eemg_offset() {
-  if [[ $(cat /proc/eemg/EEMG_DET_$1/eemg_offset) == 0 ]]; then
-    echo $2 > /proc/eemg/EEMG_DET_$1/eemg_offset
-  fi
+
+# [none] intra-slot inter-slot full full-reset
+serialize_jobs(){
+  echo $1 > /sys/devices/platform/13000000.mali/scheduling/serialize_jobs
 }
 
-voltage_offset(){
-  sleep 30
-  # B
-  eem_offset B -10
-  # S
-  eem_offset L -10
-  # M
-  eem_offset BL -10
-  eem_offset CCI -10
-  eemg_offset GPU 0
-  eemg_offset GPU_HI 0
+# 0 Default(Normal) mode
+# 1 Low Power mode
+# 2 Just Make mode
+# 3 Performance(Sports) mode
+cpu_power_mode() {
+  echo $1 > /proc/cpufreq/cpufreq_power_mode
 }
 
-core_ctl_init(){
-  # Core control parameters for gold
-  echo 2 > /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
-  echo 60 > /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres
-  echo 30 > /sys/devices/system/cpu/cpu4/core_ctl/busy_down_thres
-  echo 100 > /sys/devices/system/cpu/cpu4/core_ctl/offline_delay_ms
-  echo 3 > /sys/devices/system/cpu/cpu4/core_ctl/task_thres
-  echo 1 1 1 > /sys/devices/system/cpu/cpu4/core_ctl/not_preferred
-
-  # Core control parameters for gold+
-  echo 0 > /sys/devices/system/cpu/cpu7/core_ctl/min_cpus
-  echo 60 > /sys/devices/system/cpu/cpu7/core_ctl/busy_up_thres
-  echo 30 > /sys/devices/system/cpu/cpu7/core_ctl/busy_down_thres
-  echo 100 > /sys/devices/system/cpu/cpu7/core_ctl/offline_delay_ms
-  echo 1 > /sys/devices/system/cpu/cpu7/core_ctl/task_thres
-  echo 1 > /sys/devices/system/cpu/cpu4/core_ctl/not_preferred
-
-  # Controls how many more tasks should be eligible to run on gold CPUs
-  # w.r.t number of gold CPUs available to trigger assist (max number of
-  # tasks eligible to run on previous cluster minus number of CPUs in
-  # the previous cluster).
-  #
-  # Setting to 1 by default which means there should be at least
-  # 4 tasks eligible to run on gold cluster (tasks running on gold cores
-  # plus misfit tasks on silver cores) to trigger assitance from gold+.
-  echo 1 > /sys/devices/system/cpu/cpu7/core_ctl/nr_prev_assist_thresh
-
-  # Disable Core control on silver
-  # echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/enable
+# sched_deisolation [cpuIndex]
+sched_deisolation() {
+  echo $1 > /sys/devices/system/cpu/sched/set_sched_deisolation
 }
+# sched_isolation [cpuIndex]
+sched_isolation() {
+  echo $1 > /sys/devices/system/cpu/sched/set_sched_isolation
+}
+sched_isolation_disable() {
+  for i in 0 1 2 3 4 5 6 7; do
+    echo $i > /sys/devices/system/cpu/sched/set_sched_deisolation
+  done
+  chmod 000 /sys/devices/system/cpu/sched/set_sched_isolation
+}
+
+ppm() {
+  echo $2 > "/proc/ppm/$1"
+}
+
+policy() {
+  lock_value "$2" "/proc/ppm/policy/$1"
+}
+
+set_value() {
+  value=$1
+  path=$2
+  if [[ -f $path ]]; then
+    current_value="$(cat $path)"
+    if [[ ! "$current_value" = "$value" ]]; then
+      chmod 0664 "$path"
+      echo "$value" > "$path"
+    fi;
+  fi;
+}
+
+ctl_off() {
+  echo 0 > /sys/devices/system/cpu/$1/core_ctl/enable
+}
+
+set_ctl() {
+  echo $2 > /sys/devices/system/cpu/$1/core_ctl/busy_up_thres
+  echo $3 > /sys/devices/system/cpu/$1/core_ctl/busy_down_thres
+  echo $4 > /sys/devices/system/cpu/$1/core_ctl/offline_delay_ms
+}
+
+set_stune() {
+  echo $2 > /dev/stune/$1/schedtune.prefer_idle
+  echo $3 > /dev/stune/$1/schedtune.boost
+}
+stune_top_app() {
+  set_stune top-app $1 $2
+}
+
+disable_oppo_elf() {
+  pm disable com.coloros.oppoguardelf/com.coloros.powermanager.fuelgaue.GuardElfAIDLService
+  pm disable com.coloros.oppoguardelf/com.coloros.oppoguardelf.OppoGuardElfService
+}
+
+# GPU
+serialize_jobs none
+
+# DRAM
+dram_freq 0
+
+# PPM
+# policy_status
+# [0] PPM_POLICY_PTPOD: enabled
+# [1] PPM_POLICY_UT: enabled
+# [2] PPM_POLICY_FORCE_LIMIT: enabled
+# [3] PPM_POLICY_PWR_THRO: enabled
+# [4] PPM_POLICY_THERMAL: enabled
+# [6] PPM_POLICY_HARD_USER_LIMIT: enabled
+# [7] PPM_POLICY_USER_LIMIT: enabled
+# [8] PPM_POLICY_LCM_OFF: disabled
+# [9] PPM_POLICY_SYS_BOOST: disabled
+
+# Usage: echo <idx> <1/0> > /proc/ppm/policy_status
+
+ppm enabled 1
+ppm policy_status "0 0"
+ppm policy_status "1 0"
+ppm policy_status "2 0"
+ppm policy_status "3 0"
+ppm policy_status "4 0"
+# ppm policy_status "5 0"
+ppm policy_status "6 1"
+ppm policy_status "7 0"
+ppm policy_status "9 0"
+
+lock_value 2 /sys/kernel/fpsgo/common/force_onoff
+echo 0 > /sys/kernel/fpsgo/fbt/switch_idleprefer
 
 
 lock_value() {
@@ -96,7 +148,6 @@ echo 0 3 4 11 3 15 1 15 > /proc/driver/thermal/clatm_cpu_min_opp
 echo 1 3 4 5 0 0 0 0 > /proc/driver/thermal/clatm_cpu_min_opp
 }
 
-
 echo 0 > /sys/devices/system/cpu/perf/enable
 echo 0 > /sys/devices/system/cpu/perf/fuel_gauge_enable
 echo 0 > /sys/devices/system/cpu/perf/gpu_pmu_enable
@@ -119,7 +170,6 @@ echo 2600000 > /sys/kernel/fpsgo/fbt/limit_rfreq_m
 echo 0 > /sys/module/fbt_cpu/parameters/boost_affinity
 echo 0 > /sys/module/fbt_cpu/parameters/boost_affinity_90
 echo 0 > /sys/module/fbt_cpu/parameters/boost_affinity_120
-
 
 # echo 0 > /sys/kernel/fpsgo/fbt/enable_switch_cap_margin
 # echo 0 > /sys/kernel/fpsgo/fbt/enable_switch_sync_flag
@@ -145,6 +195,10 @@ serialize_jobs none
 for i in 0 4 7; do
   chmod 444 /sys/devices/system/cpu/cpufreq/policy$i/scaling_min_freq
   chmod 444 /sys/devices/system/cpu/cpufreq/policy$i/scaling_max_freq
+done
+
+for i in 3 4 5 6; do
+  echo $i 0 0 > /proc/gpufreq/gpufreq_limit_table
 done
 for i in 'hard_userlimit_cpu_freq' 'hard_userlimit_freq_limit_by_others'; do
   echo 0 -1 > /proc/ppm/policy/$i
@@ -195,7 +249,5 @@ echo 2000000 > /proc/sys/kernel/sched_min_granularity_ns
 ctl_off cpu0
 ctl_off cpu4
 ctl_off cpu7
-# disable_oppo_elf
-reset_basic_governor
 process_opt &
 # voltage_offset &

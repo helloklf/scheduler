@@ -32,13 +32,13 @@
       "logger": false,
       "params": [
         { "id": "p1:cpu0", "max_freq": 2000000, "min_freq": 1708000, "margin_mhz": 600 },
-        { "id": "p1:cpu4", "max_freq": 2200000, "min_freq": 1451000, "margin_mhz": 600 },
+        { "id": "p1:cpu6", "max_freq": 2200000, "min_freq": 1451000, "margin_mhz": 600 },
 
         { "id": "p2:cpu0", "max_freq": 2000000, "min_freq": 1708000, "margin_mhz": 600 },
-        { "id": "p2:cpu4", "max_freq": 2600000, "min_freq": 1998000, "margin_mhz": 600 },
+        { "id": "p2:cpu6", "max_freq": 2600000, "min_freq": 1998000, "margin_mhz": 600 },
 
         { "id": "idle:cpu0", "max_freq": 1625000, "margin_mhz": 130 },
-        { "id": "idle:cpu4", "max_freq": 1624000, "margin_mhz": 150 }
+        { "id": "idle:cpu6", "max_freq": 1624000, "margin_mhz": 150 }
       ]
     }
   },
@@ -76,20 +76,20 @@
     ],
 
     "powersave_active": [
-      ["@limiters", "p1:cpu0", "p1:cpu4"],
+      ["@limiters", "p1:cpu0", "p1:cpu6"],
       ["@preset", "common_active"],
       ["$min_cpu_freq", "0 1287000|1 1048000"],
       ["@preset", "util_active"]
     ],
     "powersave_inactive": [
-      ["@limiters", "idle:cpu0", "idle:cpu4"],
+      ["@limiters", "idle:cpu0", "idle:cpu6"],
       ["@preset", "common_inactive"],
       ["$min_cpu_freq", "0 500000|1 774000"],
       ["@preset", "util_fg_opt"],
       ["@high_rate", "off"]
     ],
     "balance_active": [
-      ["@limiters", "p2:cpu0", "p2:cpu4"],
+      ["@limiters", "p2:cpu0", "p2:cpu6"],
       ["@preset", "common_active"],
       ["$min_cpu_freq", "0 1287000|1 1367000"],
       ["@preset", "util_active"]

@@ -26,45 +26,26 @@
       "render_boost": true,
       "enable_control": "/data/local/tmp/scene_cpus_control"
     },
-    "high_rate": {
-      "enable": false,
-      "enable_control": "/data/local/tmp/scene_refresh_rate",
-      "device_policy": []
-    },
     "limiter": {
       "active_interval": 20,
       "inactive_interval": 150,
       "logger": false,
       "params": [
-        { "id": "p1:cpu0", "max": 2000000, "min": 1708000, "margin": 600 },
-        { "id": "p1:cpu6", "max": 2200000, "min": 1451000, "margin": 600 },
+        { "id": "p1:cpu0", "max": 2000000, "min": 1400000, "margin": 400 },
+        { "id": "p1:cpu6", "max": 2200000, "min": 1400000, "margin": 400 },
 
-        { "id": "p2:cpu0", "max": 2000000, "min": 1708000, "margin": 600 },
-        { "id": "p2:cpu6", "max": 2600000, "min": 1998000, "margin": 600 },
+        { "id": "p2:cpu0", "max": 2000000, "min": 1500000, "margin": 400 },
+        { "id": "p2:cpu6", "max": 2600000, "min": 1800000, "margin": 400 },
 
-        { "id": "idle:cpu0", "max": 1625000, "margin": 130 },
-        { "id": "idle:cpu6", "max": 1624000, "margin": 150 }
+        { "id": "p3:cpu0", "max": 2000000, "min": 1600000, "margin": 400 },
+        { "id": "p3:cpu6", "max": 2600000, "min": 2100000, "margin": 400 },
+
+        { "id": "idle:cpu0", "max": 1700000, "margin": 150 },
+        { "id": "idle:cpu6", "max": 1700000, "margin": 150 }
       ]
     }
   },
   "presets": {
-    "util_active": [
-      ["$util_max_fg", "1024"], ["$util_min_fg", "0"],
-      ["$util_max_top", "1024"], ["$util_min_top", "0"],
-      ["$util_min_bg", "0"], ["$util_max_bg", "1024"]
-    ],
-    "util_fg_opt": [
-      ["$util_max_fg", "1024"], ["$util_min_fg", "0"],
-      ["$util_max_top", "1024"], ["$util_min_top", "0"],
-      ["$util_max_bg", "200"], ["$util_min_bg", "0"]
-    ],
-    "util_idle": [
-      ["$stune_top_boost", "0"],
-      ["$stune_top_perf", "0"],
-      ["$util_max_fg", "100"], ["$util_min_fg", "0"],
-      ["$util_max_top", "1024"], ["$util_min_top", "0"],
-      ["$util_max_bg", "100"], ["$util_min_bg", "0"]
-    ],
     "common_active": [
       ["$max_cpu_freq", "0 2000000"],
       ["@cpuset", "1-3", "0-4", "0-7", "0-7"],
@@ -76,59 +57,47 @@
       ["@cpuset", "1", "0-4", "0-7", "0-7"],
       ["$stune_top_boost", "0"],
       ["$stune_top_perf", "0"],
-      ["$min_cpu_freq", "0 500000|1 774000"]
+      ["$min_cpu_freq", "0 500000|1 500000"]
     ],
 
     "powersave_active": [
       ["@limiters", "p1:cpu0", "p1:cpu6"],
       ["@preset", "common_active"],
-      ["$min_cpu_freq", "0 1287000|1 1048000"],
-      ["@preset", "util_active"]
+      ["$min_cpu_freq", "0 1000000|1 1000000"]
     ],
     "powersave_inactive": [
       ["@limiters", "idle:cpu0", "idle:cpu6"],
       ["@preset", "common_inactive"],
-      ["$min_cpu_freq", "0 500000|1 774000"],
-      ["@preset", "util_fg_opt"]
+      ["$min_cpu_freq", "0 500000|1 500000"]
     ],
     "balance_active": [
       ["@limiters", "p2:cpu0", "p2:cpu6"],
       ["@preset", "common_active"],
-      ["$min_cpu_freq", "0 1287000|1 1367000"],
-      ["@preset", "util_active"]
+      ["$min_cpu_freq", "0 1200000|1 1200000"]
     ],
     "balance_inactive": [
       ["@preset", "common_inactive"],
-      ["$max_cpu_freq", "0 2000000|1 1750000"],
-      ["$min_cpu_freq", "0 500000|1 774000"],
-      ["@preset", "util_fg_opt"]
+      ["@limiters", "p1:cpu0", "p1:cpu6"]
     ],
     "performance_active": [
       ["@preset", "common_active"],
       ["@limiters", "NONE"],
       ["$max_cpu_freq", "0 2000000|1 2600000"],
-      ["$min_cpu_freq", "0 1287000|1 1537000"],
-      ["@preset", "util_active"]
+      ["$min_cpu_freq", "0 1200000|1 1300000"]
     ],
     "performance_inactive": [
       ["@preset", "common_inactive"],
-      ["$max_cpu_freq", "0 2000000|1 2245000"],
-      ["$min_cpu_freq", "0 500000|1 774000"],
-      ["@preset", "util_fg_opt"]
+      ["@limiters", "p2:cpu0", "p2:cpu6"]
     ],
     "fast_active": [
       ["@limiters", "NONE"],
       ["@preset", "common_active"],
       ["$max_cpu_freq", "0 2000000|1 2600000"],
-      ["$min_cpu_freq", "0 1287000|1 1537000"],
-      ["@preset", "util_active"]
+      ["$min_cpu_freq", "0 1300000|1 1500000"]
     ],
     "fast_inactive": [
-      ["@limiters", "NONE"],
       ["@preset", "common_inactive"],
-      ["$max_cpu_freq", "0 2000000|1 2354000"],
-      ["$min_cpu_freq", "0 500000|1 774000"],
-      ["@preset", "util_fg_opt"]
+      ["@limiters", "p3:cpu0", "p3:cpu6"]
     ]
   },
   "schemes": {
@@ -166,20 +135,6 @@
       "call": [
         ["@thermal_threshold", "-1"],
         ["@preset", "fast_active"]
-      ],
-      "app": [
-        ["cci_mode", "0"],
-        ["dram_boost", "0"]
-      ],
-      "game": [
-        ["cci_mode", "1"],
-        ["dram_boost", "1"]
-      ]
-    },
-    "pedestal": {
-      "call": [
-        ["@thermal_threshold", "-1"],
-        ["@preset", "pedestal_active"]
       ],
       "app": [
         ["cci_mode", "0"],
@@ -370,14 +325,14 @@
     {
       "friendly": "王者荣耀",
       "packages": ["com.tencent.tmgp.sgame"],
-      "sensors": [],
       "cpuset": {
-        "interval": 1000,
         "comm": {
-          "6-7": ["UnityGfx", "UnityMain", "UnityPreload", "Thread-"],
+          "7": ["UnityMain"],
+          "6": ["UnityGfx", "Thread-"],
+          "6-7": ["UnityPreload"],
           "3-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
         },
-        "other": "0-7"
+        "other": "0-6"
       }
     },
     {
