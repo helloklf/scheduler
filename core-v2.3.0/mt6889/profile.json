@@ -1,6 +1,6 @@
 {
-  "platform": "mt6889",
-  "platform_name": "D1000",
+  "platform": "dimensity 4+4",
+  "platform_name": "dimensity-44-ppm",
   "framework": 210,
   "alias": {
     "min_cpu_freq": "/proc/ppm/policy/hard_userlimit_min_cpu_freq",
