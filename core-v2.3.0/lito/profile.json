@@ -54,7 +54,15 @@
   "presets": {
     "reset": [
       ["@msm_reset"],
-      ["@governor", "schedutil"]
+      ["@governor", "schedutil"],
+      ["/sys/devices/system/cpu/cpufreq/policy0/schedutil/down_rate_limit_us", "0"],
+      ["/sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us", "0"],
+      ["/sys/devices/system/cpu/cpufreq/policy6/schedutil/down_rate_limit_us", "0"],
+      ["/sys/devices/system/cpu/cpufreq/policy6/schedutil/up_rate_limit_us", "0"],
+      ["/sys/devices/system/cpu/cpufreq/policy7/schedutil/down_rate_limit_us", "0"],
+      ["/sys/devices/system/cpu/cpufreq/policy7/schedutil/up_rate_limit_us", "0"],
+      ["/sys/devices/system/cpu/cpu_boost/input_boost_freq", "0"],
+      ["/sys/devices/system/cpu/cpu_boost/input_boost_ms", "0"]
     ],
     "hispeed_freq": [
       ["/sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq"],
@@ -220,7 +228,6 @@
         ["@gpu_freq", "min", "730000"],
         ["@preset", "bw_max"]
       ],
-      "app": [],
       "game": [
         ["@preset", "common_gaming"],
         ["@cpu_freq", "cpu0", "300000", "1804800"],
@@ -239,7 +246,6 @@
         ["@gpu_freq", "min", "max"],
         ["@preset", "bw_max"]
       ],
-      "app": [],
       "game": [
         ["@preset", "common_gaming"],
         ["@cpu_freq", "cpu0", "1651200", "1804800"],
@@ -296,18 +302,6 @@
   ],
   "games": [
     {
-      "friendly": "原神",
-      "categories": ["GenshinImpact"],
-      "cpuset": {
-        "comm": {
-          "6-7": ["UnityMain"],
-          "6": ["UnityGfx", "UnityMultiRende"],
-          "0-5": ["Timer"]
-        },
-        "other": "0-5"
-      }
-    },
-    {
       "friendly": "王者荣耀",
       "packages": ["com.tencent.tmgp.sgame"],
       "cpuset": {
@@ -317,7 +311,13 @@
           "3-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
         },
         "other": "0-6"
-      }
+      },
+      "modes": [
+        {
+          "mode": ["powersave"],
+          "call": [["@limiters", "p1:cpu6", "p1:cpu7"]]
+        }
+      ]
     },
     {
       "friendly": "和平精英",

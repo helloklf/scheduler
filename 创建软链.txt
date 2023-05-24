@@ -1,1 +1,2 @@
 mkLink /J sdm778g yupik
+mkLink /J sm7250 lito

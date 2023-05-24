@@ -54,7 +54,15 @@
   "presets": {
     "reset": [
       ["@msm_reset"],
-      ["@governor", "schedutil"]
+      ["@governor", "schedutil"],
+      ["/sys/devices/system/cpu/cpufreq/policy0/schedutil/down_rate_limit_us", "0"],
+      ["/sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us", "0"],
+      ["/sys/devices/system/cpu/cpufreq/policy6/schedutil/down_rate_limit_us", "0"],
+      ["/sys/devices/system/cpu/cpufreq/policy6/schedutil/up_rate_limit_us", "0"],
+      ["/sys/devices/system/cpu/cpufreq/policy7/schedutil/down_rate_limit_us", "0"],
+      ["/sys/devices/system/cpu/cpufreq/policy7/schedutil/up_rate_limit_us", "0"],
+      ["/sys/devices/system/cpu/cpu_boost/input_boost_freq", "0"],
+      ["/sys/devices/system/cpu/cpu_boost/input_boost_ms", "0"]
     ],
     "hispeed_freq": [
       ["/sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq"],
@@ -296,7 +304,6 @@
     {
       "friendly": "王者荣耀",
       "packages": ["com.tencent.tmgp.sgame"],
-      "sensors": [],
       "cpuset": {
         "comm": {
           "7": ["UnityMain"],

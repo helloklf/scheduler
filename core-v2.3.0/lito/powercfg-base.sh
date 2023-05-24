@@ -4,104 +4,116 @@ killall scene-scheduler 2>/dev/null
 
 target=`getprop ro.board.platform`
 
-case "$target" in
-  "lito")
+set_value() {
+  value=$1
+  path=$2
+  if [[ -f $path ]]; then
+    current_value="$(cat $path)"
+    if [[ ! "$current_value" = "$value" ]]; then
+      chmod 0664 "$path"
+      echo "$value" > "$path"
+    fi
+  fi
+}
 
-    # Controls how many more tasks should be eligible to run on gold CPUs
-    # w.r.t number of gold CPUs available to trigger assist (max number of
-    # tasks eligible to run on previous cluster minus number of CPUs in
-    # the previous cluster).
-    #
-    # Setting to 1 by default which means there should be at least
-    # 4 tasks eligible to run on gold cluster (tasks running on gold cores
-    # plus misfit tasks on silver cores) to trigger assitance from gold+.
-    echo 1 > /sys/devices/system/cpu/cpu7/core_ctl/nr_prev_assist_thresh
+lock_value() {
+  if [[ -f $2 ]];then
+    chmod 644 $2
+    echo $1 > $2
+    chmod 444 $2
+  fi
+}
 
-    # Disable Core control on silver
-    echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/enable
+# hide_value /sys/module/task_turbo/parameters/feats [write_value]
+hide_value() {
+  if [[ -e "$1" ]]; then
+    umount "$1" 2>/dev/null
+    c_path="/cache${1}"
+    if [[ ! -f "$c_path" ]]; then
+      mkdir -p "$c_path"
+      rm -r "$c_path"
+    fi
+    chattr -i "$c_path"
+    cp -f "$1" "$c_path"
+    if [[ "$2" != "" ]]; then
+      lock_value "$2" "$1"
+    fi
+    mount --bind "$c_path" "$1"
+  else
+    echo "$1" Not Found!
+  fi
+}
 
-    echo 1 > /sys/devices/system/cpu/cpu6/core_ctl/enable
-    echo 1 > /sys/devices/system/cpu/cpu7/core_ctl/enable
-    echo 0 > /sys/devices/system/cpu/cpu6/core_ctl/min_cpus
-    echo 0 > /sys/devices/system/cpu/cpu7/core_ctl/min_cpus
+disable_migt() {
+  migt=/sys/module/migt/parameters
+  if [[ -d $migt ]]; then
+    hide_value $migt/migt_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
+    hide_value $migt/glk_freq_limit_start '0'
+    hide_value $migt/glk_freq_limit_walt '0'
+    hide_value $migt/glk_maxfreq '0 0 0'
+    hide_value $migt/glk_minfreq '300000 652800 806400'
+    hide_value $migt/migt_ceiling_freq '0 0 0'
+    hide_value $migt/glk_disable '1'
+    hide_value $migt/mi_freq_enable '0'
+    hide_value $migt/force_stask_to_big '0'
+    hide_value $migt/glk_fbreak_enable '0'
+    hide_value $migt/force_reset_runtime '0'
 
-    # Setting b.L scheduler parameters
-    echo 95 95 > /proc/sys/kernel/sched_upmigrate
-    echo 85 85 > /proc/sys/kernel/sched_downmigrate
-    echo 100 > /proc/sys/kernel/sched_group_upmigrate
-    echo 85 > /proc/sys/kernel/sched_group_downmigrate
-    echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
-    echo 400000000 > /proc/sys/kernel/sched_coloc_downmigrate_ns
+    settings put secure speed_mode_enable 1
+  fi
 
-    # cpuset parameters
-    echo 0-2 > /dev/cpuset/background/cpus
-    echo 0-3 > /dev/cpuset/system-background/cpus
-    echo 0-7 > /dev/cpuset/foreground/cpus
-    echo 0-7 > /dev/cpuset/top-app/cpus
+  glk=/proc/sys/glk
+  if [[ -d $glk ]]; then
+    hide_value $glk/glk_disable '1'
+    hide_value $glk/freq_break_enable '0'
+    hide_value $glk/game_minfreq_limit '0 0 0'
+    hide_value $glk/game_maxfreq_limit '0 0 0'
+    hide_value $glk/game_lowspeed_load '30 30 30'
+    hide_value $glk/game_hispeed_load '80 80 80'
+  fi
 
-    # Turn off scheduler boost at the end
-    echo 0 > /proc/sys/kernel/sched_boost
+  migt=/proc/sys/migt
+  if [[ -d $migt ]]; then
+    hide_value $migt/force_stask_tob '0'
+    hide_value $migt/enable_pkg_monitor '0'
+    hide_value $migt/boost_pid '0'
+  fi
+}
 
-    # Turn on scheduler boost for top app main
-    echo 1 > /proc/sys/kernel/sched_boost_top_app
-
-    # configure governor settings for silver cluster
-    echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
-    echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/down_rate_limit_us
-    echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us
-    echo 1516800 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
-    echo 300000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
-    echo 1 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/pl
-
-    # configure input boost settings
-    echo "0:1516800" > /sys/devices/system/cpu/cpu_boost/input_boost_freq
-    echo 120 > /sys/devices/system/cpu/cpu_boost/input_boost_ms
-    echo "0:1804800 1:0 2:0 3:0 4:0 5:0 6:2208000 7:2400000" > /sys/devices/system/cpu/cpu_boost/powerkey_input_boost_freq
-    echo 400 > /sys/devices/system/cpu/cpu_boost/powerkey_input_boost_ms
-
-    # configure governor settings for gold cluster
-    echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy6/scaling_governor
-    echo 0 > /sys/devices/system/cpu/cpufreq/policy6/schedutil/down_rate_limit_us
-    echo 0 > /sys/devices/system/cpu/cpufreq/policy6/schedutil/up_rate_limit_us
-    echo 1478400 > /sys/devices/system/cpu/cpufreq/policy6/schedutil/hispeed_freq
-    echo 1 > /sys/devices/system/cpu/cpufreq/policy6/schedutil/pl
-
-    # configure governor settings for gold+ cluster
-    echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
-    echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/down_rate_limit_us
-    echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/up_rate_limit_us
-    echo 1766400 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
-    echo 1 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/pl
-
-    echo N > /sys/module/lpm_levels/parameters/sleep_disabled
-  ;;
-esac
-
-# Disable MIUI's daemon\joyose
-# disable_mi_opt &
-
-# Uninstall MIUI's daemon\joyose
-version=$(getprop ro.miui.ui.version.name)
-if [[ "$version" == "V130" ]]; then
-  # mi_joyose_opt &
-  echo 'mi_joyose_opt'
-elif [[ "$version" == "V12" ]]; then
-  uninstall_mi_opt &
-elif [[ "$version" == "V125" ]]; then
-  # uninstall_mi_opt &
-  echo 'uninstall_mi_opt'
-fi
-disable_migt
-# Reinstall MIUI's daemon\joyose
-# reinstall_mi_opt &
-
-echo 6 > /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
 echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/enable
 
-# Core control parameters on gold
-echo 1 1 > /sys/devices/system/cpu/cpu6/core_ctl/not_preferred
-echo 0 > /sys/devices/system/cpu/cpu6/core_ctl/min_cpus
-echo 90 > /sys/devices/system/cpu/cpu6/core_ctl/busy_up_thres
-echo 65 > /sys/devices/system/cpu/cpu6/core_ctl/busy_down_thres
-echo 20 > /sys/devices/system/cpu/cpu6/core_ctl/offline_delay_ms
-echo 1 > /sys/devices/system/cpu/cpu6/core_ctl/enable
+cpu6_core_ctl_dir=/sys/devices/system/cpu/cpu6/core_ctl
+echo 20 > $cpu6_core_ctl_dir/offline_delay_ms
+echo 1 > $cpu6_core_ctl_dir/not_preferred
+echo 95 > $cpu6_core_ctl_dir/busy_up_thres
+echo 60 > $cpu6_core_ctl_dir/busy_down_thres
+
+cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
+echo 20 > $cpu7_core_ctl_dir/offline_delay_ms
+echo 1 > $cpu7_core_ctl_dir/not_preferred
+echo 95 > $cpu7_core_ctl_dir/busy_up_thres
+echo 60 > $cpu7_core_ctl_dir/busy_down_thres
+
+# Setting b.L scheduler parameters
+echo 95 95 > /proc/sys/kernel/sched_upmigrate
+echo 85 85 > /proc/sys/kernel/sched_downmigrate
+echo 100 > /proc/sys/kernel/sched_group_upmigrate
+echo 85 > /proc/sys/kernel/sched_group_downmigrate
+echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
+echo 400000000 > /proc/sys/kernel/sched_coloc_downmigrate_ns
+
+# Turn off scheduler boost at the end
+echo 0 > /proc/sys/kernel/sched_boost
+
+# Turn on scheduler boost for top app main
+echo 1 > /proc/sys/kernel/sched_boost_top_app
+
+# configure input boost settings
+# echo "0:1516800" > /sys/devices/system/cpu/cpu_boost/input_boost_freq
+# echo 120 > /sys/devices/system/cpu/cpu_boost/input_boost_ms
+echo "0:1804800 1:0 2:0 3:0 4:0 5:0 6:2400000 7:2400000" > /sys/devices/system/cpu/cpu_boost/powerkey_input_boost_freq
+echo 400 > /sys/devices/system/cpu/cpu_boost/powerkey_input_boost_ms
+
+
+disable_migt
+
