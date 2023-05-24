@@ -1,6 +1,5 @@
 killall scene-scheduler 2>/dev/null
 
-
 # [none] intra-slot inter-slot full full-reset
 serialize_jobs(){
   echo $1 > /sys/devices/platform/13000000.mali/scheduling/serialize_jobs
@@ -63,49 +62,6 @@ set_stune() {
   echo $2 > /dev/stune/$1/schedtune.prefer_idle
   echo $3 > /dev/stune/$1/schedtune.boost
 }
-stune_top_app() {
-  set_stune top-app $1 $2
-}
-
-disable_oppo_elf() {
-  pm disable com.coloros.oppoguardelf/com.coloros.powermanager.fuelgaue.GuardElfAIDLService
-  pm disable com.coloros.oppoguardelf/com.coloros.oppoguardelf.OppoGuardElfService
-}
-
-# GPU
-serialize_jobs none
-
-# DRAM
-dram_freq 0
-
-# PPM
-# policy_status
-# [0] PPM_POLICY_PTPOD: enabled
-# [1] PPM_POLICY_UT: enabled
-# [2] PPM_POLICY_FORCE_LIMIT: enabled
-# [3] PPM_POLICY_PWR_THRO: enabled
-# [4] PPM_POLICY_THERMAL: enabled
-# [6] PPM_POLICY_HARD_USER_LIMIT: enabled
-# [7] PPM_POLICY_USER_LIMIT: enabled
-# [8] PPM_POLICY_LCM_OFF: disabled
-# [9] PPM_POLICY_SYS_BOOST: disabled
-
-# Usage: echo <idx> <1/0> > /proc/ppm/policy_status
-
-ppm enabled 1
-ppm policy_status "0 0"
-ppm policy_status "1 0"
-ppm policy_status "2 0"
-ppm policy_status "3 0"
-ppm policy_status "4 0"
-# ppm policy_status "5 0"
-ppm policy_status "6 1"
-ppm policy_status "7 0"
-ppm policy_status "9 0"
-
-lock_value 2 /sys/kernel/fpsgo/common/force_onoff
-echo 0 > /sys/kernel/fpsgo/fbt/switch_idleprefer
-
 
 lock_value() {
   if [[ -f $2 ]];then
@@ -135,6 +91,42 @@ hide_value() {
   fi
 }
 
+disable_oppo_elf() {
+  pm disable com.coloros.oppoguardelf/com.coloros.powermanager.fuelgaue.GuardElfAIDLService
+  pm disable com.coloros.oppoguardelf/com.coloros.oppoguardelf.OppoGuardElfService
+}
+
+# GPU
+serialize_jobs none
+
+# PPM
+# policy_status
+# [0] PPM_POLICY_PTPOD: enabled
+# [1] PPM_POLICY_UT: enabled
+# [2] PPM_POLICY_FORCE_LIMIT: enabled
+# [3] PPM_POLICY_PWR_THRO: enabled
+# [4] PPM_POLICY_THERMAL: enabled
+# [6] PPM_POLICY_HARD_USER_LIMIT: enabled
+# [7] PPM_POLICY_USER_LIMIT: enabled
+# [8] PPM_POLICY_LCM_OFF: disabled
+# [9] PPM_POLICY_SYS_BOOST: disabled
+
+# Usage: echo <idx> <1/0> > /proc/ppm/policy_status
+
+ppm enabled 1
+ppm policy_status "0 0"
+ppm policy_status "1 0"
+ppm policy_status "2 0"
+ppm policy_status "3 0"
+ppm policy_status "4 0"
+# ppm policy_status "5 0"
+ppm policy_status "6 1"
+ppm policy_status "7 0"
+ppm policy_status "9 0"
+
+lock_value 2 /sys/kernel/fpsgo/common/force_onoff
+echo 0 > /sys/kernel/fpsgo/fbt/switch_idleprefer
+
 thermal_basic(){
 echo 95 70 > /proc/driver/thermal/clatm_gpu_threshold
 echo 3 117000 0 mtktscpu-sysrst 85000 0 cpu_adaptive_0 76000 0 cpu_adaptive_1 0 0 no-cooler 0 0 > /proc/driver/thermal/tzcpu
@@ -150,7 +142,7 @@ echo 0 > /sys/devices/system/cpu/perf/gpu_pmu_enable
 
 echo 90 > /sys/module/ged/parameters/g_fb_dvfs_threshold
 echo 200000 > /sys/module/ged/parameters/gpu_bottom_freq
-echo 990000 > /sys/module/ged/parameters/gpu_cust_upbound_freq
+echo 1000000 > /sys/module/ged/parameters/gpu_cust_upbound_freq
 echo 1 > /proc/perfmgr/syslimiter/syslimiter_force_disable
 echo 0 > /proc/perfmgr/boost_ctrl/cpu_ctrl/cfp_enable
 echo 0 > /sys/kernel/eara_thermal/enable
@@ -158,10 +150,10 @@ echo 0 > /sys/kernel/fpsgo/common/fpsgo_enable
 # 0: 0ff 1:on 2:free
 echo 2 > /sys/kernel/fpsgo/common/force_onoff
 echo 250 > /sys/kernel/fpsgo/fbt/thrm_activate_fps
-# echo 2050000 > /sys/kernel/fpsgo/fbt/limit_cfreq
-# echo 2050000 > /sys/kernel/fpsgo/fbt/limit_rfreq
-# echo 2050000 > /sys/kernel/fpsgo/fbt/limit_cfreq_m
-# echo 2050000 > /sys/kernel/fpsgo/fbt/limit_rfreq_m
+lock_value 0 /sys/kernel/fpsgo/fbt/limit_cfreq
+lock_value 0 /sys/kernel/fpsgo/fbt/limit_rfreq
+lock_value 0 /sys/kernel/fpsgo/fbt/limit_cfreq_m
+lock_value 0 /sys/kernel/fpsgo/fbt/limit_rfreq_m
 
 echo 0 > /sys/module/fbt_cpu/parameters/boost_affinity
 echo 0 > /sys/module/fbt_cpu/parameters/boost_affinity_90
@@ -232,23 +224,13 @@ change_task_cpuset() {
 }
 
 process_opt() {
-  change_task_cpuset system_server top-app
-  change_task_cpuset kswapd0 foreground
-  change_task_cpuset com.omarea.vtools foreground
-  change_task_cpuset surfaceflinger foreground
+  set_cpuset surfaceflinger top-app
+  set_cpuset system_server top-app
 }
 
-echo 8000000 > /proc/sys/kernel/sched_latency_ns
-echo 2000000 > /proc/sys/kernel/sched_min_granularity_ns
+set_value 8000000 /proc/sys/kernel/sched_latency_ns
+set_value 2000000 /proc/sys/kernel/sched_min_granularity_ns
 
 ctl_off cpu0
 ctl_off cpu6
 process_opt &
-# voltage_offset &
-
-# Test using 1200 simulation 6+2
-if [[ $(getprop ro.vendor.mediatek.platform) == 'MT6893']]; then
-  sched_isolation 5
-  sched_isolation 4
-  hide_value /sys/devices/system/cpu/sched/set_sched_deisolation 0
-fi

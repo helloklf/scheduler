@@ -7,3 +7,7 @@ mkLink /J mt6873 dimensity-44-ppm
 mkLink /J sm7225 snapdragon-62
 mkLink /J sm6150 snapdragon-62
 mkLink /J sdm750g snapdragon-62
+mkLink /J mt6785 dimensity-62-ppm
+mkLink /J mt6877 dimensity-62-ppm
+mkLink /J mt6768 dimensity-62-ppm
+mkLink /J mt6853 dimensity-62-ppm

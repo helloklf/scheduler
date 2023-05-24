@@ -150,63 +150,7 @@
     {
       "friendly": "极速响应",
       "categories": ["Launcher"],
-      "modes": [{
-        "mode": ["powersave"],
-        "booster": {
-          "duration": 3000,
-          "idle_delay": 1000,
-          "enter": [
-            ["$gpu_dvfs_margin", "40"],
-            ["@preset", "performance_active"]
-          ],
-          "exit": [
-            ["$gpu_dvfs_margin", "10"],
-            ["@preset", "powersave_inactive"]
-          ]
-        }
-      },{
-        "mode": ["balance"],
-        "booster": {
-          "duration": 3000,
-          "idle_delay": 2000,
-          "enter": [
-            ["@preset", "performance_active"],
-            ["$gpu_dvfs_margin", "50"]
-          ],
-          "exit": [
-            ["@preset", "powersave_inactive"],
-            ["$gpu_dvfs_margin", "10"]
-          ]
-        }
-      },{
-        "mode": ["performance"],
-        "booster": {
-          "duration": 4000,
-          "idle_delay": 2000,
-          "enter": [
-            ["$gpu_dvfs_margin", "70"],
-            ["@preset", "fast_active"]
-          ],
-          "exit": [
-            ["@preset", "balance_inactive"],
-            ["$gpu_dvfs_margin", "15"]
-          ]
-        }
-      },{
-        "mode": ["fast"],
-        "booster": {
-          "duration": 4000,
-          "idle_delay": 2000,
-          "enter": [
-            ["$gpu_dvfs_margin", "130"],
-            ["@preset", "fast_active"]
-          ],
-          "exit": [
-            ["$gpu_dvfs_margin", "35"],
-            ["@preset", "balance_inactive"]
-          ]
-        }
-      }]
+      "import": "_Launcher.json"
     },
     {
       "friendly": "扫码",
