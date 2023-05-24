@@ -1,5 +1,5 @@
 {
-      "friendly": "机动都市阿尔法",
+  "friendly": "机动都市阿尔法",
   "packages": ["com.netease.jddsaef"],
   "cpuset": {
     "heavy_thread": "Thread-",

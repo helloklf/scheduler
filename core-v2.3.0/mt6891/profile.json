@@ -366,16 +366,6 @@
       "import": "_GenshinImpact.json"
     },
     {
-      "friendly": "幻塔",
-      "packages": [
-        "com.dw.h5yvzr.yt",
-        "com.pwrd.hotta.laohu",
-        "com.hottagames.hotta.bilibili",
-        "com.hottagames.hotta.mi"
-      ],
-      "import": "_Hotta.json"
-    },
-    {
       "friendly": "和平精英",
       "packages": ["com.tencent.tmgp.pubgmhd",  "com.tencent.ig"],
       "import": "_PUBG.json"

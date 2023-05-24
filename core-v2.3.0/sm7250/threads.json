@@ -1,6 +1,5 @@
 [
   {
-      
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "governor": ["UnityMain", "UnityGfx"],
@@ -35,6 +34,19 @@
       "comm": {
         "7": ["RenderThread"],
         "2-6": ["Thread-", "TaskGraphNP"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "QQ飞车",
+    "packages": ["com.tencent.tmgp.speedmobile"],
+    "governor": ["UnityMain", "UnityGfx"],
+    "cpuset": {
+      "unity_main": "7",
+      "comm": {
+        "6": ["UnityGfx"],
+        "0-5": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
       },
       "other": "0-5"
     }

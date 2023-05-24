@@ -1,0 +1,47 @@
+{
+    "friendly": "极速响应",
+    "categories": ["Launcher"],
+    "modes": [{
+      "mode": ["powersave"],
+      "booster": {
+        "duration": 3000,
+        "idle_delay": 1000,
+        "enter": [
+          ["$gpu_dvfs_margin", "40"],
+          ["@preset", "balance_active"]
+        ],
+        "exit": [
+          ["$gpu_dvfs_margin", "10"],
+          ["@preset", "balance_inactive"]
+        ]
+      }
+    }, {
+      "mode": ["balance"],
+      "booster": {
+        "duration": 3000,
+        "idle_delay": 1000,
+        "enter": [
+          ["$gpu_dvfs_margin", "45"],
+          ["@preset", "performance_active"]
+        ],
+        "exit": [
+          ["$gpu_dvfs_margin", "10"],
+          ["@preset", "balance_inactive"]
+        ]
+      }
+    }, {
+      "mode": ["*"],
+      "booster": {
+        "duration": 2000,
+        "idle_delay": 1000,
+        "enter": [
+          ["$gpu_dvfs_margin", "60"],
+          ["@preset", "fast_active"]
+        ],
+        "exit": [
+          ["$gpu_dvfs_margin", "15"],
+          ["@preset", "fast_inactive"]
+        ]
+      }
+    }]
+}
