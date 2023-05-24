@@ -1,2 +1,5 @@
 mkLink /J sdm778g yupik
 mkLink /J sm7250 lito
+mkLink /J cape capep
+mkLink /J mt6889 dimensity-44-ppm
+mkLink /J mt6873 dimensity-44-ppm

@@ -2,8 +2,6 @@
 
 killall scene-scheduler 2>/dev/null
 
-target=`getprop ro.board.platform`
-
 set_value() {
   value=$1
   path=$2
@@ -95,18 +93,8 @@ echo 95 > $cpu7_core_ctl_dir/busy_up_thres
 echo 60 > $cpu7_core_ctl_dir/busy_down_thres
 
 # Setting b.L scheduler parameters
-echo 95 95 > /proc/sys/kernel/sched_upmigrate
-echo 85 85 > /proc/sys/kernel/sched_downmigrate
-echo 100 > /proc/sys/kernel/sched_group_upmigrate
-echo 85 > /proc/sys/kernel/sched_group_downmigrate
 echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
 echo 400000000 > /proc/sys/kernel/sched_coloc_downmigrate_ns
-
-# Turn off scheduler boost at the end
-echo 0 > /proc/sys/kernel/sched_boost
-
-# Turn on scheduler boost for top app main
-echo 1 > /proc/sys/kernel/sched_boost_top_app
 
 # configure input boost settings
 # echo "0:1516800" > /sys/devices/system/cpu/cpu_boost/input_boost_freq
@@ -114,6 +102,8 @@ echo 1 > /proc/sys/kernel/sched_boost_top_app
 echo "0:1804800 1:0 2:0 3:0 4:0 5:0 6:2400000 7:2400000" > /sys/devices/system/cpu/cpu_boost/powerkey_input_boost_freq
 echo 400 > /sys/devices/system/cpu/cpu_boost/powerkey_input_boost_ms
 
+set_value 10000000 /proc/sys/kernel/sched_latency_ns
+set_value 2000000 /proc/sys/kernel/sched_min_granularity_ns
 
 disable_migt
 

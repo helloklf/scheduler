@@ -245,40 +245,7 @@
     {
       "friendly": "极速响应",
       "categories": ["Launcher"],
-      "modes": [{
-        "mode": ["powersave"],
-        "booster": {
-          "duration": 4000,
-          "enter": [
-            ["@preset", "performance_active"]
-          ],
-          "exit": [
-            ["@preset", "balance_inactive"]
-          ]
-        }
-      },{
-        "mode": ["balance"],
-        "booster": {
-          "duration": 4000,
-          "enter": [
-            ["@preset", "fast_active"]
-          ],
-          "exit": [
-            ["@preset", "balance_inactive"]
-          ]
-        }
-      },{
-        "mode": ["*"],
-        "booster": {
-          "duration": 3000,
-          "enter": [
-            ["@preset", "fast_active"]
-          ],
-          "exit": [
-            ["@preset", "fast_inactive"]
-          ]
-        }
-      }]
+      "import": "_Launcher.json"
     },
     {
       "friendly": "All",

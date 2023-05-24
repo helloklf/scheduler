@@ -78,7 +78,7 @@
       ["@cpuset", "1-3", "0-4", "0-7", "0-7"],
       ["$stune_top_boost", "0"],
       ["$stune_top_perf", "0"],
-      ["$min_cpu_freq", "0 500000|1 730000"]
+      ["$min_cpu_freq", "0 500000|1 500000"]
     ],
 
     "powersave_active": [
@@ -90,10 +90,7 @@
     "powersave_inactive": [
       ["@limiters", "idle:cpu0", "idle:cpu4"],
       ["@preset", "common_inactive"],
-      ["$cpuset_top", "0-6"],
-      ["$cpuset_fg", "0-6"],
-      ["$setolation", "7"],
-      ["$min_cpu_freq", "0 500000|1 730000"],
+      ["$min_cpu_freq", "0 500000|1 500000"],
       ["@preset", "util_fg_opt"]
     ],
     "balance_active": [
@@ -105,7 +102,7 @@
     "balance_inactive": [
       ["@preset", "common_inactive"],
       ["$max_cpu_freq", "0 2000000|1 1750000"],
-      ["$min_cpu_freq", "0 500000|1 730000"],
+      ["$min_cpu_freq", "0 500000|1 500000"],
       ["@preset", "util_fg_opt"]
     ],
     "performance_active": [
@@ -118,7 +115,7 @@
     "performance_inactive": [
       ["@preset", "common_inactive"],
       ["$max_cpu_freq", "0 2000000|1 2245000"],
-      ["$min_cpu_freq", "0 500000|1 730000"],
+      ["$min_cpu_freq", "0 500000|1 500000"],
       ["@preset", "util_fg_opt"]
     ],
     "fast_active": [
@@ -132,7 +129,7 @@
       ["@limiters", "NONE"],
       ["@preset", "common_inactive"],
       ["$max_cpu_freq", "0 2000000|1 2354000"],
-      ["$min_cpu_freq", "0 500000|1 730000"],
+      ["$min_cpu_freq", "0 500000|1 500000"],
       ["@preset", "util_fg_opt"]
     ]
   },
