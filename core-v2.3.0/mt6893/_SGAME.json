@@ -2,7 +2,7 @@
   "friendly": "王者荣耀/LOL",
   "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
   "limiters": [
-    { "id": "sgame:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1075000, "margin": 695 },
+    { "id": "sgame:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1075000, "margin": 605 },
     { "id": "sgame:cpu4", "mode": "BOTTOM", "max": 2354000, "min": 1162000, "margin": 535 },
     { "id": "sgame:cpu7", "mode": "BOTTOM", "max": 2463000, "min": 1370000, "margin": 545 }
   ],

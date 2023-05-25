@@ -1,13 +1,6 @@
 {
   "friendly": "原神",
-  "packages": [
-    "com.miHoYo.Yuanshen",
-    "com.miHoYo.ys.mi",
-    "com.miHoYo.ys.bilibili",
-    "com.miHoYo.GenshinImpact"
-  ],
   "cpuset": {
-    "interval": 2000,
     "heavy_thread": "UnityGfx",
     "heavy_cores": "7",
     "unity_main": "6",
@@ -56,7 +49,7 @@
       "booster": {
         "duration": 30000,
         "enter": [
-          ["$min_cpu_freq", "0 1525000|1 902000|2 659000"],
+          ["$min_cpu_freq", "0 1525000|1 1451000|2 1258000"],
           ["$gpu_max_opp", "27"],
           ["$deisolation", "4|5|6|7"]
         ],

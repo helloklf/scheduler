@@ -162,25 +162,25 @@ echo 0 > /sys/kernel/fpsgo/common/fpsgo_enable
 # 0: 0ff 1:on 2:free
 echo 2 > /sys/kernel/fpsgo/common/force_onoff
 echo 250 > /sys/kernel/fpsgo/fbt/thrm_activate_fps
-echo 2600000 > /sys/kernel/fpsgo/fbt/limit_cfreq
-echo 2600000 > /sys/kernel/fpsgo/fbt/limit_rfreq
-echo 2600000 > /sys/kernel/fpsgo/fbt/limit_cfreq_m
-echo 2600000 > /sys/kernel/fpsgo/fbt/limit_rfreq_m
+echo 0 > /sys/kernel/fpsgo/fbt/limit_cfreq
+echo 0 > /sys/kernel/fpsgo/fbt/limit_rfreq
+echo 0 > /sys/kernel/fpsgo/fbt/limit_cfreq_m
+echo 0 > /sys/kernel/fpsgo/fbt/limit_rfreq_m
 
 echo 0 > /sys/module/fbt_cpu/parameters/boost_affinity
 echo 0 > /sys/module/fbt_cpu/parameters/boost_affinity_90
 echo 0 > /sys/module/fbt_cpu/parameters/boost_affinity_120
 
-echo 0 > /sys/kernel/fpsgo/fbt/enable_switch_cap_margin
-echo 0 > /sys/kernel/fpsgo/fbt/enable_switch_sync_flag
-echo 0 > /sys/kernel/fpsgo/fbt/enable_switch_cap_margin
-echo 0 > /sys/kernel/fpsgo/fbt/light_loading_policy
-echo 0 > /sys/kernel/fpsgo/fbt/llf_task_policy
-echo 0 > /sys/kernel/fpsgo/fbt/switch_idleprefer
+# echo 0 > /sys/kernel/fpsgo/fbt/enable_switch_cap_margin
+# echo 0 > /sys/kernel/fpsgo/fbt/enable_switch_sync_flag
+# echo 0 > /sys/kernel/fpsgo/fbt/enable_switch_cap_margin
+# echo 0 > /sys/kernel/fpsgo/fbt/light_loading_policy
+# echo 0 > /sys/kernel/fpsgo/fbt/llf_task_policy
+# echo 0 > /sys/kernel/fpsgo/fbt/switch_idleprefer
 echo 100 > /sys/kernel/fpsgo/fbt/thrm_temp_th
 echo -1 > /sys/kernel/fpsgo/fbt/thrm_limit_cpu
 echo -1 > /sys/kernel/fpsgo/fbt/thrm_sub_cpu
-echo 0 > /sys/kernel/fpsgo/fbt/ultra_rescue
+# echo 0 > /sys/kernel/fpsgo/fbt/ultra_rescue
 
 echo 0 > /sys/devices/system/cpu/sched/hint_enable
 # echo 5 > /sys/devices/system/cpu/sched/hint_load_thresh

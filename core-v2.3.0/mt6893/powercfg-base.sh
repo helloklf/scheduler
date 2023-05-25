@@ -162,10 +162,10 @@ echo 0 > /sys/kernel/fpsgo/common/fpsgo_enable
 # 0: 0ff 1:on 2:free
 echo 2 > /sys/kernel/fpsgo/common/force_onoff
 echo 250 > /sys/kernel/fpsgo/fbt/thrm_activate_fps
-echo 3000000 > /sys/kernel/fpsgo/fbt/limit_cfreq
-echo 3000000 > /sys/kernel/fpsgo/fbt/limit_rfreq
-echo 2600000 > /sys/kernel/fpsgo/fbt/limit_cfreq_m
-echo 2600000 > /sys/kernel/fpsgo/fbt/limit_rfreq_m
+echo 0 > /sys/kernel/fpsgo/fbt/limit_cfreq
+echo 0 > /sys/kernel/fpsgo/fbt/limit_rfreq
+echo 0 > /sys/kernel/fpsgo/fbt/limit_cfreq_m
+echo 0 > /sys/kernel/fpsgo/fbt/limit_rfreq_m
 
 echo 0 > /sys/module/fbt_cpu/parameters/boost_affinity
 echo 0 > /sys/module/fbt_cpu/parameters/boost_affinity_90

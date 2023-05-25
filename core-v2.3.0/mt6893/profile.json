@@ -92,28 +92,25 @@
     "powersave_active": [
       ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
       ["@preset", "common_active"],
-      ["$min_cpu_freq", "0 1450000|1 1451000|2 659000"],
+      ["$min_cpu_freq", "0 1000000|1 902000|2 659000"],
       ["@preset", "util_active"]
     ],
     "powersave_inactive": [
       ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
       ["@preset", "common_inactive"],
-      ["$cpuset_top", "0-6"],
       ["$cpuset_fg", "0-6"],
       ["$setolation", "7"],
-      ["$min_cpu_freq", "0 500000|1 437000|2 659000"],
       ["@preset", "util_fg_opt"]
     ],
     "balance_active": [
       ["@limiters", "p2:cpu4", "p2:cpu7"],
       ["@preset", "common_active"],
-      ["$min_cpu_freq", "0 1450000|1 1537000|2 1370000"],
+      ["$min_cpu_freq", "0 1450000|1 1451000|2 1370000"],
       ["@preset", "util_active"]
     ],
     "balance_inactive": [
       ["@preset", "common_inactive"],
-      ["$max_cpu_freq", "0 2000000|1 1985000|2 2141000"],
-      ["$min_cpu_freq", "0 500000|1 437000|2 659000"],
+      ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
       ["@preset", "util_fg_opt"]
     ],
     "performance_active": [
@@ -126,7 +123,6 @@
     "performance_inactive": [
       ["@preset", "common_inactive"],
       ["$max_cpu_freq", "0 2000000|1 2200000|2 2284000"],
-      ["$min_cpu_freq", "0 500000|1 437000|2 659000"],
       ["@preset", "util_fg_opt"]
     ],
     "fast_active": [
@@ -140,7 +136,6 @@
       ["@limiters", "NONE"],
       ["@preset", "common_inactive"],
       ["$max_cpu_freq", "0 2000000|1 2354000|2 2463000"],
-      ["$min_cpu_freq", "0 500000|1 437000|2 659000"],
       ["@preset", "util_fg_opt"]
     ]
   },
@@ -213,141 +208,22 @@
     {
       "friendly": "极速响应",
       "categories": ["Launcher"],
-      "modes": [{
-        "mode": ["powersave"],
-        "booster": {
-          "duration": 3000,
-          "idle_delay": 1000,
-          "enter": [
-            ["$gpu_dvfs_margin", "40"],
-            ["@preset", "performance_active"]
-          ],
-          "exit": [
-            ["$gpu_dvfs_margin", "10"],
-            ["@preset", "powersave_inactive"]
-          ]
-        }
-      },{
-        "mode": ["balance"],
-        "booster": {
-          "duration": 3000,
-          "idle_delay": 2000,
-          "enter": [
-            ["@preset", "performance_active"],
-            ["$gpu_dvfs_margin", "50"]
-          ],
-          "exit": [
-            ["@preset", "powersave_inactive"],
-            ["$gpu_dvfs_margin", "10"]
-          ]
-        }
-      },{
-        "mode": ["performance"],
-        "booster": {
-          "duration": 4000,
-          "idle_delay": 2000,
-          "enter": [
-            ["$gpu_dvfs_margin", "70"],
-            ["@preset", "fast_active"]
-          ],
-          "exit": [
-            ["@preset", "balance_inactive"],
-            ["$gpu_dvfs_margin", "15"]
-          ]
-        }
-      },{
-        "mode": ["fast"],
-        "booster": {
-          "duration": 4000,
-          "idle_delay": 2000,
-          "enter": [
-            ["$gpu_dvfs_margin", "130"],
-            ["@preset", "fast_active"]
-          ],
-          "exit": [
-            ["$gpu_dvfs_margin", "35"],
-            ["@preset", "balance_inactive"]
-          ]
-        }
-      }]
+      "import": "_Launcher.json"
     },
     {
       "friendly": "扫码",
       "categories": ["Scanner"],
-      "call": [
-        ["$util_max_top", "1024"],
-        ["$util_max_bg", "100"],
-        ["$util_max_fg", "1024"],
-        ["@cpuset", "0", "0-4", "0-7", "0-7"],
-        ["$max_cpu_freq", "0 2000000|1 2600000|2 2600000"],
-        ["$min_cpu_freq", "0 1725000|1 1855000|2 1820000"],
-        ["$mi_thermal", "10"]
-      ],
-      "modes": [{
-        "mode": ["*"],
-        "booster": {
-          "duration": 2000,
-          "idle_delay": 2000
-        }
-      }]
+      "import": "_Scanner.json"
     },
     {
       "friendly": "相机",
       "categories": ["Camera"],
-      "call": [
-        ["$util_max_top", "1024"],
-        ["$util_max_bg", "100"],
-        ["$util_max_fg", "1024"],
-        ["@cpuset", "0-1", "0-4", "0-7", "0-7"]
-      ],
-      "modes": [{
-        "mode": ["powersave", "balance"],
-        "booster": {
-          "duration": 3000,
-          "idle_delay": 4000,
-          "enter": [
-            ["$max_cpu_freq", "0 2000000|1 2600000|2 2600000"],
-            ["$min_cpu_freq", "0 1725000|1 1855000|2 1820000"]
-          ],
-          "exit": [
-            ["$max_cpu_freq", "0 2000000|1 1985000|2 2141000"],
-            ["$min_cpu_freq", "0 1000000|1 700000|2 659000"]
-          ]
-        }
-      }, {
-        "mode": ["*"],
-        "booster": {
-          "duration": 2000,
-          "idle_delay": 2000
-        }
-      }]
+      "import": "_Camera.json"
     },
     {
       "friendly": "狗屎/毒瘤",
       "categories": ["MiniProgram"],
-      "modes": [{
-        "mode": ["powersave", "balance"],
-        "call": [
-          ["$stune_top_boost", "10"],
-          ["$util_max_top", "1024"],
-          ["$util_max_bg", "100"],
-          ["$util_max_fg", "1024"],
-          ["@cpuset", "0", "0-4", "0-7", "0-7"],
-          ["$max_cpu_freq", "0 2000000|1 2400000|2 2400000"],
-          ["$min_cpu_freq", "0 1450000|1 1046000|2 1108000"],
-          ["$mi_thermal", "10"]
-        ],
-        "booster": {
-          "duration": 2000,
-          "idle_delay": 2000
-        }
-      }, {
-        "mode": ["*"],
-        "booster": {
-          "duration": 2000,
-          "idle_delay": 2000
-        }
-      }]
+      "import": "_MiniProgram.json"
     },
     {
       "friendly": "All",

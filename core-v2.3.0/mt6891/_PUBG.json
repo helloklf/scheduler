@@ -3,7 +3,6 @@
   "packages": ["com.tencent.tmgp.pubgmhd",  "com.tencent.ig"],
   "sensors": [],
   "cpuset": {
-    "interval": 1000,
     "comm": {
       "7": ["RenderThread"],
       "4-6": ["Thread-", "TaskGraphNP"]
@@ -14,7 +13,6 @@
     {
       "mode": ["powersave"],
       "cpuset": {
-        "interval": 1000,
         "comm": {
           "4-7": ["RenderThread"],
           "4-6": ["Thread-", "TaskGraphNP"]
