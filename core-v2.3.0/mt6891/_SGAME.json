@@ -58,9 +58,9 @@
       "interval": 10000,
       "props": ["$max_cpu_freq"],
       "rules": [
-        { "threshold": [-1, 100], "values": ["1 2354000|2 2410000"] },
-        { "threshold": [99, 75 ], "values": ["1 2200000|2 2292000"] },
-        { "threshold": [70, -1 ], "values": ["1 1985000|2 2127000"] }
+        { "threshold": [-1, 100], "values": ["1 2354000|2 2463000"] },
+        { "threshold": [99, 75 ], "values": ["1 2200000|2 2284000"] },
+        { "threshold": [70, -1 ], "values": ["1 1985000|2 2141000"] }
       ]
     }]
   }, {
@@ -83,8 +83,8 @@
       "props": ["$max_cpu_freq"],
       "rules": [
         { "threshold": [-1, 100], "values": ["1 2507000|2 2600000"] },
-        { "threshold": [99, 75 ], "values": ["1 2354000|2 2529000"] },
-        { "threshold": [70, -1 ], "values": ["1 2200000|2 2292000"] }
+        { "threshold": [99, 75 ], "values": ["1 2354000|2 2600000"] },
+        { "threshold": [70, -1 ], "values": ["1 2200000|2 2463000"] }
       ]
     }]
   }, {
@@ -93,6 +93,16 @@
       ["$gpu_dvfs_margin", "25"],
       ["@limiters", "g4:cpu0", "g4:cpu4", "g4:cpu7"]
     ],
+    "sensors": [{
+      "sensor": "fps",
+      "interval": 10000,
+      "props": ["$max_cpu_freq"],
+      "rules": [
+        { "threshold": [-1, 100], "values": ["1 2507000|2 2713000"] },
+        { "threshold": [99, 75 ], "values": ["1 2354000|2 2600000"] },
+        { "threshold": [70, -1 ], "values": ["1 2200000|2 2463000"] }
+      ]
+    }],
     "booster": {
       "duration": 2000,
       "enter": [
