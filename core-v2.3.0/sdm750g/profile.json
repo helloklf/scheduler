@@ -39,6 +39,16 @@
         { "id": "p4:cpu0", "max": 1804800, "turning": 1612800, "min": 1248000, "margin": 600, "mode": "bottom" },
         { "id": "p4:cpu6", "min": 2208000, "margin": 550, "mode": "bottom" },
 
+        
+        { "id": "g1:cpu6", "max": 1900800, "min": 1478400, "margin": 350, "smoothness": 6 },
+  
+        { "id": "g2:cpu6", "max": 2208000, "turning": 1900800, "min": 1478400, "margin": 400, "smoothness": 6 },
+
+        { "id": "g3:cpu6", "max": 1996800, "min": 1094400, "margin": 350, "mode": "BOTTOM", "smoothness": 6 },
+
+        { "id": "g4:cpu6", "max": 0, "min": 1478400, "margin": 420, "mode": "BOTTOM", "smoothness": 6  },
+
+
         { "id": "idle:cpu0", "max": 1612800, "min": 576000, "margin": 100 },
         { "id": "idle:cpu6", "max": 1939200, "min": 300000, "margin": 100 }
       ]
@@ -263,7 +273,25 @@
           "3-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
         },
         "other": "0-7"
-      }
+      },
+      "modes": [
+        {
+          "mode": ["powersave"],
+          "call": [["@limiters", "g1:cpu6"]]
+        },
+        {
+          "mode": ["balance"],
+          "call": []
+        },
+        {
+          "mode": ["performance"],
+          "call": []
+        },
+        {
+          "mode": ["fast"],
+          "call": [["@limiters", "g4:cpu6"]]
+        }
+      ]
     },
     {
       "friendly": "和平精英",

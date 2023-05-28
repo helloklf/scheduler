@@ -72,7 +72,7 @@
         { "id": "p4:cpu7", "max": 2800000, "min": 2650000, "margin": 300 },
 
 
-        { "id": "g1:cpu0", "max": 1400000, "min": 500000, "margin": 250, "mode": "upper", "step": -1 },
+        { "id": "g1:cpu0", "max": 1400000, "turning": 1000000, "min": 500000, "margin": 280, "mode": "upper", "step": -1 },
         { "id": "g1:cpu4", "max": 2100000, "turning": 1800000, "min": 700000,  "margin": 230, "mode": "performance", "step": -1 },
         { "id": "g1:cpu7", "max": 2100000, "turning": 1800000, "min": 1300000, "margin": 250, "mode": "performance", "step": -1 },
 
@@ -80,13 +80,13 @@
         { "id": "g2:cpu4", "max": 2300000, "turning": 2300000, "min": 1000000, "margin": 265, "mode": "performance", "step": -1 },
         { "id": "g2:cpu7", "max": 2450000, "turning": 2100000, "min": 1300000, "margin": 265, "mode": "performance", "step": -1 },
 
-        { "id": "g3:cpu0", "max": 1800000, "turning": 1600000, "min": 800000,  "margin": 250, "mode": "performance", "step": -1 },
-        { "id": "g3:cpu4", "max": 2650000, "turning": 2450000, "min": 1400000, "margin": 300, "mode": "performance", "step": -1 },
-        { "id": "g3:cpu7", "max": 2650000, "turning": 2400000, "min": 1600000, "margin": 300, "mode": "performance", "step": -1 },
+        { "id": "g3:cpu0", "max": 1800000, "turning": 1600000, "min": 800000,  "margin": 250, "mode": "performance", "step": -1, "smoothness": 4 },
+        { "id": "g3:cpu4", "max": 2650000, "turning": 2450000, "min": 1400000, "margin": 300, "mode": "performance", "step": -1, "smoothness": 4 },
+        { "id": "g3:cpu7", "max": 2650000, "turning": 2400000, "min": 1600000, "margin": 300, "mode": "performance", "step": -1, "smoothness": 4 },
 
-        { "id": "g4:cpu0", "max": 1800000, "turning": 1600000, "min": 1050000, "margin": 280, "mode": "upper", "step": -1 },
-        { "id": "g4:cpu4", "max": 2850000, "turning": 2650000, "min": 1400000, "margin": 400, "mode": "performance", "step": -1 },
-        { "id": "g4:cpu7", "max": 2800000, "turning": 2650000, "min": 1600000, "margin": 400, "mode": "performance", "step": -1 },
+        { "id": "g4:cpu0", "max": 1800000, "turning": 1600000, "min": 1050000, "margin": 280, "mode": "upper", "step": -1, "smoothness": 6 },
+        { "id": "g4:cpu4", "max": 2850000, "turning": 2650000, "min": 1400000, "margin": 400, "mode": "performance", "step": -1, "smoothness": 6 },
+        { "id": "g4:cpu7", "max": 2800000, "turning": 2650000, "min": 1600000, "margin": 400, "mode": "performance", "step": -1, "smoothness": 6 },
 
 
         { "id": "inactive:cpu0","max": 1500000, "min": 400000, "margin": 100 },
@@ -331,6 +331,11 @@
       "friendly": "原神",
       "categories": ["GenshinImpact"],
       "import": "_GenshinImpact.json"
+    },
+    {
+      "friendly": "星穹铁道",
+      "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
+      "import": "_HKRPG.json"
     },
     {
       "friendly": "和平精英",
