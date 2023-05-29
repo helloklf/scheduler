@@ -344,6 +344,11 @@
       "import": "_GenshinImpact.json"
     },
     {
+      "friendly": "星穹铁道",
+      "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
+      "import": "_HKRPG.json"
+    },
+    {
       "friendly": "和平精英",
       "packages": ["com.tencent.tmgp.pubgmhd",  "com.tencent.ig"],
       "import": "_PUBG.json"

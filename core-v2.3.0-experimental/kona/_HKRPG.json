@@ -1,0 +1,37 @@
+{
+  "friendly": "星穹铁道",
+  "limiters": [
+    { "id": "hkrpg1:cpu4", "max": 2500000, "turning": 2250000, "min": 1600000, "margin": 400, "step": -1, "smoothness": 6 },
+    { "id": "hkrpg2:cpu4", "max": 2500000, "turning": 2350000, "min": 1800000, "margin": 400, "step": -1, "smoothness": 6 }
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "limiters": ["p1:cpu4", "p2:cpu7"],
+        "_60": ["2100000", "2500000"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "limiters": ["p2:cpu4", "p3:cpu7"],
+        "_60": ["2300000", "2700000"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "limiters": ["hkrpg1:cpu4", "g4:cpu7"],
+        "_60": ["2500000", "2850000"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "fas": {
+        "limiters": ["hkrpg2:cpu4", "p4:cpu7"],
+        "_60": ["2500000", "3200000"]
+      }
+    }
+  ]
+}

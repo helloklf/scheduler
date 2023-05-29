@@ -140,7 +140,8 @@
     "common_gaming": [
       ["@limiters", "NONE"],
       ["@uclamp", "0.00~max", "0.00~max", "1.00~max"],
-      ["@cpuset", "0-2", "0-5", "0-5", "0-7"]
+      ["@cpuset", "0-2", "0-5", "0-5", "0-7"],
+      ["@gpu_freq", "min", "max"]
     ],
 
     "l3_max": [
@@ -236,11 +237,11 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "powersave_active"],
-        ["@gpu_freq", "min", "500MHz"],
         ["$bus_ddr", "2736000"]
       ],
       "app": [
-        ["@preset", "common_app"]
+        ["@preset", "common_app"],
+        ["@gpu_freq", "min", "500MHz"]
       ],
       "game": [
         ["@preset", "common_gaming"],
@@ -254,12 +255,12 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "balance_active"],
-        ["@gpu_freq", "min", "600MHz"],
         ["$bus_ddr", "2736000"],
         ["@preset", "ddr_low"]
       ],
       "app": [
-        ["@preset", "common_app"]
+        ["@preset", "common_app"],
+        ["@gpu_freq", "min", "500MHz"]
       ],
       "game": [
         ["@preset", "common_gaming"],
@@ -274,12 +275,12 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "performance_active"],
-        ["@gpu_freq", "min", "750MHz"],
         ["$bus_ddr", "2736000"],
         ["@preset", "ddr_max"]
       ],
       "app": [
-        ["@preset", "common_app"]
+        ["@preset", "common_app"],
+        ["@gpu_freq", "min", "650MHz"]
       ],
       "game": [
         ["@preset", "common_gaming"],
@@ -295,12 +296,12 @@
         ["@preset", "reset"],
         ["@preset", "fast_active"],
         ["$mi_thermal", "10"],
-        ["@gpu_freq", "min", "max"],
         ["@preset", "ddr_max"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$bus_ddr", "2736000"]
+        ["$bus_ddr", "2736000"],
+        ["@gpu_freq", "min", "max"]
       ],
       "game": [
         ["$perfmgr_enable", "#0"],
@@ -352,6 +353,11 @@
       "friendly": "原神",
       "categories": ["GenshinImpact"],
       "import": "_GenshinImpact.json"
+    },
+    {
+      "friendly": "星穹铁道",
+      "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
+      "import": "_HKRPG.json"
     },
     {
       "friendly": "和平精英",

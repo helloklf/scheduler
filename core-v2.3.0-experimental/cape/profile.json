@@ -49,6 +49,28 @@
         { "id": "p4:cpu4", "max": 2745600, "min": 2572800, "margin": 200 },
         { "id": "p4:cpu7", "max": 2995200, "min": 2592000, "margin": 200 },
 
+
+        { "id": "g0:cpu0", "step": -0.7, "max": 1555200, "turning": 1056000, "min": 806400, "margin": 200 },
+        { "id": "g0:cpu3", "step": -0.9, "max": 1996800, "turning": 1651200, "min": 633600, "margin": 240 },
+        { "id": "g0:cpu7", "step": -0.9, "max": 1996800, "turning": 1651200, "min": 787200, "margin": 200 },
+
+        { "id": "g1:cpu0", "step": -0.7, "max": 1555200, "turning": 1228800, "min": 1056000, "margin": 200 },
+        { "id": "g1:cpu3", "step": -0.7, "max": 2227200, "turning": 1881600, "min": 768000, "margin": 240, "mode": "performance" },
+        { "id": "g1:cpu7", "step": -0.7, "max": 2246400, "turning": 1881600, "min": 787200, "margin": 200, "mode": "performance" },
+
+        { "id": "g2:cpu0", "step": -0.7, "max": 1804800, "turning": 1440000, "min": 1056000, "margin": 250 },
+        { "id": "g2:cpu3", "step": -0.7, "max": 2457600, "turning": 2112000, "min": 768000, "margin": 300, "mode": "performance" },
+        { "id": "g2:cpu7", "step": -0.5, "max": 2476800, "turning": 2131200, "min": 787200, "margin": 300, "mode": "performance" },
+
+        { "id": "g3:cpu0", "max": 1804800, "turning": 1555200, "min": 1440000, "margin": 250 },
+        { "id": "g3:cpu3", "max": 2649600, "turning": 2457600, "min": 2112000, "margin": 300 },
+        { "id": "g3:cpu7", "max": 2726400, "turning": 2476800, "min": 2131200, "margin": 300 },
+
+        { "id": "g4:cpu0", "max": 1804800, "turning": 1555200, "min": 1555200, "margin": 250 },
+        { "id": "g4:cpu3", "max": 2745600, "turning": 2572800, "min": 2457600, "margin": 300 },
+        { "id": "g4:cpu7", "max": 2995200, "turning": 2592000, "min": 2476800, "margin": 300 },
+
+
         { "id": "inactive:cpu0", "max": 1440000, "min": 556800, "margin": 90 },
         { "id": "inactive:cpu4", "max": 1555200, "margin": 100 },
         { "id": "inactive:cpu7", "max": 1536000, "margin": 120 },
@@ -143,7 +165,8 @@
     "common_gaming": [
       ["@limiters", "NONE"],
       ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
-      ["@cpuset", "0-2", "0-3", "0-5", "0-7"]
+      ["@cpuset", "0-2", "0-3", "0-5", "0-7"],
+      ["@gpu_freq", "min", "max"]
     ],
 
     "powersave_active": [
@@ -205,11 +228,11 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "powersave_active"],
-        ["@gpu_freq", "min", "500MHz"],
         ["$bus_ddr", "2736000"]
       ],
       "app": [
-        ["@preset", "common_app"]
+        ["@preset", "common_app"],
+        ["@gpu_freq", "min", "500MHz"]
       ],
       "game": [
         ["@preset", "common_gaming"],
@@ -224,11 +247,11 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "balance_active"],
-        ["@gpu_freq", "min", "600MHz"],
         ["$bus_ddr", "2736000"]
       ],
       "app": [
-        ["@preset", "common_app"]
+        ["@preset", "common_app"],
+        ["@gpu_freq", "min", "600MHz"]
       ],
       "game": [
         ["@preset", "common_gaming"],
@@ -244,11 +267,11 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "performance_active"],
-        ["@gpu_freq", "min", "750MHz"],
         ["$bus_ddr", "2736000"]
       ],
       "app": [
-        ["@preset", "common_app"]
+        ["@preset", "common_app"],
+        ["@gpu_freq", "min", "750MHz"]
       ],
       "game": [
         ["@preset", "common_gaming"],
@@ -263,12 +286,12 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "fast_active"],
-        ["$mi_thermal", "10"],
-        ["@gpu_freq", "min", "max"]
+        ["$mi_thermal", "10"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$bus_ddr", "3196000"]
+        ["$bus_ddr", "3196000"],
+        ["@gpu_freq", "min", "max"]
       ],
       "game": [
         ["$perfmgr_enable", "#0"],
@@ -320,6 +343,11 @@
       "friendly": "原神",
       "categories": ["GenshinImpact"],
       "import": "_GenshinImpact.json"
+    },
+    {
+      "friendly": "星穹铁道",
+      "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
+      "import": "_HKRPG.json"
     },
     {
       "friendly": "和平精英",

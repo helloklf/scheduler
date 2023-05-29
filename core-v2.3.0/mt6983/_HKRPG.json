@@ -1,8 +1,8 @@
 {
   "friendly": "星穹铁道",
   "limiters": [
-    { "id": "hkrpg:cpu4", "max": 2650000, "turning": 2450000, "min": 1600000, "margin": 400, "step": -1, "smoothness": 6 },
-    { "id": "hkrpg:cpu4", "max": 2850000, "turning": 2650000, "min": 1600000, "margin": 400, "step": -1, "smoothness": 6 }
+    { "id": "hkrpg1:cpu4", "max": 2650000, "turning": 2450000, "min": 1600000, "margin": 400, "step": -1, "smoothness": 6 },
+    { "id": "hkrpg2:cpu4", "max": 2850000, "turning": 2650000, "min": 1600000, "margin": 400, "step": -1, "smoothness": 6 }
   ],
   "modes": [
     {
@@ -26,7 +26,7 @@
     {
       "mode": ["*"],
       "call": [
-        ["@limiters", "g3:cpu0", "hkrpg2:cpu4", "g3:cpu7"]
+        ["@limiters", "g3:cpu0", "hkrpg2:cpu4", "g4:cpu7"]
       ]
     }
   ]

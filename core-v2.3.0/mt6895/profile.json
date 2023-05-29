@@ -15,7 +15,8 @@
     "charge_limit": "/sys/class/power_supply/battery/charge_control_limit",
     "night_charging": "/sys/class/power_supply/battery/night_charging",
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",
-    "perfmgr_enable": "/sys/module/mtk_fpsgo/parameters/perfmgr_enable"
+    "perfmgr_enable": "/sys/module/mtk_fpsgo/parameters/perfmgr_enable",
+    "ddr_max": "/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq"
   },
   "features": {
     "high_rate": {
@@ -42,13 +43,13 @@
     },
     "limiter": {
       "active_interval": 20,
-      "gaming_interval": 24,
+      "gaming_interval": 30,
       "inactive_interval": 150,
       "max_margin_ratio": 0.45,
       "ddr_boost": true,
       "logger": false,
       "params": [
-        { "id": "p1:cpu0", "max": 1800000, "min": 1400000, "margin": 300 },
+        { "id": "p1:cpu0", "max": 1800000, "min": 1500000, "margin": 300 },
         { "id": "p1:cpu4", "max": 2100000, "min": 1600000, "margin": 300 },
         { "id": "p1:cpu7", "max": 2400000, "min": 1800000, "margin": 300 },
 
@@ -59,21 +60,18 @@
         { "id": "p3:cpu7", "max": 2850000, "min": 2650000, "margin": 350 },
 
 
-        { "id": "g1:cpu0", "max": 1800000, "min": 1500000, "margin": 400, "mode": "upper", "step": -1 },
-        { "id": "g1:cpu4", "max": 2200000, "min": 700000,  "margin": 360, "mode": "performance", "step": -1 },
-        { "id": "g1:cpu7", "max": 2450000, "min": 1000000, "margin": 300, "mode": "performance", "step": -1 },
+        
+        { "id": "g1:cpu4", "max": 2450000, "turning": 2100000, "min": 1700000, "margin": 300 },
+        { "id": "g1:cpu7", "max": 2450000, "turning": 2200000, "min": 1800000, "margin": 400 },
 
-        { "id": "g2:cpu0", "max": 1800000, "min": 1600000, "margin": 400, "mode": "upper", "step": -1 },
-        { "id": "g2:cpu4", "max": 2450000, "min": 1000000, "margin": 420, "mode": "performance", "step": -1 },
-        { "id": "g2:cpu7", "max": 2650000, "min": 1300000, "margin": 400, "mode": "performance", "step": -1 },
+        { "id": "g2:cpu4", "max": 2650000, "turning": 2300000, "min": 2000000, "margin": 300 },
+        { "id": "g2:cpu7", "max": 2650000, "turning": 2450000, "min": 2100000, "margin": 400 },
 
-        { "id": "g3:cpu0", "max": 2000000, "min": 1800000, "margin": 400, "mode": "upper", "step": -1 },
-        { "id": "g3:cpu4", "max": 2650000, "turning": 2450000, "min": 1400000, "margin": 430, "mode": "performance", "step": -1 },
-        { "id": "g3:cpu7", "max": 2850000, "turning": 2650000, "min": 1600000, "margin": 400, "mode": "performance", "step": -1 },
+        { "id": "g3:cpu4", "max": 2850000, "turning": 2650000, "min": 2350000, "margin": 300, "smoothness": 4 },
+        { "id": "g3:cpu7", "max": 2850000, "turning": 2650000, "min": 2450000, "margin": 400, "smoothness": 4 },
 
-        { "id": "g4:cpu0", "max": 2000000, "min": 1800000, "margin": 400, "mode": "upper", "step": -1 },
-        { "id": "g4:cpu4", "max": 3000000, "turning": 2650000, "min": 1400000, "margin": 450, "mode": "performance", "step": -1 },
-        { "id": "g4:cpu7", "max": 3100000, "turning": 2850000, "min": 1600000, "margin": 400, "mode": "performance", "step": -1 },
+        { "id": "g4:cpu4", "max": 3000000, "turning": 2850000, "min": 2650000, "margin": 400, "smoothness": 4 },
+        { "id": "g4:cpu7", "max": 3100000, "turning": 2850000, "min": 2650000, "margin": 400, "smoothness": 4 },
 
 
         { "id": "inactive:cpu0", "max": 1800000, "min": 1000000, "margin": 200 },
@@ -307,6 +305,11 @@
       "friendly": "原神",
       "categories": ["GenshinImpact"],
       "import": "_GenshinImpact.json"
+    },
+    {
+      "friendly": "星穹铁道",
+      "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
+      "import": "_HKRPG.json"
     },
     {
       "friendly": "王者荣耀/LOL",

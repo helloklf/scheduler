@@ -7,27 +7,31 @@
   "modes": [
     {
       "mode": ["powersave"],
-      "call": [
-        ["@limiters", "g1:cpu0", "g1:cpu4", "g1:cpu7"]
-      ]
+      "fas": {
+        "limiters": ["g1:cpu0", "g1:cpu4", "g1:cpu7"],
+        "_60": ["2100000", "2300000"]
+      }
     },
     {
       "mode": ["balance"],
-      "call": [
-        ["@limiters", "g1:cpu0", "g1:cpu4", "g2:cpu7"]
-      ]
+      "fas": {
+        "limiters": ["g1:cpu0", "g1:cpu4", "g2:cpu7"],
+        "_60": ["2300000", "2700000"]
+      }
     },
     {
       "mode": ["performance"],
-      "call": [
-        ["@limiters", "g2:cpu0", "hkrpg1:cpu4", "g3:cpu7"]
-      ]
+      "fas": {
+        "limiters": ["g2:cpu0", "hkrpg1:cpu4", "g3:cpu7"],
+        "_60": ["2600000", "2850000"]
+      }
     },
     {
       "mode": ["*"],
-      "call": [
-        ["@limiters", "g3:cpu0", "hkrpg2:cpu4", "g4:cpu7"]
-      ]
+      "fas": {
+        "limiters": ["g3:cpu0", "hkrpg2:cpu4", "g4:cpu7"],
+        "_60": ["2850000", "3000000"]
+      }
     }
   ]
 }

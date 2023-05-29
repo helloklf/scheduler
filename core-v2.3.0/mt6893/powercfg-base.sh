@@ -158,7 +158,7 @@ echo 886000 > /sys/module/ged/parameters/gpu_cust_upbound_freq
 echo 1 > /proc/perfmgr/syslimiter/syslimiter_force_disable
 echo 0 > /proc/perfmgr/boost_ctrl/cpu_ctrl/cfp_enable
 echo 0 > /sys/kernel/eara_thermal/enable
-echo 0 > /sys/kernel/fpsgo/common/fpsgo_enable
+lock_value 0 /sys/kernel/fpsgo/common/fpsgo_enable
 # 0: 0ff 1:on 2:free
 echo 2 > /sys/kernel/fpsgo/common/force_onoff
 echo 250 > /sys/kernel/fpsgo/fbt/thrm_activate_fps
