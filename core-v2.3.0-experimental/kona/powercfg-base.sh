@@ -205,9 +205,9 @@ for dir in $(ls /sys/class/devfreq | grep ddr-lat | grep -v npu); do
   lock_value 762 /sys/class/devfreq/$dir/min_freq
 done
 # 2288 4577 7110 9155 12298 14236 15258
-lock_value 15258 /sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/max_freq
+lock_value 12298 /sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/max_freq
 # 762 1144 1720 2086 2597 2929 3879 5931 6881 7980 10437
-lock_value 10437 /sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/max_freq
+lock_value 6881 /sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/max_freq
 
 
 # OnePlus
@@ -223,6 +223,7 @@ if [[ -n $(grep 'fps="50"' $oplus_thermal) ]]; then
   am force-stop com.oplus.battery
 fi
 hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
+lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
 if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
@@ -230,4 +231,5 @@ if [[ -d  /proc/game_opt ]]; then
 fi
 hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
 echo 0 > /proc/sys/kernel/sched_force_lb_enable
-echo N > /sys/module/task_sched_info/parameters/sched_info_ctrl
+lock_value N /sys/module/sched_assist_common/parameters/boost_kill
+lock_value N /sys/module/task_sched_info/parameters/sched_info_ctrl

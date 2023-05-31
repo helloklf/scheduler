@@ -40,6 +40,16 @@
         { "id": "p3:cpu0", "max": 2000000, "min": 1600000, "margin": 400 },
         { "id": "p3:cpu6", "max": 2600000, "min": 2100000, "margin": 400 },
 
+
+        { "id": "g1:cpu6", "max": 1900800, "min": 1478400, "margin": 350, "smoothness": 6 },
+
+        { "id": "g2:cpu6", "max": 2208000, "turning": 1900800, "min": 1478400, "margin": 400, "smoothness": 6 },
+
+        { "id": "g3:cpu6", "max": 1996800, "min": 1094400, "margin": 420, "mode": "BOTTOM", "smoothness": 6 },
+
+        { "id": "g4:cpu6", "max": 0, "min": 1478400, "margin": 480, "mode": "BOTTOM", "smoothness": 10  },
+
+
         { "id": "idle:cpu0", "max": 1700000, "margin": 150 },
         { "id": "idle:cpu6", "max": 1700000, "margin": 150 }
       ]
@@ -58,6 +68,19 @@
       ["$stune_top_boost", "0"],
       ["$stune_top_perf", "0"],
       ["$min_cpu_freq", "0 500000|1 500000"]
+    ],
+    "common_apps": [
+      ["/sys/kernel/ged/hal/dvfs_loading_mode", "#0"],
+      ["$gpu_dvfs_margin", "#40"],
+      ["/sys/kernel/ged/hal/dvfs_margin_value", "#130"],
+      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "10"]
+    ],
+    "common_gaming": [
+      ["/sys/kernel/ged/hal/dvfs_loading_mode", "#0"],
+      ["$gpu_dvfs_margin", "#15"],
+      ["/sys/kernel/ged/hal/dvfs_margin_value", "#130"],
+      ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
+      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "8"]
     ],
 
     "powersave_active": [
@@ -107,7 +130,9 @@
         ["@preset", "powersave_active"],
         ["cci_mode", "0"],
         ["dram_boost", "0"]
-      ]
+      ],
+      "app": [["@preset", "common_apps"]],
+      "game": [["@preset", "common_gaming"]]
     },
     "balance": {
       "call": [
@@ -115,7 +140,9 @@
         ["@preset", "balance_active"],
         ["cci_mode", "0"],
         ["dram_boost", "0"]
-      ]
+      ],
+      "app": [["@preset", "common_apps"]],
+      "game": [["@preset", "common_gaming"]]
     },
     "performance": {
       "call": [
@@ -123,10 +150,12 @@
         ["@preset", "performance_active"]
       ],
       "app": [
+        ["@preset", "common_apps"],
         ["cci_mode", "0"],
         ["dram_boost", "0"]
       ],
       "game": [
+        ["@preset", "common_gaming"],
         ["cci_mode", "1"],
         ["dram_boost", "1"]
       ]
@@ -137,10 +166,12 @@
         ["@preset", "fast_active"]
       ],
       "app": [
+        ["@preset", "common_apps"],
         ["cci_mode", "0"],
         ["dram_boost", "0"]
       ],
       "game": [
+        ["@preset", "common_gaming"],
         ["cci_mode", "1"],
         ["dram_boost", "1"]
       ]
@@ -277,7 +308,25 @@
           "3-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
         },
         "other": "0-6"
-      }
+      },
+      "modes": [
+        {
+          "mode": ["powersave"],
+          "call": [["@limiters", "g1:cpu6"]]
+        },
+        {
+          "mode": ["balance"],
+          "call": []
+        },
+        {
+          "mode": ["performance"],
+          "call": []
+        },
+        {
+          "mode": ["fast"],
+          "call": [["@limiters", "g4:cpu6"]]
+        }
+      ]
     },
     {
       "friendly": "和平精英",

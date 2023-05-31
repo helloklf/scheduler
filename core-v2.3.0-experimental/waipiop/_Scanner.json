@@ -1,0 +1,17 @@
+{
+  "friendly": "扫码",
+  "call": [
+    ["$uclamp_heavy", "1"],
+    ["@cpuset", "1", "0-4", "0-7", "0-7"],
+    ["@cpu_freq", "policy0", "1574400", "max"],
+    ["@cpu_freq", "policy4", "1996800", "max"],
+    ["@cpu_freq", "policy7", "2284800", "max"],
+    ["@uclamp", "0.00~max", "1.0~max", "2.00~max"],
+    ["$max_cpus_cpu7", "1"],
+    ["$mi_thermal", "10"]
+  ],
+  "booster": {
+    "duration": 2000,
+    "idle_delay": 2000
+  }
+}

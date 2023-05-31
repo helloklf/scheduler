@@ -3,7 +3,7 @@
     <version>2022111116</version>
     <filter-name>sys_thermal_control_list</filter-name>
     <featureConfigItem>
-        <feature_enable_item booleanVal="true"/>
+        <feature_enable_item booleanVal="false"/>
         <feature_safety_test_enable_item booleanVal="false"/>
         <safety_test_config_item stringVal="01111,10111,11011,11101,11110,00111,01011,01101,01110,10011,10101,10110,11001,11010,11100,11000,11111"/>
         <category_msg_delay_item intVal="5"/>
@@ -11,99 +11,23 @@
         <racing_mode_item intVal="-4"/>
         <normal_mode_item intVal="0"/>
         <game_high_perf_mode_item intVal="-1"/>
-        <aging_thermal_control_enable_item booleanVal="true"/>
+        <aging_thermal_control_enable_item booleanVal="false"/>
         <aging_cpu_level_item intVal="3"/>
     </featureConfigItem>
     <thermalPolicyConfigItem>
         <safetyTest>
             <safety_test>
-                <gear_config tempGear="11"
-                cpu="3" gpu="3" restrict="2" brightness="5" charge="2" modem="3" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="200" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="1" disVideoSR="1" disOSIE="1" disHBMHB="1"/>
             </safety_test>
         </safetyTest>
         <screenOff>
             <screen_off>
-                <gear_config tempGear="6"
-                cpu="2" gpu="3" restrict="2" brightness="0" charge="0" modem="0" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="200" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="0" disVideoSR="0" disOSIE="0" disHBMHB="0"/>
             </screen_off>
         </screenOff>
         <specific>
         </specific>
         <scene>
-            <scene_16>
-                <gear_config tempGear="3"
-                cpu="-1" gpu="-1" restrict="0" brightness="0" charge="0" modem="0" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="255" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="1" disVideoSR="0" disOSIE="0" disHBMHB="0"/>
-            </scene_16>
-            <scene_101>
-                <gear_config tempGear="3"
-                cpu="-1" gpu="-1" restrict="0" brightness="0" charge="0" modem="0" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="255" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="1" disVideoSR="0" disOSIE="0" disHBMHB="0"/>
-            </scene_101>
-            <scene_102>
-                <gear_config tempGear="2"
-                cpu="-1" gpu="-1" restrict="0" brightness="0" charge="2" modem="0" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="200" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="0" disVideoSR="0" disOSIE="0" disHBMHB="0"/>
-            </scene_102>
-            <scene_103>
-                <gear_config tempGear="3"
-                cpu="-1" gpu="-1" restrict="0" brightness="0" charge="0" modem="0" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="255" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="1" disVideoSR="0" disOSIE="0" disHBMHB="0"/>
-            </scene_103>
-            <scene_104>
-                <gear_config tempGear="3"
-                cpu="-1" gpu="-1" restrict="0" brightness="0" charge="0" modem="0" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="255" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="1" disVideoSR="0" disOSIE="0" disHBMHB="0"/>
-            </scene_104>
-            <scene_105>
-                <gear_config tempGear="3"
-                cpu="-1" gpu="-1" restrict="0" brightness="0" charge="0" modem="0" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="255" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="1" disVideoSR="0" disOSIE="0" disHBMHB="0"/>
-            </scene_105>
-            <scene_150>
-                <gear_config tempGear="3"
-                cpu="-1" gpu="-1" restrict="0" brightness="0" charge="0" modem="0" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="255" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="1" disVideoSR="0" disOSIE="0" disHBMHB="0"/>
-
-                <gear_config tempGear="4"
-                cpu="-1" gpu="-1" restrict="0" brightness="0" charge="0" modem="0" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="255" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="1" disVideoSR="0" disOSIE="0" disHBMHB="0"/>
-
-                <gear_config tempGear="5"
-                cpu="-1" gpu="-1" restrict="0" brightness="0" charge="3" modem="0" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="255" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="1" disVideoSR="0" disOSIE="0" disHBMHB="0"/>
-
-                <gear_config tempGear="6"
-                cpu="-1" gpu="-1" restrict="0" brightness="0" charge="3" modem="0" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="255" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="1" disVideoSR="0" disOSIE="0" disHBMHB="0"/>
-
-                <gear_config tempGear="7"
-                cpu="-1" gpu="-1" restrict="0" brightness="2" charge="2" modem="0" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="200" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="1" disVideoSR="0" disOSIE="0" disHBMHB="0"/>
-
-                <gear_config tempGear="8"
-                cpu="2" gpu="-1" restrict="1" brightness="2" charge="2" modem="3" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="200" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="1" disVideoSR="0" disOSIE="0" disHBMHB="0"/>
-            </scene_150>
         </scene>
         <category>
-            <category_9>
-                <gear_config tempGear="3"
-                cpu="-1" gpu="-1" restrict="0" brightness="0" charge="0" modem="0" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="255" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="1" disVideoSR="0" disOSIE="0" disHBMHB="0"/>
-            </category_9>
-            <category_12-category_14-category_16>
-                <gear_config tempGear="3"
-                cpu="-1" gpu="-1" restrict="0" brightness="0" charge="0" modem="0" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="255" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="1" disVideoSR="0" disOSIE="0" disHBMHB="0"/>
-            </category_12-category_14-category_16>
-            <category_13>
-                <gear_config tempGear="3"
-                cpu="-1" gpu="-1" restrict="0" brightness="0" charge="0" modem="0" disFlashlight="0"
-                stopCameraVideo="0" cameraBrightness="255" disCamera="0" disWifiHotSpot="0" disTorch="0" disFrameInsert="0" fps="0" refreshRate="1" disVideoSR="0" disOSIE="0" disHBMHB="0"/>
-            </category_13>
         </category>
         <default>
             <common_config>

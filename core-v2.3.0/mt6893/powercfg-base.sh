@@ -83,29 +83,19 @@ serialize_jobs none
 dram_freq 0
 
 # PPM
-# policy_status
-# [0] PPM_POLICY_PTPOD: enabled
-# [1] PPM_POLICY_UT: enabled
-# [2] PPM_POLICY_FORCE_LIMIT: enabled
-# [3] PPM_POLICY_PWR_THRO: enabled
-# [4] PPM_POLICY_THERMAL: enabled
-# [6] PPM_POLICY_HARD_USER_LIMIT: enabled
-# [7] PPM_POLICY_USER_LIMIT: enabled
-# [8] PPM_POLICY_LCM_OFF: disabled
-# [9] PPM_POLICY_SYS_BOOST: disabled
-
-# Usage: echo <idx> <1/0> > /proc/ppm/policy_status
-
-ppm enabled 1
-ppm policy_status "0 0"
-ppm policy_status "1 0"
-ppm policy_status "2 0"
-ppm policy_status "3 0"
-ppm policy_status "4 0"
-# ppm policy_status "5 0"
-ppm policy_status "6 1"
-ppm policy_status "7 0"
-ppm policy_status "9 0"
+echo 1 > /proc/ppm/enabled
+cat /proc/ppm/policy_status | grep -e '\[.*\]' | while read row
+do
+  case "$row" in
+    *"PPM_POLICY_HARD_USER_LIMIT"*)
+      v=1
+    ;;
+    *)
+      v=0
+    ;;
+  esac
+  echo ${row:1:1} $v > /proc/ppm/policy_status
+done
 
 lock_value 2 /sys/kernel/fpsgo/common/force_onoff
 echo 0 > /sys/kernel/fpsgo/fbt/switch_idleprefer

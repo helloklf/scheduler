@@ -2,6 +2,7 @@ mkLink /J sdm778g yupik
 mkLink /J lito snapdragon-611
 mkLink /J sm7250 snapdragon-611
 mkLink /J cape capep
+mkLink /J waipiop waipio
 mkLink /J mt6889 dimensity-44-ppm
 mkLink /J mt6873 dimensity-44-ppm
 mkLink /J sm7225 snapdragon-62
