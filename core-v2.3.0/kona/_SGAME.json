@@ -7,11 +7,11 @@
     {"id": "sgame3:cpu4", "step": -1, "mode": "BOTTOM", "max": 1958400, "min": 1574400, "margin": 695, "smoothness": 15},
     {"id": "sgame3:cpu7", "step": -1, "mode": "BOTTOM", "max": 2457600, "min": 1747200, "margin": 695, "smoothness": 16},
 
-    {"id": "sgame4:cpu4", "active_interval": 32, "step": -1, "mode": "BOTTOM", "max": 2246400, "min": 1670400, "margin": 695, "smoothness": 15},
-    {"id": "sgame4:cpu7", "active_interval": 32, "step": -1, "mode": "BOTTOM", "max": 2649600, "min": 1862400, "margin": 695, "smoothness": 15},
+    {"id": "sgame4:cpu4", "active_interval": 32, "step": -1, "mode": "BOTTOM", "max": 2246400, "turning": 2150400, "min": 1670400, "margin": 695, "smoothness": 15},
+    {"id": "sgame4:cpu7", "active_interval": 32, "step": -0.9, "mode": "BOTTOM", "max": 2841600, "turning": 2649600, "min": 1862400, "margin": 695, "smoothness": 15},
 
-    {"id": "sgame5:cpu4", "active_interval": 32, "step": -1, "mode": "BOTTOM", "max": 2342400, "min": 1862400, "margin": 1000, "smoothness": 15},
-    {"id": "sgame5:cpu7", "active_interval": 32, "step": -1, "mode": "BOTTOM", "max": 2841600, "min": 1862400, "margin": 1000, "smoothness": 15}
+    {"id": "sgame5:cpu4", "active_interval": 32, "step": -1, "mode": "BOTTOM", "max": 2342400, "turning": 2150400, "min": 1766400, "margin": 1000, "smoothness": 15},
+    {"id": "sgame5:cpu7", "active_interval": 32, "step": -0.7, "mode": "BOTTOM", "max": 3200000, "turning": 2841600, "min": 1862400, "margin": 1000, "smoothness": 15}
   ],
   "cpuset": {
     "unity_main": "7",
@@ -19,8 +19,10 @@
     "heavy_cores": "6",
     "comm": {
       "6": ["UnityGfx"],
-      "4-5": ["CoreThread", "UnityPreload", "Worker Thread"],
-      "0-5": ["FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage"],
+      "4-5": [
+        "CoreThread", "UnityPreload", "Worker Thread",
+        "FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage"
+      ],
       "0-3": ["Audio", "tp_schedule"]
     },
     "other": "0-5"
