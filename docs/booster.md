@@ -1,7 +1,11 @@
 ### 辅助升频 `booster`
 - booster在SCENE里实际上是`InputBooster`
-- 当=用户触摸屏幕或按下按键，执行`enter` 在如果用户没有后续操作，在倒计时结束后执行`exit`
-- 使用方法例如：
+
+- 用户触摸屏幕或按下按键时，执行`enter`
+- 用户一段时间(`duration`)没有操作手机后，执行`exit`
+- 或切换应用一段时间(`idle_delay`)从未操作过手机，执行`exit`
+
+- 配置示例：
 
 ```json
 {
@@ -19,8 +23,3 @@
   }
 }
 ```
-
-- [duration] 是boost持续时长，单位为毫秒
-- [enter] 触发boost时执行的修改
-- [exit] 结束boost时执行的修改
-- [idle_delay] 用户切换应用(且之后没有操作设备)多长时间后主动执行`exit`，单位为毫秒

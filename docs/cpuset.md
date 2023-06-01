@@ -9,6 +9,7 @@
 {
   "friendly": "原神",
   "packages": ["com.miHoYo.Yuanshen"],
+  "call": [],
   "cpuset": {
     "repeat": 0,
     "interval": 5000,
@@ -32,3 +33,38 @@
 - `interval` 是线程亲和设置检查时间间隔，最小值为`50` 默认值为`5000`，单位是毫秒
 
 > 需要注意的是，如果用户安装了`AsoulOpt`，那`cpuset`配置将不会生效
+
+
+## threads.json
+- Scene允许单独创建一个`threads.json`文件来配置各个应用的线程放置
+- 这降低了在不同处理器共用线程放置设定的难度
+- 配置示例：
+
+```json
+[
+  {
+    "friendly": "原神",
+    "categories": ["GenshinImpact"],
+    "cpuset": {
+      "comm": {
+        "6-7": ["UnityMain"],
+        "6": ["UnityGfx", "UnityMultiRende"],
+        "0-5": ["Timer"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "王者荣耀",
+    "packages": ["com.tencent.tmgp.sgame"],
+    "cpuset": {
+      "comm": {
+        "7": ["UnityMain"],
+        "6": ["UnityGfx", "UnityPreload", "Thread-"],
+        "3-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+      },
+      "other": "0-6"
+    }
+  }
+]
+```
