@@ -1,6 +1,6 @@
 ## 场景
 - 在SCENE的设计理念中，每个应用都是一个场景，模式的定义并不仅限于4或5个模式
-- 如果时间允许，可以针对不同应用类型，甚至每个应用单独做适配优化
+- 如果时间允许，可以针对不同应用类型，甚至单个应用做适配优化
 - 举个例子：
 
 ```json
@@ -25,9 +25,7 @@
       "friendly": "原神",
       "packages": [
         "com.miHoYo.Yuanshen",
-        "com.miHoYo.ys.mi",
-        "com.miHoYo.ys.bilibili",
-        "com.miHoYo.GenshinImpact"
+        "com.miHoYo.ys.mi"
       ],
       "call": [],
       "sensors": [],
@@ -113,3 +111,29 @@
   ]
 }
 ```
+
+#### 类目
+- 也可以通过应用分类`categories`而非包名`packages`来指定命中的应用
+- 例如，我打算为聊天工具、小说阅读器做一组配置，就像这样：
+
+```json
+{
+  "schemes": {},
+  "apps": [
+    {
+      "friendly": "即时通讯、阅读",
+      "categories": ["IM", "Reader"],
+      "call": [
+        ["@cpu_freq", "cpu7", "300000", "1500000"]
+      ]
+    },
+    {
+      "friendly": "所有APP",
+      "packages": ["*"],
+      "call": []
+    }
+  ]
+}
+```
+
+- 关于应用会如何分类可参考 [类目](./categories.md) 中的详细介绍
