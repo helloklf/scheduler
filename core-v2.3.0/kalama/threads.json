@@ -11,5 +11,18 @@
       },
       "other": "3-5"
     }
+  },
+  {
+    "friendly": "王者荣耀",
+    "cpuset": {
+      "unity_main": "7",
+      "heavy_thread": "Thread-",
+      "heavy_cores": "3-6",
+      "comm": {
+        "3-6": ["UnityPreload", "NativeThread", "UnityGfx", "Worker Thread",
+                "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+      },
+      "other": "3-6"
+    }
   }
 ]

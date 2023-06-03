@@ -211,6 +211,29 @@ lock_value 6881 /sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/max_freq
 
 
 # OnePlus
+hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
+lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
+if [[ -d  /proc/game_opt ]]; then
+  hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
+  hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
+  hide_value /proc/game_opt/game_pid -1
+fi
+hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
+hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
+echo 0 > /proc/sys/kernel/sched_force_lb_enable
+lock_value N /sys/module/sched_assist_common/parameters/boost_kill
+lock_value N /sys/module/task_sched_info/parameters/sched_info_ctrl
+echo "orms-hal-1-0
+oiface
+oplus_wifi_service
+gameopt_hal_service-1-0
+midas_hal_service
+thermal_mnt_hal_servic" | while read service
+do
+  stop $service
+done
+setprop persist.sys.hans.skipframe.enable false
+
 row=$(grep thermal_heat_path /odm/etc/ThermalServiceConfig/sys_thermal_config.xml)
 tz=$(echo ${row#*>} | cut -f1 -d '<')
 if [[ -n $tz ]]; then
@@ -222,14 +245,3 @@ if [[ -n $(grep 'fps="50"' $oplus_thermal) ]]; then
   mount --bind $replace $oplus_thermal
   am force-stop com.oplus.battery
 fi
-hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
-lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
-if [[ -d  /proc/game_opt ]]; then
-  hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
-  hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
-  hide_value /proc/game_opt/game_pid -1
-fi
-hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
-echo 0 > /proc/sys/kernel/sched_force_lb_enable
-lock_value N /sys/module/sched_assist_common/parameters/boost_kill
-lock_value N /sys/module/task_sched_info/parameters/sched_info_ctrl

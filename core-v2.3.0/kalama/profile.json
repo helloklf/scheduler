@@ -139,7 +139,7 @@
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
-      ["@uclamp", "0.00~max", "0.00~max", "1.00~max"],
+      ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
       ["@cpuset", "0-2", "0-5", "0-5", "0-7"],
       ["@gpu_freq", "min", "max"]
     ],
