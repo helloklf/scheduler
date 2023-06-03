@@ -9,8 +9,6 @@
     "max_cpus_cpu4": "/sys/devices/system/cpu/cpu4/core_ctl/max_cpus",
     "min_cpus_cpu4": "/sys/devices/system/cpu/cpu4/core_ctl/min_cpus",
     "mi_thermal": "/sys/class/thermal/thermal_message/sconfig",
-    "charge_limit": "/sys/class/power_supply/battery/charge_control_limit",
-    "night_charging": "/sys/class/power_supply/battery/night_charging",
     "msm_min_freq": "/sys/module/msm_performance/parameters/cpu_min_freq",
     "msm_max_freq": "/sys/module/msm_performance/parameters/cpu_max_freq",
     "llcc_ddr_max": "/sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/max_freq",
@@ -35,14 +33,8 @@
     "charge_control": {
       "enable": false,
       "enable_control": "/data/local/tmp/scene_charge_control",
-      "suspend": [
-        ["$charge_limit", "15"],
-        ["$night_charging", "1"]
-      ],
-      "normal": [
-        ["$night_charging", "0"],
-        ["$charge_limit", "0"]
-      ]
+      "suspend": [],
+      "normal": []
     },
     "limiter": {
       "active_interval": 24,

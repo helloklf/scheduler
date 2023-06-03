@@ -10,8 +10,6 @@
     "ddr_freq_min": "/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq",
     "ddr_freq_cust": "/sys/class/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq",
     "mi_thermal": "/sys/class/thermal/thermal_message/sconfig",
-    "charge_limit": "/sys/class/power_supply/battery/charge_control_limit",
-    "night_charging": "/sys/class/power_supply/battery/night_charging",
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",
     "ddr_force_opp": "/sys/devices/platform/1c00f000.dvfsrc/1c00f000.dvfsrc:dvfsrc-helper/dvfsrc_force_vcore_dvfs_opp",
     "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
@@ -31,14 +29,8 @@
     "charge_control": {
       "enable": true,
       "enable_control": "/data/local/tmp/scene_charge_control",
-      "suspend": [
-        ["$charge_limit", "15"],
-        ["$night_charging", "1"]
-      ],
-      "normal": [
-        ["$night_charging", "0"],
-        ["$charge_limit", "0"]
-      ]
+      "suspend": [],
+      "normal": []
     },
     "limiter": {
       "active_interval": 20,

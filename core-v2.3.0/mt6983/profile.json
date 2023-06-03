@@ -12,8 +12,6 @@
     "mi_thermal": "/sys/class/thermal/thermal_message/sconfig",
     "ged_kpi": "/sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled",
     "fpsgo": "/sys/kernel/fpsgo/common/fpsgo_enable",
-    "charge_limit": "/sys/class/power_supply/battery/charge_control_limit",
-    "night_charging": "/sys/class/power_supply/battery/night_charging",
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",
     "ddr_force_opp": "/sys/devices/platform/1c00f000.dvfsrc/1c00f000.dvfsrc:dvfsrc-helper/dvfsrc_force_vcore_dvfs_opp",
     "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
@@ -38,14 +36,8 @@
     "charge_control": {
       "enable": true,
       "enable_control": "/data/local/tmp/scene_charge_control",
-      "suspend": [
-        ["$charge_limit", "15"],
-        ["$night_charging", "1"]
-      ],
-      "normal": [
-        ["$night_charging", "0"],
-        ["$charge_limit", "0"]
-      ]
+      "suspend": [],
+      "normal": []
     },
     "limiter": {
       "active_interval": 20,

@@ -7,8 +7,6 @@
     "max_cpus_cpu6": "/sys/devices/system/cpu/cpu6/core_ctl/max_cpus",
     "min_cpus_cpu6": "/sys/devices/system/cpu/cpu6/core_ctl/min_cpus",
     "mi_thermal": "/sys/class/thermal/thermal_message/sconfig",
-    "charge_limit": "/sys/class/power_supply/battery/charge_control_limit",
-    "night_charging": "/sys/class/power_supply/battery/night_charging",
     "msm_min_freq": "/sys/module/msm_performance/parameters/cpu_min_freq",
     "msm_max_freq": "/sys/module/msm_performance/parameters/cpu_max_freq",
     "llcc_ddr_max": "/sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/max_freq",

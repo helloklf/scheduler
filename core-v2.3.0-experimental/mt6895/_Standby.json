@@ -7,8 +7,6 @@
   "modes": [{
     "mode": ["*"],
     "call": [
-      ["$charge_limit", "0"],
-      ["$night_charging", "0"],
       ["$core_ctl_4", "1"],
       ["$core_ctl_7", "1"],
       ["@cpuset", "0-3", "0-3", "0-7", "1-7"],
