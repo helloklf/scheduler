@@ -1,0 +1,35 @@
+{
+  "friendly": "QQ飞车",
+  "cpuset": {
+    "unity_main": "7",
+    "comm": {
+      "6": ["UnityGfx"],
+      "3-5": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
+    },
+    "other": "3-5"
+  },
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["@limiters", "g0:cpu0", "g0:cpu3", "g0:cpu7"],
+      ["@msm_feas", "10"]
+    ]
+  }, {
+    "mode": ["balance"],
+    "call": [
+      ["@limiters", "g1:cpu0", "g1:cpu3", "g1:cpu7"],
+      ["@msm_feas", "7"]
+    ]
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["@limiters", "g2:cpu0", "g2:cpu3", "g2:cpu7"],
+      ["@msm_feas", "0"]
+    ]
+  }, {
+    "mode": ["fast"],
+    "call": [
+      ["@limiters", "g3:cpu0", "g3:cpu3", "g3:cpu7"]
+    ]
+  }]
+}

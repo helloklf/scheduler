@@ -1,0 +1,51 @@
+{
+  "friendly": "一般APP",
+  "call": [
+    ["$boost_affinity", "1"]
+  ],
+  "modes": [{
+    "mode": ["powersave"],
+    "booster": {
+      "duration": 1500,
+      "idle_delay": 700,
+      "enter": [
+        ["@preset", "powersave_active"]
+      ],
+      "exit": [
+        ["@preset", "powersave_inactive"]
+      ]
+    }
+  },{
+    "mode": ["balance"],
+    "booster": {
+      "duration": 2000,
+      "idle_delay": 1000,
+      "enter": [["@preset", "balance_active"]],
+      "exit": [["@preset", "balance_inactive"]]
+    }
+  }, {
+    "mode": ["performance"],
+    "booster": {
+      "duration": 2500,
+      "idle_delay": 1000,
+      "enter": [
+        ["@preset", "performance_active"]
+      ],
+      "exit": [
+        ["@preset", "performance_inactive"]
+      ]
+    }
+  }, {
+    "mode": ["fast"],
+    "booster": {
+      "duration": 3000,
+      "idle_delay": 1000,
+      "enter": [
+        ["@preset", "fast_active"]
+      ],
+      "exit": [
+        ["@preset", "fast_inactive"]
+      ]
+    }
+  }]
+}

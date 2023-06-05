@@ -1,0 +1,41 @@
+{
+  "friendly": "QQ飞车",
+  "cpuset": {
+    "unity_main": "7",
+    "comm": {
+      "6": ["UnityGfx"],
+      "7": ["UnityMain"]
+    },
+    "other": "3-5"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "g1:cpu4", "p1:cpu7"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "g1:cpu4", "p2:cpu7"]
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "g3:cpu4",  "p2:cpu4"]
+      ]
+    },
+    {
+      "mode": ["*"],
+      "booster": {
+        "enter": [
+          ["$cpu_min_0", "1075200"], ["$cpu_min_4", "1171200"], ["$cpu_min_7", "1977600"],
+          ["$stune_top_boost", "10"], ["$stune_top_perf", "1"]
+        ],
+        "exit": [ ["$cpu_min_4", "825600"] ]
+      }
+    }
+  ]
+}

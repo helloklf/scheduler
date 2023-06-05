@@ -1,0 +1,43 @@
+{
+  "friendly": "和平精英",
+  "packages": ["com.tencent.tmgp.pubgmhd",  "com.tencent.ig"],
+  "cpuset": {
+    "interval": 1000,
+    "heavy_thread": "RenderThread",
+    "heavy_cores": "7",
+    "comm": {
+    "4-6": ["Thread-", "TaskGraphNP"]
+    },
+    "other": "0-6"
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "g0:cpu0", "g0:cpu4", "g0:cpu7"],
+        ["@msm_feas", "10"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "g1:cpu0", "g1:cpu4", "g1:cpu7"],
+        ["@msm_feas", "6"]
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "g2:cpu0", "g2:cpu4", "g2:cpu7"],
+        ["@msm_feas", "3"]
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"],
+        ["@msm_feas", "0"]
+      ]
+    }
+  ]
+}

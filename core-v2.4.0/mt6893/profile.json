@@ -1,0 +1,263 @@
+{
+  "platform": "mt6893",
+  "platform_name": "D1200",
+  "framework": 210,
+  "alias": {
+    "min_cpu_freq": "/proc/ppm/policy/hard_userlimit_min_cpu_freq",
+    "max_cpu_freq": "/proc/ppm/policy/hard_userlimit_max_cpu_freq",
+    "gpu_dvfs_margin": "/sys/kernel/ged/hal/timer_base_dvfs_margin",
+    "gpu_max_opp": "/sys/kernel/ged/hal/custom_upbound_gpu_freq",
+    "util_max_top": "/dev/stune/top-app/schedtune.util.max",
+    "util_max_fg": "/dev/stune/foreground/schedtune.util.max",
+    "util_max_bg": "/dev/stune/background/schedtune.util.max",
+    "util_min_top": "/dev/stune/top-app/schedtune.util.min",
+    "util_min_fg": "/dev/stune/foreground/schedtune.util.min",
+    "util_min_bg": "/dev/stune/background/schedtune.util.min",
+    "deisolation": "/sys/devices/system/cpu/sched/set_sched_deisolation",
+    "setolation": "/sys/devices/system/cpu/sched/set_sched_isolation",
+    "fpsgo_enable": "/sys/kernel/fpsgo/common/fpsgo_enable",
+    "stune_boost": "/dev/stune/top-app/schedtune.boost",
+    "dram_boost": "/sys/devices/platform/boot_dramboost/dramboost/dramboost",
+    "cci_mode": "/proc/cpufreq/cpufreq_cci_mode"
+  },
+  "features": {
+    "high_rate": {
+      "enable": true,
+      "enable_control": "/data/local/tmp/scene_refresh_rate",
+      "device_policy": []
+    },
+    "cpus_control": {
+      "enable": true,
+      "render_boost": true,
+      "enable_control": "/data/local/tmp/scene_cpus_control"
+    },
+    "limiter": {
+      "active_interval": 24,
+      "inactive_interval": 150,
+      "logger": false,
+      "params": [
+        { "id": "p1:cpu0", "max": 2000000, "min": 1400000, "margin": 500 },
+        { "id": "p1:cpu4", "max": 2200000, "min": 900000, "margin": 430 },
+        { "id": "p1:cpu7", "max": 2284000, "min": 1400000, "margin": 500 },
+
+        { "id": "p2:cpu4", "max": 2510000, "min": 1855000, "margin": 600 },
+        { "id": "p2:cpu7", "max": 2600000, "min": 1998000, "margin": 600 },
+
+        { "id": "g1:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1075000, "margin": 485, "smoothness": 6 },
+        { "id": "g1:cpu4", "mode": "BOTTOM", "max": 2354000, "min": 1162000, "margin": 375, "smoothness": 6 },
+        { "id": "g1:cpu7", "mode": "BOTTOM", "max": 2463000, "min": 1370000, "margin": 375, "smoothness": 6 },
+
+        { "id": "g2:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1075000, "margin": 605, "smoothness": 6 },
+        { "id": "g2:cpu4", "mode": "BOTTOM", "max": 2354000, "min": 1162000, "margin": 455, "smoothness": 6 },
+        { "id": "g2:cpu7", "mode": "BOTTOM", "max": 2463000, "min": 1370000, "margin": 485, "smoothness": 6 },
+
+        { "id": "g3:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1075000, "margin": 695, "smoothness": 6 },
+        { "id": "g3:cpu4", "mode": "BOTTOM", "max": 2354000, "min": 1162000, "margin": 605, "smoothness": 6 },
+        { "id": "g3:cpu7", "mode": "BOTTOM", "max": 2463000, "min": 1370000, "margin": 605, "smoothness": 6 },
+
+        { "id": "g4:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1400000, "margin": 695, "smoothness": 6 },
+        { "id": "g4:cpu4", "mode": "BOTTOM", "max": 2600000, "min": 1400000, "margin": 695, "smoothness": 6 },
+        { "id": "g4:cpu7", "mode": "BOTTOM", "max": 2800000, "min": 1400000, "margin": 695, "smoothness": 6 },
+
+        { "id": "idle:cpu0", "max": 1525000, "margin": 130 },
+        { "id": "idle:cpu4", "max": 1624000, "margin": 100 },
+        { "id": "idle:cpu7", "max": 1820000, "margin": 100 }
+      ]
+    }
+  },
+  "presets": {
+    "util_active": [
+      ["$util_max_fg", "1024"], ["$util_min_fg", "0"],
+      ["$util_max_top", "1024"], ["$util_min_top", "0"],
+      ["$util_min_bg", "0"], ["$util_max_bg", "1024"]
+    ],
+    "util_fg_opt": [
+      ["$util_max_fg", "1024"], ["$util_min_fg", "0"],
+      ["$util_max_top", "1024"], ["$util_min_top", "0"],
+      ["$util_max_bg", "200"], ["$util_min_bg", "0"]
+    ],
+    "util_idle": [
+      ["$stune_top_boost", "0"],
+      ["$stune_top_perf", "0"],
+      ["$util_max_fg", "100"], ["$util_min_fg", "0"],
+      ["$util_max_top", "1024"], ["$util_min_top", "0"],
+      ["$util_max_bg", "100"], ["$util_min_bg", "0"]
+    ],
+    "common_active": [
+      ["$max_cpu_freq", "0 2000000"],
+      ["@cpuset", "1-3", "0-4", "0-7", "0-7"],
+      ["$deisolation", "4|5|6|7"],
+      ["@preset", "util_active"],
+      ["$stune_top_boost", "10"]
+    ],
+    "common_inactive": [
+      ["@cpuset", "1-3", "0-4", "0-7", "0-7"],
+      ["$stune_top_boost", "0"],
+      ["$stune_top_perf", "0"],
+      ["$min_cpu_freq", "0 500000|1 437000|2 659000"]
+    ],
+
+    "powersave_active": [
+      ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
+      ["@preset", "common_active"],
+      ["$min_cpu_freq", "0 1000000|1 902000|2 659000"],
+      ["@preset", "util_active"]
+    ],
+    "powersave_inactive": [
+      ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
+      ["@preset", "common_inactive"],
+      ["$cpuset_fg", "0-6"],
+      ["$setolation", "7"],
+      ["@preset", "util_fg_opt"]
+    ],
+    "balance_active": [
+      ["@limiters", "p2:cpu4", "p2:cpu7"],
+      ["@preset", "common_active"],
+      ["$min_cpu_freq", "0 1450000|1 1451000|2 1370000"],
+      ["@preset", "util_active"]
+    ],
+    "balance_inactive": [
+      ["@preset", "common_inactive"],
+      ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
+      ["@preset", "util_fg_opt"]
+    ],
+    "performance_active": [
+      ["@preset", "common_active"],
+      ["@limiters", "NONE"],
+      ["$max_cpu_freq", "0 2000000|1 2600000|2 2600000"],
+      ["$min_cpu_freq", "0 1450000|1 1537000|2 1370000"],
+      ["@preset", "util_active"]
+    ],
+    "performance_inactive": [
+      ["@preset", "common_inactive"],
+      ["$max_cpu_freq", "0 2000000|1 2200000|2 2284000"],
+      ["@preset", "util_fg_opt"]
+    ],
+    "fast_active": [
+      ["@limiters", "NONE"],
+      ["@preset", "common_active"],
+      ["$max_cpu_freq", "0 2000000|1 2600000|2 3000000"],
+      ["$min_cpu_freq", "0 1450000|1 1537000|2 1370000"],
+      ["@preset", "util_active"]
+    ],
+    "fast_inactive": [
+      ["@limiters", "NONE"],
+      ["@preset", "common_inactive"],
+      ["$max_cpu_freq", "0 2000000|1 2354000|2 2463000"],
+      ["@preset", "util_fg_opt"]
+    ]
+  },
+  "schemes": {
+    "powersave": {
+      "call": [
+        ["@thermal_threshold", "-1"],
+        ["@preset", "powersave_active"],
+        ["cci_mode", "0"],
+        ["dram_boost", "0"]
+      ]
+    },
+    "balance": {
+      "call": [
+        ["@thermal_threshold", "-1"],
+        ["@preset", "balance_active"],
+        ["cci_mode", "0"],
+        ["dram_boost", "0"]
+      ]
+    },
+    "performance": {
+      "call": [
+        ["@thermal_threshold", "-1"],
+        ["@preset", "performance_active"]
+      ],
+      "app": [
+        ["cci_mode", "0"],
+        ["dram_boost", "0"]
+      ],
+      "game": [
+        ["cci_mode", "1"],
+        ["dram_boost", "1"]
+      ]
+    },
+    "fast": {
+      "call": [
+        ["@thermal_threshold", "-1"],
+        ["@preset", "fast_active"]
+      ],
+      "app": [
+        ["cci_mode", "0"],
+        ["dram_boost", "0"]
+      ],
+      "game": [
+        ["cci_mode", "1"],
+        ["dram_boost", "1"]
+      ]
+    },
+    "pedestal": {
+      "call": [
+        ["@thermal_threshold", "-1"],
+        ["@preset", "pedestal_active"]
+      ],
+      "app": [
+        ["cci_mode", "0"],
+        ["dram_boost", "0"]
+      ],
+      "game": [
+        ["cci_mode", "1"],
+        ["dram_boost", "1"]
+      ]
+    }
+  },
+  "apps": [
+    {
+      "friendly": "极速响应",
+      "categories": ["Launcher"],
+      "import": "_Launcher.json"
+    },
+    {
+      "friendly": "扫码",
+      "categories": ["Scanner"],
+      "import": "_Scanner.json"
+    },
+    {
+      "friendly": "相机",
+      "categories": ["Camera"],
+      "import": "_Camera.json"
+    },
+    {
+      "friendly": "狗屎/毒瘤",
+      "categories": ["MiniProgram"],
+      "import": "_MiniProgram.json"
+    },
+    {
+      "friendly": "All",
+      "packages": ["*"],
+      "import": "_Apps.json"
+    }
+  ],
+  "games": [
+    {
+      "friendly": "机动都市阿尔法",
+      "packages": ["com.netease.jddsaef", "com.netease.g93na", "com.netease.g93natw"],
+      "import": "_NeteaseJDDS.json"
+    },
+    {
+      "friendly": "原神",
+      "categories": ["GenshinImpact"],
+      "import": "_GenshinImpact.json"
+    },
+    {
+      "friendly": "和平精英",
+      "packages": ["com.tencent.tmgp.pubgmhd",  "com.tencent.ig"],
+      "import": "_PUBG.json"
+    },
+    {
+      "friendly": "王者荣耀/LOL",
+      "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
+      "import": "_SGAME.json"
+    },
+    {
+      "friendly": "All",
+      "packages": ["*"]
+    }
+  ]
+}

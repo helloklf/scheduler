@@ -1,0 +1,27 @@
+{
+  "friendly": "狗屎/毒瘤",
+  "categories": ["MiniProgram"],
+  "modes": [{
+    "mode": ["powersave", "balance"],
+    "call": [
+      ["$stune_top_boost", "10"],
+      ["$util_max_top", "1024"],
+      ["$util_max_bg", "100"],
+      ["$util_max_fg", "1024"],
+      ["@cpuset", "0", "0-4", "0-7", "0-7"],
+      ["$max_cpu_freq", "0 2000000|1 2400000|2 2400000"],
+      ["$min_cpu_freq", "0 1450000|1 1046000|2 1108000"],
+      ["$mi_thermal", "10"]
+    ],
+    "booster": {
+      "duration": 2000,
+      "idle_delay": 2000
+    }
+  }, {
+    "mode": ["*"],
+    "booster": {
+      "duration": 2000,
+      "idle_delay": 2000
+    }
+  }]
+}
