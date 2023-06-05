@@ -286,7 +286,6 @@ lock_value N /sys/module/sched_assist_common/parameters/boost_kill
 lock_value N /sys/module/task_sched_info/parameters/sched_info_ctrl
 echo "orms-hal-1-0
 oiface
-oplus_wifi_service
 gameopt_hal_service-1-0
 midas_hal_service
 thermal_mnt_hal_servic" | while read service
@@ -294,3 +293,8 @@ do
   stop $service
 done
 setprop persist.sys.hans.skipframe.enable false
+lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
+for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
+  lock_value 0 /sys/kernel/msm_performance/parameters/$file
+done
+echo -R 444 /sys/kernel/msm_performance/parameters

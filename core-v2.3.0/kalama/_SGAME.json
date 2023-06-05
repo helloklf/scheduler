@@ -10,11 +10,6 @@
     },
     "other": "3-6"
   },
-  "limiters": [
-    { "id": "sgame2:cpu0", "step": -0.5, "max": 1459200, "min": 441600, "margin": 200 },
-    { "id": "sgame2:cpu3", "max": 2054400, "min": 940800, "margin": 240 },
-    { "id": "sgame2:cpu7", "max": 2092800, "min": 1248000, "margin": 200 }
-  ],
   "modes": [
     {
       "mode": ["powersave"],

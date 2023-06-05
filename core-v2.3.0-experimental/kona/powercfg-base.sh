@@ -252,7 +252,6 @@ lock_value N /sys/module/sched_assist_common/parameters/boost_kill
 lock_value N /sys/module/task_sched_info/parameters/sched_info_ctrl
 echo "orms-hal-1-0
 oiface
-oplus_wifi_service
 gameopt_hal_service-1-0
 midas_hal_service
 thermal_mnt_hal_servic" | while read service
@@ -260,3 +259,20 @@ do
   stop $service
 done
 setprop persist.sys.hans.skipframe.enable false
+lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
+for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
+  lock_value 0 /sys/kernel/msm_performance/parameters/$file
+done
+echo -R 444 /sys/kernel/msm_performance/parameters
+
+row=$(grep thermal_heat_path /odm/etc/ThermalServiceConfig/sys_thermal_config.xml)
+tz=$(echo ${row#*>} | cut -f1 -d '<')
+if [[ -n $tz ]]; then
+  hide_value $tz 31000
+fi
+oplus_thermal=/odm/etc/temperature_profile/sys_thermal_control_config.xml
+if [[ -n $(grep 'fps="50"' $oplus_thermal) ]]; then
+  replace=$cfg_dir/sys_thermal_control_config.xml
+  mount --bind $replace $oplus_thermal
+  am force-stop com.oplus.battery
+fi

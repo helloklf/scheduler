@@ -1,5 +1,6 @@
 [
   {
+      
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "governor": ["UnityMain", "UnityGfx"],

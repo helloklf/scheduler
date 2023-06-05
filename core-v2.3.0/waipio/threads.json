@@ -1,6 +1,5 @@
 [
   {
-      
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "governor": ["UnityMain", "UnityGfx"],
@@ -8,20 +7,17 @@
       "unity_main": "7",
       "heavy_thread": "UnityGfx",
       "heavy_cores": "6",
-      "heavy_switch": true,
+      "heavy_switch": false,
       "comm": {
         "4-5": ["UnityMultiRende"],
-        "0-5": ["Worker Thread", "UnityPreload", "NativeThread", "FMOD", "UnityChoreograp"],
-        "0-3": [
-          "AsyncReadManage", "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"
-        ]
+        "0-5": ["Worker Thread", "UnityPreload", "NativeThread", "FMOD", "UnityChoreograp"]
       },
       "other": "0-5"
     }
   },
   {
     "friendly": "王者荣耀",
-    "packages": ["com.tencent.tmgp.sgame"],
+    "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
     "governor": ["UnityMain", "UnityGfx", "Thread-"],
     "cpuset": {
       "unity_main": "7",
@@ -30,7 +26,7 @@
       "comm": {
         "4-7": ["UnityPreload"],
         "6": ["UnityGfx"],
-        "4-5": ["NativeThread", "Worker Thread", "CoreThread"],
+        "4-5": ["CoreThread", "Apollo-", "NativeThread", "Worker Thread"],
         "0-5": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
       },
       "other": "0-5"
@@ -76,6 +72,19 @@
         "4-6": ["RenderThread", "RHIThread"]
       },
       "other": "0-7"
+    }
+  },
+  {
+    "friendly": "星穹铁道",
+    "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
+    "governor": ["UnityMain", "UnityGfx"],
+    "cpuset": {
+      "comm": {
+        "7": ["UnityMain"],
+        "6": ["UnityGfx"],
+        "4-5": ["NativeThread", "Job.Worker"]
+      },
+      "other": "0-5"
     }
   }
 ]
