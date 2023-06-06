@@ -1,0 +1,84 @@
+{
+  "friendly": "王者荣耀",
+  "call": [
+    ["@values", "target_loads", "50", "60", "60"]
+  ],
+  "cpuset": {
+    "unity_main": "7",
+    "heavy_thread": "Thread-",
+    "heavy_cores": "6",
+    "comm": {
+      "6": ["UnityGfx"],
+      "4-5": ["CoreThread", "UnityPreload", "Worker Thread", "FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage"],
+      "0-3": ["Audio", "tp_schedule", "GameDump", "HeapTask"]
+    },
+    "other": "4-5"
+  },
+  "modes": [{
+    "mode": ["powersave"],
+    "fas": {
+      "_60": ["2361600", "1958400", "-2"],
+      "_90": ["2457600", "1958400", "-2"],
+      "_120": ["2649600", "2054400", "-2"]
+    },
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 10000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_boost"]] },
+          { "threshold": [99,  75], "enter_once": [["@preset", "bw_max"]] },
+          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_max"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["balance"],
+    "fas": {
+      "_60": ["2361600", "2054400", "-2"],
+      "_90": ["2649600", "2246400", "-2"],
+      "_120": ["2841600", "2342400", "-2"]
+    },
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 10000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_boost"]] },
+          { "threshold": [99,  75], "enter_once": [["@preset", "bw_boost"]] },
+          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_max"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["performance"],
+    "fas": {
+      "mode": "fps",
+      "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 1.6,
+      "_60": ["2361600", "2054400", "-2"],
+      "_90": ["2841600", "2246400", "-2"],
+      "_120": ["2841600", "2342400", "-2"]
+    },
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 10000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_boost"]] },
+          { "threshold": [99,  75], "enter_once": [["@preset", "bw_boost"]] },
+          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_max"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["fast"],
+    "fas": {
+      "mode": "fps",
+      "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 1.4,
+      "middle_min_freq": 2073600,
+      "_60": ["2361600", "2150400", "-2"],
+      "_90": ["2841600", "2419200", "-2"],
+      "_120": ["3200000", "2419200", "-2"]
+    }
+  }]
+}

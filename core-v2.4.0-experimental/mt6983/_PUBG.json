@@ -1,0 +1,79 @@
+{
+  "friendly": "和平精英",
+  "packages": ["com.tencent.tmgp.pubgmhd",  "com.tencent.ig"],
+  "cpuset": {
+    "heavy_thread": "Thread-",
+    "heavy_cores": "7",
+    "comm": {
+      "4-6": ["RenderThread", "TaskGraphNP"]
+    },
+    "other": "0-6"
+  },
+  "limiters": [
+    { "id": "pubg1:cpu0", "max": 1200000, "min": 400000, "margin": 250 },
+    { "id": "pubg1:cpu4", "max": 2150000, "min": 700000, "margin": 300 },
+    { "id": "pubg1:cpu7", "max": 2150000, "min": 1300000, "margin": 300 },
+
+    { "id": "pubg2:cpu0", "max": 1400000, "min": 800000, "margin": 250 },
+    { "id": "pubg2:cpu4", "max": 2400000, "min": 1200000, "margin": 300 },
+    { "id": "pubg2:cpu7", "max": 2400000, "min": 1300000, "margin": 300 },
+
+    { "id": "pubg3:cpu0", "max": 1600000, "min": 1000000, "margin": 300 },
+    { "id": "pubg3:cpu4", "max": 2650000, "min": 1600000, "margin": 300 },
+    { "id": "pubg3:cpu7", "max": 2650000, "min": 1700000, "margin": 300 },
+
+    { "id": "pubg4:cpu0", "max": 1600000, "min": 1200000, "margin": 400 },
+    { "id": "pubg4:cpu4", "max": 2650000, "min": 1900000, "margin": 400 },
+    { "id": "pubg4:cpu7", "max": 2800000, "min": 1900000, "margin": 400 }
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "pubg1:cpu0", "pubg1:cpu4", "pubg1:cpu7"]
+      ],
+      "fas": {
+        "middle_min_freq": 700000,
+        "_60": ["1900000", "1900000"],
+        "_90": ["1900000", "1900000", "1"],
+        "_120": ["1900000", "1900000", "2"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "pubg2:cpu0", "pubg2:cpu4", "pubg2:cpu7"]
+      ],
+      "fas": {
+        "middle_min_freq": 1000000,
+        "_60": ["2100000", "2100000"],
+        "_90": ["2100000", "2100000", "1"],
+        "_120": ["2100000", "2100000", "2"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "pubg3:cpu0", "pubg3:cpu4", "pubg3:cpu7"]
+      ],
+      "fas": {
+        "middle_min_freq": 1000000,
+        "_60": ["2650000", "2650000"],
+        "_90": ["2650000", "2650000", "2"],
+        "_120": ["2650000", "2650000", "2"]
+      }
+    },
+    {
+      "mode": ["fast"],
+      "call": [
+        ["@limiters", "pubg4:cpu0", "pubg4:cpu4", "pubg4:cpu7"]
+      ],
+      "fas": {
+        "middle_min_freq": 1000000,
+        "_60": ["2800000", "2850000"],
+        "_90": ["2800000", "2850000", "2"],
+        "_120": ["2800000", "2850000", "2"]
+      }
+    }
+  ]
+}

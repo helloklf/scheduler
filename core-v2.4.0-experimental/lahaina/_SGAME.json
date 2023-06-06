@@ -1,0 +1,84 @@
+{
+  "friendly": "王者荣耀/LOL",
+  "cpuset": {
+    "unity_main": "7",
+    "heavy_thread": "Thread-",
+    "heavy_cores": "6",
+    "comm": {
+      "4-7": ["UnityPreload"],
+      "6": ["UnityGfx"],
+      "4-5": ["CoreThread"],
+      "0-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+    },
+    "other": "3F"
+  },
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["@gpu_freq", "min", "350000"]
+    ],
+    "fas": {
+      "_60": ["1785600", "1766400", "-1"],
+      "_90": ["2035200", "1881600", "-3"],
+      "_120": ["2150400", "1996800", "-1"]
+    },
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 3000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"]] },
+          { "threshold": [99,  75], "enter_once": [["@preset", "bw_low"]] },
+          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["balance"],
+    "call": [
+      ["@gpu_freq", "min", "400000"]
+    ],
+    "fas": {
+      "recent_frames": 6, "fast_down_rate": 8, "slow_down_rate": 5,
+      "governor": "performance",
+      "_60": ["1785600", "1766400", "-1"],
+      "_90": ["2150400", "1881600", "-1"],
+      "_120": ["2265600", "1996800", "-1"]
+    },
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 4000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"], ["@preset", "lat_boost"]] },
+          { "threshold": [99,  75], "enter_once": [["@preset", "bw_normal"], ["@preset", "lat_normal"]] },
+          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"], ["@preset", "lat_normal"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["@gpu_freq", "min", "540000"]
+    ],
+    "fas": {
+      "governor": "performance",
+      "mode": "fps",
+      "_60": ["1785600", "1766400", "-1"],
+      "_90": ["2265600", "1881600", "-1"],
+      "_120": ["2496000", "1996800", "-1"]
+    }
+  }, {
+    "mode": ["*"],
+    "call": [
+      ["@gpu_freq", "min", "608000"]
+    ],
+    "fas": {
+      "governor": "performance",
+      "mode": "fps",
+      "_60": ["1900800", "1996800", "-1"],
+      "_90": ["2380800", "2112000", "-1"],
+      "_120": ["2841600", "2419200", "-1"]
+    }
+  }]
+}

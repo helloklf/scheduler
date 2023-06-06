@@ -1,6 +1,5 @@
 [
   {
-      
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "governor": ["UnityMain", "UnityGfx"],
@@ -15,7 +14,7 @@
   },
   {
     "friendly": "王者荣耀",
-    "packages": ["com.tencent.tmgp.sgame"],
+    "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece", "com.garena.game.kgtw", "com.tencent.lolm"],
     "governor": ["UnityMain", "UnityGfx", "Thread-"],
     "cpuset": {
       "comm": {

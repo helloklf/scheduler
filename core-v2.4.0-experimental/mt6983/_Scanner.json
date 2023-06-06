@@ -1,0 +1,18 @@
+{
+  "friendly": "扫码",
+  "call": [
+    ["@limiters", "NONE"],
+    ["$uclamp_heavy", "1"],
+    ["$ddr_freq_min", "4266000000"],
+    ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode_change 0"],
+    ["@cpuset", "0-4", "0-4", "0-7", "0-7"],
+    ["@cpu_freq", "cpu0", "1.6Ghz", "max"],
+    ["@cpu_freq", "cpu4", "2.3Ghz", "max"],
+    ["@cpu_freq", "cpu7", "2.3Ghz", "3000000"],
+    ["$mi_thermal", "10"]
+  ],
+  "booster": {
+    "duration": 2000,
+    "idle_delay": 2000
+  }
+}

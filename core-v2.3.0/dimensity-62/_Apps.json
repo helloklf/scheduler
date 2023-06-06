@@ -1,8 +1,5 @@
 {
   "friendly": "一般APP",
-  "call": [
-    ["$boost_affinity", "1"]
-  ],
   "modes": [{
     "mode": ["powersave"],
     "booster": {
