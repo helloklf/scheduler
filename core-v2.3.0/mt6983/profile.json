@@ -126,12 +126,12 @@
       ["$ged_kpi", "#0"]
     ],
     "cpu7_on": [
-      ["$max_cpus_cpu7", "1"],
-      ["$min_cpus_cpu7", "1"]
+      ["$max_cpus_cpu7", "#1"],
+      ["$min_cpus_cpu7", "#1"]
     ],
     "cpu7_off": [
-      ["$min_cpus_cpu7", "0"],
-      ["$max_cpus_cpu7", "0"]
+      ["$min_cpus_cpu7", "#0"],
+      ["$max_cpus_cpu7", "#0"]
     ],
     "fbt_limit": [
       ["$limit_cfreq", "2100000"], ["$limit_rfreq", "2450000"],

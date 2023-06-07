@@ -1,22 +1,23 @@
 {
   "friendly": "待机",
   "packages": ["standby"],
+  "call": [
+    ["@limiters", "NONE"]
+  ],
   "booster": {
     "duration": 3500,
     "idle_delay": 2000,
     "enter": [
       ["@cpuset", "0-6", "0-6", "0-7", "0-7"],
-      ["@cpu_freq", "cpu0", "940800", "1804800"],
-      ["@cpu_freq", "cpu4", "1209600", "2457600"],
-      ["@cpu_freq", "cpu7", "787200", "2822400"]
+      ["@cpu_freq", "policy0", "1000MHz", "max"],
+      ["@cpu_freq", "policy4", "1000MHz", "2300MHz"],
+      ["@cpu_freq", "policy7", "1300MHz", "2500MHz"]
     ],
     "exit": [
-      ["$core_ctl_4", "1"],
-      ["$core_ctl_7", "1"],
-      ["@cpuset", "0-2", "0-3", "0-3", "0-6"],
-      ["@cpu_freq", "cpu0", "307200", "1440000"],
-      ["@cpu_freq", "cpu4", "633600", "1651200"],
-      ["@cpu_freq", "cpu7", "787200", "1286400"]
+      ["@cpuset", "0-3", "0-6", "0-6", "0-6"],
+      ["@cpu_freq", "policy0", "min", "1800MHz"],
+      ["@cpu_freq", "policy4", "min", "1700MHz"],
+      ["@cpu_freq", "policy7", "min", "1700MHz"]
     ]
   }
 }

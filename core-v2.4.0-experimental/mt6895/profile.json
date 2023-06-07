@@ -17,22 +17,6 @@
     "ddr_max": "/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq"
   },
   "features": {
-    "high_rate": {
-      "enable": true,
-      "enable_control": "/data/local/tmp/scene_refresh_rate",
-      "device_policy": []
-    },
-    "cpus_control": {
-      "enable": true,
-      "render_boost": false,
-      "enable_control": "/data/local/tmp/scene_cpus_control"
-    },
-    "charge_control": {
-      "enable": true,
-      "enable_control": "/data/local/tmp/scene_charge_control",
-      "suspend": [],
-      "normal": []
-    },
     "limiter": {
       "active_interval": 20,
       "gaming_interval": 30,

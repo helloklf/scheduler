@@ -13,16 +13,6 @@
     "msm_max_freq": "/sys/module/msm_performance/parameters/cpu_max_freq"
   },
   "features": {
-    "high_rate": {
-      "enable": true,
-      "enable_control": "/data/local/tmp/scene_refresh_rate",
-      "device_policy": []
-    },
-    "cpus_control": {
-      "enable": true,
-      "render_boost": true,
-      "enable_control": "/data/local/tmp/scene_cpus_control"
-    },
     "limiter": {
       "logger": false,
       "active_interval": 24,

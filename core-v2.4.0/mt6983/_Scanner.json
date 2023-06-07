@@ -2,7 +2,6 @@
   "friendly": "扫码",
   "call": [
     ["@limiters", "NONE"],
-    ["$uclamp_heavy", "1"],
     ["$ddr_freq_min", "4266000000"],
     ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode_change 0"],
     ["@cpuset", "0-4", "0-4", "0-7", "0-7"],

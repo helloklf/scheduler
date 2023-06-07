@@ -21,16 +21,6 @@
     "cci_mode": "/proc/cpufreq/cpufreq_cci_mode"
   },
   "features": {
-    "high_rate": {
-      "enable": true,
-      "enable_control": "/data/local/tmp/scene_refresh_rate",
-      "device_policy": []
-    },
-    "cpus_control": {
-      "enable": true,
-      "render_boost": true,
-      "enable_control": "/data/local/tmp/scene_cpus_control"
-    },
     "limiter": {
       "active_interval": 24,
       "inactive_interval": 150,
@@ -227,6 +217,11 @@
       "friendly": "狗屎/毒瘤",
       "categories": ["MiniProgram"],
       "import": "_MiniProgram.json"
+    },
+    {
+      "friendly": "待机",
+      "packages": ["standby"],
+      "import": "_Standby.json"
     },
     {
       "friendly": "All",

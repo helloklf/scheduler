@@ -21,15 +21,6 @@
     "cci_mode": "/proc/cpufreq/cpufreq_cci_mode"
   },
   "features": {
-    "high_rate": {
-      "enable": false,
-      "enable_control": "/data/local/tmp/scene_refresh_rate",
-      "device_policy": []
-    },
-    "cpus_control": {
-      "enable": true,
-      "enable_control": "/data/local/tmp/scene_cpus_control"
-    },
     "limiter": {
       "active_interval": 20,
       "inactive_interval": 150,

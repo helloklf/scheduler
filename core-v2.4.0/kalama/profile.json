@@ -13,30 +13,6 @@
     "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable"
   },
   "features": {
-    "high_rate": {
-      "enable": true,
-      "logger": false,
-      "enable_control": "/data/local/tmp/scene_refresh_rate",
-      "device_policy": []
-    },
-    "cpus_control": {
-      "enable": true,
-      "render_boost": true,
-      "logger": false,
-      "enable_control": "/data/local/tmp/scene_cpus_control"
-    },
-    "charge_control": {
-      "enable": true,
-      "enable_control": "/data/local/tmp/scene_charge_control",
-      "suspend": [
-        ["/sys/class/power_supply/battery/charge_control_limit", "15"],
-        ["/sys/class/power_supply/battery/constant_charge_current", "500000"]
-      ],
-      "normal": [
-        ["/sys/class/power_supply/battery/charge_control_limit", "0"],
-        ["/sys/class/power_supply/battery/constant_charge_current", "25000000"]
-      ]
-    },
     "limiter": {
       "active_interval": 24,
       "gaming_interval": 30,

@@ -13,10 +13,6 @@
     "cpu_llcc_min": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/min_freq"
   },
   "features": {
-    "cpus_control": {
-      "enable": true,
-      "enable_control": "/data/local/tmp/scene_cpus_control"
-    },
     "limiter": {
       "active_interval": 20,
       "inactive_interval": 100,

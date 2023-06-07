@@ -18,16 +18,6 @@
     "mod_percent": "/sys/class/kgsl/kgsl-3d0/devfreq/mod_percent"
   },
   "features": {
-    "high_rate": {
-      "enable": true,
-      "enable_control": "/data/local/tmp/scene_refresh_rate",
-      "device_policy": []
-    },
-    "cpus_control": {
-      "enable": true,
-      "logger": false,
-      "enable_control": "/data/local/tmp/scene_cpus_control"
-    },
     "limiter": {
       "logger": false,
       "active_interval": 20,

@@ -1,15 +1,5 @@
 {
     "friendly": "QQ飞车",
-    "cpuset": {
-      "interval": 5000,
-      "unity_main": "7",
-      "heavy_thread": "UnityGfx",
-      "heavy_cores": "4-6",
-      "comm": {
-        "4-5": ["Job.Worker", "NativeThread", "mgp.speedmobile", "mali-", "GThread", "UnityChoreograp"]
-      },
-      "other": "4-6"
-    },
     "modes": [{
       "mode": ["powersave"],
       "call": [

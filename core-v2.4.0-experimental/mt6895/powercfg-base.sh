@@ -36,21 +36,30 @@ set_value() {
 }
 
 core_ctl_policy() {
-  if [[ "$1" == "on" || "$1" == "1" ]]; then
-    to_on=1
-  else
-    to_on=0
-  fi
-
-  echo $to_on > /sys/module/scheduler/holders/mtk_core_ctl/parameters/policy_enable
-  echo $to_on > /sys/module/thermal_interface/holders/mtk_core_ctl/parameters/policy_enable
-  echo $to_on > /sys/module/mtk_core_ctl/parameters/policy_enable
-  echo $to_on > /sys/module/cpufreq_sugov_ext/holders/mtk_core_ctl/parameters/policy_enable
-  echo $to_on > /sys/devices/system/cpu/cpu0/core_ctl/enable
-  echo $to_on > /sys/devices/system/cpu/cpu4/core_ctl/enable
-  echo $to_on > /sys/devices/system/cpu/cpu7/core_ctl/enable
-  echo $to_on > /sys/module/cpufreq_sugov_ext/holders/mtk_core_ctl/parameters/policy_enable
+  echo $1 > /sys/module/scheduler/holders/mtk_core_ctl/parameters/policy_enable
+  echo $1 > /sys/module/thermal_interface/holders/mtk_core_ctl/parameters/policy_enable
+  echo $1 > /sys/module/mtk_core_ctl/parameters/policy_enable
+  echo $1 > /sys/module/cpufreq_sugov_ext/holders/mtk_core_ctl/parameters/policy_enable
+  echo $1 > /sys/devices/system/cpu/cpu0/core_ctl/enable
+  echo $1 > /sys/devices/system/cpu/cpu4/core_ctl/enable
+  echo $1 > /sys/devices/system/cpu/cpu7/core_ctl/enable
+  echo $1 > /sys/module/cpufreq_sugov_ext/holders/mtk_core_ctl/parameters/policy_enable
 }
+core_ctl_policy 0
+cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
+lock_value 0 $cpu7_core_ctl_dir/enable
+lock_value 1 $cpu7_core_ctl_dir/max_cpus
+lock_value 1 $cpu7_core_ctl_dir/min_cpus
+
+cpu4_core_ctl_dir=/sys/devices/system/cpu/cpu4/core_ctl
+lock_value 3 $cpu4_core_ctl_dir/max_cpus
+lock_value 3 $cpu4_core_ctl_dir/min_cpus
+lock_value 0 $cpu4_core_ctl_dir/enable
+
+cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
+lock_value 4 $cpu0_core_ctl_dir/max_cpus
+lock_value 4 $cpu0_core_ctl_dir/min_cpus
+lock_value 0 $cpu0_core_ctl_dir/enable
 
 mk_cpuctl () {
   mkdir -p "/dev/cpuctl/$1"
@@ -155,26 +164,6 @@ mk_cpuctl 'heavy' 1 0 1 max
 # mk_stune 'top-app/heavy' 0 0
 
 process_opt &
-
-
-
-core_ctl_preset(){
-  cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
-  echo 20 > $cpu7_core_ctl_dir/offline_throttle_ms
-  echo 0 > $cpu7_core_ctl_dir/enable
-  echo 1 > $cpu7_core_ctl_dir/max_cpus
-  echo 0 > $cpu7_core_ctl_dir/min_cpus
-  echo 80 > $cpu7_core_ctl_dir/up_thres
-  echo 1 > $cpu7_core_ctl_dir/not_preferred
-
-  cpu4_core_ctl_dir=/sys/devices/system/cpu/cpu4/core_ctl
-  echo 0 > $cpu4_core_ctl_dir/enable
-
-  cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
-  echo 0 > $cpu0_core_ctl_dir/enable
-
-  # core_ctl_policy on
-}
 
 core_ctl_preset
 

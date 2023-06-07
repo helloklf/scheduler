@@ -14,18 +14,6 @@
     "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable"
   },
   "features": {
-    "high_rate": {
-      "enable": true,
-      "logger": false,
-      "enable_control": "/data/local/tmp/scene_refresh_rate",
-      "device_policy": []
-    },
-    "cpus_control": {
-      "enable": true,
-      "render_boost": true,
-      "logger": false,
-      "enable_control": "/data/local/tmp/scene_cpus_control"
-    },
     "limiter": {
       "active_interval": 24,
       "gaming_interval": 30,

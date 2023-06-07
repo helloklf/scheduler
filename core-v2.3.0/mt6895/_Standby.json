@@ -1,9 +1,6 @@
 {
   "friendly": "待机",
   "packages": ["standby"],
-  "call": [
-    ["@charge", "normal"]
-  ],
   "modes": [{
     "mode": ["*"],
     "call": [
