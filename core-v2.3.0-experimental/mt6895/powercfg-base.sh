@@ -239,7 +239,7 @@ if [[ -d $module ]]; then
   mkdir -p $module_system_etc
   mkdir -p $module_vendor_etc
   if [[ -f $cfg_dir/powerscntbl.xml ]];then
-    cp $cfg_dir/powerscntbl.xml $module_vendor_etc/
+    cp $cfg_dir/powerscntbl.xml $module_vendor_etc/powerscntbl.xml
   fi
 fi
 

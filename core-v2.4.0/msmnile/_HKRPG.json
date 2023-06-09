@@ -15,11 +15,11 @@
     },
     {
       "mode": ["performance"],
-      "call": [["@limiters", "hkrpg1:cpu4", "g4:cpu7"]]
+      "call": [["@limiters", "hkrpg1:cpu4"]]
     },
     {
       "mode": ["*"],
-      "call": [["@limiters", "hkrpg2:cpu4", "p4:cpu7"]]
+      "call": [["@limiters", "hkrpg2:cpu4"]]
     }
   ]
 }

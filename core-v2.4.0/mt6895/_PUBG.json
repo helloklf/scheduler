@@ -2,7 +2,6 @@
   "friendly": "和平精英",
   "call": [
     ["@limiters", "NONE"],
-    ["$boost_affinity", "#0"],
     ["$dcs_mode", "#0"],
     ["$mi_thermal", "13"]
   ],

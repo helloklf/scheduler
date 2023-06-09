@@ -307,6 +307,11 @@
       "import": "_GenshinImpact.json"
     },
     {
+      "friendly": "星穹铁道",
+      "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
+      "import": "_HKRPG.json"
+    },
+    {
       "friendly": "LOL",
       "packages": ["com.tencent.lolm"],
       "import": "_LOLM.json"

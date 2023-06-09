@@ -5,7 +5,6 @@
   "alias": {
     "boost_affinity": "/sys/module/mtk_fpsgo/parameters/boost_affinity",
     "uclamp_heavy": "/dev/cpuctl/heavy/cpu.uclamp.min",
-    "uclamp_heavy_max": "/dev/cpuctl/heavy/cpu.uclamp.max",
     "ddr_freq_min": "/sys/devices/platform/soc/1c00f000.dvfsrc/mtk-dvfsrc-devfreq/devfreq/mtk-dvfsrc-devfreq/min_freq",
     "ddr_freq_max": "/sys/devices/platform/soc/1c00f000.dvfsrc/mtk-dvfsrc-devfreq/devfreq/mtk-dvfsrc-devfreq/max_freq",
     "ddr_freq_cust": "/sys/class/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq",
@@ -74,7 +73,6 @@
     "reset": [
       ["@mtk_reset"],
       ["@governor", "schedutil"],
-      ["$uclamp_heavy_max", "max"],
       ["$perfmgr_enable", "#0"],
       ["$boost_affinity", "#0"],
       ["$ddr_max", "#5500000000"]

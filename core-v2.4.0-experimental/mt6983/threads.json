@@ -1,5 +1,15 @@
 [
   {
+    "friendly": "闲鱼",
+    "packages": ["com.taobao.idlefish"],
+    "cpuset": {
+      "comm": {
+        "4-7": ["RenderThread", "1.ui", "1.raster"]
+      },
+      "other": "0-7"
+    }
+  },
+  {
     "friendly": "星穹铁道",
     "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
     "governor": ["UnityMain", "UnityGfx"],
