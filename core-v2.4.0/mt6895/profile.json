@@ -1,7 +1,7 @@
 {
   "platform": "mt6895",
   "platform_name": "D8100",
-  "framework": 210,
+  "framework": 220,
   "alias": {
     "boost_affinity": "/sys/module/mtk_fpsgo/parameters/boost_affinity",
     "uclamp_heavy": "/dev/cpuctl/heavy/cpu.uclamp.min",
@@ -59,11 +59,13 @@
     "gesture_boost": {
       "enable": true,
       "enter": [
-        ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "24"],
+        ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
+        ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "470000"],
         ["$ddr_freq_cust", "4266000000"]
       ],
       "exit": [
         ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
+        ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
         ["$ddr_freq_cust", "#0"]
       ]
     }
@@ -102,19 +104,22 @@
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 0|cm_mgr_perf_enable 0"],
       ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#15"],
+      ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
+      ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
       ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#30"],
-      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#6"]
+      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#6"],
+      ["$ged_kpi", "#0"]
     ],
     "common_gaming": [
       ["$uclamp_heavy", "0"],
       ["@preset", "kpi_off"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1"],
+      ["@cpuset", "0-2", "1-3", "0-5", "0-7"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#0"],
-      ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
-      ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
+      ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "#99"],
+      ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "#0"],
       ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#4"],
       ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#15"],
-      ["@cpuset", "0-2", "1-3", "0-5", "0-7"],
       ["$ddr_freq_cust", "0"]
     ],
 
