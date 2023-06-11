@@ -223,10 +223,7 @@ hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
 echo 0 > /proc/sys/kernel/sched_force_lb_enable
 lock_value N /sys/module/sched_assist_common/parameters/boost_kill
 lock_value N /sys/module/task_sched_info/parameters/sched_info_ctrl
-echo "orms-hal-1-0
-gameopt_hal_service-1-0
-midas_hal_service
-thermal_mnt_hal_servic" | while read service
+for service in orms-hal-1-0 gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
 do
   stop $service
 done

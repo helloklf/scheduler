@@ -288,7 +288,7 @@
     },
     {
       "friendly": "和平精英",
-      "packages": ["com.tencent.tmgp.pubgmhd",  "com.tencent.ig"],
+      "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
       "cpuset": {
         "interval": 1000,
         "comm": {
