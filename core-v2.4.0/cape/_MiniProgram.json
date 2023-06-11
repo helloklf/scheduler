@@ -7,6 +7,7 @@
   "modes": [{
     "mode": ["powersave", "balance"],
     "call": [
+      ["@limiters", "NONE"],
       ["@cpuset", "1", "0-4", "0-7", "0-7"],
       ["@cpu_freq", "policy0", "1056000", "1555200"],
       ["@cpu_freq", "policy4", "633600", "2342400"],

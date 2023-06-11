@@ -1,17 +1,5 @@
 {
   "friendly": "王者荣耀CN",
-  "cpuset": {
-    "heavy_thread": "Thread-",
-    "heavy_cores": "6",
-    "comm": {
-      "7": ["UnityMain"],
-      "4-7": ["UnityPreload"],
-      "6": ["UnityGfx"],
-      "4-5": ["CoreThread", "Apollo", "Worker Thread", "NativeThread"],
-      "0-5": ["mali-"]
-    },
-    "other": "0-5"
-  },
   "modes": [
     {
       "mode": ["powersave"],

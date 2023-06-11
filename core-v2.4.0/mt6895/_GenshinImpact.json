@@ -43,12 +43,10 @@
         "duration": 20000,
         "idle_delay": 20000,
         "enter": [
-          ["$ddr_freq_min", "#5500000000"],
-          ["$uclamp_top_max", "max"]
+          ["$ddr_freq_min", "#5500000000"]
         ],
         "exit": [
-          ["$ddr_freq_min", "#800000000"],
-          ["$uclamp_top_max", "20.00"]
+          ["$ddr_freq_min", "#800000000"]
         ]
       }
     },

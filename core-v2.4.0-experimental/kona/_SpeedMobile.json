@@ -3,13 +3,6 @@
   "call": [
     ["@values", "target_loads", "50", "50", "60"]
   ],
-  "cpuset": {
-    "unity_main": "7",
-    "comm": {
-      "6": ["UnityGfx"]
-    },
-    "other": "4-5"
-  },
   "modes": [
     {
       "mode": ["powersave"],

@@ -13,15 +13,6 @@
     { "id": "ys-p4:cpu4", "mode": "performance", "max": 3000000, "margin": 300, "smoothness": 6 },
     { "id": "ys-p4:cpu7", "mode": "performance", "max": 3100000, "margin": 350, "smoothness": 6 }
   ],
-  "cpuset": {
-    "unity_main": "6",
-    "comm": {
-      "7": ["UnityGfx"],
-      "4-5": ["UnityMultiRende", "UnityChoreograp", "Worker Thread"],
-      "0-5": ["FMOD", "ged-swd", "AsyncReadManage", "NativeThread", "mali-", "UnityPreload"]
-    },
-    "other": "0-5"
-  },
   "modes": [
     {
       "mode": ["powersave"],

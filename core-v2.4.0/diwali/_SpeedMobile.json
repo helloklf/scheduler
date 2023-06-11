@@ -1,13 +1,5 @@
 {
   "friendly": "QQ飞车",
-  "cpuset": {
-    "unity_main": "7",
-    "comm": {
-      "6": ["UnityGfx"],
-      "4-5": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "speedmobileThreadManager", "binder."]
-    },
-    "other": "0-5"
-  },
   "limiters": [
     { "id": "speedmobile1:cpu0", "step": -1, "max": 1555200, "min": 806400, "margin": 245, "smoothness": 8, "mode": "performance" },
     { "id": "speedmobile1:cpu4", "step": -1, "max": 1651200, "min": 652800, "margin": 205, "smoothness": 4, "mode": "performance" },

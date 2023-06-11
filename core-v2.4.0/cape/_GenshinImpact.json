@@ -20,17 +20,6 @@
     {"id": "ys4:cpu4", "step": -1.0, "max": 2745600, "min": 1400000, "margin": 400, "smoothness": 6, "mode": "BOTTOM"},
     {"id": "ys4:cpu7", "step": -1.0, "max": 2995200, "min": 1200000, "margin": 300, "smoothness": 6, "mode": "BOTTOM"}
   ],
-  "cpuset": {
-    "unity_main": "6",
-    "heavy_thread": "UnityGfx",
-    "heavy_cores": "7",
-    "heavy_switch": false,
-    "comm": {
-      "4-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende"],
-      "0-5": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-", "FMOD", "UnityPreload", "AsyncReadManage"]
-    },
-    "other": "0-3"
-  },
   "modes": [
     {
       "mode": ["powersave"],

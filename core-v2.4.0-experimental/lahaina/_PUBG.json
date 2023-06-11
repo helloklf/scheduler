@@ -1,14 +1,5 @@
 {
   "friendly": "和平精英",
-  "cpuset": {
-    "heavy_thread": "Thread-",
-    "heavy_cores": "7",
-    "comm": {
-      "6": ["RenderThread"],
-      "4-5": ["FAsyncLoading", "TaskGraphNP", "Thread-", "NativeThread", "MainThread"]
-    },
-    "other": "0-5"
-  },
   "modes": [
     {
       "mode": ["powersave"],

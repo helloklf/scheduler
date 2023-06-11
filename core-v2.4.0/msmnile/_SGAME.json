@@ -1,18 +1,6 @@
 {
   "friendly": "王者荣耀/LOL",
   "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
-  "cpuset": {
-    "interval": 1000,
-    "heavy_thread": "Thread-",
-    "heavy_cores": "6",
-    "comm": {
-      "6": ["UnityGfx"],
-      "7": ["UnityMain","UnityPreload"],
-      "4-5": ["NativeThread", "UnityMultiRende", "Worker Thread"],
-      "0-5": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
-    },
-    "other": "0-5"
-  },
   "modes": [{
     "mode": ["powersave"],
     "call": [

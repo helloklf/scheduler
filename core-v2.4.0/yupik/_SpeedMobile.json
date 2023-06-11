@@ -1,18 +1,6 @@
 {
   "friendly": "QQ飞车",
   "packages": ["com.tencent.tmgp.speedmobile"],
-  "call": [
-    ["@uclamp", "0.00~max", "0.00~max", "1.00~max"]
-  ],
-  "cpuset": {
-    "interval": 6000,
-    "unity_main": "7",
-    "comm": {
-      "6": ["UnityGfx"],
-      "4-5": ["Job.Worker", "NativeThread"]
-    },
-    "other": "0-5"
-  },
   "modes": [
     {
       "mode": ["balance"],

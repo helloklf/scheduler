@@ -1,14 +1,5 @@
 {
   "friendly": "和平精英",
-  "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
-  "cpuset": {
-    "heavy_thread": "Thread-",
-    "heavy_cores": "7",
-    "comm": {
-      "4-6": ["RenderThread", "TaskGraphNP"]
-    },
-    "other": "0-6"
-  },
   "limiters": [
     { "id": "pubg1:cpu0", "max": 1200000, "min": 400000, "margin": 250 },
     { "id": "pubg1:cpu4", "max": 2150000, "min": 700000, "margin": 300 },

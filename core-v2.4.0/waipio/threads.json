@@ -7,10 +7,26 @@
       "unity_main": "7",
       "heavy_thread": "UnityGfx",
       "heavy_cores": "6",
-      "heavy_switch": false,
+      "heavy_switch": true,
       "comm": {
         "4-5": ["UnityMultiRende"],
-        "0-5": ["Worker Thread", "UnityPreload", "NativeThread", "FMOD", "UnityChoreograp"]
+        "0-5": ["Worker Thread", "UnityPreload", "NativeThread", "FMOD", "UnityChoreograp"],
+        "0-3": [
+          "AsyncReadManage", "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"
+        ]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "星穹铁道",
+    "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
+    "governor": ["UnityMain", "UnityGfx"],
+    "cpuset": {
+      "comm": {
+        "7": ["UnityMain"],
+        "6": ["UnityGfx"],
+        "4-5": ["NativeThread", "Job.Worker"]
       },
       "other": "0-5"
     }
@@ -26,7 +42,7 @@
       "comm": {
         "4-7": ["UnityPreload"],
         "6": ["UnityGfx"],
-        "4-5": ["CoreThread", "Apollo-", "NativeThread", "Worker Thread"],
+        "4-5": ["NativeThread", "Worker Thread", "CoreThread", "Apollo-"],
         "0-5": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
       },
       "other": "0-5"
@@ -34,7 +50,7 @@
   },
   {
     "friendly": "和平精英",
-    "packages": ["com.tencent.tmgp.pubgmhd"],
+    "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
     "governor": ["RenderThread", "Thread-"],
     "cpuset": {
       "heavy_thread": "RenderThread",
@@ -72,19 +88,6 @@
         "4-6": ["RenderThread", "RHIThread"]
       },
       "other": "0-7"
-    }
-  },
-  {
-    "friendly": "星穹铁道",
-    "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
-    "governor": ["UnityMain", "UnityGfx"],
-    "cpuset": {
-      "comm": {
-        "7": ["UnityMain"],
-        "6": ["UnityGfx"],
-        "4-5": ["NativeThread", "Job.Worker"]
-      },
-      "other": "0-5"
     }
   }
 ]

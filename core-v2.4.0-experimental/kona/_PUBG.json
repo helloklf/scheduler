@@ -1,15 +1,5 @@
 {
   "friendly": "和平精英",
-  "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
-  "cpuset": {
-    "heavy_thread": "Thread-",
-    "heavy_cores": "6",
-    "comm": {
-      "7": ["RenderThread"],
-      "4-5": ["FAsyncLoading", "TaskGraphNP", "Thread-", "NativeThread", "MainThread"]
-    },
-    "other": "4-5"
-  },
   "modes": [
     {
       "mode": ["powersave"],

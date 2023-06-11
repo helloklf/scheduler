@@ -4,13 +4,6 @@
   "call": [
     ["@uclamp", "0.00~max", "1.00~max", "1.00~max"]
   ],
-  "cpuset": {
-    "comm": {
-      "7": ["UnityMain"],
-      "6": ["UnityGfx"]
-    },
-    "other": "0-5"
-  },
   "modes": [
     {
       "mode": ["powersave"],

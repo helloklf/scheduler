@@ -13,20 +13,6 @@
     {"id": "sgame5:cpu4", "active_interval": 32, "step": -1, "mode": "performance", "max": 2342400, "turning": 2150400, "min": 1766400, "margin": 1000, "smoothness": 15},
     {"id": "sgame5:cpu7", "active_interval": 32, "step": -0.7, "mode": "performance", "max": 3200000, "turning": 2841600, "min": 1862400, "margin": 1000, "smoothness": 15}
   ],
-  "cpuset": {
-    "unity_main": "7",
-    "heavy_thread": "Thread-",
-    "heavy_cores": "6",
-    "comm": {
-      "6": ["UnityGfx"],
-      "4-5": [
-        "CoreThread", "UnityPreload", "Worker Thread",
-        "FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage"
-      ],
-      "0-3": ["Audio", "tp_schedule"]
-    },
-    "other": "0-5"
-  },
   "modes": [{
     "mode": ["powersave"],
     "call": [

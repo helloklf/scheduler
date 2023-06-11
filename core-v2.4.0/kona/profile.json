@@ -364,7 +364,7 @@
     },
     {
       "friendly": "王者荣耀",
-      "packages": ["com.tencent.tmgp.sgame"],
+      "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
       "import": "_SGAME.json"
     },
     {

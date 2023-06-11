@@ -1,17 +1,5 @@
 {
   "friendly": "王者荣耀/LOL",
-  "cpuset": {
-    "heavy_thread": "Thread-",
-    "heavy_cores": "6",
-    "comm": {
-      "7": ["UnityMain"],
-      "4-7": ["UnityPreload"],
-      "6": ["UnityGfx"],
-      "4-5": ["CoreThread", "Worker Thread"],
-      "0-5": ["NativeThread", "mali-", "Apollo"]
-    },
-    "other": "3F"
-  },
   "modes": [
     {
       "mode": ["powersave"],

@@ -7,15 +7,15 @@
   "modes": [
     {
       "mode": ["powersave"],
-      "call": [["@limiters", "p1:cpu4", "p2:cpu7"]]
+      "call": [["@limiters", "p1:cpu4", "p1:cpu7"]]
     },
     {
       "mode": ["balance"],
-      "call": [["@limiters", "p2:cpu4", "p3:cpu7"]]
+      "call": [["@limiters", "p2:cpu4", "p2:cpu7"]]
     },
     {
       "mode": ["performance"],
-      "call": [["@limiters", "hkrpg1:cpu4", "g4:cpu7"]]
+      "call": [["@limiters", "hkrpg1:cpu4", "p3:cpu7"]]
     },
     {
       "mode": ["*"],

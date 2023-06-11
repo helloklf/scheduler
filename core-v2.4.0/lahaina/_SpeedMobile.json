@@ -1,12 +1,5 @@
 {
   "friendly": "QQ飞车",
-  "cpuset": {
-    "comm": {
-      "7": ["UnityMain"],
-      "6": ["UnityGfx"]
-    },
-    "other": "0-5"
-  },
   "modes": [
     {
       "mode": ["powersave"],

@@ -15,20 +15,6 @@
     ["$sched_boost", "0"],
     ["$stune_top_boost", "0"]
   ],
-  "cpuset": {
-    "interval": 5000,
-    "unity_main": "7",
-    "heavy_thread": "UnityGfx",
-    "heavy_cores": "6",
-    "comm": {
-      "4-5": ["UnityPreload", "FMOD", "UnityChoreograp", "NativeThread", "Worker Thread"],
-      "5": ["UnityMultiRende"],
-      "0-3": [
-        "AsyncReadManage", "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"
-      ]
-    },
-    "other": "0-3"
-  },
   "modes": [
     {
       "mode": ["powersave"],

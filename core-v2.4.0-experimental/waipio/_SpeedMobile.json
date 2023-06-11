@@ -1,14 +1,6 @@
 {
   "friendly": "QQ飞车",
   "packages": ["com.tencent.tmgp.speedmobile"],
-  "cpuset": {
-    "unity_main": "7",
-    "comm": {
-      "6": ["UnityGfx"],
-      "4-5": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
-    },
-    "other": "0-5"
-  },
   "call": [ ["@limiters", "NONE"] ],
   "modes": [
     {

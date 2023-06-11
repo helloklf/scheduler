@@ -1,16 +1,5 @@
 {
   "friendly": "原神",
-  "cpuset": {
-    "heavy_thread": "UnityGfx",
-    "heavy_cores": "7",
-    "unity_main": "6",
-    "comm": {
-      "4-5": ["UnityPreload", "UnityMultiRende"],
-      "0-5": ["FMOD", "UnityChoreograp", "ged-swd", "Worker Thread"],
-      "0-3": ["Thread-", "MIHOYO_NETWORK", "mali-cmar-backe", "mali-event-", "mali-cpu-", "mali-mem-", "Audio", "tp_schedule", "NativeThread", "AsyncReadManage"]
-    },
-    "other": "0-5"
-  },
   "limiters": [
     { "id": "ys-p2:cpu4", "max": 2354000, "min": 1537000, "margin": 450 },
     { "id": "ys-p2:cpu7", "max": 2463000, "min": 1632000, "margin": 500 },

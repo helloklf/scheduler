@@ -1,14 +1,5 @@
 {
   "friendly": "原神",
-  "cpuset": {
-    "unity_main": "6-7",
-    "comm": {
-      "6-7": ["UnityGfx"],
-      "4-5": ["UnityMultiRende", "UnityPreload", "FMOD", "UnityChoreograp", "NativeThread", "Worker Thread"],
-      "0-3": ["AsyncReadManage", "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"]
-    },
-    "other": "0-3"
-  },
   "modes": [
     {
       "mode": ["powersave"],

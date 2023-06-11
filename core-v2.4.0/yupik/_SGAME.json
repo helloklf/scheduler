@@ -19,19 +19,6 @@
     {"id": "sgame4:cpu7", "active_interval": 40, "step": -0.93, "mode": "BOTTOM",
       "max": 2500000, "min": 1516800, "margin": 605, "smoothness": 22}
   ],
-  "cpuset": {
-    "interval": 2000,
-    "unity_main": "7",
-    "heavy_thread": "Thread-",
-    "heavy_cores": "6",
-    "comm": {
-      "4-7": ["UnityPreload"],
-      "6": ["UnityGfx"],
-      "4-5": ["CoreThread"],
-      "0-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
-    },
-    "other": "0-5"
-  },
   "modes": [{
     "mode": ["powersave"],
     "call": [
