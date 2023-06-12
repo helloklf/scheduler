@@ -353,11 +353,6 @@
       "import": "_HKRPG.json"
     },
     {
-      "friendly": "和平精英",
-      "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
-      "import": "_PUBG.json"
-    },
-    {
       "friendly": "QQ飞车",
       "packages": ["com.tencent.tmgp.speedmobile"],
       "import": "_SpeedMobile.json"

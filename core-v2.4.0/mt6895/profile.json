@@ -264,7 +264,7 @@
     },
     {
       "friendly": "Benchmark",
-      "categories": ["CPUBenchmark", "GPUBenchmark"],
+      "categories": ["-CPUBenchmark", "-GPUBenchmark"],
       "import": "_Games.json"
     },
     {
@@ -309,6 +309,13 @@
         "com.netease.party", "com.netease.moba.aligames"
       ],
       "import": "_FEAS.json"
+    },
+    {
+      "friendly": "超频",
+      "packages": [
+        "-com.ioncannon.cpuburn.gpugflops"
+      ],
+      "import": "_OC.json"
     },
     {
       "friendly": "All",

@@ -33,7 +33,7 @@
       ]
     },
     {
-      "mode": ["performance"],
+      "mode": ["fast"],
       "call": [
         ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"],
         ["@msm_feas", "0"]

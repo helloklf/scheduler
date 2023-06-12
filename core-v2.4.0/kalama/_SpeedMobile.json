@@ -1,13 +1,5 @@
 {
   "friendly": "QQ飞车",
-  "cpuset": {
-    "unity_main": "7",
-    "comm": {
-      "6": ["UnityGfx"],
-      "3-5": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
-    },
-    "other": "3-5"
-  },
   "modes": [{
     "mode": ["powersave"],
     "call": [

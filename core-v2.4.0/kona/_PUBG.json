@@ -1,9 +1,0 @@
-{
-  "friendly": "和平精英",
-  "modes": [{
-    "mode": ["fast"],
-    "call": [
-      ["@limiters", "boost:cpu4", "boost:cpu7"]
-    ]
-  }]
-}

@@ -4,17 +4,6 @@
     ["@cpuset", "0-2", "0-3", "0-5", "0-7"],
     ["$bus_ddr_min", "#2736000"]
   ],
-  "cpuset": {
-    "unity_main": "6",
-    "heavy_thread": "UnityGfx",
-    "heavy_cores": "7",
-    "heavy_switch": false,
-    "comm": {
-      "4-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"],
-      "0-5": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"]
-    },
-    "other": "4-5"
-  },
   "modes": [
     {
       "mode": ["powersave"],
