@@ -266,11 +266,6 @@
       "import": "_MiniProgram.json"
     },
     {
-      "friendly": "Benchmark",
-      "categories": ["-CPUBenchmark", "-GPUBenchmark"],
-      "import": "_Games.json"
-    },
-    {
       "friendly": "All",
       "packages": ["*"],
       "import": "_Apps.json"
