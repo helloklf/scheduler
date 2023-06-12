@@ -2,13 +2,13 @@
   "friendly": "游戏(FEAS)",
   "limiters": [
     {"id": "gboost3:cpu7", "step": -1, "mode": "BOTTOM", "ddr_boost": true,
-      "max": 2650000, "turning": 2400000, "min": 500000, "margin": 385, "smoothness": 6},
+      "max": 2650000, "turning": 2400000, "min": 500000, "margin": 305, "smoothness": 6},
 
     {"id": "gboost4:cpu7", "step": -1, "mode": "BOTTOM", "ddr_boost": true,
-      "max": 2650000, "turning": 2400000, "min": 700000, "margin": 485, "smoothness": 6},
+      "max": 2650000, "turning": 2400000, "min": 700000, "margin": 405, "smoothness": 6},
 
     {"id": "gboost5:cpu7", "step": -1, "mode": "BOTTOM", "ddr_boost": true,
-      "max": 2650000, "turning": 2400000, "min": 1000000, "margin": 585, "smoothness": 6}
+      "max": 2650000, "turning": 2400000, "min": 1000000, "margin": 505, "smoothness": 6}
   ],
   "modes": [{
     "mode": ["powersave"],
