@@ -146,13 +146,14 @@
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],
-      ["@cpuset", "0-3", "0-3", "0-7", "0-7"]
+      ["@cpuset", "0-3", "0-3", "0-7", "0-7"],
+      ["$gpu_max_khz", "#680000000"]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
       ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
       ["@cpuset", "0-2", "0-3", "0-5", "0-7"],
-      ["@gpu_freq", "min", "max"]
+      ["$gpu_max_khz", "#990000000"]
     ],
 
     "powersave_active": [
@@ -217,8 +218,7 @@
         ["$bus_ddr", "2736000"]
       ],
       "app": [
-        ["@preset", "common_app"],
-        ["@gpu_freq", "min", "500MHz"]
+        ["@preset", "common_app"]
       ],
       "game": [
         ["@preset", "common_gaming"],
@@ -236,8 +236,7 @@
         ["$bus_ddr", "2736000"]
       ],
       "app": [
-        ["@preset", "common_app"],
-        ["@gpu_freq", "min", "600MHz"]
+        ["@preset", "common_app"]
       ],
       "game": [
         ["@preset", "common_gaming"],
@@ -256,8 +255,7 @@
         ["$bus_ddr", "2736000"]
       ],
       "app": [
-        ["@preset", "common_app"],
-        ["@gpu_freq", "min", "750MHz"]
+        ["@preset", "common_app"]
       ],
       "game": [
         ["@preset", "common_gaming"],
@@ -276,8 +274,7 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$bus_ddr", "3196000"],
-        ["@gpu_freq", "min", "max"]
+        ["$bus_ddr", "3196000"]
       ],
       "game": [
         ["$perfmgr_enable", "#0"],
@@ -337,7 +334,7 @@
     },
     {
       "friendly": "和平精英",
-      "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
+      "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig"],
       "import": "_PUBG.json"
     },
     {

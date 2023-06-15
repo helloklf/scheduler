@@ -146,12 +146,14 @@
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],
-      ["@cpuset", "0-3", "0-3", "0-7", "0-7"]
+      ["@cpuset", "0-3", "0-3", "0-7", "0-7"],
+      ["$gpu_max_khz", "#680000000"]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
       ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
-      ["@cpuset", "0-2", "0-3", "0-5", "0-7"]
+      ["@cpuset", "0-2", "0-3", "0-5", "0-7"],
+      ["$gpu_max_khz", "#990000000"]
     ],
 
     "powersave_active": [
@@ -213,7 +215,6 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "powersave_active"],
-        ["@gpu_freq", "min", "500MHz"],
         ["$bus_ddr", "2736000"]
       ],
       "app": [
@@ -232,7 +233,6 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "balance_active"],
-        ["@gpu_freq", "min", "600MHz"],
         ["$bus_ddr", "2736000"]
       ],
       "app": [
@@ -252,7 +252,6 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "performance_active"],
-        ["@gpu_freq", "min", "750MHz"],
         ["$bus_ddr", "2736000"]
       ],
       "app": [
@@ -271,8 +270,7 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "fast_active"],
-        ["$mi_thermal", "10"],
-        ["@gpu_freq", "min", "max"]
+        ["$mi_thermal", "10"]
       ],
       "app": [
         ["@preset", "common_app"],
@@ -336,7 +334,7 @@
     },
     {
       "friendly": "和平精英",
-      "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
+      "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig"],
       "import": "_PUBG.json"
     },
     {

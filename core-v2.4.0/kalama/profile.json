@@ -100,12 +100,10 @@
       ["$cpu_max_0"], ["$cpu_max_3"], ["$cpu_max_7"]
     ],
     "common_active": [
-      ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],
-      ["@uclamp", "0.00~max", "0.00~max", "0.5~max"]
+      ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"]
     ],
     "common_inactive": [
-      ["@values", "latency", "0", "8000", "0", "8000", "0", "8000"],
-      ["@uclamp", "0.00~max", "0.00~max", "0.00~max"]
+      ["@values", "latency", "0", "8000", "0", "8000", "0", "8000"]
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],
@@ -113,9 +111,7 @@
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
-      ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
-      ["@cpuset", "0-2", "0-5", "0-5", "0-7"],
-      ["@gpu_freq", "min", "max"]
+      ["@cpuset", "0-2", "0-5", "0-5", "0-7"]
     ],
 
     "l3_max": [
@@ -211,11 +207,11 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "powersave_active"],
-        ["$bus_ddr", "2736000"]
+        ["$bus_ddr", "2736000"],
+        ["@preset", "ddr_low"]
       ],
       "app": [
-        ["@preset", "common_app"],
-        ["@gpu_freq", "min", "500MHz"]
+        ["@preset", "common_app"]
       ],
       "game": [
         ["@preset", "common_gaming"],
@@ -233,8 +229,7 @@
         ["@preset", "ddr_low"]
       ],
       "app": [
-        ["@preset", "common_app"],
-        ["@gpu_freq", "min", "500MHz"]
+        ["@preset", "common_app"]
       ],
       "game": [
         ["@preset", "common_gaming"],
@@ -253,8 +248,7 @@
         ["@preset", "ddr_max"]
       ],
       "app": [
-        ["@preset", "common_app"],
-        ["@gpu_freq", "min", "650MHz"]
+        ["@preset", "common_app"]
       ],
       "game": [
         ["@preset", "common_gaming"],
@@ -274,8 +268,7 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$bus_ddr", "2736000"],
-        ["@gpu_freq", "min", "max"]
+        ["$bus_ddr", "2736000"]
       ],
       "game": [
         ["$perfmgr_enable", "#0"],

@@ -16,15 +16,15 @@
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "cpuset": {
-      "unity_main": "6",
+      "unity_main": "7",
       "heavy_thread": "UnityGfx",
-      "heavy_cores": "7",
+      "heavy_cores": "4-6",
       "heavy_switch": false,
       "comm": {
-        "4-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"],
-        "0-5": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"]
+        "4-6": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"],
+        "0-6": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"]
       },
-      "other": "4-5"
+      "other": "4-6"
     }
   },
   {
@@ -33,12 +33,12 @@
     "cpuset": {
       "unity_main": "7",
       "heavy_thread": "Thread-",
-      "heavy_cores": "3-6",
+      "heavy_cores": "6",
       "comm": {
-        "3-6": ["UnityPreload", "NativeThread", "UnityGfx", "Worker Thread",
-                "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+        "6": ["UnityGfx"],
+        "3-5": ["UnityPreload", "NativeThread", "CoreThread", "Worker Thread", "Apollo-"]
       },
-      "other": "3-6"
+      "other": "0-5"
     }
   },
   {
@@ -49,7 +49,7 @@
       "heavy_cores": "6",
       "comm": {
         "7": ["UnityMain"],
-        "3-6": ["UnityGfx"],
+        "6": ["UnityGfx"],
         "3-5": ["NativeThread", "CoreThread", "Worker Thread"]
       },
       "other": "3-5"

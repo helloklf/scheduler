@@ -318,17 +318,7 @@
     {
       "friendly": "狗屎/毒瘤",
       "categories": ["MiniProgram"],
-      "modes": [{
-        "mode": ["powersave", "balance"],
-        "call": [
-          ["@preset", "cores_force_on"],
-          ["@cpuset", "0", "0-4", "0-7", "0-7"],
-          ["@cpu_freq", "policy0", "1.4Ghz", "max"],
-          ["@cpu_freq", "policy4", "1Ghz", "2.4Ghz"],
-          ["@cpu_freq", "policy7", "min", "2.4Ghz"],
-          ["$mi_thermal", "10"]
-        ]
-      }]
+      "import": "_MiniProgram.json"
     },
     {
       "friendly": "待机",
