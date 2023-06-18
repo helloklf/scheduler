@@ -2,23 +2,15 @@
   "friendly": "Games",
   "modes": [{
     "mode": ["powersave"],
-    "call": [
-      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
-      ["@limiters", "g1:cpu0", "g1:cpu3", "g1:cpu7"],
-      ["@msm_feas", "13"]
-    ]
+    "call": [["@msm_feas", "13"]]
   }, {
     "mode": ["balance"],
-    "call": [
-      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
-      ["@limiters", "g2:cpu0", "g2:cpu3", "g2:cpu7"],
-      ["@msm_feas", "9"]
-    ]
+    "call": [["@msm_feas", "7"]]
   }, {
     "mode": ["performance"],
-    "call": [["@limiters", "g3:cpu0", "g3:cpu3", "g3:cpu7"], ["@msm_feas", "6"]]
+    "call": [["@msm_feas", "0"]]
   }, {
     "mode": ["fast"],
-    "call": [["@limiters", "g4:cpu0", "g4:cpu3", "g4:cpu7"], ["@msm_feas", "0"]]
+    "call": [["$perfmgr_enable", "#0"]]
   }]
 }

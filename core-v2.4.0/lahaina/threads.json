@@ -9,7 +9,7 @@
       "comm": {
         "4-5": ["UnityPreload", "FMOD", "UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende"],
         "0-3": [
-          "mali-event-", "AsyncReadManage",
+          "AsyncReadManage",
           "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"
         ]
       },

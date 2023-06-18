@@ -18,14 +18,14 @@
     {
       "mode": ["performance"],
       "call": [
-        ["@limiters", "g2:cpu0", "g2:cpu4", "g2:cpu7"],
+        ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"],
         ["@msm_feas", "3"]
       ]
     },
     {
       "mode": ["fast"],
       "call": [
-        ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"],
+        ["@limiters", "g4:cpu7"],
         ["@msm_feas", "0"]
       ]
     }

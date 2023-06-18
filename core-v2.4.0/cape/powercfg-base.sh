@@ -98,16 +98,6 @@ mk_cpuctl () {
 }
 
 process_opt() {
-  set_cpuset surfaceflinger top-app
-  set_cpuset system_server top-app
-  set_cpuset update_engine top-app
-  set_cpuset vendor.qti.hardware.display.composer-service top-app
-  # set_cpuset mediaserver background
-  # set_cpuset media.hwcodec background
-
-  # set_task_affinity `pgrep com.miui.home` 11111111
-  # set_task_affinity `pgrep com.miui.home` 11110000
-
   move_to_heavy vendor.qti.hardware.display.composer-service
   move_to_heavy camerahalserver
   move_to_heavy surfaceflinger
@@ -298,10 +288,14 @@ echo -R 444 /sys/kernel/msm_performance/parameters
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
 }
-kgsl min_pwrlevel 10
+pl_max=$(($(cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels)-1))
+kgsl thermal_pwrlevel 0
+kgsl min_pwrlevel $pl_max
 kgsl max_pwrlevel 0
-kgsl min_pwrlevel 10
-kgsl default_pwrlevel 10
+kgsl min_pwrlevel $pl_max
+kgsl default_pwrlevel $pl_max
 kgsl max_clock_mhz 999
 kgsl max_gpuclk 999000000
 kgsl min_clock_mhz 0
+kgsl devfreq/min_freq 0
+kgsl devfreq/max_freq 999000000

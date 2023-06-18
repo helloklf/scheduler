@@ -2,6 +2,7 @@
   "friendly": "扫码",
   "categories": ["Scanner"],
   "call": [
+    ["@limiters", "NONE"],
     ["$util_max_top", "1024"],
     ["$util_max_bg", "100"],
     ["$util_max_fg", "1024"],

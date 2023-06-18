@@ -9,8 +9,21 @@
       "heavy_cores": "6",
       "heavy_switch": false,
       "comm": {
-        "4-5": ["UnityMultiRende"],
-        "0-5": ["Worker Thread", "UnityPreload", "NativeThread", "FMOD", "UnityChoreograp"]
+        "4-5": ["UnityMultiRende", "Worker Thread", "UnityPreload"],
+        "0-5": ["FMOD", "UnityChoreograp", "NativeThread"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "星穹铁道",
+    "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
+    "governor": ["UnityMain", "UnityGfx"],
+    "cpuset": {
+      "comm": {
+        "7": ["UnityMain"],
+        "6": ["UnityGfx"],
+        "4-5": ["NativeThread", "Job.Worker"]
       },
       "other": "0-5"
     }
@@ -87,19 +100,6 @@
         "4-6": ["RenderThread", "RHIThread"]
       },
       "other": "0-7"
-    }
-  },
-  {
-    "friendly": "星穹铁道",
-    "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
-    "governor": ["UnityMain", "UnityGfx"],
-    "cpuset": {
-      "comm": {
-        "7": ["UnityMain"],
-        "6": ["UnityGfx"],
-        "4-5": ["NativeThread", "Job.Worker"]
-      },
-      "other": "0-5"
     }
   }
 ]

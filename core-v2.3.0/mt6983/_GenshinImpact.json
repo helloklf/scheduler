@@ -154,7 +154,7 @@
               "enter_once": [["@limiters", "ys5:cpu0", "ys5:cpu4", "ys5:cpu7"]]
             },
             { "threshold": [400,  -1], "values": ["5500000000", "7"],
-              "enter": [["@limiters", "NONE"], ["@preset", "max_freq", "1600000", "2850000", "3000000"]]
+              "enter": [["@limiters", "NONE"], ["@values", "max_freq", "1600000", "2850000", "3000000"]]
             }
           ]
         }

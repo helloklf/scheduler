@@ -9,8 +9,8 @@
       "heavy_cores": "6",
       "heavy_switch": false,
       "comm": {
-        "4-5": ["UnityMultiRende"],
-        "0-5": ["Worker Thread", "UnityPreload", "NativeThread", "FMOD", "UnityChoreograp"]
+        "4-5": ["UnityMultiRende", "Worker Thread", "UnityPreload"],
+        "0-5": ["FMOD", "UnityChoreograp", "NativeThread"]
       },
       "other": "0-5"
     }

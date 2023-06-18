@@ -14,6 +14,7 @@ mkdir /dev/cpuset/top-app/3-5
 echo 3-5 > /dev/cpuset/top-app/3-5/cpus
 echo 0 > /dev/cpuset/top-app/3-5/mems
 
+set_cpuset kswapd0 'foreground'
 set_cpuset toucheventcheck 'top-app/3-5' 38
 set_cpuset touch_report 'top-app/3-5' 38
 set_cpuset surfaceflinger 'top-app/3-5' 38

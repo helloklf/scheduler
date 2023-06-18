@@ -1,6 +1,7 @@
 {
   "friendly": "相机",
   "call": [
+    ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1"],
     ["@cpuset", "0-1", "0-4", "0-7", "0-7"]
   ],
   "modes": [{

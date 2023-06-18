@@ -18,13 +18,13 @@
     "cpuset": {
       "unity_main": "7",
       "heavy_thread": "UnityGfx",
-      "heavy_cores": "4-6",
+      "heavy_cores": "3-6",
       "heavy_switch": false,
       "comm": {
-        "4-6": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"],
+        "3-6": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"],
         "0-6": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"]
       },
-      "other": "4-6"
+      "other": "3-6"
     }
   },
   {

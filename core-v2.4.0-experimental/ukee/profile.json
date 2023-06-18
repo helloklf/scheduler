@@ -57,9 +57,9 @@
         { "id": "g4:cpu7", "max": 2995200, "turning": 2592000, "min": 2476800, "margin": 300 },
 
 
-        { "id": "inactive:cpu0", "max": 1440000, "min": 556800, "margin": 90 },
-        { "id": "inactive:cpu4", "max": 1555200, "margin": 100 },
-        { "id": "inactive:cpu7", "max": 1536000, "margin": 120 },
+        { "id": "inactive:cpu0", "max": 1440000, "min": 556800, "margin": 120 },
+        { "id": "inactive:cpu4", "max": 1651200, "margin": 130 },
+        { "id": "inactive:cpu7", "max": 1651200, "margin": 140 },
 
         { "id": "idle:cpu0", "max": 1440000, "min": 441600, "margin": 70 },
         { "id": "idle:cpu4", "max": 1555200, "margin": 70 },
@@ -334,7 +334,7 @@
     },
     {
       "friendly": "和平精英",
-      "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
+      "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig"],
       "import": "_PUBG.json"
     },
     {

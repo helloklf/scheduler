@@ -7,8 +7,7 @@ init () {
   echo '[Scene PerfConfig Init] ...'
   if [[ -f "$cfg_dir/powercfg-base.sh" ]]; then
     nohup "$cfg_dir/powercfg-base.sh" >/dev/null 2>&1 &
-  elif [[ -f '/data/powercfg-base.sh' ]]; then
-    nohup /data/powercfg-base.sh >/dev/null 2>&1 &
+    nohup "$cfg_dir/game_boost.sh" >/dev/null 2>&1 &
   fi
   echo '[Scene PerfConfig Init] √'
 }

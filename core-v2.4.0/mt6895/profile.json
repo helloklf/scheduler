@@ -18,8 +18,8 @@
     "limiter": {
       "active_interval": 24,
       "gaming_interval": 30,
-      "inactive_interval": 150,
-      "ddr_boost": true,
+      "inactive_interval": 100,
+      "ddr_boost": false,
       "logger": false,
       "params": [
         { "id": "p1:cpu0", "max": 2000000, "min": 1600000, "margin": 500 },
@@ -110,7 +110,7 @@
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"]
     ],
     "common_app": [
-      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 0|cm_mgr_perf_enable 0"],
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1"],
       ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#15"],
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
