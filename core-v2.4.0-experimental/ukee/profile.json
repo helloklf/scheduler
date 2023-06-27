@@ -290,36 +290,12 @@
     }
   },
   "apps": [
-    {
-      "friendly": "极速响应",
-      "categories": ["Launcher"],
-      "import": "_Launcher.json"
-    },
-    {
-      "friendly": "扫码",
-      "categories": ["Scanner"],
-      "import": "_Scanner.json"
-    },
-    {
-      "friendly": "相机",
-      "categories": ["Camera"],
-      "import": "_Camera.json"
-    },
-    {
-      "friendly": "狗屎/毒瘤",
-      "categories": ["MiniProgram"],
-      "import": "_MiniProgram.json"
-    },
-    {
-      "friendly": "待机",
-      "packages": ["standby"],
-      "import": "_Standby.json"
-    },
-    {
-      "friendly": "All",
-      "packages": ["*"],
-      "import": "_Apps.json"
-    }
+    { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
+    { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
+    { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
+    { "friendly": "狗屎/毒瘤", "categories": ["MiniProgram"], "import": "_MiniProgram.json" },
+    { "friendly": "待机", "packages": ["standby"], "import": "_Standby.json" },
+    { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
     {

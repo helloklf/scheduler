@@ -10,21 +10,22 @@
     "bus_ddr_min": "/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/min_freq",
     "bus_ddr": "/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq",
     "l3_boost": "/sys/devices/system/cpu/bus_dcvs/L3/boost_freq",
-    "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable"
+    "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable",
+    "thp_cmd": "/sys/class/touch/touch_dev/touch_thp_cmd"
   },
   "features": {
     "limiter": {
-      "active_interval": 24,
+      "active_interval": 30,
       "gaming_interval": 30,
-      "inactive_interval": 150,
+      "inactive_interval": 100,
       "logger": false,
       "params": [
-        { "id": "p1:cpu0", "step": -0.5, "max": 1459200, "min": 441600, "margin": 200 },
-        { "id": "p1:cpu3", "max": 2054400, "min": 940800, "margin": 300 },
-        { "id": "p1:cpu7", "max": 2092800, "min": 1248000, "margin": 300 },
+        { "id": "p1:cpu0", "step": -0.7, "max": 1459200, "min": 441600, "margin": 200 },
+        { "id": "p1:cpu3", "step": -0.7, "max": 2054400, "min": 729600, "margin": 250 },
+        { "id": "p1:cpu7", "step": -0.5, "max": 2092800, "min": 864000, "margin": 300 },
 
-        { "id": "p2:cpu0", "max": 1555200, "min": 787200, "margin": 300 },
-        { "id": "p2:cpu3", "max": 2457600, "min": 1785600, "margin": 300 },
+        { "id": "p2:cpu0", "step": -0.7, "max": 1555200, "min": 787200, "margin": 300 },
+        { "id": "p2:cpu3", "step": -0.7, "max": 2457600, "min": 1785600, "margin": 300 },
         { "id": "p2:cpu7", "max": 2476800, "min": 1843200, "margin": 300 },
 
         { "id": "p3:cpu0", "max": 1670400, "min": 902400, "margin": 300 },
@@ -35,13 +36,13 @@
         { "id": "p4:cpu3", "max": 2745600, "min": 2592000, "margin": 300 },
         { "id": "p4:cpu7", "max": 2995200, "min": 2726400, "margin": 300 },
 
-        { "id": "inactive:cpu0", "max": 1440000, "min": 441600, "margin": 150 },
-        { "id": "inactive:cpu3", "max": 1536000, "margin": 180 },
-        { "id": "inactive:cpu7", "max": 1593600, "margin": 200 },
+        { "id": "inactive:cpu0", "max": 1440000, "min": 441600, "margin": 70 },
+        { "id": "inactive:cpu3", "max": 1536000, "margin": 120 },
+        { "id": "inactive:cpu7", "max": 1593600, "margin": 120 },
 
-        { "id": "idle:cpu0", "max": 1440000, "min": 441600, "margin": 90 },
-        { "id": "idle:cpu3", "max": 1536000, "margin": 100 },
-        { "id": "idle:cpu7", "max": 1593600, "margin": 100 }
+        { "id": "idle:cpu0", "max": 1440000, "min": 441600, "margin": 40 },
+        { "id": "idle:cpu3", "max": 1536000, "margin": 90 },
+        { "id": "idle:cpu7", "max": 1593600, "margin": 90 }
       ]
     }
   },
@@ -77,7 +78,23 @@
     "max_freq": [
       ["$cpu_max_0"], ["$cpu_max_3"], ["$cpu_max_7"]
     ],
+    "cpu7_on": [
+      ["$core_ctl_7", "1"],
+      ["$max_cpus_cpu7", "1"],
+      ["$min_cpus_cpu7", "1"]
+    ],
+    "cpu7_off": [
+      ["$core_ctl_7", "1"],
+      ["$min_cpus_cpu7", "0"],
+      ["$max_cpus_cpu7", "0"]
+    ],
+    "cpu7_auto": [
+      ["$core_ctl_7", "1"],
+      ["$min_cpus_cpu7", "0"],
+      ["$max_cpus_cpu7", "1"]
+    ],
     "common_active": [
+      ["@preset", "cpu7_on"],
       ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"]
     ],
     "common_inactive": [
@@ -85,11 +102,12 @@
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],
-      ["@cpuset", "0-2", "0-6", "0-7", "0-7"]
+      ["@cpuset", "0-2", "0-6", "0-7", "0-7"],
+      ["$thp_cmd", "0 0 0 0"]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
-      ["@cpuset", "0-2", "0-5", "0-5", "0-7"]
+      ["@cpuset", "0-2", "0-3,5-6", "0-3,5-6", "0-7"]
     ],
 
     "l3_max": [
@@ -127,11 +145,12 @@
     "powersave_active": [
       ["@preset", "common_active"],
       ["@limiters", "p1:cpu0", "p1:cpu3", "p1:cpu7"],
-      ["@values", "hispeed_freq", "0", "1113600", "1171200"],
-      ["@values", "hispeed_load", "90", "90", "90"]
+      ["@values", "hispeed_freq", "787200", "844800", "864000"],
+      ["@values", "hispeed_load", "85", "85", "85"]
     ],
     "powersave_inactive": [
       ["@preset", "common_inactive"],
+      ["@preset", "cpu7_off"],
       ["@values", "min_freq", "307200", "499200", "595200"],
       ["@limiters", "idle:cpu0", "idle:cpu3", "idle:cpu7"],
       ["@values", "hispeed_freq", "0", "0", "0"],
@@ -146,6 +165,7 @@
     ],
     "balance_inactive": [
       ["@preset", "common_inactive"],
+      ["@preset", "cpu7_auto"],
       ["@values", "min_freq", "307200", "499200", "595200"],
       ["@limiters", "inactive:cpu0", "inactive:cpu3", "inactive:cpu7"],
       ["@values", "hispeed_freq", "691200", "499200", "595200"],
@@ -212,9 +232,9 @@
       "game": [
         ["@preset", "common_gaming"],
         ["@values", "hispeed_freq", "902400", "1113600", "1171200"],
-        ["@cpu_freq", "cpu0", "307200", "1555200"],
-        ["@cpu_freq", "cpu3", "499200", "2054400"],
-        ["@cpu_freq", "cpu7", "595200", "2092800"],
+        ["@cpu_freq", "cpu0", "441600", "1555200"],
+        ["@cpu_freq", "cpu3", "614400", "2054400"],
+        ["@cpu_freq", "cpu7", "729600", "2092800"],
         ["$mi_thermal", "13"]
       ]
     },
@@ -230,9 +250,9 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@cpu_freq", "cpu0", "307200", "1804800"],
-        ["@cpu_freq", "cpu3", "499200", "2457600"],
-        ["@cpu_freq", "cpu7", "595200", "2476800"],
+        ["@cpu_freq", "cpu0", "672000", "1804800"],
+        ["@cpu_freq", "cpu3", "729600", "2457600"],
+        ["@cpu_freq", "cpu7", "864000", "2476800"],
         ["$mi_thermal", "13"],
         ["$l3_boost", "#1593600"]
       ]
@@ -262,36 +282,12 @@
     }
   },
   "apps": [
-    {
-      "friendly": "极速响应",
-      "categories": ["Launcher"],
-      "import": "_Launcher.json"
-    },
-    {
-      "friendly": "扫码",
-      "categories": ["Scanner"],
-      "import": "_Scanner.json"
-    },
-    {
-      "friendly": "相机",
-      "categories": ["Camera"],
-      "import": "_Camera.json"
-    },
-    {
-      "friendly": "狗屎/毒瘤",
-      "categories": ["MiniProgram"],
-      "import": "_MiniProgram.json"
-    },
-    {
-      "friendly": "待机",
-      "packages": ["standby"],
-      "import": "_Standby.json"
-    },
-    {
-      "friendly": "All",
-      "packages": ["*"],
-      "import": "_Apps.json"
-    }
+    { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
+    { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
+    { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
+    { "friendly": "狗屎/毒瘤", "categories": ["MiniProgram"], "import": "_MiniProgram.json" },
+    { "friendly": "待机", "packages": ["standby"], "import": "_Standby.json" },
+    { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
     {

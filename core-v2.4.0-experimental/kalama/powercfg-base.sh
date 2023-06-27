@@ -99,6 +99,17 @@ disable_migt() {
   chmod 000 /sys/module/sched_walt/holders/migt
 }
 
+
+core_ctl_preset() {
+  cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
+  echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
+  echo 1 > $cpu7_core_ctl_dir/min_cpus
+
+  cpu3_core_ctl_dir=/sys/devices/system/cpu/cpu3/core_ctl
+  lock_value 0 $cpu3_core_ctl_dir/min_cpus
+  lock_value 0 $cpu3_core_ctl_dir/enable
+}
+
 hide_value /sys/class/kgsl/kgsl-3d0/devfreq/governor 'msm-adreno-tz'
 echo "0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 echo 0 > /sys/module/cpu_boost/parameters/input_boost_ms
@@ -133,10 +144,9 @@ hide_value $t_message/market_download_limit 0
 hide_value $t_message/cpu_nolimit_temp 47500
 
 umount /sys/module/perfmgr/parameters/perfmgr_enable
+lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
 
-cpu3_core_ctl_dir=/sys/devices/system/cpu/cpu3/core_ctl
-lock_value 0 $cpu3_core_ctl_dir/min_cpus
-lock_value 0 $cpu3_core_ctl_dir/enable
+core_ctl_preset
 disable_migt
 
 
@@ -153,7 +163,7 @@ hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
 echo 0 > /proc/sys/kernel/sched_force_lb_enable
 lock_value N /sys/module/sched_assist_common/parameters/boost_kill
 lock_value N /sys/module/task_sched_info/parameters/sched_info_ctrl
-for service in orms-hal-1-0 gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
+for service in orms-hal-1-0 # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
 do
   stop $service
 done

@@ -16,8 +16,8 @@ set_cpuset(){
 }
 
 mkdir /dev/cpuset/top-app/3,5-6
-echo 3,5-6 > /dev/cpuset/top-app/3-5/cpus
-echo 0 > /dev/cpuset/top-app/3-5/mems
+echo 3,5-6 > /dev/cpuset/top-app/3,5-6/cpus
+echo 0 > /dev/cpuset/top-app/3,5-6/mems
 
 rmdir /dev/cpuset/foreground/boost
 set_cpuset kswapd0 'foreground'

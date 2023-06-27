@@ -6,10 +6,9 @@
     "cpuset": {
       "comm": {
         "7": ["UnityMain"],
-        "6": ["UnityGfx"],
-        "3-5": ["NativeThread", "Job.Worker"]
+        "3-6": ["UnityGfx", "NativeThread", "Job.Worker"]
       },
-      "other": "3-5"
+      "other": "0-6"
     }
   },
   {
@@ -24,7 +23,7 @@
         "3-6": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"],
         "0-6": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"]
       },
-      "other": "3-6"
+      "other": "0-6"
     }
   },
   {
@@ -33,12 +32,11 @@
     "cpuset": {
       "unity_main": "7",
       "heavy_thread": "Thread-",
-      "heavy_cores": "6",
+      "heavy_cores": "3-6",
       "comm": {
-        "6": ["UnityGfx"],
-        "3-5": ["UnityPreload", "NativeThread", "CoreThread", "Worker Thread", "Apollo-"]
+        "3-6": ["UnityGfx", "UnityPreload", "NativeThread", "CoreThread", "Worker Thread", "Apollo-"]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {
@@ -46,13 +44,12 @@
     "packages": ["com.tencent.lolm"],
     "cpuset": {
       "heavy_thread": "Thread-",
-      "heavy_cores": "6",
+      "heavy_cores": "3-6",
       "comm": {
         "7": ["UnityMain"],
-        "6": ["UnityGfx"],
-        "3-5": ["NativeThread", "CoreThread", "Worker Thread"]
+        "3-6": ["UnityGfx", "NativeThread", "CoreThread", "Worker Thread"]
       },
-      "other": "3-5"
+      "other": "0-6"
     }
   },
   {
@@ -62,10 +59,11 @@
       "heavy_thread": "Thread-",
       "heavy_cores": "7",
       "comm": {
-        "6": ["RenderThread"],
-        "3-5": ["FAsyncLoading", "TaskGraphNP", "Thread-", "NativeThread", "MainThread"]
+        "3-6": [
+          "RenderThread",
+          "FAsyncLoading", "TaskGraphNP", "Thread-", "NativeThread", "MainThread"]
       },
-      "other": "3-5"
+      "other": "0-6"
     }
   },
   {
@@ -74,10 +72,9 @@
     "cpuset": {
       "unity_main": "7",
       "comm": {
-        "6": ["UnityGfx"],
-        "3-5": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
+        "3-6": ["UnityGfx", "Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
       },
-      "other": "3-5"
+      "other": "0-6"
     }
   }
 ]

@@ -53,17 +53,16 @@
       "heavy_cores": "6",
       "comm": {
         "7": ["UnityMain"],
-        "4-6": ["UnityGfx"],
+        "6": ["UnityGfx"],
         "4-5": ["NativeThread", "CoreThread"],
-        "0-6": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read", "Worker Thread"]
+        "0-5": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read", "Worker Thread"]
       },
-      "other": "0-6"
+      "other": "0-5"
     }
   },
   {
     "friendly": "和平精英",
-    "packages": ["com.tencent.tmgp.pubgmhd"],
-    "governor": ["RenderThread", "Thread-"],
+    "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
     "cpuset": {
       "heavy_thread": "RenderThread",
       "heavy_cores": "7",

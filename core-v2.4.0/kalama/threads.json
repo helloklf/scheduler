@@ -74,7 +74,7 @@
     "cpuset": {
       "unity_main": "7",
       "comm": {
-        "6": ["UnityGfx"],
+        "4": ["UnityGfx"],
         "3,5-6": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
       },
       "other": "3,5-6"

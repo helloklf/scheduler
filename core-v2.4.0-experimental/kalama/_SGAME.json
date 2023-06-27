@@ -3,6 +3,7 @@
   "modes": [
     {
       "mode": ["powersave"],
+      "call": [ ["$thp_cmd", "0 0 0 0"] ],
       "fas": {
         "mode": "normal",
         "recent_frames": 10, "fast_down_rate": 7, "slow_down_rate": 3.2,

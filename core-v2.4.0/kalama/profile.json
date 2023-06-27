@@ -72,7 +72,8 @@
       ["@msm_reset"],
       ["$bus_ddr_min", "547000"],
       ["$l3_boost", "0"],
-      ["@governor", "walt"]
+      ["@governor", "walt"],
+      ["@preset", "cpu7_on"]
     ],
 
     "hispeed_freq": [
@@ -98,6 +99,21 @@
     ],
     "max_freq": [
       ["$cpu_max_0"], ["$cpu_max_3"], ["$cpu_max_7"]
+    ],
+    "cpu7_on": [
+      ["$core_ctl_7", "1"],
+      ["$max_cpus_cpu7", "1"],
+      ["$min_cpus_cpu7", "1"]
+    ],
+    "cpu7_off": [
+      ["$core_ctl_7", "1"],
+      ["$min_cpus_cpu7", "0"],
+      ["$max_cpus_cpu7", "0"]
+    ],
+    "cpu7_auto": [
+      ["$core_ctl_7", "1"],
+      ["$min_cpus_cpu7", "0"],
+      ["$max_cpus_cpu7", "1"]
     ],
     "common_active": [
       ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"]
