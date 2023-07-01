@@ -214,3 +214,19 @@ for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
   lock_value 0 /sys/kernel/msm_performance/parameters/$file
 done
 echo -R 444 /sys/kernel/msm_performance/parameters
+
+
+kgsl(){
+  lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
+}
+pl_max=$(($(cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels)-1))
+kgsl thermal_pwrlevel 0
+kgsl min_pwrlevel $pl_max
+kgsl max_pwrlevel 0
+kgsl min_pwrlevel $pl_max
+kgsl default_pwrlevel $pl_max
+kgsl max_clock_mhz 999
+kgsl max_gpuclk 999000000
+kgsl min_clock_mhz 0
+kgsl devfreq/min_freq 0
+kgsl devfreq/max_freq 999000000

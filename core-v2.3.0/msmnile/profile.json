@@ -65,7 +65,7 @@
   "presets": {
     "reset": [
       ["@msm_reset"],
-      ["@thermal_threshold", "100000"],
+      ["@thermal_threshold", "95000"],
       ["@preset", "ufshc_perf_off", "bw_max"]
     ],
     "bw": [

@@ -8,7 +8,7 @@
       "idle_delay": 1000,
       "enter": [
         ["@limiters", "NONE"],
-        ["$core_ctl_7", "0"],
+        ["@preset", "cpu7_on"],
         ["$stune_top_perf", "1"],
         ["$stune_top_boost", "10"],
         ["@cpuset", "1-3", "1-3", "1-7", "0-7"],
@@ -18,6 +18,7 @@
         ["@preset", "ufshc_perf_on"]
       ],
       "exit": [
+        ["@preset", "cpu7_auto"],
         ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
         ["@cpuset", "1-3", "1-3", "1-6", "0-7"],
         ["$cpu_min_0", "#300000"],
@@ -28,15 +29,14 @@
     }
   }, {
     "mode": ["balance"],
-    "logger": false,
     "booster": {
       "duration": 3000,
       "idle_delay": 2000,
       "enter": [
         ["$stune_top_perf", "1"],
         ["$stune_top_boost", "10"],
-        ["$cpuset_top", "0-7"],
-        ["$cpuset_fg", "0-7"],
+        ["@preset", "cpu7_on"],
+        ["@cpuset", "1-3", "1-3", "1-7", "0-7"],
         ["@cpu_freq", "cpu0", "1305600", "1785600"],
         ["@cpu_freq", "cpu4", "710400", "2323200"],
         ["@cpu_freq", "cpu7", "825600", "2323200"],
@@ -51,7 +51,6 @@
     }
   }, {
     "mode": ["performance", "fast"],
-    "logger": false,
     "booster": {
       "duration": 4000,
       "idle_delay": 2000,

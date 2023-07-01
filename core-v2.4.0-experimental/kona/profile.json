@@ -57,7 +57,7 @@
   "presets": {
     "reset": [
       ["@msm_reset"],
-      ["@thermal_threshold", "100000"],
+      ["@thermal_threshold", "99900"],
       ["@governor", "schedutil"]
     ],
     "hispeed_freq": [

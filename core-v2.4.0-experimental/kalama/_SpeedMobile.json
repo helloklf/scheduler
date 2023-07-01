@@ -3,7 +3,6 @@
   "modes": [
     {
       "mode": ["powersave"],
-      "call": [ ["$thp_cmd", "0 0 0 0"] ],
       "fas": {
         "recent_frames": 10, "fast_down_rate": 7, "slow_down_rate": 2.0,
         "governor": "performance",
@@ -14,7 +13,6 @@
     },
     {
       "mode": ["balance"],
-      "call": [ ["$thp_cmd", "0 0 0 0"] ],
       "fas": {
         "recent_frames": 10, "fast_down_rate": 7, "slow_down_rate": 2.0,
         "governor": "performance",

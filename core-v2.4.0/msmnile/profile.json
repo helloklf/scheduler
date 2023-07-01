@@ -3,6 +3,8 @@
   "platform_name": "855/855+",
   "framework": 110,
   "alias": {
+    "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
+    "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
     "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq"
   },
   "features": {
@@ -11,34 +13,16 @@
       "inactive_interval": 150,
       "logger": false,
       "params": [
-        { "id": "p1:cpu0", "step": -1, "max": 1708800, "min": 1036800, "margin": 400 },
-        { "id": "p1:cpu4", "step": -1, "max": 1708800, "min": 1056000, "margin": 300 },
-        { "id": "p1:cpu7", "step": -1, "max": 1804800, "min": 1171200, "margin": 300 },
+        { "id": "p1:cpu0", "step": -1.0, "max": 1708800, "min": 1036800, "margin": 400 },
+        { "id": "p1:cpu4", "step": -1.0, "max": 1708800, "min": 1056000, "margin": 300 },
+        { "id": "p1:cpu7", "step": -0.7, "max": 1804800, "min": 1171200, "margin": 300 },
 
         { "id": "p2:cpu0", "step": -0.5, "max": 1708800, "min": 1478400, "margin": 450 },
-        { "id": "p2:cpu4", "step": -0.5, "max": 2227200, "min": 1708800, "margin": 400 },
-        { "id": "p2:cpu7", "step": -0.5, "max": 2419200, "min": 1804800, "margin": 400 },
+        { "id": "p2:cpu4", "step": -0.5, "max": 2419200, "turning": 2131200, "min": 1708800, "margin": 400 },
+        { "id": "p2:cpu7", "step": -0.5, "max": 2419200, "turning": 2131200, "min": 1804800, "margin": 400 },
 
-        { "id": "p3:cpu0", "step": -0.5, "max": 1785600, "min": 1478400, "margin": 450 },
-        { "id": "p3:cpu4", "step": -0.5, "max": 2419200, "min": 2016000, "margin": 300 },
-        { "id": "p3:cpu7", "step": -0.5, "max": 2841600, "min": 2323200, "margin": 300 },
-
-
-        { "id": "g0:cpu0", "step": -1, "max": 1708800, "min": 1036800, "margin": 400 },
-        { "id": "g0:cpu4", "step": -1, "max": 1708800, "turning": 1497600, "min": 1056000, "margin": 300 },
-        { "id": "g0:cpu7", "step": -1, "max": 1804800, "turning": 1497600, "min": 1171200, "margin": 300 },
-
-        { "id": "g1:cpu0", "step": -1, "max": 1708800, "min": 1036800, "margin": 400 },
-        { "id": "g1:cpu4", "step": -1, "max": 1920000, "turning": 1708800, "min": 1497600, "margin": 350 },
-        { "id": "g1:cpu7", "step": -1, "max": 2016000, "turning": 1804800, "min": 1612800, "margin": 350 },
-
-        { "id": "g2:cpu0", "step": -0.5, "max": 1708800, "min": 1478400, "margin": 450 },
-        { "id": "g2:cpu4", "step": -0.5, "max": 2227200, "turning": 2016000, "min": 1708800, "margin": 350 },
-        { "id": "g2:cpu7", "step": -0.5, "max": 2419200, "turning": 2227200, "min": 1804800, "margin": 350 },
-
-        { "id": "g3:cpu0", "step": -0.5, "max": 1785600, "min": 1478400, "margin": 450 },
-        { "id": "g3:cpu4", "step": -0.5, "max": 2419200, "min": 2016000, "margin": 350 },
-        { "id": "g3:cpu7", "step": -0.5, "max": 2841600, "min": 2323200, "margin": 350 },
+        { "id": "p3:cpu4", "step": -0.5, "max": 2419200, "min": 2131200, "margin": 300 },
+        { "id": "p3:cpu7", "step": -0.5, "max": 2841600, "min": 2419200, "margin": 300 },
 
 
         { "id": "inactive:cpu0","max": 1600000, "min": 844800, "margin": 200 },
@@ -49,12 +33,21 @@
         { "id": "idle:cpu4","max": 1401600, "min": 768000, "margin": 100 },
         { "id": "idle:cpu7","max": 1497600, "min": 825600, "margin": 100 }
       ]
+    },
+    "gesture_boost": {
+      "enable": true,
+      "enter": [
+        ["@values", "sched_boost", "1", "1", "1", "30"]
+      ],
+      "exit": [
+        ["@values", "sched_boost", "1", "0", "0", "0"]
+      ]
     }
   },
   "presets": {
     "reset": [
       ["@msm_reset"],
-      ["@thermal_threshold", "100000"],
+      ["@thermal_threshold", "99800"],
       ["@preset", "ufshc_perf_off", "bw_max"]
     ],
     "bw": [
@@ -116,14 +109,14 @@
       ["$cpu_max_0", "1785600"],
       ["@preset", "cpu7_on"],
       ["$stune_top_boost", "1"],
-      ["@cpuset", "0-3", "0-3", "1-6", "0-7"],
+      ["@cpuset", "0-3", "0-3", "1-7", "0-7"],
       ["@values", "sched_boost", "1", "0", "0", "0"]
     ],
     "common_inactive": [
       ["$stune_top_boost", "0"],
       ["$stune_top_perf", "0"],
       ["@values", "min_freq", "#300000", "#710400", "#825600"],
-      ["@cpuset", "0-3", "0-3", "1-6", "0-7"],
+      ["@cpuset", "0-3", "0-3", "0-6", "0-7"],
       ["@values", "sched_boost", "0", "0", "0", "0"]
     ],
     "common_gaming": [
@@ -157,7 +150,7 @@
     ],
 
     "performance_active": [
-      ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
+      ["@limiters", "p3:cpu4", "p3:cpu7"],
       ["@preset", "common_active"],
       ["$stune_top_perf", "1"],
       ["@values", "min_freq", "#1036800", "#710400", "#825600"],
@@ -179,7 +172,7 @@
     "fast_inactive": [
       ["@limiters", "NONE"],
       ["@preset", "common_inactive"],
-      ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
+      ["@limiters", "p3:cpu4", "p3:cpu7"],
       ["@sched_limit", "0 0", "0 0", "0 0"]
     ]
   },
@@ -233,38 +226,12 @@
     }
   },
   "apps": [
-    {
-      "friendly": "极速响应",
-      "categories": ["Launcher"],
-      "import": "_Launcher.json"
-    },
-    {
-      "friendly": "扫码",
-      "categories": ["Scanner"],
-      "import": "_Scanner.json"
-    },
-    {
-      "friendly": "相机",
-      "categories": ["Camera"],
-      "import": "_Camera.json"
-    },
-    {
-      "friendly": "狗屎/毒瘤",
-      "categories": ["MiniProgram"],
-      "import": "_MiniProgram.json"
-    },
-    {
-      "friendly": "待机",
-      "packages": ["standby"],
-      "call": [
-        ["@limiters", "NONE"]
-      ]
-    },
-    {
-      "friendly": "All",
-      "packages": ["*"],
-      "import": "_Apps.json"
-    }
+    { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
+    { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
+    { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
+    { "friendly": "狗屎/毒瘤", "categories": ["MiniProgram"], "import": "_MiniProgram.json" },
+    { "friendly": "待机", "packages": ["standby"], "import": "_Standby.json" },
+    { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
     {
@@ -276,23 +243,6 @@
       "friendly": "星穹铁道",
       "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
       "import": "_HKRPG.json"
-    },
-    {
-      "friendly": "和平精英",
-      "packages": [
-        "com.tencent.tmgp.pubgmhd",
-        "com.tencent.ig"
-      ],
-      "import": "_PUBG.json"
-    },
-    {
-      "friendly": "QQ飞车",
-      "packages": ["com.tencent.tmgp.speedmobile"],
-      "cpuset": {
-        "interval": 2000,
-        "unity_main": "7",
-        "other": "0-6"
-      }
     },
     {
       "friendly": "王者荣耀/LOL",

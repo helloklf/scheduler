@@ -1,6 +1,5 @@
 {
   "friendly": "星穹铁道",
-  "call": [ ["$thp_cmd", "0 0 0 0"] ],
   "limiters": [
     { "id": "hkrpg1:cpu4", "max": 2650000, "turning": 2450000, "min": 1600000, "margin": 400, "step": -1, "smoothness": 6 },
     { "id": "hkrpg2:cpu4", "max": 2850000, "turning": 2650000, "min": 1600000, "margin": 400, "step": -1, "smoothness": 6 }

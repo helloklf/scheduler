@@ -1,7 +1,6 @@
 {
   "friendly": "原神",
   "call": [
-    ["$thp_cmd", "0 0 0 0"],
     ["$bus_ddr_min", "#2736000"]
   ],
   "modes": [
