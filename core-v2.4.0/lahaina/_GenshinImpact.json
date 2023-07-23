@@ -21,13 +21,12 @@
       "mode": ["powersave"],
       "call": [
         ["@limiters", "ys1:cpu4", "ys1:cpu7"],
-        ["@gpu_freq", "min", "500000"]
+        ["$gpu_max_khz", "#500000000"]
       ]
     },
     {
       "mode": ["balance"],
       "call": [
-        ["@gpu_freq", "min", "608000"],
         ["@limiters", "ys2:cpu4", "ys2:cpu7"]
       ],
       "sensors": [
@@ -48,7 +47,6 @@
     {
       "mode": ["performance"],
       "call": [
-        ["@gpu_freq", "min", "608000"],
         ["@limiters", "ys3:cpu4", "ys3:cpu7"]
       ],
       "sensors": [
@@ -69,7 +67,6 @@
     {
       "mode": ["*"],
       "call": [
-        ["@gpu_freq", "min", "608000"],
         ["@limiters", "ys4:cpu4", "ys4:cpu7"]
       ],
       "sensors": [

@@ -19,9 +19,10 @@
   },
   "features": {
     "limiter": {
-      "logger": false,
-      "active_interval": 20,
+      "active_interval": 24,
+      "gaming_interval": 30,
       "inactive_interval": 150,
+      "logger": false,
       "params": [
         { "id": "active:cpu0", "max": 1612800, "turning": 1497600, "min": 1094400, "margin": 500 },
 
@@ -113,6 +114,9 @@
       ["@cpuset", "0-2", "0-3", "0-6", "0-7"],
       ["@uclamp", "0.00~max", "0.00~max", "0.00~max"]
     ],
+    "comm_app": [
+      ["$gpu_max_khz", "#540000000"]
+    ],
     "comm_gaming": [
       ["@limiters", "NONE"],
       ["@uclamp", "0.00~max", "0.00~max", "1.00~max"],
@@ -173,18 +177,19 @@
         ["@preset", "reset"],
         ["@preset", "powersave_active"],
         ["@values", "hispeed_freq", "1209600", "960000", "960000"],
-        ["@values", "hispeed_load", "90", "90", "90"],
-        ["@preset", "bw_normal"]
+        ["@values", "hispeed_load", "90", "90", "90"]
       ],
       "app": [
-        ["@gpu_freq", "min", "540000"]
+        ["@preset", "common_app"],
+        ["@preset", "bw_normal"]
       ],
       "game": [
+        ["@preset", "bw_low"],
         ["@preset", "comm_gaming"],
         ["@cpu_freq", "cpu0", "1209600", "1804800"],
         ["@cpu_freq", "cpu4", "710400", "1766400"],
         ["@cpu_freq", "cpu7", "844800", "1900800"],
-        ["@gpu_freq", "min", "608000"],
+        ["$gpu_max_khz", "#608000000"],
         ["@sched_limit", "0 0", "0 4000", "0 4000"],
         ["$mod_percent", "92"]
       ]
@@ -198,7 +203,7 @@
         ["@preset", "bw_normal"]
       ],
       "app": [
-        ["@gpu_freq", "min", "540000"]
+        ["@preset", "common_app"]
       ],
       "game": [
         ["$mi_thermal", "10"],
@@ -206,7 +211,7 @@
         ["@cpu_freq", "cpu0", "1209600", "1804800"],
         ["@cpu_freq", "cpu4", "844800", "1996800"],
         ["@cpu_freq", "cpu7", "844800", "2265600"],
-        ["@gpu_freq", "min", "608000"],
+        ["$gpu_max_khz", "#608000000"],
         ["$mod_percent", "93"]
       ]
     },
@@ -220,7 +225,7 @@
         ["@preset", "bw_normal"]
       ],
       "app": [
-        ["@gpu_freq", "min", "608000"]
+        ["@preset", "common_app"]
       ],
       "game": [
         ["$mi_thermal", "10"],
@@ -228,7 +233,7 @@
         ["@cpu_freq", "cpu0", "1305600", "1804800"],
         ["@cpu_freq", "cpu4", "960000", "2227200"],
         ["@cpu_freq", "cpu7", "844800", "2496000"],
-        ["@gpu_freq", "min", "738000"],
+        ["$gpu_max_khz", "#738000000"],
         ["@preset", "lat_boost"],
         ["$mod_percent", "94"]
       ]
@@ -241,7 +246,7 @@
         ["@values", "hispeed_load", "85", "85", "85"]
       ],
       "app": [
-        ["@gpu_freq", "min", "738000"]
+        ["@preset", "common_app"]
       ],
       "game": [
         ["$mi_thermal", "13"],
@@ -249,7 +254,7 @@
         ["@cpu_freq", "cpu0", "1401600", "1804800"],
         ["@cpu_freq", "cpu4", "1209600", "2419200"],
         ["@cpu_freq", "cpu7", "1075200", "2841600"],
-        ["@gpu_freq", "min", "778000"],
+        ["$gpu_max_khz", "#778000000"],
         ["@preset", "bw_boost"],
         ["@preset", "lat_boost"],
         ["$mod_percent", "94"]
@@ -257,11 +262,6 @@
     }
   },
   "apps": [
-    {
-      "friendly": "视频/短视频/滚动优化/社交/",
-      "categories": ["Video", "ShortVideo", "ScrollOpt", "Music", "Reader", "IM"],
-      "import": "_Apps.json"
-    },
     {
       "friendly": "极速响应",
       "categories": ["Launcher"],
@@ -276,6 +276,13 @@
       "friendly": "狗屎/毒瘤",
       "categories": ["MiniProgram"],
       "import": "_MiniProgram.json"
+    },
+    {
+      "friendly": "待机",
+      "packages": ["standby"],
+      "call": [
+        ["@limiters", "NONE"]
+      ]
     },
     {
       "friendly": "All",

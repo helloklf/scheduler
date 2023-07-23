@@ -4,6 +4,7 @@
   "framework": 220,
   "alias": {
     "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
+    "mod_percent": "/sys/class/kgsl/kgsl-3d0/devfreq/mod_percent",
     "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
     "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
     "mi_thermal": "/sys/class/thermal/thermal_message/sconfig",
@@ -147,12 +148,13 @@
     "common_app": [
       ["$perfmgr_enable", "0"],
       ["@cpuset", "0-3", "0-3", "0-7", "0-7"],
-      ["$gpu_max_khz", "#680000000"]
+      ["$gpu_max_khz", "#680000000"],
+      ["$mod_percent", "100"]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
       ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
-      ["@cpuset", "0-2", "0-3", "0-5", "0-7"],
+      ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
       ["$gpu_max_khz", "#990000000"]
     ],
 
@@ -226,7 +228,8 @@
         ["@cpu_freq", "cpu0", "307200", "1670400"],
         ["@cpu_freq", "cpu4", "633600", "1996800"],
         ["@cpu_freq", "cpu7", "787200", "2131200"],
-        ["$l3_boost", "#0"]
+        ["$l3_boost", "#0"],
+        ["$mod_percent", "93"]
       ]
     },
     "balance": {
@@ -245,7 +248,8 @@
         ["@cpu_freq", "cpu4", "633600", "2457600"],
         ["@cpu_freq", "cpu7", "787200", "2476800"],
         ["$l3_boost", "#0"],
-        ["$mi_thermal", "13"]
+        ["$mi_thermal", "13"],
+        ["$mod_percent", "93"]
       ]
     },
     "performance": {
@@ -263,7 +267,8 @@
         ["@cpu_freq", "cpu4", "633600", "2572800"],
         ["@cpu_freq", "cpu7", "787200", "2707200"],
         ["$mi_thermal", "13"],
-        ["$l3_boost", "#0"]
+        ["$l3_boost", "#0"],
+        ["$mod_percent", "95"]
       ]
     },
     "fast": {
@@ -285,7 +290,8 @@
         ["@cpu_freq", "cpu0", "1056000", "1804800"],
         ["@cpu_freq", "cpu4", "1209600", "2745600"],
         ["@cpu_freq", "cpu7", "1171200", "2995200"],
-        ["$mi_thermal", "10"]
+        ["$mi_thermal", "10"],
+        ["$mod_percent", "100"]
       ]
     }
   },

@@ -128,38 +128,19 @@ disable_migt() {
 core_ctl_preset() {
   cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
   echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
-  echo 1 > $cpu7_core_ctl_dir/not_preferred
-  echo 1 > $cpu7_core_ctl_dir/max_cpus
-  echo 0 > $cpu7_core_ctl_dir/min_cpus
-  # echo 1 > $cpu7_core_ctl_dir/nr_prev_assist_thresh
-  echo 1 > $cpu7_core_ctl_dir/task_thres
   echo 30 > $cpu7_core_ctl_dir/busy_down_thres
   echo 60 > $cpu7_core_ctl_dir/busy_up_thres
   echo 0 > $cpu7_core_ctl_dir/enable
 
   cpu4_core_ctl_dir=/sys/devices/system/cpu/cpu4/core_ctl
-  echo 50 > $cpu4_core_ctl_dir/offline_delay_ms
-  echo 0 0 0 > $cpu4_core_ctl_dir/not_preferred
-  echo 3 > $cpu4_core_ctl_dir/max_cpus
+  lock_value 3 $cpu4_core_ctl_dir/max_cpus
   lock_value 3 $cpu4_core_ctl_dir/min_cpus
-  # echo 4294967295 > $cpu4_core_ctl_dir/nr_prev_assist_thresh
-  echo 3 > $cpu4_core_ctl_dir/task_thres
-  echo 15 > $cpu4_core_ctl_dir/busy_down_thres
-  echo 20 > $cpu4_core_ctl_dir/busy_up_thres
-  echo 0 > $cpu4_core_ctl_dir/enable
-  chmod 444 $cpu4_core_ctl_dir/enable
+  lock_value 0 $cpu4_core_ctl_dir/enable
 
   cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
-  echo 50 > $cpu0_core_ctl_dir/offline_delay_ms
-  echo 0 0 0 0 > $cpu0_core_ctl_dir/not_preferred
-  echo 4 > $cpu0_core_ctl_dir/max_cpus
+  lock_value 4 $cpu0_core_ctl_dir/max_cpus
   lock_value 4 $cpu0_core_ctl_dir/min_cpus
-  # echo 4294967295 > $cpu0_core_ctl_dir/nr_prev_assist_thresh
-  # echo 3 > $cpu0_core_ctl_dir/task_thres
-  echo 15 > $cpu0_core_ctl_dir/busy_down_thres
-  echo 20 > $cpu0_core_ctl_dir/busy_up_thres
-  echo 0 > $cpu0_core_ctl_dir/enable
-  chmod 444 $cpu0_core_ctl_dir/enable
+  lock_value 0 $cpu0_core_ctl_dir/enable
 }
 
 hide_value /sys/class/kgsl/kgsl-3d0/devfreq/governor 'msm-adreno-tz'
@@ -199,7 +180,7 @@ done
 for dir in /sys/class/devfreq/*llcc-lat; do
   lock_value 15258 $dir/max_freq
   lock_value 2288 $dir/min_freq
-done
+done  
 for dir in $(ls /sys/class/devfreq | grep ddr-lat | grep -v npu); do
   lock_value 10437 /sys/class/devfreq/$dir/max_freq
   lock_value 762 /sys/class/devfreq/$dir/min_freq

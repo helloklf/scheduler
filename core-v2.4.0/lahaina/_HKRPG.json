@@ -19,7 +19,10 @@
     },
     {
       "mode": ["*"],
-      "call": [["@limiters", "hkrpg2:cpu4", "p4:cpu7"]]
+      "call": [
+        ["$gpu_max_khz", "#778000000"],
+        ["@limiters", "hkrpg2:cpu4", "p4:cpu7"]
+      ]
     }
   ]
 }

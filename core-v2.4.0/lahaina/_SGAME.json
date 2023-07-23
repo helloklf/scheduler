@@ -30,7 +30,7 @@
     "mode": ["powersave"],
     "call": [
       ["$cpu_max_0", "1612800"],
-      ["@gpu_freq", "min", "350000"]
+      ["$gpu_max_khz", "#315000000"]
     ],
     "sensors": [
       {
@@ -46,7 +46,7 @@
   }, {
     "mode": ["balance"],
     "call": [
-      ["@gpu_freq", "min", "400000"]
+      ["$gpu_max_khz", "#400000000"]
     ],
     "sensors": [
       {
@@ -62,7 +62,7 @@
   }, {
     "mode": ["performance"],
     "call": [
-      ["@gpu_freq", "min", "540000"]
+      ["$gpu_max_khz", "#491000000"]
     ],
     "sensors": [
       {
@@ -78,7 +78,7 @@
   }, {
     "mode": ["*"],
     "call": [
-      ["@gpu_freq", "min", "608000"]
+      ["$gpu_max_khz", "#608000000"]
     ],
     "sensors": [
       {

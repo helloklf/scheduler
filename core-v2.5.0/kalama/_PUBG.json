@@ -1,0 +1,26 @@
+{
+  "friendly": "和平精英",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "p2:cpu0", "p2:cpu3", "p2:cpu7"],
+        ["@msm_feas", "10"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "p2:cpu0", "p2:cpu3", "p2:cpu7"],
+        ["@msm_feas", "6"]
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "p3:cpu0", "p3:cpu3", "p3:cpu7"],
+        ["@msm_feas", "3"]
+      ]
+    }
+  ]
+}

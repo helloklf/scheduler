@@ -79,6 +79,7 @@
     | middle_min_freq | 中核频率下限 | int |
     | fast_down_rate | 高频快速下调频率的速率 | float |
     | slow_down_rate | 低频慢速下调频率的速率 | float |
+    | lower_freq | 较低频率 | int |
     | middle_optimum_freq | 中核最佳频率 | int |
 
 
@@ -95,13 +96,15 @@
 > big_min_freq, middle_min_freq: 适当提高频率下限有助于减少频率和帧率波动，<br>
 > 用极少的功耗换更平稳的帧率，有时候是值得的
 
-> fast_down_rate: 处于较高频率时的降频速率，默认为 `5 ~ 8` 由 `mode` 决定<br>
+> fast_down_rate: 处于较高频率时的降频速率，默认为 `5 ~ 8` (取决于`mode`)<br>
 > 假如游戏目标帧率为120，fast_down_rate为5，则需连续120/5=24帧都没有超时才会降频
 
-> slow_down_rate: 处于较低频率时的降频速率，默认为 `2 ~ 4` 由 `mode` 决定<br>
-> FAS认为的较低频率并非是某个固定的值，而是指接近或低于最近一段时间平均频率的频率<br>
-> 加入游戏目标帧率为120，slow_down_rate为2，而最近一段时间平均频率为1200MHz，此时频率为1250MHz，则需连续120/2=60帧都没有超时才会继续降频<br>
+> slow_down_rate: 处于[较低频率]时的降频速率，默认为 `2 ~ 4` (取决于`mode`)<br>
+> 假如游戏目标帧率为120，slow_down_rate为2，而最近一段时间平均频率为1200MHz，此时频率为1250MHz，则需连续120/2=60帧都没有超时才会继续降频<br>
+> [较低频率]可以通过`lower_freq`参数指定，如果未指定，则SCENE会根据帧率和频率趋势自动计算该值<br>
 > 事实上，基本没有哪个游戏可以保证完全不掉帧，所以 slow_down_rate 设置到 接近或低于 `1` 是非常鲁莽的
+
+> lower_freq: 处理器频率不高于此值时，
 
 > middle_optimum_freq: FAS默认会使中核大核保持频率相近，尽管有MiddleOffset可以使中核比大核频率低一些，但这又会使得大核频率较低时中核频率更低导致卡顿。<br>
 > middle_optimum_freq 则是以另一种形式解决中核大核同频。在中核频率低于middle_optimum_freq时，中核跟随大核一起升频，中核频率达到middle_optimum_freq之后不再继续跟随大核升频。<br>

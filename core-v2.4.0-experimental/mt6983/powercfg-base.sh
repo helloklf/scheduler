@@ -142,6 +142,7 @@ if [[ -f $t_message/cpu_limits ]]; then
 fi
 hide_value $t_message/market_download_limit 0
 hide_value $t_message/modem_limit 0
+lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 
 echo 10 > /sys/module/mtk_fpsgo/parameters/variance # default 40
 

@@ -3,8 +3,8 @@
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "cpuset": {
-      "unity_main": "7",
       "comm": {
+        "7": ["UnityMain"],
         "6": ["UnityGfx"],
         "4-5": ["UnityMultiRende", "UnityPreload"],
         "0-5": ["MIHOYO_NETWORK", "FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage", "Worker Thread"],
@@ -22,21 +22,6 @@
         "7": ["UnityMain"],
         "6": ["UnityGfx"],
         "4-5": ["NativeThread", "Job.Worker"]
-      },
-      "other": "0-5"
-    }
-  },
-  {
-    "friendly": "LOL Mobile",
-    "packages": ["com.tencent.lolm"],
-    "cpuset": {
-      "heavy_thread": "Thread-",
-      "heavy_cores": "6",
-      "comm": {
-        "7": ["UnityMain"],
-        "6": ["UnityGfx"],
-        "4-5": ["NativeThread", "CoreThread"],
-        "0-5": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read", "Worker Thread"]
       },
       "other": "0-5"
     }
@@ -69,6 +54,21 @@
           "FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage"
         ],
         "0-3": ["Audio", "tp_schedule"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "LOL Mobile",
+    "packages": ["com.tencent.lolm"],
+    "cpuset": {
+      "heavy_thread": "Thread-",
+      "heavy_cores": "6",
+      "comm": {
+        "7": ["UnityMain"],
+        "6": ["UnityGfx"],
+        "4-5": ["NativeThread", "CoreThread"],
+        "0-5": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read", "Worker Thread"]
       },
       "other": "0-5"
     }

@@ -99,7 +99,6 @@ disable_migt() {
   chmod 000 /sys/module/sched_walt/holders/migt
 }
 
-
 core_ctl_preset() {
   cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
   echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
@@ -110,7 +109,6 @@ core_ctl_preset() {
   lock_value 0 $cpu3_core_ctl_dir/enable
 }
 
-hide_value /sys/class/kgsl/kgsl-3d0/devfreq/governor 'msm-adreno-tz'
 echo "0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 echo 0 > /sys/module/cpu_boost/parameters/input_boost_ms
 echo 0 > /sys/module/cpu_boost/parameters/sched_boost_on_input
@@ -126,11 +124,6 @@ chattr +i  /sys/module/msm_performance/parameters/cpu_max_freq
 hide_value /sys/module/msm_performance/parameters/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
 chattr +i  /sys/module/msm_performance/parameters/cpu_min_freq
 
-echo 128 > /dev/cpuctl/background/cpu.shares
-echo 384 > /dev/cpuctl/system-background/cpu.shares
-echo 512 > /dev/cpuctl/foreground/cpu.shares
-# rmdir /dev/cpuset/background/untrustedapp
-
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
   for i in $(seq 0 7); do
@@ -141,7 +134,7 @@ if [[ -f $t_message/cpu_limits ]]; then
 fi
 hide_value $t_message/temp_state 0
 hide_value $t_message/market_download_limit 0
-hide_value $t_message/cpu_nolimit_temp 47500
+hide_value $t_message/cpu_nolimit_temp 49500
 
 umount /sys/module/perfmgr/parameters/perfmgr_enable
 lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
@@ -189,3 +182,14 @@ kgsl max_gpuclk 999000000
 kgsl min_clock_mhz 0
 kgsl devfreq/min_freq 0
 kgsl devfreq/max_freq 999000000
+
+
+for file in /sys/devices/system/cpu/bus_dcvs/LLCC/*/min_freq; do
+  lock_value 300000 $file
+done
+for file in /sys/devices/system/cpu/bus_dcvs/DDR/*/min_freq; do
+  lock_value 547000 $file
+done
+for file in /sys/devices/system/cpu/bus_dcvs/L3/*/min_freq; do
+  lock_value 307200 $file
+done

@@ -144,7 +144,7 @@
     "comm_gaming": [
       ["@limiters", "NONE"],
       ["@values", "sched_boost", "1", "0", "0", "0"],
-      ["@cpuset", "1", "0-3", "0-5", "0-7"],
+      ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
       ["@gpu_freq", "min", "max"]
     ],
 
@@ -332,11 +332,6 @@
       "friendly": "王者荣耀",
       "packages": ["com.tencent.tmgp.sgame"],
       "import": "_SGAME.json"
-    },
-    {
-      "friendly": "PVP",
-      "packages": ["com.tencent.tmgp.cod", "com.tencent.tmgp.cf"],
-      "import": "_FAS_PVP.json"
     },
     {
       "friendly": "All",

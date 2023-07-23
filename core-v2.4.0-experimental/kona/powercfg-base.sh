@@ -20,13 +20,6 @@ set_cpuset(){
   done
 }
 
-governor_cover() {
-  policy=/sys/devices/system/cpu/cpufreq/policy
-  ls $policy* | while read cluster; do
-    hide_value ${policy}${cluster}/scaling_governor $1
-  done
-}
-
 set_value() {
   value=$1
   path=$2
@@ -127,39 +120,19 @@ disable_migt() {
 
 core_ctl_preset() {
   cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
-  echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
-  echo 1 > $cpu7_core_ctl_dir/not_preferred
-  echo 1 > $cpu7_core_ctl_dir/max_cpus
-  echo 0 > $cpu7_core_ctl_dir/min_cpus
-  # echo 1 > $cpu7_core_ctl_dir/nr_prev_assist_thresh
-  echo 1 > $cpu7_core_ctl_dir/task_thres
   echo 30 > $cpu7_core_ctl_dir/busy_down_thres
   echo 60 > $cpu7_core_ctl_dir/busy_up_thres
-  echo 0 > $cpu7_core_ctl_dir/enable
+  lock_value 0 $cpu7_core_ctl_dir/enable
 
   cpu4_core_ctl_dir=/sys/devices/system/cpu/cpu4/core_ctl
-  echo 50 > $cpu4_core_ctl_dir/offline_delay_ms
-  echo 0 0 0 > $cpu4_core_ctl_dir/not_preferred
-  echo 3 > $cpu4_core_ctl_dir/max_cpus
+  lock_value 3 $cpu4_core_ctl_dir/max_cpus
   lock_value 3 $cpu4_core_ctl_dir/min_cpus
-  # echo 4294967295 > $cpu4_core_ctl_dir/nr_prev_assist_thresh
-  echo 3 > $cpu4_core_ctl_dir/task_thres
-  echo 15 > $cpu4_core_ctl_dir/busy_down_thres
-  echo 20 > $cpu4_core_ctl_dir/busy_up_thres
-  echo 0 > $cpu4_core_ctl_dir/enable
-  chmod 444 $cpu4_core_ctl_dir/enable
+  lock_value 0 $cpu4_core_ctl_dir/enable
 
   cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
-  echo 50 > $cpu0_core_ctl_dir/offline_delay_ms
-  echo 0 0 0 0 > $cpu0_core_ctl_dir/not_preferred
-  echo 4 > $cpu0_core_ctl_dir/max_cpus
+  lock_value 4 $cpu0_core_ctl_dir/max_cpus
   lock_value 4 $cpu0_core_ctl_dir/min_cpus
-  # echo 4294967295 > $cpu0_core_ctl_dir/nr_prev_assist_thresh
-  # echo 3 > $cpu0_core_ctl_dir/task_thres
-  echo 15 > $cpu0_core_ctl_dir/busy_down_thres
-  echo 20 > $cpu0_core_ctl_dir/busy_up_thres
-  echo 0 > $cpu0_core_ctl_dir/enable
-  chmod 444 $cpu0_core_ctl_dir/enable
+  lock_value 0 $cpu0_core_ctl_dir/enable
 }
 
 hide_value /sys/class/kgsl/kgsl-3d0/devfreq/governor 'msm-adreno-tz'
@@ -182,7 +155,7 @@ if [[ -f $t_message/cpu_limits ]]; then
   chmod 444 $t_message/cpu_limits
 fi
 hide_value $t_message/market_download_limit 0
-hide_value $t_message/cpu_nolimit_temp 47500
+hide_value $t_message/cpu_nolimit_temp 49500
 lock_value 0 /sys/module/aigov/parameters/enable
 
 core_ctl_preset
@@ -208,33 +181,6 @@ done
 lock_value 12298 /sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/max_freq
 # 762 1144 1720 2086 2597 2929 3879 5931 6881 7980 10437
 lock_value 6881 /sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/max_freq
-
-
-# OnePlus
-hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
-lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
-if [[ -d  /proc/game_opt ]]; then
-  hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
-  hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
-  hide_value /proc/game_opt/game_pid -1
-fi
-hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
-hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-echo 0 > /proc/sys/kernel/sched_force_lb_enable
-lock_value N /sys/module/sched_assist_common/parameters/boost_kill
-lock_value N /sys/module/task_sched_info/parameters/sched_info_ctrl
-
-row=$(grep thermal_heat_path /odm/etc/ThermalServiceConfig/sys_thermal_config.xml)
-tz=$(echo ${row#*>} | cut -f1 -d '<')
-if [[ -n $tz ]]; then
-  hide_value $tz 31000
-fi
-oplus_thermal=/odm/etc/temperature_profile/sys_thermal_control_config.xml
-if [[ -n $(grep 'fps="50"' $oplus_thermal) ]]; then
-  replace=$cfg_dir/sys_thermal_control_config.xml
-  mount --bind $replace $oplus_thermal
-  am force-stop com.oplus.battery
-fi
 
 
 # OnePlus

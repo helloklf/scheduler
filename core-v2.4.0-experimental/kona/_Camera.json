@@ -16,9 +16,5 @@
         ["@cpu_freq", "policy7", "min", "2300MHz"]
       ]
     }
-  }],
-  "booster": {
-    "duration": 2000,
-    "idle_delay": 2000
-  }
+  }]
 }

@@ -43,10 +43,11 @@
     "mode": ["performance"],
     "fas": {
       "mode": "fps",
-      "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 1.6,
+      "recent_frames": 10, "fast_down_rate": 4, "slow_down_rate": 1.4,
+      "middle_optimum_freq": 2246400, "lower_freq": 2073600,
       "_60": ["2361600", "2054400", "-2"],
       "_90": ["2841600", "2246400", "-2"],
-      "_120": ["2841600", "2342400", "-2"]
+      "_120": ["2841600", "2419200", "-2"]
     },
     "sensors": [
       {
@@ -63,8 +64,9 @@
     "mode": ["fast"],
     "fas": {
       "mode": "fps",
-      "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 1.4,
-      "middle_min_freq": 2073600,
+      "recent_frames": 10, "fast_down_rate": 2, "slow_down_rate": 1.2,
+      "middle_min_freq": 2073600, "middle_optimum_freq": 2246400,
+      "big_min_freq": 2169600,
       "_60": ["2361600", "2150400", "-2"],
       "_90": ["2841600", "2419200", "-2"],
       "_120": ["3200000", "2419200", "-2"]

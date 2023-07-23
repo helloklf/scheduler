@@ -1,9 +1,16 @@
-# 8GEN2 use CPU 4(A715)\7(X3), but ...
-rmdir /dev/cpuset/asopt/set*
-rmdir /dev/cpuset/asopt
-rmdir /dev/cpuset/top-app/asopt/set*
-rmdir /dev/cpuset/top-app/asopt
-killall AsoulOpt
+version=$(dumpsys package com.omarea.vtools | grep versionCode | cut -f2 -d '=' | cut -f1 -d ' ')
+if [[ $version -gt 620230717 ]]; then
+  cpus=3-5
+else
+  cpus=4,5-6
+
+  # 8GEN2 use CPU 4(A715)\7(X3), but ...
+  rmdir /dev/cpuset/asopt/set*
+  rmdir /dev/cpuset/asopt
+  rmdir /dev/cpuset/top-app/asopt/set*
+  rmdir /dev/cpuset/top-app/asopt
+  killall AsoulOpt
+fi
 
 set_cpuset(){
   pgrep -f $1 | while read pid; do
@@ -15,17 +22,18 @@ set_cpuset(){
   done
 }
 
-mkdir /dev/cpuset/top-app/3,5-6
-echo 3,5-6 > /dev/cpuset/top-app/3,5-6/cpus
-echo 0 > /dev/cpuset/top-app/3,5-6/mems
+rmdir /dev/cpuset/background/untrustedapp
+mkdir /dev/cpuset/top-app/$cpus
+echo $cpus > /dev/cpuset/top-app/$cpus/cpus
+echo 0 > /dev/cpuset/top-app/$cpus/mems
 
 rmdir /dev/cpuset/foreground/boost
 set_cpuset kswapd0 'foreground'
-set_cpuset toucheventcheck 'top-app/3,5-6'
-set_cpuset touch_report 'top-app/3,5-6'
-set_cpuset surfaceflinger 'top-app/3,5-6'
-set_cpuset system_server 'top-app/3,5-6'
-set_cpuset update_engine 'top-app/3,5-6'
+set_cpuset toucheventcheck "top-app/$cpus"
+set_cpuset touch_report "top-app/$cpus"
+set_cpuset surfaceflinger "top-app/$cpus"
+set_cpuset system_server "top-app/$cpus"
+set_cpuset update_engine "top-app/$cpus"
 set_cpuset audioserver 'foreground'
 set_cpuset android.hardware.audio.service_64 'foreground'
-set_cpuset vendor.qti.hardware.display.composer-service 'top-app/3,5-6'
+set_cpuset vendor.qti.hardware.display.composer-service "top-app/$cpus"

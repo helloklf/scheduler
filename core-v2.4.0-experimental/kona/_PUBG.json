@@ -23,6 +23,7 @@
     {
       "mode": ["balance"],
       "fas": {
+        "big_min_freq": 1670400,
         "_60": ["2649600", "2342400"],
         "_90": ["2841600", "2419200"],
         "_120": ["2841600", "2419200"]
@@ -30,7 +31,7 @@
       "sensors": [
         {
           "sensor": "fps",
-          "interval": 3000,
+          "interval": 5000,
           "rules": [
             { "threshold": [-1, 96], "enter_once": [["@preset", "bw_boost"]] },
             { "threshold": [96, 65], "enter_once": [["@preset", "bw_max"]] },
@@ -44,6 +45,7 @@
       "fas": {
         "mode": "fps",
         "recent_frames": 10, "fast_down_rate": 7, "slow_down_rate": 2,
+        "big_min_freq": 1958400,
         "_60": ["2841600", "2342400"],
         "_90": ["3200000", "2419200"],
         "_120": ["3200000", "2419200"]
@@ -64,6 +66,7 @@
       "mode": ["fast"],
       "fas": {
         "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 1.6,
+        "big_min_freq": 2169600,
         "_60": ["2649600", "2342400"],
         "_90": ["2841600", "2419200"],
         "_120": ["2841600", "2419200"]

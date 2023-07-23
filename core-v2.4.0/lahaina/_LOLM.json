@@ -4,7 +4,7 @@
     "mode": ["powersave"],
     "call": [
       ["@limiters", "g1:cpu0", "g1:cpu4", "g1:cpu7"],
-      ["@gpu_freq", "min", "315000"]
+      ["$gpu_max_khz", "#315000000"]
     ],
     "sensors": [
       {
@@ -21,8 +21,8 @@
     "mode": ["balance"],
     "call": [
       ["@limiters", "g2:cpu0", "g2:cpu4", "g2:cpu7"],
-      ["@gpu_freq", "min", "491000"],
-      ["@limiters", "lol2:cpu4", "lol2:cpu7"]
+      ["@limiters", "lol2:cpu4", "lol2:cpu7"],
+      ["$gpu_max_khz", "#491000000"]
     ],
     "sensors": [
       {
@@ -39,7 +39,7 @@
     "mode": ["performance"],
     "call": [
       ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"],
-      ["@gpu_freq", "min", "400000"]
+      ["$gpu_max_khz", "#491000000"]
     ],
     "sensors": [
       {
@@ -56,7 +56,7 @@
     "mode": ["*"],
     "call": [
       ["@limiters", "g4:cpu0", "g4:cpu4", "g4:cpu7"],
-      ["@gpu_freq", "min", "540000"]
+      ["$gpu_max_khz", "#540000000"]
     ]
   }]
 }

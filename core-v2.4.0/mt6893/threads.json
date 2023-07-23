@@ -1,5 +1,28 @@
 [
   {
+    "friendly": "闲鱼",
+    "packages": ["com.taobao.idlefish"],
+    "cpuset": {
+      "comm": {
+        "4-7": ["RenderThread", "1.ui", "1.raster"]
+      },
+      "other": "0-7"
+    }
+  },
+  {
+    "friendly": "星穹铁道",
+    "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
+    "governor": ["UnityMain", "UnityGfx"],
+    "cpuset": {
+      "comm": {
+        "7": ["UnityGfx"],
+        "6": ["UnityMain"],
+        "4-5": ["NativeThread", "Job.Worker"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
       
     "friendly": "原神",
     "categories": ["GenshinImpact"],
@@ -18,7 +41,7 @@
   },
   {
     "friendly": "王者荣耀",
-    "packages": ["com.tencent.tmgp.sgame"],
+    "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
     "governor": ["UnityMain", "UnityGfx", "Thread-"],
     "cpuset": {
       "unity_main": "7",
@@ -29,6 +52,21 @@
         "6": ["UnityGfx"],
         "4-5": ["CoreThread", "Worker Thread"],
         "0-5": ["NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "LOL Mobile",
+    "packages": ["com.tencent.lolm"],
+    "cpuset": {
+      "heavy_thread": "Thread-",
+      "heavy_cores": "6",
+      "comm": {
+        "7": ["UnityMain"],
+        "6": ["UnityGfx"],
+        "4-5": ["NativeThread", "CoreThread"],
+        "0-5": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read", "Worker Thread"]
       },
       "other": "0-5"
     }

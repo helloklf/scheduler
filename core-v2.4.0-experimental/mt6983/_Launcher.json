@@ -1,5 +1,8 @@
 {
   "friendly": "极速响应",
+  "call": [
+    ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#35"]
+  ],
   "modes": [{
     "mode": ["powersave"],
     "booster": {

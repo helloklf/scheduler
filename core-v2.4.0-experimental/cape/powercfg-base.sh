@@ -219,15 +219,16 @@ core_ctl_preset() {
   # echo 1 > $cpu4_core_ctl_dir/enable
 
   cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
+  echo 1 > $cpu0_core_ctl_dir/enable
   echo 50 > $cpu0_core_ctl_dir/offline_delay_ms
-  echo 0 1 1 1 > $cpu0_core_ctl_dir/not_preferred
-  echo 4 > $cpu0_core_ctl_dir/max_cpus
-  echo 1 > $cpu0_core_ctl_dir/min_cpus
+  echo 0 0 0 0 > $cpu0_core_ctl_dir/not_preferred
+  lock_value 4 $cpu0_core_ctl_dir/max_cpus
+  lock_value 4 $cpu0_core_ctl_dir/min_cpus
   # echo 4294967295 > $cpu0_core_ctl_dir/nr_prev_assist_thresh
   # echo 3 > $cpu0_core_ctl_dir/task_thres
   echo 6 > $cpu0_core_ctl_dir/busy_down_thres
   echo 15 > $cpu0_core_ctl_dir/busy_up_thres
-  # echo 1 > $cpu0_core_ctl_dir/enable
+  lock_value 0 $cpu0_core_ctl_dir/enable
 }
 
 hide_value /sys/class/kgsl/kgsl-3d0/devfreq/governor 'msm-adreno-tz'

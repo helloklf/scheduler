@@ -17,27 +17,25 @@
   },
   "features": {
     "limiter": {
-      "active_interval": 20,
+      "active_interval": 30,
       "gaming_interval": 30,
       "inactive_interval": 150,
-      "max_margin_ratio": 0.45,
       "ddr_boost": true,
-      "logger": false,
       "params": [
-        { "id": "p1:cpu0", "max": 1400000, "min": 500000, "margin": 250 },
-        { "id": "p1:cpu4", "max": 2150000, "min": 700000, "margin": 300 },
-        { "id": "p1:cpu7", "max": 2300000, "min": 1300000, "margin": 400 },
+        { "id": "p1:cpu0", "max": 1400000, "min": 500000, "margin": 200 },
+        { "id": "p1:cpu4", "max": 2150000, "turning": 1000000, "min": 700000, "margin": 250 },
+        { "id": "p1:cpu7", "max": 2300000, "turning": 1000000, "min": 1300000, "margin": 250 },
 
-        { "id": "p2:cpu0", "max": 1500000, "min": 1050000, "margin": 300 },
-        { "id": "p2:cpu4", "max": 2400000, "min": 2050000, "margin": 400 },
-        { "id": "p2:cpu7", "max": 2650000, "min": 2100000, "margin": 400 },
+        { "id": "p2:cpu0", "max": 1500000, "min": 800000, "margin": 250 },
+        { "id": "p2:cpu4", "max": 2400000, "min": 1900000, "margin": 300 },
+        { "id": "p2:cpu7", "max": 2650000, "min": 2100000, "margin": 300 },
 
-        { "id": "p3:cpu0", "max": 1600000, "min": 1400000, "margin": 300 },
-        { "id": "p3:cpu4", "max": 2650000, "min": 2400000, "margin": 300 },
-        { "id": "p3:cpu7", "max": 2800000, "min": 2400000, "margin": 300 },
+        { "id": "p3:cpu0", "max": 1600000, "min": 1400000, "margin": 270 },
+        { "id": "p3:cpu4", "max": 2650000, "turning": 2400000, "min": 2100000, "margin": 300 },
+        { "id": "p3:cpu7", "max": 2800000, "turning": 2650000, "min": 2300000, "margin": 300 },
 
         { "id": "p4:cpu0", "max": 1600000, "min": 1500000, "margin": 300 },
-        { "id": "p4:cpu4", "max": 2650000, "min": 2650000, "margin": 300 },
+        { "id": "p4:cpu4", "max": 2650000, "min": 2450000, "margin": 300 },
         { "id": "p4:cpu7", "max": 2800000, "min": 2650000, "margin": 300 },
 
 
@@ -110,8 +108,9 @@
     ],
     "comm_app": [
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 0|cm_mgr_perf_enable 0|dsu_mode_change 0"],
+      ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#20"],
       ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
-      ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#30"],
+      ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#25"],
       ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#4"]
     ],
     "comm_gaming": [
@@ -122,7 +121,7 @@
       ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#15"],
-      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#4"]
+      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#2"]
     ],
 
     "powersave_active": [
@@ -154,7 +153,7 @@
       ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
       ["@values", "min_freq", "700000", "900000", "1300000"],
       ["@preset", "common_actvie"],
-      ["$ddr_freq_min", "#320000000"]
+      ["$ddr_freq_min", "#266700000"]
     ],
     "performance_inactive": [
       ["@limiters", "NONE"],
