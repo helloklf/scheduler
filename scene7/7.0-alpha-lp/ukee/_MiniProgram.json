@@ -1,0 +1,14 @@
+{
+  "friendly": "狗屎/毒瘤",
+  "modes": [{
+    "mode": ["powersave", "balance"],
+    "call": [
+      ["@limiters", "NONE"],
+      ["@cpuset", "1", "0-4", "0-7", "0-7"],
+      ["@cpu_freq", "policy0", "min", "1800000"],
+      ["@cpu_freq", "policy4", "min", "2500000"],
+      ["@cpu_freq", "policy7", "min", "2600000"],
+      ["$mi_thermal", "10"]
+    ]
+  }]
+}

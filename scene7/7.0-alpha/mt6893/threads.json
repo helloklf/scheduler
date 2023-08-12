@@ -1,0 +1,115 @@
+[
+  {
+    "friendly": "闲鱼",
+    "packages": ["com.taobao.idlefish"],
+    "cpuset": {
+      "comm": {
+        "4-7": ["RenderThread", "1.ui", "1.raster"]
+      },
+      "other": "0-7"
+    }
+  },
+  {
+    "friendly": "星穹铁道",
+    "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
+    "governor": ["UnityMain", "UnityGfx"],
+    "cpuset": {
+      "comm": {
+        "7": ["UnityGfx"],
+        "6": ["UnityMain"],
+        "4-5": ["NativeThread", "Job.Worker"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+      
+    "friendly": "原神",
+    "categories": ["GenshinImpact"],
+    "governor": ["UnityMain", "UnityGfx"],
+    "cpuset": {
+      "heavy_thread": "UnityGfx",
+      "heavy_cores": "7",
+      "unity_main": "6",
+      "comm": {
+        "4-5": ["UnityPreload", "UnityMultiRende"],
+        "0-5": ["FMOD", "UnityChoreograp", "ged-swd", "Worker Thread"],
+        "0-3": ["Thread-", "MIHOYO_NETWORK", "mali-cmar-backe", "mali-event-", "mali-cpu-", "mali-mem-", "Audio", "tp_schedule", "NativeThread", "AsyncReadManage"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "王者荣耀",
+    "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
+    "governor": ["UnityMain", "UnityGfx", "Thread-"],
+    "cpuset": {
+      "unity_main": "7",
+      "heavy_thread": "Thread-",
+      "heavy_cores": "6",
+      "comm": {
+        "4-7": ["UnityPreload"],
+        "6": ["UnityGfx"],
+        "4-5": ["CoreThread", "Worker Thread"],
+        "0-5": ["NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "LOL Mobile",
+    "packages": ["com.tencent.lolm"],
+    "cpuset": {
+      "heavy_thread": "Thread-",
+      "heavy_cores": "6",
+      "comm": {
+        "7": ["UnityMain"],
+        "6": ["UnityGfx"],
+        "4-5": ["NativeThread", "CoreThread"],
+        "0-5": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read", "Worker Thread"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "和平精英",
+    "packages": ["com.tencent.tmgp.pubgmhd"],
+    "governor": ["RenderThread", "Thread-"],
+    "cpuset": {
+      "comm": {
+        "7": ["RenderThread"],
+        "4-6": ["Thread-", "TaskGraphNP"]
+      },
+      "other": "0-6"
+    }
+  },
+  {
+    "friendly": "QQ飞车",
+    "packages": ["com.tencent.tmgp.speedmobile"],
+    "governor": ["UnityMain", "UnityGfx"],
+    "cpuset": {
+      "unity_main": "7",
+      "comm": {
+        "6": ["UnityGfx"],
+        "4-5": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
+      },
+      "other": "4-5"
+    }
+  },
+  {
+    "friendly": "幻塔",
+    "packages": [
+      "com.dw.h5yvzr.yt",
+      "com.pwrd.hotta.laohu",
+      "com.hottagames.hotta.bilibili",
+      "com.hottagames.hotta.mi"
+    ],
+    "cpuset": {
+      "comm": {
+        "7": ["GameThread"],
+        "4-6": ["RenderThread", "RHIThread"]
+      },
+      "other": "0-7"
+    }
+  }
+]

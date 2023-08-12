@@ -1,0 +1,60 @@
+{
+  "friendly": "FAS",
+  "limiters": [
+    { "id": "g1:cpu0", "step": -1, "max": 1555200, "min": 614400, "margin": 245, "smoothness": 8, "mode": "performance" },
+    { "id": "g1:cpu4", "step": -1, "max": 1651200, "min": 652800, "margin": 245, "smoothness": 4, "mode": "performance" },
+    { "id": "g1:cpu7", "step": -1, "max": 1766400, "min": 768000, "margin": 185, "smoothness": 4, "mode": "performance" },
+
+    { "id": "g2:cpu0", "step": -1, "max": 1555200, "min": 902400, "margin": 265, "smoothness": 6, "mode": "performance" },
+    { "id": "g2:cpu4", "step": -1, "max": 1804800, "min": 940800, "margin": 285, "smoothness": 4, "mode": "performance" },
+    { "id": "g2:cpu7", "step": -1, "max": 1977600, "min": 940800, "margin": 225, "smoothness": 4, "mode": "performance" },
+
+    { "id": "g3:cpu0", "step": -1, "max": 1555200, "min": 902400, "margin": 280, "smoothness": 8, "mode": "performance" },
+    { "id": "g3:cpu4", "step": -1, "max": 2054400, "min": 940800, "margin": 300, "smoothness": 5, "mode": "performance" },
+    { "id": "g3:cpu7", "step": -1, "max": 2169600, "min": 940800, "margin": 260, "smoothness": 5, "mode": "performance" },
+
+    { "id": "g4:cpu0", "step": -1, "max": 1651200, "min": 902400, "margin": 280, "smoothness": 8, "mode": "performance" },
+    { "id": "g4:cpu4", "step": -1, "max": 2361600, "min": 940800, "margin": 350, "smoothness": 5, "mode": "performance" },
+    { "id": "g4:cpu7", "step": -1, "max": 2400000, "min": 940800, "margin": 300, "smoothness": 5, "mode": "performance" }
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "limiters": ["g1:cpu0", "g1:cpu4", "g1:cpu7"],
+        "_60": ["1766400", "1651200"],
+        "_90": ["1766400", "1651200"],
+        "_120": ["1766400", "1651200"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "limiters": ["g3:cpu0", "g3:cpu4", "g3:cpu7"],
+        "_60": ["1977600", "1804800"],
+        "_90": ["1977600", "1804800"],
+        "_120": ["1977600", "1804800"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "limiters": ["g4:cpu0", "g4:cpu4", "g4:cpu7"],
+        "governor": "performance",
+        "_60": ["2169600", "2054400"],
+        "_90": ["2169600", "2054400"],
+        "_120": ["2169600", "2054400"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "fas": {
+        "mode": "fps",
+        "governor": "performance",
+        "_60": ["2400000", "2361600"],
+        "_90": ["2400000", "2361600"],
+        "_120": ["2400000", "2361600"]
+      }
+    }
+  ]
+}

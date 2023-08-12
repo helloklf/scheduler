@@ -1,0 +1,81 @@
+{
+  "friendly": "原神",
+  "call": [
+    ["$bus_ddr", "2736000"],
+    ["$bus_ddr_min", "2736000"],
+    ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
+  ],
+  "limiters": [
+    { "id": "ys-p1:cpu0", "step": -1, "max": 1478400, "min": 1075200, "margin": 300 },
+    { "id": "ys-p1:cpu4", "step": -1, "max": 1651200, "min": 1209600, "margin": 150, "mode": "performance" },
+    { "id": "ys-p1:cpu7", "step": -1, "max": 1612800, "min": 806400, "margin": 120, "mode": "performance" },
+
+    { "id": "ys-p2:cpu0", "step": -1, "max": 1478400, "min": 1075200, "margin": 300, "smoothness": 5 },
+    { "id": "ys-p2:cpu4", "step": -1, "max": 1881600, "min": 1209600, "margin": 150, "mode": "performance", "smoothness": 5 },
+    { "id": "ys-p2:cpu7", "step": -1, "max": 1958400, "min": 806400, "margin": 120, "mode": "performance", "smoothness": 5 },
+
+    { "id": "ys-p3:cpu0", "step": -1, "max": 1574400, "turning": 1478400, "min": 1075200, "margin": 300, "smoothness": 5 },
+    { "id": "ys-p3:cpu4", "step": -1, "max": 2112000, "turning": 1996800, "min": 1209600, "margin": 150, "smoothness": 5 },
+    { "id": "ys-p3:cpu7", "step": -1, "max": 2169600, "turning": 2054400, "min": 1056000, "margin": 140, "mode": "performance", "smoothness": 5},
+
+    { "id": "ys-p4:cpu0", "max": 1574400, "turning": 1478400, "min": 1075200, "margin": 300, "active_interval": 48, "smoothness": 5 },
+    { "id": "ys-p4:cpu4", "max": 2227200, "turning": 1996800, "min": 1324800, "margin": 150, "active_interval": 48, "smoothness": 5 },
+    { "id": "ys-p4:cpu7", "max": 2400000, "turning": 2054400, "min": 1056000, "margin": 150, "mode": "performance", "active_interval": 48, "smoothness": 5 },
+
+    { "id": "ys-p5:cpu0", "mode": "RANGE", "max": 1785600, "min": 1075200, "margin": 300, "smoothness": 5 },
+    { "id": "ys-p5:cpu4", "mode": "RANGE", "max": 2419200, "min": 1555200, "margin": 300, "active_interval": 48, "smoothness": 5 },
+    { "id": "ys-p5:cpu7", "mode": "RANGE", "max": 2630400, "min": 1056000, "margin": 300, "active_interval": 48, "smoothness": 5 }
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "ys-p1:cpu0", "ys-p1:cpu4", "ys-p1:cpu7"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "sensors": [
+        {
+          "sensor": "battery",
+          "interval": 5000,
+          "rules": [
+            { "threshold": [ -1, 45000], "enter_once": [["@limiters", "ys-p1:cpu0", "ys-p1:cpu4", "ys-p1:cpu7"]] },
+            { "threshold": [45000,  -1], "enter_once": [["@limiters", "ys-p2:cpu0", "ys-p2:cpu4", "ys-p2:cpu7"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [["@gpu_freq", "min", "600MHz"]],
+      "sensors": [
+        {
+          "sensor": "battery",
+          "interval": 5000,
+          "rules": [
+            { "threshold": [   -1, 46500], "enter_once": [["@limiters", "ys-p1:cpu0", "ys-p1:cpu4", "ys-p1:cpu7"]] },
+            { "threshold": [46500, 43500], "enter_once": [["@limiters", "ys-p2:cpu0", "ys-p2:cpu4", "ys-p2:cpu7"]] },
+            { "threshold": [43500,    -1], "enter_once": [["@limiters", "ys-p3:cpu0", "ys-p3:cpu4", "ys-p3:cpu7"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["*"],
+      "sensors": [
+        {
+          "sensor": "battery",
+          "interval": 5000,
+          "rules": [
+            { "threshold": [   -1, 50100], "enter_once": [["@limiters", "ys-p1:cpu0", "ys-p1:cpu4", "ys-p1:cpu7"]] },
+            { "threshold": [50000, 45000], "enter_once": [["@limiters", "ys-p1:cpu0", "ys-p2:cpu4", "ys-p2:cpu7"]] },
+            { "threshold": [45000, 41500], "enter_once": [["@limiters", "ys-p3:cpu0", "ys-p3:cpu4", "ys-p3:cpu7"]] },
+            { "threshold": [41500, 37500], "enter_once": [["@limiters", "ys-p4:cpu0", "ys-p4:cpu4", "ys-p4:cpu7"]] },
+            { "threshold": [37500,    -1], "enter_once": [["@limiters", "ys-p5:cpu0", "ys-p5:cpu4", "ys-p5:cpu7"]] }
+          ]
+        }
+      ]
+    }
+  ]
+}

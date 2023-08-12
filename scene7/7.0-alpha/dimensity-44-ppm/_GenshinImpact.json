@@ -1,0 +1,25 @@
+{
+  "friendly": "原神",
+  "cpuset": {
+    "comm": {
+      "4-6": ["UnityGfx", "UnityMain", "UnityMultiRende"],
+      "0-5": ["Worker Thread", "AudioTrack", "Audio"],
+      "0-3": ["Thread-", "MIHOYO_NETWORK", "mali-cmar-backe", "Audio", "tp_schedule", "NativeThread", "AsyncReadManage"]
+    },
+    "other": "0-5"
+  },
+  "modes": [
+    {
+      "mode": ["*"],
+      "booster": {
+        "duration": 20000,
+        "enter": [
+          ["$deisolation", "4|5|6|7"]
+        ],
+        "exit": [
+          ["$deisolation", "4|5|6|7"]
+        ]
+      }
+    }
+  ]
+}

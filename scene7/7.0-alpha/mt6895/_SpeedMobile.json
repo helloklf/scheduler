@@ -1,0 +1,27 @@
+{
+    "friendly": "QQ飞车",
+    "modes": [{
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "g1:cpu4", "g1:cpu7"],
+        ["@mtk_feas", "8"]
+      ]
+    }, {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "g2:cpu4", "g2:cpu7"],
+        ["@mtk_feas", "4"]
+      ]
+    }, {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "g3:cpu4", "g3:cpu7"],
+        ["@mtk_feas", "0"]
+      ]
+    }, {
+      "mode": ["*"],
+      "call": [
+        ["@limiters", "g4:cpu4", "g4:cpu7"]
+      ]
+    }]
+}

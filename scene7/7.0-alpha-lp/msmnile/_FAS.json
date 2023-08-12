@@ -1,0 +1,71 @@
+{
+  "friendly": "FAS",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "limiters": ["active:cpu0", "p1:cpu4", "p1:cpu7"],
+        "big_min_freq": 1075200, "middle_min_freq": 710400,
+        "recent_frames": 8, "fast_down_rate": 6, "slow_down_rate": 3,
+        "_60": ["2073600", "1958400", "-2"],
+        "_90": ["2169600", "1958400", "-2"],
+        "_120": ["2265600", "1958400", "-2"]
+      },
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 3000,
+          "rules": [
+            { "threshold": [-1, 95], "enter_once": [["@preset", "bw_max"]] },
+            { "threshold": [95,  70], "enter_once": [["@preset", "bw_max"]] },
+            { "threshold": [70,  -1], "enter_once": [["@preset", "bw_max"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "limiters": ["p2:cpu0", "g2:cpu4", "p2:cpu7"],
+        "recent_frames": 8, "fast_down_rate": 6, "slow_down_rate": 2.2,
+        "_60": ["2457600", "2246400", "-2"],
+        "_90": ["2649600", "2342400", "-2"],
+        "_120": ["2649600", "2342400", "-2"]
+      },
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 3000,
+          "rules": [
+            { "threshold": [-1, 95], "enter_once": [["@preset", "bw_boost"]] },
+            { "threshold": [95,  70], "enter_once": [["@preset", "bw_max"]] },
+            { "threshold": [70,  -1], "enter_once": [["@preset", "bw_max"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "limiters": ["p3:cpu0", "g3:cpu4", "p3:cpu7"],
+        "mode": "fps",
+        "recent_frames": 7, "fast_down_rate": 6, "slow_down_rate": 2.0,
+        "lower_freq": 1862400,
+        "_60": ["2841600", "2419200"],
+        "_90": ["2841600", "2419200"],
+        "_120": ["2841600", "2419200"]
+      }
+    },
+    {
+      "mode": ["fast"],
+      "fas": {
+        "mode": "fps",
+        "recent_frames": 7, "fast_down_rate": 5, "slow_down_rate": 1.7,
+        "lower_freq": 2073600,
+        "_60": ["3200000", "2419200"],
+        "_90": ["3200000", "2419200"],
+        "_120": ["3200000", "2419200"]
+      }
+    }
+  ]
+}

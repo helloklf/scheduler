@@ -1,0 +1,55 @@
+[
+  {
+    "friendly": "原神",
+    "categories": ["GenshinImpact"],
+    "governor": ["UnityMain", "UnityGfx"],
+    "cpuset": {
+      "comm": {
+        "6-7": ["UnityMain"],
+        "6": ["UnityGfx", "UnityMultiRende"],
+        "0-5": ["Timer"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "王者荣耀",
+    "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece", "com.garena.game.kgtw", "com.tencent.lolm"],
+    "governor": ["UnityMain", "UnityGfx", "Thread-"],
+    "cpuset": {
+      "comm": {
+        "7": ["UnityMain"],
+        "6": ["UnityGfx", "Thread-"],
+        "6-7": ["UnityPreload"],
+        "3-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+      },
+      "other": "0-6"
+    }
+  },
+  {
+    "friendly": "和平精英",
+    "packages": ["com.tencent.tmgp.pubgmhd"],
+    "governor": ["RenderThread", "Thread-"],
+    "cpuset": {
+      "interval": 1000,
+      "comm": {
+        "7": ["RenderThread"],
+        "4-6": ["Thread-", "TaskGraphNP"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "QQ飞车",
+    "packages": ["com.tencent.tmgp.speedmobile"],
+    "governor": ["UnityMain", "UnityGfx"],
+    "cpuset": {
+      "unity_main": "7",
+      "comm": {
+        "6": ["UnityGfx"],
+        "0-5": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
+      },
+      "other": "0-5"
+    }
+  }
+]

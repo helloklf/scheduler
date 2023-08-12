@@ -1,0 +1,31 @@
+{
+  "friendly": "和平精英",
+  "call": [
+    ["$boost_affinity", "#0"]
+  ],
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["@limiters", "g1:cpu0", "g1:cpu4", "g1:cpu7"],
+      ["@mtk_feas", "13"]
+    ]
+  }, {
+    "mode": ["balance"],
+    "call": [
+      ["@limiters", "g2:cpu0", "g2:cpu4", "g3:cpu7"],
+      ["@mtk_feas", "8"]
+    ]
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"],
+      ["@mtk_feas", "5"]
+    ]
+  }, {
+    "mode": ["fast"],
+    "call": [
+      ["@limiters", "g4:cpu0", "g4:cpu4", "g4:cpu7"],
+      ["@mtk_feas", "0"]
+    ]
+  }]
+}

@@ -1,0 +1,38 @@
+{
+  "friendly": "极速响应",
+  "limiters": [
+    {"id": "launcher:cpu4", "max": 2400000, "min": 2131200, "margin": 400},
+    {"id": "launcher:cpu7", "max": 2400000, "min": 2208000, "margin": 400}
+  ],
+  "modes": [{
+    "mode": ["powersave", "balance"],
+    "booster": {
+      "duration": 3000,
+      "idle_delay": 2000,
+      "enter": [
+        ["@limiters", "launcher:cpu4", "launcher:cpu7"],
+        ["$stune_top_perf", "1"],
+        ["$stune_top_boost", "10"],
+        ["@preset", "comm_active"]
+      ],
+      "exit": [["@preset", "powersave_inactive"]]
+    }
+  }, {
+    "mode": ["performance", "fast"],
+    "booster": {
+      "duration": 3000,
+      "idle_delay": 2000,
+      "enter": [
+        ["@limiters", "NONE"],
+        ["$stune_top_boost", "100"],
+        ["$stune_top_perf", "1"],
+        ["$sched_boost", "2"],
+        ["@values", "max_freq", "1804800", "2400000", "2500000"],
+        ["@preset", "comm_active"]
+      ],
+      "exit": [
+        ["@uclamp", "0.00~max", "0.00~max", "0.00~max"]
+      ]
+    }
+  }]
+}

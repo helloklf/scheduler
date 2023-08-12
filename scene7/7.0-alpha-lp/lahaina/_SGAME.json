@@ -1,0 +1,62 @@
+{
+  "friendly": "王者荣耀/LOL",
+  "modes": [{
+    "mode": ["powersave"],
+    "fas": {
+      "middle_optimum_freq": 1555200,
+      "recent_frames": 8, "fast_down_rate": 6, "slow_down_rate": 3.5,
+      "_60": ["1785600", "1555200", "-2"],
+      "_90": ["2035200", "1670400", "-2"],
+      "_120": ["2150400", "1881600", "-2"]
+    },
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 3000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"]] },
+          { "threshold": [99,  75], "enter_once": [["@preset", "bw_low"]] },
+          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["balance"],
+    "fas": {
+      "recent_frames": 6, "fast_down_rate": 8, "slow_down_rate": 5,
+      "governor": "performance",
+      "_60": ["1785600", "1670400", "-1"],
+      "_90": ["2150400", "1881600", "-2"],
+      "_120": ["2265600", "1996800", "-2"]
+    },
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 4000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"], ["@preset", "lat_boost"]] },
+          { "threshold": [99,  75], "enter_once": [["@preset", "bw_normal"], ["@preset", "lat_normal"]] },
+          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"], ["@preset", "lat_normal"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["performance"],
+    "fas": {
+      "governor": "performance",
+      "mode": "fps",
+      "_60": ["1785600", "1766400", "-1"],
+      "_90": ["2265600", "1881600", "-1"],
+      "_120": ["2496000", "1996800", "-1"]
+    }
+  }, {
+    "mode": ["*"],
+    "fas": {
+      "governor": "performance",
+      "mode": "fps",
+      "_60": ["1900800", "1996800", "-1"],
+      "_90": ["2380800", "2112000", "-1"],
+      "_120": ["2841600", "2419200", "-1"]
+    }
+  }]
+}
