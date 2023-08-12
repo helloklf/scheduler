@@ -16,7 +16,7 @@
     {
       "mode": ["performance"],
       "call": [
-        ["@limiters", "g3:cpu4",  "p2:cpu4"]
+        ["@limiters", "g3:cpu4",  "p3:cpu7"]
       ]
     },
     {

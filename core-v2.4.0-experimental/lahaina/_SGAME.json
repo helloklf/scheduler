@@ -1,26 +1,13 @@
 {
   "friendly": "王者荣耀/LOL",
-  "cpuset": {
-    "unity_main": "7",
-    "heavy_thread": "Thread-",
-    "heavy_cores": "6",
-    "comm": {
-      "4-7": ["UnityPreload"],
-      "6": ["UnityGfx"],
-      "4-5": ["CoreThread"],
-      "0-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
-    },
-    "other": "3F"
-  },
   "modes": [{
     "mode": ["powersave"],
-    "call": [
-      ["@gpu_freq", "min", "350000"]
-    ],
     "fas": {
-      "_60": ["1785600", "1766400", "-1"],
-      "_90": ["2035200", "1881600", "-3"],
-      "_120": ["2150400", "1996800", "-1"]
+      "middle_optimum_freq": 1555200,
+      "recent_frames": 8, "fast_down_rate": 6, "slow_down_rate": 3.5,
+      "_60": ["1785600", "1555200", "-2"],
+      "_90": ["2035200", "1670400", "-2"],
+      "_120": ["2150400", "1881600", "-2"]
     },
     "sensors": [
       {
@@ -35,15 +22,12 @@
     ]
   }, {
     "mode": ["balance"],
-    "call": [
-      ["@gpu_freq", "min", "400000"]
-    ],
     "fas": {
       "recent_frames": 6, "fast_down_rate": 8, "slow_down_rate": 5,
       "governor": "performance",
-      "_60": ["1785600", "1766400", "-1"],
-      "_90": ["2150400", "1881600", "-1"],
-      "_120": ["2265600", "1996800", "-1"]
+      "_60": ["1785600", "1670400", "-1"],
+      "_90": ["2150400", "1881600", "-2"],
+      "_120": ["2265600", "1996800", "-2"]
     },
     "sensors": [
       {
@@ -58,9 +42,6 @@
     ]
   }, {
     "mode": ["performance"],
-    "call": [
-      ["@gpu_freq", "min", "540000"]
-    ],
     "fas": {
       "governor": "performance",
       "mode": "fps",
@@ -70,9 +51,6 @@
     }
   }, {
     "mode": ["*"],
-    "call": [
-      ["@gpu_freq", "min", "608000"]
-    ],
     "fas": {
       "governor": "performance",
       "mode": "fps",

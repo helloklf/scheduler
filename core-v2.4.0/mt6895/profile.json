@@ -231,7 +231,6 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["$mi_thermal", "10"],
         ["@limiters", "NONE"],
         ["@values", "min_freq", "1600000", "1800000", "1800000"],
         ["@values", "max_freq", "#2000000", "#2850000", "#3100000"],

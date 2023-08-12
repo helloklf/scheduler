@@ -191,8 +191,7 @@
     "powersave": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "powersave_active"],
-        ["@gpu_freq", "min", "500MHz"]
+        ["@preset", "powersave_active"]
       ],
       "app": [
         ["$bus_ddr", "1708000"]
@@ -206,8 +205,7 @@
     "balance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "balance_active"],
-        ["@gpu_freq", "min", "600MHz"]
+        ["@preset", "balance_active"]
       ],
       "app": [
         ["$bus_ddr", "2092000"]
@@ -215,22 +213,19 @@
       "game": [
         ["@preset", "common_gaming"],
         ["$bus_ddr", "2736000"],
-        ["$mi_thermal", "13"],
         ["$mod_percent", "92"]
       ]
     },
     "performance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "performance_active"],
-        ["@gpu_freq", "min", "750MHz"]
+        ["@preset", "performance_active"]
       ],
       "app": [
         ["$bus_ddr", "2736000"]
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["$mi_thermal", "13"],
         ["$bus_ddr", "2736000"],
         ["$mod_percent", "92"]
       ]
@@ -239,8 +234,6 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "fast_active"],
-        ["$mi_thermal", "10"],
-        ["@gpu_freq", "min", "max"],
         ["$bus_ddr", "3196000"]
       ],
       "app": [],
@@ -248,7 +241,6 @@
         ["$l3_boost", "1651200"],
         ["$bus_ddr_min", "2736000"],
         ["@preset", "common_gaming"],
-        ["$mi_thermal", "10"],
         ["$mod_percent", "93"]
       ]
     }

@@ -9,8 +9,7 @@
     },
     "call": [
       ["@sched_limit", "0 0", "0 4000", "0 4000"],
-      ["@limiters", "lol1:cpu4", "lol1:cpu7"],
-      ["@gpu_freq", "min", "315000"]
+      ["@limiters", "lol1:cpu4", "lol1:cpu7"]
     ],
     "sensors": [
       {
@@ -25,9 +24,6 @@
     ]
   }, {
     "mode": ["performance"],
-    "call": [
-      ["@gpu_freq", "min", "400000"]
-    ],
     "fas": {
       "governor": "performance",
       "_60": ["1785600", "1766400", "-1"],
@@ -47,9 +43,6 @@
     ]
   }, {
     "mode": ["*"],
-    "call": [
-      ["@gpu_freq", "min", "540000"]
-    ],
     "fas": {
       "governor": "performance",
       "mode": "fps",

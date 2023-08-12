@@ -15,7 +15,8 @@
     "cpu_llcc_max": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/max_freq",
     "llcc_ddr_min": "/sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/min_freq",
     "cpu_llcc_min": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/min_freq",
-    "l3_min": "/sys/class/devfreq/18590000.qcom,devfreq-l3:qcom,cpu7-cpu-l3-lat"
+    "l3_min": "/sys/class/devfreq/18590000.qcom,devfreq-l3:qcom,cpu7-cpu-l3-lat",
+    "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable"
   },
   "features": {
     "limiter": {
@@ -58,7 +59,8 @@
     "reset": [
       ["@msm_reset"],
       ["@thermal_threshold", "99900"],
-      ["@governor", "schedutil"]
+      ["@governor", "schedutil"],
+      ["$perfmgr_enable", "0"]
     ],
     "hispeed_freq": [
       ["/sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq"],
@@ -144,8 +146,7 @@
     "comm_gaming": [
       ["@limiters", "NONE"],
       ["@values", "sched_boost", "1", "0", "0", "0"],
-      ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
-      ["@gpu_freq", "min", "max"]
+      ["@cpuset", "0-3", "0-3", "0-5", "0-7"]
     ],
 
     "powersave_active": [
@@ -208,7 +209,6 @@
       ],
       "app": [
         ["@preset", "comm_app"],
-        ["@gpu_freq", "min", "500000"],
         ["@values", "sched_boost", "0", "0", "0", "0"],
         ["@values", "target_loads", "80", "80", "80"]
       ],
@@ -235,8 +235,7 @@
         ["@preset", "comm_app"],
         ["@values", "sched_boost", "1", "0", "0", "0"],
         ["@preset", "bw_max"],
-        ["@values", "target_loads", "80", "80", "80"],
-        ["@gpu_freq", "min", "630000"]
+        ["@values", "target_loads", "80", "80", "80"]
       ],
       "game": [
         ["@preset", "comm_gaming"],
@@ -278,8 +277,7 @@
         ["@preset", "reset"],
         ["@preset", "fast_active"],
         ["@values", "hispeed_freq", "1612800", "1670400", "1747200"],
-        ["@values", "hispeed_load", "85", "85", "85"],
-        ["@gpu_freq", "min", "max"]
+        ["@values", "hispeed_load", "85", "85", "85"]
       ],
       "app": [
         ["@preset", "comm_app"],
@@ -289,7 +287,6 @@
       "game": [
         ["@preset", "comm_gaming"],
         ["$l3_min", "#1612800000"],
-        ["$mi_thermal", "13"],
         ["@repeat", "sched_config", "65 63", "70 70", "70", "80"],
         ["@cpu_freq", "cpu0", "1420800", "1804800"],
         ["@cpu_freq", "cpu4", "1478400", "2419200"],

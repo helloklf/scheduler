@@ -221,8 +221,7 @@
       "game": [
         ["@preset", "common_gaming"],
         ["@cpu_freq", "cpu0", "300000", "1804800"],
-        ["@cpu_freq", "cpu6", "300000", "2208000"],
-        ["$mi_thermal", "13"]
+        ["@cpu_freq", "cpu6", "300000", "2208000"]
       ]
     },
     "fast": {
@@ -239,8 +238,7 @@
       "game": [
         ["@preset", "common_gaming"],
         ["@cpu_freq", "cpu0", "1708800", "1804800"],
-        ["@cpu_freq", "cpu6", "1939200", "2208000"],
-        ["$mi_thermal", "13"]
+        ["@cpu_freq", "cpu6", "1939200", "2208000"]
       ]
     }
   },

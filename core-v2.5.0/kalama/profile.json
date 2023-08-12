@@ -295,7 +295,7 @@
         ["$perfmgr_enable", "#0"],
         ["$l3_boost", "#1593600"],
         ["@preset", "common_gaming"],
-        ["$bus_ddr", "3196000"],
+        ["$bus_ddr", "3187000"],
         ["$bus_ddr_min", "2736000"],
         ["@cpu_freq", "cpu0", "1056000", "1804800"],
         ["@cpu_freq", "cpu3", "1209600", "2707200"],

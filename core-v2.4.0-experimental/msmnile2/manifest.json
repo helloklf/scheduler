@@ -1,0 +1,10 @@
+{
+  "version": "SCENE6 LP(FAS)",
+  "versionCode": 20230729001,
+  "author": "SCENE6",
+  "projectUrl": "http://vtools.omarea.com/",
+  "features": {
+    "strict": true,
+    "pedestal": false
+  }
+}

@@ -15,9 +15,6 @@
   "modes": [
     {
       "mode": ["powersave", "balance"],
-      "call": [
-        ["@gpu_freq", "min", "450000"]
-      ],
       "fas": {
         "mode": "fps",
         "_60": ["2208000", "2054400", "-2"],

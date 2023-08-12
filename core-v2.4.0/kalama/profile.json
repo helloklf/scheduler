@@ -255,7 +255,6 @@
         ["@cpu_freq", "cpu0", "441600", "1555200"],
         ["@cpu_freq", "cpu3", "614400", "2054400"],
         ["@cpu_freq", "cpu7", "729600", "2092800"],
-        ["$mi_thermal", "13"],
         ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
         ["@limiters", "g2:cpu0", "g2:cpu3", "g2:cpu7"]
       ]
@@ -264,18 +263,18 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "performance_active"],
-        ["$bus_ddr", "2736000"],
         ["@preset", "ddr_max"]
       ],
       "app": [
-        ["@preset", "common_app"]
+        ["@preset", "common_app"],
+        ["$bus_ddr", "2736000"]
       ],
       "game": [
         ["@preset", "common_gaming"],
         ["@cpu_freq", "cpu0", "672000", "1804800"],
         ["@cpu_freq", "cpu3", "729600", "2457600"],
         ["@cpu_freq", "cpu7", "864000", "2476800"],
-        ["$mi_thermal", "13"],
+        ["$bus_ddr", "3187000"],
         ["$l3_boost", "#1593600"],
         ["@limiters", "g3:cpu0", "g3:cpu3", "g3:cpu7"]
       ]
@@ -284,7 +283,6 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "fast_active"],
-        ["$mi_thermal", "10"],
         ["@preset", "ddr_max"]
       ],
       "app": [
@@ -295,12 +293,11 @@
         ["$perfmgr_enable", "#0"],
         ["$l3_boost", "#1593600"],
         ["@preset", "common_gaming"],
-        ["$bus_ddr", "3196000"],
+        ["$bus_ddr", "3187000"],
         ["$bus_ddr_min", "2736000"],
         ["@cpu_freq", "cpu0", "1056000", "1804800"],
         ["@cpu_freq", "cpu3", "1209600", "2707200"],
         ["@cpu_freq", "cpu7", "1171200", "2841600"],
-        ["$mi_thermal", "10"],
         ["@limiters", "g4:cpu0", "g4:cpu3", "g4:cpu7"]
       ]
     }

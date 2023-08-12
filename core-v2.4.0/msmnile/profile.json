@@ -196,8 +196,7 @@
         ["@gpu_freq", "min", "610MHz"]
       ],
       "game": [
-        ["@preset", "common_gaming"],
-        ["$mi_thermal", "13"]
+        ["@preset", "common_gaming"]
       ]
     },
     "performance": {
@@ -208,8 +207,7 @@
         ["@gpu_freq", "min", "max"]
       ],
       "game": [
-        ["@preset", "common_gaming"],
-        ["$mi_thermal", "13"]
+        ["@preset", "common_gaming"]
       ]
     },
     "fast": {
@@ -220,8 +218,7 @@
         ["@gpu_freq", "min", "max"]
       ],
       "game": [
-        ["@preset", "common_gaming"],
-        ["$mi_thermal", "10"]
+        ["@preset", "common_gaming"]
       ]
     }
   },

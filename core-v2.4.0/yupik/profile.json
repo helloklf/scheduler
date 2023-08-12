@@ -221,7 +221,6 @@
       "app": [
       ],
       "game": [
-        ["$mi_thermal", "10"],
         ["@preset", "comm_gaming"],
         ["@cpu_freq", "cpu0", "1152000", "1804800"],
         ["@cpu_freq", "cpu4", "min", "2200000"],
@@ -245,7 +244,6 @@
       ],
       "game": [
         ["@preset", "bw_boost"],
-        ["$mi_thermal", "10"],
         ["@preset", "comm_gaming"],
         ["@cpu_freq", "cpu0", "1305600", "1804800"],
         ["@cpu_freq", "cpu4", "min", "2400000"],
@@ -267,7 +265,6 @@
       ],
       "game": [
         ["@preset", "bw_boost"],
-        ["$mi_thermal", "13"],
         ["@preset", "comm_gaming"],
         ["@cpu_freq", "cpu0", "1324800", "1804800"],
         ["@cpu_freq", "cpu4", "1344000", "2400000"],

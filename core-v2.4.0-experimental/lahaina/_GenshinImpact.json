@@ -3,9 +3,6 @@
   "modes": [
     {
       "mode": ["powersave"],
-      "call": [
-        ["@gpu_freq", "min", "608000"]
-      ],
       "fas": {
         "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 2.2,
         "governor": "performance",
@@ -14,9 +11,6 @@
     },
     {
       "mode": ["balance"],
-      "call": [
-        ["@gpu_freq", "min", "676000000"]
-      ],
       "fas": {
         "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 2.0,
         "governor": "performance",

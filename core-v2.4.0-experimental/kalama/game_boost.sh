@@ -1,16 +1,11 @@
-version=$(dumpsys package com.omarea.vtools | grep versionCode | cut -f2 -d '=' | cut -f1 -d ' ')
-if [[ $version -gt 620230717 ]]; then
-  cpus=3-5
-else
-  cpus=4,5-6
+cpus=4,5-6
 
-  # 8GEN2 use CPU 4(A715)\7(X3), but ...
-  rmdir /dev/cpuset/asopt/set*
-  rmdir /dev/cpuset/asopt
-  rmdir /dev/cpuset/top-app/asopt/set*
-  rmdir /dev/cpuset/top-app/asopt
-  killall AsoulOpt
-fi
+# 8GEN2 use CPU 4(A715)\7(X3), but ...
+rmdir /dev/cpuset/asopt/set*
+rmdir /dev/cpuset/asopt
+rmdir /dev/cpuset/top-app/asopt/set*
+rmdir /dev/cpuset/top-app/asopt
+killall AsoulOpt
 
 set_cpuset(){
   pgrep -f $1 | while read pid; do

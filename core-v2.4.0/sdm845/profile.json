@@ -206,8 +206,7 @@
       "game": [
         ["@limiters", "NONE"],
         ["@cpu_freq", "cpu0", "300000", "max"],
-        ["@cpu_freq", "cpu4", "300000", "2649600"],
-        ["$mi_thermal", "13"]
+        ["@cpu_freq", "cpu4", "300000", "2649600"]
       ]
     },
     "fast": {
@@ -226,8 +225,7 @@
         ["@values", "sched_boost", "1", "0", "0", "10"],
         ["@limiters", "NONE"],
         ["@cpu_freq", "cpu0", "1708800", "max"],
-        ["@cpu_freq", "cpu4", "1939200", "max"],
-        ["$mi_thermal", "13"]
+        ["@cpu_freq", "cpu4", "1939200", "max"]
       ]
     },
     "pedestal": {
@@ -244,8 +242,7 @@
       "game": [
         ["@limiters", "NONE"],
         ["@cpu_freq", "cpu0", "1766400", "max"],
-        ["@cpu_freq", "cpu4", "2208000", "max"],
-        ["$mi_thermal", "10"]
+        ["@cpu_freq", "cpu4", "2208000", "max"]
       ]
     }
   },

@@ -289,7 +289,6 @@
       "game": [
         ["@preset", "comm_gaming"],
         ["$l3_min", "#1612800000"],
-        ["$mi_thermal", "13"],
         ["@repeat", "sched_config", "65 63", "70 70", "70", "80"],
         ["@cpu_freq", "cpu0", "1420800", "1804800"],
         ["@cpu_freq", "cpu4", "1478400", "2419200"],

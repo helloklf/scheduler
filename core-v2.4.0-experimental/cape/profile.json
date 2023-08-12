@@ -248,7 +248,6 @@
         ["@cpu_freq", "cpu4", "633600", "2457600"],
         ["@cpu_freq", "cpu7", "787200", "2476800"],
         ["$l3_boost", "#0"],
-        ["$mi_thermal", "13"],
         ["$mod_percent", "93"]
       ]
     },
@@ -266,7 +265,6 @@
         ["@cpu_freq", "cpu0", "307200", "1804800"],
         ["@cpu_freq", "cpu4", "633600", "2572800"],
         ["@cpu_freq", "cpu7", "787200", "2707200"],
-        ["$mi_thermal", "13"],
         ["$l3_boost", "#0"],
         ["$mod_percent", "95"]
       ]
@@ -274,8 +272,7 @@
     "fast": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "fast_active"],
-        ["$mi_thermal", "10"]
+        ["@preset", "fast_active"]
       ],
       "app": [
         ["@preset", "common_app"],
@@ -290,7 +287,6 @@
         ["@cpu_freq", "cpu0", "1056000", "1804800"],
         ["@cpu_freq", "cpu4", "1209600", "2745600"],
         ["@cpu_freq", "cpu7", "1171200", "2995200"],
-        ["$mi_thermal", "10"],
         ["$mod_percent", "100"]
       ]
     }

@@ -26,11 +26,32 @@ sched_deisolation() {
 sched_isolation() {
   echo $1 > /sys/devices/system/cpu/sched/set_sched_isolation
 }
+disable_core_ctl() {
+  c0=/sys/devices/system/cpu/cpu0/core_ctl
+  c1=/sys/devices/system/cpu/cpu4/core_ctl
+  c2=/sys/devices/system/cpu/cpu7/core_ctl
+
+  lock_value 4 $c0/max_cpus
+  lock_value 4 $c0/min_cpus
+  lock_value 0 $c0/enable
+
+  lock_value 3 $c1/max_cpus
+  lock_value 3 $c1/min_cpus
+  lock_value 0 $c1/enable
+
+  lock_value 1 $c2/max_cpus
+  lock_value 1 $c2/min_cpus
+  lock_value 0 $c2/enable
+
+  lock_value -1 /sys/kernel/fpsgo/fbt/thrm_limit_cpu
+  lock_value -1 /sys/kernel/fpsgo/fbt/thrm_sub_cpu
+}
 sched_isolation_disable() {
   for i in 0 1 2 3 4 5 6 7; do
     echo $i > /sys/devices/system/cpu/sched/set_sched_deisolation
   done
   chmod 000 /sys/devices/system/cpu/sched/set_sched_isolation
+  disable_core_ctl
 }
 
 set_value() {
@@ -90,7 +111,7 @@ do
 done
 
 lock_value 2 /sys/kernel/fpsgo/common/force_onoff
-echo 0 > /sys/kernel/fpsgo/fbt/switch_idleprefer
+lock_value 0 /sys/kernel/fpsgo/fbt/switch_idleprefer
 
 
 lock_value() {
@@ -158,7 +179,7 @@ echo 0 > /sys/module/fbt_cpu/parameters/boost_affinity_120
 # echo 0 > /sys/kernel/fpsgo/fbt/enable_switch_cap_margin
 # echo 0 > /sys/kernel/fpsgo/fbt/light_loading_policy
 # echo 0 > /sys/kernel/fpsgo/fbt/llf_task_policy
-# echo 0 > /sys/kernel/fpsgo/fbt/switch_idleprefer
+# lock_value 0 /sys/kernel/fpsgo/fbt/switch_idleprefer
 echo 100 > /sys/kernel/fpsgo/fbt/thrm_temp_th
 echo -1 > /sys/kernel/fpsgo/fbt/thrm_limit_cpu
 echo -1 > /sys/kernel/fpsgo/fbt/thrm_sub_cpu

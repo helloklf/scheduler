@@ -233,7 +233,6 @@
       "game": [
         ["@preset", "common_gaming"],
         ["$bus_ddr", "2736000"],
-        ["$mi_thermal", "13"],
         ["$mod_percent", "92"],
         ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
       ]
@@ -249,7 +248,6 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["$mi_thermal", "13"],
         ["$bus_ddr", "2736000"],
         ["$mod_percent", "92"],
         ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
@@ -259,7 +257,6 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "fast_active"],
-        ["$mi_thermal", "10"],
         ["@gpu_freq", "min", "max"],
         ["$bus_ddr", "3196000"]
       ],
@@ -268,7 +265,6 @@
         ["$l3_boost", "1651200"],
         ["$bus_ddr_min", "2736000"],
         ["@preset", "common_gaming"],
-        ["$mi_thermal", "10"],
         ["$mod_percent", "93"],
         ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
       ]

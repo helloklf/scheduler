@@ -220,7 +220,6 @@
         ["@preset", "common_app"]
       ],
       "game": [
-        ["$mi_thermal", "10"],
         ["@preset", "comm_gaming"],
         ["@cpu_freq", "cpu0", "1209600", "1804800"],
         ["@cpu_freq", "cpu4", "844800", "1996800"],
@@ -242,7 +241,6 @@
         ["@preset", "common_app"]
       ],
       "game": [
-        ["$mi_thermal", "10"],
         ["@preset", "comm_gaming"],
         ["@cpu_freq", "cpu0", "1305600", "1804800"],
         ["@cpu_freq", "cpu4", "960000", "2227200"],
@@ -263,7 +261,6 @@
         ["@preset", "common_app"]
       ],
       "game": [
-        ["$mi_thermal", "13"],
         ["@preset", "comm_gaming"],
         ["@cpu_freq", "cpu0", "1401600", "1804800"],
         ["@cpu_freq", "cpu4", "1209600", "2419200"],

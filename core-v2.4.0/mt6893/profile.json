@@ -33,6 +33,11 @@
         { "id": "p2:cpu4", "max": 2510000, "min": 1855000, "margin": 600 },
         { "id": "p2:cpu7", "max": 2600000, "min": 1998000, "margin": 600 },
 
+        { "id": "p3:cpu4", "max": 2510000, "min": 2354000, "margin": 500 },
+        { "id": "p3:cpu7", "max": 2600000, "min": 2463000, "margin": 500 },
+
+        { "id": "p4:cpu7", "max": 3000000, "min": 2600000, "margin": 400 },
+
         { "id": "g1:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1075000, "margin": 485, "smoothness": 6 },
         { "id": "g1:cpu4", "mode": "BOTTOM", "max": 2354000, "min": 1162000, "margin": 375, "smoothness": 6 },
         { "id": "g1:cpu7", "mode": "BOTTOM", "max": 2463000, "min": 1370000, "margin": 375, "smoothness": 6 },
@@ -225,6 +230,11 @@
       "friendly": "王者荣耀/LOL",
       "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
       "import": "_SGAME.json"
+    },
+    {
+      "friendly": "QQ飞车",
+      "packages": ["com.tencent.tmgp.speedmobile"],
+      "import": "_SpeedMobile.json"
     },
     {
       "friendly": "All",

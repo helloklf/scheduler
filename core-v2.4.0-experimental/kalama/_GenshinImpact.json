@@ -1,7 +1,7 @@
 {
   "friendly": "原神",
   "call": [
-    ["$bus_ddr_min", "#2736000"]
+    ["$bus_ddr_min", "#2092000"]
   ],
   "modes": [
     {
