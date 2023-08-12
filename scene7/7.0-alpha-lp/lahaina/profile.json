@@ -15,7 +15,8 @@
     "cpu_llcc_max": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/max_freq",
     "ddr_latfloor": "/sys/class/devfreq/soc:qcom,cpu4-cpu-ddr-latfloor/min_freq",
     "l3_lat": "/sys/class/devfreq/18590100.qcom,cpu6-cpu-l3-lat/min_freq",
-    "mod_percent": "/sys/class/kgsl/kgsl-3d0/devfreq/mod_percent"
+    "mod_percent": "/sys/class/kgsl/kgsl-3d0/devfreq/mod_percent",
+    "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable"
   },
   "features": {
     "limiter": {
@@ -54,7 +55,8 @@
       ["@governor", "schedutil"],
       ["$mod_percent", "100"],
       ["@thermal_threshold", "95000"],
-      ["@preset", "lat_normal"]
+      ["@preset", "lat_normal"],
+      ["$perfmgr_enable", "0"]
     ],
     "hispeed_freq": [
       ["/sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq"],

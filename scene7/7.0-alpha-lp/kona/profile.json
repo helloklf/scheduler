@@ -15,7 +15,8 @@
     "cpu_llcc_max": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/max_freq",
     "llcc_ddr_min": "/sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/min_freq",
     "cpu_llcc_min": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/min_freq",
-    "l3_min": "/sys/class/devfreq/18590000.qcom,devfreq-l3:qcom,cpu7-cpu-l3-lat"
+    "l3_min": "/sys/class/devfreq/18590000.qcom,devfreq-l3:qcom,cpu7-cpu-l3-lat",
+    "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable"
   },
   "features": {
     "limiter": {
@@ -58,7 +59,8 @@
     "reset": [
       ["@msm_reset"],
       ["@thermal_threshold", "99900"],
-      ["@governor", "schedutil"]
+      ["@governor", "schedutil"],
+      ["$perfmgr_enable", "0"]
     ],
     "hispeed_freq": [
       ["/sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq"],
