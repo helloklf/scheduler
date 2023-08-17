@@ -4,22 +4,6 @@ cfg_dir=$(cd $(dirname $0); pwd)
 
 killall scene-scheduler 2>/dev/null
 
-# Enable conservative pl
-# echo 1 > /proc/sys/kernel/sched_conservative_pl
-
-echo N > /sys/module/lpm_levels/parameters/sleep_disabled
-
-set_cpuset(){
-  pgrep -f $1 | while read pid; do
-    echo $pid > /dev/cpuset/$2/cgroup.procs
-    echo $pid > /dev/stune/$2/cgroup.procs
-    ls /proc/$pid/task | while read tid
-    do
-      echo $tid > /dev/cpuset/$2/tasks
-    done
-  done
-}
-
 set_value() {
   value=$1
   path=$2
@@ -28,8 +12,8 @@ set_value() {
     if [[ ! "$current_value" = "$value" ]]; then
       chmod 0664 "$path"
       echo "$value" > "$path"
-    fi;
-  fi;
+    fi
+fi
 }
 
 lock_value() {
@@ -48,22 +32,66 @@ hide_value() {
     if [[ ! -f "$c_path" ]]; then
       mkdir -p "$c_path"
       rm -r "$c_path"
+      cat "$1" > "$c_path"
     fi
-    chattr -i "$c_path"
-    cp -f "$1" "$c_path"
     if [[ "$2" != "" ]]; then
       lock_value "$2" "$1"
     fi
     mount --bind "$c_path" "$1"
-  else
-    echo "$1" Not Found!
   fi
+}
+
+
+# echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
+
+for index in 0 1 2 3 4 5 6 7; do
+  echo 1 > /sys/devices/system/cpu/cpu$index/online
+done
+
+if [[ ! -f /proc/sys/kernel/sched_group_upmigrate ]] || [[ $(getprop ro.product.vendor.brand) == "google" ]] || [[ $(getprop ro.build.version.sdk) -gt 29 ]] ; then
+  echo 'Google Pixel4'
+  # Setting b.L scheduler parameters
+  hide_value /proc/sys/kernel/sched_upmigrate
+  hide_value /proc/sys/kernel/sched_downmigrate
+  hide_value /proc/sys/kernel/sched_group_upmigrate
+  hide_value /proc/sys/kernel/sched_group_downmigrate
+  hide_value /proc/sys/kernel/sched_walt_rotate_big_tasks
+else
+  echo '>>> sched_upmigrate/sched_downmigrate'
+fi
+
+# killall -9 vendor.qti.hardware.perf@1.0-service
+
+set_cpuset(){
+  pgrep -f $1 | while read pid; do
+    echo $pid > /dev/cpuset/$2/cgroup.procs
+    echo $pid > /dev/stune/$2/cgroup.procs
+    ls /proc/$pid/task | while read tid
+    do
+      echo $tid > /dev/cpuset/$2/tasks
+    done
+  done
 }
 
 process_opt(){
   set_cpuset surfaceflinger top-app
   set_cpuset system_server top-app
   set_cpuset vendor.qti.hardware.display.composer-service top-app
+
+  pidof com.android.systemui | while read pid; do
+    echo $pid > /dev/cpuset/$2/cgroup.procs
+    # echo $pid > /dev/stune/$2/cgroup.procs
+    ls /proc/$pid/task | while read tid
+    do
+      case $(cat /proc/$pid/task/$tid/comm) in
+        "wmshell.anim"*)
+          echo $tid > /dev/cpuset/top-app/tasks
+          taskset -p f0 $tid > /dev/null
+        ;;
+      esac
+      # echo $tid > /dev/cpuset/$2/tasks
+    done
+  done
 
   miui_home=$(pidof com.miui.home)
   if [[ "$miui_home" != "" ]]; then
@@ -80,6 +108,33 @@ process_opt(){
   fi
 }
 
+# Default By Xiaomi
+# set_value 10000000 /proc/sys/kernel/sched_latency_ns
+# set_value 3000000 /proc/sys/kernel/sched_min_granularity_ns
+
+set_value 8000000 /proc/sys/kernel/sched_latency_ns
+set_value 2000000 /proc/sys/kernel/sched_min_granularity_ns
+
+set_value "0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0" /sys/module/cpu_boost/parameters/input_boost_freq
+set_value 0 /sys/module/cpu_boost/parameters/input_boost_ms
+set_value 0 /sys/module/cpu_boost/parameters/sched_boost_on_input
+set_value "0:0 1:0 2:0 3:0 4:2323200 5:0 6:0 7:2323200" /sys/module/cpu_boost/parameters/powerkey_input_boost_freq
+set_value 400 /sys/module/cpu_boost/parameters/powerkey_input_boost_ms
+
+
+t_message=/sys/class/thermal/thermal_message
+if [[ -f $t_message/cpu_limits ]]; then
+  for i in $(seq 0 7); do
+    maxfreq=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_max_freq)
+    echo cpu$i $maxfreq > $t_message/cpu_limits
+  done
+  chmod 444 $t_message/cpu_limits
+fi
+hide_value $t_message/market_download_limit 0
+hide_value $t_message/cpu_nolimit_temp 47500
+echo N > /sys/kernel/debug/debug_enabled
+echo 0 > /sys/kernel/tracing/tracing_on
+
 disable_migt() {
   migt=/sys/module/migt/parameters
   if [[ -d $migt ]]; then
@@ -87,14 +142,13 @@ disable_migt() {
     hide_value $migt/glk_freq_limit_start '0'
     hide_value $migt/glk_freq_limit_walt '0'
     hide_value $migt/glk_maxfreq '0 0 0'
-    hide_value $migt/glk_minfreq '300000 710400 844800'
+    hide_value $migt/glk_minfreq '300000 710400 825600'
     hide_value $migt/migt_ceiling_freq '0 0 0'
     hide_value $migt/glk_disable '1'
     hide_value $migt/mi_freq_enable '0'
     hide_value $migt/force_stask_to_big '0'
     hide_value $migt/glk_fbreak_enable '0'
     hide_value $migt/force_reset_runtime '0'
-    hide_value $migt/enable_pkg_monitor '0'
 
     settings put secure speed_mode_enable 1
     chmod 000 $migt/*
@@ -118,69 +172,36 @@ disable_migt() {
   fi
 }
 
-core_ctl_preset() {
-  cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
-  echo 30 > $cpu7_core_ctl_dir/busy_down_thres
-  echo 60 > $cpu7_core_ctl_dir/busy_up_thres
-  lock_value 0 $cpu7_core_ctl_dir/enable
-
-  cpu4_core_ctl_dir=/sys/devices/system/cpu/cpu4/core_ctl
-  lock_value 3 $cpu4_core_ctl_dir/max_cpus
-  lock_value 3 $cpu4_core_ctl_dir/min_cpus
-  lock_value 0 $cpu4_core_ctl_dir/enable
-
-  cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
-  lock_value 4 $cpu0_core_ctl_dir/max_cpus
-  lock_value 4 $cpu0_core_ctl_dir/min_cpus
-  lock_value 0 $cpu0_core_ctl_dir/enable
-}
-
-hide_value /sys/class/kgsl/kgsl-3d0/devfreq/governor 'msm-adreno-tz'
-echo "0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
-echo 0 > /sys/module/cpu_boost/parameters/input_boost_ms
-echo 0 > /sys/module/cpu_boost/parameters/sched_boost_on_input
-for index in 0 1 2 3 4 5 6 7; do
-  hide_value /sys/devices/system/cpu/cpu$index/online 1
-done
-
-# set_value 8000000 /proc/sys/kernel/sched_latency_ns
-# set_value 2000000 /proc/sys/kernel/sched_min_granularity_ns
-
-t_message=/sys/class/thermal/thermal_message
-if [[ -f $t_message/cpu_limits ]]; then
-  for i in $(seq 0 7); do
-    maxfreq=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_max_freq)
-    echo cpu$i $maxfreq > $t_message/cpu_limits
-  done
-  chmod 444 $t_message/cpu_limits
-fi
-hide_value $t_message/market_download_limit 0
-hide_value $t_message/cpu_nolimit_temp 49500
-lock_value 0 /sys/module/aigov/parameters/enable
-
-core_ctl_preset
 disable_migt
 
+core_ctl_preset() {
+  if [[ ! -e /sys/devices/system/cpu/cpu7/core_ctl ]]; then
+    return
+  fi
+
+  cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
+  echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
+  echo 1 > $cpu7_core_ctl_dir/not_preferred
+  echo 1 > $cpu7_core_ctl_dir/max_cpus
+  echo 0 > $cpu7_core_ctl_dir/min_cpus
+  echo 30 > $cpu7_core_ctl_dir/busy_down_thres
+  echo 60 > $cpu7_core_ctl_dir/busy_up_thres
+
+  cpu4_core_ctl_dir=/sys/devices/system/cpu/cpu4/core_ctl
+  echo 3 > $cpu4_core_ctl_dir/max_cpus
+  echo 3 > $cpu4_core_ctl_dir/min_cpus
+  echo 0 > $cpu4_core_ctl_dir/enable
+
+  cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
+  echo 4 > $cpu0_core_ctl_dir/max_cpus
+  echo 4 > $cpu0_core_ctl_dir/min_cpus
+  echo 0 > $cpu0_core_ctl_dir/enable
+}
+
+core_ctl_preset
+set_hispeed_freq 0 0 0
+
 process_opt &
-
-setprop persist.sys.miui_animator_sched.bigcores 4-7
-
-for dir in /sys/class/devfreq/*l3-lat; do
-  lock_value 1612800000 $dir/max_freq
-  lock_value 300000000 $dir/min_freq
-done
-for dir in /sys/class/devfreq/*llcc-lat; do
-  lock_value 15258 $dir/max_freq
-  lock_value 2288 $dir/min_freq
-done
-for dir in $(ls /sys/class/devfreq | grep ddr-lat | grep -v npu); do
-  lock_value 10437 /sys/class/devfreq/$dir/max_freq
-  lock_value 762 /sys/class/devfreq/$dir/min_freq
-done
-# 2288 4577 7110 9155 12298 14236 15258
-lock_value 12298 /sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/max_freq
-# 762 1144 1720 2086 2597 2929 3879 5931 6881 7980 10437
-lock_value 6881 /sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/max_freq
 
 
 # OnePlus
@@ -201,23 +222,6 @@ do
   stop $service
 done
 setprop persist.sys.hans.skipframe.enable false
-lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
-for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
-  lock_value 0 /sys/kernel/msm_performance/parameters/$file
-done
-echo -R 444 /sys/kernel/msm_performance/parameters
-
-row=$(grep thermal_heat_path /odm/etc/ThermalServiceConfig/sys_thermal_config.xml)
-tz=$(echo ${row#*>} | cut -f1 -d '<')
-if [[ -n $tz ]]; then
-  hide_value $tz 31000
-fi
-oplus_thermal=/odm/etc/temperature_profile/sys_thermal_control_config.xml
-if [[ -n $(grep 'fps="50"' $oplus_thermal) ]]; then
-  replace=$cfg_dir/sys_thermal_control_config.xml
-  mount --bind $replace $oplus_thermal
-  am force-stop com.oplus.battery
-fi
 
 
 kgsl(){
