@@ -4,6 +4,7 @@
   "framework": 220,
   "alias": {
     "gpu_freq": "/sys/kernel/ged/hal/custom_upbound_gpu_freq",
+    "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
     "boost_affinity": "/sys/module/mtk_fpsgo/parameters/boost_affinity",
     "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
     "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
@@ -14,7 +15,6 @@
     "fpsgo": "/sys/kernel/fpsgo/common/fpsgo_enable",
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",
     "ddr_force_opp": "/sys/devices/platform/1c00f000.dvfsrc/1c00f000.dvfsrc:dvfsrc-helper/dvfsrc_force_vcore_dvfs_opp",
-    "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
     "limit_cfreq": "/sys/kernel/fpsgo/fbt/limit_cfreq",
     "limit_rfreq": "/sys/kernel/fpsgo/fbt/limit_rfreq",
     "limit_cfreq_m": "/sys/kernel/fpsgo/fbt/limit_cfreq_m",

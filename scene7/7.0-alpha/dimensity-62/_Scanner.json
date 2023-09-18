@@ -5,7 +5,6 @@
     ["@cpu_freq", "policy0", "max", "max"],
     ["@cpu_freq", "policy6", "2.4Ghz", "max"],
     ["@uclamp", "0.00~max", "1.0~max", "2.00~max"],
-    ["$mi_thermal", "10"],
     ["$ddr_freq_min", "4266000000"]
   ],
   "booster": {
