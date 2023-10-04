@@ -1,15 +1,5 @@
 cfg_dir=$(cd $(dirname $0); pwd)
 
-# rm /data/system/mcd/*
-if [[ -e /data/system/mcd ]]; then
-  if [[ -e /data/system/mcd/df ]]; then
-    chattr -i /data/system/mcd/df
-    rm /data/system/mcd/df
-    echo '' > /data/system/mcd/df
-    chattr +i /data/system/mcd/df
-  fi
-fi
-
 set_value() {
   value=$1
   path=$2
@@ -70,3 +60,8 @@ fi
 hide_value $t_message/market_download_limit 0
 hide_value $t_message/modem_limit 0
 lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
+
+hide_value /sys/kernel/fpsgo/fbt/limit_cfreq 0
+hide_value /sys/kernel/fpsgo/fbt/limit_rfreq 0
+hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
+hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0

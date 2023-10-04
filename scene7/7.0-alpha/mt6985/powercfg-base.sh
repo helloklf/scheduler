@@ -1,15 +1,5 @@
 cfg_dir=$(cd $(dirname $0); pwd)
 
-# rm /data/system/mcd/*
-if [[ -e /data/system/mcd ]]; then
-  if [[ -e /data/system/mcd/df ]]; then
-    chattr -i /data/system/mcd/df
-    rm /data/system/mcd/df
-    echo '' > /data/system/mcd/df
-    chattr +i /data/system/mcd/df
-  fi
-fi
-
 set_value() {
   value=$1
   path=$2

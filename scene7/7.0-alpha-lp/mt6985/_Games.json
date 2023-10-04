@@ -4,27 +4,27 @@
     {
       "mode": ["powersave"],
       "fas": {
-        "middle_min_freq": 1200000, "lower_freq": 1800000, "slow_down_rate": 2.5,
+        "lower_freq": 1500000, "slow_down_rate": 2,
         "limiters": ["g1:cpu0", "g1:cpu4", "g1:cpu7"],
         "_60": ["1900000", "1900000"],
         "_90": ["1900000", "1900000"],
-        "_120": ["1900000", "1900000"]
+        "_120": ["2100000", "2100000"]
       }
     },
     {
       "mode": ["balance"],
       "fas": {
-        "middle_min_freq": 1700000, "lower_freq": 2100000, "slow_down_rate": 2,
+        "lower_freq": 1800000, "slow_down_rate": 2,
         "limiters": ["g2:cpu0", "g2:cpu4", "g2:cpu7"],
         "_60": ["2100000", "2100000"],
-        "_90": ["2100000", "2100000"],
-        "_120": ["2100000", "2100000"]
+        "_90": ["2300000", "2300000"],
+        "_120": ["2400000", "2400000"]
       }
     },
     {
       "mode": ["performance"],
       "fas": {
-        "lower_freq": 2400000, "slow_down_rate": 2,
+        "lower_freq": 2100000, "slow_down_rate": 2,
         "limiters": ["g3:cpu0", "g3:cpu4", "g3:cpu7"],
         "_60": ["2650000", "2650000"],
         "_90": ["2650000", "2650000"],
@@ -34,7 +34,7 @@
     {
       "mode": ["fast"],
       "fas": {
-        "lower_freq": 2600000, "slow_down_rate": 1.5,
+        "lower_freq": 2300000, "slow_down_rate": 1.5,
         "limiters": ["g4:cpu0", "g4:cpu4", "g4:cpu7"],
         "_60": ["2800000", "2850000"],
         "_90": ["2800000", "2850000"],

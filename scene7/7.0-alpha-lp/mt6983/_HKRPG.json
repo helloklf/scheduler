@@ -7,24 +7,40 @@
   "modes": [
     {
       "mode": ["powersave"],
+      "fas": {
+        "governor": "schedutil",
+        "_60": ["1700000", "1900000", "2"]
+      },
       "call": [
         ["@limiters", "g1:cpu0", "g1:cpu4", "g1:cpu7"]
       ]
     },
     {
       "mode": ["balance"],
+      "fas": {
+        "governor": "schedutil",
+        "_60": ["2100000", "2300000", "2"]
+      },
       "call": [
         ["@limiters", "g1:cpu0", "g1:cpu4", "g2:cpu7"]
       ]
     },
     {
       "mode": ["performance"],
+      "fas": {
+        "governor": "schedutil",
+        "_60": ["2300000", "2600000", "2"]
+      },
       "call": [
         ["@limiters", "g2:cpu0", "hkrpg1:cpu4", "g3:cpu7"]
       ]
     },
     {
       "mode": ["*"],
+      "fas": {
+        "governor": "schedutil",
+        "_60": ["2600000", "2850000", "2"]
+      },
       "call": [
         ["@limiters", "g3:cpu0", "hkrpg2:cpu4", "g4:cpu7"]
       ]

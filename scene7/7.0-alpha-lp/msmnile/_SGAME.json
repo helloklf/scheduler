@@ -27,6 +27,7 @@
   }, {
     "mode": ["balance"],
     "fas": {
+      "mode": "fps",
       "recent_frames": 8, "fast_down_rate": 4, "slow_down_rate": 2.5,
       "_60": ["2361600", "2054400", "-2"],
       "_90": ["2649600", "2246400", "-2"],

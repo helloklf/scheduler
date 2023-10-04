@@ -12,10 +12,12 @@
     "ged_kpi": "/sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled",
     "fpsgo": "/sys/kernel/fpsgo/common/fpsgo_enable",
     "perfmgr_enable": "/sys/module/mtk_fpsgo/parameters/perfmgr_enable",
+    "perfmgr_enable2": "/sys/module/perfmgr_mtk/parameters/perfmgr_enable",
     "ddr_max": "/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq",
     "gpu_max_freq": "/sys/kernel/ged/hal/custom_upbound_gpu_freq",
     "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
-    "cpufreq": "/proc/cpudvfs/cpufreq_debug"
+    "cpufreq": "/proc/cpudvfs/cpufreq_debug",
+    "ddr_map": "/sys/module/mtk_fpsgo/parameters/ddrfreq_remap_table"
   },
   "features": {
     "limiter": {
@@ -61,7 +63,9 @@
   },
   "presets": {
     "reset": [
+      ["@governor", "schedutil"],
       ["$perfmgr_enable", "#0"],
+      ["$perfmgr_enable2", "#0"],
       ["/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq", "800000000"]
     ],
     "min_freq": [
@@ -76,6 +80,7 @@
       ["@values", "min_freq", "200000", "400000", "1200000"]
     ],
     "comm_app": [
+      ["$ddr_map", "1700000:4100000 1600000:3094000 1500000:2133000 1400000:1600000"],
       ["@cpuset", "0-3", "0-7", "0-7", "0-7"]
     ],
     "comm_gaming": [
@@ -89,7 +94,7 @@
       ["@values", "min_freq", "400000", "700000", "1200000"]
     ],
     "powersave_inactive": [
-      ["@limiters", "idle:cpu0", "idle:cpu4"],
+      ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
       ["@preset", "common_inactvie"]
     ],
     "balance_active": [
@@ -151,6 +156,7 @@
         ["@preset", "comm_app"]
       ],
       "game": [
+        ["$ddr_map", "2300000:6400000 2000000:5500000 1700000:4100000 1600000:3094000 1500000:2133000 1400000:1866000"],
         ["@preset", "comm_gaming"],
         ["@preset", "freq_low"]
       ]
@@ -165,6 +171,7 @@
         ["@preset", "comm_app"]
       ],
       "game": [
+        ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000 1500000:2133000 1400000:1866000"],
         ["@preset", "comm_gaming"],
         ["@preset", "freq_middle"]
       ]
@@ -179,6 +186,7 @@
         ["$gpu_max_freq", "#12"]
       ],
       "game": [
+        ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000 1500000:2133000 1400000:1866000"],
         ["@preset", "comm_gaming"],
         ["@preset", "freq_high"],
         ["$gpu_max_freq", "#08"]
@@ -194,6 +202,7 @@
         ["$gpu_max_freq", "#12"]
       ],
       "game": [
+        ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000 1500000:2133000 1400000:1866000"],
         ["@preset", "comm_gaming"],
         ["@preset", "freq_extreme"],
         ["$gpu_max_freq", "#03"]
