@@ -215,18 +215,6 @@ for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
 done
 echo -R 444 /sys/kernel/msm_performance/parameters
 
-row=$(grep thermal_heat_path /odm/etc/ThermalServiceConfig/sys_thermal_config.xml)
-tz=$(echo ${row#*>} | cut -f1 -d '<')
-if [[ -n $tz ]]; then
-  hide_value $tz 31000
-fi
-oplus_thermal=/odm/etc/temperature_profile/sys_thermal_control_config.xml
-if [[ -n $(grep 'fps="50"' $oplus_thermal) ]]; then
-  replace=$cfg_dir/sys_thermal_control_config.xml
-  mount --bind $replace $oplus_thermal
-  am force-stop com.oplus.battery
-fi
-
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1

@@ -9,7 +9,6 @@
     "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
     "ddr_freq_min": "/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq",
     "ddr_freq_cust": "/sys/class/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq",
-    "mi_thermal": "/sys/class/thermal/thermal_message/sconfig",
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",
     "ddr_force_opp": "/sys/devices/platform/1c00f000.dvfsrc/1c00f000.dvfsrc:dvfsrc-helper/dvfsrc_force_vcore_dvfs_opp",
     "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",

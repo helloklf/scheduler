@@ -6,7 +6,6 @@
     "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
     "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
     "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
-    "mi_thermal": "/sys/class/thermal/thermal_message/sconfig",
     "bus_ddr_min": "/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/min_freq",
     "bus_ddr": "/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq",
     "l3_boost": "/sys/devices/system/cpu/bus_dcvs/L3/boost_freq",
@@ -97,7 +96,8 @@
       ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"]
     ],
     "common_inactive": [
-      ["@values", "latency", "0", "8000", "0", "8000", "0", "8000"]
+      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
+      ["@values", "min_freq", "307200", "499200", "595200"]
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],
@@ -149,7 +149,6 @@
     "powersave_inactive": [
       ["@preset", "common_inactive"],
       ["@preset", "cpu7_off"],
-      ["@values", "min_freq", "307200", "499200", "595200"],
       ["@limiters", "idle:cpu0", "idle:cpu3", "idle:cpu7"],
       ["@values", "hispeed_freq", "0", "0", "0"],
       ["@values", "hispeed_load", "90", "90", "90"]
@@ -164,7 +163,6 @@
     "balance_inactive": [
       ["@preset", "common_inactive"],
       ["@preset", "cpu7_auto"],
-      ["@values", "min_freq", "307200", "499200", "595200"],
       ["@limiters", "inactive:cpu0", "inactive:cpu3", "inactive:cpu7"],
       ["@values", "hispeed_freq", "691200", "499200", "595200"],
       ["@values", "hispeed_load", "90", "90", "90"]
@@ -178,7 +176,6 @@
     ],
     "performance_inactive": [
       ["@preset", "common_inactive"],
-      ["@values", "min_freq", "307200", "499200", "595200"],
       ["@limiters", "p2:cpu0", "p2:cpu3", "p2:cpu7"],
       ["@values", "hispeed_freq", "1075200", "1324800", "1286400"],
       ["@values", "hispeed_load", "82", "82", "82"]
@@ -192,10 +189,25 @@
     ],
     "fast_inactive": [
       ["@preset", "common_inactive"],
-      ["@values", "min_freq", "691200", "499200", "595200"],
       ["@limiters", "p3:cpu0", "p3:cpu3", "p3:cpu7"],
       ["@values", "hispeed_freq", "1171200", "1440000", "1497600"],
       ["@values", "hispeed_load", "82", "82", "82"]
+    ],
+    "freq_low": [
+      ["@values", "max_freq", "1670400", "#1651200", "#1708800"],
+      ["@values", "min_freq", "307200", "499200", "595200"]
+    ],
+    "freq_middle": [
+      ["@values", "max_freq", "1670400", "#2054400", "#2092800"],
+      ["@values", "min_freq", "441600", "614400", "729600"]
+    ],
+    "freq_high": [
+      ["@values", "max_freq", "1804800", "#2457600", "#2476800"],
+      ["@values", "min_freq", "672000", "729600", "864000"]
+    ],
+    "freq_extreme": [
+      ["@values", "max_freq", "#1804800", "#2707200", "#2841600"],
+      ["@values", "min_freq", "1056000", "1209600", "1171200"]
     ]
   },
   "schemes": {
@@ -230,10 +242,7 @@
       "game": [
         ["@preset", "common_gaming"],
         ["@values", "hispeed_freq", "902400", "1113600", "1171200"],
-        ["@cpu_freq", "cpu0", "441600", "1555200"],
-        ["@cpu_freq", "cpu3", "614400", "2054400"],
-        ["@cpu_freq", "cpu7", "729600", "2092800"],
-        ["$mi_thermal", "13"]
+        ["@preset", "freq_middle"]
       ]
     },
     "performance": {
@@ -248,10 +257,7 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@cpu_freq", "cpu0", "672000", "1804800"],
-        ["@cpu_freq", "cpu3", "729600", "2457600"],
-        ["@cpu_freq", "cpu7", "864000", "2476800"],
-        ["$mi_thermal", "13"],
+        ["@preset", "freq_high"],
         ["$l3_boost", "#1593600"],
         ["$bus_ddr", "3187000"]
       ]
@@ -260,7 +266,6 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "fast_active"],
-        ["$mi_thermal", "10"],
         ["@preset", "ddr_max"]
       ],
       "app": [
@@ -273,10 +278,7 @@
         ["@preset", "common_gaming"],
         ["$bus_ddr", "3187000"],
         ["$bus_ddr_min", "2736000"],
-        ["@cpu_freq", "cpu0", "1056000", "1804800"],
-        ["@cpu_freq", "cpu3", "1209600", "2707200"],
-        ["@cpu_freq", "cpu7", "1171200", "2841600"],
-        ["$mi_thermal", "10"]
+        ["@preset", "freq_extreme"]
       ]
     }
   },

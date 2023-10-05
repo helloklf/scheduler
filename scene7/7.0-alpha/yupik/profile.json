@@ -8,7 +8,6 @@
     "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
     "max_cpus_cpu4": "/sys/devices/system/cpu/cpu4/core_ctl/max_cpus",
     "min_cpus_cpu4": "/sys/devices/system/cpu/cpu4/core_ctl/min_cpus",
-    "mi_thermal": "/sys/class/thermal/thermal_message/sconfig",
     "msm_min_freq": "/sys/module/msm_performance/parameters/cpu_min_freq",
     "msm_max_freq": "/sys/module/msm_performance/parameters/cpu_max_freq"
   },

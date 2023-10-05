@@ -8,7 +8,6 @@
     "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
     "ddr_freq_min": "/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq",
     "ddr_freq_cust": "/sys/class/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq",
-    "mi_thermal": "/sys/class/thermal/thermal_message/sconfig",
     "ged_kpi": "/sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled",
     "fpsgo": "/sys/kernel/fpsgo/common/fpsgo_enable",
     "perfmgr_enable": "/sys/module/mtk_fpsgo/parameters/perfmgr_enable",
@@ -81,7 +80,8 @@
     ],
     "comm_app": [
       ["$ddr_map", "1700000:4100000 1600000:3094000 1500000:2133000 1400000:1600000"],
-      ["@cpuset", "0-3", "0-7", "0-7", "0-7"]
+      ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
+      ["@preset", "freq_extreme"]
     ],
     "comm_gaming": [
       ["@limiters", "NONE"],

@@ -7,7 +7,6 @@
     "ddr_freq_min": "/sys/devices/platform/soc/1c00f000.dvfsrc/mtk-dvfsrc-devfreq/devfreq/mtk-dvfsrc-devfreq/min_freq",
     "ddr_freq_max": "/sys/devices/platform/soc/1c00f000.dvfsrc/mtk-dvfsrc-devfreq/devfreq/mtk-dvfsrc-devfreq/max_freq",
     "ddr_freq_cust": "/sys/class/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq",
-    "mi_thermal": "/sys/class/thermal/thermal_message/sconfig",
     "ged_kpi": "/sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled",
     "fpsgo": "/sys/kernel/fpsgo/common/fpsgo_enable",
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",

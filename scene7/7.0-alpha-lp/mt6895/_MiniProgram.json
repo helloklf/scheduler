@@ -11,8 +11,7 @@
       ["@cpuset", "1-3", "0-4", "0-7", "0-7"],
       ["@cpu_freq", "policy0", "1.6Ghz", "max"],
       ["@cpu_freq", "policy4", "min", "2.6Ghz"],
-      ["@cpu_freq", "policy7", "min", "2.6Ghz"],
-      ["$mi_thermal", "10"]
+      ["@cpu_freq", "policy7", "min", "2.6Ghz"]
     ]
   }]
 }

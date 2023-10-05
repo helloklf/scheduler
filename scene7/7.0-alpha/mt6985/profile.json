@@ -8,7 +8,6 @@
     "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
     "ddr_freq_min": "/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq",
     "ddr_freq_cust": "/sys/class/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq",
-    "mi_thermal": "/sys/class/thermal/thermal_message/sconfig",
     "ged_kpi": "/sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled",
     "fpsgo": "/sys/kernel/fpsgo/common/fpsgo_enable",
     "perfmgr_enable": "/sys/module/mtk_fpsgo/parameters/perfmgr_enable",
@@ -17,7 +16,8 @@
     "gpu_max_freq": "/sys/kernel/ged/hal/custom_upbound_gpu_freq",
     "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",
-    "ddr_map": "/sys/module/mtk_fpsgo/parameters/ddrfreq_remap_table"
+    "ddr_map": "/sys/module/mtk_fpsgo/parameters/ddrfreq_remap_table",
+    "cpus_limit": "/sys/module/mtk_fpsgo/parameters/cpus_limit"
   },
   "features": {
     "limiter": {
@@ -66,7 +66,8 @@
       ["@governor", "schedutil"],
       ["$perfmgr_enable", "#0"],
       ["$perfmgr_enable2", "#0"],
-      ["/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq", "800000000"]
+      ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "800000000"],
+      ["$cpus_limit", "#3000000 3350000"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
@@ -81,7 +82,8 @@
     ],
     "comm_app": [
       ["$ddr_map", "1700000:4100000 1600000:3094000 1500000:2133000 1400000:1600000"],
-      ["@cpuset", "0-3", "0-7", "0-7", "0-7"]
+      ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
+      ["@preset", "freq_extreme"]
     ],
     "comm_gaming": [
       ["@limiters", "NONE"],
@@ -126,22 +128,22 @@
     ],
     "freq_low": [
       ["$cpufreq", "0 400000 1700000|4 400000 2100000|7 1200000 2100000"],
-      ["@values", "max_freq", "1700000", "2100000", "2100000"],
+      ["@values", "max_freq", "1700000", "#2100000", "#2100000"],
       ["@values", "min_freq", "400000", "400000", "400000"]
     ],
     "freq_middle": [
       ["$cpufreq", "0 400000 1700000|4 400000 2400000|7 1200000 2400000"],
-      ["@values", "max_freq", "1700000", "2400000", "2400000"],
+      ["@values", "max_freq", "1700000", "#2400000", "#2400000"],
       ["@values", "min_freq", "400000", "400000", "400000"]
     ],
     "freq_high": [
       ["$cpufreq", "0 400000 1700000|4 400000 2650000|7 1200000 2800000"],
-      ["@values", "max_freq", "1700000", "2650000", "2800000"],
+      ["@values", "max_freq", "1700000", "#2650000", "#2800000"],
       ["@values", "min_freq", "400000", "400000", "400000"]
     ],
     "freq_extreme": [
       ["$cpufreq", "0 400000 1900000|4 400000 2850000|7 1200000 3050000"],
-      ["@values", "max_freq", "1900000", "2850000", "3050000"],
+      ["@values", "max_freq", "#1900000", "#2850000", "#3050000"],
       ["@values", "min_freq", "400000", "400000", "400000"]
     ]
   },
