@@ -3,7 +3,7 @@
   "modes": [{
     "mode": ["powersave"],
     "booster": {
-      "duration": 2000,
+      "duration": 2500,
       "idle_delay": 1000,
       "enter": [ ["@preset", "powersave_active"] ],
       "exit": [ ["@preset", "powersave_inactive"] ]
@@ -11,7 +11,7 @@
   }, {
     "mode": ["balance"],
     "booster": {
-      "duration": 2000,
+      "duration": 2500,
       "idle_delay": 1000,
       "enter": [ ["@preset", "balance_active"] ],
       "exit": [ ["@preset", "balance_inactive"] ]

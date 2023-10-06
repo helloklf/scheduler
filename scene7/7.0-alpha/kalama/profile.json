@@ -18,7 +18,7 @@
       "inactive_interval": 100,
       "logger": false,
       "params": [
-        { "id": "p1:cpu0", "step": -0.5, "max": 1459200, "min": 441600, "margin": 200 },
+        { "id": "p1:cpu0", "step": -0.5, "max": 1459200, "min": 556800, "margin": 200 },
         { "id": "p1:cpu3", "max": 2054400, "min": 729000, "margin": 300 },
         { "id": "p1:cpu7", "max": 2092800, "min": 729000, "margin": 300 },
 
@@ -40,10 +40,10 @@
 
         { "id": "idle:cpu0", "max": 1440000, "min": 556800, "margin": 100 },
         { "id": "idle:cpu3", "max": 1536000, "min": 614400, "margin": 100 },
-        { "id": "idle:cpu7", "max": 1593600, "min": 729600, "margin": 100 },
+        { "id": "idle:cpu7", "max": 1593600, "min": 729600, "margin": 200 },
 
 
-        { "id": "g0:cpu0", "step": -0.7, "max": 1459200, "turning": 902400, "min": 441600, "margin": 200 },
+        { "id": "g0:cpu0", "step": -0.7, "max": 1459200, "turning": 902400, "min": 556800, "margin": 200 },
         { "id": "g0:cpu3", "step": -0.9, "max": 2054400, "turning": 1651200, "min": 614400, "margin": 240 },
         { "id": "g0:cpu7", "step": -0.9, "max": 2092800, "turning": 1593600, "min": 864000, "margin": 200 },
 

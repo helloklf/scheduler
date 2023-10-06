@@ -1,11 +1,5 @@
 {
   "friendly": "QQ飞车",
-  "cpuset": {
-    "unity_main": "7",
-    "heavy_thread": "UnityGfx",
-    "heavy_cores": "6",
-    "other": "0-5"
-  },
   "modes": [{
     "mode": ["powersave"],
     "fas": {
