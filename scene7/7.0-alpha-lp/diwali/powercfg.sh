@@ -56,8 +56,6 @@ move_to_cpuset() {
   fi
 }
 
-
-
 echo N > /sys/module/lpm_levels/parameters/sleep_disabled
 set_input_boost_freq() {
   c0="$1"
@@ -107,16 +105,6 @@ mk_cpuctl () {
 }
 
 process_opt() {
-  set_cpuset surfaceflinger top-app
-  set_cpuset system_server top-app
-  set_cpuset update_engine top-app
-  set_cpuset vendor.qti.hardware.display.composer-service top-app
-  # set_cpuset mediaserver background
-  # set_cpuset media.hwcodec background
-
-  # set_task_affinity `pgrep com.miui.home` 11111111
-  # set_task_affinity `pgrep com.miui.home` 11110000
-
   move_to_heavy vendor.qti.hardware.display.composer-service
   move_to_heavy camerahalserver
   move_to_heavy surfaceflinger
@@ -247,18 +235,12 @@ core_ctl_preset() {
   echo 0 > $cpu0_core_ctl_dir/enable
 }
 
-hide_value /sys/class/kgsl/kgsl-3d0/devfreq/governor 'msm-adreno-tz'
 echo "0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 echo 0 > /sys/module/cpu_boost/parameters/input_boost_ms
 echo 0 > /sys/module/cpu_boost/parameters/sched_boost_on_input
 for index in 0 1 2 3 4 5 6 7; do
   echo 1 > /sys/devices/system/cpu/cpu$index/online
 done
-
-echo 128 > /dev/cpuctl/background/cpu.shares
-echo 384 > /dev/cpuctl/system-background/cpu.shares
-echo 512 > /dev/cpuctl/foreground/cpu.shares
-# rmdir /dev/cpuset/background/untrustedapp
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
@@ -296,3 +278,29 @@ do
   stop $service
 done
 setprop persist.sys.hans.skipframe.enable false
+
+
+set_cpuset(){
+  pgrep -f $1 | while read pid; do
+    echo $pid > /dev/cpuset/$2/cgroup.procs
+    ls /proc/$pid/task | while read tid
+    do
+      echo $tid > /dev/cpuset/$2/tasks
+    done
+  done
+}
+
+mk_cpuset(){
+  mkdir /dev/cpuset/top-app/$1
+  echo $1 > /dev/cpuset/top-app/$1/cpus
+  echo 0 > /dev/cpuset/top-app/$1/mems
+}
+mk_cpuset 4-5
+mk_cpuset 0-5
+
+set_cpuset toucheventcheck "top-app/4-5"
+set_cpuset touch_report "top-app/4-5"
+set_cpuset surfaceflinger "top-app/0-5"
+set_cpuset system_server "top-app/0-5"
+set_cpuset update_engine "top-app/0-5"
+set_cpuset vendor.qti.hardware.display.composer-service "top-app/0-5"

@@ -1,4 +1,3 @@
-
 set_value() {
   value=$1
   path=$2
