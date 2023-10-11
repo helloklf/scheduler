@@ -1,5 +1,3 @@
-killall scene-scheduler 2>/dev/null
-
 # [none] intra-slot inter-slot full full-reset
 serialize_jobs(){
   echo $1 > /sys/devices/platform/13000000.mali/scheduling/serialize_jobs

@@ -1,8 +1,5 @@
 {
   "friendly": "QQ飞车",
-  "call": [
-    ["@preset", "kpi_off"]
-  ],
   "modes": [{
     "mode": ["powersave"],
     "call": [

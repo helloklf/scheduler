@@ -30,7 +30,6 @@
   {
     "mode": ["balance"],
     "call": [
-      ["@preset", "kpi_on"]
     ],
     "sensors": [{
       "sensor": "fps",
@@ -65,7 +64,6 @@
   {
     "mode": ["performance"],
     "call": [
-      ["@preset", "kpi_on"],
       ["@mtk_feas", "0"]
     ],
     "sensors": [{

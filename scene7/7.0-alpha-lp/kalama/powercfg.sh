@@ -1,23 +1,3 @@
-#! /vendor/bin/sh
-
-cfg_dir=$(cd $(dirname $0); pwd)
-
-
-# Enable conservative pl
-# echo 1 > /proc/sys/kernel/sched_conservative_pl
-
-echo N > /sys/module/lpm_levels/parameters/sleep_disabled
-
-set_cpuset(){
-  pgrep -f $1 | while read pid; do
-    echo $pid > /dev/cpuset/$2/cgroup.procs
-    echo $pid > /dev/stune/$2/cgroup.procs
-    ls /proc/$pid/task | while read tid
-    do
-      echo $tid > /dev/cpuset/$2/tasks
-    done
-  done
-}
 
 set_value() {
   value=$1
@@ -59,44 +39,25 @@ hide_value() {
   fi
 }
 
-process_opt(){
-  set_cpuset surfaceflinger top-app
-  set_cpuset system_server top-app
-  set_cpuset vendor.qti.hardware.display.composer-service top-app
-
-  miui_home=$(pidof com.miui.home)
-  if [[ "$miui_home" != "" ]]; then
-    memcg=/dev/memcg
-    mem_fg=$memcg/scene_fg
-    if [[ -d $memcg ]] && [[ ! -e "$mem_fg" ]]; then
-      mkdir -p $mem_fg
-      echo 0 > $mem_fg/memory.swappiness
-      echo 1 > $mem_fg/memory.oom_control
-      echo 1 > $mem_fg/memory.use_hierarchy
-      echo 1 >  $mem_fg/memory.move_charge_at_immigrate
-    fi
-    echo $miui_home > $mem_fg/cgroup.procs
-  fi
-}
-
 disable_migt() {
   migt=/sys/module/migt/parameters
-  if [[ -d $migt ]]; then
+  if [[ -e $migt ]]; then
     hide_value $migt/migt_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
     hide_value $migt/glk_freq_limit_start '0'
     hide_value $migt/glk_freq_limit_walt '0'
     hide_value $migt/glk_maxfreq '0 0 0'
-    hide_value $migt/glk_minfreq '300000 710400 844800'
+    hide_value $migt/glk_minfreq '307200 499200 595200'
     hide_value $migt/migt_ceiling_freq '0 0 0'
     hide_value $migt/glk_disable '1'
     hide_value $migt/mi_freq_enable '0'
     hide_value $migt/force_stask_to_big '0'
     hide_value $migt/glk_fbreak_enable '0'
     hide_value $migt/force_reset_runtime '0'
-    hide_value $migt/enable_pkg_monitor '0'
 
     settings put secure speed_mode_enable 1
     chmod 000 $migt/*
+    chmod 000 /sys/module/migt
+    chmod 000 /sys/module/sched_walt/holders/migt/parameters
   fi
 
   glk=/proc/sys/glk
@@ -115,35 +76,25 @@ disable_migt() {
     hide_value $migt/enable_pkg_monitor '0'
     hide_value $migt/boost_pid '0'
   fi
+
+  chmod 000 /sys/class/misc/migt
+  chmod 000 /sys/module/sched_walt/holders/migt
 }
 
 core_ctl_preset() {
   cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
-  echo 30 > $cpu7_core_ctl_dir/busy_down_thres
-  echo 60 > $cpu7_core_ctl_dir/busy_up_thres
-  lock_value 0 $cpu7_core_ctl_dir/enable
+  echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
+  echo 1 > $cpu7_core_ctl_dir/min_cpus
 
-  cpu4_core_ctl_dir=/sys/devices/system/cpu/cpu4/core_ctl
-  lock_value 3 $cpu4_core_ctl_dir/max_cpus
-  lock_value 3 $cpu4_core_ctl_dir/min_cpus
-  lock_value 0 $cpu4_core_ctl_dir/enable
-
-  cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
-  lock_value 4 $cpu0_core_ctl_dir/max_cpus
-  lock_value 4 $cpu0_core_ctl_dir/min_cpus
-  lock_value 0 $cpu0_core_ctl_dir/enable
+  cpu3_core_ctl_dir=/sys/devices/system/cpu/cpu3/core_ctl
+  lock_value 0 $cpu3_core_ctl_dir/min_cpus
+  lock_value 0 $cpu3_core_ctl_dir/enable
 }
 
-hide_value /sys/class/kgsl/kgsl-3d0/devfreq/governor 'msm-adreno-tz'
-echo "0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
-echo 0 > /sys/module/cpu_boost/parameters/input_boost_ms
-echo 0 > /sys/module/cpu_boost/parameters/sched_boost_on_input
-for index in 0 1 2 3 4 5 6 7; do
-  hide_value /sys/devices/system/cpu/cpu$index/online 1
-done
-
-# set_value 8000000 /proc/sys/kernel/sched_latency_ns
-# set_value 2000000 /proc/sys/kernel/sched_min_granularity_ns
+hide_value /sys/module/msm_performance/parameters/cpu_max_freq '0:4294967295 1:4294967295 2:4294967295 3:4294967295 4:4294967295 5:4294967295 6:4294967295 7:4294967295'
+chattr +i  /sys/module/msm_performance/parameters/cpu_max_freq
+hide_value /sys/module/msm_performance/parameters/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
+chattr +i  /sys/module/msm_performance/parameters/cpu_min_freq
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
@@ -153,33 +104,13 @@ if [[ -f $t_message/cpu_limits ]]; then
   done
   chmod 444 $t_message/cpu_limits
 fi
+hide_value $t_message/temp_state 0
 hide_value $t_message/market_download_limit 0
 hide_value $t_message/cpu_nolimit_temp 49500
-lock_value 0 /sys/module/aigov/parameters/enable
+lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
 
 core_ctl_preset
 disable_migt
-
-process_opt &
-
-setprop persist.sys.miui_animator_sched.bigcores 4-7
-
-for dir in /sys/class/devfreq/*l3-lat; do
-  lock_value 1612800000 $dir/max_freq
-  lock_value 300000000 $dir/min_freq
-done
-for dir in /sys/class/devfreq/*llcc-lat; do
-  lock_value 15258 $dir/max_freq
-  lock_value 2288 $dir/min_freq
-done
-for dir in $(ls /sys/class/devfreq | grep ddr-lat | grep -v npu); do
-  lock_value 10437 /sys/class/devfreq/$dir/max_freq
-  lock_value 762 /sys/class/devfreq/$dir/min_freq
-done
-# 2288 4577 7110 9155 12298 14236 15258
-lock_value 12298 /sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/max_freq
-# 762 1144 1720 2086 2597 2929 3879 5931 6881 7980 10437
-lock_value 6881 /sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/max_freq
 
 
 # OnePlus
@@ -206,6 +137,7 @@ for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
 done
 echo -R 444 /sys/kernel/msm_performance/parameters
 
+
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
 }
@@ -220,3 +152,44 @@ kgsl max_gpuclk 999000000
 kgsl min_clock_mhz 0
 kgsl devfreq/min_freq 0
 kgsl devfreq/max_freq 999000000
+
+
+
+cpus=3-6
+
+set_cpuset(){
+  pgrep -f $1 | while read pid; do
+    echo $pid > /dev/cpuset/$2/cgroup.procs
+    ls /proc/$pid/task | while read tid
+    do
+      echo $tid > /dev/cpuset/$2/tasks
+    done
+  done
+}
+
+rmdir /dev/cpuset/background/untrustedapp
+mkdir /dev/cpuset/top-app/$cpus
+echo $cpus > /dev/cpuset/top-app/$cpus/cpus
+echo 0 > /dev/cpuset/top-app/$cpus/mems
+
+rmdir /dev/cpuset/foreground/boost
+set_cpuset kswapd0 'foreground'
+set_cpuset toucheventcheck "top-app/$cpus"
+set_cpuset touch_report "top-app/$cpus"
+set_cpuset surfaceflinger "top-app/$cpus"
+set_cpuset system_server "top-app/$cpus"
+set_cpuset update_engine "top-app/$cpus"
+set_cpuset audioserver 'foreground'
+set_cpuset android.hardware.audio.service_64 'foreground'
+set_cpuset vendor.qti.hardware.display.composer-service "top-app/$cpus"
+
+
+for file in /sys/devices/system/cpu/bus_dcvs/LLCC/*/min_freq; do
+  lock_value 300000 $file
+done
+for file in /sys/devices/system/cpu/bus_dcvs/DDR/*/min_freq; do
+  lock_value 547000 $file
+done
+for file in /sys/devices/system/cpu/bus_dcvs/L3/*/min_freq; do
+  lock_value 307200 $file
+done

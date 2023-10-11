@@ -29,14 +29,14 @@
       "params": [
         { "id": "p1:cpu0", "max": 1700000, "turning": 1500000, "min": 1000000, "margin": 300 },
         { "id": "p1:cpu4", "max": 2300000, "turning": 2100000, "min": 1800000, "margin": 300 },
-        { "id": "p1:cpu7", "max": 2300000, "turning": 2100000, "min": 1800000, "margin": 400 },
+        { "id": "p1:cpu7", "max": 2300000, "turning": 2100000, "min": 1800000, "margin": 300 },
 
         { "id": "p2:cpu0", "max": 1700000, "turning": 1500000, "min": 1200000, "margin": 300 },
-        { "id": "p2:cpu4", "max": 2650000, "turning": 2300000, "min": 2100000, "margin": 400 },
-        { "id": "p2:cpu7", "max": 2650000, "turning": 2300000, "min": 2100000, "margin": 400 },
+        { "id": "p2:cpu4", "max": 2650000, "turning": 2300000, "min": 2100000, "margin": 300 },
+        { "id": "p2:cpu7", "max": 2650000, "turning": 2300000, "min": 2100000, "margin": 300 },
 
         { "id": "p3:cpu0", "max": 1800000, "turning": 1600000, "min": 1400000, "margin": 300 },
-        { "id": "p3:cpu4", "max": 2650000, "min": 2400000, "margin": 300 },
+        { "id": "p3:cpu4", "max": 2600000, "min": 2400000, "margin": 300 },
         { "id": "p3:cpu7", "max": 2800000, "turning": 2600000, "min": 2400000, "margin": 300 },
 
         { "id": "p4:cpu0", "max": 2000000, "min": 1500000, "margin": 300 },
@@ -44,12 +44,12 @@
         { "id": "p4:cpu7", "max": 3050000, "min": 2800000, "margin": 300 },
 
 
-        { "id": "inactive:cpu0","max": 1700000, "min": 400000, "margin": 150 },
-        { "id": "inactive:cpu4","max": 2100000, "min": 400000, "margin": 100 },
-        { "id": "inactive:cpu7","max": 2100000, "min": 1200000, "margin": 130 },
+        { "id": "inactive:cpu0","max": 1700000, "min": 500000, "margin": 120 },
+        { "id": "inactive:cpu4","max": 2100000, "min": 500000, "margin": 120 },
+        { "id": "inactive:cpu7","max": 2100000, "min": 1200000, "margin": 120 },
 
-        { "id": "idle:cpu0","max": 1400000, "min": 400000, "margin": 100 },
-        { "id": "idle:cpu4","max": 1800000, "min": 400000, "margin": 100 },
+        { "id": "idle:cpu0","max": 1400000, "min": 500000, "margin": 100 },
+        { "id": "idle:cpu4","max": 1800000, "min": 500000, "margin": 100 },
         { "id": "idle:cpu7","max": 1800000, "min": 1200000, "margin": 100 }
       ]
     },
@@ -129,22 +129,22 @@
     "freq_low": [
       ["$cpufreq", "0 400000 1700000|4 400000 2100000|7 1200000 2100000"],
       ["@values", "max_freq", "1700000", "#2100000", "#2100000"],
-      ["@values", "min_freq", "400000", "400000", "400000"]
+      ["@values", "min_freq", "220000", "400000", "400000"]
     ],
     "freq_middle": [
       ["$cpufreq", "0 400000 1700000|4 400000 2400000|7 1200000 2400000"],
       ["@values", "max_freq", "1700000", "#2400000", "#2400000"],
-      ["@values", "min_freq", "400000", "400000", "400000"]
+      ["@values", "min_freq", "220000", "400000", "400000"]
     ],
     "freq_high": [
       ["$cpufreq", "0 400000 1700000|4 400000 2650000|7 1200000 2800000"],
       ["@values", "max_freq", "1700000", "#2650000", "#2800000"],
-      ["@values", "min_freq", "400000", "400000", "400000"]
+      ["@values", "min_freq", "220000", "400000", "400000"]
     ],
     "freq_extreme": [
       ["$cpufreq", "0 400000 1900000|4 400000 2850000|7 1200000 3050000"],
       ["@values", "max_freq", "#1900000", "#2850000", "#3050000"],
-      ["@values", "min_freq", "400000", "400000", "400000"]
+      ["@values", "min_freq", "220000", "400000", "400000"]
     ]
   },
   "schemes": {
@@ -152,7 +152,7 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "powersave_active"],
-        ["$gpu_max_freq", "#12"]
+        ["$gpu_max_freq", "#14"]
       ],
       "app": [
         ["@preset", "comm_app"]
@@ -167,7 +167,7 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "balance_active"],
-        ["$gpu_max_freq", "#12"]
+        ["$gpu_max_freq", "#14"]
       ],
       "app": [
         ["@preset", "comm_app"]
@@ -185,7 +185,7 @@
       ],
       "app": [
         ["@preset", "comm_app"],
-        ["$gpu_max_freq", "#12"]
+        ["$gpu_max_freq", "#14"]
       ],
       "game": [
         ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000 1500000:2133000 1400000:1866000"],
@@ -201,7 +201,7 @@
       ],
       "app": [
         ["@preset", "comm_app"],
-        ["$gpu_max_freq", "#12"]
+        ["$gpu_max_freq", "#14"]
       ],
       "game": [
         ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000 1500000:2133000 1400000:1866000"],

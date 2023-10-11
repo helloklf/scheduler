@@ -99,14 +99,6 @@
     "max_freq": [
       ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
     ],
-    "kpi_on": [
-      ["$ged_kpi", "#1"],
-      ["$fpsgo", "#1"]
-    ],
-    "kpi_off": [
-      ["$fpsgo", "#0"],
-      ["$ged_kpi", "#0"]
-    ],
     "cpu7_on": [
       ["$max_cpus_cpu7", "#1"],
       ["$min_cpus_cpu7", "#1"]
@@ -138,7 +130,6 @@
     ],
     "comm_gaming": [
       ["@limiters", "NONE"],
-      ["@preset", "kpi_off"],
       ["@preset", "fbt_limit_off"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#0"],
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
@@ -318,9 +309,13 @@
       "import": "_SpeedMobile.json"
     },
     {
-      "remark": "Xiaomi Only (K50P/12PD)",
-      "friendly": "我的世界/使命召唤/暗区突围/穿越火线/王牌战士/光遇(CN)/光遇(Global)/蛋仔派对/决战平安京",
+      "remark": "Xiaomi Only (K60U)",
+      "friendly": "王者荣耀/LOL M/QQ飞车/和平精英/星穹铁道/我的世界/使命召唤/暗区突围/穿越火线/王牌战士/光遇(CN)/光遇(Global)/蛋仔派对/决战平安京",
       "packages": [
+        "com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm",
+        "com.tencent.tmgp.speedmobile",
+        "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig",
+        "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea",
         "com.mojang.minecraftpe", 
         "com.tencent.tmgp.cod", "com.tencent.mf.uam", "com.tencent.tmgp.cf", "com.tencent.af",
         "com.netease.sky", "com.tgc.sky.android",

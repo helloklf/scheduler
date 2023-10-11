@@ -59,7 +59,7 @@
       ["$stune_top_boost", "10"]
     ],
     "common_inactive": [
-      ["@cpuset", "1", "0-4", "0-7", "0-7"],
+      ["@cpuset", "0-3", "0-4", "0-7", "0-7"],
       ["$stune_top_boost", "0"],
       ["$stune_top_perf", "0"],
       ["$min_cpu_freq", "0 500000|1 500000"]

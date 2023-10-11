@@ -16,7 +16,8 @@
     "gpu_max_freq": "/sys/kernel/ged/hal/custom_upbound_gpu_freq",
     "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",
-    "ddr_map": "/sys/module/mtk_fpsgo/parameters/ddrfreq_remap_table"
+    "ddr_map": "/sys/module/mtk_fpsgo/parameters/ddrfreq_remap_table",
+    "cpus_limit": "/sys/module/mtk_fpsgo/parameters/cpus_limit"
   },
   "features": {
     "limiter": {
@@ -28,14 +29,14 @@
       "params": [
         { "id": "p1:cpu0", "max": 1700000, "turning": 1500000, "min": 1000000, "margin": 300 },
         { "id": "p1:cpu4", "max": 2300000, "turning": 2100000, "min": 1800000, "margin": 300 },
-        { "id": "p1:cpu7", "max": 2300000, "turning": 2100000, "min": 1800000, "margin": 400 },
+        { "id": "p1:cpu7", "max": 2300000, "turning": 2100000, "min": 1800000, "margin": 300 },
 
         { "id": "p2:cpu0", "max": 1700000, "turning": 1500000, "min": 1200000, "margin": 300 },
-        { "id": "p2:cpu4", "max": 2650000, "turning": 2300000, "min": 2100000, "margin": 400 },
-        { "id": "p2:cpu7", "max": 2650000, "turning": 2300000, "min": 2100000, "margin": 400 },
+        { "id": "p2:cpu4", "max": 2650000, "turning": 2300000, "min": 2100000, "margin": 300 },
+        { "id": "p2:cpu7", "max": 2650000, "turning": 2300000, "min": 2100000, "margin": 300 },
 
         { "id": "p3:cpu0", "max": 1800000, "turning": 1600000, "min": 1400000, "margin": 300 },
-        { "id": "p3:cpu4", "max": 2650000, "min": 2400000, "margin": 300 },
+        { "id": "p3:cpu4", "max": 2600000, "min": 2400000, "margin": 300 },
         { "id": "p3:cpu7", "max": 2800000, "turning": 2600000, "min": 2400000, "margin": 300 },
 
         { "id": "p4:cpu0", "max": 2000000, "min": 1500000, "margin": 300 },
@@ -43,12 +44,12 @@
         { "id": "p4:cpu7", "max": 3050000, "min": 2800000, "margin": 300 },
 
 
-        { "id": "inactive:cpu0","max": 1700000, "min": 400000, "margin": 150 },
-        { "id": "inactive:cpu4","max": 2100000, "min": 400000, "margin": 100 },
-        { "id": "inactive:cpu7","max": 2100000, "min": 1200000, "margin": 130 },
+        { "id": "inactive:cpu0","max": 1700000, "min": 500000, "margin": 120 },
+        { "id": "inactive:cpu4","max": 2100000, "min": 500000, "margin": 120 },
+        { "id": "inactive:cpu7","max": 2100000, "min": 1200000, "margin": 120 },
 
-        { "id": "idle:cpu0","max": 1400000, "min": 400000, "margin": 100 },
-        { "id": "idle:cpu4","max": 1800000, "min": 400000, "margin": 100 },
+        { "id": "idle:cpu0","max": 1400000, "min": 500000, "margin": 100 },
+        { "id": "idle:cpu4","max": 1800000, "min": 500000, "margin": 100 },
         { "id": "idle:cpu7","max": 1800000, "min": 1200000, "margin": 100 }
       ]
     },
@@ -65,7 +66,8 @@
       ["@governor", "schedutil"],
       ["$perfmgr_enable", "#0"],
       ["$perfmgr_enable2", "#0"],
-      ["/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq", "800000000"]
+      ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "800000000"],
+      ["$cpus_limit", "#3000000 3350000"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
@@ -127,22 +129,22 @@
     "freq_low": [
       ["$cpufreq", "0 400000 1700000|4 400000 2100000|7 1200000 2100000"],
       ["@values", "max_freq", "1700000", "2100000", "2100000"],
-      ["@values", "min_freq", "400000", "400000", "400000"]
+      ["@values", "min_freq", "220000", "400000", "400000"]
     ],
     "freq_middle": [
       ["$cpufreq", "0 400000 1700000|4 400000 2400000|7 1200000 2400000"],
       ["@values", "max_freq", "1700000", "2400000", "2400000"],
-      ["@values", "min_freq", "400000", "400000", "400000"]
+      ["@values", "min_freq", "220000", "400000", "400000"]
     ],
     "freq_high": [
       ["$cpufreq", "0 400000 1700000|4 400000 2650000|7 1200000 2800000"],
       ["@values", "max_freq", "1700000", "2650000", "2800000"],
-      ["@values", "min_freq", "400000", "400000", "400000"]
+      ["@values", "min_freq", "220000", "400000", "400000"]
     ],
     "freq_extreme": [
       ["$cpufreq", "0 400000 1900000|4 400000 2850000|7 1200000 3050000"],
       ["@values", "max_freq", "1900000", "2850000", "3050000"],
-      ["@values", "min_freq", "400000", "400000", "400000"]
+      ["@values", "min_freq", "220000", "400000", "400000"]
     ]
   },
   "schemes": {

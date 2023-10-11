@@ -12,7 +12,7 @@
     "mode": ["powersave", "balance"],
     "call": [
       ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
-      ["@cpuset", "1", "0-4", "0-7", "0-7"],
+      ["@cpuset", "0-3", "0-4", "0-7", "0-7"],
       ["@cpu_freq", "policy0", "1075200", "1574400"],
       ["@cpu_freq", "policy4", "min", "2227200"],
       ["@cpu_freq", "policy7", "min", "2284800"]

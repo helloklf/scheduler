@@ -82,22 +82,12 @@
     "max_freq": [
       ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
     ],
-    "kpi_on": [
-      ["$ged_kpi", "#1"],
-      ["$fpsgo", "#1"]
-    ],
-    "kpi_off": [
-      ["$fpsgo", "#0"],
-      ["$ged_kpi", "#0"]
-    ],
     "feas_on": [
       ["$fpsgo", "#1"],
-      ["$perfmgr_enable", "#1"],
-      ["$ged_kpi", "#0"]
+      ["$perfmgr_enable", "#1"]
     ],
     "feas_off": [
       ["$perfmgr_enable", "#0"],
-      ["$ged_kpi", "#0"],
       ["$fpsgo", "#0"]
     ],
     "common_actvie": [
@@ -116,10 +106,12 @@
       ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
       ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#30"],
       ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#6"],
-      ["$ged_kpi", "#0"]
+      ["/sys/kernel/fpsgo/fstb/fstb_self_ctrl_fps_enable", "0"],
+      ["/sys/kernel/fpsgo/fstb/set_render_no_ctrl", "1"],
+      ["/sys/kernel/fpsgo/fstb/fstb_soft_level", "1 240-240"],
+      ["/sys/kernel/fpsgo/fstb/set_render_max_fps", "144"]
     ],
     "common_gaming": [
-      ["@preset", "kpi_off"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1"],
       ["@cpuset", "0-2", "1-3", "0-5", "0-7"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#0"],

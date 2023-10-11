@@ -138,7 +138,7 @@
     ],
     "common_inactive": [
       ["@values", "min_freq", "307200", "633600", "787200"],
-      ["@values", "latency", "0", "8000", "0", "8000", "0", "8000"],
+      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
       ["@uclamp", "0.00~max", "0.00~max", "0.00~max"]
     ],
     "common_app": [
@@ -155,6 +155,7 @@
     ],
 
     "powersave_active": [
+      ["@values", "min_freq", "556800", "633600", "787200"],
       ["@preset", "common_active"],
       ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
       ["@values", "hispeed_freq", "1228800", "1113600", "1171200"],
@@ -169,6 +170,7 @@
     ],
 
     "balance_active": [
+      ["@values", "min_freq", "556800", "633600", "787200"],
       ["@preset", "common_active"],
       ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
       ["@values", "hispeed_freq", "1228800", "1555200", "1651200"],
@@ -320,9 +322,13 @@
       "import": "_SpeedMobile.json"
     },
     {
-      "remark": "Xiaomi Only (K50U/12TPro)",
-      "friendly": "我的世界/使命召唤/暗区突围/穿越火线/王牌战士/光遇(CN)/光遇(Global)/蛋仔派对/决战平安京",
+      "remark": "Xiaomi Only (K60U)",
+      "friendly": "王者荣耀/LOL M/QQ飞车/和平精英/星穹铁道/我的世界/使命召唤/暗区突围/穿越火线/王牌战士/光遇(CN)/光遇(Global)/蛋仔派对/决战平安京",
       "packages": [
+        "com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm",
+        "com.tencent.tmgp.speedmobile",
+        "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig",
+        "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea",
         "com.mojang.minecraftpe", 
         "com.tencent.tmgp.cod", "com.tencent.mf.uam", "com.tencent.tmgp.cf", "com.tencent.af",
         "com.netease.sky", "com.tgc.sky.android",

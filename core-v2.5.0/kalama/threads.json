@@ -6,10 +6,10 @@
     "cpuset": {
       "comm": {
         "7": ["UnityMain"],
-        "4": ["UnityGfx"],
-        "3,5-6": ["NativeThread", "Job.Worker"]
+        "6": ["UnityGfx"],
+        "3-5": ["NativeThread", "Job.Worker"]
       },
-      "other": "3,5-6"
+      "other": "3-5"
     }
   },
   {
@@ -18,13 +18,13 @@
     "cpuset": {
       "unity_main": "7",
       "heavy_thread": "UnityGfx",
-      "heavy_cores": "4",
+      "heavy_cores": "6",
       "heavy_switch": false,
       "comm": {
-        "3,5-6": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"],
-        "0-3,5-6": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"]
+        "3-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"],
+        "0-5": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"]
       },
-      "other": "3,5-6"
+      "other": "3-5"
     }
   },
   {
@@ -33,12 +33,12 @@
     "cpuset": {
       "unity_main": "7",
       "heavy_thread": "Thread-",
-      "heavy_cores": "4",
+      "heavy_cores": "6",
       "comm": {
-        "4": ["UnityGfx"],
-        "3,5-6": ["UnityPreload", "NativeThread", "CoreThread", "Worker Thread", "Apollo-"]
+        "6": ["UnityGfx"],
+        "3-5": ["UnityPreload", "NativeThread", "CoreThread", "Worker Thread", "Apollo-"]
       },
-      "other": "0-3,5-6"
+      "other": "0-5"
     }
   },
   {
@@ -46,13 +46,13 @@
     "packages": ["com.tencent.lolm"],
     "cpuset": {
       "heavy_thread": "Thread-",
-      "heavy_cores": "4",
+      "heavy_cores": "6",
       "comm": {
         "7": ["UnityMain"],
-        "4": ["UnityGfx"],
-        "3,5-6": ["NativeThread", "CoreThread", "Worker Thread"]
+        "6": ["UnityGfx"],
+        "3-5": ["NativeThread", "CoreThread", "Worker Thread"]
       },
-      "other": "0-3,5-6"
+      "other": "0-5"
     }
   },
   {
@@ -62,10 +62,10 @@
       "heavy_thread": "Thread-",
       "heavy_cores": "7",
       "comm": {
-        "4": ["RenderThread"],
-        "3,5-6": ["FAsyncLoading", "TaskGraphNP", "Thread-", "NativeThread", "MainThread"]
+        "6": ["RenderThread"],
+        "3-5": ["FAsyncLoading", "TaskGraphNP", "Thread-", "NativeThread", "MainThread"]
       },
-      "other": "3,5-6"
+      "other": "3-5"
     }
   },
   {
@@ -74,10 +74,10 @@
     "cpuset": {
       "unity_main": "7",
       "comm": {
-        "4": ["UnityGfx"],
-        "3,5-6": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
+        "6": ["UnityGfx"],
+        "3-5": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
       },
-      "other": "3,5-6"
+      "other": "3-5"
     }
   }
 ]

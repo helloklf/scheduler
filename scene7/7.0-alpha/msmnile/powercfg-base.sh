@@ -2,7 +2,6 @@
 
 cfg_dir=$(cd $(dirname $0); pwd)
 
-killall scene-scheduler 2>/dev/null
 
 set_value() {
   value=$1

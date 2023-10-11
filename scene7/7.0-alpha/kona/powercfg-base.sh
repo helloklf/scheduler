@@ -2,7 +2,6 @@
 
 cfg_dir=$(cd $(dirname $0); pwd)
 
-killall scene-scheduler 2>/dev/null
 
 # Enable conservative pl
 # echo 1 > /proc/sys/kernel/sched_conservative_pl

@@ -213,11 +213,6 @@
   ],
   "games": [
     {
-      "friendly": "机动都市阿尔法",
-      "packages": ["com.netease.jddsaef", "com.netease.g93na", "com.netease.g93natw"],
-      "import": "_NeteaseJDDS.json"
-    },
-    {
       "friendly": "原神",
       "categories": ["GenshinImpact"],
       "import": "_GenshinImpact.json"

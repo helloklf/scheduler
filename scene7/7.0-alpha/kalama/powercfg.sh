@@ -1,6 +1,4 @@
-target=`getprop ro.board.platform`
 
-killall scene-scheduler 2>/dev/null
 set_value() {
   value=$1
   path=$2
@@ -40,22 +38,6 @@ hide_value() {
     echo "$1" Not Found!
   fi
 }
-
-echo N > /sys/module/lpm_levels/parameters/sleep_disabled
-set_input_boost_freq() {
-  c0="$1"
-  c1="$2"
-  c2="$3"
-  ms="$4"
-  echo "0:$c0 1:$c0 2:$c0 3:$c0 4:$c1 5:$c1 6:$c1 7:$c2" > /sys/devices/system/cpu/cpu_boost/input_boost_freq
-  echo $ms > /sys/devices/system/cpu/cpu_boost/input_boost_ms
-  if [[ "$ms" -gt 0 ]]; then
-    echo 1 > /sys/devices/system/cpu/cpu_boost/sched_boost_on_input
-  else
-    echo 0 > /sys/devices/system/cpu/cpu_boost/sched_boost_on_input
-  fi
-}
-set_input_boost_freq 0 0 0 0
 
 disable_migt() {
   migt=/sys/module/migt/parameters
@@ -109,16 +91,6 @@ core_ctl_preset() {
   lock_value 0 $cpu3_core_ctl_dir/enable
 }
 
-echo "0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
-echo 0 > /sys/module/cpu_boost/parameters/input_boost_ms
-echo 0 > /sys/module/cpu_boost/parameters/sched_boost_on_input
-for index in 0 1 2 3 4 5 6 7; do
-  echo 1 > /sys/devices/system/cpu/cpu$index/online
-done
-
-set_value 8000000 /proc/sys/kernel/sched_latency_ns
-set_value 2000000 /proc/sys/kernel/sched_min_granularity_ns
-
 hide_value /sys/module/msm_performance/parameters/cpu_max_freq '0:4294967295 1:4294967295 2:4294967295 3:4294967295 4:4294967295 5:4294967295 6:4294967295 7:4294967295'
 chattr +i  /sys/module/msm_performance/parameters/cpu_max_freq
 hide_value /sys/module/msm_performance/parameters/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
@@ -136,7 +108,6 @@ hide_value $t_message/temp_state 0
 hide_value $t_message/market_download_limit 0
 hide_value $t_message/cpu_nolimit_temp 49500
 
-umount /sys/module/perfmgr/parameters/perfmgr_enable
 lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
 
 core_ctl_preset
@@ -184,12 +155,32 @@ kgsl devfreq/min_freq 0
 kgsl devfreq/max_freq 999000000
 
 
-for file in /sys/devices/system/cpu/bus_dcvs/LLCC/*/min_freq; do
-  lock_value 300000 $file
-done
-for file in /sys/devices/system/cpu/bus_dcvs/DDR/*/min_freq; do
-  lock_value 547000 $file
-done
-for file in /sys/devices/system/cpu/bus_dcvs/L3/*/min_freq; do
-  lock_value 307200 $file
-done
+
+cpus=3-6
+
+set_cpuset(){
+  pgrep -f $1 | while read pid; do
+    echo $pid > /dev/cpuset/$2/cgroup.procs
+    ls /proc/$pid/task | while read tid
+    do
+      echo $tid > /dev/cpuset/$2/tasks
+    done
+  done
+}
+
+rmdir /dev/cpuset/background/untrustedapp
+mkdir /dev/cpuset/top-app/$cpus
+echo $cpus > /dev/cpuset/top-app/$cpus/cpus
+echo 0 > /dev/cpuset/top-app/$cpus/mems
+
+rmdir /dev/cpuset/foreground/boost
+set_cpuset kswapd0 'foreground'
+set_cpuset toucheventcheck "top-app/$cpus"
+set_cpuset touch_report "top-app/$cpus"
+set_cpuset surfaceflinger "top-app/$cpus"
+set_cpuset system_server "top-app/$cpus"
+set_cpuset update_engine "top-app/$cpus"
+set_cpuset audioserver 'foreground'
+set_cpuset android.hardware.audio.service_64 'foreground'
+set_cpuset vendor.qti.hardware.display.composer-service "top-app/$cpus"
+

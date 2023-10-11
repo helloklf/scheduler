@@ -1,5 +1,3 @@
-killall scene-scheduler 2>/dev/null
-
 
 # /sys/class/kgsl/kgsl-3d0/devfreq/available_frequencies
 # 840000000 778000000 738000000 676000000 608000000 540000000 491000000 443000000 379000000 315000000

@@ -1,6 +1,5 @@
 target=`getprop ro.board.platform`
 
-killall scene-scheduler 2>/dev/null
 set_value() {
   value=$1
   path=$2
@@ -187,40 +186,17 @@ disable_migt() {
 
 core_ctl_preset() {
   cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
-  echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
-  echo 1 > $cpu7_core_ctl_dir/not_preferred
-  echo 1 > $cpu7_core_ctl_dir/max_cpus
-  echo 0 > $cpu7_core_ctl_dir/min_cpus
-  # echo 1 > $cpu7_core_ctl_dir/nr_prev_assist_thresh
-  echo 1 > $cpu7_core_ctl_dir/task_thres
-  echo 15 > $cpu7_core_ctl_dir/busy_down_thres
-  echo 30 > $cpu7_core_ctl_dir/busy_up_thres
-  # echo 1 > $cpu7_core_ctl_dir/enable
+  lock_value 0 $cpu7_core_ctl_dir/enable
 
   cpu4_core_ctl_dir=/sys/devices/system/cpu/cpu4/core_ctl
-  echo 50 > $cpu4_core_ctl_dir/offline_delay_ms
-  echo 1 1 1 > $cpu4_core_ctl_dir/not_preferred
-  echo 3 > $cpu4_core_ctl_dir/max_cpus
-  echo 0 > $cpu4_core_ctl_dir/min_cpus
-  # echo 4294967295 > $cpu4_core_ctl_dir/nr_prev_assist_thresh
-  echo 3 > $cpu4_core_ctl_dir/task_thres
-  echo 15 > $cpu4_core_ctl_dir/busy_down_thres
-  echo 20 > $cpu4_core_ctl_dir/busy_up_thres
-  # echo 1 > $cpu4_core_ctl_dir/enable
+  echo 3 > $cpu4_core_ctl_dir/min_cpus
+  lock_value 0 $cpu4_core_ctl_dir/enable
 
   cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
-  echo 50 > $cpu0_core_ctl_dir/offline_delay_ms
-  echo 0 1 1 1 > $cpu0_core_ctl_dir/not_preferred
-  echo 4 > $cpu0_core_ctl_dir/max_cpus
-  echo 1 > $cpu0_core_ctl_dir/min_cpus
-  # echo 4294967295 > $cpu0_core_ctl_dir/nr_prev_assist_thresh
-  # echo 3 > $cpu0_core_ctl_dir/task_thres
-  echo 6 > $cpu0_core_ctl_dir/busy_down_thres
-  echo 15 > $cpu0_core_ctl_dir/busy_up_thres
-  # echo 1 > $cpu0_core_ctl_dir/enable
+  echo 4 > $cpu0_core_ctl_dir/min_cpus
+  lock_value 0 $cpu0_core_ctl_dir/enable
 }
 
-hide_value /sys/class/kgsl/kgsl-3d0/devfreq/governor 'msm-adreno-tz'
 echo "0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 echo 0 > /sys/module/cpu_boost/parameters/input_boost_ms
 echo 0 > /sys/module/cpu_boost/parameters/sched_boost_on_input
@@ -228,18 +204,12 @@ for index in 0 1 2 3 4 5 6 7; do
   echo 1 > /sys/devices/system/cpu/cpu$index/online
 done
 
-set_value 8000000 /proc/sys/kernel/sched_latency_ns
-set_value 2000000 /proc/sys/kernel/sched_min_granularity_ns
-
 hide_value /sys/module/msm_performance/parameters/cpu_max_freq '0:4294967295 1:4294967295 2:4294967295 3:4294967295 4:4294967295 5:4294967295 6:4294967295 7:4294967295'
 chattr +i  /sys/module/msm_performance/parameters/cpu_max_freq
 hide_value /sys/module/msm_performance/parameters/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
 chattr +i  /sys/module/msm_performance/parameters/cpu_min_freq
 
-echo 128 > /dev/cpuctl/background/cpu.shares
-echo 384 > /dev/cpuctl/system-background/cpu.shares
-echo 512 > /dev/cpuctl/foreground/cpu.shares
-# rmdir /dev/cpuset/background/untrustedapp
+rmdir /dev/cpuset/background/untrustedapp
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
@@ -251,25 +221,12 @@ if [[ -f $t_message/cpu_limits ]]; then
 fi
 hide_value $t_message/temp_state 0
 hide_value $t_message/market_download_limit 0
-hide_value $t_message/cpu_nolimit_temp 47500
-
-umount /sys/module/perfmgr/parameters/perfmgr_enable
+hide_value $t_message/cpu_nolimit_temp 49500
 
 core_ctl_preset
 disable_migt
 
 process_opt &
-
-
-for file in /sys/devices/system/cpu/bus_dcvs/LLCC/*/max_freq
-do
-  lock_value 1066000 $file
-done
-for file in /sys/devices/system/cpu/bus_dcvs/LLCC/*/min_freq
-do
-  lock_value 300000 $file
-done
-
 
 # OnePlus
 hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
@@ -295,7 +252,6 @@ for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
 done
 echo -R 444 /sys/kernel/msm_performance/parameters
 
-
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
 }
@@ -310,3 +266,26 @@ kgsl max_gpuclk 999000000
 kgsl min_clock_mhz 0
 kgsl devfreq/min_freq 0
 kgsl devfreq/max_freq 999000000
+
+
+set_cpuset(){
+  pgrep -f $1 | while read pid; do
+    echo $pid > /dev/cpuset/$2/cgroup.procs
+    ls /proc/$pid/task | while read tid
+    do
+      echo $tid > /dev/cpuset/$2/tasks
+    done
+  done
+}
+
+mkdir /dev/cpuset/top-app/7
+echo 7 > /dev/cpuset/top-app/7/cpus
+echo 0 > /dev/cpuset/top-app/7/mems
+
+set_cpuset kswapd0 'foreground'
+set_cpuset toucheventcheck 'foreground'
+set_cpuset touch_report 'foreground'
+set_cpuset surfaceflinger 'foreground'
+set_cpuset system_server 'foreground'
+set_cpuset update_engine 'top-app/7'
+set_cpuset vendor.qti.hardware.display.composer-service 'foreground'

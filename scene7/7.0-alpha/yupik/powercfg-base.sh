@@ -1,6 +1,5 @@
 target=`getprop ro.board.platform`
 
-killall scene-scheduler 2>/dev/null
 
 manufacturer=$(getprop ro.product.manufacturer)
 

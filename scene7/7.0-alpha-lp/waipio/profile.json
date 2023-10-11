@@ -13,7 +13,7 @@
   },
   "features": {
     "limiter": {
-      "active_interval": 24,
+      "active_interval": 30,
       "gaming_interval": 30,
       "inactive_interval": 150,
       "logger": false,

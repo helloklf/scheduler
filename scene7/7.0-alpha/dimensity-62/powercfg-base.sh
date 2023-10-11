@@ -1,6 +1,5 @@
 cfg_dir=$(cd $(dirname $0); pwd)
 
-killall scene-scheduler 2>/dev/null
 
 # rm /data/system/mcd/*
 if [[ -e /data/system/mcd ]]; then

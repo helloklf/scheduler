@@ -1,6 +1,5 @@
 cfg_dir=$(cd $(dirname $0); pwd)
 
-killall scene-scheduler 2>/dev/null
 
 # rm /data/system/mcd/*
 if [[ -e /data/system/mcd ]]; then
@@ -166,7 +165,7 @@ lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 # lock_value '1 240-10' /sys/kernel/fpsgo/fstb/fstb_soft_level
 # echo 10 > /sys/module/mtk_fpsgo/parameters/variance # default 40
 
-lock_value 0 /sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled
+lock_value 1 /sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled
 hide_value /sys/kernel/fpsgo/common/fpsgo_enable 1
 
 hide_value /sys/kernel/fpsgo/fbt/limit_cfreq 0

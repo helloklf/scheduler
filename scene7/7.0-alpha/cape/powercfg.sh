@@ -1,5 +1,4 @@
 target=`getprop ro.board.platform`
-killall scene-scheduler 2>/dev/null
 
 set_value() {
   value=$1
@@ -11,14 +10,6 @@ set_value() {
       echo "$value" > "$path"
     fi;
   fi;
-}
-
-cpuctl () {
-  echo $2 > /dev/cpuctl/$1/cpu.uclamp.sched_boost_no_override
-  echo $3 > /dev/cpuctl/$1/cpu.uclamp.latency_sensitive
-  echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
-  echo $5 > /dev/cpuctl/$1/cpu.uclamp.max
-  echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
 }
 
 lock_value() {
@@ -56,8 +47,6 @@ move_to_cpuset() {
     echo $pid > "$cpuset"
   fi
 }
-
-
 
 echo N > /sys/module/lpm_levels/parameters/sleep_disabled
 set_input_boost_freq() {
@@ -108,16 +97,6 @@ mk_cpuctl () {
 }
 
 process_opt() {
-  set_cpuset surfaceflinger top-app
-  set_cpuset system_server top-app
-  set_cpuset update_engine top-app
-  set_cpuset vendor.qti.hardware.display.composer-service top-app
-  # set_cpuset mediaserver background
-  # set_cpuset media.hwcodec background
-
-  # set_task_affinity `pgrep com.miui.home` 11111111
-  # set_task_affinity `pgrep com.miui.home` 11110000
-
   move_to_heavy vendor.qti.hardware.display.composer-service
   move_to_heavy camerahalserver
   move_to_heavy surfaceflinger
@@ -155,9 +134,6 @@ kernel_thread_set(){
   done
 }
 
-# cpuctl top-app 0 0 0 max
-# cpuctl foreground 0 0 0 max
-# cpuctl background 0 0 0 max
 mk_cpuctl 'heavy' 1 0 0 max
 mkdir /dev/cpuset/heavy
 echo 0-6 > /dev/cpuset/heavy/cpus
@@ -173,7 +149,7 @@ disable_migt() {
     hide_value $migt/glk_freq_limit_start '0'
     hide_value $migt/glk_freq_limit_walt '0'
     hide_value $migt/glk_maxfreq '0 0 0'
-    hide_value $migt/glk_minfreq '307200 633600 806400'
+    hide_value $migt/glk_minfreq '307200 633600 787200'
     hide_value $migt/migt_ceiling_freq '0 0 0'
     hide_value $migt/glk_disable '1'
     hide_value $migt/mi_freq_enable '0'
@@ -204,51 +180,23 @@ disable_migt() {
     hide_value $migt/boost_pid '0'
   fi
 
-  metis=/sys/module/metis/parameters
-  for file in $metis/*enable*; do
-    echo 0 > $file
-  done
-  if [[ -d $metis ]]; then
-    chmod -R 444 $metis
-  fi
+  chmod 000 /sys/class/misc/migt
+  chmod 000 /sys/module/sched_walt/holders/migt
 }
 
 core_ctl_preset() {
   cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
-  echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
-  echo 1 > $cpu7_core_ctl_dir/not_preferred
-  echo 1 > $cpu7_core_ctl_dir/max_cpus
-  echo 0 > $cpu7_core_ctl_dir/min_cpus
-  # echo 1 > $cpu7_core_ctl_dir/nr_prev_assist_thresh
-  echo 1 > $cpu7_core_ctl_dir/task_thres
-  echo 15 > $cpu7_core_ctl_dir/busy_down_thres
-  echo 30 > $cpu7_core_ctl_dir/busy_up_thres
-  echo 0 > $cpu7_core_ctl_dir/enable
+  lock_value 0 $cpu7_core_ctl_dir/enable
 
   cpu4_core_ctl_dir=/sys/devices/system/cpu/cpu4/core_ctl
-  echo 50 > $cpu4_core_ctl_dir/offline_delay_ms
-  echo 1 1 1 > $cpu4_core_ctl_dir/not_preferred
-  echo 3 > $cpu4_core_ctl_dir/max_cpus
-  echo 0 > $cpu4_core_ctl_dir/min_cpus
-  # echo 4294967295 > $cpu4_core_ctl_dir/nr_prev_assist_thresh
-  echo 3 > $cpu4_core_ctl_dir/task_thres
-  echo 15 > $cpu4_core_ctl_dir/busy_down_thres
-  echo 20 > $cpu4_core_ctl_dir/busy_up_thres
-  echo 0 > $cpu4_core_ctl_dir/enable
+  echo 3 > $cpu4_core_ctl_dir/min_cpus
+  lock_value 0 $cpu4_core_ctl_dir/enable
 
   cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
-  echo 50 > $cpu0_core_ctl_dir/offline_delay_ms
-  echo 0 1 1 1 > $cpu0_core_ctl_dir/not_preferred
-  echo 4 > $cpu0_core_ctl_dir/max_cpus
-  echo 1 > $cpu0_core_ctl_dir/min_cpus
-  # echo 4294967295 > $cpu0_core_ctl_dir/nr_prev_assist_thresh
-  # echo 3 > $cpu0_core_ctl_dir/task_thres
-  echo 6 > $cpu0_core_ctl_dir/busy_down_thres
-  echo 15 > $cpu0_core_ctl_dir/busy_up_thres
-  echo 0 > $cpu0_core_ctl_dir/enable
+  echo 4 > $cpu0_core_ctl_dir/min_cpus
+  lock_value 0 $cpu0_core_ctl_dir/enable
 }
 
-hide_value /sys/class/kgsl/kgsl-3d0/devfreq/governor 'msm-adreno-tz'
 echo "0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
 echo 0 > /sys/module/cpu_boost/parameters/input_boost_ms
 echo 0 > /sys/module/cpu_boost/parameters/sched_boost_on_input
@@ -256,10 +204,12 @@ for index in 0 1 2 3 4 5 6 7; do
   echo 1 > /sys/devices/system/cpu/cpu$index/online
 done
 
-echo 128 > /dev/cpuctl/background/cpu.shares
-echo 384 > /dev/cpuctl/system-background/cpu.shares
-echo 512 > /dev/cpuctl/foreground/cpu.shares
-# rmdir /dev/cpuset/background/untrustedapp
+hide_value /sys/module/msm_performance/parameters/cpu_max_freq '0:4294967295 1:4294967295 2:4294967295 3:4294967295 4:4294967295 5:4294967295 6:4294967295 7:4294967295'
+chattr +i  /sys/module/msm_performance/parameters/cpu_max_freq
+hide_value /sys/module/msm_performance/parameters/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
+chattr +i  /sys/module/msm_performance/parameters/cpu_min_freq
+
+rmdir /dev/cpuset/background/untrustedapp
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
@@ -269,14 +219,15 @@ if [[ -f $t_message/cpu_limits ]]; then
   done
   chmod 444 $t_message/cpu_limits
 fi
+hide_value $t_message/temp_state 0
 hide_value $t_message/market_download_limit 0
-hide_value $t_message/cpu_nolimit_temp 47500
-lock_value 0 /sys/module/aigov/parameters/enable
+hide_value $t_message/cpu_nolimit_temp 49500
 
 core_ctl_preset
 disable_migt
 
 process_opt &
+
 
 
 # OnePlus
@@ -302,3 +253,42 @@ for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
   lock_value 0 /sys/kernel/msm_performance/parameters/$file
 done
 echo -R 444 /sys/kernel/msm_performance/parameters
+
+kgsl(){
+  lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
+}
+pl_max=$(($(cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels)-1))
+kgsl thermal_pwrlevel 0
+kgsl min_pwrlevel $pl_max
+kgsl max_pwrlevel 0
+kgsl min_pwrlevel $pl_max
+kgsl default_pwrlevel $pl_max
+kgsl max_clock_mhz 999
+kgsl max_gpuclk 999000000
+kgsl min_clock_mhz 0
+kgsl devfreq/min_freq 0
+kgsl devfreq/max_freq 999000000
+
+
+set_cpuset(){
+  pgrep -f $1 | while read pid; do
+    echo $pid > /dev/cpuset/$2/cgroup.procs
+    ls /proc/$pid/task | while read tid
+    do
+      echo $tid > /dev/cpuset/$2/tasks
+    done
+  done
+}
+
+mkdir /dev/cpuset/top-app/7
+echo 7 > /dev/cpuset/top-app/7/cpus
+echo 0 > /dev/cpuset/top-app/7/mems
+
+set_cpuset kswapd0 'foreground'
+set_cpuset toucheventcheck 'foreground'
+set_cpuset touch_report 'foreground'
+set_cpuset surfaceflinger 'foreground'
+set_cpuset system_server 'foreground'
+set_cpuset update_engine 'top-app/7'
+set_cpuset vendor.qti.hardware.display.composer-service 'foreground'
+

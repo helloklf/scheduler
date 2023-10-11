@@ -1,6 +1,5 @@
 #!/system/bin/sh
 
-killall scene-scheduler 2>/dev/null
 
 target=`getprop ro.board.platform`
 

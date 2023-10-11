@@ -82,22 +82,12 @@
     "max_freq": [
       ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
     ],
-    "kpi_on": [
-      ["$ged_kpi", "#1"],
-      ["$fpsgo", "#1"]
-    ],
-    "kpi_off": [
-      ["$fpsgo", "#1"],
-      ["$ged_kpi", "#0"]
-    ],
     "feas_on": [
       ["$fpsgo", "#1"],
-      ["$perfmgr_enable", "#1"],
-      ["$ged_kpi", "#0"]
+      ["$perfmgr_enable", "#1"]
     ],
     "feas_off": [
       ["$perfmgr_enable", "#0"],
-      ["$ged_kpi", "#0"],
       ["$fpsgo", "#0"]
     ],
     "common_actvie": [
@@ -115,11 +105,9 @@
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
       ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
       ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#30"],
-      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#6"],
-      ["$ged_kpi", "#0"]
+      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#6"]
     ],
     "common_gaming": [
-      ["@preset", "kpi_off"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1"],
       ["@cpuset", "0-2", "1-3", "0-5", "0-7"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#0"],
@@ -296,9 +284,13 @@
       "import": "_PUBG.json"
     },
     {
-      "remark": "Xiaomi Only (K50/K60E)",
-      "friendly": "我的世界/使命召唤/暗区突围/穿越火线/王牌战士/光遇(CN)/光遇(Global)/蛋仔派对/决战平安京",
+      "remark": "Xiaomi Only (K60U)",
+      "friendly": "王者荣耀/LOL M/QQ飞车/和平精英/星穹铁道/我的世界/使命召唤/暗区突围/穿越火线/王牌战士/光遇(CN)/光遇(Global)/蛋仔派对/决战平安京",
       "packages": [
+        "com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm",
+        "com.tencent.tmgp.speedmobile",
+        "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig",
+        "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea",
         "com.mojang.minecraftpe", 
         "com.tencent.tmgp.cod", "com.tencent.mf.uam", "com.tencent.tmgp.cf", "com.tencent.af",
         "com.netease.sky", "com.tgc.sky.android",

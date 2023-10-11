@@ -1,5 +1,4 @@
 target=`getprop ro.board.platform`
-killall scene-scheduler 2>/dev/null
 
 set_value() {
   value=$1
