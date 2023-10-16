@@ -3,7 +3,6 @@
       
     "friendly": "原神",
     "categories": ["GenshinImpact"],
-    "governor": ["UnityMain", "UnityGfx"],
     "cpuset": {
       "comm": {
         "6-7": ["UnityMain"],
@@ -16,7 +15,6 @@
   {
     "friendly": "王者荣耀",
     "packages": ["com.tencent.tmgp.sgame"],
-    "governor": ["UnityMain", "UnityGfx", "Thread-"],
     "cpuset": {
       "comm": {
         "7": ["UnityMain"],
@@ -29,7 +27,6 @@
   {
     "friendly": "和平精英",
     "packages": ["com.tencent.tmgp.pubgmhd"],
-    "governor": ["RenderThread", "Thread-"],
     "cpuset": {
       "interval": 1000,
       "comm": {
@@ -42,7 +39,6 @@
   {
     "friendly": "QQ飞车",
     "packages": ["com.tencent.tmgp.speedmobile"],
-    "governor": ["UnityMain", "UnityGfx"],
     "cpuset": {
       "unity_main": "7",
       "comm": {

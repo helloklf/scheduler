@@ -49,7 +49,7 @@
 
         { "id": "idle:cpu0", "max": 1612800, "turning": 1420800, "min": 883200, "margin": 130 },
         { "id": "idle:cpu4", "max": 1766400, "min": 710400, "margin": 70 },
-        { "id": "idle:cpu7", "max": 1862400, "margin": 90 }
+        { "id": "idle:cpu7", "max": 1862400, "margin": 90, "core_ctl": true }
       ]
     }
   },

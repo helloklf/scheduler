@@ -8,7 +8,6 @@
     {
       "mode": ["powersave"],
       "fas": {
-        "governor": "schedutil",
         "_60": ["1700000", "1900000", "2"]
       },
       "call": [
@@ -18,7 +17,6 @@
     {
       "mode": ["balance"],
       "fas": {
-        "governor": "schedutil",
         "_60": ["2100000", "2300000", "2"]
       },
       "call": [
@@ -28,7 +26,6 @@
     {
       "mode": ["performance"],
       "fas": {
-        "governor": "schedutil",
         "_60": ["2300000", "2600000", "2"]
       },
       "call": [
@@ -38,7 +35,6 @@
     {
       "mode": ["*"],
       "fas": {
-        "governor": "schedutil",
         "_60": ["2600000", "2850000", "2"]
       },
       "call": [

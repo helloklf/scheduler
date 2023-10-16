@@ -27,10 +27,9 @@
       "gaming_interval": 30,
       "inactive_interval": 150,
       "ddr_boost": true,
-      "logger": false,
       "params": [
         { "id": "p1:cpu0", "max": 1400000, "min": 500000, "margin": 250 },
-        { "id": "p1:cpu4", "max": 2150000, "turning": 1800000, "min": 700000, "margin": 300 },
+        { "id": "p1:cpu4", "max": 2150000, "turning": 1800000, "min": 700000, "margin": 400 },
         { "id": "p1:cpu7", "max": 2300000, "turning": 1800000, "min": 1300000, "margin": 400 },
 
         { "id": "p2:cpu0", "max": 1500000, "min": 1050000, "margin": 300 },
@@ -69,7 +68,7 @@
 
         { "id": "idle:cpu0","max": 1200000, "min": 400000, "margin": 50 },
         { "id": "idle:cpu4","max": 1800000, "min": 400000, "margin": 60 },
-        { "id": "idle:cpu7","max": 1800000, "min": 1300000, "margin": 70 }
+        { "id": "idle:cpu7","max": 1800000, "min": 1300000, "margin": 70, "core_ctl": true }
       ]
     },
     "gesture_boost": {
@@ -126,7 +125,11 @@
     "comm_app": [
       ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
       ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#30"],
-      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#4"]
+      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#4"],
+      ["/sys/kernel/fpsgo/fstb/fstb_self_ctrl_fps_enable", "0"],
+      ["/sys/kernel/fpsgo/fstb/set_render_no_ctrl", "1"],
+      ["/sys/kernel/fpsgo/fstb/fstb_soft_level", "1 240-240"],
+      ["/sys/kernel/fpsgo/fstb/set_render_max_fps", "144"]
     ],
     "comm_gaming": [
       ["@limiters", "NONE"],
@@ -147,7 +150,7 @@
       ["@values", "min_freq", "400000", "700000", "1300000"]
     ],
     "powersave_inactive": [
-      ["@limiters", "idle:cpu0", "idle:cpu4"],
+      ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
       ["@preset", "common_inactvie"],
       ["$ddr_freq_min", "#800000000"],
       ["@preset", "cpu7_off"]

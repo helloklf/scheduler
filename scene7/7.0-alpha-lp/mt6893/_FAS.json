@@ -1,0 +1,39 @@
+{
+    "friendly": "FAS",
+    "modes": [{
+      "mode": ["powersave"],
+      "fas": {
+        "big_min_freq": 1075200, "middle_min_freq": 710400,
+        "recent_frames": 8, "fast_down_rate": 4, "slow_down_rate": 3,
+        "_60": ["2284000", "1985000"],
+        "_90": ["2284000", "1985000"],
+        "_120": ["2284000", "1985000"]
+      }
+    }, {
+      "mode": ["balance"],
+      "fas": {
+        "mode": "fps",
+        "recent_frames": 8, "fast_down_rate": 4, "slow_down_rate": 2.5,
+        "_60": ["2463000", "2200000"],
+        "_90": ["2463000", "2200000"],
+        "_120": ["2463000", "2200000"]
+      }
+    }, {
+      "mode": ["performance"],
+      "fas": {
+        "mode": "fps",
+        "recent_frames": 8, "fast_down_rate": 4, "slow_down_rate": 2.5,
+        "_60": ["2600000", "2354000"],
+        "_90": ["2600000", "2354000"],
+        "_120": ["2600000", "2354000"]
+      }
+    }, {
+      "mode": ["fast", "pedestal"],
+      "fas": {
+        "recent_frames": 8, "fast_down_rate": 4, "slow_down_rate": 2.5,
+        "_60": ["2600000", "2600000"],
+        "_90": ["2600000", "2600000"],
+        "_120": ["2713000", "2600000"]
+      }
+    }]
+  }

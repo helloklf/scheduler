@@ -37,7 +37,7 @@
 
         { "id": "idle:cpu0", "max": 1804800, "min": 806400, "margin": 130 },
         { "id": "idle:cpu4", "max": 1516800, "margin": 80 },
-        { "id": "idle:cpu7", "max": 1766400, "margin": 130 }
+        { "id": "idle:cpu7", "max": 1766400, "margin": 130, "core_ctl": true }
       ]
     }
   },
@@ -144,7 +144,7 @@
       ["@repeat", "sched_config", "75 75", "85 85", "150", "400"]
     ],
     "powersave_inactive": [
-      ["@limiters", "idle:cpu0", "idle:cpu4"],
+      ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
       ["@preset", "cores_force_off"],
       ["@preset", "comm_inactive"]
     ],

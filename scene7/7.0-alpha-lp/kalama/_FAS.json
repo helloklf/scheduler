@@ -23,7 +23,6 @@
       "mode": ["performance"],
       "fas": {
         "mode": "fps",
-        "governor": "performance",
         "recent_frames": 10, "fast_down_rate": 7, "slow_down_rate": 2.4,
         "_60": ["2476800", "2457600"],
         "_90": ["2476800", "2457600"],
@@ -35,7 +34,6 @@
       "fas": {
         "mode": "fps",
         "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 1.8,
-        "governor": "performance",
         "_60": ["2841600", "2803200"],
         "_90": ["2841600", "2803200"],
         "_120": ["2841600", "2803200"]

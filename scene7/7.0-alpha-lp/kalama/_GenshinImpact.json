@@ -27,7 +27,6 @@
         "max_level": 60,
         "recent_frames": 8, "fast_down_rate": 5, "slow_down_rate": 2.0,
         "mode": "fps",
-        "governor": "performance",
         "_60": ["2592000", "2592000", "2"]
       }
     },
@@ -37,7 +36,6 @@
         "max_level": 60,
         "recent_frames": 8, "fast_down_rate": 4, "slow_down_rate": 1.8,
         "mode": "fps",
-        "governor": "performance",
         "_60": ["2822400", "2745600", "2"]
       }
     }

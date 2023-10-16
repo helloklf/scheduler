@@ -40,7 +40,7 @@
 
         { "id": "idle:cpu0", "max": 1478400, "turning": 1075200, "margin": 50 },
         { "id": "idle:cpu4", "max": 1209600, "turning": 1113600, "margin": 60 },
-        { "id": "idle:cpu7", "max": 1286400, "turning": 1056000, "margin": 80 }
+        { "id": "idle:cpu7", "max": 1286400, "turning": 1056000, "margin": 80, "core_ctl": true }
       ]
     },
     "gesture_boost": {
@@ -135,7 +135,7 @@
     ],
     "powersave_inactive": [
       ["@preset", "common_inactive"],
-      ["@limiters", "idle:cpu0", "idle:cpu4"],
+      ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
       ["@values", "min_freq", "307200", "633600", "806400"],
       ["@preset", "cpu7_off"],
       ["@values", "hispeed_freq", "0", "0", "0"],

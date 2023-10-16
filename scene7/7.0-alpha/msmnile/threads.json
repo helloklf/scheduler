@@ -26,7 +26,6 @@
   {
     "friendly": "星穹铁道",
     "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
-    "governor": ["UnityMain", "UnityGfx"],
     "cpuset": {
       "comm": {
         "7": ["UnityMain"],
@@ -39,7 +38,6 @@
   {
     "friendly": "和平精英",
     "packages": ["com.tencent.tmgp.pubgmhd"],
-    "governor": ["RenderThread", "Thread-"],
     "cpuset": {
       "heavy_thread": "Thread-",
       "heavy_cores": "6",

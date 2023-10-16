@@ -4,14 +4,21 @@
   "framework": 220,
   "alias": {
     "gpu_freq": "/sys/kernel/ged/hal/custom_upbound_gpu_freq",
+    "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
     "boost_affinity": "/sys/module/mtk_fpsgo/parameters/boost_affinity",
     "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
     "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
     "ddr_freq_min": "/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq",
     "ddr_freq_cust": "/sys/class/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq",
+    "ged_kpi": "/sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled",
+    "fpsgo": "/sys/kernel/fpsgo/common/fpsgo_enable",
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",
     "ddr_force_opp": "/sys/devices/platform/1c00f000.dvfsrc/1c00f000.dvfsrc:dvfsrc-helper/dvfsrc_force_vcore_dvfs_opp",
-    "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
+    "limit_cfreq": "/sys/kernel/fpsgo/fbt/limit_cfreq",
+    "limit_rfreq": "/sys/kernel/fpsgo/fbt/limit_rfreq",
+    "limit_cfreq_m": "/sys/kernel/fpsgo/fbt/limit_cfreq_m",
+    "limit_rfreq_m": "/sys/kernel/fpsgo/fbt/limit_rfreq_m",
+    "perfmgr_enable": "/sys/module/mtk_fpsgo/parameters/perfmgr_enable",
     "ddr_max": "/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq"
   },
   "features": {
@@ -21,17 +28,17 @@
       "inactive_interval": 150,
       "ddr_boost": true,
       "params": [
-        { "id": "p1:cpu0", "max": 1400000, "min": 500000, "margin": 200 },
-        { "id": "p1:cpu4", "max": 2150000, "turning": 1000000, "min": 700000, "margin": 250 },
-        { "id": "p1:cpu7", "max": 2300000, "turning": 1000000, "min": 1300000, "margin": 250 },
+        { "id": "p1:cpu0", "step": -0.9, "max": 1400000, "min": 400000, "margin": 200 },
+        { "id": "p1:cpu4", "step": -0.9, "max": 2150000, "turning": 1600000, "min": 700000, "margin": 400 },
+        { "id": "p1:cpu7", "step": -0.9, "max": 2300000, "turning": 1600000, "min": 1300000, "margin": 400 },
 
         { "id": "p2:cpu0", "max": 1500000, "min": 800000, "margin": 250 },
-        { "id": "p2:cpu4", "max": 2400000, "min": 1900000, "margin": 300 },
-        { "id": "p2:cpu7", "max": 2650000, "min": 2100000, "margin": 300 },
+        { "id": "p2:cpu4", "max": 2400000, "turning": 2100000, "min": 1900000, "margin": 300 },
+        { "id": "p2:cpu7", "max": 2450000, "turning": 2300000, "min": 2100000, "margin": 300 },
 
         { "id": "p3:cpu0", "max": 1600000, "min": 1400000, "margin": 270 },
         { "id": "p3:cpu4", "max": 2650000, "turning": 2400000, "min": 2100000, "margin": 300 },
-        { "id": "p3:cpu7", "max": 2800000, "turning": 2650000, "min": 2300000, "margin": 300 },
+        { "id": "p3:cpu7", "max": 2650000, "turning": 2450000, "min": 2100000, "margin": 300 },
 
         { "id": "p4:cpu0", "max": 1600000, "min": 1500000, "margin": 300 },
         { "id": "p4:cpu4", "max": 2650000, "min": 2450000, "margin": 300 },
@@ -61,7 +68,7 @@
 
         { "id": "idle:cpu0", "max": 1200000, "min": 400000, "margin": 50 },
         { "id": "idle:cpu4", "max": 1800000, "min": 400000, "margin": 60 },
-        { "id": "idle:cpu7", "max": 1800000, "min": 1300000, "margin": 70 }
+        { "id": "idle:cpu7", "max": 1800000, "min": 1300000, "margin": 70, "core_ctl": true }
       ]
     },
     "gesture_boost": {
@@ -110,7 +117,11 @@
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#20"],
       ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
       ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#25"],
-      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#4"]
+      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#4"],
+      ["/sys/kernel/fpsgo/fstb/fstb_self_ctrl_fps_enable", "0"],
+      ["/sys/kernel/fpsgo/fstb/set_render_no_ctrl", "1"],
+      ["/sys/kernel/fpsgo/fstb/fstb_soft_level", "1 240-240"],
+      ["/sys/kernel/fpsgo/fstb/set_render_max_fps", "144"]
     ],
     "comm_gaming": [
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode_change 0"],
@@ -120,7 +131,8 @@
       ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#15"],
-      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#2"]
+      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#2"],
+      ["$gpu_freq", "0"]
     ],
 
     "powersave_active": [
@@ -130,7 +142,7 @@
       ["@values", "min_freq", "400000", "700000", "1300000"]
     ],
     "powersave_inactive": [
-      ["@limiters", "idle:cpu0", "idle:cpu4"],
+      ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
       ["@values", "min_freq", "200000", "400000", "1300000"],
       ["@preset", "common_inactvie"],
       ["$ddr_freq_min", "#800000000"],
@@ -181,11 +193,11 @@
     "powersave": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "powersave_active"],
-        ["$gpu_freq", "20"]
+        ["@preset", "powersave_active"]
       ],
       "app": [
-        ["@preset", "comm_app"]
+        ["@preset", "comm_app"],
+        ["$gpu_freq", "#20"]
       ],
       "game": [
         ["@preset", "comm_gaming"],
@@ -198,11 +210,11 @@
     "balance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "balance_active"],
-        ["$gpu_freq", "15"]
+        ["@preset", "balance_active"]
       ],
       "app": [
-        ["@preset", "comm_app"]
+        ["@preset", "comm_app"],
+        ["$gpu_freq", "#15"]
       ],
       "game": [
         ["@preset", "comm_gaming"],
@@ -215,11 +227,11 @@
     "performance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "performance_active"],
-        ["$gpu_freq", "10"]
+        ["@preset", "performance_active"]
       ],
       "app": [
-        ["@preset", "comm_app"]
+        ["@preset", "comm_app"],
+        ["$gpu_freq", "#10"]
       ],
       "game": [
         ["@preset", "comm_gaming"],
@@ -231,11 +243,11 @@
     "fast": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "fast_active"],
-        ["$gpu_freq", "0"]
+        ["@preset", "fast_active"]
       ],
       "app": [
-        ["@preset", "comm_app"]
+        ["@preset", "comm_app"],
+        ["$gpu_freq", "#10"]
       ],
       "game": [
         ["@preset", "comm_gaming"],

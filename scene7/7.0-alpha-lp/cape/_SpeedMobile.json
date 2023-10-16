@@ -26,7 +26,6 @@
     "mode": ["fast"],
     "fas": {
       "mode": "fps",
-      "governor": "performance",
       "recent_frames": 10, "fast_down_rate": 5, "slow_down_rate": 0.7,
       "_60": ["1996800", "1766400"],
       "_90": ["2476800", "1996800"],

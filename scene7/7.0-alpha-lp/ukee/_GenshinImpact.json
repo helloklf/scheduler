@@ -13,7 +13,6 @@
       "fas": {
         "max_level": 60,
         "recent_frames": 7, "fast_down_rate": 6, "slow_down_rate": 2.5,
-        "governor": "performance",
         "_60": ["2361600", "2227200"]
       }
     },
@@ -23,7 +22,6 @@
         "max_level": 60,
         "recent_frames": 7, "fast_down_rate": 6, "slow_down_rate": 1.8,
         "mode": "fps",
-        "governor": "performance",
         "_60": ["2592000", "2457600"]
       }
     },
@@ -33,7 +31,6 @@
         "max_level": 60,
         "recent_frames": 7, "fast_down_rate": 6, "slow_down_rate": 1.4,
         "mode": "fps",
-        "governor": "performance",
         "_60": ["2822400", "2745600"]
       }
     }

@@ -2,7 +2,6 @@
   {
     "friendly": "原神",
     "categories": ["GenshinImpact"],
-    "governor": ["UnityMain", "UnityGfx"],
     "cpuset": {
       "unity_main": "7",
       "heavy_thread": "UnityGfx",
@@ -21,7 +20,6 @@
   {
     "friendly": "星穹铁道",
     "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
-    "governor": ["UnityMain", "UnityGfx"],
     "cpuset": {
       "comm": {
         "7": ["UnityMain"],
@@ -34,7 +32,6 @@
   {
     "friendly": "王者荣耀",
     "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
-    "governor": ["UnityMain", "UnityGfx", "Thread-"],
     "cpuset": {
       "unity_main": "7",
       "heavy_thread": "Thread-",
@@ -51,7 +48,6 @@
   {
     "friendly": "和平精英",
     "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
-    "governor": ["RenderThread", "Thread-"],
     "cpuset": {
       "heavy_thread": "RenderThread",
       "heavy_cores": "7",
@@ -64,7 +60,6 @@
   {
     "friendly": "QQ飞车",
     "packages": ["com.tencent.tmgp.speedmobile"],
-    "governor": ["UnityMain", "UnityGfx"],
     "cpuset": {
       "unity_main": "7",
       "comm": {
