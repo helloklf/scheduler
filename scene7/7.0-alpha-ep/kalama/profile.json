@@ -40,7 +40,7 @@
 
         { "id": "idle:cpu0", "max": 1555200, "min": 556800, "margin": 90 },
         { "id": "idle:cpu3", "max": 1536000, "min": 614400, "margin": 90 },
-        { "id": "idle:cpu7", "max": 1593600, "min": 729600, "margin": 90 }
+        { "id": "idle:cpu7", "max": 1593600, "min": 729600, "margin": 90, "core_ctl": true }
       ]
     }
   },
@@ -78,18 +78,18 @@
     ],
     "cpu7_on": [
       ["$core_ctl_7", "1"],
-      ["$max_cpus_cpu7", "1"],
-      ["$min_cpus_cpu7", "1"]
+      ["$max_cpus_cpu7", "#1"],
+      ["$min_cpus_cpu7", "#1"]
     ],
     "cpu7_off": [
       ["$core_ctl_7", "1"],
-      ["$min_cpus_cpu7", "0"],
-      ["$max_cpus_cpu7", "0"]
+      ["$min_cpus_cpu7", "#0"],
+      ["$max_cpus_cpu7", "#0"]
     ],
     "cpu7_auto": [
       ["$core_ctl_7", "1"],
-      ["$min_cpus_cpu7", "0"],
-      ["$max_cpus_cpu7", "1"]
+      ["$min_cpus_cpu7", "#0"],
+      ["$max_cpus_cpu7", "#1"]
     ],
     "common_active": [
       ["@preset", "cpu7_on"],

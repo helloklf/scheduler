@@ -67,7 +67,8 @@
       ["$perfmgr_enable", "#0"],
       ["$perfmgr_enable2", "#0"],
       ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "800000000"],
-      ["$cpus_limit", "#3000000 3350000"]
+      ["$cpus_limit", "#3000000 3350000"],
+      ["/proc/gpufreqv2/fix_custom_freq_volt", "0 0"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
@@ -233,12 +234,28 @@
       "import": "_Camera.json"
     },
     {
+      "packages": ["com.antutu.benchmark.full", "com.glbenchmark.glbenchmark27", "com.futuremark.dmandroid.application"],
+      "import": "_GPUBenchmark.json"
+    },
+    {
+      "packages": ["com.antutu.ABenchMark", "com.primatelabs.geekbench5", "com.primatelabs.geekbench6"],
+      "import": "_CPUBenchmark.json"
+    },
+    {
       "friendly": "All",
       "packages": ["*"],
       "import": "_Apps.json"
     }
   ],
   "games": [
+    {
+      "packages": ["com.antutu.benchmark.full", "com.glbenchmark.glbenchmark27", "com.futuremark.dmandroid.application"],
+      "import": "_GPUBenchmark.json"
+    },
+    {
+      "packages": ["com.antutu.ABenchMark", "com.primatelabs.geekbench5", "com.primatelabs.geekbench6"],
+      "import": "_CPUBenchmark.json"
+    },
     {
       "friendly": "All",
       "packages": ["*"],

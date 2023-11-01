@@ -19,7 +19,8 @@
     "limit_cfreq_m": "/sys/kernel/fpsgo/fbt/limit_cfreq_m",
     "limit_rfreq_m": "/sys/kernel/fpsgo/fbt/limit_rfreq_m",
     "perfmgr_enable": "/sys/module/mtk_fpsgo/parameters/perfmgr_enable",
-    "ddr_max": "/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq"
+    "ddr_max": "/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq",
+    "dcs": "/sys/kernel/ged/hal/dcs_mode"
   },
   "features": {
     "limiter": {

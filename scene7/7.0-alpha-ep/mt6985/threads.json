@@ -1,2 +1,84 @@
 [
-]
+    {
+      "friendly": "闲鱼",
+      "packages": ["com.taobao.idlefish"],
+      "cpuset": {
+        "comm": {
+          "4-7": ["RenderThread", "1.ui", "1.raster"]
+        },
+        "other": "0-7"
+      }
+    },
+    {
+      "friendly": "原神",
+      "categories": ["GenshinImpact"],
+      "cpuset": {
+        "interval": 5000,
+        "unity_main": "7",
+        "heavy_thread": "UnityGfx",
+        "heavy_cores": "6",
+        "heavy_switch": false,
+        "comm": {
+          "4-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende"],
+          "0-3": [
+            "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-",
+            "mali-cmar-backe", "mali-mem-"
+          ],
+          "0-5": ["FMOD", "UnityPreload", "mali-cpu-", "mali-event-", "AsyncReadManage", "ged-swd"]
+        },
+        "other": "0-3"
+      }
+    },
+    {
+      "friendly": "星穹铁道",
+      "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
+      "cpuset": {
+        "comm": {
+          "7": ["UnityMain"],
+          "6": ["UnityGfx"],
+          "4-5": ["NativeThread", "Job.Worker"]
+        },
+        "other": "0-5"
+      }
+    },
+    {
+      "friendly": "和平精英",
+      "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
+      "cpuset": {
+        "interval": 5000,
+        "heavy_thread": "Thread-",
+        "heavy_cores": "7",
+        "comm": {
+          "3-6": ["RenderThread", "TaskGraphNP"]
+        },
+        "other": "0-6"
+      }
+    },
+    {
+      "friendly": "王者荣耀CN",
+      "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
+      "cpuset": {
+        "interval": 1000,
+        "heavy_thread": "Thread-",
+        "heavy_cores": "6",
+        "comm": {
+          "7": ["UnityMain"],
+          "4-7": ["UnityPreload"],
+          "6": ["UnityGfx"],
+          "4-5": ["CoreThread", "Apollo", "Worker Thread", "NativeThread"],
+          "0-5": ["mali-"]
+        },
+        "other": "0-5"
+      }
+    },
+    {
+      "friendly": "QQ飞车",
+      "packages": ["com.tencent.tmgp.speedmobile"],
+      "cpuset": {
+        "unity_main": "7",
+        "heavy_thread": "UnityGfx",
+        "heavy_cores": "6",
+        "other": "0-5"
+      }
+    }
+  ]

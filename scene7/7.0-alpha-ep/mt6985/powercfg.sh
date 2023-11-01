@@ -48,6 +48,8 @@ fi
 if [[ $(cat /dev/cpuset/foreground/boost/cgroup.procs) == "" ]]; then
   rmdir /dev/cpuset/background/boost
 fi
+lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
+lock_value -1 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then

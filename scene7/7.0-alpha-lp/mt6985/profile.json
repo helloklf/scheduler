@@ -50,7 +50,7 @@
 
         { "id": "idle:cpu0","max": 1400000, "min": 500000, "margin": 100 },
         { "id": "idle:cpu4","max": 1800000, "min": 500000, "margin": 100 },
-        { "id": "idle:cpu7","max": 1800000, "min": 1200000, "margin": 100 }
+        { "id": "idle:cpu7","max": 1800000, "min": 1200000, "margin": 100, "core_ctl": true }
       ]
     },
     "gesture_boost": {
@@ -75,7 +75,16 @@
     "max_freq": [
       ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
     ],
+    "cpu7_on": [
+      ["$max_cpus_cpu7", "1"],
+      ["$min_cpus_cpu7", "1"]
+    ],
+    "cpu7_off": [
+      ["$min_cpus_cpu7", "0"],
+      ["$max_cpus_cpu7", "0"]
+    ],
     "common_actvie": [
+      ["@preset", "cpu7_on"]
     ],
     "common_inactvie": [
       ["@values", "min_freq", "220000", "400000", "1200000"]
@@ -151,31 +160,33 @@
     "powersave": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "powersave_active"],
-        ["$gpu_max_freq", "#14"]
+        ["@preset", "powersave_active"]
       ],
       "app": [
-        ["@preset", "comm_app"]
+        ["@preset", "comm_app"],
+        ["$gpu_max_freq", "#28"]
       ],
       "game": [
         ["$ddr_map", "2300000:6400000 2000000:5500000 1700000:4100000 1600000:3094000 1500000:2133000 1400000:1866000"],
         ["@preset", "comm_gaming"],
-        ["@preset", "freq_low"]
+        ["@preset", "freq_low"],
+        ["$gpu_max_freq", "#14"]
       ]
     },
     "balance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "balance_active"],
-        ["$gpu_max_freq", "#14"]
+        ["@preset", "balance_active"]
       ],
       "app": [
-        ["@preset", "comm_app"]
+        ["@preset", "comm_app"],
+        ["$gpu_max_freq", "#22"]
       ],
       "game": [
         ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000 1500000:2133000 1400000:1866000"],
         ["@preset", "comm_gaming"],
-        ["@preset", "freq_middle"]
+        ["@preset", "freq_middle"],
+        ["$gpu_max_freq", "#14"]
       ]
     },
     "performance": {
