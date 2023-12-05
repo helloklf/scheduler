@@ -4,7 +4,7 @@
     "unity_main": "7",
     "comm": {
       "6": ["UnityGfx"],
-      "4-5": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
+      "4-5": ["Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
     },
     "other": "0-5"
   },

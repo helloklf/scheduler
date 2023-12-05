@@ -1,34 +1,34 @@
 {
   "friendly": "星穹铁道",
   "limiters": [
-    { "id": "hkrpg1:cpu4", "max": 2650000, "turning": 2450000, "min": 1600000, "margin": 400, "step": -1, "smoothness": 6 },
-    { "id": "hkrpg2:cpu4", "max": 2850000, "turning": 2650000, "min": 1600000, "margin": 400, "step": -1, "smoothness": 6 }
+    { "id": "hkrpg1:cpu3", "max": 2650000, "turning": 2450000, "min": 1600000, "margin": 400, "step": -1, "smoothness": 6 },
+    { "id": "hkrpg2:cpu3", "max": 2850000, "turning": 2650000, "min": 1600000, "margin": 400, "step": -1, "smoothness": 6 }
   ],
   "modes": [
     {
       "mode": ["powersave"],
       "call": [
-        ["@limiters", "g1:cpu0", "g1:cpu4", "g1:cpu7"],
+        ["@limiters", "g1:cpu0", "g1:cpu3", "g1:cpu7"],
         ["@msm_feas", "10"]
       ]
     },
     {
       "mode": ["balance"],
       "call": [
-        ["@limiters", "g1:cpu0", "g1:cpu4", "g2:cpu7"],
+        ["@limiters", "g1:cpu0", "g1:cpu3", "g2:cpu7"],
         ["@msm_feas", "7"]
       ]
     },
     {
       "mode": ["performance"],
       "call": [
-        ["@limiters", "g2:cpu0", "hkrpg1:cpu4", "g3:cpu7"]
+        ["@limiters", "g2:cpu0", "hkrpg1:cpu3", "g3:cpu7"]
       ]
     },
     {
       "mode": ["*"],
       "call": [
-        ["@limiters", "g3:cpu0", "hkrpg2:cpu4", "g4:cpu7"]
+        ["@limiters", "g3:cpu0", "hkrpg2:cpu3", "g4:cpu7"]
       ]
     }
   ]

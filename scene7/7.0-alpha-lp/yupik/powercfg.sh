@@ -248,10 +248,6 @@ perfhal_start() {
 # cpuctl background 0 0 0 max
 mk_cpuctl 'heavy' 1 0 1 max
 mk_stune 'top-app/heavy' 0 0
-
-# echo 0 > /dev/stune/nnapi-hal/schedtune.boost
-# echo 0 > /dev/stune/nnapi-hal/schedtune.prefer_idle
-
 set_value 8000000 /proc/sys/kernel/sched_latency_ns
 set_value 2000000 /proc/sys/kernel/sched_min_granularity_ns
 

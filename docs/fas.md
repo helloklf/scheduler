@@ -81,6 +81,7 @@
     | slow_down_rate | 低频慢速下调频率的速率 | float |
     | lower_freq | 较低频率 | int |
     | middle_optimum_freq | 中核最佳频率 | int |
+    | thread_analyzer | 线程分析，根据线程负载调整中核与大核之间的频率差 | int |
 
 
 > 详解
@@ -109,3 +110,7 @@
 > middle_optimum_freq: FAS默认会使中核大核保持频率相近，尽管有MiddleOffset可以使中核比大核频率低一些，但这又会使得大核频率较低时中核频率更低导致卡顿。<br>
 > middle_optimum_freq 则是以另一种形式解决中核大核同频。在中核频率低于middle_optimum_freq时，中核跟随大核一起升频，中核频率达到middle_optimum_freq之后不再继续跟随大核升频。<br>
 > 直到大核频率到达上限，或者与中核频率相差超过5级，中核才允许继续升频
+
+> thread_analyzer 是Scene7中新增的特性，设为true时，FAS将根据线程负载决定中核频率，而不是让中核与大核同步升降频率。启用该特性时MiddleOffset失效。
+
+> perfect_load 是Scene7中新增的特性，可设置为0.5~1.0之间的值(表示50%~100%)。负载高于此值时不允许继续降低频率，如果此时需要提升频率，至少会提升至平均频率。

@@ -1,0 +1,10 @@
+{
+  "version": "developer test",
+  "versionCode": 3,
+  "author": "SCENE7",
+  "projectUrl": "http://vtools.omarea.com/",
+  "features": {
+    "strict": true,
+    "pedestal": false
+  }
+}

@@ -270,6 +270,28 @@ kgsl devfreq/min_freq 0
 kgsl devfreq/max_freq 999000000
 
 
+bus_dcvs(){
+  echo $2 > /sys/devices/system/cpu/bus_dcvs/$1
+  chmod 444 /sys/devices/system/cpu/bus_dcvs/$1
+}
+bus_dcvs DDR/soc:qcom,memlat:ddr:silver/max_freq 1555000
+bus_dcvs DDR/19091000.qcom,bwmon-ddr/max_freq 2736000
+bus_dcvs DDR/soc:qcom,memlat:ddr:prime/max_freq 3196000
+bus_dcvs DDR/soc:qcom,memlat:ddr:prime-latfloor/max_freq 3196000
+bus_dcvs DDR/soc:qcom,memlat:ddr:gold-compute/max_freq 1555000
+bus_dcvs DDR/soc:qcom,memlat:ddr:gold/max_freq 3196000
+bus_dcvs L3/soc:qcom,memlat:l3:silver/max_freq 1708800
+bus_dcvs L3/soc:qcom,memlat:l3:prime/max_freq 1708800
+bus_dcvs L3/soc:qcom,memlat:l3:gold/max_freq 1708800
+bus_dcvs L3/soc:qcom,memlat:l3:prime-compute/max_freq 1708800
+bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:gold/max_freq 1
+bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:prime-latfloor/max_freq 1
+bus_dcvs LLCC/soc:qcom,memlat:llcc:gold-compute/max_freq 600000
+bus_dcvs LLCC/190b6400.qcom,bwmon-llcc/max_freq 806000
+bus_dcvs LLCC/soc:qcom,memlat:llcc:silver/max_freq 600000
+bus_dcvs LLCC/soc:qcom,memlat:llcc:gold/max_freq 1066000
+
+
 set_cpuset(){
   pgrep -f $1 | while read pid; do
     echo $pid > /dev/cpuset/$2/cgroup.procs
@@ -284,8 +306,6 @@ mkdir /dev/cpuset/top-app/7
 echo 7 > /dev/cpuset/top-app/7/cpus
 echo 0 > /dev/cpuset/top-app/7/mems
 
-set_cpuset kswapd0 'foreground'
-set_cpuset toucheventcheck 'foreground'
 set_cpuset touch_report 'foreground'
 set_cpuset surfaceflinger 'foreground'
 set_cpuset system_server 'foreground'

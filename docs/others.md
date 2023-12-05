@@ -102,3 +102,13 @@
 ["@uclamp", "0.00~max", "0.00~max", "0.00~max"]
 ```
 - 3个参数分别对应cpuctl中background、foreground、top-app的cpu.uclamp.min和cpu.uclamp.max，两个值之间以 ~ 符号分隔
+
+### 
+- 使用@governor可以切换CPU调速器
+- 允许指定两个或更多值，实现调速器优选（仅限Scene7.0+）
+```js
+// 指定单个调速器
+["@governor", "shchedutil"]
+// 如果设备支持walt则用walt，不支持则用用shchedutil
+["@governor", "walt", "shchedutil"]
+```

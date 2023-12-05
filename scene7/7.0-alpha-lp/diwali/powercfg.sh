@@ -149,10 +149,6 @@ mk_cpuctl 'heavy' 1 0 0 max
 mkdir /dev/cpuset/heavy
 echo 0-6 > /dev/cpuset/heavy/cpus
 # mk_stune 'top-app/heavy' 0 0
-
-# echo 0 > /dev/stune/nnapi-hal/schedtune.boost
-# echo 0 > /dev/stune/nnapi-hal/schedtune.prefer_idle
-
 disable_migt() {
   migt=/sys/module/migt/parameters
   if [[ -e $migt ]]; then
@@ -298,7 +294,6 @@ mk_cpuset(){
 mk_cpuset 4-5
 mk_cpuset 0-5
 
-set_cpuset toucheventcheck "top-app/4-5"
 set_cpuset touch_report "top-app/4-5"
 set_cpuset surfaceflinger "top-app/0-5"
 set_cpuset system_server "top-app/0-5"

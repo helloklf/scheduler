@@ -3,9 +3,9 @@
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "cpuset": {
-      "unity_main": "7",
+      "unity_main": "6",
       "heavy_thread": "UnityGfx",
-      "heavy_cores": "6",
+      "heavy_cores": "7",
       "heavy_switch": false,
       "comm": {
         "4-5": ["UnityMultiRende", "Worker Thread", "UnityPreload"],
@@ -75,7 +75,7 @@
       "unity_main": "7",
       "comm": {
         "6": ["UnityGfx"],
-        "4-5": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "speedmobileThreadManager", "binder."]
+        "4-5": ["Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "speedmobileThreadManager", "binder."]
       },
       "other": "0-5"
     }

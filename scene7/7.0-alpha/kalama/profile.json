@@ -339,7 +339,6 @@
       "import": "_SpeedMobile.json"
     },
     {
-      "remark": "Xiaomi Only (K60U)",
       "friendly": "王者荣耀/LOL M/QQ飞车/和平精英/星穹铁道/我的世界/使命召唤/暗区突围/穿越火线/王牌战士/光遇(CN)/光遇(Global)/蛋仔派对/决战平安京",
       "packages": [
         "com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm",

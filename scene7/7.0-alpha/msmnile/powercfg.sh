@@ -131,8 +131,6 @@ if [[ -f $t_message/cpu_limits ]]; then
 fi
 hide_value $t_message/market_download_limit 0
 hide_value $t_message/cpu_nolimit_temp 47500
-echo N > /sys/kernel/debug/debug_enabled
-echo 0 > /sys/kernel/tracing/tracing_on
 
 disable_migt() {
   migt=/sys/module/migt/parameters

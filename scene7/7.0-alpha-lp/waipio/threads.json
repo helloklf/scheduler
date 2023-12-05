@@ -31,11 +31,10 @@
     "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
     "cpuset": {
       "unity_main": "7",
-      "heavy_thread": "Thread-",
+      "heavy_thread": "Thread-;UnityGfx",
       "heavy_cores": "6",
       "comm": {
         "4-7": ["UnityPreload"],
-        "6": ["UnityGfx"],
         "4-5": ["NativeThread", "Worker Thread", "CoreThread", "Apollo-"],
         "0-5": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
       },
@@ -62,7 +61,7 @@
       "unity_main": "7",
       "comm": {
         "6": ["UnityGfx"],
-        "4-5": ["Job.Woker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
+        "4-5": ["Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
       },
       "other": "0-5"
     }

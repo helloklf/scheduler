@@ -78,6 +78,21 @@ disable_migt() {
 
   chmod 000 /sys/class/misc/migt
   chmod 000 /sys/module/sched_walt/holders/migt
+
+  metis=/sys/module/metis/parameters
+  if [[ -d $metis ]]; then
+    for file in $metis/*enable; do
+      hide_value $file 0
+    done
+    for file in $metis/reset*; do
+      hide_value $file 0
+    done
+    hide_value $metis/cluaff_control 0
+    hide_value $metis/in_perf_mod 0
+    hide_value $metis/limit_bgtask_sched 0
+    echo 0,0,0 > $metis/min_cluster_freqs
+    echo 0,0,0 > $metis/user_min_freq
+  fi
 }
 
 core_ctl_preset() {
@@ -153,7 +168,6 @@ kgsl devfreq/min_freq 0
 kgsl devfreq/max_freq 999000000
 
 
-
 cpus=3-6
 
 set_cpuset(){
@@ -167,20 +181,15 @@ set_cpuset(){
 }
 
 rmdir /dev/cpuset/background/untrustedapp
-mkdir /dev/cpuset/top-app/$cpus
-echo $cpus > /dev/cpuset/top-app/$cpus/cpus
-echo 0 > /dev/cpuset/top-app/$cpus/mems
+mkdir /dev/cpuset/top-app/sf
+echo $cpus > /dev/cpuset/top-app/sf/cpus
+echo 0 > /dev/cpuset/top-app/sf/mems
+set_cpuset surfaceflinger "top-app/sf"
 
 rmdir /dev/cpuset/foreground/boost
-set_cpuset kswapd0 'foreground'
-set_cpuset toucheventcheck "top-app/$cpus"
-set_cpuset touch_report "top-app/$cpus"
-set_cpuset surfaceflinger "top-app/$cpus"
-set_cpuset system_server "top-app/$cpus"
-set_cpuset update_engine "top-app/$cpus"
-set_cpuset audioserver 'foreground'
-set_cpuset android.hardware.audio.service_64 'foreground'
-set_cpuset vendor.qti.hardware.display.composer-service "top-app/$cpus"
+set_cpuset touch_report "foreground"
+set_cpuset system_server "foreground"
+set_cpuset update_engine 'top-app/7'
 
 
 for file in /sys/devices/system/cpu/bus_dcvs/LLCC/*/min_freq; do
@@ -192,3 +201,9 @@ done
 for file in /sys/devices/system/cpu/bus_dcvs/L3/*/min_freq; do
   lock_value 307200 $file
 done
+
+# echo 128 > /dev/cpuctl/background/cpu.shares
+# echo 128 > /dev/cpuctl/l-background/cpu.shares
+# echo 384 > /dev/cpuctl/system-background/cpu.shares
+# echo 512 > /dev/cpuctl/foreground/cpu.shares
+# rmdir /dev/cpuset/background/untrustedapp

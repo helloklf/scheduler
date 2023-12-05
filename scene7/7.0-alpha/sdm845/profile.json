@@ -17,10 +17,11 @@
       "inactive_interval": 100,
       "logger": false,
       "params": [
-        { "id": "active:cpu0", "max": 1766400, "min": 576000, "margin": 300 },
   
+        { "id": "p1:cpu0", "max": 1766400, "min": 576000, "margin": 300 },
         { "id": "p1:cpu4", "max": 2169600, "min": 1056000, "margin": 300 },
 
+        { "id": "p2:cpu0", "max": 1766400, "min": 1056000, "margin": 300 },
         { "id": "p2:cpu4", "max": 2400000, "min": 1766400, "margin": 300 },
 
         { "id": "p3:cpu4", "max": 2649600, "min": 2323200, "margin": 200 },
@@ -92,37 +93,37 @@
 
     "powersave_active": [
       ["@preset", "common_actvie"],
-      ["@limiters", "active:cpu0", "p1:cpu4"],
-      ["@values", "min_freq", "1094400", "844800"],
+      ["@limiters", "p1:cpu0", "p1:cpu4"],
+      ["@values", "min_freq", "748800", "844800"],
       ["@repeat", "sched_config", "70", "80", "150", "400"],
       ["@sched_limit", "0 0", "0 0"]
     ],
     "powersave_inactive": [
       ["@preset", "common_inactvie"],
       ["@limiters", "idle:cpu0", "idle:cpu4"],
-      ["@values", "min_freq", "300000", "710400"],
+      ["@values", "min_freq", "300000", "825600"],
       ["@repeat", "sched_config", "85", "95", "150", "400"],
       ["@sched_limit", "0 0", "0 4000"]
     ],
     "powersave_idle": [
       ["@limiters", "idle:cpu0", "idle:cpu4"],
       ["@preset", "common_inactvie"],
-      ["@values", "min_freq", "300000", "710400"],
+      ["@values", "min_freq", "300000", "825600"],
       ["@repeat", "sched_config", "85", "95", "150", "400"],
       ["@sched_limit", "0 0", "0 8000"]
     ],
 
     "balance_active": [
       ["@preset", "common_actvie"],
-      ["@limiters", "p2:cpu4"],
-      ["@values", "min_freq", "1209600", "960000"],
+      ["@limiters", "p2:cpu0", "p2:cpu4"],
+      ["@values", "min_freq", "902400", "979200"],
       ["@repeat", "sched_config", "65", "75", "150", "400"],
       ["@sched_limit", "0 0", "0 0"]
     ],
     "balance_inactive": [
       ["@limiters", "inactive:cpu0", "inactive:cpu4"],
       ["@preset", "common_inactvie"],
-      ["@values", "min_freq", "300000", "710400"],
+      ["@values", "min_freq", "300000", "825600"],
       ["@repeat", "sched_config", "85", "95", "150", "400"],
       ["@sched_limit", "0 0", "0 4000"]
     ],
@@ -130,14 +131,14 @@
     "performance_active": [
       ["@preset", "common_actvie"],
       ["@limiters", "p3:cpu4"],
-      ["@values", "min_freq", "1401600", "1075200"],
+      ["@values", "min_freq", "1209600", "1075200"],
       ["@repeat", "sched_config", "62", "70", "150", "400"],
       ["@sched_limit", "0 0", "0 0"]
     ],
     "performance_inactive": [
       ["@limiters", "NONE"],
       ["@preset", "common_inactvie"],
-      ["@values", "min_freq", "1209600", "710400"],
+      ["@values", "min_freq", "300000", "825600"],
       ["@repeat", "sched_config", "85", "95", "150", "400"],
       ["@sched_limit", "0 0", "0 4000"]
     ],
@@ -152,7 +153,7 @@
     "fast_inactive": [
       ["@limiters", "NONE"],
       ["@preset", "common_inactvie"],
-      ["@values", "min_freq", "1209600", "710400"],
+      ["@values", "min_freq", "300000", "825600"],
       ["@repeat", "sched_config", "85", "95", "150", "400"],
       ["@sched_limit", "0 0", "0 4000"]
     ]

@@ -119,9 +119,12 @@
       ["@uclamp", "0.00~max", "0.0~max", "0.0~max"],
       ["@cpuset", "0-3", "0-3", "1-6", "0-7"]
     ],
-    "common_app": [],
+    "common_app": [
+      ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:silver/max_freq", "768000"]
+    ],
     "common_gaming": [
       ["@limiters", "NONE"],
+      ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:silver/max_freq", "1555000"],
       ["@uclamp", "0.00~max", "0.0~max", "0.0~max"],
       ["@cpuset", "0-3", "1-3", "0-5", "0-7"]
     ],
@@ -139,7 +142,8 @@
       ["@values", "min_freq", "307200", "633600", "806400"],
       ["@preset", "cpu7_off"],
       ["@values", "hispeed_freq", "0", "0", "0"],
-      ["@values", "hispeed_load", "90", "90", "90"]
+      ["@values", "hispeed_load", "90", "90", "90"],
+      ["$uclamp_bg_max", "0.00"]
     ],
 
     "balance_active": [
@@ -193,6 +197,7 @@
         ["@preset", "powersave_active"]
       ],
       "app": [
+        ["@preset", "common_app"],
         ["$bus_ddr", "1708000"]
       ],
       "game": [
@@ -207,6 +212,7 @@
         ["@preset", "balance_active"]
       ],
       "app": [
+        ["@preset", "common_app"],
         ["$bus_ddr", "2092000"]
       ],
       "game": [
@@ -221,6 +227,7 @@
         ["@preset", "performance_active"]
       ],
       "app": [
+        ["@preset", "common_app"],
         ["$bus_ddr", "2736000"]
       ],
       "game": [
@@ -235,7 +242,9 @@
         ["@preset", "fast_active"],
         ["$bus_ddr", "3196000"]
       ],
-      "app": [],
+      "app": [
+        ["@preset", "common_app"]
+      ],
       "game": [
         ["$l3_boost", "1651200"],
         ["$bus_ddr_min", "2736000"],

@@ -172,11 +172,8 @@ echo $cpus > /dev/cpuset/top-app/$cpus/cpus
 echo 0 > /dev/cpuset/top-app/$cpus/mems
 
 rmdir /dev/cpuset/foreground/boost
-set_cpuset kswapd0 'foreground'
-set_cpuset toucheventcheck "top-app/$cpus"
-set_cpuset touch_report "top-app/$cpus"
 set_cpuset surfaceflinger "top-app/$cpus"
-set_cpuset system_server "top-app/$cpus"
+set_cpuset system_server "foreground"
 set_cpuset update_engine "top-app/$cpus"
 set_cpuset audioserver 'foreground'
 set_cpuset android.hardware.audio.service_64 'foreground'
@@ -192,3 +189,9 @@ done
 for file in /sys/devices/system/cpu/bus_dcvs/L3/*/min_freq; do
   lock_value 307200 $file
 done
+
+echo 128 > /dev/cpuctl/background/cpu.shares
+echo 128 > /dev/cpuctl/l-background/cpu.shares
+echo 384 > /dev/cpuctl/system-background/cpu.shares
+# echo 512 > /dev/cpuctl/foreground/cpu.shares
+# rmdir /dev/cpuset/background/untrustedapp

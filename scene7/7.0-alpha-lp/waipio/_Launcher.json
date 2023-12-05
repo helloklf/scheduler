@@ -22,7 +22,7 @@
       "duration": 3000,
       "idle_delay": 1000,
       "enter": [ ["@preset", "performance_active"] ],
-      "exit": [["@preset", "performance_inactive"]]
+      "exit": [["@preset", "balance_inactive"]]
     }
   }, {
     "mode": ["*"],

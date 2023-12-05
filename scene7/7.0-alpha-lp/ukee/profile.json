@@ -4,23 +4,26 @@
   "framework": 220,
   "alias": {
     "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
+    "mod_percent": "/sys/class/kgsl/kgsl-3d0/devfreq/mod_percent",
     "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
     "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
     "bus_ddr_min": "/sys/devices/system/cpu/bus_dcvs/DDR/19091000.qcom,bwmon-ddr/min_freq",
     "bus_ddr": "/sys/devices/system/cpu/bus_dcvs/DDR/19091000.qcom,bwmon-ddr/max_freq",
     "l3_boost": "/sys/devices/system/cpu/bus_dcvs/L3/boost_freq",
-    "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable"
+    "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable",
+    "bus_qos": "/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq",
+    "tchg": "/proc/touchpanel/game_switch_enable"
   },
   "features": {
     "limiter": {
-      "active_interval": 24,
+      "active_interval": 30,
       "gaming_interval": 30,
       "inactive_interval": 150,
       "logger": false,
       "params": [
-        { "id": "p1:cpu0", "step": -1, "max": 1555200, "min": 691200, "margin": 250 },
-        { "id": "p1:cpu4", "step": -0.7, "max": 2112000, "min": 768000, "margin": 270 },
-        { "id": "p1:cpu7", "step": -0.2, "max": 2246400, "min": 787200, "margin": 250 },
+        { "id": "p1:cpu0", "step":   -1, "max": 1555200, "turning": 1228800, "min": 691200, "margin": 250 },
+        { "id": "p1:cpu4", "step": -0.7, "max": 2112000, "turning": 1766400, "min": 768000, "margin": 270 },
+        { "id": "p1:cpu7", "step": -0.2, "max": 2246400, "turning": 1766400, "min": 787200, "margin": 250 },
 
         { "id": "p2:cpu0", "max": 1555200, "min": 1056000, "margin": 280 },
         { "id": "p2:cpu4", "max": 2457600, "min": 1766400, "margin": 280 },
@@ -119,12 +122,12 @@
       ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
     ],
     "cpu7_on": [
-      ["$core_ctl_7", "0"],
+      ["$core_ctl_7", "#1"],
       ["$max_cpus_cpu7", "1"],
       ["$min_cpus_cpu7", "1"]
     ],
     "cpu7_off": [
-      ["$core_ctl_7", "0"],
+      ["$core_ctl_7", "#1"],
       ["$min_cpus_cpu7", "0"],
       ["$max_cpus_cpu7", "0"]
     ],
@@ -133,26 +136,39 @@
       ["$min_cpus_cpu7", "0"],
       ["$max_cpus_cpu7", "1"]
     ],
+    "ufshc_perf_on": [
+      ["/sys/devices/platform/soc/1d84000.ufshc/clkscale_enable", "#1"],
+      ["/sys/devices/platform/soc/1d84000.ufshc/clkgate_enable", "#1"],
+      ["/sys/devices/platform/soc/1d84000.ufshc/clkgate_delay_ms", "10"],
+      ["/sys/devices/platform/soc/1d84000.ufshc/devfreq/1d84000.ufshc/max_freq", "#850000000"]
+    ],
+    "ufshc_perf_off": [
+      ["/sys/devices/platform/soc/1d84000.ufshc/clkscale_enable", "#1"],
+      ["/sys/devices/platform/soc/1d84000.ufshc/clkgate_enable", "#1"],
+      ["/sys/devices/platform/soc/1d84000.ufshc/hibern8_on_idle_enable", "100"],
+      ["/sys/devices/platform/soc/1d84000.ufshc/devfreq/1d84000.ufshc/max_freq", "#75000000"]
+    ],
     "common_active": [
       ["@preset", "cpu7_on"],
       ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],
-      ["@uclamp", "0.00~max", "0.00~max", "0.5~max"]
+      ["$uclamp_bg_max", "max"]
     ],
     "common_inactive": [
       ["@values", "min_freq", "307200", "633600", "787200"],
-      ["@values", "latency", "0", "8000", "0", "8000", "0", "8000"],
-      ["@uclamp", "0.00~max", "0.00~max", "0.00~max"]
+      ["@values", "latency", "0", "8000", "0", "8000", "0", "8000"]
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],
-      ["@cpuset", "0-3", "0-3", "0-7", "0-7"],
-      ["$gpu_max_khz", "#680000000"]
+      ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
+      ["$gpu_max_khz", "#680000000"],
+      ["$mod_percent", "100"],
+      ["$bus_qos", "0"]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
-      ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
-      ["@cpuset", "0-2", "0-3", "0-5", "0-7"],
-      ["$gpu_max_khz", "#990000000"]
+      ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
+      ["$gpu_max_khz", "#990000000"],
+      ["$bus_qos", "0"]
     ],
 
     "powersave_active": [
@@ -166,7 +182,8 @@
       ["@preset", "cpu7_off"],
       ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
       ["@values", "hispeed_freq", "0", "0", "0"],
-      ["@values", "hispeed_load", "90", "90", "90"]
+      ["@values", "hispeed_load", "90", "90", "90"],
+      ["$uclamp_bg_max", "0.00"]
     ],
 
     "balance_active": [
@@ -225,7 +242,9 @@
         ["@cpu_freq", "cpu0", "307200", "1670400"],
         ["@cpu_freq", "cpu4", "633600", "1996800"],
         ["@cpu_freq", "cpu7", "787200", "2131200"],
-        ["$l3_boost", "#0"]
+        ["$l3_boost", "#0"],
+        ["$mod_percent", "93"],
+        ["$tchg", "#0"]
       ]
     },
     "balance": {
@@ -243,7 +262,9 @@
         ["@cpu_freq", "cpu0", "307200", "1670400"],
         ["@cpu_freq", "cpu4", "633600", "2457600"],
         ["@cpu_freq", "cpu7", "787200", "2476800"],
-        ["$l3_boost", "#0"]
+        ["$l3_boost", "#0"],
+        ["$mod_percent", "93"],
+        ["$tchg", "#0"]
       ]
     },
     "performance": {
@@ -260,7 +281,8 @@
         ["@cpu_freq", "cpu0", "307200", "1804800"],
         ["@cpu_freq", "cpu4", "633600", "2572800"],
         ["@cpu_freq", "cpu7", "787200", "2707200"],
-        ["$l3_boost", "#0"]
+        ["$l3_boost", "#0"],
+        ["$mod_percent", "95"]
       ]
     },
     "fast": {
@@ -280,7 +302,8 @@
         ["$bus_ddr_min", "2736000"],
         ["@cpu_freq", "cpu0", "1056000", "1804800"],
         ["@cpu_freq", "cpu4", "1209600", "2745600"],
-        ["@cpu_freq", "cpu7", "1171200", "2995200"]
+        ["@cpu_freq", "cpu7", "1171200", "2995200"],
+        ["$mod_percent", "100"]
       ]
     }
   },
