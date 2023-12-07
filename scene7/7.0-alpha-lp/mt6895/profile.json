@@ -1,7 +1,6 @@
 {
   "platform": "mt6895",
   "platform_name": "D8100",
-  "framework": 220,
   "alias": {
     "boost_affinity": "/sys/module/mtk_fpsgo/parameters/boost_affinity",
     "ddr_freq_min": "/sys/devices/platform/soc/1c00f000.dvfsrc/mtk-dvfsrc-devfreq/devfreq/mtk-dvfsrc-devfreq/min_freq",

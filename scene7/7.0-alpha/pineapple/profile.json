@@ -1,6 +1,6 @@
 {
     "platform": "pineapple",
-    "platform_name": "8GNE3",
+    "platform_name": "8GEN3",
     "framework": 220,
     "alias": {
       "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
@@ -8,7 +8,9 @@
       "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
       "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable",
       "cpu_min_2": "/sys/devices/system/cpu/cpufreq/policy2/scaling_min_freq",
-      "cpu_max_2": "/sys/devices/system/cpu/cpufreq/policy2/scaling_max_freq"
+      "cpu_max_2": "/sys/devices/system/cpu/cpufreq/policy2/scaling_max_freq",
+      "cpu_min_5": "/sys/devices/system/cpu/cpufreq/policy5/scaling_min_freq",
+      "cpu_max_5": "/sys/devices/system/cpu/cpufreq/policy5/scaling_max_freq"
     },
     "features": {
       "limiter": {
@@ -106,7 +108,7 @@
       ],
       "common_app": [
         ["$perfmgr_enable", "0"],
-        ["@cpuset", "2-4", "2-6", "0-7", "2-7"],
+        ["@cpuset", "2-4", "2-6", "2-7", "2-7"],
         ["/dev/cpuset/top-app/sf/cpus", "2-6"]
       ],
       "common_gaming": [

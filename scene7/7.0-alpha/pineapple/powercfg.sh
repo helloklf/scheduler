@@ -144,11 +144,11 @@ core_ctl_preset() {
   echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
   echo 1 > $cpu7_core_ctl_dir/min_cpus
 
-  cpu3_core_ctl_dir=/sys/devices/system/cpu/cpu3/core_ctl
-  lock_value 0 $cpu3_core_ctl_dir/min_cpus
-  lock_value 0 $cpu3_core_ctl_dir/enable
+  cpu2_core_ctl_dir=/sys/devices/system/cpu/cpu2/core_ctl
+  lock_value 0 $cpu2_core_ctl_dir/min_cpus
+  lock_value 0 $cpu2_core_ctl_dir/enable
 
-  cpu5_core_ctl_dir=/sys/devices/system/cpu/cpu3/core_ctl
+  cpu5_core_ctl_dir=/sys/devices/system/cpu/cpu5/core_ctl
   lock_value 0 $cpu5_core_ctl_dir/min_cpus
   lock_value 0 $cpu5_core_ctl_dir/enable
 }

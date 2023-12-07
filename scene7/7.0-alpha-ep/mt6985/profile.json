@@ -1,7 +1,6 @@
 {
-  "platform": "mt6983",
-  "platform_name": "D9000",
-  "framework": 220,
+  "platform": "mt6985",
+  "platform_name": "D9200",
   "alias": {
     "boost_affinity": "/sys/module/mtk_fpsgo/parameters/boost_affinity",
     "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",

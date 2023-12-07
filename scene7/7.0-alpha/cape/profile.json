@@ -1,7 +1,6 @@
 {
   "platform": "taro",
   "platform_name": "8+GEN1",
-  "framework": 220,
   "alias": {
     "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
     "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",

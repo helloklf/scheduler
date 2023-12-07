@@ -98,23 +98,6 @@ change_task_cpuset() {
   done
 }
 
-process_opt() {
-  sleep 20
-
-  change_task_cpuset "svendor.mediatek.hardware.pq|android.hardware.sensors|statsd|logd|scene-daemon" "foreground"
-  change_task_cpuset "aal_sof|kfps|dsp_send_thread|vdec_ipi_recv|mtk_drm_disp_id|disp_feature|hif_thread|main_thread|rx_thread|ged_" "system-background"
-  change_task_cpuset 'mediaserver64|android.hardware.media.c2' 'foreground'
-
-
-  for name in 'kcompactd0' 'aal_sof' 'kfps' 'kworker'
-  do
-    taskset -p 3f $(pgrep -ef $name) > /dev/null
-  done
-}
-
-process_opt &
-
-
 metis=/sys/module/metis/parameters
 for file in $metis/*enable*; do
   echo 0 > $file

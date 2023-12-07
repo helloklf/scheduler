@@ -74,3 +74,10 @@ done
 if [[ -d $metis ]]; then
   chmod -R 444 $metis
 fi
+
+lock_value 4 /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
+lock_value 3 /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
+
+if [[ ! -d /sys/kernel/debug ]]; then
+  mount -t debugfs none /sys/kernel/debug
+fi
