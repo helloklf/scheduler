@@ -1,0 +1,51 @@
+[
+  {
+      
+    "friendly": "原神",
+    "categories": ["GenshinImpact"],
+    "cpuset": {
+      "comm": {
+        "6-7": ["UnityMain"],
+        "6": ["UnityGfx", "UnityMultiRende"],
+        "0-5": ["Timer"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "王者荣耀",
+    "packages": ["com.tencent.tmgp.sgame"],
+    "cpuset": {
+      "comm": {
+        "7": ["UnityMain"],
+        "6": ["UnityGfx", "UnityPreload", "Thread-"],
+        "3-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+      },
+      "other": "0-6"
+    }
+  },
+  {
+    "friendly": "和平精英",
+    "packages": ["com.tencent.tmgp.pubgmhd"],
+    "cpuset": {
+      "interval": 1000,
+      "comm": {
+        "7": ["RenderThread"],
+        "2-6": ["Thread-", "TaskGraphNP"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "QQ飞车",
+    "packages": ["com.tencent.tmgp.speedmobile"],
+    "cpuset": {
+      "unity_main": "7",
+      "comm": {
+        "6": ["UnityGfx"],
+        "0-5": ["Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
+      },
+      "other": "0-5"
+    }
+  }
+]

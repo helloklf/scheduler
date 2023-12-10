@@ -1,0 +1,39 @@
+{
+  "friendly": "原神",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 2.2,
+        "_45": ["1785600", "1766400"],
+        "_60": ["2150400", "1996800"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 2.0,
+        "_45": ["2035200", "1996800"],
+        "_60": ["2265600", "2227200"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 2.0,
+        "mode": "fps",
+        "_45": ["2150400", "2112000"],
+        "_60": ["2496000", "2419200"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "fas": {
+        "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 2.0,
+        "mode": "fps",
+        "_45": ["2265600", "2227200"],
+        "_60": ["2841600", "2496000"]
+      }
+    }
+  ]
+}

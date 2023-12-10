@@ -1,0 +1,43 @@
+{
+  "friendly": "原神",
+  "call": [
+    ["$bus_ddr_min", "#2092000"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "mode": "fps",
+        "max_level": 60, "perfect_load": 0.85,
+        "_60": ["1996800", "1996800"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "max_level": 60,
+        "mode": "fps", "perfect_load": 0.85,
+        "recent_frames": 8, "fast_down_rate": 6, "slow_down_rate": 2.4,
+        "_60": ["2342400", "2323200"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "max_level": 60, "perfect_load": 0.82,
+        "recent_frames": 8, "fast_down_rate": 5, "slow_down_rate": 2.0,
+        "mode": "fps",
+        "_60": ["2592000", "2592000"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "fas": {
+        "max_level": 60, "perfect_load": 0.80,
+        "recent_frames": 8, "fast_down_rate": 4, "slow_down_rate": 1.8,
+        "mode": "fps",
+        "_60": ["2822400", "2841600"]
+      }
+    }
+  ]
+}

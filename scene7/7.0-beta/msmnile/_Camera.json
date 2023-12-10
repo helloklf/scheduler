@@ -1,0 +1,25 @@
+{
+  "friendly": "相机",
+  "call": [
+    ["@cpuset", "0-1", "0-4", "0-7", "0-7"]
+  ],
+  "modes": [{
+    "mode": ["powersave", "balance"],
+    "logger": false,
+    "enable": true,
+    "booster": {
+      "duration": 3000,
+      "idle_delay": 8000,
+      "enter": [
+        ["@cpu_freq", "policy0", "1500MHz", "max"],
+        ["@cpu_freq", "policy4", "1800MHz", "2.5Ghz"],
+        ["@cpu_freq", "policy7", "1800MHz", "2.85Ghz"]
+      ],
+      "exit": [
+        ["@cpu_freq", "policy0", "min", "1800MHz"],
+        ["@cpu_freq", "policy4", "min", "2200MHz"],
+        ["@cpu_freq", "policy7", "min", "2300MHz"]
+      ]
+    }
+  }]
+}

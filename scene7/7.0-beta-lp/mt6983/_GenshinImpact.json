@@ -1,0 +1,70 @@
+{
+  "friendly": "原神",
+  "limiters": [
+    {"id": "ys1:cpu0", "step": -0.7, "max": 1500000, "min": 700000, "margin": 300, "smoothness": 6},
+    {"id": "ys1:cpu4", "step": -0.9, "max": 1900000, "min": 700000, "margin": 160, "smoothness": 6},
+    {"id": "ys1:cpu7", "step": -0.9, "max": 1900000, "margin": 150, "smoothness": 6},
+
+    {"id": "ys2:cpu0", "step": -0.7, "max": 1500000, "min": 800000, "margin": 300, "smoothness": 6},
+    {"id": "ys2:cpu4", "step": -0.9, "max": 2200000, "min": 1400000, "margin": 180, "smoothness": 6},
+    {"id": "ys2:cpu7", "step": -0.9, "max": 2100000, "margin": 160, "smoothness": 6},
+
+    {"id": "ys3:cpu0", "step": -0.7, "max": 1500000, "min": 800000, "margin": 300, "smoothness": 6},
+    {"id": "ys3:cpu4", "step": -1.0, "max": 2400000, "min": 1700000, "margin": 230, "smoothness": 6},
+    {"id": "ys3:cpu7", "step": -1.0, "max": 2400000, "min": 1700000, "margin": 200, "smoothness": 6},
+
+    {"id": "ys4:cpu0", "step": -0.7, "max": 1600000, "min": 1200000, "margin": 300, "smoothness": 6},
+    {"id": "ys4:cpu4", "step": -1.0, "max": 2650000, "min": 1900000, "margin": 400, "smoothness": 6},
+    {"id": "ys4:cpu7", "step": -1.0, "max": 2650000, "min": 1900000, "margin": 300, "smoothness": 6},
+
+    {"id": "ys5:cpu0", "step": -1.0, "max": 1600000, "min": 1400000, "margin": 300, "smoothness": 6},
+    {"id": "ys5:cpu4", "step": -1.0, "max": 2850000, "min": 2450000, "margin": 400, "smoothness": 6},
+    {"id": "ys5:cpu7", "step": -1.0, "max": 2850000, "min": 2450000, "margin": 300, "smoothness": 6}
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "ys1:cpu0", "ys1:cpu4", "ys1:cpu7"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "ys2:cpu0", "ys2:cpu4", "ys2:cpu7"]
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "ys3:cpu0", "ys3:cpu4", "ys3:cpu7"]
+      ],
+      "sensors": [
+        {
+          "sensor": "/sys/class/power_supply/battery/temp",
+          "interval": 2000,
+          "rules": [
+            { "threshold": [ -1, 481], "enter_once": [["@limiters", "ys2:cpu0", "ys2:cpu4", "ys2:cpu7"]] },
+            { "threshold": [480,  -1], "enter_once": [["@limiters", "ys3:cpu0", "ys3:cpu4", "ys3:cpu7"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["*"],
+      "sensors": [
+        {
+          "sensor": "/sys/class/power_supply/battery/temp",
+          "interval": 2000,
+          "props": ["$ddr_freq_min", "$gpu_freq"],
+          "rules": [
+            { "threshold": [ -1, 501], "enter_once": [["@limiters", "ys2:cpu0", "ys2:cpu4", "ys2:cpu7"]] },
+            { "threshold": [500, 471], "enter_once": [["@limiters", "ys3:cpu0", "ys3:cpu4", "ys3:cpu7"]] },
+            { "threshold": [470,  441], "enter_once": [["@limiters", "ys4:cpu0", "ys4:cpu4", "ys4:cpu7"]] },
+            { "threshold": [440,  -1], "enter_once": [["@limiters", "ys5:cpu0", "ys5:cpu4", "ys5:cpu7"]] }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "friendly": "原神",
+  "limiters": [
+    { "id": "ys-p1:cpu4", "step": -1, "max": 2450000, "min": 1300000, "margin": 200, "smoothness": 8 },
+    { "id": "ys-p1:cpu7", "step": -0.9, "max": 2450000, "min": 1500000, "margin": 220, "smoothness": 10 },
+
+    { "id": "ys-p2:cpu4", "active_interval": 40, "max": 2650000, "min": 1600000, "margin": 300, "mode": "performance", "smoothness": 6 },
+    { "id": "ys-p2:cpu7", "active_interval": 40, "max": 2650000, "min": 1800000, "margin": 300, "mode": "performance", "smoothness": 6 },
+
+    { "id": "ys-p3:cpu4", "active_interval": 40, "max": 2850000, "min": 2400000, "margin": 350, "smoothness": 6 },
+    { "id": "ys-p3:cpu7", "active_interval": 40, "max": 2850000, "min": 2400000, "margin": 350, "smoothness": 6 },
+
+    { "id": "ys-p4:cpu4", "active_interval": 40, "mode": "BOTTOM", "max": 2650000, "margin": 300, "smoothness": 6 },
+    { "id": "ys-p4:cpu7", "active_interval": 40, "mode": "BOTTOM", "max": 2750000, "margin": 350, "smoothness": 6 }
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "ys-p1:cpu4", "ys-p1:cpu7"],
+        ["$cpu_min_0", "#1200000"], ["$cpu_min_4", "#800000"], ["$cpu_min_7", "#900000"],
+        ["@mtk_feas", "12"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "ys-p2:cpu4", "ys-p2:cpu7"],
+        ["@mtk_feas", "6"]
+      ],
+      "booster": {
+        "duration": 5000,
+        "idle_delay": 5000,
+        "enter": [
+          ["$ddr_freq_min", "#5500000000"]
+        ],
+        "exit": [
+          ["$ddr_freq_min", "#800000000"]
+        ]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "ys-p3:cpu4", "ys-p3:cpu7"],
+        ["@preset", "feas_off"],
+        ["@mtk_feas", "0"]
+      ],
+      "booster": {
+        "duration": 5000,
+        "idle_delay": 5000,
+        "enter": [
+          ["$ddr_freq_min", "#5500000000"]
+        ],
+        "exit": [
+          ["$ddr_freq_min", "#800000000"]
+        ]
+      }
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@preset", "feas_off"],
+        ["@values", "max_freq", "#2000000", "#2850000", "#2850000"],
+        ["@limiters", "ys-p4:cpu4", "ys-p4:cpu7"],
+        ["$ddr_freq_min", "#5500000000"]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+    "friendly": "自动降压测试",
+    "limiters": [
+    ],
+    "modes": [
+        {
+          "mode": ["*"],
+          "call": [
+            ["@preset", "freq_low"]
+          ],
+          "sensors": [
+            {
+              "disable": false,
+              "sensor": "/sys/class/thermal/thermal_zone0/temp",
+              "interval": 40,
+              "props": ["/proc/gpufreqv2/fix_custom_freq_volt"],
+              "rules": [
+                { "threshold": [    -1, 113150], "values_once": ["1150000 68750"] },
+                { "threshold": [110150, 108150], "values_once": ["1150000 69375"] },
+                { "threshold": [108150, 105150], "values_once": ["1150000 70000"] },
+                { "threshold": [105150, 103150], "values_once": ["1150000 70625"] },
+                { "threshold": [103150, 101150], "values_once": ["1150000 71250"] },
+                { "threshold": [101150,  98150], "values_once": ["1150000 71875"] },
+                { "threshold": [98150 ,  96150], "values_once": ["1150000 72500"] },
+                { "threshold": [96150 ,  94150], "values_once": ["1150000 73125"] },
+                { "threshold": [94150 ,  92150], "values_once": ["1150000 75000"] },
+                { "threshold": [92150 ,     -1], "values_once": ["1150000 76875"] }
+              ]
+            }
+          ]
+        }
+    ]
+  }

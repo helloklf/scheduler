@@ -1,0 +1,85 @@
+[
+  {
+    "friendly": "原神",
+    "categories": ["GenshinImpact"],
+    "cpuset": {
+      "unity_main": "7",
+      "comm": {
+        "6": ["UnityGfx"],
+        "4-5": ["UnityMultiRende", "UnityPreload"],
+        "0-5": ["MIHOYO_NETWORK", "FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage", "Worker Thread"],
+        "0-3": ["Audio", "tp_schedule"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "星穹铁道",
+    "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
+    "cpuset": {
+      "comm": {
+        "7": ["UnityMain"],
+        "6": ["UnityGfx"],
+        "4-5": ["NativeThread", "Job.Worker"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "和平精英",
+    "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
+    "cpuset": {
+      "heavy_thread": "RenderThread",
+      "heavy_cores": "7",
+      "comm": {
+        "4-6": ["Thread-", "TaskGraphNP"]
+      },
+      "other": "0-6"
+    }
+  },
+  {
+    "friendly": "王者荣耀",
+    "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
+    "cpuset": {
+      "unity_main": "7",
+      "heavy_thread": "Thread-",
+      "heavy_cores": "6",
+      "comm": {
+        "6": ["UnityGfx"],
+        "4-5": [
+          "CoreThread", "UnityPreload", "Worker Thread", "Apollo-",
+          "FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage"
+        ],
+        "0-3": ["Audio", "tp_schedule"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "LOL Mobile",
+    "packages": ["com.tencent.lolm"],
+    "cpuset": {
+      "heavy_thread": "Thread-",
+      "heavy_cores": "6",
+      "comm": {
+        "7": ["UnityMain"],
+        "4-6": ["UnityGfx"],
+        "4-5": ["NativeThread", "CoreThread"],
+        "0-6": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read", "Worker Thread"]
+      },
+      "other": "0-6"
+    }
+  },
+  {
+    "friendly": "QQ飞车",
+    "packages": ["com.tencent.tmgp.speedmobile"],
+    "cpuset": {
+      "unity_main": "7",
+      "comm": {
+        "6": ["UnityGfx"],
+        "4-5": ["Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "speedmobileThreadManager", "binder."]
+      },
+      "other": "0-5"
+    }
+  }
+]

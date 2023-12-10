@@ -1,0 +1,16 @@
+{
+  "friendly": "狗屎/毒瘤",
+  "booster": {
+    "duration": 2000,
+    "idle_delay": 2000
+  },
+  "modes": [{
+    "mode": ["powersave", "balance"],
+    "call": [
+      ["@limiters", "NONE"],
+      ["@cpu_freq", "policy0", "556800", "1555200"],
+      ["@cpu_freq", "policy3", "633600", "2342400"],
+      ["@cpu_freq", "policy7", "787200", "2476800"]
+    ]
+  }]
+}

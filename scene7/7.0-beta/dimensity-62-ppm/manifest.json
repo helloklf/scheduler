@@ -1,0 +1,10 @@
+{
+  "version": "dimensity6+2",
+  "versionCode": 20231007003,
+  "author": "SCENE7",
+  "projectUrl": "http://vtools.omarea.com/",
+  "features": {
+    "strict": true,
+    "pedestal": false
+  }
+}
