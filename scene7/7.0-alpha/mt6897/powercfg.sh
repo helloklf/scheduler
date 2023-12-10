@@ -62,54 +62,31 @@ hide_value $t_message/modem_limit 0
 lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 
 
-exit
-
-set_cpuset(){
-  pgrep -f $1 | while read pid; do
-    echo $pid > /dev/cpuset/$2/cgroup.procs
-    taskset -p $3 $pid
-    ls /proc/$pid/task | while read tid
-    do
-      echo $tid > /dev/cpuset/$2/tasks
-      taskset -p $3 $tid
-    done
-  done
-}
-
-mkdir /dev/cpuset/foreground/4-5
-echo 4-5 > /dev/cpuset/foreground/4-5/cpus
-echo 0 > /dev/cpuset/foreground/4-5/mems
-
-set_cpuset surfaceflinger 'foreground/4-5' 38
-set_cpuset system_server 'foreground/4-5' 38
-set_cpuset update_engine 'top-app' f0
-set_cpuset android.hardware.graphics.composer 'foreground/4-5' 38
+hide_value /sys/kernel/fpsgo/fbt/limit_cfreq 0
+hide_value /sys/kernel/fpsgo/fbt/limit_rfreq 0
+hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
+hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
+lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
 
 
-
-# Derived from uperf
-ps_cache="$(ps -Ao pid,args)"
-# $1:task_name $2:cgroup_name
-change_task_cpuset() {
-  for temp_pid in $(echo "$ps_cache" | grep -i -E "$1" | awk '{print $1}'); do
-    for temp_tid in $(ls "/proc/$temp_pid/task/"); do
-      echo "$temp_tid" >"/dev/cpuset/$2/tasks"
-    done
-  done
-}
-
-
-metis=/sys/module/metis/parameters
-for file in $metis/*enable*; do
-  echo 0 > $file
-done
-if [[ -d $metis ]]; then
-  chmod -R 444 $metis
+if [[ -e /data/system/mcd/df ]]; then
+  chattr -i /data/system/mcd/df
+  rm /data/system/mcd/df
+  echo '' > /data/system/mcd/df
+  chattr +i /data/system/mcd/df
 fi
 
 lock_value 4 /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
 lock_value 3 /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
+lock_value 1 /sys/devices/system/cpu/cpu7/online
+lock_value 0 /sys/devices/system/cpu/sched_ctl/sched_core_pause_info
+lock_value 0 /sys/devices/system/cpu/sched_ctl/sched_util_est_ctrl
+lock_value 0 /proc/touch_boost/enable
 
-if [[ ! -d /sys/kernel/debug ]]; then
-  mount -t debugfs none /sys/kernel/debug
-fi
+lock_value 128 /sys/kernel/fpsgo/fbt/cpumask_heavy
+lock_value 64 /sys/kernel/fpsgo/fbt/cpumask_second
+lock_value 63 /sys/kernel/fpsgo/fbt/cpumask_others
+lock_value 0 /sys/kernel/fpsgo/fbt/boost_VIP
+lock_value 0 /sys/kernel/fpsgo/fbt/set_vvip
+lock_value 0 /sys/kernel/fpsgo/fbt/set_ls
+lock_value 0 /sys/kernel/fpsgo/fbt/blc_boost

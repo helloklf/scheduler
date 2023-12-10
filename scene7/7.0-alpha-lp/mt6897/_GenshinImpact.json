@@ -4,29 +4,33 @@
     {
       "mode": ["powersave"],
       "fas": {
-        "lower_freq": 1800000, "slow_down_rate": 2,
+        "perfect_load": 0.90,
+        "lower_freq": 1700000, "slow_down_rate": 2,
         "_60": ["2300000", "2300000", "3"]
       }
     },
     {
       "mode": ["balance"],
       "fas": {
-        "lower_freq": 2100000, "slow_down_rate": 2,
+        "perfect_load": 0.90,
+        "lower_freq": 1900000, "slow_down_rate": 2,
         "_60": ["2600000", "2600000", "3"]
       }
     },
     {
       "mode": ["performance"],
       "fas": {
-        "lower_freq": 2400000, "slow_down_rate": 2,
-        "_60": ["2850000", "2850000", "3"]
+        "perfect_load": 0.88,
+        "lower_freq": 2100000, "slow_down_rate": 2,
+        "_60": ["2660000", "2660000", "3"]
       }
     },
     {
       "mode": ["fast"],
       "fas": {
-        "lower_freq": 2600000, "slow_down_rate": 1.5,
-        "_60": ["3000000", "3000000", "3"]
+        "perfect_load": 0.85,
+        "lower_freq": 2200000, "slow_down_rate": 1.5,
+        "_60": ["2800000", "2800000", "3"]
       }
     }
   ]

@@ -61,23 +61,32 @@ hide_value $t_message/market_download_limit 0
 hide_value $t_message/modem_limit 0
 lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 
+
 hide_value /sys/kernel/fpsgo/fbt/limit_cfreq 0
 hide_value /sys/kernel/fpsgo/fbt/limit_rfreq 0
 hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
 hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
+lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
 
 
-metis=/sys/module/metis/parameters
-for file in $metis/*enable*; do
-  echo 0 > $file
-done
-if [[ -d $metis ]]; then
-  chmod -R 444 $metis
+if [[ -e /data/system/mcd/df ]]; then
+  chattr -i /data/system/mcd/df
+  rm /data/system/mcd/df
+  echo '' > /data/system/mcd/df
+  chattr +i /data/system/mcd/df
 fi
 
 lock_value 4 /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
 lock_value 3 /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
+lock_value 1 /sys/devices/system/cpu/cpu7/online
+lock_value 0 /sys/devices/system/cpu/sched_ctl/sched_core_pause_info
+lock_value 0 /sys/devices/system/cpu/sched_ctl/sched_util_est_ctrl
+lock_value 0 /proc/touch_boost/enable
 
-if [[ ! -d /sys/kernel/debug ]]; then
-  mount -t debugfs none /sys/kernel/debug
-fi
+lock_value 128 /sys/kernel/fpsgo/fbt/cpumask_heavy
+lock_value 64 /sys/kernel/fpsgo/fbt/cpumask_second
+lock_value 63 /sys/kernel/fpsgo/fbt/cpumask_others
+lock_value 0 /sys/kernel/fpsgo/fbt/boost_VIP
+lock_value 0 /sys/kernel/fpsgo/fbt/set_vvip
+lock_value 0 /sys/kernel/fpsgo/fbt/set_ls
+lock_value 0 /sys/kernel/fpsgo/fbt/blc_boost

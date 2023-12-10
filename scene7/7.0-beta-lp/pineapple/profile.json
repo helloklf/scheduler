@@ -6,6 +6,9 @@
       "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
       "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
       "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
+      "max_cpus_cpu5": "/sys/devices/system/cpu/cpu5/core_ctl/max_cpus",
+      "min_cpus_cpu5": "/sys/devices/system/cpu/cpu5/core_ctl/min_cpus",
+      "core_ctl_5": "/sys/devices/system/cpu/cpu5/core_ctl/enable",
       "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable",
       "cpu_min_2": "/sys/devices/system/cpu/cpufreq/policy2/scaling_min_freq",
       "cpu_max_2": "/sys/devices/system/cpu/cpufreq/policy2/scaling_max_freq",
@@ -44,10 +47,10 @@
           { "id": "inactive:cpu5", "max": 1708800, "min": 614400, "margin": 120 },
           { "id": "inactive:cpu7", "max": 1593600, "min": 672000, "margin": 120 },
   
-          { "id": "idle:cpu0", "max": 1017600, "min": 672000, "margin": 90 },
-          { "id": "idle:cpu2", "max": 1536000, "min": 614400, "margin": 90 },
-          { "id": "idle:cpu5", "max": 1536000, "min": 614400, "margin": 90 },
-          { "id": "idle:cpu7", "max": 1593600, "min": 672000, "margin": 90 }
+          { "id": "idle:cpu0", "max": 1017600, "min": 672000, "margin": 100 },
+          { "id": "idle:cpu2", "max": 1536000, "min": 614400, "margin": 100 },
+          { "id": "idle:cpu5", "max": 1536000, "min": 614400, "margin": 100, "core_ctl": true },
+          { "id": "idle:cpu7", "max": 1593600, "min": 672000, "margin": 100, "core_ctl": true }
         ]
       }
     },
@@ -69,21 +72,16 @@
         ["/sys/devices/system/cpu/cpufreq/policy5/walt/hispeed_load"],
         ["/sys/devices/system/cpu/cpufreq/policy7/walt/hispeed_load"]
       ],
-      "latency": [
-        ["/sys/devices/system/cpu/cpufreq/policy0/walt/down_rate_limit_us"],
-        ["/sys/devices/system/cpu/cpufreq/policy0/walt/up_rate_limit_us"],
-        ["/sys/devices/system/cpu/cpufreq/policy2/walt/down_rate_limit_us"],
-        ["/sys/devices/system/cpu/cpufreq/policy2/walt/up_rate_limit_us"],
-        ["/sys/devices/system/cpu/cpufreq/policy5/walt/down_rate_limit_us"],
-        ["/sys/devices/system/cpu/cpufreq/policy5/walt/up_rate_limit_us"],
-        ["/sys/devices/system/cpu/cpufreq/policy7/walt/down_rate_limit_us"],
-        ["/sys/devices/system/cpu/cpufreq/policy7/walt/up_rate_limit_us"]
-      ],
       "min_freq": [
         ["$cpu_min_0"], ["$cpu_min_2"], ["$cpu_min_5"], ["$cpu_min_7"]
       ],
       "max_freq": [
         ["$cpu_max_0"], ["$cpu_max_2"], ["$cpu_max_5"], ["$cpu_max_7"]
+      ],
+      "cpu5_on": [
+        ["$core_ctl_5", "1"],
+        ["$max_cpus_cpu5", "#2"],
+        ["$min_cpus_cpu5", "#2"]
       ],
       "cpu7_on": [
         ["$core_ctl_7", "1"],
@@ -104,55 +102,23 @@
         ["@preset", "cpu7_on"]
       ],
       "common_inactive": [
-        ["@values", "min_freq", "307200", "480000", "480000", "595200"]
+        ["@values", "min_freq", "307200", "480000", "480000", "480000"]
       ],
       "common_app": [
         ["$perfmgr_enable", "0"],
-        ["@cpuset", "0-1", "0-4", "0-7", "0-7"],
+        ["@cpuset", "0-1", "0-6", "2-7", "0-7"],
         ["/dev/cpuset/top-app/sf/cpus", "2-6"]
       ],
       "common_gaming": [
         ["@limiters", "NONE"],
-        ["@cpuset", "0-1", "0-6", "0-7", "0-7"],
-        ["/dev/cpuset/top-app/sf/cpus", "2-5"]
-      ],
-  
-      "l3_max": [
-        ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:gold/max_freq", "1804800"],
-        ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime/max_freq", "1804800"],
-        ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime-compute/max_freq", "1804800"],
-        ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:l3:silver/max_freq", "1804800"]
-      ],
-  
-      "l3_low": [
-        ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:gold/max_freq", "1574400"],
-        ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime/max_freq", "1574400"],
-        ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime-compute/max_freq", "1574400"],
-        ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:l3:silver/max_freq", "1574400"]
-      ],
-  
-      "ddr_max": [
-        ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq", "2736000"],
-        ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:gold-compute/max_freq", "1555000"],
-        ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:gold/max_freq", "4224000"],
-        ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:prime-latfloor/max_freq", "4224000"],
-        ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:prime/max_freq", "4224000"],
-        ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:silver/max_freq", "1555000"]
-      ],
-  
-      "ddr_low": [
-        ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq", "2736000"],
-        ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:gold-compute/max_freq", "1555000"],
-        ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:gold/max_freq", "2736000"],
-        ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:prime-latfloor/max_freq", "2736000"],
-        ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:prime/max_freq", "2736000"],
-        ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:silver/max_freq", "1555000"]
+        ["@cpuset", "0-1", "0-3,5-6", "2-3,5-6", "2-7"],
+        ["/dev/cpuset/top-app/sf/cpus", "2-3,5-6"]
       ],
 
       "powersave_active": [
         ["@preset", "common_active"],
         ["@limiters", "p1:cpu0", "p1:cpu2", "p1:cpu5", "p1:cpu7"],
-        ["@values", "hispeed_freq", "0", "844800", "1075200", "1017600"],
+        ["@values", "hispeed_freq", "0", "844800", "844800", "844800"],
         ["@values", "hispeed_load", "85", "85", "85", "85"]
       ],
       "powersave_inactive": [
@@ -166,8 +132,8 @@
       "balance_active": [
         ["@preset", "common_active"],
         ["@limiters", "p2:cpu0", "p2:cpu2", "p2:cpu5", "p2:cpu7"],
-        ["@values", "hispeed_freq", "0", "1075200", "1286400", "1248000"],
-        ["@values", "hispeed_load", "90", "90", "90", "90"]
+        ["@values", "hispeed_freq", "0", "960000", "960000", "960000"],
+        ["@values", "hispeed_load", "85", "85", "85", "85"]
       ],
       "balance_inactive": [
         ["@preset", "common_inactive"],
@@ -180,51 +146,50 @@
       "performance_active": [
         ["@preset", "common_active"],
         ["@limiters", "p3:cpu0", "p3:cpu2", "p3:cpu5", "p3:cpu7"],
-        ["@values", "hispeed_freq", "0", "1075200", "1286400", "1248000"],
-        ["@values", "hispeed_load", "82", "82", "82", "82"]
+        ["@values", "hispeed_freq", "0", "1075200", "1075200", "1017600"],
+        ["@values", "hispeed_load", "85", "85", "85", "85"]
       ],
       "performance_inactive": [
         ["@preset", "common_inactive"],
-        ["@limiters", "p2:cpu0", "p2:cpu2", "p2:cpu5", "p2:cpu7"],
-        ["@values", "hispeed_freq", "0", "960000", "1075200", "1017600"],
-        ["@values", "hispeed_load", "82", "82", "82", "82"]
+        ["@limiters", "p1:cpu0", "p1:cpu2", "p1:cpu5", "p1:cpu7"],
+        ["@values", "hispeed_freq", "0", "844800", "844800", "844800"],
+        ["@values", "hispeed_load", "90", "90", "90", "90"]
       ],
 
       "fast_active": [
         ["@preset", "common_active"],
         ["@limiters", "p4:cpu0", "p4:cpu2", "p4:cpu5", "p4:cpu7"],
-        ["@values", "hispeed_freq", "0", "1286400", "1497600", "1478400"],
+        ["@values", "hispeed_freq", "0", "1075200", "1286400", "1248000"],
         ["@values", "hispeed_load", "82", "82", "82", "82"]
       ],
       "fast_inactive": [
         ["@preset", "common_inactive"],
-        ["@limiters", "p3:cpu0", "p3:cpu2", "p3:cpu5", "p3:cpu7"],
-        ["@values", "hispeed_freq", "0", "1075200", "1286400", "1248000"],
-        ["@values", "hispeed_load", "82", "82", "82", "82"]
+        ["@limiters", "p2:cpu0", "p2:cpu2", "p2:cpu5", "p2:cpu7"],
+        ["@values", "hispeed_freq", "0", "844800", "844800", "844800"],
+        ["@values", "hispeed_load", "90", "90", "90", "90"]
       ],
       "freq_low": [
-        ["@values", "max_freq", "1670400", "#1651200", "#1824000", "#1708800"],
-        ["@values", "min_freq", "307200", "480000", "480000", "595200"]
+        ["@values", "max_freq", "1670400", "#1824000", "#1612800", "#1708800"],
+        ["@values", "min_freq", "307200", "480000", "480000", "480000"]
       ],
       "freq_middle": [
-        ["@values", "max_freq", "1670400", "#1824000", "#2054400", "#2092800"],
-        ["@values", "min_freq", "441600", "614400", "614400", "729600"]
+        ["@values", "max_freq", "1670400", "#2131200", "#1824000", "#2092800"],
+        ["@values", "min_freq", "441600", "614400", "614400", "614400"]
       ],
       "freq_high": [
-        ["@values", "max_freq", "1804800", "#2246400", "#2457600", "#2476800"],
-        ["@values", "min_freq", "672000", "729600", "729600", "864000"]
+        ["@values", "max_freq", "1804800", "#2438400", "#2246400", "#2476800"],
+        ["@values", "min_freq", "672000", "729600", "614400", "787200"]
       ],
       "freq_extreme": [
-        ["@values", "max_freq", "#1804800", "#2630400", "#2841600", "#2995200"],
-        ["@values", "min_freq", "1056000", "1209600", "1209600", "1171200"]
+        ["@values", "max_freq", "#1804800", "#2841600", "#2630400", "#2803200"],
+        ["@values", "min_freq", "1056000", "960000", "844800", "902400"]
       ]
     },
     "schemes": {
       "powersave": {
         "call": [
           ["@preset", "reset"],
-          ["@preset", "powersave_active"],
-          ["@preset", "ddr_low"]
+          ["@preset", "powersave_active"]
         ],
         "app": [
           ["@preset", "common_app"]
@@ -238,8 +203,7 @@
       "balance": {
         "call": [
           ["@preset", "reset"],
-          ["@preset", "balance_active"],
-          ["@preset", "ddr_low"]
+          ["@preset", "balance_active"]
         ],
         "app": [
           ["@preset", "common_app"]
@@ -253,8 +217,7 @@
       "performance": {
         "call": [
           ["@preset", "reset"],
-          ["@preset", "performance_active"],
-          ["@preset", "ddr_max"]
+          ["@preset", "performance_active"]
         ],
         "app": [
           ["@preset", "common_app"]
@@ -267,8 +230,7 @@
       "fast": {
         "call": [
           ["@preset", "reset"],
-          ["@preset", "fast_active"],
-          ["@preset", "ddr_max"]
+          ["@preset", "fast_active"]
         ],
         "app": [
           ["@preset", "common_app"]
@@ -293,6 +255,11 @@
         "friendly": "原神",
         "categories": ["GenshinImpact"],
         "import": "_GenshinImpact.json"
+      },
+      {
+        "friendly": "QQ飞车",
+        "packages": ["com.tencent.tmgp.speedmobile"],
+        "import": "_SpeedMobile.json"
       },
       {
         "friendly": "All",

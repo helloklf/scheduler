@@ -1,8 +1,5 @@
 {
   "friendly": "原神",
-  "call": [
-    ["$bus_ddr_min", "#2092000"]
-  ],
   "modes": [
     {
       "mode": ["powersave"],

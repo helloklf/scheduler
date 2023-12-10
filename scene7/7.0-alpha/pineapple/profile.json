@@ -45,7 +45,7 @@
           { "id": "inactive:cpu7", "max": 1593600, "min": 672000, "margin": 120 },
   
           { "id": "idle:cpu0", "max": 1017600, "min": 672000, "margin": 90 },
-          { "id": "idle:cpu2", "max": 1536000, "min": 614400, "margin": 90 },
+          { "id": "idle:cpu2", "max": 1536000, "min": 614400, "margin": 120 },
           { "id": "idle:cpu5", "max": 1536000, "min": 614400, "margin": 90 },
           { "id": "idle:cpu7", "max": 1593600, "min": 672000, "margin": 90 }
         ]
