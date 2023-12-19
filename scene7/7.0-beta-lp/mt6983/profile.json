@@ -85,7 +85,7 @@
   },
   "presets": {
     "reset": [
-      ["@mtk_reset"],
+      ["$cpufreq", "0 200000 1800000|4 400000 2850000|7 1300000 3000000"],
       ["@governor", "schedutil"],
       ["$boost_affinity", "0"],
       ["$ddr_force_opp", "999"],

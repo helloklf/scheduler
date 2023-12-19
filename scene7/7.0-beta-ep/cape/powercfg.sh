@@ -1,4 +1,5 @@
-target=`getprop ro.board.platform`
+# target=`getprop ro.board.platform`
+cfg_dir=$(cd $(dirname $0); pwd)
 
 set_value() {
   value=$1
@@ -138,6 +139,12 @@ mk_cpuctl 'heavy' 1 0 0 max
 mkdir /dev/cpuset/heavy
 echo 0-6 > /dev/cpuset/heavy/cpus
 # mk_stune 'top-app/heavy' 0 0
+# echo 128 > /dev/cpuctl/background/cpu.shares
+# echo 128 > /dev/cpuctl/l-background/cpu.shares
+# echo 384 > /dev/cpuctl/system-background/cpu.shares
+# echo 512 > /dev/cpuctl/foreground/cpu.shares
+# rmdir /dev/cpuset/background/untrustedapp
+
 disable_migt() {
   migt=/sys/module/migt/parameters
   if [[ -e $migt ]]; then
@@ -224,6 +231,21 @@ disable_migt
 
 process_opt &
 
+# CC'MIUI/HyperOS
+if [[ $(getprop ro.cc.device.name) != "" ]]; then
+  # for cpu in cpu0 cpu4 cpu7; do
+  #   hide_value /sys/devices/system/cpu/$cpu/cpufreq/scaling_governor walt
+  # done
+  echo 60 60 > /proc/sys/walt/sched_upmigrate
+  echo 40 40 > /proc/sys/walt/sched_downmigrate
+  echo 90 > /proc/sys/walt/sched_group_upmigrate
+  echo 70 > /proc/sys/walt/sched_group_downmigrate
+  echo 0 > /proc/sys/kernel/sched_energy_aware
+  echo 0 > /proc/sys/walt/sched_force_lb_enable
+  stop miuibooster
+  pm hide com.xiaomi.joyose
+fi
+
 # OnePlus
 hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
 lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
@@ -231,6 +253,7 @@ if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
   hide_value /proc/game_opt/game_pid -1
+  hide_value /proc/game_opt/disable_cpufreq_limit 1
 fi
 hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
 hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
@@ -243,6 +266,8 @@ do
 done
 setprop persist.sys.hans.skipframe.enable false
 lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
+echo 0 0 0 0 0 0 0 0 0 0 0 0 0 > /proc/oplus_frame_boost/stune_boost
+lock_value 0 /sys/module/oplus_bsp_sched_assist/parameters/boost_kill
 for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
   lock_value 0 /sys/kernel/msm_performance/parameters/$file
 done
@@ -262,7 +287,6 @@ kgsl max_gpuclk 999000000
 kgsl min_clock_mhz 0
 kgsl devfreq/min_freq 0
 kgsl devfreq/max_freq 999000000
-
 
 bus_dcvs(){
   echo $2 > /sys/devices/system/cpu/bus_dcvs/$1
@@ -285,7 +309,6 @@ bus_dcvs LLCC/190b6400.qcom,bwmon-llcc/max_freq 806000
 bus_dcvs LLCC/soc:qcom,memlat:llcc:silver/max_freq 600000
 bus_dcvs LLCC/soc:qcom,memlat:llcc:gold/max_freq 1066000
 
-
 set_cpuset(){
   pgrep -f $1 | while read pid; do
     echo $pid > /dev/cpuset/$2/cgroup.procs
@@ -300,8 +323,12 @@ mkdir /dev/cpuset/top-app/7
 echo 7 > /dev/cpuset/top-app/7/cpus
 echo 0 > /dev/cpuset/top-app/7/mems
 
+mkdir /dev/cpuset/top-app/sf
+echo 0-5 > /dev/cpuset/top-app/sf/cpus
+echo 0 > /dev/cpuset/top-app/sf/mems
+set_cpuset surfaceflinger "top-app/sf"
+set_cpuset vendor.qti.hardware.display.composer-service 'top-app/sf'
+
 set_cpuset touch_report 'foreground'
-set_cpuset surfaceflinger 'foreground'
 set_cpuset system_server 'foreground'
 set_cpuset update_engine 'top-app/7'
-set_cpuset vendor.qti.hardware.display.composer-service 'foreground'

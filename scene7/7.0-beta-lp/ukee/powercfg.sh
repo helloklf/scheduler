@@ -139,10 +139,6 @@ mk_cpuctl 'heavy' 1 0 0 max
 mkdir /dev/cpuset/heavy
 echo 0-6 > /dev/cpuset/heavy/cpus
 # mk_stune 'top-app/heavy' 0 0
-echo 128 > /dev/cpuctl/background/cpu.shares
-echo 128 > /dev/cpuctl/l-background/cpu.shares
-echo 384 > /dev/cpuctl/system-background/cpu.shares
-# echo 512 > /dev/cpuctl/foreground/cpu.shares
 # rmdir /dev/cpuset/background/untrustedapp
 
 disable_migt() {
@@ -237,7 +233,6 @@ lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
 if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
-  hide_value /proc/game_opt/game_pid -1
   hide_value /proc/game_opt/disable_cpufreq_limit 1
 fi
 hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0

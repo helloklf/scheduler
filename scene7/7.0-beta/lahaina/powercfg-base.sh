@@ -163,10 +163,6 @@ hide_value $t_message/market_download_limit 0
 hide_value $t_message/cpu_nolimit_temp 47500
 lock_value 0 /sys/module/aigov/parameters/enable
 
-lock_value 128 /dev/cpuctl/background/cpu.shares
-lock_value 128 /dev/cpuctl/system-background/cpu.shares
-lock_value 512 /dev/cpuctl/foreground/cpu.shares
-
 for group in top-app
 do
   lock_value 0 /dev/cpuctl/$group/cpu.uclamp.latency_sensitive
@@ -196,7 +192,6 @@ lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
 if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
-  hide_value /proc/game_opt/game_pid -1
 fi
 hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
 hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0

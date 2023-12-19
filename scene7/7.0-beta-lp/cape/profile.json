@@ -69,18 +69,8 @@
     },
     "gesture_boost": {
       "enable": false,
-      "enter": [
-        ["/sys/kernel/msm_performance/parameters/cpu_max_freq",
-         "0:1804800 1:1804800 2:1804800 3:1804800 4:2572800 5:2572800 6:2572800 7:2822400"],
-        ["/sys/kernel/msm_performance/parameters/cpu_min_freq",
-         "0:1056000 1:1056000 2:1056000 3:1056000 4:1113600 5:1113600 6:1113600 7:1171200"]
-      ],
-      "exit": [
-        ["/sys/kernel/msm_performance/parameters/cpu_min_freq",
-         "#0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0"],
-        ["/sys/kernel/msm_performance/parameters/cpu_max_freq",
-         "#0:4294967295 1:4294967295 2:4294967295 3:4294967295 4:4294967295 5:4294967295 6:4294967295 7:4294967295"]
-      ]
+      "enter": [],
+      "exit": []
     }
   },
   "presets": {
@@ -88,7 +78,7 @@
       ["@msm_reset"],
       ["$bus_ddr_min", "547000"],
       ["$l3_boost", "0"],
-      ["@governor", "walt"]
+      ["@governor", "walt", "schedutil"]
     ],
 
     "hispeed_freq": [

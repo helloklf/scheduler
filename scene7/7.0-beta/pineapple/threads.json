@@ -28,26 +28,12 @@
     "friendly": "王者荣耀",
     "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
     "cpuset": {
-      "unity_main": "7",
-      "heavy_thread": "Thread-;UnityGfx",
-      "heavy_cores": "4",
-      "comm": {
-        "2-3,5-6": ["CoreThread", "Apollo-", "UnityPreload", "NativeThread", "Worker Thread"]
-      },
-      "other": "2-3,5-6"
     }
   },
   {
     "friendly": "LOL Mobile",
     "packages": ["com.tencent.lolm"],
     "cpuset": {
-      "heavy_thread": "Thread-;UnityGfx",
-      "heavy_cores": "4",
-      "comm": {
-        "7": ["UnityMain"],
-        "2-3,5-6": ["CoreThread","NativeThread", "Worker Thread"]
-      },
-      "other": "2-3,5-6"
     }
   },
   {

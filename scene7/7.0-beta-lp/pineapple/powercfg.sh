@@ -145,12 +145,16 @@ core_ctl_preset() {
   echo 1 > $cpu7_core_ctl_dir/min_cpus
 
   cpu2_core_ctl_dir=/sys/devices/system/cpu/cpu2/core_ctl
-  lock_value 0 $cpu2_core_ctl_dir/min_cpus
+  lock_value 3 $cpu2_core_ctl_dir/min_cpus
   lock_value 0 $cpu2_core_ctl_dir/enable
 
   cpu5_core_ctl_dir=/sys/devices/system/cpu/cpu5/core_ctl
   lock_value 0 $cpu5_core_ctl_dir/min_cpus
   lock_value 0 $cpu5_core_ctl_dir/enable
+  lock_value 0 $cpu5_core_ctl_dir/min_partial_cpus
+  lock_value 2 $cpu5_core_ctl_dir/max_cpus
+  lock_value 92 $cpu5_core_ctl_dir/busy_up_thres
+  lock_value 50 $cpu5_core_ctl_dir/busy_down_thres
 }
 
 hide_value /sys/module/msm_performance/parameters/cpu_max_freq '0:4294967295 1:4294967295 2:4294967295 3:4294967295 4:4294967295 5:4294967295 6:4294967295 7:4294967295'
@@ -178,28 +182,16 @@ disable_migt
 
 
 # OnePlus
-hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
-lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
+# hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
+# lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
 if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
-  hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
-  hide_value /proc/game_opt/game_pid -1
+  # hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
+  # hide_value /proc/game_opt/disable_cpufreq_limit 1
+  taskset -p 1b $(pidof vendor.oplus.hardware.gameopt-service)
 fi
-hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
-hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-echo 0 > /proc/sys/kernel/sched_force_lb_enable
-lock_value N /sys/module/sched_assist_common/parameters/boost_kill
-lock_value N /sys/module/task_sched_info/parameters/sched_info_ctrl
-for service in orms-hal-1-0 # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
-do
-  stop $service
-done
-setprop persist.sys.hans.skipframe.enable false
-lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
-for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
-  lock_value 0 /sys/kernel/msm_performance/parameters/$file
-done
-echo -R 444 /sys/kernel/msm_performance/parameters
+# hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
+# hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
 
 
 kgsl(){
@@ -216,32 +208,3 @@ kgsl max_gpuclk 999000000
 kgsl min_clock_mhz 0
 kgsl devfreq/min_freq 0
 kgsl devfreq/max_freq 999000000
-
-cpus=2-6
-
-set_cpuset(){
-  pgrep -f $1 | while read pid; do
-    echo $pid > /dev/cpuset/$2/cgroup.procs
-    ls /proc/$pid/task | while read tid
-    do
-      echo $tid > /dev/cpuset/$2/tasks
-    done
-  done
-}
-
-rmdir /dev/cpuset/background/untrustedapp
-mkdir /dev/cpuset/top-app/sf
-echo $cpus > /dev/cpuset/top-app/sf/cpus
-echo 0 > /dev/cpuset/top-app/sf/mems
-set_cpuset surfaceflinger "top-app/sf"
-
-rmdir /dev/cpuset/foreground/boost
-set_cpuset touch_report "foreground"
-set_cpuset system_server "foreground"
-set_cpuset update_engine 'top-app/7'
-
-echo 128 > /dev/cpuctl/background/cpu.shares
-echo 128 > /dev/cpuctl/l-background/cpu.shares
-echo 384 > /dev/cpuctl/system-background/cpu.shares
-# echo 512 > /dev/cpuctl/foreground/cpu.shares
-# rmdir /dev/cpuset/background/untrustedapp
