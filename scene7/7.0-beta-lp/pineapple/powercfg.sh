@@ -153,8 +153,8 @@ core_ctl_preset() {
   lock_value 0 $cpu5_core_ctl_dir/enable
   lock_value 0 $cpu5_core_ctl_dir/min_partial_cpus
   lock_value 2 $cpu5_core_ctl_dir/max_cpus
-  lock_value 92 $cpu5_core_ctl_dir/busy_up_thres
-  lock_value 50 $cpu5_core_ctl_dir/busy_down_thres
+  lock_value 50 $cpu5_core_ctl_dir/busy_up_thres
+  lock_value 25 $cpu5_core_ctl_dir/busy_down_thres
 }
 
 hide_value /sys/module/msm_performance/parameters/cpu_max_freq '0:4294967295 1:4294967295 2:4294967295 3:4294967295 4:4294967295 5:4294967295 6:4294967295 7:4294967295'
@@ -188,7 +188,8 @@ if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
   # hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
   # hide_value /proc/game_opt/disable_cpufreq_limit 1
-  taskset -p 1b $(pidof vendor.oplus.hardware.gameopt-service)
+  hide_value /proc/sys/walt/sched_downmigrate "40 70 70"
+  hide_value /proc/sys/walt/sched_upmigrate "60 90 85"
 fi
 # hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
 # hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0

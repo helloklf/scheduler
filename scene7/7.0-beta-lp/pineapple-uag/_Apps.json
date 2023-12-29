@@ -7,11 +7,18 @@
       "idle_delay": 1700,
       "enter": [
         ["@preset", "powersave_active"],
+        ["@preset", "target_loads_app"],
         ["$sched_boost", "2"]
       ],
       "exit": [
         ["@preset", "powersave_inactive"],
-        ["$sched_boost", "0"]
+        ["@limiters", "NONE"],
+        ["@values", "target_loads",
+          "#85 1017600:90",
+          "#85 960000:90 1612800:95",
+          "#85 960000:90 1612800:95",
+          "#85 902400:90 1478400:95"
+        ]
       ]
     }
   },{
@@ -24,8 +31,7 @@
         ["$sched_boost", "2"]
       ],
       "exit": [
-        ["@preset", "balance_inactive"],
-        ["$sched_boost", "0"]
+        ["@preset", "balance_inactive"]
       ]
     }
   }, {
@@ -38,8 +44,7 @@
         ["$sched_boost", "2"]
       ],
       "exit": [
-        ["@preset", "performance_inactive"],
-        ["$sched_boost", "0"]
+        ["@preset", "performance_inactive"]
       ]
     }
   }, {
@@ -49,11 +54,10 @@
       "idle_delay": 1700,
       "enter": [
         ["@preset", "fast_active"],
-        ["$sched_boost", "2"]
+        ["$sched_boost", "1"]
       ],
       "exit": [
-        ["@preset", "fast_inactive"],
-        ["$sched_boost", "0"]
+        ["@preset", "fast_inactive"]
       ]
     }
   }]

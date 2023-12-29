@@ -73,16 +73,32 @@
       ],
   
       "hispeed_freq": [
-        ["/sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_freq"],
-        ["/sys/devices/system/cpu/cpufreq/policy2/walt/hispeed_freq"],
-        ["/sys/devices/system/cpu/cpufreq/policy5/walt/hispeed_freq"],
-        ["/sys/devices/system/cpu/cpufreq/policy7/walt/hispeed_freq"]
+        ["/sys/devices/system/cpu/cpufreq/policy0/uag/hispeed_freq"],
+        ["/sys/devices/system/cpu/cpufreq/policy2/uag/hispeed_freq"],
+        ["/sys/devices/system/cpu/cpufreq/policy5/uag/hispeed_freq"],
+        ["/sys/devices/system/cpu/cpufreq/policy7/uag/hispeed_freq"]
       ],
       "hispeed_load": [
-        ["/sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_load"],
-        ["/sys/devices/system/cpu/cpufreq/policy2/walt/hispeed_load"],
-        ["/sys/devices/system/cpu/cpufreq/policy5/walt/hispeed_load"],
-        ["/sys/devices/system/cpu/cpufreq/policy7/walt/hispeed_load"]
+        ["/sys/devices/system/cpu/cpufreq/policy0/uag/hispeed_load"],
+        ["/sys/devices/system/cpu/cpufreq/policy2/uag/hispeed_load"],
+        ["/sys/devices/system/cpu/cpufreq/policy5/uag/hispeed_load"],
+        ["/sys/devices/system/cpu/cpufreq/policy7/uag/hispeed_load"]
+      ],
+      "latency": [
+        ["/sys/devices/system/cpu/cpufreq/policy0/uag/down_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy0/uag/up_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy2/uag/down_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy2/uag/up_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy5/uag/down_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy5/uag/up_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy7/uag/down_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy7/uag/up_rate_limit_us"]
+      ],
+      "target_loads": [
+        ["/sys/devices/system/cpu/cpu0/cpufreq/uag/target_loads"],
+        ["/sys/devices/system/cpu/cpu2/cpufreq/uag/target_loads"],
+        ["/sys/devices/system/cpu/cpu5/cpufreq/uag/target_loads"],
+        ["/sys/devices/system/cpu/cpu7/cpufreq/uag/target_loads"]
       ],
       "min_freq": [
         ["$cpu_min_0"], ["$cpu_min_2"], ["$cpu_min_5"], ["$cpu_min_7"]
@@ -119,23 +135,31 @@
         ["@preset", "cpu7_on"]
       ],
       "common_inactive": [
-        ["@values", "min_freq", "307200", "480000", "480000", "480000"]
+        ["@values", "min_freq", "307200", "480000", "480000", "480000"],
+        ["$sched_boost", "0"]
       ],
       "common_app": [
         ["$perfmgr_enable", "0"],
         ["@cpuset", "0-1", "0-6", "2-7", "0-7"],
-        ["/dev/cpuset/sf/cpus", "2-6"]
+        ["/dev/cpuset/sf/cpus", "2-6"],
+        ["@values", "target_loads", "80 1574400:90", "80 2131200:85 2707200:90", "80 2131200:90", "80 2438400:90"]
       ],
       "common_gaming": [
         ["@limiters", "NONE"],
-        ["@cpuset", "0-1", "0-3,5-6", "2-3,5-6", "2-7"],
+        ["@cpuset", "0-1", "0-3,5-6", "0-3,5-6", "0-7"],
         ["/dev/cpuset/sf/cpus", "2-3"],
         ["$sched_boost", "0"]
       ],
 
       "powersave_active": [
         ["@preset", "common_active"],
-        ["@limiters", "p1:cpu0", "p1:cpu2", "p1:cpu5", "p1:cpu7"],
+        ["@limiters", "NONE"],
+        ["@values", "target_loads",
+          "#80 672000:80 1017600:85 1574400:90",
+          "#80 614400:80 960000:85 1612800:90",
+          "#80 614400:80 960000:85 1612800:90",
+          "#80 614400:80 902400:85 1593600:90"
+        ],
         ["@values", "hispeed_freq", "0", "844800", "844800", "844800"],
         ["@values", "hispeed_load", "85", "85", "85", "85"]
       ],

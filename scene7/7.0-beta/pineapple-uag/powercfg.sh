@@ -38,49 +38,6 @@ hide_value() {
   fi
 }
 
-disable_migt() {
-  migt=/sys/module/migt/parameters
-  if [[ -e $migt ]]; then
-    hide_value $migt/migt_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
-    hide_value $migt/glk_freq_limit_start '0'
-    hide_value $migt/glk_freq_limit_walt '0'
-    hide_value $migt/glk_maxfreq '0 0 0'
-    hide_value $migt/glk_minfreq '307200  480000 595200'
-    hide_value $migt/migt_ceiling_freq '0 0 0'
-    hide_value $migt/glk_disable '1'
-    hide_value $migt/mi_freq_enable '0'
-    hide_value $migt/force_stask_to_big '0'
-    hide_value $migt/glk_fbreak_enable '0'
-    hide_value $migt/force_reset_runtime '0'
-
-    settings put secure speed_mode_enable 1
-    chmod 000 $migt/*
-    chmod 000 /sys/module/migt
-    chmod 000 /sys/module/sched_walt/holders/migt/parameters
-  fi
-
-  glk=/proc/sys/glk
-  if [[ -d $glk ]]; then
-    hide_value $glk/glk_disable '1'
-    hide_value $glk/freq_break_enable '0'
-    hide_value $glk/game_minfreq_limit '0 0 0'
-    hide_value $glk/game_maxfreq_limit '0 0 0'
-    hide_value $glk/game_lowspeed_load '30 30 30'
-    hide_value $glk/game_hispeed_load '80 80 80'
-  fi
-
-  migt=/proc/sys/migt
-  if [[ -d $migt ]]; then
-    hide_value $migt/force_stask_tob '0'
-    hide_value $migt/enable_pkg_monitor '0'
-    hide_value $migt/boost_pid '0'
-  fi
-
-  chmod 000 /sys/class/misc/migt
-  chmod 000 /sys/module/sched_walt/holders/migt
-}
-
-
 core_ctl_preset() {
   cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
   echo 50 > $cpu7_core_ctl_dir/offline_delay_ms

@@ -239,7 +239,6 @@ if [[ $(getprop ro.cc.device.name) != "" ]]; then
   echo 0 > /proc/sys/kernel/sched_energy_aware
   echo 0 > /proc/sys/walt/sched_force_lb_enable
   stop miuibooster
-  pm hide com.xiaomi.joyose
 fi
 
 # OnePlus

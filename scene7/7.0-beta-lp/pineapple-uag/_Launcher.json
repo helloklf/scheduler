@@ -1,0 +1,32 @@
+{
+  "friendly": "极速响应",
+  "modes": [{
+    "mode": ["powersave"],
+    "booster": {
+      "duration": 4000, "idle_delay": 1000,
+      "enter": [ ["@preset", "balance_active"] ],
+      "exit": [ ["@preset", "balance_inactive"] ]
+    }
+  }, {
+    "mode": ["balance"],
+    "booster": {
+      "duration": 4000, "idle_delay": 1000,
+      "enter": [ ["@preset", "performance_active"] ],
+      "exit": [ ["@preset", "balance_inactive"] ]
+    }
+  }, {
+    "mode": ["performance"],
+    "booster": {
+      "duration": 3000, "idle_delay": 1000,
+      "enter": [ ["@preset", "performance_active"] ],
+      "exit": [ ["@preset", "balance_inactive"] ]
+    }
+  }, {
+    "mode": ["*"],
+    "booster": {
+      "duration": 3000, "idle_delay": 1000,
+      "enter": [ ["@preset", "fast_active"] ],
+      "exit": [ ["@preset", "balance_inactive"] ]
+    }
+  }]
+}
