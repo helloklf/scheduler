@@ -112,18 +112,18 @@
     ],
     "cpu7_on": [
       ["$core_ctl_7", "#1"],
-      ["$max_cpus_cpu7", "1"],
-      ["$min_cpus_cpu7", "1"]
+      ["$max_cpus_cpu7", "#1"],
+      ["$min_cpus_cpu7", "#1"]
     ],
     "cpu7_off": [
       ["$core_ctl_7", "#1"],
-      ["$min_cpus_cpu7", "0"],
-      ["$max_cpus_cpu7", "0"]
+      ["$min_cpus_cpu7", "#0"],
+      ["$max_cpus_cpu7", "#0"]
     ],
     "cpu7_auto": [
       ["$core_ctl_7", "1"],
-      ["$min_cpus_cpu7", "0"],
-      ["$max_cpus_cpu7", "1"]
+      ["$min_cpus_cpu7", "#0"],
+      ["$max_cpus_cpu7", "#1"]
     ],
     "ufshc_perf_on": [
       ["/sys/devices/platform/soc/1d84000.ufshc/clkscale_enable", "#1"],

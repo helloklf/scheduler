@@ -85,19 +85,19 @@
       ["@values", "bw", "762", "7980", "2288", "15258"]
     ],
     "cpu7_on": [
-      ["$core_ctl_7", "0"],
-      ["$max_cpus_cpu7", "1"],
-      ["$min_cpus_cpu7", "1"]
+      ["$core_ctl_7", "#0"],
+      ["$max_cpus_cpu7", "#1"],
+      ["$min_cpus_cpu7", "#1"]
     ],
     "cpu7_off": [
-      ["$core_ctl_7", "0"],
-      ["$min_cpus_cpu7", "0"],
-      ["$max_cpus_cpu7", "0"]
+      ["$core_ctl_7", "#0"],
+      ["$min_cpus_cpu7", "#0"],
+      ["$max_cpus_cpu7", "#0"]
     ],
     "cpu7_auto": [
-      ["$core_ctl_7", "1"],
-      ["$min_cpus_cpu7", "0"],
-      ["$max_cpus_cpu7", "1"]
+      ["$core_ctl_7", "#1"],
+      ["$min_cpus_cpu7", "#0"],
+      ["$max_cpus_cpu7", "#1"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]

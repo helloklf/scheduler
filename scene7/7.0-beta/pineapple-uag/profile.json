@@ -197,7 +197,7 @@
         ["@preset", "common_active"],
         ["@limiters", "p4:cpu0", "p4:cpu2", "p4:cpu5", "p4:cpu7"],
         ["@values", "hispeed_freq", "0", "1075200", "1286400", "1248000"],
-        ["@values", "hispeed_load", "82", "82", "82", "82"]
+        ["@values", "hispeed_load", "85", "85", "85", "85"]
       ],
       "fast_inactive": [
         ["@preset", "common_inactive"],
@@ -257,6 +257,15 @@
       { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
     ],
     "games": [
+      {
+        "friendly": "双核强化",
+        "packages": [
+          "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact",
+          "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig",
+          "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"
+        ],
+        "import": "_DualCore.json"
+      },
       {
         "friendly": "All",
         "packages": ["*"],

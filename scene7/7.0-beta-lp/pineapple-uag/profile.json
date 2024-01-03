@@ -306,6 +306,15 @@
         "import": "_SpeedMobile.json"
       },
       {
+        "friendly": "双核强化",
+        "packages": [
+          "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact",
+          "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig",
+          "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"
+        ],
+        "import": "_FASDualCore.json"
+      },
+      {
         "friendly": "All",
         "packages": ["*"],
         "import": "_FAS.json"
