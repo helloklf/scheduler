@@ -216,7 +216,8 @@
         ["@preset", "common_gaming"],
         ["$bus_ddr", "2092000"],
         ["$mod_percent", "92"],
-        ["@values", "latency", "0", "3000", "0", "3000", "0", "3000"]
+        ["@values", "latency", "0", "3000", "0", "3000", "0", "3000"],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
     },
     "balance": {
@@ -232,7 +233,8 @@
         ["@preset", "common_gaming"],
         ["$bus_ddr", "2736000"],
         ["$mod_percent", "92"],
-        ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
+        ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
     },
     "performance": {
@@ -248,7 +250,8 @@
         ["@preset", "common_gaming"],
         ["$bus_ddr", "2736000"],
         ["$mod_percent", "92"],
-        ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
+        ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
+        ["/proc/game_opt/disable_cpufreq_limit", "1"]
       ]
     },
     "fast": {
@@ -264,7 +267,8 @@
         ["$bus_ddr_min", "2736000"],
         ["@preset", "common_gaming"],
         ["$mod_percent", "93"],
-        ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
+        ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
+        ["/proc/game_opt/disable_cpufreq_limit", "1"]
       ]
     }
   },

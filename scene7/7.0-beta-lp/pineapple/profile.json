@@ -1,7 +1,6 @@
 {
     "platform": "pineapple",
     "platform_name": "8GEN3",
-    "framework": 220,
     "alias": {
       "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
       "mod_percent": "/sys/class/kgsl/kgsl-3d0/devfreq/mod_percent",
@@ -129,7 +128,7 @@
       "common_gaming": [
         ["@limiters", "NONE"],
         ["@cpuset", "0-1", "0-3,5-6", "2-3,5-6", "2-7"],
-        ["/dev/cpuset/sf/cpus", "2-3"],
+        ["/dev/cpuset/sf/cpus", "#2-3"],
         ["$sched_boost", "0"]
       ],
 

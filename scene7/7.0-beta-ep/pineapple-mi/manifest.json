@@ -1,0 +1,10 @@
+{
+  "version": "EP-MI",
+  "versionCode": 20240105001,
+  "author": "SCENE7",
+  "projectUrl": "http://vtools.omarea.com/",
+  "features": {
+    "strict": true,
+    "pedestal": false
+  }
+}

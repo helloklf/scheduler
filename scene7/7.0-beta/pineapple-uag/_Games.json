@@ -7,10 +7,12 @@
       ["@values", "hispeed_freq", "0", "0", "0", "0"],
       ["@values", "max_freq", "1670400", "#2188800", "#1824000", "#2092800"],
       ["@values", "min_freq", "441600", "614400", "614400", "614400"],
-      ["/sys/devices/system/cpu/cpu0/cpufreq/uag/target_loads", "#80 1574400:85"],
-      ["/sys/devices/system/cpu/cpu2/cpufreq/uag/target_loads", "#80 1824000:88"],
-      ["/sys/devices/system/cpu/cpu5/cpufreq/uag/target_loads", "#80 1497600:88"],
-      ["/sys/devices/system/cpu/cpu7/cpufreq/uag/target_loads", "#80 1824000:88"],
+      ["@values", "target_loads",
+        "#80 1574400:85",
+        "#80 1824000:85",
+        "#81 1497600:88",
+        "#80 1824000:88"
+      ],
       ["/proc/game_opt/disable_cpufreq_limit", "0"]
     ]
   }, {
@@ -20,36 +22,42 @@
       ["@values", "hispeed_freq", "0", "960000", "1113600", "1171200"],
       ["@values", "max_freq", "1804800", "#2438400", "#2246400", "#2476800"],
       ["@values", "min_freq", "672000", "729600", "614400", "787200"],
-      ["/sys/devices/system/cpu/cpu0/cpufreq/uag/target_loads", "#80 1574400:85"],
-      ["/sys/devices/system/cpu/cpu2/cpufreq/uag/target_loads", "#80 2188800:85"],
-      ["/sys/devices/system/cpu/cpu5/cpufreq/uag/target_loads", "#81 1920000:88"],
-      ["/sys/devices/system/cpu/cpu7/cpufreq/uag/target_loads", "#80 2246400:88"],
+      ["@values", "target_loads",
+        "#80 1574400:85",
+        "#80 2188800:85",
+        "#81 1920000:88",
+        "#80 2246400:88"
+      ],
       ["/proc/game_opt/disable_cpufreq_limit", "0"]
     ]
   }, {
     "mode": ["performance"],
     "call": [
       ["@preset", "common_gaming"],
-      ["@preset", "freq_high"],
+      ["@values", "hispeed_freq", "1017600", "1497600", "1497600", "1478400"],
       ["@values", "max_freq", "#1804800", "#2841600", "#2630400", "#2803200"],
       ["@values", "min_freq", "1056000", "960000", "844800", "902400"],
-      ["/sys/devices/system/cpu/cpu0/cpufreq/uag/target_loads", "#80 1689600:85"],
-      ["/sys/devices/system/cpu/cpu2/cpufreq/uag/target_loads", "#80 2707200:85"],
-      ["/sys/devices/system/cpu/cpu5/cpufreq/uag/target_loads", "#81 2035200:86"],
-      ["/sys/devices/system/cpu/cpu7/cpufreq/uag/target_loads", "#80 2553600:84 2630400:87"],
+      ["@values", "target_loads",
+        "#80 1689600:85",
+        "#80 2707200:85",
+        "#81 2035200:88",
+        "#80 2553600:84 2630400:87"
+      ],
       ["/proc/game_opt/disable_cpufreq_limit", "1"]
     ]
   }, {
     "mode": ["fast"],
     "call": [
-      ["$perfmgr_enable", "#0"],
       ["@preset", "common_gaming"],
+      ["@values", "hispeed_freq", "1574400", "1708800", "1708800", "1708800"],
       ["@values", "max_freq", "#1804800", "#3148800", "#2630400", "#3187200"],
       ["@values", "min_freq", "1056000", "960000", "844800", "902400"],
-      ["/sys/devices/system/cpu/cpu0/cpufreq/uag/target_loads", "#80"],
-      ["/sys/devices/system/cpu/cpu2/cpufreq/uag/target_loads", "#80 2956800:87"],
-      ["/sys/devices/system/cpu/cpu5/cpufreq/uag/target_loads", "#81 2438400:87"],
-      ["/sys/devices/system/cpu/cpu7/cpufreq/uag/target_loads", "#80 2995200:90"],
+      ["@values", "target_loads",
+        "#80",
+        "#80 2956800:85",
+        "#81 2438400:88",
+        "#80 2995200:90"
+      ],
       ["/proc/game_opt/disable_cpufreq_limit", "1"]
     ]
   }]

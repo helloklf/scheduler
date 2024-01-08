@@ -1,9 +1,5 @@
 [
   {
-    "packages": ["*"],
-    "cpuset": {}
-  },
-  {
     "friendly": "星穹铁道",
     "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
     "cpuset": {
@@ -19,13 +15,6 @@
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "cpuset": {
-      "unity_main": "4",
-      "heavy_thread": "UnityGfx",
-      "heavy_cores": "7",
-      "comm": {
-        "2-3,5-6": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"]
-      },
-      "other": "2-3,5-6"
     }
   },
   {
@@ -44,13 +33,6 @@
     "friendly": "和平精英",
     "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
     "cpuset": {
-      "heavy_thread": "Thread-",
-      "heavy_cores": "7",
-      "comm": {
-        "4": ["RenderThread"],
-        "2-3,5-6": ["FAsyncLoading", "TaskGraphNP", "Thread-", "NativeThread", "MainThread"]
-      },
-      "other": "2-3,5-6"
     }
   },
   {
@@ -59,11 +41,11 @@
     "cpuset": {
       "unity_main": "7",
       "heavy_thread": "UnityGfx",
-      "heavy_cores": "4",
+      "heavy_cores": "2-4",
       "comm": {
-        "2-3,5-6": ["Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
+        "2-4": ["Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
       },
-      "other": "2-3,5-6"
+      "other": "2-4"
     }
   }
 ]

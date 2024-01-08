@@ -1,7 +1,6 @@
 {
     "platform": "pineapple",
     "platform_name": "8GEN3",
-    "framework": 220,
     "alias": {
       "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
       "mod_percent": "/sys/class/kgsl/kgsl-3d0/devfreq/mod_percent",
@@ -68,8 +67,7 @@
     "presets": {
       "reset": [
         ["@msm_reset"],
-        ["@governor", "uag", "walt"],
-        ["@preset", "cpu5_on"]
+        ["@governor", "uag", "walt"]
       ],
   
       "hispeed_freq": [
@@ -106,16 +104,6 @@
       "max_freq": [
         ["$cpu_max_0"], ["$cpu_max_2"], ["$cpu_max_5"], ["$cpu_max_7"]
       ],
-      "cpu5_on": [
-        ["$core_ctl_5", "1"],
-        ["$max_cpus_cpu5", "#2"],
-        ["$min_cpus_cpu5", "#2"]
-      ],
-      "cpu5_auto": [
-        ["$core_ctl_5", "1"],
-        ["$max_cpus_cpu5", "#2"],
-        ["$min_cpus_cpu5", "#0"]
-      ],
       "cpu7_on": [
         ["$core_ctl_7", "1"],
         ["$max_cpus_cpu7", "#1"],
@@ -139,29 +127,27 @@
         ["$sched_boost", "0"]
       ],
       "common_app": [
-        ["$perfmgr_enable", "0"],
         ["@cpuset", "0-1", "0-6", "2-7", "0-7"],
-        ["/dev/cpuset/sf/cpus", "2-6"],
-        ["@values", "target_loads", "80 1574400:90", "80 2131200:85 2707200:90", "80 2131200:90", "80 2438400:90"]
+        ["/dev/cpuset/sf/cpus", "#2-6"],
+        ["@values", "target_loads", "80", "80", "80", "80"],
+        ["/sys/devices/system/cpu/bus_dcvs/L3/boost_freq", "364800"],
+        ["/sys/devices/system/cpu/bus_dcvs/DDR/boost_freq", "547000"],
+        ["/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq", "0"],
+        ["/sys/devices/system/cpu/bus_dcvs/LLCC/240b7400.qcom,bwmon-llcc/max_freq", "806000"]
       ],
       "common_gaming": [
         ["@limiters", "NONE"],
         ["@cpuset", "0-1", "0-3,5-6", "0-3,5-6", "0-7"],
-        ["/dev/cpuset/sf/cpus", "2-3"],
-        ["$sched_boost", "0"]
+        ["/dev/cpuset/sf/cpus", "#2-3"],
+        ["$sched_boost", "0"],
+        ["/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq", "#1"]
       ],
 
       "powersave_active": [
         ["@preset", "common_active"],
-        ["@limiters", "NONE"],
-        ["@values", "target_loads",
-          "#80 672000:80 1017600:85 1574400:90",
-          "#80 614400:80 960000:85 1612800:90",
-          "#80 614400:80 960000:85 1612800:90",
-          "#80 614400:80 902400:85 1593600:90"
-        ],
+        ["@limiters", "p1:cpu0", "p1:cpu2", "p1:cpu5", "p1:cpu7"],
         ["@values", "hispeed_freq", "0", "844800", "844800", "844800"],
-        ["@values", "hispeed_load", "85", "85", "85", "85"]
+        ["@values", "hispeed_load", "90", "90", "90", "90"]
       ],
       "powersave_inactive": [
         ["@preset", "common_inactive"],
@@ -175,7 +161,7 @@
         ["@preset", "common_active"],
         ["@limiters", "p2:cpu0", "p2:cpu2", "p2:cpu5", "p2:cpu7"],
         ["@values", "hispeed_freq", "0", "960000", "960000", "960000"],
-        ["@values", "hispeed_load", "85", "85", "85", "85"]
+        ["@values", "hispeed_load", "90", "90", "90", "90"]
       ],
       "balance_inactive": [
         ["@preset", "common_inactive"],
@@ -183,8 +169,7 @@
         ["@limiters", "inactive:cpu0", "inactive:cpu2", "inactive:cpu5", "inactive:cpu7"],
         ["@values", "hispeed_freq", "0", "729600", "729600", "787200"],
         ["@values", "hispeed_load", "90", "90", "90", "90"],
-        ["@preset", "cpu7_off"],
-        ["@preset", "cpu5_auto"]
+        ["@preset", "cpu7_off"]
       ],
 
       "performance_active": [
@@ -204,7 +189,7 @@
         ["@preset", "common_active"],
         ["@limiters", "p4:cpu0", "p4:cpu2", "p4:cpu5", "p4:cpu7"],
         ["@values", "hispeed_freq", "0", "1075200", "1286400", "1248000"],
-        ["@values", "hispeed_load", "82", "82", "82", "82"]
+        ["@values", "hispeed_load", "85", "85", "85", "85"]
       ],
       "fast_inactive": [
         ["@preset", "common_inactive"],
@@ -241,7 +226,8 @@
         "game": [
           ["@preset", "common_gaming"],
           ["@values", "hispeed_freq", "0", "0", "0", "0"],
-          ["@preset", "freq_low"]
+          ["@preset", "freq_low"],
+          ["/sys/devices/system/cpu/bus_dcvs/L3/boost_freq", "364800"]
         ]
       },
       "balance": {
@@ -255,7 +241,8 @@
         "game": [
           ["@preset", "common_gaming"],
           ["@values", "hispeed_freq", "0", "960000", "1113600", "1171200"],
-          ["@preset", "freq_middle"]
+          ["@preset", "freq_middle"],
+          ["/sys/devices/system/cpu/bus_dcvs/L3/boost_freq", "1344000"]
         ]
       },
       "performance": {
@@ -268,7 +255,8 @@
         ],
         "game": [
           ["@preset", "common_gaming"],
-          ["@preset", "freq_high"]
+          ["@preset", "freq_high"],
+          ["/sys/devices/system/cpu/bus_dcvs/L3/boost_freq", "1555200"]
         ]
       },
       "fast": {
@@ -282,7 +270,8 @@
         "game": [
           ["$perfmgr_enable", "#0"],
           ["@preset", "common_gaming"],
-          ["@preset", "freq_extreme"]
+          ["@preset", "freq_extreme"],
+          ["/sys/devices/system/cpu/bus_dcvs/L3/boost_freq", "1555200"]
         ]
       }
     },

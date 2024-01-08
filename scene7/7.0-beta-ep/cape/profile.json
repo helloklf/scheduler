@@ -46,8 +46,10 @@
     },
     "gesture_boost": {
       "enable": false,
-      "enter": [],
-      "exit": []
+      "enter": [
+      ],
+      "exit": [
+      ]
     }
   },
   "presets": {

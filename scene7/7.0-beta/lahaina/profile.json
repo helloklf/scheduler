@@ -204,7 +204,8 @@
         ["@cpu_freq", "cpu7", "844800", "1900800"],
         ["$gpu_max_khz", "#608000000"],
         ["@sched_limit", "0 0", "0 4000", "0 4000"],
-        ["$mod_percent", "92"]
+        ["$mod_percent", "92"],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
     },
     "balance": {
@@ -224,7 +225,8 @@
         ["@cpu_freq", "cpu4", "844800", "1996800"],
         ["@cpu_freq", "cpu7", "844800", "2265600"],
         ["$gpu_max_khz", "#608000000"],
-        ["$mod_percent", "93"]
+        ["$mod_percent", "93"],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
     },
     "performance": {
@@ -246,7 +248,8 @@
         ["@cpu_freq", "cpu7", "844800", "2496000"],
         ["$gpu_max_khz", "#738000000"],
         ["@preset", "lat_boost"],
-        ["$mod_percent", "94"]
+        ["$mod_percent", "94"],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
     },
     "fast": {
@@ -267,7 +270,8 @@
         ["$gpu_max_khz", "#778000000"],
         ["@preset", "bw_boost"],
         ["@preset", "lat_boost"],
-        ["$mod_percent", "94"]
+        ["$mod_percent", "94"],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
     }
   },

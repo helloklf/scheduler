@@ -7,18 +7,10 @@
       "idle_delay": 1700,
       "enter": [
         ["@preset", "powersave_active"],
-        ["@preset", "target_loads_app"],
         ["$sched_boost", "2"]
       ],
       "exit": [
-        ["@preset", "powersave_inactive"],
-        ["@limiters", "NONE"],
-        ["@values", "target_loads",
-          "#85 1017600:90",
-          "#85 960000:90 1612800:95",
-          "#85 960000:90 1612800:95",
-          "#85 902400:90 1478400:95"
-        ]
+        ["@preset", "powersave_inactive"]
       ]
     }
   },{

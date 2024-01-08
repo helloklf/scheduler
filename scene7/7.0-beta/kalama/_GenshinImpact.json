@@ -18,7 +18,7 @@
     },
     {
       "mode": ["*"],
-      "call": [["@limiters", "p4:cpu0", "p4:cpu3", "p4:cpu7"]]
+      "call": [["@limiters", "NONE"]]
     }
   ]
 }

@@ -121,7 +121,8 @@
     "comm_gaming": [
       ["@limiters", "NONE"],
       ["@uclamp", "0.00~max", "0.00~max", "1.00~max"],
-      ["@cpuset", "0-2", "1-3", "0-5", "0-7"]
+      ["@cpuset", "0-2", "1-3", "0-5", "0-7"],
+      ["/proc/game_opt/disable_cpufreq_limit", "1"]
     ],
 
     "powersave_active": [

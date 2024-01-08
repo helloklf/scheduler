@@ -5,29 +5,65 @@
     {
       "mode": ["powersave"],
       "call": [
+        ["@preset", "common_gaming"],
+        ["@values", "hispeed_freq", "0", "0", "0", "0"],
         ["@values", "max_freq", "1670400", "#2035200", "#1612800", "#1824000"],
-        ["@values", "min_freq", "307200", "480000", "480000", "480000"]
+        ["@values", "min_freq", "307200", "480000", "480000", "480000"],
+        ["@values", "target_loads",
+          "#80 1574400:85",
+          "#80 1824000:85",
+          "#81 1497600:88",
+          "#80 1824000:88"
+        ],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
     },
     {
       "mode": ["balance"],
       "call": [
+        ["@preset", "common_gaming"],
+        ["@values", "hispeed_freq", "0", "960000", "1113600", "1171200"],
         ["@values", "max_freq", "1670400", "#2438400", "#1824000", "#2092800"],
-        ["@values", "min_freq", "441600", "614400", "614400", "614400"]
+        ["@values", "min_freq", "441600", "614400", "614400", "614400"],
+        ["@values", "target_loads",
+          "#80 1574400:85",
+          "#80 2188800:85",
+          "#81 1920000:88",
+          "#80 2246400:88"
+        ],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
     },
     {
       "mode": ["performance"],
       "call": [
+        ["@preset", "common_gaming"],
+        ["@values", "hispeed_freq", "1017600", "1497600", "1497600", "1478400"],
         ["@values", "max_freq", "1804800", "#2630400", "#2131200", "#2476800"],
-        ["@values", "min_freq", "672000", "729600", "614400", "787200"]
+        ["@values", "min_freq", "672000", "729600", "614400", "787200"],
+        ["@values", "target_loads",
+          "#80 1689600:85",
+          "#80 2707200:85",
+          "#81 2035200:88",
+          "#80 2553600:84 2630400:87"
+        ],
+        ["/proc/game_opt/disable_cpufreq_limit", "1"]
       ]
     },
     {
       "mode": ["*"],
       "call": [
+        ["@preset", "common_gaming"],
+        ["@values", "hispeed_freq", "1574400", "1708800", "1708800", "1708800"],
         ["@values", "max_freq", "#1804800", "#2956800", "#2438400", "#2803200"],
-        ["@values", "min_freq", "672000", "729600", "614400", "787200"]
+        ["@values", "min_freq", "672000", "729600", "614400", "787200"],
+        ["@values", "target_loads",
+          "#80",
+          "#80 2956800:85",
+          "#81 2438400:88",
+          "#80 2995200:90"
+        ],
+        ["/proc/game_opt/disable_cpufreq_limit", "1"]
       ]
     }
   ]

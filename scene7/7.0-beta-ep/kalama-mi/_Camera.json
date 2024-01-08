@@ -1,0 +1,21 @@
+{
+  "friendly": "相机",
+  "packages": ["standby"],
+  "call": [
+    ["@limiters", "NONE"]
+  ],
+  "booster": {
+    "duration": 3500,
+    "idle_delay": 2000,
+    "enter": [
+      ["@cpu_freq", "policy0", "1000MHz", "1800MHz"],
+      ["@cpu_freq", "policy3", "1000MHz", "2500MHz"],
+      ["@cpu_freq", "policy7", "1300MHz", "2500MHz"]
+    ],
+    "exit": [
+      ["@cpu_freq", "policy0", "min", "1600MHz"],
+      ["@cpu_freq", "policy3", "min", "2100MHz"],
+      ["@cpu_freq", "policy7", "min", "2100MHz"]
+    ]
+  }
+}

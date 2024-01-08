@@ -1,10 +1,13 @@
 {
   "friendly": "原神",
   "call": [
-    ["/sys/devices/system/cpu/cpu0/cpufreq/uag/target_loads", "#80 1689600:85 1804800:95"],
-    ["/sys/devices/system/cpu/cpu2/cpufreq/uag/target_loads", "#80 2956800:90"],
-    ["/sys/devices/system/cpu/cpu5/cpufreq/uag/target_loads", "#80 2438400:88"],
-    ["/sys/devices/system/cpu/cpu7/cpufreq/uag/target_loads", "#80 2803200:90"]
+    [
+      "@values", "target_loads",
+        "#80 1689600:85 1804800:95",
+        "#80 2956800:90",
+        "#80 2438400:88",
+        "#80 2803200:90"
+    ]
   ],
   "modes": [
     {

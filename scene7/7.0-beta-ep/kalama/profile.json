@@ -17,25 +17,25 @@
       "inactive_interval": 100,
       "logger": false,
       "params": [
-        { "id": "p1:cpu0", "step": -0.9, "max": 1459200, "min": 556800, "margin": 100 },
-        { "id": "p1:cpu3", "step": -0.9, "max": 2054400, "min": 729600, "margin": 200 },
-        { "id": "p1:cpu7", "step": -0.8, "max": 2092800, "min": 864000, "margin": 220 },
+        { "id": "p1:cpu0", "step": -0.9, "max": 1555200, "min": 1017600, "margin": 150 },
+        { "id": "p1:cpu3", "step": -0.9, "max": 2188800, "min": 1056000, "margin": 200 },
+        { "id": "p1:cpu7", "step": -0.8, "max": 2227200, "min": 1132800, "margin": 220 },
 
-        { "id": "p2:cpu0", "step": -0.9, "max": 1555200, "min": 787200, "margin": 300 },
-        { "id": "p2:cpu3", "step": -0.7, "max": 2457600, "min": 1785600, "margin": 300 },
-        { "id": "p2:cpu7", "max": 2476800, "min": 1843200, "margin": 300 },
+        { "id": "p2:cpu0", "step": -0.9, "max": 1670400, "min": 787200, "margin": 300 },
+        { "id": "p2:cpu3", "step": -0.7, "max": 2592000, "min": 1785600, "margin": 300 },
+        { "id": "p2:cpu7", "max": 2726400, "min": 1843200, "margin": 300 },
 
         { "id": "p3:cpu0", "max": 1670400, "min": 902400, "margin": 300 },
-        { "id": "p3:cpu3", "max": 2592000, "min": 2323200, "margin": 300 },
-        { "id": "p3:cpu7", "max": 2726400, "min": 2342400, "margin": 300 },
+        { "id": "p3:cpu3", "max": 2745600, "min": 2323200, "margin": 300 },
+        { "id": "p3:cpu7", "max": 2995200, "min": 2342400, "margin": 300 },
 
         { "id": "p4:cpu0", "max": 1804800, "min": 1228800, "margin": 300 },
-        { "id": "p4:cpu3", "max": 2745600, "min": 2592000, "margin": 300 },
-        { "id": "p4:cpu7", "max": 2995200, "min": 2726400, "margin": 300 },
+        { "id": "p4:cpu3", "max": 2803200, "min": 2592000, "margin": 300 },
+        { "id": "p4:cpu7", "max": 3187200, "min": 2726400, "margin": 300 },
 
         { "id": "inactive:cpu0", "max": 1555200, "min": 556800, "margin": 100 },
-        { "id": "inactive:cpu3", "max": 1536000, "min": 614400, "margin": 120 },
-        { "id": "inactive:cpu7", "max": 1593600, "min": 729600, "margin": 120 },
+        { "id": "inactive:cpu3", "max": 1920000, "min": 614400, "margin": 120 },
+        { "id": "inactive:cpu7", "max": 1708800, "min": 729600, "margin": 120 },
 
         { "id": "idle:cpu0", "max": 1555200, "min": 556800, "margin": 90 },
         { "id": "idle:cpu3", "max": 1536000, "min": 614400, "margin": 90 },
@@ -232,16 +232,17 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "balance_active"],
-        ["$bus_ddr", "2736000"],
-        ["@preset", "ddr_low"]
+        ["@preset", "ddr_max"]
       ],
       "app": [
-        ["@preset", "common_app"]
+        ["@preset", "common_app"],
+        ["$bus_ddr", "2736000"]
       ],
       "game": [
         ["@preset", "common_gaming"],
         ["@values", "hispeed_freq", "902400", "1113600", "1171200"],
-        ["@preset", "freq_middle"]
+        ["@preset", "freq_middle"],
+        ["$bus_ddr", "3187000"]
       ]
     },
     "performance": {

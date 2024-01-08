@@ -60,6 +60,8 @@ hide_value /sys/module/msm_performance/parameters/cpu_max_freq '0:4294967295 1:4
 chattr +i  /sys/module/msm_performance/parameters/cpu_max_freq
 hide_value /sys/module/msm_performance/parameters/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
 chattr +i  /sys/module/msm_performance/parameters/cpu_min_freq
+lock_value 2-6 /dev/cpuset/display/cpus
+lock_value 2-6 /dev/cpuset/sf/cpus
 
 
 t_message=/sys/class/thermal/thermal_message

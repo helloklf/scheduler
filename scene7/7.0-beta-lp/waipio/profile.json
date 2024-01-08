@@ -202,7 +202,8 @@
       "game": [
         ["@preset", "common_gaming"],
         ["$bus_ddr", "2092000"],
-        ["$mod_percent", "92"]
+        ["$mod_percent", "92"],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
     },
     "balance": {
@@ -217,7 +218,8 @@
       "game": [
         ["@preset", "common_gaming"],
         ["$bus_ddr", "2736000"],
-        ["$mod_percent", "92"]
+        ["$mod_percent", "92"],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
     },
     "performance": {
@@ -232,7 +234,8 @@
       "game": [
         ["@preset", "common_gaming"],
         ["$bus_ddr", "2736000"],
-        ["$mod_percent", "92"]
+        ["$mod_percent", "92"],
+        ["/proc/game_opt/disable_cpufreq_limit", "1"]
       ]
     },
     "fast": {
@@ -248,7 +251,8 @@
         ["$l3_boost", "1651200"],
         ["$bus_ddr_min", "2736000"],
         ["@preset", "common_gaming"],
-        ["$mod_percent", "93"]
+        ["$mod_percent", "93"],
+        ["/proc/game_opt/disable_cpufreq_limit", "1"]
       ]
     }
   },

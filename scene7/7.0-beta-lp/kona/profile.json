@@ -144,7 +144,8 @@
     "comm_gaming": [
       ["@limiters", "NONE"],
       ["@values", "sched_boost", "1", "0", "0", "0"],
-      ["@cpuset", "0-3", "0-3", "0-5", "0-7"]
+      ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
+      ["/proc/game_opt/disable_cpufreq_limit", "1"]
     ],
 
     "powersave_active": [
