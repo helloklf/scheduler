@@ -105,13 +105,11 @@
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],
-      ["@cpuset", "0-2", "0-6", "0-7", "0-7"],
-      ["@shell", "resetprop persist.sys.background_blur_supported true"]
+      ["@cpuset", "0-2", "0-6", "0-7", "0-7"]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
-      ["@cpuset", "0-2", "0-5", "0-5", "0-7"],
-      ["@shell", "resetprop persist.sys.background_blur_supported false"]
+      ["@cpuset", "0-2", "0-5", "0-5", "0-7"]
     ],
 
     "l3_max": [
@@ -198,22 +196,6 @@
       ["@limiters", "p3:cpu0", "p3:cpu3", "p3:cpu7"],
       ["@values", "hispeed_freq", "1171200", "1440000", "1497600"],
       ["@values", "hispeed_load", "82", "82", "82"]
-    ],
-    "freq_low": [
-      ["@values", "max_freq", "1670400", "#1651200", "#1708800"],
-      ["@values", "min_freq", "307200", "499200", "595200"]
-    ],
-    "freq_middle": [
-      ["@values", "max_freq", "1670400", "#2054400", "#2092800"],
-      ["@values", "min_freq", "441600", "614400", "729600"]
-    ],
-    "freq_high": [
-      ["@values", "max_freq", "1804800", "#2457600", "#2476800"],
-      ["@values", "min_freq", "672000", "729600", "864000"]
-    ],
-    "freq_extreme": [
-      ["@values", "max_freq", "#1804800", "#2707200", "#2841600"],
-      ["@values", "min_freq", "1056000", "1209600", "1171200"]
     ]
   },
   "schemes": {
@@ -227,9 +209,9 @@
       "app": [
         ["@preset", "common_app"],
         ["@values", "target_loads",
-          "90 1555200:95",
-          "90 1651200:95",
-          "90 1593600:95"
+          "85 1555200:90",
+          "85 1651200:90",
+          "85 1593600:90"
         ]
       ],
       "game": [
@@ -250,7 +232,7 @@
         ["@preset", "common_app"],
         ["$bus_ddr", "2736000"],
         ["@values", "target_loads",
-          "85 1670400:95",
+          "85 1555200:90 1670400:95",
           "85 2188800:90",
           "85 2092800:90"
         ]
@@ -258,7 +240,6 @@
       "game": [
         ["@preset", "common_gaming"],
         ["@values", "hispeed_freq", "902400", "1113600", "1171200"],
-        ["@preset", "freq_middle"],
         ["$bus_ddr", "3187000"]
       ]
     },
@@ -272,14 +253,13 @@
         ["@preset", "common_app"],
         ["$bus_ddr", "2736000"],
         ["@values", "target_loads",
-          "85",
-          "85",
-          "85"
+          "80 1670400:85",
+          "80",
+          "80"
         ]
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@preset", "freq_high"],
         ["$l3_boost", "#1593600"],
         ["$bus_ddr", "3187000"]
       ]
@@ -304,8 +284,7 @@
         ["$l3_boost", "#1593600"],
         ["@preset", "common_gaming"],
         ["$bus_ddr", "3187000"],
-        ["$bus_ddr_min", "2736000"],
-        ["@preset", "freq_extreme"]
+        ["$bus_ddr_min", "2736000"]
       ]
     }
   },

@@ -1,5 +1,12 @@
 {
   "friendly": "极速响应",
+  "call": [
+    ["@values", "target_loads",
+      "80",
+      "80",
+      "80"
+    ]
+  ],
   "modes": [{
     "mode": ["powersave"],
     "booster": {
