@@ -134,8 +134,8 @@ disable_migt() {
     hide_value $metis/cluaff_control 0
     hide_value $metis/in_perf_mod 0
     hide_value $metis/limit_bgtask_sched 0
-    echo 0,0,0 > $metis/min_cluster_freqs
-    echo 0,0,0 > $metis/user_min_freq
+    echo 0,0,0,0 > $metis/min_cluster_freqs
+    echo 0,0,0,0 > $metis/user_min_freq
   fi
 }
 

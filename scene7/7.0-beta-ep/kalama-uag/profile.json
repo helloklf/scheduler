@@ -8,40 +8,10 @@
     "bus_ddr_min": "/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/min_freq",
     "bus_ddr": "/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq",
     "l3_boost": "/sys/devices/system/cpu/bus_dcvs/L3/boost_freq",
-    "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable"
+    "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable",
+    "sched_boost": "/proc/sys/walt/sched_boost"
   },
   "features": {
-    "limiter": {
-      "active_interval": 30,
-      "gaming_interval": 30,
-      "inactive_interval": 100,
-      "logger": false,
-      "params": [
-        { "id": "p1:cpu0", "step": -0.9, "max": 1555200, "min": 1017600, "margin": 150 },
-        { "id": "p1:cpu3", "step": -0.9, "max": 2188800, "min": 1056000, "margin": 200 },
-        { "id": "p1:cpu7", "step": -0.8, "max": 2227200, "min": 1132800, "margin": 220 },
-
-        { "id": "p2:cpu0", "step": -0.9, "max": 1670400, "min": 787200, "margin": 300 },
-        { "id": "p2:cpu3", "step": -0.7, "max": 2592000, "min": 1785600, "margin": 300 },
-        { "id": "p2:cpu7", "max": 2726400, "min": 1843200, "margin": 300 },
-
-        { "id": "p3:cpu0", "max": 1670400, "min": 902400, "margin": 300 },
-        { "id": "p3:cpu3", "max": 2745600, "min": 2323200, "margin": 300 },
-        { "id": "p3:cpu7", "max": 2995200, "min": 2342400, "margin": 300 },
-
-        { "id": "p4:cpu0", "max": 1804800, "min": 1228800, "margin": 300 },
-        { "id": "p4:cpu3", "max": 2803200, "min": 2592000, "margin": 300 },
-        { "id": "p4:cpu7", "max": 3187200, "min": 2726400, "margin": 300 },
-
-        { "id": "inactive:cpu0", "max": 1555200, "min": 556800, "margin": 100 },
-        { "id": "inactive:cpu3", "max": 1920000, "min": 614400, "margin": 120 },
-        { "id": "inactive:cpu7", "max": 1708800, "min": 729600, "margin": 120 },
-
-        { "id": "idle:cpu0", "max": 1555200, "min": 556800, "margin": 90 },
-        { "id": "idle:cpu3", "max": 1536000, "min": 614400, "margin": 90 },
-        { "id": "idle:cpu7", "max": 1593600, "min": 729600, "margin": 90, "core_ctl": true }
-      ]
-    }
   },
   "presets": {
     "reset": [
@@ -74,6 +44,11 @@
       ["/sys/devices/system/cpu/cpu3/cpufreq/walt/target_loads"],
       ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_loads"]
     ],
+    "target_load_thresh": [
+      ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_load_thresh"],
+      ["/sys/devices/system/cpu/cpu3/cpufreq/walt/target_load_thresh"],
+      ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_load_thresh"]
+    ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_3"], ["$cpu_min_7"]
     ],
@@ -101,15 +76,21 @@
     ],
     "common_inactive": [
       ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
-      ["@values", "min_freq", "307200", "499200", "595200"]
+      ["@values", "min_freq", "307200", "499200", "595200"],
+      ["@values", "hispeed_load", "90", "90", "90"],
+      ["$sched_boost", "0"]
     ],
     "common_app": [
+      ["@preset", "common_active"],
       ["$perfmgr_enable", "0"],
-      ["@cpuset", "0-2", "0-6", "0-7", "0-7"]
+      ["@cpuset", "0-2", "0-6", "0-7", "0-7"],
+      ["@values", "target_load_thresh", "600", "1024", "1024"]
     ],
     "common_gaming": [
+      ["@preset", "common_active"],
       ["@limiters", "NONE"],
-      ["@cpuset", "0-2", "0-5", "0-5", "0-7"]
+      ["@cpuset", "0-2", "0-5", "0-5", "0-7"],
+      ["$sched_boost", "0"]
     ],
 
     "l3_max": [
@@ -146,144 +127,165 @@
 
     "powersave_active": [
       ["@preset", "common_active"],
-      ["@limiters", "p1:cpu0", "p1:cpu3", "p1:cpu7"],
-      ["@values", "hispeed_freq", "787200", "844800", "864000"],
-      ["@values", "hispeed_load", "85", "85", "85"]
+      ["@values", "target_loads",
+        "85 1555200:90",
+        "85 1651200:90",
+        "85 1593600:90"
+      ],
+      ["@values", "hispeed_freq", "787200", "902400", "902400"],
+      ["@values", "hispeed_load", "90", "90", "90"]
     ],
     "powersave_inactive": [
       ["@preset", "common_inactive"],
+      ["@values", "target_loads",
+        "88 1555200:90 1670400:95",
+        "88 1651200:95",
+        "88 1593600:95"
+      ],
       ["@preset", "cpu7_off"],
-      ["@limiters", "idle:cpu0", "idle:cpu3", "idle:cpu7"],
-      ["@values", "hispeed_freq", "0", "0", "0"],
-      ["@values", "hispeed_load", "90", "90", "90"]
+      ["@values", "hispeed_freq", "0", "0", "0"]
     ],
 
     "balance_active": [
       ["@preset", "common_active"],
-      ["@limiters", "p2:cpu0", "p2:cpu3", "p2:cpu7"],
+      ["@values", "target_loads",
+        "80 1670400:90",
+        "80 2188800:90",
+        "80 2092800:90"
+      ],
       ["@values", "hispeed_freq", "672000", "1555200", "1651200"],
       ["@values", "hispeed_load", "90", "90", "90"]
     ],
     "balance_inactive": [
       ["@preset", "common_inactive"],
+      ["@values", "target_loads",
+        "85 1555200:90 1670400:95",
+        "85 1651200:95",
+        "85 1593600:95"
+      ],
       ["@preset", "cpu7_auto"],
-      ["@limiters", "inactive:cpu0", "inactive:cpu3", "inactive:cpu7"],
-      ["@values", "hispeed_freq", "691200", "499200", "595200"],
-      ["@values", "hispeed_load", "90", "90", "90"]
+      ["@values", "hispeed_freq", "691200", "499200", "595200"]
     ],
 
     "performance_active": [
       ["@preset", "common_active"],
-      ["@limiters", "p3:cpu0", "p3:cpu3", "p3:cpu7"],
+      ["@values", "target_loads",
+        "78 1670400:87",
+        "78 2188800:87",
+        "78 2092800:87"
+      ],
       ["@values", "hispeed_freq", "902400", "1555200", "1651200"],
-      ["@values", "hispeed_load", "82", "82", "82"]
+      ["@values", "hispeed_load", "85", "85", "85"]
     ],
     "performance_inactive": [
       ["@preset", "common_inactive"],
-      ["@limiters", "p2:cpu0", "p2:cpu3", "p2:cpu7"],
-      ["@values", "hispeed_freq", "1075200", "1324800", "1286400"],
-      ["@values", "hispeed_load", "82", "82", "82"]
+      ["@values", "target_loads",
+        "85 1555200:90 1670400:95",
+        "85 1651200:90",
+        "85 1593600:90"
+      ],
+      ["@values", "hispeed_freq", "1075200", "1324800", "1286400"]
     ],
 
     "fast_active": [
       ["@preset", "common_active"],
-      ["@limiters", "p4:cpu0", "p4:cpu3", "p4:cpu7"],
+      ["@values", "target_loads",
+        "75 1670400:85",
+        "75 1785600:80 2188800:85",
+        "75 1708800:80 2092800:85"
+      ],
       ["@values", "hispeed_freq", "1017600", "1555200", "1651200"],
-      ["@values", "hispeed_load", "82", "82", "82"]
+      ["@values", "hispeed_load", "85", "85", "85"]
     ],
     "fast_inactive": [
       ["@preset", "common_inactive"],
-      ["@limiters", "p3:cpu0", "p3:cpu3", "p3:cpu7"],
-      ["@values", "hispeed_freq", "1171200", "1440000", "1497600"],
-      ["@values", "hispeed_load", "82", "82", "82"]
+      ["@values", "target_loads",
+        "80 1555200:85 1670400:90",
+        "80 1651200:85 2188800:90",
+        "80 1593600:85 2227200:90"
+      ],
+      ["@values", "hispeed_freq", "1171200", "1440000", "1497600"]
     ]
   },
   "schemes": {
     "powersave": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "powersave_active"],
-        ["$bus_ddr", "2736000"],
-        ["@preset", "ddr_low"]
+        ["@preset", "ddr_low"],
+        ["$bus_ddr", "2736000"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@values", "target_loads",
-          "85 1555200:90",
-          "85 1651200:90",
-          "85 1593600:90"
-        ]
+        ["@values", "max_freq", "1785600", "1920000", "2092800"]
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@values", "hispeed_freq", "902400", "0", "0"],
-        ["@cpu_freq", "cpu0", "307200", "1670400"],
-        ["@cpu_freq", "cpu3", "499200", "1651200"],
-        ["@cpu_freq", "cpu7", "595200", "1708800"]
+        ["@values", "hispeed_freq", "902400", "0", "0"]
       ]
     },
     "balance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "balance_active"],
-        ["@preset", "ddr_max"]
+        ["@preset", "ddr_max"],
+        ["$bus_ddr", "3187000"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$bus_ddr", "2736000"],
-        ["@values", "target_loads",
-          "85 1555200:90 1670400:95",
-          "85 2188800:90",
-          "85 2092800:90"
-        ]
+        ["@values", "max_freq", "1785600", "2592000", "2726400"]
       ],
       "game": [
+        ["$perfmgr_enable", "#0"],
         ["@preset", "common_gaming"],
-        ["@values", "hispeed_freq", "902400", "1113600", "1171200"],
-        ["$bus_ddr", "3187000"]
+        ["@values", "hispeed_freq", "902400", "1113600", "1171200"]
       ]
     },
     "performance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "performance_active"],
-        ["@preset", "ddr_max"]
+        ["@preset", "ddr_max"],
+        ["$bus_ddr", "3187000"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$bus_ddr", "2736000"],
-        ["@values", "target_loads",
-          "80 1670400:85",
-          "80",
-          "80"
-        ]
+        ["@values", "max_freq", "2016000", "2707200", "2841600"]
       ],
       "game": [
+        ["$perfmgr_enable", "#0"],
         ["@preset", "common_gaming"],
-        ["$l3_boost", "#1593600"],
-        ["$bus_ddr", "3187000"]
+        ["$l3_boost", "#1593600"]
       ]
     },
     "fast": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "fast_active"],
-        ["@preset", "ddr_max"]
+        ["@preset", "ddr_max"],
+        ["$bus_ddr", "3187000"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$bus_ddr", "2736000"],
-        ["@values", "target_loads",
-          "75 1670400:80",
-          "75 1785600:80",
-          "75 1708800:80"
-        ]
+        ["@values", "max_freq", "2016000", "2803200", "3187200"]
       ],
       "game": [
         ["$perfmgr_enable", "#0"],
         ["$l3_boost", "#1593600"],
         ["@preset", "common_gaming"],
-        ["$bus_ddr", "3187000"],
+        ["$bus_ddr_min", "2736000"]
+      ]
+    },
+    "pedestal": {
+      "call": [
+        ["@preset", "reset"],
+        ["@preset", "ddr_max"],
+        ["$bus_ddr", "3187000"]
+      ],
+      "app": [
+        ["@preset", "common_app"],
+        ["@values", "max_freq", "2016000", "2803200", "3187200"]
+      ],
+      "game": [
+        ["$perfmgr_enable", "#0"],
+        ["$l3_boost", "#1593600"],
+        ["@preset", "common_gaming"],
         ["$bus_ddr_min", "2736000"]
       ]
     }

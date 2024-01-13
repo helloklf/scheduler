@@ -150,6 +150,7 @@ kernel_thread_set(){
 mk_cpuctl 'heavy' 1 0 0 max
 mkdir /dev/cpuset/heavy
 echo 0-6 > /dev/cpuset/heavy/cpus
+echo '' > /proc/sys/walt/sched_lib_name
 # mk_stune 'top-app/heavy' 0 0
 
 disable_migt() {

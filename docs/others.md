@@ -79,6 +79,8 @@
 ### `@msm_feas` `@mtk_feas`
 - 使用指定参数尝试开启小米的FEAS(如果支持)
 - 如果开启成功，会自动清掉`@limiters`指定的辅助调速器
+- 用法如 ["@msm_feas", "MIN_FREQ_INDEX", "MAX_FREQ_INDEX"]
+- FREQ_INDEX 指定频率索引范围(0~N)，值越小频率越高，N的最大值取决于内核模块中的定义
 
 ### `@scene_fas`
 - 使用指定参数尝试开启SCENE的FAS(如果支持)

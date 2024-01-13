@@ -14,15 +14,15 @@
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "cpuset": {
-      "unity_main": "7",
+      "unity_main": "6",
       "heavy_thread": "UnityGfx",
-      "heavy_cores": "3-6",
+      "heavy_cores": "7",
       "heavy_switch": false,
       "comm": {
-        "3-6": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"],
-        "0-6": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"]
+        "3-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"],
+        "0-5": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"]
       },
-      "other": "0-6"
+      "other": "0-5"
     }
   },
   {

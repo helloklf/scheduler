@@ -78,6 +78,13 @@ disable_migt() {
 
   chmod 000 /sys/class/misc/migt
   chmod 000 /sys/module/sched_walt/holders/migt
+
+  metis=/sys/module/metis/parameters
+  if [[ -d $metis ]]; then
+    for file in $metis/*enable; do
+      lock_value 0 $file
+    done
+  fi
 }
 
 core_ctl_preset() {
@@ -111,6 +118,8 @@ lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
 core_ctl_preset
 disable_migt
 
+# Nubia(RedMagic)
+chmod 444 /sys/nbia/sched_affinity_ctrl
 
 # OnePlus
 hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''

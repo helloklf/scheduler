@@ -138,6 +138,7 @@ kernel_thread_set(){
 mk_cpuctl 'heavy' 1 0 0 max
 mkdir /dev/cpuset/heavy
 echo 0-6 > /dev/cpuset/heavy/cpus
+echo '' > /proc/sys/walt/sched_lib_name
 # mk_stune 'top-app/heavy' 0 0
 # rmdir /dev/cpuset/background/untrustedapp
 
@@ -181,6 +182,13 @@ disable_migt() {
 
   chmod 000 /sys/class/misc/migt
   chmod 000 /sys/module/sched_walt/holders/migt
+
+  metis=/sys/module/metis/parameters
+  if [[ -d $metis ]]; then
+    for file in $metis/*enable; do
+      lock_value 0 $file
+    done
+  fi
 }
 
 core_ctl_preset() {

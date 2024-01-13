@@ -138,6 +138,7 @@ kernel_thread_set(){
 mk_cpuctl 'heavy' 1 0 0 max
 mkdir /dev/cpuset/heavy
 echo 0-6 > /dev/cpuset/heavy/cpus
+echo '' > /proc/sys/walt/sched_lib_name
 # mk_stune 'top-app/heavy' 0 0
 echo 128 > /dev/cpuctl/background/cpu.shares
 echo 128 > /dev/cpuctl/l-background/cpu.shares

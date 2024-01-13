@@ -13,38 +13,6 @@
     "sched_boost": "/proc/sys/walt/sched_boost"
   },
   "features": {
-    "limiter": {
-      "active_interval": 30,
-      "gaming_interval": 30,
-      "inactive_interval": 150,
-      "logger": false,
-      "params": [
-        { "id": "p1:cpu0", "step": -1, "max": 1555200, "min": 1056000, "margin": 250 },
-        { "id": "p1:cpu4", "step": -0.7, "max": 2112000, "min": 1651200, "margin": 270 },
-        { "id": "p1:cpu7", "step": -0.2, "max": 2476800, "min": 1766400, "margin": 250 },
-
-        { "id": "p2:cpu0", "max": 1555200, "min": 1056000, "margin": 280 },
-        { "id": "p2:cpu4", "max": 2457600, "min": 1881600, "margin": 280 },
-        { "id": "p2:cpu7", "max": 2707200, "min": 1996800, "margin": 280 },
-
-        { "id": "p3:cpu0", "max": 1670400, "min": 1440000, "margin": 280 },
-        { "id": "p3:cpu4", "max": 2572800, "min": 2342400, "margin": 280 },
-        { "id": "p3:cpu7", "max": 2918400, "min": 2361600, "margin": 280 },
-
-        { "id": "p4:cpu0", "max": 1804800, "min": 1574400, "margin": 200 },
-        { "id": "p4:cpu4", "max": 2745600, "min": 2572800, "margin": 200 },
-        { "id": "p4:cpu7", "max": 3187200, "min": 2592000, "margin": 200 },
-
-
-        { "id": "inactive:cpu0", "max": 1555200, "min": 1056000, "margin": 200 },
-        { "id": "inactive:cpu4", "max": 1996800, "min": 1113600, "margin": 200 },
-        { "id": "inactive:cpu7", "max": 2131200, "min": 1171200, "margin": 200 },
-
-        { "id": "idle:cpu0", "max": 1440000, "min": 806400, "margin": 200 },
-        { "id": "idle:cpu4", "max": 1766400, "min": 883200, "margin": 200 },
-        { "id": "idle:cpu7", "max": 1766400, "min": 921600, "margin": 200, "core_ctl": true }
-      ]
-    },
     "gesture_boost": {
       "enable": false,
       "enter": [
@@ -85,6 +53,11 @@
       ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_loads"],
       ["/sys/devices/system/cpu/cpu4/cpufreq/walt/target_loads"],
       ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_loads"]
+    ],
+    "target_load_thresh": [
+      ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_load_thresh"],
+      ["/sys/devices/system/cpu/cpu4/cpufreq/walt/target_load_thresh"],
+      ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_load_thresh"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
@@ -137,54 +110,83 @@
 
     "powersave_active": [
       ["@preset", "common_active"],
-      ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
+      ["@values", "target_loads",
+        "#-5 1555200:-10",
+        "#-5 1651200:-10",
+        "#-5 1651200:-10"
+      ],
       ["@values", "hispeed_freq", "1228800", "1113600", "1171200"],
       ["@values", "hispeed_load", "90", "90", "90"]
     ],
     "powersave_inactive": [
       ["@preset", "common_inactive"],
       ["@preset", "cpu7_off"],
-      ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
-      ["@values", "hispeed_freq", "0", "0", "0"],
-      ["@values", "hispeed_load", "90", "90", "90"]
+      ["@values", "target_loads",
+        "#-10 1555200:-18",
+        "#-10 1651200:-18",
+        "#-10 1651200:-18"
+      ],
+      ["@values", "hispeed_freq", "0", "0", "0"]
     ],
 
     "balance_active": [
       ["@preset", "common_active"],
-      ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
+      ["@values", "target_loads",
+        "#0 1670400:-10",
+        "#0 2112000:-10",
+        "#0 2131200:-10"
+      ],
       ["@values", "hispeed_freq", "1228800", "1555200", "1651200"],
       ["@values", "hispeed_load", "90", "90", "90"]
     ],
     "balance_inactive": [
       ["@preset", "common_inactive"],
-      ["@limiters", "inactive:cpu0", "inactive:cpu4", "inactive:cpu7"],
+      ["@values", "target_loads",
+        "#-10 1555200:-15 1670400:-20",
+        "#-10 1651200:-18",
+        "#-10 1651200:-18"
+      ],
       ["@preset", "cpu7_auto"],
-      ["@values", "hispeed_freq", "691200", "633600", "787200"],
-      ["@values", "hispeed_load", "90", "90", "90"]
+      ["@values", "hispeed_freq", "691200", "633600", "787200"]
     ],
 
     "performance_active": [
       ["@preset", "common_active"],
-      ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
-      ["@values", "hispeed_freq", "1228800", "1555200", "1651200"],
-      ["@values", "hispeed_load", "82", "82", "82"]
+      ["@values", "target_loads",
+        "#0 1670400:-10",
+        "#0 2112000:-10",
+        "#0 2131200:-10"
+      ],
+      ["@values", "hispeed_freq", "1228800", "1555200", "1651200"]
     ],
     "performance_inactive": [
       ["@preset", "common_inactive"],
-      ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
+      ["@values", "target_loads",
+        "#-10 1555200:-15 1670400:-20",
+        "#-10 1651200:-15",
+        "#-10 1651200:-15"
+      ],
       ["@values", "hispeed_freq", "1075200", "1324800", "1286400"],
       ["@values", "hispeed_load", "82", "82", "82"]
     ],
 
     "fast_active": [
       ["@preset", "common_active"],
-      ["@limiters", "p4:cpu0", "p4:cpu4", "p4:cpu7"],
+      ["@values", "target_loads",
+        "#5 1670400:-10",
+        "#5 1766400:0 2112000:-8",
+        "#5 1766400:0 2131200:-8"
+      ],
       ["@values", "hispeed_freq", "1228800", "1555200", "1651200"],
       ["@values", "hispeed_load", "82", "82", "82"]
     ],
     "fast_inactive": [
       ["@preset", "common_inactive"],
-      ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
+      ["@values", "target_loads",
+        "#-8 1555200:-10 1670400:-18",
+        "#-8 1651200:-10 2112000:-16",
+        "#-8 1651200:-10 2131200:-16"
+      ],
       ["@values", "hispeed_freq", "1171200", "1440000", "1497600"]
     ]
   },
@@ -195,7 +197,8 @@
         ["$bus_ddr", "2736000"]
       ],
       "app": [
-        ["@preset", "common_app"]
+        ["@preset", "common_app"],
+        ["@values", "max_freq", "1804800", "2112000", "2246400"]
       ],
       "game": [
         ["$bus_ddr_min", "547000"],
@@ -209,7 +212,8 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$bus_ddr", "2736000"]
+        ["$bus_ddr", "2736000"],
+        ["@values", "max_freq", "1804800", "2572800", "2707200"]
       ],
       "game": [
         ["$bus_ddr_min", "547000"],
@@ -224,7 +228,8 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$bus_ddr", "2736000"]
+        ["$bus_ddr", "2736000"],
+        ["@values", "max_freq", "1804800", "2745600", "2822400"]
       ],
       "game": [
         ["$bus_ddr_min", "547000"],
@@ -238,7 +243,8 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$bus_ddr", "3196000"]
+        ["$bus_ddr", "3196000"],
+        ["@values", "max_freq", "2016000", "2745600", "3187200"]
       ],
       "game": [
         ["$perfmgr_enable", "#0"],
@@ -253,7 +259,8 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$bus_ddr", "3196000"]
+        ["$bus_ddr", "3196000"],
+        ["@values", "max_freq", "2016000", "2745600", "3187200"]
       ],
       "game": [
         ["$perfmgr_enable", "#0"],

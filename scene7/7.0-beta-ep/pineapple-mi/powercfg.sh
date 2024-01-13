@@ -78,6 +78,16 @@ disable_migt() {
 
   chmod 000 /sys/class/misc/migt
   chmod 000 /sys/module/sched_walt/holders/migt
+
+  metis=/sys/module/metis/parameters
+  if [[ -d $metis ]]; then
+    for file in $metis/*enable; do
+      lock_value 0 $file
+    done
+  fi
+  mkdir -p /cache/data/system/mcd
+  echo '0' > /cache/data/system/mcd/policy
+  mount --bind /cache/data/system/mcd/policy /data/system/mcd/policy
 }
 
 

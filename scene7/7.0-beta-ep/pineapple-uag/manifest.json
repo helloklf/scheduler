@@ -1,10 +1,10 @@
 {
   "version": "EP-OPPO",
-  "versionCode": 20240107001,
+  "versionCode": 20240111001,
   "author": "SCENE7",
   "projectUrl": "http://vtools.omarea.com/",
   "features": {
     "strict": true,
-    "pedestal": false
+    "pedestal": true
   }
 }
