@@ -201,7 +201,8 @@
         ],
         "app": [
           ["@preset", "common_app"],
-          ["@values", "max_freq", "1670400", "#2131200", "#2131200", "#2092800"]
+          ["@values", "max_freq", "1670400", "#2131200", "#2131200", "#2092800"],
+          ["@preset", "powersave_active"]
         ],
         "game": [
           ["@values", "hispeed_freq", "0", "0", "0", "0"],
@@ -215,7 +216,8 @@
         ],
         "app": [
           ["@preset", "common_app"],
-          ["@values", "max_freq", "1804800", "#2438400", "#2438400", "#2476800"]
+          ["@values", "max_freq", "1804800", "#2438400", "#2438400", "#2476800"],
+          ["@preset", "balance_active"]
         ],
         "game": [
           ["/proc/game_opt/disable_cpufreq_limit", "1"],
@@ -229,7 +231,8 @@
         ],
         "app": [
           ["@preset", "common_app"],
-          ["@values", "max_freq", "#1804800", "#2841600", "#2841600", "#2803200"]
+          ["@values", "max_freq", "#1804800", "#2841600", "#2841600", "#2803200"],
+          ["@preset", "performance_active"]
         ],
         "game": [
           ["/proc/game_opt/disable_cpufreq_limit", "1"],
@@ -243,27 +246,29 @@
         ],
         "app": [
           ["@preset", "common_app"],
-          ["@values", "max_freq", "#1804800", "#3148800", "#2956800", "#3187200"]
+          ["@values", "max_freq", "#1804800", "#3148800", "#2956800", "#3187200"],
+          ["@preset", "fast_active"]
         ],
         "game": [
           ["/proc/game_opt/disable_cpufreq_limit", "1"],
           ["@values", "hispeed_freq", "1574400", "1708800", "1708800", "1708800"],
           ["@values", "latency", "1000", "1000", "4000", "1000", "1000", "2000", "4000", "1000"]
+        ]
+      },
+      "pedestal": {
+        "call": [
+          ["@preset", "reset"]
         ],
-        "pedestal": {
-          "call": [
-            ["@preset", "reset"]
-          ],
-          "app": [
-            ["@preset", "common_app"],
-            ["@values", "max_freq", "#1804800", "#3148800", "#2956800", "#3187200"]
-          ],
-          "game": [
-            ["/proc/game_opt/disable_cpufreq_limit", "1"],
-            ["@values", "hispeed_freq", "1574400", "1708800", "1708800", "1708800"],
-            ["@values", "latency", "1000", "1000", "4000", "1000", "1000", "2000", "4000", "1000"]
-          ]
-        }
+        "app": [
+          ["@preset", "common_app"],
+          ["@values", "max_freq", "#1804800", "#3148800", "#2956800", "#3187200"],
+          ["@preset", "fast_active"]
+        ],
+        "game": [
+          ["/proc/game_opt/disable_cpufreq_limit", "1"],
+          ["@values", "hispeed_freq", "1574400", "1708800", "1708800", "1708800"],
+          ["@values", "latency", "1000", "1000", "4000", "1000", "1000", "2000", "4000", "1000"]
+        ]
       }
     },
     "apps": [

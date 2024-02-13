@@ -1,5 +1,16 @@
 [
   {
+    "friendly": "QQ",
+    "packages": ["com.tencent.mobileqq"],
+    "cpuset": {
+      "comm": {
+        "3-7": ["RenderThread", "com.tencent"],
+        "0-6": ["pool-"]
+      },
+      "trashy": []
+    }
+  },
+  {
     "friendly": "星穹铁道",
     "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
     "cpuset": {

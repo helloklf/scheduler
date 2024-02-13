@@ -119,8 +119,9 @@ process_opt() {
 
 process_opt &
 
-lock_value 1 /sys/kernel/ged/hal/dcs_mode
+# lock_value 0 /sys/kernel/ged/hal/dcs_mode
 lock_value 0 /sys/kernel/fpsgo/fbt/switch_idleprefer
+lock_value 0 /sys/kernel/fpsgo/fbt/thrm_enable
 
 setprop persist.sys.miui_animator_sched.bigcores 4-7
 
@@ -146,36 +147,23 @@ lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 echo 10 > /sys/module/mtk_fpsgo/parameters/variance # default 40
 
 lock_value 1 /sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled
+lock_value 2 /sys/kernel/fpsgo/common/force_onoff
 hide_value /sys/kernel/fpsgo/common/fpsgo_enable 1
 
 hide_value /sys/kernel/fpsgo/fbt/limit_cfreq 0
 hide_value /sys/kernel/fpsgo/fbt/limit_rfreq 0
 hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
 hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
-lock_value /sys/kernel/ged/hal/fastdvfs_mode 0
+# lock_value /sys/kernel/ged/hal/fastdvfs_mode 0
 lock_value /sys/module/cpufreq_bouncing/parameters/enable 0
 
 # FEAS dependence, But it will not work if you change the frequency, So disable it
 # hide_value /sys/module/mtk_fpsgo/parameters/perfmgr_enable 0
 
 mount -t debugfs none /sys/kernel/debug
-
-dvfs_loading_mode=/sys/kernel/ged/hal/dvfs_loading_mode
-if [[ $(cat $dvfs_loading_mode) != "0" ]]; then
-  chmod 777 $dvfs_loading_mode
-  echo 0 > $dvfs_loading_mode
-fi
-chmod 000 $dvfs_loading_mode
 echo 0 > /sys/class/devfreq/13000000.mali/min_freq
 echo 99 > /sys/kernel/ged/hal/custom_boost_gpu_freq
 echo 0 > /sys/module/ged/parameters/gpu_cust_boost_freq
-
-# /sys/kernel/cm_mgr/dbg_cm_mgr
-# cm_mgr_enable [0|1]
-# cm_mgr_perf_enable [0|1]
-# dsu_mode_change [0|1]
-
-echo 1  > /proc/displowpower/hrt_lp
 
 module=/data/adb/modules/scene_systemless
 module_system_etc=$module/system/etc

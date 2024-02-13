@@ -20,6 +20,7 @@
       "4-6": ["UnityMultiRende", "mali-cmar-backe"],
       "0-3": ["Worker Thread", "AudioTrack", "Audio"]
     },
+    "trashy": ["Async"],
     "other": "0-6"
   }
 }
@@ -31,6 +32,7 @@
 - `heavy_cores` 需与heavy_thread配合使用，用于指定重负载线程可以使用的cpu核心。
 - `repeat` 是重复检查线程亲和设置的最大次数，配置为`0`表示无限次，默认为`0`
 - `interval` 是线程亲和设置检查时间间隔，最小值为`50` 默认值为`5000`，单位是毫秒
+- `trashy` Scene 7.0.17新增，用于指定垃圾线程，本质上是通过cpuctl(cpu.uclamp.max)对线程进行限制，因此需要LinuxKernel 5+
 
 > 需要注意的是，如果用户安装了`AsoulOpt`，那`cpuset`配置将不会生效
 

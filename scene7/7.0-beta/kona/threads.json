@@ -30,12 +30,11 @@
     "packages": ["com.tencent.tmgp.pubgmhd"],
     "cpuset": {
       "heavy_thread": "Thread-",
-      "heavy_cores": "6",
+      "heavy_cores": "7",
       "comm": {
-        "7": ["RenderThread"],
-        "4-6": ["TaskGraphNP"]
+        "4-6": ["RenderThread", "RHIThread", "TaskGraphNP"]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {

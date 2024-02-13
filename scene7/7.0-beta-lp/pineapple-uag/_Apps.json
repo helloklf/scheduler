@@ -7,9 +7,11 @@
       "idle_delay": 1700,
       "enter": [
         ["@preset", "powersave_active"],
+        ["@limiters", "p1:cpu0", "p1:cpu2", "p1:cpu5", "p1:cpu7"],
         ["$sched_boost", "2"]
       ],
       "exit": [
+        ["@limiters", "idle:cpu0", "idle:cpu2", "idle:cpu5", "idle:cpu7"],
         ["@preset", "powersave_inactive"]
       ]
     }

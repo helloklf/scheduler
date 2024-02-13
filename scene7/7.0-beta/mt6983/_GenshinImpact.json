@@ -79,19 +79,19 @@
           "props": ["$ddr_freq_min", "$gpu_freq"],
           "rules": [
             { "threshold": [-1, 501], "values": ["3200000000", "15"],
-              "enter_once": [["@limiters", "ys2:cpu0", "ys2:cpu4", "ys2:cpu7"]]
+              "enter_once": [["@limiters", "ys2:cpu0", "ys2:cpu4", "ys2:cpu7"], ["$fpsgo", "#1"]]
             },
             { "threshold": [500, 481], "values": ["4266000000", "11"],
-              "enter_once": [["@limiters", "ys3:cpu0", "ys3:cpu4", "ys3:cpu7"]]
+              "enter_once": [["@limiters", "ys3:cpu0", "ys3:cpu4", "ys3:cpu7"], ["$fpsgo", "#1"]]
             },
             { "threshold": [480, 441], "values": ["4266000000", "11"],
-              "enter_once": [["@limiters", "ys4:cpu0", "ys4:cpu4", "ys4:cpu7"]]
+              "enter_once": [["@limiters", "ys4:cpu0", "ys4:cpu4", "ys4:cpu7"], ["$fpsgo", "#1"]]
             },
             { "threshold": [440,  400], "values": ["5500000000", "7"],
-              "enter_once": [["@limiters", "ys5:cpu0", "ys5:cpu4", "ys5:cpu7"]]
+              "enter_once": [["@limiters", "ys5:cpu0", "ys5:cpu4", "ys5:cpu7"], ["$fpsgo", "#0"]]
             },
             { "threshold": [400,  -1], "values": ["5500000000", "7"],
-              "enter": [["@limiters", "NONE"], ["@values", "max_freq", "1600000", "2850000", "3000000"]]
+              "enter": [["@limiters", "NONE"], ["@values", "max_freq", "#1700000", "#2850000", "#2800000"], ["$fpsgo", "#0"]]
             }
           ]
         }
@@ -100,7 +100,7 @@
     {
       "mode": ["*"],
       "call": [
-        ["@cpu_freq", "cpu0", "800000", "1600000"],
+        ["@cpu_freq", "cpu0", "800000", "1800000"],
         ["@cpu_freq", "cpu7", "1300000", "3000000"]
       ],
       "sensors": [
@@ -111,19 +111,19 @@
           "props": ["$ddr_freq_min", "$gpu_freq"],
           "rules": [
             { "threshold": [-1, 501], "values": ["3200000000", "18"],
-              "enter_once": [["@limiters", "ys2:cpu0", "ys2:cpu4", "ys2:cpu7"]]
+              "enter_once": [["@limiters", "ys2:cpu0", "ys2:cpu4", "ys2:cpu7"], ["$fpsgo", "#1"]]
             },
             { "threshold": [500, 481], "values": ["4266000000", "11"],
-              "enter_once": [["@limiters", "ys3:cpu0", "ys3:cpu4", "ys3:cpu7"]]
+              "enter_once": [["@limiters", "ys3:cpu0", "ys3:cpu4", "ys3:cpu7"], ["$fpsgo", "#1"]]
             },
             { "threshold": [480, 461], "values": ["4266000000", "11"],
-              "enter_once": [["@limiters", "ys4:cpu0", "ys4:cpu4", "ys4:cpu7"]]
+              "enter_once": [["@limiters", "ys4:cpu0", "ys4:cpu4", "ys4:cpu7"], ["$fpsgo", "#1"]]
             },
             { "threshold": [460,  430], "values": ["5500000000", "7"],
-              "enter_once": [["@limiters", "ys5:cpu0", "ys5:cpu4", "ys5:cpu7"]]
+              "enter_once": [["@limiters", "ys5:cpu0", "ys5:cpu4", "ys5:cpu7"], ["$fpsgo", "#0"]]
             },
             { "threshold": [430,  -1], "values": ["5500000000", "7"],
-              "enter": [["@limiters", "NONE"], ["@values", "max_freq", "1600000", "2850000", "3000000"]]
+              "enter": [["@limiters", "NONE"], ["@values", "max_freq", "#1800000", "#2850000", "#3000000"], ["$fpsgo", "#0"]]
             }
           ]
         }

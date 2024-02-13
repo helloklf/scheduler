@@ -1,5 +1,16 @@
 [
   {
+    "friendly": "闲鱼",
+    "packages": ["com.taobao.idlefish"],
+    "cpuset": {
+      "comm": {
+        "7": [],
+        "2-4,-7": ["RenderThread", "1.ui", "1.raster", "taobao.idlefish"]
+      },
+      "other": "2-7"
+    }
+  },
+  {
     "friendly": "星穹铁道",
     "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
     "cpuset": {

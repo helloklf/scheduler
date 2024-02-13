@@ -192,6 +192,7 @@ echo 41 > /sys/module/mtk_fpsgo/parameters/max_freq_limit_level # default 42
 echo 2 > /sys/module/mtk_fpsgo/parameters/min_freq_limit_level # default 2
 echo 10 > /sys/module/mtk_fpsgo/parameters/variance # default 40
 # lock_value 0 /sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled
+lock_value 2 /sys/kernel/fpsgo/common/force_onoff
 lock_value 0 /sys/kernel/fpsgo/common/fpsgo_enable
 
 hide_value /sys/kernel/fpsgo/fbt/limit_cfreq 0

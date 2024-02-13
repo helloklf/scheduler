@@ -67,7 +67,7 @@
     "presets": {
       "reset": [
         ["@msm_reset"],
-        ["@governor", "uag", "walt"],
+        ["@governor", "walt"],
         ["@preset", "cpu5_on"]
       ],
   
@@ -82,6 +82,22 @@
         ["/sys/devices/system/cpu/cpufreq/policy2/walt/hispeed_load"],
         ["/sys/devices/system/cpu/cpufreq/policy5/walt/hispeed_load"],
         ["/sys/devices/system/cpu/cpufreq/policy7/walt/hispeed_load"]
+      ],
+      "latency": [
+        ["/sys/devices/system/cpu/cpufreq/policy0/walt/down_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy0/walt/up_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy2/walt/down_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy2/walt/up_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy5/walt/down_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy5/walt/up_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy7/walt/down_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy7/walt/up_rate_limit_us"]
+      ],
+      "target_loads": [
+        ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_loads"],
+        ["/sys/devices/system/cpu/cpu2/cpufreq/walt/target_loads"],
+        ["/sys/devices/system/cpu/cpu5/cpufreq/walt/target_loads"],
+        ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_loads"]
       ],
       "min_freq": [
         ["$cpu_min_0"], ["$cpu_min_2"], ["$cpu_min_5"], ["$cpu_min_7"]
@@ -118,12 +134,13 @@
         ["@preset", "cpu7_on"]
       ],
       "common_inactive": [
-        ["@values", "min_freq", "307200", "480000", "480000", "480000"]
+        ["@values", "min_freq", "307200", "480000", "480000", "480000"],
+        ["$sched_boost", "0"]
       ],
       "common_app": [
         ["$perfmgr_enable", "0"],
         ["@cpuset", "0-1", "0-6", "2-7", "0-7"],
-        ["/dev/cpuset/sf/cpus", "2-6"]
+        ["/dev/cpuset/sf/cpus", "#2-6"]
       ],
       "common_gaming": [
         ["@limiters", "NONE"],
@@ -158,8 +175,7 @@
         ["@limiters", "inactive:cpu0", "inactive:cpu2", "inactive:cpu5", "inactive:cpu7"],
         ["@values", "hispeed_freq", "0", "729600", "729600", "787200"],
         ["@values", "hispeed_load", "90", "90", "90", "90"],
-        ["@preset", "cpu7_off"],
-        ["@preset", "cpu5_auto"]
+        ["@preset", "cpu7_off"]
       ],
 
       "performance_active": [
@@ -179,7 +195,7 @@
         ["@preset", "common_active"],
         ["@limiters", "p4:cpu0", "p4:cpu2", "p4:cpu5", "p4:cpu7"],
         ["@values", "hispeed_freq", "0", "1075200", "1286400", "1248000"],
-        ["@values", "hispeed_load", "82", "82", "82", "82"]
+        ["@values", "hispeed_load", "85", "85", "85", "85"]
       ],
       "fast_inactive": [
         ["@preset", "common_inactive"],
@@ -279,6 +295,15 @@
         "friendly": "QQ飞车",
         "packages": ["com.tencent.tmgp.speedmobile"],
         "import": "_SpeedMobile.json"
+      },
+      {
+        "friendly": "双核强化",
+        "packages": [
+          "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact",
+          "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig",
+          "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"
+        ],
+        "import": "_FASDualCore.json"
       },
       {
         "friendly": "All",

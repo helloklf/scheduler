@@ -57,10 +57,10 @@
     "friendly": "和平精英",
     "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
     "cpuset": {
-      "heavy_thread": "RenderThread",
+      "heavy_thread": "Thread-",
       "heavy_cores": "7",
       "comm": {
-        "4-6": ["Thread-", "TaskGraphNP"]
+        "4-6": ["RenderThread", "RHIThread", "TaskGraphNP"]
       },
       "other": "0-6"
     }

@@ -15,7 +15,8 @@
       "cpu_min_5": "/sys/devices/system/cpu/cpufreq/policy5/scaling_min_freq",
       "cpu_max_5": "/sys/devices/system/cpu/cpufreq/policy5/scaling_max_freq",
       "sched_boost": "/proc/sys/walt/sched_boost",
-      "glk_disable": "/sys/module/migt/parameters/glk_disable"
+      "glk_disable": "/sys/module/migt/parameters/glk_disable",
+      "input_boost": "/proc/sys/walt/input_boost/sched_boost_on_input"
     },
     "features": {
       "gesture_boost": {
@@ -144,8 +145,8 @@
           "0 2131200:-5",
           "0 1939200:-5"
         ],
-        ["@values", "hispeed_freq", "0", "960000", "960000", "960000"],
-        ["@values", "hispeed_load", "90", "90", "90", "90"]
+        ["@values", "hispeed_freq", "0", "1075200", "1075200", "1017600"],
+        ["@values", "hispeed_load", "85", "85", "85", "85"]
       ],
       "balance_inactive": [
         ["@preset", "common_inactive"],
@@ -164,9 +165,9 @@
         ["@preset", "common_active"],
         ["@values", "target_loads",
           "0 1689600:-5",
-          "0",
-          "0",
-          "0"
+          "5 2131200:0",
+          "5 2131200:0",
+          "5 2246400:0"
         ],
         ["@values", "hispeed_freq", "0", "1075200", "1075200", "1017600"],
         ["@values", "hispeed_load", "85", "85", "85", "85"]
@@ -186,9 +187,9 @@
         ["@preset", "common_active"],
         ["@values", "target_loads",
           "5 1689600:0",
-          "5 2131200:0",
-          "5 2131200:0",
-          "5 2246400:0"
+          "15 2131200:0",
+          "15 2131200:0",
+          "15 2246400:0"
         ],
         ["@values", "hispeed_freq", "0", "1075200", "1286400", "1248000"],
         ["@values", "hispeed_load", "85", "85", "85", "85"]
@@ -215,7 +216,6 @@
           ["@preset", "powersave_active"]
         ],
         "game": [
-          ["@values", "hispeed_freq", "0", "0", "0", "0"],
           ["$glk_disable", "0"],
           ["@values", "hispeed_freq", "0", "0", "0", "0"]
         ]
@@ -230,7 +230,6 @@
           ["@preset", "balance_active"]
         ],
         "game": [
-          ["@values", "hispeed_freq", "0", "960000", "1113600", "1171200"],
           ["$glk_disable", "1"],
           ["$perfmgr_enable", "#0"],
           ["@values", "hispeed_freq", "0", "960000", "1113600", "1171200"]

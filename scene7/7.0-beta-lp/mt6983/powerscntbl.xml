@@ -131,7 +131,6 @@
     </scenario>
     <scenario powerhint="MTKPOWER_HINT_UX_SCROLLING">
         <data cmd="PERF_RES_SCHED_UCLAMP_MIN_TA" param1="40"></data>
-        <data cmd="PERF_RES_SCHED_PREFER_IDLE_TA" param1="1"></data>
     </scenario>
     <scenario powerhint="EXPENSIVE_RENDERING">
         <data cmd="PERF_RES_CPUFREQ_MIN_CLUSTER_0" param1="1050000"></data>

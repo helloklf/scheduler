@@ -1,9 +1,5 @@
 [
   {
-    "packages": ["*"],
-    "cpuset": {}
-  },
-  {
     "friendly": "星穹铁道",
     "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
     "cpuset": {
@@ -32,12 +28,28 @@
     "friendly": "王者荣耀",
     "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
     "cpuset": {
+      "heavy_thread": "UnityGfx;Thread-",
+      "heavy_cores": "4",
+      "comm": {
+        "7": ["UnityMain"],
+        "2-3": ["CoreThread", "Apollo"],
+        "2-3,5-6": ["Worker Thread", "NativeThread"]
+      },
+      "other": "2-3,5-6"
     }
   },
   {
     "friendly": "LOL Mobile",
     "packages": ["com.tencent.lolm"],
     "cpuset": {
+      "heavy_thread": "UnityGfx;Thread-",
+      "heavy_cores": "4",
+      "comm": {
+        "7": ["UnityMain"],
+        "2-3": ["CoreThread", "Apollo"],
+        "2-3,5-6": ["Worker Thread", "NativeThread"]
+      },
+      "other": "2-3,5-6"
     }
   },
   {
@@ -59,11 +71,11 @@
     "cpuset": {
       "unity_main": "7",
       "heavy_thread": "UnityGfx",
-      "heavy_cores": "4",
+      "heavy_cores": "2-4",
       "comm": {
-        "2-3,5-6": ["Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
+        "2-4": ["Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
       },
-      "other": "2-3,5-6"
+      "other": "2-4"
     }
   }
 ]

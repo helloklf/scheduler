@@ -10,6 +10,30 @@
     }
   },
   {
+    "friendly": "QQ",
+    "packages": ["com.tencent.mobileqq"],
+    "cpuset": {
+      "comm": {
+        "4-7": ["RenderThread"],
+        "0-6": ["pool-"]
+      },
+      "trashy": [],
+      "other": "0-7"
+    }
+  },
+  {
+    "friendly": "bilibili",
+    "packages": ["tv.danmaku.bili"],
+    "cpuset": {
+      "comm": {
+        "7": ["tv.danmaku"],
+        "4-7": ["RenderThread"]
+      },
+      "trashy": ["CRON."],
+      "other": "0-6"
+    }
+  },
+  {
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "cpuset": {
@@ -18,11 +42,11 @@
       "heavy_cores": "7",
       "heavy_switch": false,
       "comm": {
-        "4-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende"],
+        "4-5": ["Worker Thread", "UnityMultiRende"],
         "0-3": [
           "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"
         ],
-        "0-5": ["FMOD", "UnityPreload", "mali-event-", "AsyncReadManage", "mali-cmar-backe", "mali-cpu-", "mali-mem-", "ged-swd"]
+        "0-5": ["UnityChoreograp", "NativeThread", "FMOD", "UnityPreload", "mali-event-", "AsyncReadManage", "mali-cmar-backe", "mali-cpu-", "mali-mem-", "ged-swd"]
       },
       "other": "0-3"
     }

@@ -24,7 +24,6 @@
   }, {
     "mode": ["fast"],
     "call": [
-      ["@limiters", "g4:cpu0", "g4:cpu4", "g4:cpu7"],
       ["@mtk_feas", "0"]
     ]
   }]

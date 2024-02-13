@@ -26,7 +26,6 @@
     {
       "mode": ["*"],
       "call": [
-        ["@limiters", "g3:cpu0", "hkrpg2:cpu4", "g4:cpu7"]
       ]
     }
   ]

@@ -67,7 +67,8 @@
     "presets": {
       "reset": [
         ["@msm_reset"],
-        ["@governor", "uag", "walt"]
+        ["@governor", "uag", "walt"],
+        ["@preset", "cpu5_on"]
       ],
   
       "hispeed_freq": [
@@ -103,6 +104,16 @@
       ],
       "max_freq": [
         ["$cpu_max_0"], ["$cpu_max_2"], ["$cpu_max_5"], ["$cpu_max_7"]
+      ],
+      "cpu5_on": [
+        ["$core_ctl_5", "1"],
+        ["$max_cpus_cpu5", "#2"],
+        ["$min_cpus_cpu5", "#2"]
+      ],
+      "cpu5_auto": [
+        ["$core_ctl_5", "1"],
+        ["$max_cpus_cpu5", "#2"],
+        ["$min_cpus_cpu5", "#0"]
       ],
       "cpu7_on": [
         ["$core_ctl_7", "1"],

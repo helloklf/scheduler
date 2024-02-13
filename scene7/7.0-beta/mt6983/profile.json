@@ -22,14 +22,14 @@
   },
   "features": {
     "limiter": {
-      "active_interval": 20,
+      "active_interval": 30,
       "gaming_interval": 30,
-      "inactive_interval": 150,
+      "inactive_interval": 100,
       "ddr_boost": true,
       "params": [
-        { "id": "p1:cpu0", "max": 1400000, "min": 500000, "margin": 250 },
-        { "id": "p1:cpu4", "max": 2150000, "turning": 1800000, "min": 700000, "margin": 400 },
-        { "id": "p1:cpu7", "max": 2300000, "turning": 1800000, "min": 1300000, "margin": 400 },
+        { "id": "p1:cpu0", "step": -0.7, "max": 1400000, "min": 500000, "margin": 250 },
+        { "id": "p1:cpu4", "step": -0.7, "max": 2150000, "turning": 1800000, "min": 700000, "margin": 400 },
+        { "id": "p1:cpu7", "step": -0.7, "max": 2300000, "turning": 1800000, "min": 1300000, "margin": 400 },
 
         { "id": "p2:cpu0", "max": 1500000, "min": 1050000, "margin": 300 },
         { "id": "p2:cpu4", "max": 2400000, "min": 2050000, "margin": 400 },
@@ -55,10 +55,6 @@
         { "id": "g3:cpu0", "max": 1800000, "turning": 1600000, "min": 800000,  "margin": 250, "mode": "performance", "step": -1, "smoothness": 4 },
         { "id": "g3:cpu4", "max": 2650000, "turning": 2450000, "min": 1400000, "margin": 300, "mode": "performance", "step": -1, "smoothness": 4 },
         { "id": "g3:cpu7", "max": 2650000, "turning": 2400000, "min": 1600000, "margin": 300, "mode": "performance", "step": -1, "smoothness": 4 },
-
-        { "id": "g4:cpu0", "max": 1800000, "turning": 1600000, "min": 1050000, "margin": 280, "mode": "upper", "step": -1, "smoothness": 6 },
-        { "id": "g4:cpu4", "max": 2850000, "turning": 2650000, "min": 1400000, "margin": 400, "mode": "performance", "step": -1, "smoothness": 6 },
-        { "id": "g4:cpu7", "max": 2800000, "turning": 2650000, "min": 1600000, "margin": 400, "mode": "performance", "step": -1, "smoothness": 6 },
 
 
         { "id": "inactive:cpu0","max": 1500000, "min": 400000, "margin": 100 },
@@ -123,12 +119,7 @@
     ],
     "comm_app": [
       ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
-      ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#30"],
-      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#4"],
-      ["/sys/kernel/fpsgo/fstb/fstb_self_ctrl_fps_enable", "0"],
-      ["/sys/kernel/fpsgo/fstb/set_render_no_ctrl", "1"],
-      ["/sys/kernel/fpsgo/fstb/fstb_soft_level", "1 240-240"],
-      ["/sys/kernel/fpsgo/fstb/set_render_max_fps", "144"]
+      ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "#15"]
     ],
     "comm_gaming": [
       ["@limiters", "NONE"],
@@ -137,15 +128,13 @@
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
       ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
-      ["$boost_affinity", "0"],
-      ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#15"],
-      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#4"]
+      ["$boost_affinity", "0"]
     ],
 
     "powersave_active": [
       ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
       ["@preset", "common_actvie"],
-      ["$ddr_freq_min", "#186600000"],
+      ["$ddr_freq_min", "#1866000000"],
       ["@values", "min_freq", "400000", "700000", "1300000"]
     ],
     "powersave_inactive": [
@@ -157,7 +146,7 @@
     "balance_active": [
       ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
       ["@preset", "common_actvie"],
-      ["$ddr_freq_min", "#266700000"],
+      ["$ddr_freq_min", "#2667000000"],
       ["@values", "min_freq", "500000", "700000", "1300000"]
     ],
     "balance_inactive": [

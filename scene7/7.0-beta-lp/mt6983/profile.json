@@ -28,21 +28,21 @@
       "inactive_interval": 150,
       "ddr_boost": true,
       "params": [
-        { "id": "p1:cpu0", "step": -0.9, "max": 1400000, "min": 400000, "margin": 200 },
-        { "id": "p1:cpu4", "step": -0.9, "max": 2150000, "turning": 1600000, "min": 700000, "margin": 400 },
-        { "id": "p1:cpu7", "step": -0.9, "max": 2300000, "turning": 1600000, "min": 1300000, "margin": 400 },
+        { "id": "p1:cpu0", "step": -1, "max": 1400000, "min": 400000, "margin": 200 },
+        { "id": "p1:cpu4", "step": -1, "max": 2150000, "turning": 1600000, "min": 700000, "margin": 350 },
+        { "id": "p1:cpu7", "step": -1, "max": 2300000, "turning": 1600000, "min": 1300000, "margin": 350 },
 
         { "id": "p2:cpu0", "max": 1500000, "min": 800000, "margin": 250 },
-        { "id": "p2:cpu4", "max": 2400000, "turning": 2100000, "min": 1900000, "margin": 300 },
-        { "id": "p2:cpu7", "max": 2450000, "turning": 2300000, "min": 2100000, "margin": 300 },
+        { "id": "p2:cpu4", "max": 2400000, "turning": 2100000, "min": 1600000, "margin": 300 },
+        { "id": "p2:cpu7", "max": 2450000, "turning": 2300000, "min": 1800000, "margin": 300 },
 
         { "id": "p3:cpu0", "max": 1600000, "min": 1400000, "margin": 270 },
-        { "id": "p3:cpu4", "max": 2650000, "turning": 2400000, "min": 2100000, "margin": 300 },
+        { "id": "p3:cpu4", "max": 2650000, "turning": 2400000, "min": 1900000, "margin": 300 },
         { "id": "p3:cpu7", "max": 2650000, "turning": 2450000, "min": 2100000, "margin": 300 },
 
         { "id": "p4:cpu0", "max": 1600000, "min": 1500000, "margin": 300 },
         { "id": "p4:cpu4", "max": 2650000, "min": 2450000, "margin": 300 },
-        { "id": "p4:cpu7", "max": 2800000, "min": 2650000, "margin": 300 },
+        { "id": "p4:cpu7", "max": 2800000, "min": 2450000, "margin": 300 },
 
 
         { "id": "g1:cpu0", "max": 1400000, "turning": 1000000, "min": 500000, "margin": 280, "step": -1 },
@@ -107,21 +107,17 @@
       ["$max_cpus_cpu7", "0"]
     ],
     "common_actvie": [
-      ["@preset", "cpu7_on"]
+      ["@preset", "cpu7_on"],
+      ["@uclamp", "0.00~20.00", "0.00~max", "0.5~max"]
     ],
     "common_inactvie": [
-      ["$gpu_min_opp", "99"]
+      ["$gpu_min_opp", "99"],
+      ["@uclamp", "0.00~5.00", "0.00~max", "0.0~max"]
     ],
     "comm_app": [
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 0|cm_mgr_perf_enable 0|dsu_mode_change 0"],
-      ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#20"],
-      ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
-      ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#25"],
-      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#4"],
-      ["/sys/kernel/fpsgo/fstb/fstb_self_ctrl_fps_enable", "0"],
-      ["/sys/kernel/fpsgo/fstb/set_render_no_ctrl", "1"],
-      ["/sys/kernel/fpsgo/fstb/fstb_soft_level", "1 240-240"],
-      ["/sys/kernel/fpsgo/fstb/set_render_max_fps", "144"]
+      ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#18"],
+      ["@cpuset", "0-3", "0-7", "0-7", "0-7"]
     ],
     "comm_gaming": [
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode_change 0"],
@@ -130,15 +126,13 @@
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
       ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
-      ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "#15"],
-      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "#2"],
       ["$gpu_freq", "0"]
     ],
 
     "powersave_active": [
       ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
       ["@preset", "common_actvie"],
-      ["$ddr_freq_min", "#186600000"],
+      ["$ddr_freq_min", "#1866000000"],
       ["@values", "min_freq", "400000", "700000", "1300000"]
     ],
     "powersave_inactive": [
@@ -151,7 +145,7 @@
     "balance_active": [
       ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
       ["@preset", "common_actvie"],
-      ["$ddr_freq_min", "#266700000"],
+      ["$ddr_freq_min", "#2667000000"],
       ["@values", "min_freq", "500000", "700000", "1300000"]
     ],
     "balance_inactive": [
@@ -164,7 +158,7 @@
       ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
       ["@values", "min_freq", "700000", "900000", "1300000"],
       ["@preset", "common_actvie"],
-      ["$ddr_freq_min", "#266700000"]
+      ["$ddr_freq_min", "#2667000000"]
     ],
     "performance_inactive": [
       ["@limiters", "NONE"],
@@ -177,7 +171,7 @@
     "fast_active": [
       ["@limiters", "p4:cpu0", "p4:cpu4", "p4:cpu7"],
       ["@preset", "common_actvie"],
-      ["$ddr_freq_min", "#320000000"],
+      ["$ddr_freq_min", "#3200000000"],
       ["@values", "min_freq", "1000000", "1000000", "1300000"]
     ],
     "fast_inactive": [
@@ -201,9 +195,8 @@
       ],
       "game": [
         ["@preset", "comm_gaming"],
-        ["@cpu_freq", "cpu0", "400000", "1200000"],
-        ["@cpu_freq", "cpu4", "400000", "1900000"],
-        ["@cpu_freq", "cpu7", "1300000", "1900000"],
+        ["@values", "min_freq", "400000", "400000", "1300000"],
+        ["@values", "max_freq", "#1500000", "#1900000", "#1900000"],
         ["$ddr_freq_min", "#1866000000"]
       ]
     },
@@ -218,9 +211,8 @@
       ],
       "game": [
         ["@preset", "comm_gaming"],
-        ["@cpu_freq", "cpu0", "700000", "1500000"],
-        ["@cpu_freq", "cpu4", "700000", "2400000"],
-        ["@cpu_freq", "cpu7", "1300000", "2400000"],
+        ["@values", "min_freq", "700000", "700000", "1300000"],
+        ["@values", "max_freq", "#1600000", "#2450000", "#2400000"],
         ["$ddr_freq_min", "#1866000000"]
       ]
     },
@@ -235,9 +227,8 @@
       ],
       "game": [
         ["@preset", "comm_gaming"],
-        ["@cpu_freq", "cpu0", "800000", "1600000"],
-        ["@cpu_freq", "cpu4", "1000000", "2650000"],
-        ["@cpu_freq", "cpu7", "1300000", "2800000"]
+        ["@values", "min_freq", "800000", "1000000", "1300000"],
+        ["@values", "max_freq", "#1600000", "#2650000", "#2800000"]
       ]
     },
     "fast": {
@@ -251,51 +242,20 @@
       ],
       "game": [
         ["@preset", "comm_gaming"],
-        ["@cpu_freq", "cpu0", "1000000", "1600000"],
-        ["@cpu_freq", "cpu4", "1000000", "2850000"],
-        ["@cpu_freq", "cpu7", "1300000", "3000000"],
+        ["@values", "min_freq", "1000000", "1000000", "1300000"],
+        ["@values", "max_freq", "#1800000", "#2850000", "#3000000"],
         ["$ddr_freq_min", "#2667000000"]
       ]
     }
   },
   "apps": [
-    {
-      "friendly": "极速响应",
-      "categories": ["Launcher"],
-      "import": "_Launcher.json"
-    },
-    {
-      "friendly": "待机",
-      "packages": ["standby"],
-      "import": "_Standby.json"
-    },
-    {
-      "friendly": "扫码",
-      "categories": ["Scanner"],
-      "import": "_Scanner.json"
-    },
-    {
-      "friendly": "相机",
-      "categories": ["Camera"],
-      "import": "_Camera.json"
-    },
-    {
-      "friendly": "All",
-      "packages": ["*"],
-      "import": "_Apps.json"
-    }
+    { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
+    { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
+    { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
+    { "friendly": "待机", "packages": ["standby"], "import": "_Standby.json" },
+    { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
-    {
-      "friendly": "原神",
-      "categories": ["GenshinImpact"],
-      "import": "_GenshinImpact.json"
-    },
-    {
-      "friendly": "星穹铁道",
-      "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
-      "import": "_HKRPG.json"
-    },
     {
       "friendly": "和平精英",
       "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
@@ -310,6 +270,15 @@
       "friendly": "QQ飞车",
       "packages": ["com.tencent.tmgp.speedmobile"],
       "import": "_SpeedMobile.json"
+    },
+    {
+      "friendly": "双核强化",
+      "packages": [
+        "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact",
+        "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig",
+        "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"
+      ],
+      "import": "_FASDualCore.json"
     },
     {
       "friendly": "All",
