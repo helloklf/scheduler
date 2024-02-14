@@ -97,15 +97,16 @@
     ],
     "common_actvie": [
       ["$cpu_max_0", "1804800"],
-      ["@preset", "cores_force_on"],
-      ["@cpuset", "0-3", "0-3", "0-7", "0-7"]
+      ["@preset", "cores_force_on"]
     ],
     "common_inactvie": [
+    ],
+    "common_app": [
       ["@cpuset", "0-3", "0-3", "0-5", "0-7"]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
-      ["@cpuset", "0-3", "0-3", "0-5", "0-7"]
+      ["@cpuset", "0-2", "0-4", "0-5", "0-7"]
     ],
 
     "cores_force_on": [
@@ -195,6 +196,9 @@
         ["@values", "sched_boost", "0", "0", "0", "0"],
         ["@preset", "bw_low"]
       ],
+      "app": [
+        ["@preset", "common_app"]
+      ],
       "game": [
         ["@preset", "common_gaming"],
         ["@cpu_freq", "cpu0", "300000", "1804800"],
@@ -210,6 +214,9 @@
         ["@values", "hispeed_load", "90", "90"],
         ["@values", "sched_boost", "1", "0", "0", "0"],
         ["@preset", "bw_max"]
+      ],
+      "app": [
+        ["@preset", "common_app"]
       ],
       "game": [
         ["@preset", "common_gaming"],
@@ -228,6 +235,9 @@
         ["@values", "sched_boost", "1", "0", "0", "0"],
         ["@preset", "bw_max"]
       ],
+      "app": [
+        ["@preset", "common_app"]
+      ],
       "game": [
         ["@preset", "common_gaming"],
         ["@cpu_freq", "cpu0", "300000", "1804800"],
@@ -243,6 +253,9 @@
         ["@values", "hispeed_load", "0", "0"],
         ["@values", "sched_boost", "1", "0", "1", "10"],
         ["@preset", "bw_max"]
+      ],
+      "app": [
+        ["@preset", "common_app"]
       ],
       "game": [
         ["@preset", "common_gaming"],
@@ -268,14 +281,6 @@
     {
       "friendly": "王者荣耀",
       "packages": ["com.tencent.tmgp.sgame"],
-      "cpuset": {
-        "comm": {
-          "7": ["UnityMain"],
-          "6": ["UnityGfx", "UnityPreload", "Thread-"],
-          "3-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
-        },
-        "other": "0-6"
-      },
       "modes": [
         {
           "mode": ["powersave"],
@@ -298,14 +303,6 @@
     {
       "friendly": "和平精英",
       "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
-      "cpuset": {
-        "interval": 1000,
-        "comm": {
-          "7": ["RenderThread"],
-          "4-6": ["Thread-", "TaskGraphNP"]
-        },
-        "other": "0-5"
-      },
       "modes": [
         {
           "mode": ["fast"],

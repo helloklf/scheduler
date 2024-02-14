@@ -106,3 +106,10 @@ set_value 2000000 /proc/sys/kernel/sched_min_granularity_ns
 
 disable_migt
 
+
+if [[ $(cat /dev/cpuset/background/untrustedapp/cgroup.procs) == "" ]]; then
+  rmdir /dev/cpuset/background/untrustedapp
+fi
+if [[ $(cat /dev/cpuset/foreground/boost/cgroup.procs) == "" ]]; then
+  rmdir /dev/cpuset/background/boost
+fi

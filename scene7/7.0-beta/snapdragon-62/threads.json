@@ -14,11 +14,12 @@
   },
   {
     "friendly": "王者荣耀",
-    "packages": ["com.tencent.tmgp.sgame"],
+    "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
     "cpuset": {
+      "unity_main": "7",
+      "heavy_thread": "UnityGfx;Thread-",
+      "heavy_cores": "6",
       "comm": {
-        "7": ["UnityMain"],
-        "6": ["UnityGfx", "UnityPreload", "Thread-"],
         "3-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
       },
       "other": "0-6"
@@ -28,7 +29,6 @@
     "friendly": "和平精英",
     "packages": ["com.tencent.tmgp.pubgmhd"],
     "cpuset": {
-      "interval": 1000,
       "comm": {
         "7": ["RenderThread"],
         "2-6": ["Thread-", "TaskGraphNP"]

@@ -1,0 +1,60 @@
+{
+  "friendly": "游戏(双核强化)",
+  "limiters": [
+    { "id": "dual_boost:cpu0", "max": 1800000, "min": 1200000, "turning": 1600000, "margin": 300, "mode": "bottom" },
+    { "id": "dual_boost:cpu4", "max": 2850000, "min": 1600000, "turning": 2650000, "margin": 500, "mode": "bottom" },
+    { "id": "dual_boost:cpu7", "max": 3100000, "min": 1600000, "turning": 2850000, "margin": 500, "mode": "bottom" }
+  ],
+  "call": [
+    ["@preset", "comm_gaming"],
+    ["$perfmgr_enable", "#0"],
+    ["$fpsgo", "#0"],
+    ["$ged_kpi", "#0"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@values", "max_freq", "#1800000", "#2100000", "#2100000"],
+        ["@values", "min_freq",  "#700000",  "#900000",  "#900000"],
+        ["$ddr_freq_min", "#1866000000"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@values", "max_freq", "#2000000", "#2450000", "#2650000"],
+        ["@values", "min_freq",  "#700000",  "#700000", "#1100000"],
+        ["$ddr_freq_min", "#1866000000"]
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@values", "max_freq", "#2000000", "#2650000", "#2850000"],
+        ["@values", "min_freq",  "#900000", "#1100000", "#1300000"],
+        ["$ddr_freq_min", "#2667000000"]
+      ]
+    },
+    {
+      "mode": ["fast"],
+      "call": [
+        ["@values", "max_freq", "#2000000", "#2850000", "#3100000"],
+        ["@values", "min_freq", "#1000000", "#1500000", "#1500000"],
+        ["@limiters", "dual_boost:cpu0", "dual_boost:cpu4", "dual_boost:cpu7"],
+        ["$ddr_freq_min", "#3200000000"],
+        ["$ddr_max", "#6400000000"]
+      ]
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@values", "max_freq", "#2000000", "#2850000", "#3100000"],
+        ["@values", "min_freq", "#1000000", "#1500000", "#1500000"],
+        ["@limiters", "dual_boost:cpu0", "dual_boost:cpu4", "dual_boost:cpu7"],
+        ["$ddr_freq_min", "#5500000000"],
+        ["$ddr_max", "#6400000000"]
+      ]
+    }
+  ]
+}

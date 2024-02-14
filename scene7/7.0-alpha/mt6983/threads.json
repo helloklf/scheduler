@@ -58,7 +58,6 @@
     "friendly": "王者荣耀CN",
     "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
     "cpuset": {
-      "interval": 1000,
       "heavy_thread": "Thread-",
       "heavy_cores": "6",
       "comm": {

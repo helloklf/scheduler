@@ -69,11 +69,11 @@
     "gesture_boost": {
       "enable": true,
       "enter": [
-        ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "28"],
+        ["$gpu_min_opp", "28"],
         ["$ddr_freq_cust", "4266000000"]
       ],
       "exit": [
-        ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
+        ["$gpu_min_opp", "99"],
         ["$ddr_freq_cust", "#0"]
       ]
     }
@@ -115,17 +115,18 @@
     ],
     "common_inactvie": [
       ["@values", "min_freq", "200000", "400000", "1300000"],
-      ["$gpu_min_opp", "99"]
+      ["$gpu_min_opp", "99"],
+      ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "#0"]
     ],
     "comm_app": [
       ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
-      ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "#15"]
+      ["$gpu_freq", "#15"]
     ],
     "comm_gaming": [
       ["@limiters", "NONE"],
       ["@preset", "fbt_limit_off"],
-      ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#0"],
-      ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
+      ["$gpu_freq", "#0"],
+      ["$gpu_min_opp", "99"],
       ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["$boost_affinity", "0"]
@@ -225,7 +226,8 @@
         ["@preset", "comm_gaming"],
         ["@cpu_freq", "cpu0", "800000", "1600000"],
         ["@cpu_freq", "cpu4", "1000000", "2650000"],
-        ["@cpu_freq", "cpu7", "1300000", "2800000"]
+        ["@cpu_freq", "cpu7", "1300000", "2800000"],
+        ["$ddr_freq_min", "#1866000000"]
       ]
     },
     "fast": {

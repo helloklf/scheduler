@@ -48,7 +48,7 @@
         { "id": "g2:cpu7", "step": -0.5, "max": 2476800, "turning": 2131200, "min": 1171200, "margin": 300, "mode": "performance" },
 
         { "id": "g3:cpu0", "max": 1804800, "turning": 1555200, "min": 1440000, "margin": 250 },
-        { "id": "g3:cpu4", "max": 2649600, "turning": 2457600, "min": 2112000, "margin": 300 },
+        { "id": "g3:cpu4", "max": 2745600, "turning": 2457600, "min": 2112000, "margin": 300 },
         { "id": "g3:cpu7", "max": 2726400, "turning": 2476800, "min": 2131200, "margin": 300 },
 
         { "id": "g4:cpu7", "turning": 2995200, "min": 2707200, "margin": 300 },
@@ -83,7 +83,7 @@
     "reset": [
       ["@msm_reset"],
       ["$bus_ddr_min", "547000"],
-      ["@governor", "walt"]
+      ["@governor", "walt", "schedutil"]
     ],
 
     "hispeed_freq": [
@@ -154,8 +154,8 @@
     ],
 
     "powersave_active": [
-      ["@preset", "common_active"],
       ["@values", "min_freq", "556800", "633600", "787200"],
+      ["@preset", "common_active"],
       ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
       ["@values", "hispeed_freq", "1228800", "1113600", "1171200"],
       ["@values", "hispeed_load", "90", "90", "90"]
@@ -169,8 +169,8 @@
     ],
 
     "balance_active": [
-      ["@preset", "common_active"],
       ["@values", "min_freq", "556800", "633600", "787200"],
+      ["@preset", "common_active"],
       ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
       ["@values", "hispeed_freq", "1228800", "1555200", "1651200"],
       ["@values", "hispeed_load", "90", "90", "90"]

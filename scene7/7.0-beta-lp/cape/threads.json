@@ -4,7 +4,7 @@
     "packages": ["com.tencent.mobileqq"],
     "cpuset": {
       "comm": {
-        "4-7": ["RenderThread"],
+        "4-7": ["RenderThread", "encent.mobileqq"],
         "0-6": ["pool-"]
       },
       "trashy": [],
@@ -43,11 +43,11 @@
     "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
     "cpuset": {
       "unity_main": "7",
-      "heavy_thread": "Thread-",
+      "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "4-6",
       "comm": {
         "4-7": ["UnityPreload"],
-        "4-6": ["UnityGfx", "CoreThread", "Apollo-", "NativeThread", "Worker Thread"],
+        "4-6": ["CoreThread", "Apollo-", "NativeThread", "Worker Thread"],
         "0-6": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
       },
       "other": "0-6"
