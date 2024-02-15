@@ -1,0 +1,80 @@
+{
+  "friendly": "王者荣耀",
+  "call": [
+    ["@values", "target_loads", "50", "60", "60"]
+  ],
+  "modes": [{
+    "mode": ["powersave"],
+    "fas": {
+      "mode": "normal",
+      "big_min_freq": 1075200, "middle_min_freq": 710400,
+      "recent_frames": 8, "fast_down_rate": 4, "slow_down_rate": 3,
+      "_60": ["2361600", "1958400", "-2"],
+      "_90": ["2457600", "1958400", "-2"],
+      "_120": ["2649600", "2054400", "-2"]
+    },
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 10000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_boost"]] },
+          { "threshold": [99,  75], "enter_once": [["@preset", "bw_max"]] },
+          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_max"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["balance"],
+    "fas": {
+      "mode": "fps",
+      "recent_frames": 8, "fast_down_rate": 4, "slow_down_rate": 2.5,
+      "_60": ["2361600", "2054400", "-2"],
+      "_90": ["2649600", "2246400", "-2"],
+      "_120": ["2841600", "2342400", "-2"]
+    },
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 10000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_boost"]] },
+          { "threshold": [99,  75], "enter_once": [["@preset", "bw_boost"]] },
+          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_max"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["performance"],
+    "fas": {
+      "mode": "fps",
+      "recent_frames": 10, "fast_down_rate": 3, "slow_down_rate": 2,
+      "middle_optimum_freq": 2246400, "lower_freq": 2073600,
+      "_60": ["2361600", "2054400", "-2"],
+      "_90": ["2841600", "2246400", "-2"],
+      "_120": ["2841600", "2419200", "-2"]
+    },
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 10000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_boost"]] },
+          { "threshold": [99,  75], "enter_once": [["@preset", "bw_boost"]] },
+          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_max"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["fast"],
+    "fas": {
+      "mode": "fps",
+      "recent_frames": 10, "fast_down_rate": 2, "slow_down_rate": 1.5,
+      "middle_min_freq": 2073600, "middle_optimum_freq": 2246400,
+      "big_min_freq": 2169600,
+      "_60": ["2361600", "2150400", "-2"],
+      "_90": ["2841600", "2419200", "-2"],
+      "_120": ["3200000", "2419200", "-2"]
+    }
+  }]
+}

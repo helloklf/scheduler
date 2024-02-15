@@ -1,0 +1,30 @@
+{
+  "friendly": "相机",
+  "call": [
+    ["@limiters", "NONE"],
+    ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode_change 0"]
+  ],
+  "modes": [{
+    "mode": ["powersave", "balance"],
+    "booster": {
+      "duration": 3000,
+      "idle_delay": 2000,
+      "enter": [
+        ["@cpu_freq", "cpu0", "1500MHz", "max"],
+        ["@cpu_freq", "cpu4", "1800MHz", "2.65Ghz"],
+        ["@cpu_freq", "cpu7", "1800MHz", "2.65Ghz"],
+        ["$max_cpus_cpu7", "1"]
+      ],
+      "exit": [
+        ["@cpu_freq", "cpu0", "min", "1500MHz"],
+        ["@cpu_freq", "cpu4", "min", "1800MHz"],
+        ["@cpu_freq", "cpu7", "min", "1800MHz"],
+        ["$max_cpus_cpu7", "0"]
+      ]
+    }
+  }],
+  "booster": {
+    "duration": 2000,
+    "idle_delay": 2000
+  }
+}

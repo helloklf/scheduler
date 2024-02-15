@@ -1,0 +1,20 @@
+{
+    "friendly": "原神",
+    "categories": ["GenshinImpact"],
+    "call": [
+      ["$stune_top_perf", "0"],
+      ["$sched_boost", "0"],
+      ["$stune_top_boost", "100"]
+    ],
+    "sensors": [],
+    "cpuset": {
+      "unity_main": "7",
+      "comm": {
+        "6": ["UnityGfx"],
+        "4-7": ["UnityMultiRende", "Timer"],
+        "0-5": ["Worker Thread", "NativeThread"],
+        "0-3": ["Thread-", "Audio", "MIHOYO_NETWORK", "tp_schedule"]
+      },
+      "other": "0-5"
+    }
+}

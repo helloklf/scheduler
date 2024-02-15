@@ -1,0 +1,14 @@
+{
+  "friendly": "扫码",
+  "call": [
+    ["@limiters", "NONE"],
+    ["@cpuset", "0-4", "0-4", "0-7", "0-7"],
+    ["@cpu_freq", "cpu0", "1.6Ghz", "max"],
+    ["@cpu_freq", "cpu4", "2.3Ghz", "max"],
+    ["@cpu_freq", "cpu7", "2.3Ghz", "3000000"]
+  ],
+  "booster": {
+    "duration": 2000,
+    "idle_delay": 2000
+  }
+}

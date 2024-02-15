@@ -1,0 +1,41 @@
+{
+  "friendly": "和平精英",
+  "call": [
+    ["@limiters", "NONE"],
+    ["$dcs_mode", "#0"]
+  ],
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["$ddr_freq_min", "2133000000"],
+      ["@cpu_freq", "cpu0", "800000", "2000000"],
+      ["@cpu_freq", "cpu4", "900000", "2300000"],
+      ["@cpu_freq", "cpu7", "1300000", "2300000"],
+      ["@mtk_feas", "8"]
+    ]
+  }, {
+    "mode": ["balance"],
+    "call": [
+      ["$ddr_freq_min", "2667000000"],
+      ["@cpu_freq", "cpu0", "800000", "2000000"],
+      ["@cpu_freq", "cpu4", "900000", "2450000"],
+      ["@cpu_freq", "cpu7", "1300000", "2450000"],
+      ["@mtk_feas", "5"]
+    ]
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["@cpu_freq", "cpu0", "800000", "2000000"],
+      ["@cpu_freq", "cpu4", "1100000", "2650000"],
+      ["@cpu_freq", "cpu7", "1300000", "2650000"],
+      ["@mtk_feas", "2"]
+    ]
+  }, {
+    "mode": ["fast"],
+    "call": [
+      ["@cpu_freq", "cpu0", "800000", "2000000"],
+      ["@cpu_freq", "cpu4", "1300000", "2850000"],
+      ["@cpu_freq", "cpu7", "1300000", "2850000"]
+    ]
+  }]
+}

@@ -1,0 +1,25 @@
+{
+  "friendly": "游戏",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+      ]
+    },
+    {
+      "mode": ["fast"],
+      "call": [
+      ]
+    }
+  ]
+}

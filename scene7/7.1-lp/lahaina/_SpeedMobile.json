@@ -1,0 +1,76 @@
+{
+  "friendly": "QQ飞车",
+  "packages": ["com.tencent.tmgp.speedmobile"],
+  "call": [
+    ["@uclamp", "0.00~max", "1.00~max", "1.00~max"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "_60": ["1670400", "1555200", "-2"],
+        "_90": ["1900800", "1766400", "-4"],
+        "_120": ["2150400", "1881600", "-4"]
+      },
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 3000,
+          "rules": [
+            { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"]] },
+            { "threshold": [99,  75], "enter_once": [["@preset", "bw_low"]] },
+            { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "_60": ["1670400", "1555200", "-2"],
+        "_90": ["2035200", "1766400", "-3"],
+        "_120": ["2380800", "1996800", "-3"]
+      },
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 3000,
+          "rules": [
+            { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"]] },
+            { "threshold": [99,  75], "enter_once": [["@preset", "bw_normal"]] },
+            { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "mode": "fps",
+        "_60": ["1900800", "1670400", "-2"],
+        "_90": ["2265600", "1996800", "-3"],
+        "_120": ["2496000", "2112000", "-3"]
+      },
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 3000,
+          "rules": [
+            { "threshold": [-1, 100], "enter_once": [["@preset", "bw_boost"]] },
+            { "threshold": [99,  75], "enter_once": [["@preset", "bw_normal"]] },
+            { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["fast"],
+      "fas": {
+        "mode": "fps",
+        "_60": ["1900800", "1670400", "-2"],
+        "_90": ["2265600", "1996800", "-3"],
+        "_120": ["2822400", "2112000", "-3"]
+      }
+    }
+  ]
+}

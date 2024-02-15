@@ -1,0 +1,36 @@
+{
+  "friendly": "游戏(FEAS)",
+  "limiters": [
+    {"id": "gboost3:cpu7", "step": -1, "mode": "BOTTOM", "ddr_boost": true,
+      "max": 2650000, "turning": 2400000, "min": 500000, "margin": 305, "smoothness": 6},
+
+    {"id": "gboost4:cpu7", "step": -1, "mode": "BOTTOM", "ddr_boost": true,
+      "max": 2650000, "turning": 2400000, "min": 700000, "margin": 405, "smoothness": 6},
+
+    {"id": "gboost5:cpu7", "step": -1, "mode": "BOTTOM", "ddr_boost": true,
+      "max": 2650000, "turning": 2400000, "min": 1000000, "margin": 505, "smoothness": 6}
+  ],
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["@mtk_feas", "10"]
+    ]
+  }, {
+    "mode": ["balance"],
+    "call": [
+      ["@mtk_feas", "3"]
+    ]
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["@limiters", "gboost3:cpu7"],
+      ["@mtk_feas", "0"]
+    ]
+  }, {
+      "mode": ["fast"],
+      "call": [
+        ["@limiters", "gboost4:cpu7"]
+      ]
+    }
+  ]
+}

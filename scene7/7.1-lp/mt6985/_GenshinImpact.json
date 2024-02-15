@@ -1,0 +1,33 @@
+{
+  "friendly": "原神",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "lower_freq": 1800000, "slow_down_rate": 2,
+        "_60": ["1900000", "2100000", "3"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "lower_freq": 2100000, "slow_down_rate": 2,
+        "_60": ["2100000", "2400000", "3"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "lower_freq": 2400000, "slow_down_rate": 2,
+        "_60": ["2650000", "2650000", "3"]
+      }
+    },
+    {
+      "mode": ["fast"],
+      "fas": {
+        "lower_freq": 2600000, "slow_down_rate": 1.5,
+        "_60": ["2800000", "2850000", "3"]
+      }
+    }
+  ]
+}
