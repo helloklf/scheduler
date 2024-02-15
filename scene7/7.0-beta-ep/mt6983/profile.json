@@ -19,7 +19,8 @@
     "limit_rfreq_m": "/sys/kernel/fpsgo/fbt/limit_rfreq_m",
     "perfmgr_enable": "/sys/module/mtk_fpsgo/parameters/perfmgr_enable",
     "ddr_max": "/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq",
-    "sched_boost": "/sys/kernel/fpsgo/fbt/switch_idleprefer"
+    "sched_boost": "/sys/kernel/fpsgo/fbt/switch_idleprefer",
+    "enable_ceiling": "/sys/kernel/fpsgo/fbt/enable_ceiling"
   },
   "features": {
     "limiter": {
@@ -88,17 +89,10 @@
       ["$min_cpus_cpu7", "#0"],
       ["$max_cpus_cpu7", "#0"]
     ],
-    "fbt_limit": [
-      ["$limit_cfreq", "2100000"], ["$limit_rfreq", "2450000"],
-      ["$limit_cfreq_m", "2200000"], ["$limit_rfreq_m", "2450000"]
-    ],
-    "fbt_limit_off": [
-      ["$limit_cfreq", "#0"], ["$limit_rfreq", "#0"],
-      ["$limit_cfreq_m", "#0"], ["$limit_rfreq_m", "#0"]
-    ],
     "common_actvie": [
       ["@preset", "cpu7_on"],
-      ["$ddr_max", "#5500000000"]
+      ["$ddr_max", "#5500000000"],
+      ["$sched_boost", "1"]
     ],
     "common_inactvie": [
       ["@values", "min_freq", "200000", "400000", "1300000"],
@@ -114,17 +108,19 @@
     "comm_gaming": [
       ["@preset", "common_actvie"],
       ["@limiters", "NONE"],
-      ["@preset", "fbt_limit_off"],
       ["$gpu_freq", "#0"],
       ["$gpu_min_opp", "99"],
       ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["$boost_affinity", "0"],
-      ["$sched_boost", "0"]
+      ["$sched_boost", "#0"],
+      ["$enable_ceiling", "#0"],
+      ["$perfmgr_enable", "#0"],
+      ["$fpsgo", "#1"],
+      ["$ged_kpi", "#0"]
     ],
 
     "powersave_active": [
-      ["$sched_boost", "1"],
       ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
       ["@preset", "common_actvie"],
       ["$ddr_freq_min", "#1866000000"],
@@ -137,7 +133,6 @@
       ["@preset", "cpu7_off"]
     ],
     "balance_active": [
-      ["$sched_boost", "1"],
       ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
       ["@preset", "common_actvie"],
       ["$ddr_freq_min", "#2667000000"],
@@ -149,7 +144,6 @@
       ["$ddr_freq_min", "#800000000"]
     ],
     "performance_active": [
-      ["$sched_boost", "1"],
       ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
       ["@values", "min_freq", "700000", "900000", "1300000"],
       ["@preset", "common_actvie"],
@@ -161,7 +155,6 @@
       ["$ddr_freq_min", "#800000000"]
     ],
     "fast_active": [
-      ["$sched_boost", "1"],
       ["@limiters", "p4:cpu0", "p4:cpu4", "p4:cpu7"],
       ["@preset", "common_actvie"],
       ["$ddr_freq_min", "#320000000"],

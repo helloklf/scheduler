@@ -10,7 +10,9 @@
     "fpsgo": "/sys/kernel/fpsgo/common/fpsgo_enable",
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",
     "perfmgr_enable": "/sys/module/mtk_fpsgo/parameters/perfmgr_enable",
-    "ddr_max": "/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq"
+    "ddr_max": "/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq",
+    "sched_boost": "/sys/kernel/fpsgo/fbt/switch_idleprefer",
+    "enable_ceiling": "/sys/kernel/fpsgo/fbt/enable_ceiling"
   },
   "features": {
     "limiter": {
@@ -97,7 +99,13 @@
       ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "#0"],
       ["$ddr_freq_cust", "0"],
       ["@limiters", "NONE"],
-      ["$ddr_max", "#5500000000"]
+      ["$ddr_max", "#5500000000"],
+      ["$boost_affinity", "0"],
+      ["$sched_boost", "#0"],
+      ["$enable_ceiling", "#0"],
+      ["$perfmgr_enable", "#0"],
+      ["$fpsgo", "#1"],
+      ["$ged_kpi", "#0"]
     ],
 
     "powersave_active": [

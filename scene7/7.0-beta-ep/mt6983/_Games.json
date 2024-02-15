@@ -6,17 +6,14 @@
     { "id": "gboost:cpu7", "max": 2800000, "min": 1300000, "turning": 2650000, "margin": 500, "mode": "bottom" }
   ],
   "call": [
-    ["@preset", "comm_gaming"],
-    ["$perfmgr_enable", "#0"],
-    ["$fpsgo", "#0"],
-    ["$ged_kpi", "#0"]
+    ["@preset", "comm_gaming"]
   ],
   "modes": [
     {
       "mode": ["powersave"],
       "call": [
         ["@values", "max_freq", "#1500000", "#2000000", "#2100000"],
-        ["@values", "min_freq", "#500000", "#900000", "#1300000"],
+        ["@values", "min_freq",  "#500000",  "#900000", "#1300000"],
         ["$ddr_freq_min", "#1866000000"]
       ]
     },
@@ -24,15 +21,15 @@
       "mode": ["balance"],
       "call": [
         ["@values", "max_freq", "#1500000", "#2300000", "#2400000"],
-        ["@values", "min_freq", "#700000", "#700000", "#1300000"],
+        ["@values", "min_freq",  "#700000",  "#700000", "#1300000"],
         ["$ddr_freq_min", "#1866000000"]
       ]
     },
     {
       "mode": ["performance"],
       "call": [
-        ["@values", "max_freq", "#1600000", "#2650000", "#2650000"],
-        ["@values", "min_freq", "#700000", "#1100000", "#1300000"],
+        ["@values", "max_freq", "#1600000", "#2650000", "#2800000"],
+        ["@values", "min_freq",  "#700000", "#1100000", "#1300000"],
         ["$ddr_freq_min", "#2667000000"]
       ]
     },
@@ -40,7 +37,7 @@
       "mode": ["fast"],
       "call": [
         ["@values", "max_freq", "#1800000", "#2850000", "#3000000"],
-        ["@values", "min_freq", "#700000", "#1300000", "#1300000"],
+        ["@values", "min_freq",  "#700000", "#1300000", "#1300000"],
         ["@limiters", "gboost:cpu0", "gboost:cpu4", "gboost:cpu7"],
         ["$ddr_freq_min", "#3200000000"]
       ]

@@ -6,10 +6,7 @@
     { "id": "gboost:cpu7", "max": 3100000, "min": 1600000, "turning": 2850000, "margin": 500, "mode": "bottom" }
   ],
   "call": [
-    ["@preset", "comm_gaming"],
-    ["$perfmgr_enable", "#0"],
-    ["$fpsgo", "#0"],
-    ["$ged_kpi", "#0"]
+    ["@preset", "comm_gaming"]
   ],
   "modes": [
     {
