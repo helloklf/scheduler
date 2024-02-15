@@ -44,11 +44,10 @@
     "friendly": "LOL Mobile",
     "packages": ["com.tencent.lolm"],
     "cpuset": {
-      "heavy_thread": "Thread-",
+      "unity_main": "7",
+      "heavy_thread": "Thread-;UnityGfx",
       "heavy_cores": "6",
       "comm": {
-        "7": ["UnityMain"],
-        "6": ["UnityGfx"],
         "3-5": ["NativeThread", "CoreThread", "Worker Thread"]
       },
       "other": "0-5"

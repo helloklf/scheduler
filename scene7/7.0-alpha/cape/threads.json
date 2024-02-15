@@ -31,11 +31,10 @@
     "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
     "cpuset": {
       "unity_main": "7",
-      "heavy_thread": "Thread-",
+      "heavy_thread": "Thread-;UnityGfx",
       "heavy_cores": "6",
       "comm": {
         "4-7": ["UnityPreload"],
-        "6": ["UnityGfx"],
         "4-5": ["CoreThread", "Apollo-", "NativeThread", "Worker Thread"],
         "0-5": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
       },
@@ -46,11 +45,10 @@
     "friendly": "LOL Mobile",
     "packages": ["com.tencent.lolm"],
     "cpuset": {
-      "heavy_thread": "Thread-",
+      "unity_main": "7",
+      "heavy_thread": "Thread-;UnityGfx",
       "heavy_cores": "6",
       "comm": {
-        "7": ["UnityMain"],
-        "6": ["UnityGfx"],
         "4-5": ["NativeThread", "CoreThread"],
         "0-5": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read", "Worker Thread"]
       },
