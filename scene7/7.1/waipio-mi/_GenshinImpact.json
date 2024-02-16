@@ -1,0 +1,66 @@
+{
+  "friendly": "原神",
+  "call": [
+    ["$bus_ddr", "2736000"],
+    ["$bus_ddr_min", "2736000"],
+    ["@gesture", "PAUSE"],
+    ["@values", "target_loads", "-20", "-20", "-20"]
+  ],
+  "limiters": [
+    { "id": "ys-p1:cpu0", "step": -1, "max": 1574400, "min": 1075200, "margin": 300 },
+    { "id": "ys-p1:cpu4", "step": -1, "max": 1651200, "min": 998400, "margin": 200 },
+    { "id": "ys-p1:cpu7", "step": -1, "max": 1612800, "min": 1056000, "margin": 200 },
+
+    { "id": "ys-p2:cpu0", "step": -1, "max": 1574400, "min": 1075200, "margin": 300, "smoothness": 5 },
+    { "id": "ys-p2:cpu4", "step": -1, "max": 1881600, "min": 998400, "margin": 200, "smoothness": 5 },
+    { "id": "ys-p2:cpu7", "step": -1, "max": 1958400, "min": 1056000, "margin": 200, "smoothness": 5 },
+
+    { "id": "ys-p3:cpu0", "step": -1, "max": 1574400, "turning": 1478400, "min": 1075200, "margin": 300, "smoothness": 5 },
+    { "id": "ys-p3:cpu4", "step": -1, "max": 2112000, "turning": 1996800, "min": 1209600, "margin": 200, "smoothness": 5 },
+    { "id": "ys-p3:cpu7", "step": -1, "max": 2169600, "turning": 2054400, "min": 1286400, "margin": 200, "smoothness": 5},
+
+    { "id": "ys-p4:cpu0", "max": 1574400, "turning": 1478400, "min": 1075200, "margin": 300, "mode": "performance", "smoothness": 5 },
+    { "id": "ys-p4:cpu4", "max": 2112000, "turning": 1996800, "min": 998400, "margin": 200, "mode": "performance", "smoothness": 5 },
+    { "id": "ys-p4:cpu7", "max": 2169600, "turning": 2054400, "min": 1056000, "margin": 200, "mode": "performance", "active_interval": 48, "smoothness": 5 }
+  ],
+  "sensors": [
+    {
+      "sensor": "battery",
+      "interval": 5000,
+      "logger": false,
+      "rules": [
+        { "threshold": [-1, 52], "enter_once": [["@values", "latency", "0", "8000", "0", "8000", "0", "8000"]] },
+        { "threshold": [52, 48], "enter_once": [["@values", "latency", "0", "4000", "0", "4000", "0", "4000"]] },
+        { "threshold": [48, 45], "enter_once": [["@values", "latency", "0", "3000", "0", "3000", "0", "3000"]] },
+        { "threshold": [45, 41], "enter_once": [["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]] },
+        { "threshold": [41, -1], "enter_once": [["@values", "latency", "1000", "2000", "1000", "2000", "1000", "2000"]] }
+      ]
+    }
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "ys-p1:cpu0", "ys-p1:cpu4", "ys-p1:cpu7"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "ys-p2:cpu0", "ys-p2:cpu4", "ys-p2:cpu7"]
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "ys-p3:cpu0", "ys-p3:cpu4", "ys-p3:cpu7"]
+      ]
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@limiters", "ys-p4:cpu0", "ys-p4:cpu4", "ys-p4:cpu7"]
+      ]
+    }
+  ]
+}

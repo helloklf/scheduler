@@ -332,4 +332,3 @@ set_cpuset surfaceflinger "top-app/0-5"
 set_cpuset system_server "top-app/0-5"
 set_cpuset update_engine "top-app/0-5"
 set_cpuset vendor.qti.hardware.display.composer-service "top-app/0-5"
-
