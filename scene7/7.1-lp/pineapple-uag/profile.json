@@ -237,8 +237,7 @@
         "game": [
           ["@preset", "common_gaming"],
           ["@values", "hispeed_freq", "0", "0", "0", "0"],
-          ["@preset", "freq_low"],
-          ["/sys/devices/system/cpu/bus_dcvs/L3/boost_freq", "364800"]
+          ["@preset", "freq_low"]
         ]
       },
       "balance": {
@@ -252,8 +251,7 @@
         "game": [
           ["@preset", "common_gaming"],
           ["@values", "hispeed_freq", "0", "960000", "1113600", "1171200"],
-          ["@preset", "freq_middle"],
-          ["/sys/devices/system/cpu/bus_dcvs/L3/boost_freq", "1344000"]
+          ["@preset", "freq_middle"]
         ]
       },
       "performance": {
@@ -266,8 +264,7 @@
         ],
         "game": [
           ["@preset", "common_gaming"],
-          ["@preset", "freq_high"],
-          ["/sys/devices/system/cpu/bus_dcvs/L3/boost_freq", "1555200"]
+          ["@preset", "freq_high"]
         ]
       },
       "fast": {
@@ -281,8 +278,7 @@
         "game": [
           ["$perfmgr_enable", "#0"],
           ["@preset", "common_gaming"],
-          ["@preset", "freq_extreme"],
-          ["/sys/devices/system/cpu/bus_dcvs/L3/boost_freq", "1555200"]
+          ["@preset", "freq_extreme"]
         ]
       }
     },

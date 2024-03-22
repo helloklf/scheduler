@@ -16,13 +16,14 @@
     "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",
     "ddr_map": "/sys/module/mtk_fpsgo/parameters/ddrfreq_remap_table",
-    "cpus_limit": "/sys/module/mtk_fpsgo/parameters/cpus_limit"
+    "cpus_limit": "/sys/module/mtk_fpsgo/parameters/cpus_limit",
+    "enable_ceiling": "/sys/kernel/fpsgo/fbt/enable_ceiling"
   },
   "features": {
     "limiter": {
       "active_interval": 30,
       "gaming_interval": 30,
-      "inactive_interval": 150,
+      "inactive_interval": 100,
       "ddr_boost": false,
       "logger": false,
       "params": [
@@ -85,7 +86,8 @@
     ],
     "comm_gaming": [
       ["@limiters", "NONE"],
-      ["@cpuset", "0-3", "0-5", "0-5", "0-7"]
+      ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
+      ["$enable_ceiling", "#0"]
     ],
 
     "powersave_active": [
@@ -217,6 +219,15 @@
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
+    {
+      "friendly": "双核强化",
+      "packages": [
+        "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact",
+        "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig",
+        "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"
+      ],
+      "import": "_DualCore.json"
+    },
     {
       "friendly": "All",
       "packages": ["*"],

@@ -1,5 +1,17 @@
 [
   {
+    "friendly": "QQ",
+    "packages": ["com.tencent.mobileqq"],
+    "cpuset": {
+      "comm": {
+        "4-7": ["RenderThread"],
+        "0-6": ["pool-"]
+      },
+      "trashy": [],
+      "other": "0-7"
+    }
+  },
+  {
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "cpuset": {
@@ -24,6 +36,19 @@
         "4-5": ["NativeThread", "Job.Worker"]
       },
       "other": "0-5"
+    }
+  },
+  {
+    "friendly": "传说对决",
+    "packages": ["com.garena.game.kgtw"],
+    "cpuset": {
+      "unity_main": "7",
+      "heavy_thread": "Thread-",
+      "heavy_cores": "4-6",
+      "comm": {
+        "4-6": ["UnityGfx"]
+      },
+      "other": "0-6"
     }
   },
   {
@@ -91,8 +116,7 @@
     ],
     "cpuset": {
       "comm": {
-        "7": ["GameThread"],
-        "4-6": ["RenderThread", "RHIThread"]
+        "4-7": ["GameThread", "RenderThread", "RHIThread", "FAsyncLoading"]
       },
       "other": "0-7"
     }

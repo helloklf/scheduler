@@ -10,7 +10,7 @@
     "enter": [
       ["@cpuset", "0-6", "0-6", "0-7", "0-7"],
       ["@cpu_freq", "policy0", "1000MHz", "max"],
-      ["@cpu_freq", "policy4", "1000MHz", "2300MHz"],
+      ["@cpu_freq", "policy4", "1000MHz", "2400MHz"],
       ["@cpu_freq", "policy7", "1300MHz", "2500MHz"]
     ],
     "exit": [

@@ -66,12 +66,12 @@
       ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
     ],
     "cpu7_on": [
-      ["$core_ctl_7", "#0"],
+      ["$core_ctl_7", "#1"],
       ["$max_cpus_cpu7", "#1"],
       ["$min_cpus_cpu7", "#1"]
     ],
     "cpu7_off": [
-      ["$core_ctl_7", "#0"],
+      ["$core_ctl_7", "#1"],
       ["$min_cpus_cpu7", "#0"],
       ["$max_cpus_cpu7", "#0"]
     ],
@@ -87,7 +87,7 @@
     ],
     "common_inactive": [
       ["@values", "min_freq", "307200", "633600", "787200"],
-      ["@values", "latency", "0", "8000", "0", "8000", "0", "8000"],
+      ["@values", "latency", "0", "4000", "0", "4000", "0", "4000"],
       ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
       ["$sched_boost", "0"],
       ["@values", "hispeed_load", "90", "90", "90"]
@@ -157,7 +157,8 @@
         "#0 2112000:-10",
         "#0 2131200:-10"
       ],
-      ["@values", "hispeed_freq", "1228800", "1555200", "1651200"]
+      ["@values", "hispeed_freq", "1228800", "1555200", "1651200"],
+      ["@values", "hispeed_load", "85", "85", "85"]
     ],
     "performance_inactive": [
       ["@preset", "common_inactive"],
@@ -166,8 +167,7 @@
         "#-10 1651200:-15",
         "#-10 1651200:-15"
       ],
-      ["@values", "hispeed_freq", "1075200", "1324800", "1286400"],
-      ["@values", "hispeed_load", "82", "82", "82"]
+      ["@values", "hispeed_freq", "1075200", "1324800", "1286400"]
     ],
 
     "fast_active": [
@@ -228,7 +228,7 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$bus_ddr", "2736000"],
+        ["$bus_ddr", "3196000"],
         ["@values", "max_freq", "1804800", "2745600", "2822400"]
       ],
       "game": [

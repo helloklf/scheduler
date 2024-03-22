@@ -67,14 +67,6 @@
     "max_freq": [
       ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
     ],
-    "feas_on": [
-      ["$fpsgo", "#1"],
-      ["$perfmgr_enable", "#1"]
-    ],
-    "feas_off": [
-      ["$perfmgr_enable", "#0"],
-      ["$fpsgo", "#0"]
-    ],
     "common_actvie": [
       ["$cpu_max_0", "2000000"]
     ],
@@ -100,10 +92,8 @@
       ["$ddr_freq_cust", "0"],
       ["@limiters", "NONE"],
       ["$ddr_max", "#5500000000"],
-      ["$boost_affinity", "0"],
       ["$sched_boost", "#0"],
       ["$enable_ceiling", "#0"],
-      ["$perfmgr_enable", "#0"],
       ["$fpsgo", "#1"],
       ["$ged_kpi", "#0"]
     ],

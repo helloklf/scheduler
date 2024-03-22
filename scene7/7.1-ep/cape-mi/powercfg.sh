@@ -106,7 +106,7 @@ process_opt() {
   move_to_heavy com.omarea.gesture
   move_to_heavy android.hardware.audio.service_64
   move_to_heavy audioserver
-  move_to_heavy media.audio.qc.codec .qti.media.c2audio@1.0-service
+  move_to_heavy media.audio.qc.codec.qti.media.c2audio@1.0-service
   move_to_heavy vendor.xiaomi.hw.touchfeature@1.0-service
   move_to_heavy 'android:ui'
 
@@ -239,19 +239,18 @@ disable_migt
 
 process_opt &
 
-# CC'MIUI/HyperOS
-if [[ $(getprop ro.cc.device.name) != "" ]]; then
+# CC'MIUI/HyperOS or ColorOS
+if [[ $(getprop ro.cc.device.name) != "" ]] || [[ -d /my_heytap ]]; then
   # for cpu in cpu0 cpu4 cpu7; do
   #   hide_value /sys/devices/system/cpu/$cpu/cpufreq/scaling_governor walt
   # done
-  echo 60 60 > /proc/sys/walt/sched_upmigrate
-  echo 40 40 > /proc/sys/walt/sched_downmigrate
-  echo 90 > /proc/sys/walt/sched_group_upmigrate
-  echo 70 > /proc/sys/walt/sched_group_downmigrate
-  echo 0 > /proc/sys/kernel/sched_energy_aware
-  echo 0 > /proc/sys/walt/sched_force_lb_enable
+  hide_value /proc/sys/walt/sched_upmigrate '85 95'
+  hide_value /proc/sys/walt/sched_downmigrate '70 80'
+  hide_value /proc/sys/walt/sched_group_upmigrate 95
+  hide_value /proc/sys/walt/sched_group_downmigrate 78
+  hide_value /proc/sys/kernel/sched_energy_aware 0
+  hide_value /proc/sys/walt/sched_force_lb_enable 0
   stop miuibooster
-  pm hide com.xiaomi.joyose
 fi
 
 # OnePlus

@@ -60,6 +60,12 @@
         ["/sys/devices/system/cpu/cpu5/cpufreq/walt/target_loads"],
         ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_loads"]
       ],
+      "target_load_thresh": [
+        ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_load_thresh"],
+        ["/sys/devices/system/cpu/cpu2/cpufreq/walt/target_load_thresh"],
+        ["/sys/devices/system/cpu/cpu5/cpufreq/walt/target_load_thresh"],
+        ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_load_thresh"]
+      ],
       "min_freq": [
         ["$cpu_min_0"], ["$cpu_min_2"], ["$cpu_min_5"], ["$cpu_min_7"]
       ],
@@ -237,6 +243,7 @@
         "game": [
           ["/proc/game_opt/disable_cpufreq_limit", "1"],
           ["@values", "hispeed_freq", "1017600", "1497600", "1497600", "1478400"],
+          ["@values", "hispeed_load", "90", "90", "90", "90"],
           ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "2000", "1000", "1000"]
         ]
       },
@@ -252,7 +259,8 @@
         "game": [
           ["/proc/game_opt/disable_cpufreq_limit", "1"],
           ["@values", "hispeed_freq", "1574400", "1708800", "1708800", "1708800"],
-          ["@values", "latency", "1000", "1000", "4000", "1000", "1000", "2000", "4000", "1000"]
+          ["@values", "hispeed_load", "90", "90", "90", "90"],
+          ["@values", "latency", "1000", "1000", "4000", "0", "1000", "1000", "4000", "0"]
         ]
       },
       "pedestal": {
@@ -267,7 +275,8 @@
         "game": [
           ["/proc/game_opt/disable_cpufreq_limit", "1"],
           ["@values", "hispeed_freq", "1574400", "1708800", "1708800", "1708800"],
-          ["@values", "latency", "1000", "1000", "4000", "1000", "1000", "2000", "4000", "1000"]
+          ["@values", "hispeed_load", "90", "90", "90", "90"],
+          ["@values", "latency", "1000", "1000", "4000", "0", "1000", "1000", "4000", "0"]
         ]
       }
     },

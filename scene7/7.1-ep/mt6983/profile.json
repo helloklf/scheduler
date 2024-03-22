@@ -73,7 +73,8 @@
       ["@governor", "schedutil"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode_change 0"],
       ["$ddr_force_opp", "999"],
-      ["$ddr_freq_cust", "0"]
+      ["$ddr_freq_cust", "0"],
+      ["$perfmgr_enable", "#0"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
@@ -102,8 +103,7 @@
     ],
     "comm_app": [
       ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
-      ["$gpu_freq", "#10"],
-      ["$perfmgr_enable", "#0"]
+      ["$gpu_freq", "#10"]
     ],
     "comm_gaming": [
       ["@preset", "common_actvie"],
@@ -115,7 +115,6 @@
       ["$boost_affinity", "0"],
       ["$sched_boost", "#0"],
       ["$enable_ceiling", "#0"],
-      ["$perfmgr_enable", "#0"],
       ["$fpsgo", "#1"],
       ["$ged_kpi", "#0"]
     ],

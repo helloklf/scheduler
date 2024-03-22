@@ -115,7 +115,7 @@ process_opt() {
   move_to_heavy com.omarea.gesture
   move_to_heavy android.hardware.audio.service_64
   move_to_heavy audioserver
-  move_to_heavy media.audio.qc.codec .qti.media.c2audio@1.0-service
+  move_to_heavy media.audio.qc.codec.qti.media.c2audio@1.0-service
   move_to_heavy vendor.xiaomi.hw.touchfeature@1.0-service
   move_to_heavy 'android:ui'
 
