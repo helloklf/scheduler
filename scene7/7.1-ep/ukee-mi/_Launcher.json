@@ -20,7 +20,7 @@
       "idle_delay": 1000,
       "enter": [
         ["@preset", "performance_active"],
-        ["$sched_boost", "1"]
+        ["$sched_boost", "2"]
       ],
       "exit": [
         ["@preset", "balance_inactive"]
@@ -33,7 +33,7 @@
       "idle_delay": 1000,
       "enter": [
         ["@preset", "performance_active"],
-        ["$sched_boost", "1"]
+        ["$sched_boost", "2"]
       ],
       "exit": [["@preset", "performance_inactive"]]
     }
@@ -44,7 +44,7 @@
       "idle_delay": 1000,
       "enter": [
         ["@preset", "fast_active"],
-        ["$sched_boost", "1"]
+        ["$sched_boost", "2"]
       ],
       "exit": [["@preset", "fast_inactive"]]
     }

@@ -14,14 +14,10 @@
         ["@cpu_freq", "cpu7", "1800MHz", "2.65Ghz"]
       ],
       "exit": [
-        ["@cpu_freq", "cpu0", "min", "1500MHz"],
-        ["@cpu_freq", "cpu4", "min", "1800MHz"],
-        ["@cpu_freq", "cpu7", "min", "1800MHz"]
+        ["@cpu_freq", "cpu0", "min", "1600MHz"],
+        ["@cpu_freq", "cpu4", "min", "2100MHz"],
+        ["@cpu_freq", "cpu7", "min", "1900MHz"]
       ]
     }
-  }],
-  "booster": {
-    "duration": 2000,
-    "idle_delay": 2000
-  }
+  }]
 }

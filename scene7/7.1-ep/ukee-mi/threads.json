@@ -96,5 +96,11 @@
       },
       "other": "0-7"
     }
+  },
+  {
+    "friendly": "COD Mobile",
+    "packages": ["com.activision.callofduty.warzone"],
+    "cpuset": {
+    }
   }
 ]

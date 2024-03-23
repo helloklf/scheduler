@@ -25,7 +25,7 @@
       "exit": [["@preset", "performance_inactive"]]
     }
   }, {
-    "mode": ["fast"],
+    "mode": ["*"],
     "booster": {
       "duration": 4000,
       "idle_delay": 500,
