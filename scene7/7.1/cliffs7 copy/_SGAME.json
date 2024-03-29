@@ -1,0 +1,45 @@
+{
+  "friendly": "王者荣耀",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@values", "latency", "0", "1000", "0", "2000", "0", "2000"]
+      ],
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 5000,
+          "rules": [
+            { "threshold": [-1, 100], "enter_once": [["@limiters", "g1:cpu0", "g1:cpu3", "g1:cpu7"], ["@msm_feas", "10"]] },
+            { "threshold": [99,  75], "enter_once": [["@limiters", "g1:cpu0", "g1:cpu3", "g1:cpu7"], ["@msm_feas", "13"]] },
+            { "threshold": [70,  -1], "enter_once": [["@limiters", "g0:cpu0", "g0:cpu3", "g0:cpu7"], ["@msm_feas", "15"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@values", "latency", "0", "1000", "0", "2000", "0", "2000"]
+      ],
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 5000,
+          "rules": [
+            { "threshold": [-1, 100], "enter_once": [["@limiters", "g2:cpu0", "g2:cpu3", "g2:cpu7"], ["@msm_feas", "8"]] },
+            { "threshold": [99,  75], "enter_once": [["@limiters", "g1:cpu0", "g1:cpu3", "g1:cpu7"], ["@msm_feas", "11"]] },
+            { "threshold": [70,  -1], "enter_once": [["@limiters", "g0:cpu0", "g0:cpu3", "g0:cpu7"], ["@msm_feas", "15"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@msm_feas", "3"]
+      ]
+    }
+  ]
+}

@@ -262,11 +262,11 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "fast_active"],
-        ["@preset", "ddr_max"],
-        ["$bus_ddr", "3187000"]
+        ["@preset", "ddr_max"]
       ],
       "app": [
-        ["@preset", "common_app"]
+        ["@preset", "common_app"],
+        ["$bus_ddr", "3187000"]
       ],
       "game": [
         ["$perfmgr_enable", "#0"],
@@ -280,11 +280,11 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "fast_active"],
-        ["@preset", "ddr_max"],
-        ["$bus_ddr", "3187000"]
+        ["@preset", "ddr_max"]
       ],
       "app": [
-        ["@preset", "common_app"]
+        ["@preset", "common_app"],
+        ["$bus_ddr", "3187000"]
       ],
       "game": [
         ["$perfmgr_enable", "#0"],

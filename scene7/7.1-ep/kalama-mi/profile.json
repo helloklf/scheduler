@@ -263,12 +263,12 @@
     "fast": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "ddr_max"],
-        ["$bus_ddr", "3187000"]
+        ["@preset", "ddr_max"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@values", "max_freq", "2016000", "2803200", "3187200"]
+        ["@values", "max_freq", "2016000", "2803200", "3187200"],
+        ["$bus_ddr", "3187000"]
       ],
       "game": [
         ["$perfmgr_enable", "#0"],

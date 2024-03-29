@@ -20,11 +20,10 @@
   },
   "features": {
     "limiter": {
-      "active_interval": 20,
+      "active_interval": 30,
       "gaming_interval": 30,
       "inactive_interval": 150,
       "ddr_boost": false,
-      "logger": false,
       "params": [
         { "id": "p1:cpu0", "max": 1700000, "turning": 1500000, "min": 1000000, "margin": 300 },
         { "id": "p1:cpu4", "max": 2300000, "turning": 2100000, "min": 1800000, "margin": 300 },
@@ -79,7 +78,7 @@
     ],
     "comm_app": [
       ["$ddr_map", "1700000:4100000 1600000:3094000 1500000:2133000 1400000:1600000"],
-      ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
+      ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
       ["@preset", "freq_extreme"]
     ],
     "comm_gaming": [
