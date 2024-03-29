@@ -148,9 +148,9 @@ disable_migt() {
     echo 1 > $migt/force_reset_runtime
     echo 1 > $migt/reset_clus_affinity_uidlist
     hide_value $migt/migt_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
-    chmod $migt/add_bclus_affinity_uidlist 444
-    chmod $migt/add_mclus_affinity_uidlist 444
-    chmod $migt/add_lclus_affinity_uidlist 444
+    chmod 444 $migt/add_bclus_affinity_uidlist
+    chmod 444 $migt/add_mclus_affinity_uidlist
+    chmod 444 $migt/add_lclus_affinity_uidlist
     hide_value $migt/glk_freq_limit_start '0'
     hide_value $migt/glk_freq_limit_walt '0'
     hide_value $migt/glk_maxfreq '0 0 0'
