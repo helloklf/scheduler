@@ -5,7 +5,8 @@
   "alias": {
     "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
     "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
-    "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq"
+    "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
+    "gpu_min_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/min_freq"
   },
   "features": {
     "limiter": {
@@ -48,7 +49,8 @@
     "reset": [
       ["@msm_reset"],
       ["@thermal_threshold", "99800"],
-      ["@preset", "ufshc_perf_off", "bw_max"]
+      ["@preset", "ufshc_perf_off", "bw_max"],
+      ["$gpu_min_khz", "#0"]
     ],
     "bw": [
       ["/sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/min_freq"],
@@ -85,14 +87,16 @@
       ["@values", "bw", "762", "7980", "2288", "15258"]
     ],
     "cpu7_on": [
-      ["$core_ctl_7", "#0"],
+      ["$core_ctl_7", "#1"],
       ["$max_cpus_cpu7", "#1"],
-      ["$min_cpus_cpu7", "#1"]
+      ["$min_cpus_cpu7", "#1"],
+      ["$core_ctl_7", "#0"]
     ],
     "cpu7_off": [
-      ["$core_ctl_7", "#0"],
+      ["$core_ctl_7", "#1"],
       ["$min_cpus_cpu7", "#0"],
-      ["$max_cpus_cpu7", "#0"]
+      ["$max_cpus_cpu7", "#0"],
+      ["$core_ctl_7", "#0"]
     ],
     "cpu7_auto": [
       ["$core_ctl_7", "#1"],
@@ -237,18 +241,14 @@
       "import": "_GenshinImpact.json"
     },
     {
-      "friendly": "星穹铁道",
-      "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
-      "import": "_HKRPG.json"
-    },
-    {
       "friendly": "王者荣耀/LOL",
       "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
       "import": "_SGAME.json"
     },
     {
       "friendly": "All",
-      "packages": ["*"]
+      "packages": ["*"],
+      "import": "_Games.json"
     }
   ]
 }

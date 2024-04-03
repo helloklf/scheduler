@@ -24,7 +24,10 @@
     "booster": {
       "duration": 2000,
       "idle_delay": 1000,
-      "enter": [["@preset", "performance_active"]],
+      "enter": [
+        ["@preset", "performance_active"],
+        ["@values", "sched_boost", "1", "2", "1", "0"]
+      ],
       "exit": [["@preset", "performance_inactive"]]
     }
   }, {
@@ -32,7 +35,10 @@
     "booster": {
       "duration": 2000,
       "idle_delay": 1000,
-      "enter": [ ["@preset", "fast_active"], ["$stune_top_boost", "20"], ["$stune_top_perf", "1"], ["$sched_boost", "2"] ],
+      "enter": [
+        ["@preset", "fast_active"],
+        ["@values", "sched_boost", "1", "2", "1", "25"]
+      ],
       "exit": [["@preset", "fast_inactive"]]
     }
   }]

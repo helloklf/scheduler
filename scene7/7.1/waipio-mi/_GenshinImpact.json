@@ -21,7 +21,7 @@
 
     { "id": "ys-p4:cpu0", "max": 1574400, "turning": 1478400, "min": 1075200, "margin": 300, "mode": "performance", "smoothness": 5 },
     { "id": "ys-p4:cpu4", "max": 2112000, "turning": 1996800, "min": 998400, "margin": 200, "mode": "performance", "smoothness": 5 },
-    { "id": "ys-p4:cpu7", "max": 2169600, "turning": 2054400, "min": 1056000, "margin": 200, "mode": "performance", "active_interval": 48, "smoothness": 5 }
+    { "id": "ys-p4:cpu7", "max": 2169600, "turning": 2054400, "min": 1056000, "margin": 200, "mode": "performance", "smoothness": 5 }
   ],
   "sensors": [
     {

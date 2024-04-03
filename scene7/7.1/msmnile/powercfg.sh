@@ -135,6 +135,7 @@ hide_value $t_message/cpu_nolimit_temp 47500
 disable_migt() {
   migt=/sys/module/migt/parameters
   if [[ -d $migt ]]; then
+    echo 1 > $migt/force_reset_runtime
     hide_value $migt/migt_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
     hide_value $migt/glk_freq_limit_start '0'
     hide_value $migt/glk_freq_limit_walt '0'
@@ -145,7 +146,7 @@ disable_migt() {
     hide_value $migt/mi_freq_enable '0'
     hide_value $migt/force_stask_to_big '0'
     hide_value $migt/glk_fbreak_enable '0'
-    hide_value $migt/force_reset_runtime '0'
+    chmod 444 $migt/set_render_as_stask
 
     settings put secure speed_mode_enable 1
     chmod 000 $migt/*

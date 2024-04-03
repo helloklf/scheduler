@@ -82,8 +82,7 @@
       ["$bus_ddr_min", "547000"],
       ["$l3_boost", "0"],
       ["@governor", "walt"],
-      ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],
-      ["$mod_percent", "100"]
+      ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"]
     ],
 
     "hispeed_freq": [
@@ -147,11 +146,14 @@
         "0 1075200:-10 1574400:-20",
         "0 1209600:-10 1766400:-15 2112000:-20",
         "0 1286400:-10 1958400:-15 2400000:-20"
-      ]
+      ],
+      ["$mod_percent", "100"],
+      ["@gpu_freq", "min", "550MHz"]
     ],
     "common_gaming": [
       ["@uclamp", "0.00~max", "0.0~max", "0.0~max"],
-      ["@cpuset", "0-3", "1-3", "0-5", "0-7"]
+      ["@cpuset", "0-3", "1-3", "0-5", "0-7"],
+      ["$mod_percent", "92"]
     ],
 
     "powersave_active": [
@@ -218,8 +220,7 @@
     "powersave": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "powersave_active"],
-        ["@gpu_freq", "min", "500MHz"]
+        ["@preset", "powersave_active"]
       ],
       "app": [
         ["@preset", "common_app"],
@@ -228,16 +229,15 @@
       "game": [
         ["@preset", "common_gaming"],
         ["$bus_ddr", "2092000"],
-        ["$mod_percent", "92"],
         ["@values", "latency", "0", "3000", "0", "3000", "0", "3000"],
-        ["/proc/game_opt/disable_cpufreq_limit", "0"]
+        ["/proc/game_opt/disable_cpufreq_limit", "0"],
+        ["@gpu_freq", "min", "500MHz"]
       ]
     },
     "balance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "balance_active"],
-        ["@gpu_freq", "min", "600MHz"]
+        ["@preset", "balance_active"]
       ],
       "app": [
         ["@preset", "common_app"],
@@ -246,16 +246,15 @@
       "game": [
         ["@preset", "common_gaming"],
         ["$bus_ddr", "2736000"],
-        ["$mod_percent", "92"],
         ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
-        ["/proc/game_opt/disable_cpufreq_limit", "0"]
+        ["/proc/game_opt/disable_cpufreq_limit", "0"],
+        ["@gpu_freq", "min", "600MHz"]
       ]
     },
     "performance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "performance_active"],
-        ["@gpu_freq", "min", "750MHz"]
+        ["@preset", "performance_active"]
       ],
       "app": [
         ["@preset", "common_app"],
@@ -264,16 +263,15 @@
       "game": [
         ["@preset", "common_gaming"],
         ["$bus_ddr", "2736000"],
-        ["$mod_percent", "92"],
         ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
-        ["/proc/game_opt/disable_cpufreq_limit", "1"]
+        ["/proc/game_opt/disable_cpufreq_limit", "1"],
+        ["@gpu_freq", "min", "750MHz"]
       ]
     },
     "fast": {
       "call": [
         ["@preset", "reset"],
         ["@preset", "fast_active"],
-        ["@gpu_freq", "min", "max"],
         ["$bus_ddr", "3196000"]
       ],
       "app": [
@@ -283,9 +281,9 @@
         ["$l3_boost", "1651200"],
         ["$bus_ddr_min", "2736000"],
         ["@preset", "common_gaming"],
-        ["$mod_percent", "93"],
         ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
-        ["/proc/game_opt/disable_cpufreq_limit", "1"]
+        ["/proc/game_opt/disable_cpufreq_limit", "1"],
+        ["@gpu_freq", "min", "max"]
       ]
     }
   },
