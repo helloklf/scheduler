@@ -3,8 +3,8 @@
   "modes": [{
     "mode": ["powersave"],
     "booster": {
-      "duration": 1300,
-      "idle_delay": 500,
+      "duration": 1500,
+      "idle_delay": 700,
       "enter": [
         ["@preset", "powersave_active"]
       ],

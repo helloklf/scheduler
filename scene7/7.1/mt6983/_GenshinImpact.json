@@ -1,8 +1,5 @@
 {
   "friendly": "原神",
-  "call": [
-    ["@cpuset", "0-3", "0-3", "0-3", "0-7"]
-  ],
   "limiters": [
     {"id": "ys1:cpu0", "step": -0.7, "max": 1600000, "turning": 1500000, "min": 800000, "margin": 300, "smoothness": 6},
     {"id": "ys1:cpu4", "step": -0.9, "max": 2100000, "turning": 1700000, "min": 1400000, "margin": 160, "smoothness": 6},

@@ -16,9 +16,9 @@
         ["$max_cpus_cpu7", "1"]
       ],
       "exit": [
-        ["@cpu_freq", "cpu0", "min", "1500MHz"],
-        ["@cpu_freq", "cpu4", "min", "1800MHz"],
-        ["@cpu_freq", "cpu7", "min", "1800MHz"],
+        ["@cpu_freq", "cpu0", "min", "1600MHz"],
+        ["@cpu_freq", "cpu4", "min", "1900MHz"],
+        ["@cpu_freq", "cpu7", "min", "1900MHz"],
         ["$max_cpus_cpu7", "0"]
       ]
     }
