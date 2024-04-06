@@ -11,8 +11,7 @@
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",
     "perfmgr_enable": "/sys/module/mtk_fpsgo/parameters/perfmgr_enable",
     "ddr_max": "/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq",
-    "sched_boost": "/sys/kernel/fpsgo/fbt/switch_idleprefer",
-    "enable_ceiling": "/sys/kernel/fpsgo/fbt/enable_ceiling"
+    "sched_boost": "/sys/kernel/fpsgo/fbt/switch_idleprefer"
   },
   "features": {
     "limiter": {
@@ -93,7 +92,6 @@
       ["@limiters", "NONE"],
       ["$ddr_max", "#5500000000"],
       ["$sched_boost", "#0"],
-      ["$enable_ceiling", "#0"],
       ["$fpsgo", "#1"],
       ["$ged_kpi", "#0"]
     ],

@@ -156,6 +156,8 @@ lock_value /sys/module/cpufreq_bouncing/parameters/enable 0
 # FEAS dependence, But it will not work if you change the frequency, So disable it
 echo 0 > /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 
+hide_value /sys/kernel/fpsgo/fbt/enable_ceiling 0
+
 mount -t debugfs none /sys/kernel/debug
 echo 0 > /sys/class/devfreq/13000000.mali/min_freq
 echo 99 > /sys/kernel/ged/hal/custom_boost_gpu_freq

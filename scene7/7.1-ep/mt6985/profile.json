@@ -16,8 +16,7 @@
     "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",
     "ddr_map": "/sys/module/mtk_fpsgo/parameters/ddrfreq_remap_table",
-    "cpus_limit": "/sys/module/mtk_fpsgo/parameters/cpus_limit",
-    "enable_ceiling": "/sys/kernel/fpsgo/fbt/enable_ceiling"
+    "cpus_limit": "/sys/module/mtk_fpsgo/parameters/cpus_limit"
   },
   "features": {
     "limiter": {
@@ -86,8 +85,7 @@
     ],
     "comm_gaming": [
       ["@limiters", "NONE"],
-      ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
-      ["$enable_ceiling", "#0"]
+      ["@cpuset", "0-3", "0-5", "0-5", "0-7"]
     ],
 
     "powersave_active": [

@@ -69,6 +69,8 @@ hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
 hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
 
 
+hide_value /sys/kernel/fpsgo/fbt/enable_ceiling 0
+
 metis=/sys/module/metis/parameters
 for file in $metis/*enable*; do
   echo 0 > $file

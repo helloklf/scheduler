@@ -13,10 +13,6 @@
     "fpsgo": "/sys/kernel/fpsgo/common/fpsgo_enable",
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",
     "ddr_force_opp": "/sys/devices/platform/1c00f000.dvfsrc/1c00f000.dvfsrc:dvfsrc-helper/dvfsrc_force_vcore_dvfs_opp",
-    "limit_cfreq": "/sys/kernel/fpsgo/fbt/limit_cfreq",
-    "limit_rfreq": "/sys/kernel/fpsgo/fbt/limit_rfreq",
-    "limit_cfreq_m": "/sys/kernel/fpsgo/fbt/limit_cfreq_m",
-    "limit_rfreq_m": "/sys/kernel/fpsgo/fbt/limit_rfreq_m",
     "perfmgr_enable": "/sys/module/mtk_fpsgo/parameters/perfmgr_enable",
     "ddr_max": "/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq",
     "dcs": "/sys/kernel/ged/hal/dcs_mode"
@@ -62,9 +58,9 @@
         { "id": "g4:cpu7", "max": 2800000, "turning": 2650000, "min": 2100000, "margin": 400, "step": -1, "smoothness": 6 },
 
 
-        { "id": "inactive:cpu0", "max": 1500000, "min": 400000, "margin": 100 },
+        { "id": "inactive:cpu0", "max": 1500000, "min": 400000, "margin": 80 },
         { "id": "inactive:cpu4", "max": 2100000, "min": 400000, "margin": 100 },
-        { "id": "inactive:cpu7", "max": 2100000, "min": 1300000, "margin": 130 },
+        { "id": "inactive:cpu7", "max": 2100000, "min": 1300000, "margin": 100, "core_ctl": true },
 
         { "id": "idle:cpu0", "max": 1200000, "min": 400000, "margin": 50 },
         { "id": "idle:cpu4", "max": 1800000, "min": 400000, "margin": 60 },
