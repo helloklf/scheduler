@@ -4,10 +4,6 @@
     "com.tencent.mm:appbrand",
     "com.tencent.mm:toolsmp"
   ],
-  "booster": {
-    "duration": 2000,
-    "idle_delay": 2000
-  },
   "modes": [{
     "mode": ["powersave", "balance"],
     "call": [

@@ -1,9 +1,5 @@
 {
   "friendly": "狗屎/毒瘤",
-  "booster": {
-    "duration": 2000,
-    "idle_delay": 2000
-  },
   "modes": [{
     "mode": ["powersave", "balance"],
     "call": [

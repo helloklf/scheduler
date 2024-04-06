@@ -44,7 +44,6 @@
     {
       "mode": ["performance"],
       "call": [
-        ["@preset", "feas_off"],
         ["@mtk_feas", "0"]
       ],
       "fas": {
@@ -65,7 +64,6 @@
     {
       "mode": ["*"],
       "call": [
-        ["@preset", "feas_off"],
         ["@values", "max_freq", "#2000000", "#2850000", "#2850000"],
         ["$ddr_freq_min", "#5500000000"]
       ],

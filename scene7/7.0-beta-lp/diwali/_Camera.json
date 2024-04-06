@@ -4,10 +4,6 @@
     ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
     ["@cpuset", "0-1", "0-4", "0-7", "0-7"]
   ],
-  "booster": {
-    "duration": 2000,
-    "idle_delay": 2000
-  },
   "modes": [{
     "mode": ["powersave", "balance"],
     "booster": {

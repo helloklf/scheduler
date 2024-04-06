@@ -14,13 +14,13 @@
   },
   "features": {
     "limiter": {
-      "active_interval": 24,
+      "active_interval": 30,
       "gaming_interval": 30,
-      "inactive_interval": 150,
+      "inactive_interval": 100,
       "ddr_boost": true,
       "logger": false,
       "params": [
-        { "id": "p1:cpu0", "max": 2000000, "min": 1600000, "margin": 500 },
+        { "id": "p1:cpu0", "max": 2000000, "turning": 1800000, "min": 1600000, "margin": 400 },
         { "id": "p1:cpu4", "max": 2100000, "turning": 2000000, "min": 1600000, "margin": 300 },
         { "id": "p1:cpu7", "max": 2200000, "turning": 2100000, "min": 1800000, "margin": 300 },
 
@@ -46,11 +46,11 @@
 
         { "id": "inactive:cpu0", "max": 1800000, "turning": 1500000, "min": 700000, "margin": 400 },
         { "id": "inactive:cpu4", "max": 1900000, "min": 400000, "margin": 180 },
-        { "id": "inactive:cpu7", "max": 2300000, "min": 500000, "margin": 220 },
+        { "id": "inactive:cpu7", "max": 2300000, "min": 500000, "margin": 200 },
 
         { "id": "idle:cpu0", "max": 1600000, "min": 600000, "margin": 150 },
         { "id": "idle:cpu4", "max": 1800000, "min": 400000, "margin": 120 },
-        { "id": "idle:cpu7", "max": 2000000, "min": 500000, "margin": 140 }
+        { "id": "idle:cpu7", "max": 2000000, "min": 500000, "margin": 140, "core_ctl": true }
       ]
     },
     "gesture_boost": {
@@ -81,16 +81,17 @@
     "max_freq": [
       ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
     ],
-    "feas_on": [
-      ["$fpsgo", "#1"],
-      ["$perfmgr_enable", "#1"]
+    "cpu7_on": [
+      ["$max_cpus_cpu7", "1"],
+      ["$min_cpus_cpu7", "1"]
     ],
-    "feas_off": [
-      ["$perfmgr_enable", "#0"],
-      ["$fpsgo", "#0"]
+    "cpu7_off": [
+      ["$min_cpus_cpu7", "0"],
+      ["$max_cpus_cpu7", "0"]
     ],
     "common_actvie": [
-      ["$cpu_max_0", "2000000"]
+      ["$cpu_max_0", "2000000"],
+      ["@preset", "cpu7_on"]
     ],
     "common_inactvie": [
       ["@values", "min_freq", "450000", "200000", "500000"],

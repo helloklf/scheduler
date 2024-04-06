@@ -19,9 +19,5 @@
         ["@cpu_freq", "cpu7", "min", "2100MHz"]
       ]
     }
-  }],
-  "booster": {
-    "duration": 2000,
-    "idle_delay": 2000
-  }
+  }]
 }
