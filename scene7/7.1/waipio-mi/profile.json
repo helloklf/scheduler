@@ -60,6 +60,9 @@
         { "id": "idle:cpu7", "max": 1286400, "turning": 1056000, "margin": 80, "core_ctl": true }
       ]
     },
+    "cpuset": {
+      "ipc": [0, 0.64, 0.94]
+    },
     "gesture_boost": {
       "enable": false,
       "enter": [

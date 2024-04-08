@@ -40,7 +40,6 @@
       "mode": ["performance"],
       "call": [
         ["@values", "max_freq", "#2000000", "#2450000", "#2850000"],
-        ["@preset", "feas_off"],
         ["@mtk_feas", "0"]
       ],
       "booster": {
@@ -57,7 +56,6 @@
     {
       "mode": ["*"],
       "call": [
-        ["@preset", "feas_off"],
         ["@values", "max_freq", "#2000000", "#2850000", "#2850000"],
         ["@limiters", "ys-p3:cpu4", "ys-p3:cpu7"],
         ["$ddr_freq_min", "#5500000000"]

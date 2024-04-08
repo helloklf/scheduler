@@ -1,8 +1,7 @@
 {
   "friendly": "和平精英",
   "call": [
-    ["@limiters", "NONE"],
-    ["$dcs_mode", "#0"]
+    ["@limiters", "NONE"]
   ],
   "modes": [{
     "mode": ["powersave"],

@@ -22,7 +22,7 @@
     "limiter": {
       "active_interval": 30,
       "gaming_interval": 30,
-      "inactive_interval": 150,
+      "inactive_interval": 100,
       "ddr_boost": false,
       "params": [
         { "id": "p1:cpu0", "max": 1700000, "turning": 1500000, "min": 1000000, "margin": 300 },
@@ -50,6 +50,9 @@
         { "id": "idle:cpu4","max": 1800000, "min": 500000, "margin": 100 },
         { "id": "idle:cpu7","max": 1800000, "min": 1200000, "margin": 100 }
       ]
+    },
+    "cpuset": {
+      "ipc": [0, 0.79, 1.14]
     },
     "gesture_boost": {
       "enable": false,

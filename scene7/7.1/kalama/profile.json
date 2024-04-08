@@ -62,6 +62,9 @@
         { "id": "g4:cpu3", "min": 2707200, "margin": 300 },
         { "id": "g4:cpu7", "turning": 2995200, "min": 2707200, "margin": 300 }
       ]
+    },
+    "cpuset": {
+      "ipc": [0, 0.66, 1.10]
     }
   },
   "presets": {

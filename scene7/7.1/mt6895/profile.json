@@ -14,11 +14,10 @@
   },
   "features": {
     "limiter": {
-      "active_interval": 24,
+      "active_interval": 30,
       "gaming_interval": 30,
       "inactive_interval": 100,
       "ddr_boost": false,
-      "logger": false,
       "params": [
         { "id": "p1:cpu0", "max": 2000000, "min": 1600000, "margin": 500 },
         { "id": "p1:cpu4", "max": 2450000, "turning": 2100000, "min": 1600000, "margin": 300 },
@@ -53,6 +52,9 @@
         { "id": "idle:cpu7", "max": 2000000, "min": 500000, "margin": 140 }
       ]
     },
+    "cpuset": {
+      "ipc": [0, 0.685, 0.69]
+    },
     "gesture_boost": {
       "enable": true,
       "enter": [
@@ -80,14 +82,6 @@
     ],
     "max_freq": [
       ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
-    ],
-    "feas_on": [
-      ["$fpsgo", "#1"],
-      ["$perfmgr_enable", "#1"]
-    ],
-    "feas_off": [
-      ["$perfmgr_enable", "#0"],
-      ["$fpsgo", "#0"]
     ],
     "common_actvie": [
       ["$cpu_max_0", "2000000"]
@@ -259,19 +253,9 @@
       "import": "_GenshinImpact.json"
     },
     {
-      "friendly": "星穹铁道",
-      "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
-      "import": "_HKRPG.json"
-    },
-    {
       "friendly": "王者荣耀/LOL",
       "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
       "import": "_SGAME.json"
-    },
-    {
-      "friendly": "QQ飞车",
-      "packages": ["com.tencent.tmgp.speedmobile"],
-      "import": "_SpeedMobile.json"
     },
     {
       "friendly": "和平精英",
