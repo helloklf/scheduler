@@ -21,7 +21,7 @@
     "limiter": {
       "active_interval": 24,
       "gaming_interval": 30,
-      "inactive_interval": 150,
+      "inactive_interval": 100,
       "logger": false,
       "params": [
         { "id": "active:cpu0", "max": 1612800, "turning": 1497600, "min": 1094400, "margin": 500 },
@@ -46,6 +46,9 @@
         { "id": "idle:cpu4", "max": 1555200, "turning": 1324800, "margin": 100 },
         { "id": "idle:cpu7", "max": 1670400, "turning": 1305600, "margin": 120, "core_ctl": true }
       ]
+    },
+    "cpuset": {
+      "ipc": [0, 0.628, 0.88]
     }
   },
   "presets": {
