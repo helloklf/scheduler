@@ -1,0 +1,57 @@
+{
+  "friendly": "游戏",
+  "limiters": [
+    { "id": "games1:cpu4", "mode": "BOTTOM", "max": 2131200, "turning": 1708800, "min": 1056000, "margin": 300, "smoothness": 8 },
+    { "id": "games1:cpu7", "mode": "BOTTOM", "max": 2131200, "turning": 1708800, "min": 1056000, "margin": 300, "smoothness": 8 },
+
+    { "id": "games2:cpu4", "mode": "BOTTOM", "max": 2323200, "turning": 2131200, "min": 1401600, "margin": 300, "smoothness": 8 },
+    { "id": "games2:cpu7", "mode": "BOTTOM", "max": 2323200, "turning": 2131200, "min": 1497600, "margin": 300, "smoothness": 8 },
+
+    { "id": "games3:cpu4", "mode": "BOTTOM", "max": 2419200, "turning": 2323200, "min": 1708800, "margin": 300, "smoothness": 8 },
+    { "id": "games3:cpu7", "mode": "BOTTOM", "max": 2419200, "turning": 2323200, "min": 1708800, "margin": 300, "smoothness": 8 },
+
+    { "id": "games4:cpu4", "mode": "BOTTOM", "max": 2419200, "turning": 2323200, "min": 1920000, "margin": 400, "smoothness": 8 },
+    { "id": "games4:cpu7", "mode": "BOTTOM", "max": 2649600, "turning": 2419200, "min": 1920000, "margin": 400, "smoothness": 8 }
+  ],
+  "call": [
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1036800", "1785600"],
+        ["@cpu_freq", "cpu4", "1056000", "2227200"],
+        ["@cpu_freq", "cpu7", "1056000", "2227200"],
+        ["@limiters", "games1:cpu4", "games1:cpu7"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1209600", "1785600"],
+        ["@cpu_freq", "cpu4", "1056000", "2323200"],
+        ["@cpu_freq", "cpu7", "1056000", "2323200"],
+        ["@limiters", "games2:cpu4", "games2:cpu7"]
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@values", "bw", "2288", "15258", "2288", "15258"],
+        ["@sched_limit", "6000 0", "6000 0", "6000 0"],
+        ["@cpu_freq", "cpu0", "1209600", "1785600"],
+        ["@cpu_freq", "cpu4", "1056000", "2419200"],
+        ["@cpu_freq", "cpu7", "1056000", "2649600"],
+        ["@limiters", "games3:cpu4", "games3:cpu7"]
+      ]
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@values", "bw", "2288", "15258", "2288", "15258"],
+        ["@sched_limit", "6000 0", "6000 0", "6000 0"],
+        ["@limiters", "games4:cpu4", "games4:cpu7"]
+      ]
+    }
+  ]
+}

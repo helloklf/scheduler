@@ -1,0 +1,73 @@
+{
+  "friendly": "王者荣耀/LOL",
+  "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
+  "cpuset": {
+    "interval": 5000,
+    "heavy_thread": "Thread-",
+    "heavy_cores": "4-5",
+    "comm": {
+      "7": ["UnityMain"],
+      "4-5": ["NativeThread", "Thread-","UnityGfx", "UnityMultiRende", "Worker Thread", "UnityPreload"],
+      "0-6": ["Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+    },
+    "other": "0-6"
+  },
+  "modes": [{
+    "mode": ["powersave"],
+    "booster": {
+      "duration": 3000,
+      "enter": [
+        ["$deisolation", "4|5|6|7"]
+      ],
+      "exit": [
+        ["$deisolation", "4|5|6|7"]
+      ]
+    },
+    "sensors": [{
+      "sensor": "fps",
+      "interval": 10000,
+      "props": ["$min_cpu_freq", "$max_cpu_freq"],
+      "rules": [
+        { "threshold": [-1, 100], "values": ["0 1708000|1 1482000", "0 2000000|1 2529000"] },
+        { "threshold": [99, 75 ], "values": ["0 1500000|1 1482000", "0 1708000|1 2529000"] },
+        { "threshold": [70, -1 ], "values": ["0 500000|1 730000", "0 1708000|1 2245000"] }
+      ]
+    }]
+  }, {
+    "mode": ["balance"],
+    "booster": {
+      "duration": 3000,
+      "enter": [
+        ["$deisolation", "4|5|6|7"]
+      ],
+      "exit": [
+        ["$deisolation", "4|5|6|7"]
+      ]
+    },
+    "sensors": [{
+      "sensor": "fps",
+      "interval": 10000,
+      "props": ["$min_cpu_freq", "$max_cpu_freq"],
+      "rules": [
+        { "threshold": [-1, 100], "values": ["0 1708000|1 1482000", "0 2000000|1 2600000"] },
+        { "threshold": [99, 75 ], "values": ["0 1500000|1 1482000", "0 1708000|1 2600000"] },
+        { "threshold": [70, -1 ], "values": ["0 500000|1 730000", "0 1708000|1 2245000"] }
+      ]
+    }]
+  }, {
+    "mode": ["*"],
+    "call": [
+      ["$gpu_dvfs_margin", "25"],
+      ["@limiters", "g4:cpu0", "g4:cpu4"]
+    ],
+    "booster": {
+      "duration": 2000,
+      "enter": [
+        ["$deisolation", "4|5|6|7"]
+      ],
+      "exit": [
+        ["$deisolation", "4|5|6|7"]
+      ]
+    }
+  }]
+}

@@ -1,0 +1,10 @@
+{
+  "version": "EP",
+  "versionCode": 20240225001,
+  "author": "SCENE7",
+  "projectUrl": "http://vtools.omarea.com/",
+  "features": {
+    "strict": true,
+    "pedestal": true
+  }
+}

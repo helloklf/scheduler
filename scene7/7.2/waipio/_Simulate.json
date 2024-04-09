@@ -1,0 +1,33 @@
+{
+  "friendly": "模拟器",
+  "packages": ["xyz.aethersx2.android", "com.aiwu.dolphinemu"],
+  "call": [
+    ["@uclamp", "0.00~10.00", "0.00~max", "1.00~max"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "enter": [
+        ["@values", "max_freq", "1574400", "1766400", "1958400"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "enter": [
+        ["@values", "max_freq", "1689600", "1996800", "2169600"]
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "enter": [        
+        ["@values", "max_freq", "1689600", "2112000", "2284800"]
+      ]
+    },
+    {
+      "mode": ["*"],
+      "enter": [
+        ["@values", "max_freq", "1689600", "2227200", "2400000"]
+      ]
+    }
+  ]
+}

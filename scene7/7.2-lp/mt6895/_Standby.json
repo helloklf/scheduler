@@ -1,0 +1,23 @@
+{
+  "friendly": "待机",
+  "packages": ["standby"],
+  "call": [
+    ["@cpuset", "0-6", "0-6", "0-7", "0-7"],
+    ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1"],
+    ["@limiters", "NONE"]
+  ],
+  "booster": {
+    "duration": 3500,
+    "idle_delay": 2000,
+    "enter": [
+      ["@cpu_freq", "policy0", "1500MHz", "max"],
+      ["@cpu_freq", "policy4", "1500MHz", "2300MHz"],
+      ["@cpu_freq", "policy7", "1400MHz", "2500MHz"]
+    ],
+    "exit": [
+      ["@cpu_freq", "policy0", "min", "2000MHz"],
+      ["@cpu_freq", "policy4", "min", "2300MHz"],
+      ["@cpu_freq", "policy7", "min", "2400MHz"]
+    ]
+  }
+}

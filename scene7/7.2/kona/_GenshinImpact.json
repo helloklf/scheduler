@@ -1,0 +1,48 @@
+{
+  "friendly": "原神",
+  "limiters": [
+    { "id": "ys1:cpu4", "mode": "powersave", "max": 2419200, "min": 1056000, "margin": 250, "smoothness": 5 },
+    { "id": "ys1:cpu7", "mode": "powersave", "max": 2649600, "min": 1075200, "margin": 220, "smoothness": 4 },
+
+    { "id": "ys2:cpu4", "mode": "powersave", "max": 2419200, "min": 1766400, "margin": 400, "smoothness": 4 },
+    { "id": "ys2:cpu7", "mode": "powersave", "max": 3200000, "min": 2073600, "margin": 350, "smoothness": 4 },
+
+    { "id": "ys3:cpu4", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max": 2419200, "min": 1056000, "margin": 300, "smoothness": 8 },
+    { "id": "ys3:cpu7", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max": 2841600, "min": 1075200, "margin": 300, "smoothness": 8 },
+
+    { "id": "ys4:cpu4", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max": 2419200, "min": 1056000, "margin": 400, "smoothness": 8 },
+    { "id": "ys4:cpu7", "strict": true, "active_interval": 32, "mode": "BOTTOM", "max": 3200000, "min": 1075200, "margin": 400, "smoothness": 8 }
+  ],
+  "call": [
+    ["$stune_top_boost", "0"], ["$stune_top_perf", "0"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "ys1:cpu4", "ys1:cpu7"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "ys2:cpu4", "ys2:cpu7"]
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "ys3:cpu4", "ys3:cpu7"]
+      ]
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1420800", "1804800"],
+        ["@cpu_freq", "cpu4", "1670400", "2419200"],
+        ["@cpu_freq", "cpu7", "1632000", "max"],
+        ["@limiters", "ys4:cpu4", "ys4:cpu7"]
+      ]
+    }
+  ]
+}

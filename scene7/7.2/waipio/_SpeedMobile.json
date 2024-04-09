@@ -1,0 +1,39 @@
+{
+  "friendly": "QQ飞车",
+  "limiters": [
+    { "id": "speedmobile1:cpu0", "step": -1, "max": 1574400, "min": 729600, "margin": 245, "smoothness": 8, "mode": "performance" },
+    { "id": "speedmobile1:cpu4", "step": -1, "max": 1651200, "min": 883200, "margin": 205, "smoothness": 4, "mode": "performance" },
+    { "id": "speedmobile1:cpu7", "step": -1, "max": 1728000, "min": 806400, "margin": 125, "smoothness": 4, "mode": "performance" },
+
+    { "id": "speedmobile2:cpu0", "step": -1, "max": 1574400, "min": 960000, "margin": 245, "smoothness": 6, "mode": "performance" },
+    { "id": "speedmobile2:cpu4", "step": -1, "max": 1881600, "min": 883200, "margin": 225, "smoothness": 5, "mode": "performance" },
+    { "id": "speedmobile2:cpu7", "step": -1, "max": 1958400, "min": 940800, "margin": 155, "smoothness": 5, "mode": "performance" },
+
+    { "id": "speedmobile3:cpu0", "step": -1, "max": 1574400, "min": 960000, "margin": 245, "smoothness": 8, "mode": "performance" },
+    { "id": "speedmobile3:cpu4", "step": -1, "max": 1996800, "min": 883200, "margin": 225, "smoothness": 8, "mode": "performance" },
+    { "id": "speedmobile3:cpu7", "step": -1, "max": 2169600, "min": 940800, "margin": 185, "smoothness": 8, "mode": "performance" }
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@values", "max_freq", "1574400", "1651200", "1728000"],
+        ["@limiters", "speedmobile1:cpu0", "speedmobile1:cpu4", "speedmobile1:cpu7"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@values", "max_freq", "1574400", "1881600", "1958400"],
+        ["@limiters", "speedmobile2:cpu0", "speedmobile2:cpu4", "speedmobile2:cpu7"]
+      ]
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@values", "max_freq", "1689600", "1996800", "2169600"],
+        ["@limiters", "speedmobile3:cpu0", "speedmobile3:cpu4", "speedmobile3:cpu7"]
+      ]
+    }
+  ]
+}

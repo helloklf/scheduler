@@ -1,0 +1,61 @@
+{
+  "friendly": "QQ飞车",
+  "limiters": [
+    { "id": "speed1:cpu4", "max": 1985000, "turning": 1740000, "min": 1451000, "margin": 400, "step": -1, "smoothness": 6 },
+    { "id": "speed2:cpu4", "max": 2354000, "turning": 1985000, "min": 1624000, "margin": 400, "step": -1, "smoothness": 6 },
+    { "id": "speed3:cpu4", "max": 2354000, "turning": 1985000, "min": 1800000, "margin": 400, "step": -1, "smoothness": 6 }
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "speed1:cpu4", "p1:cpu7"]
+      ],
+      "fas": {
+        "middle_optimum_freq": 1708800,
+        "big_min_freq": 1075200, "middle_min_freq": 710400,
+        "_60": ["2361600", "1766400", "-2"],
+        "_90": ["2361600", "1862400", "-3"],
+        "_120": ["2649600", "1958400", "-4"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "speed1:cpu4", "p2:cpu7"]
+      ],
+      "fas": {
+        "middle_optimum_freq": 1804800,
+        "_60": ["2361600", "2073600", "-2"],
+        "_90": ["2649600", "2246400", "-3"],
+        "_120": ["2841600", "2342400", "-4"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "speed2:cpu4",  "p3:cpu7"]
+      ],
+      "fas": {
+        "mode": "fps",
+        "middle_optimum_freq": 1920000,
+        "_60": ["2649600", "2150400", "-2"],
+        "_90": ["2841600", "2342400", "-3"],
+        "_120": ["2841600", "2419200", "-4"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@limiters", "speed3:cpu4",  "p4:cpu7"]
+      ],
+      "fas": {
+        "mode": "fps",
+        "recent_frames": 10, "fast_down_rate": 5, "slow_down_rate": 0.8,
+        "_60": ["2649600", "2073600"],
+        "_90": ["2841600", "2419200"],
+        "_120": ["3200000", "2419200"]
+      }
+    }
+  ]
+}

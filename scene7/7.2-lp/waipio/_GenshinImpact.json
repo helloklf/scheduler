@@ -1,0 +1,46 @@
+{
+  "friendly": "原神",
+  "call": [
+    ["@cpuset", "1", "0-2", "0-5", "0-7"],
+    ["$l3_boost", "0"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "max_level": 60, "perfect_load": 0.90,
+        "recent_frames": 6, "fast_down_rate": 8, "slow_down_rate": 4,
+        "_45": ["1612800", "1555200"],
+        "_60": ["1728000", "1766400"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "max_level": 60,
+        "mode": "fps", "perfect_load": 0.87,
+        "recent_frames": 6, "fast_down_rate": 8, "slow_down_rate": 4,
+        "_45": ["1728000", "1766400"],
+        "_60": ["1958400", "1881600"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "max_level": 60, "perfect_load": 0.85,
+        "recent_frames": 6, "fast_down_rate": 8, "slow_down_rate": 4,
+        "_45": ["1958400", "1881600"],
+        "_60": ["2112000", "2112000"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "fas": {
+        "max_level": 60, "mode": "fps", "perfect_load": 0.83,
+        "recent_frames": 6, "fast_down_rate": 8, "slow_down_rate": 4,
+        "_45": ["2112000", "2112000"],
+        "_60": ["2400000", "2227200"]
+      }
+    }
+  ]
+}

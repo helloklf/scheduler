@@ -1,0 +1,10 @@
+{
+  "friendly": "扫码",
+  "call": [
+    ["@limiters", "NONE"],
+    ["@cpuset", "0", "0-4", "0-7", "0-7"],
+    ["@cpu_freq", "policy0", "1.6Ghz", "max"],
+    ["@cpu_freq", "policy4", "2.3Ghz", "max"],
+    ["@cpu_freq", "policy7", "2.3Ghz", "max"]
+  ]
+}

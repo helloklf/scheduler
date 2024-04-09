@@ -1,0 +1,54 @@
+{
+  "friendly": "一般应用",
+  "modes": [{
+    "mode": ["powersave"],
+    "booster": {
+      "duration": 3500,
+      "idle_delay": 1700,
+      "enter": [
+        ["@preset", "powersave_active"],
+        ["$sched_boost", "2"]
+      ],
+      "exit": [ ["@preset", "powersave_inactive"] ]
+    }
+  },{
+    "mode": ["balance"],
+    "booster": {
+      "duration": 3500,
+      "idle_delay": 1700,
+      "enter": [
+        ["@preset", "balance_active"],
+        ["$sched_boost", "2"]
+      ],
+      "exit": [
+        ["@preset", "balance_inactive"]
+      ]
+    }
+  }, {
+    "mode": ["performance"],
+    "booster": {
+      "duration": 3500,
+      "idle_delay": 1700,
+      "enter": [
+        ["@preset", "performance_active"],
+        ["$sched_boost", "#2"]
+      ],
+      "exit": [
+        ["@preset", "performance_inactive"]
+      ]
+    }
+  }, {
+    "mode": [ "*"],
+    "booster": {
+      "duration": 3500,
+      "idle_delay": 1700,
+      "enter": [
+        ["@preset", "fast_active"],
+        ["$sched_boost", "#2"]
+      ],
+      "exit": [
+        ["@preset", "fast_inactive"]
+      ]
+    }
+  }]
+}
