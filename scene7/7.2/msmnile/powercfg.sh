@@ -47,18 +47,6 @@ for index in 0 1 2 3 4 5 6 7; do
   echo 1 > /sys/devices/system/cpu/cpu$index/online
 done
 
-if [[ ! -f /proc/sys/kernel/sched_group_upmigrate ]] || [[ $(getprop ro.product.vendor.brand) == "google" ]] || [[ $(getprop ro.build.version.sdk) -gt 29 ]] ; then
-  echo 'Google Pixel4'
-  # Setting b.L scheduler parameters
-  hide_value /proc/sys/kernel/sched_upmigrate
-  hide_value /proc/sys/kernel/sched_downmigrate
-  hide_value /proc/sys/kernel/sched_group_upmigrate
-  hide_value /proc/sys/kernel/sched_group_downmigrate
-  hide_value /proc/sys/kernel/sched_walt_rotate_big_tasks
-else
-  echo '>>> sched_upmigrate/sched_downmigrate'
-fi
-
 # killall -9 vendor.qti.hardware.perf@1.0-service
 
 set_cpuset(){
@@ -178,22 +166,19 @@ core_ctl_preset() {
   fi
 
   cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
-  echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
-  echo 1 > $cpu7_core_ctl_dir/not_preferred
-  echo 1 > $cpu7_core_ctl_dir/max_cpus
-  echo 0 > $cpu7_core_ctl_dir/min_cpus
-  echo 30 > $cpu7_core_ctl_dir/busy_down_thres
-  echo 60 > $cpu7_core_ctl_dir/busy_up_thres
+  lock_value 1 $cpu7_core_ctl_dir/max_cpus
+  lock_value 1 $cpu7_core_ctl_dir/min_cpus
+  lock_value 0 $cpu7_core_ctl_dir/enable
 
   cpu4_core_ctl_dir=/sys/devices/system/cpu/cpu4/core_ctl
-  echo 3 > $cpu4_core_ctl_dir/max_cpus
-  echo 3 > $cpu4_core_ctl_dir/min_cpus
-  echo 0 > $cpu4_core_ctl_dir/enable
+  lock_value 3 $cpu4_core_ctl_dir/max_cpus
+  lock_value 3 $cpu4_core_ctl_dir/min_cpus
+  lock_value 0 $cpu4_core_ctl_dir/enable
 
   cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
-  echo 4 > $cpu0_core_ctl_dir/max_cpus
-  echo 4 > $cpu0_core_ctl_dir/min_cpus
-  echo 0 > $cpu0_core_ctl_dir/enable
+  lock_value 4 $cpu0_core_ctl_dir/max_cpus
+  lock_value 4 $cpu0_core_ctl_dir/min_cpus
+  lock_value 0 $cpu0_core_ctl_dir/enable
 }
 
 core_ctl_preset
