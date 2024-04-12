@@ -44,7 +44,7 @@
         { "id": "g4:cpu7", "max": 3100000, "turning": 2850000, "min": 2650000, "margin": 400, "smoothness": 4 },
 
 
-        { "id": "inactive:cpu0", "max": 1800000, "turning": 1500000, "min": 700000, "margin": 400 },
+        { "id": "inactive:cpu0", "max": 1800000, "turning": 1500000, "min": 700000, "margin": 300 },
         { "id": "inactive:cpu4", "max": 1900000, "min": 400000, "margin": 180 },
         { "id": "inactive:cpu7", "max": 2300000, "min": 500000, "margin": 200 },
 

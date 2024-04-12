@@ -35,10 +35,6 @@
         { "id": "g3:cpu4", "max": 2419200, "turning": 2246400, "min": 1958400, "margin": 300 },
         { "id": "p3:cpu7", "max": 2841600, "turning": 2649600, "min": 2457600, "margin": 300 },
 
-        { "id": "p4:cpu4", "max": 2419200, "turning": 2342400, "min": 2246400, "margin": 300 },
-        { "id": "g4:cpu4", "max": 2841600, "turning": 2649600, "min": 2457600, "margin": 300 },
-        { "id": "p4:cpu7", "max": 3200000, "turning": 2841600, "min": 2649600, "margin": 300 },
-
         { "id": "boost:cpu4", "mode": "BOTTOM", "max": 2246400, "min": 1574400, "margin": 700 },
         { "id": "boost:cpu7", "mode": "BOTTOM", "max": 2457600, "min": 1632000, "margin": 700 },
 
@@ -313,11 +309,6 @@
       "friendly": "原神",
       "categories": ["GenshinImpact"],
       "import": "_GenshinImpact.json"
-    },
-    {
-      "friendly": "星穹铁道",
-      "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
-      "import": "_HKRPG.json"
     },
     {
       "friendly": "QQ飞车",

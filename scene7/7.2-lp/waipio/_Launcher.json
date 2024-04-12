@@ -5,8 +5,12 @@
     "booster": {
       "duration": 2000,
       "idle_delay": 1000,
-      "enter": [ ["@preset", "balance_active"] ],
-      "exit": [ ["@preset", "powersave_inactive"] ]
+      "enter": [
+        ["@preset", "balance_active"]
+      ],
+      "exit": [
+        ["@preset", "powersave_inactive"]
+      ]
     }
   }, {
     "mode": ["balance"],

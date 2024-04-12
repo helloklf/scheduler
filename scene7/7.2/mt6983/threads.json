@@ -15,7 +15,7 @@
     "cpuset": {
       "comm": {
         "4-7": ["RenderThread"],
-        "0-6": ["pool-"]
+        "0-6": ["thread_sp_net", "pool-"]
       },
       "trashy": [],
       "other": "0-7"

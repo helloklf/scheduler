@@ -1,5 +1,61 @@
 [
   {
+    "friendly": "闲鱼",
+    "packages": ["com.taobao.idlefish"],
+    "cpuset": {
+      "comm": {
+        "7": ["taobao.idlefish"],
+        "4-7": ["RenderThread", "1.ui", "1.raster"]
+      },
+      "other": "0-7"
+    }
+  },
+  {
+    "friendly": "QQ",
+    "packages": ["com.tencent.mobileqq"],
+    "cpuset": {
+      "main_thread": "7",
+      "comm": {
+        "4-6": ["RenderThread"],
+        "0-6": ["pool-"],
+        "0-3": ["thread_sp_net"]
+      },
+      "trashy": [],
+      "other": "0-6"
+    }
+  },
+  {
+    "friendly": "bilibili",
+    "packages": ["tv.danmaku.bili"],
+    "cpuset": {
+      "comm": {
+        "7": ["tv.danmaku"],
+        "4-6": ["RenderThread"]
+      },
+      "trashy": ["CRON."],
+      "other": "0-6"
+    }
+  },
+  {
+    "friendly": "优先大核",
+    "packages": [
+      "com.tencent.qqlive", 
+      "com.taobao.taobao", "com.jingdong.app.mall",
+      "com.tencent.news", "com.sina.weibo",
+      "com.netease.cloudmusic", "com.miui.player",
+      "com.tencent.mm",
+      "com.miui.notes",
+      "com.sankuai.meituan"
+    ],
+    "cpuset": {
+      "main_thread": "7",
+      "comm": {
+        "4-6": ["RenderThread"]
+      },
+      "other": "0-6"
+    }
+  },
+  {
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "cpuset": {
