@@ -1,6 +1,18 @@
 {
   "friendly": "游戏",
-  "limiters": [
+  "sensors": [
+    {
+      "sensor": "battery",
+      "interval": 5000,
+      "logger": false,
+      "rules": [
+        { "threshold": [-1, 52], "enter_once": [["@values", "latency", "0", "8000", "0", "8000", "0", "8000"]] },
+        { "threshold": [52, 48], "enter_once": [["@values", "latency", "0", "4000", "0", "4000", "0", "4000"]] },
+        { "threshold": [48, 45], "enter_once": [["@values", "latency", "0", "3000", "0", "3000", "0", "3000"]] },
+        { "threshold": [45, 41], "enter_once": [["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]] },
+        { "threshold": [41, -1], "enter_once": [["@values", "latency", "1000", "2000", "1000", "2000", "1000", "2000"]] }
+      ]
+    }
   ],
   "modes": [
     {

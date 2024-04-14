@@ -3,8 +3,7 @@
   "call": [
     ["$bus_ddr", "2736000"],
     ["$bus_ddr_min", "2736000"],
-    ["@gesture", "PAUSE"],
-    ["@values", "target_loads", "-20", "-20", "-20"]
+    ["@target_loads", "95", "95", "95"]
   ],
   "limiters": [
     { "id": "ys-p1:cpu0", "step": -1, "max": 1574400, "min": 1075200, "margin": 300 },

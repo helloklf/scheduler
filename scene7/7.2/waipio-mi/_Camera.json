@@ -7,7 +7,7 @@
   "modes": [{
     "mode": ["powersave", "balance"],
     "call": [
-      ["@values", "target_loads", "-20", "-20", "-20"],
+      ["@target_loads", "95", "95", "95"],
       ["@values", "latency", "0", "4000", "0", "4000", "0", "4000"]
     ],
     "booster": {
