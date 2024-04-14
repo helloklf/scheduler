@@ -36,7 +36,7 @@
         "max_level": 60, "perfect_load": 0.80,
         "recent_frames": 8, "fast_down_rate": 4, "slow_down_rate": 1.8,
         "mode": "fps",
-        "_60": ["2822400", "2841600"]
+        "_60": ["2822400", "2803200"]
       }
     }
   ]
