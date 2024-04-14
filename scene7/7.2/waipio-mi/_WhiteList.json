@@ -1,7 +1,0 @@
-{
-    "friendly": "白名单应用",
-    "packages": ["com.android.providers.downloads.ui", "android.process.mediaui"],
-    "call": [
-        ["@preset", "perf_normal"]
-    ]
-}

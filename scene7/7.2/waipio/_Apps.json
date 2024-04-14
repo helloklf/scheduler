@@ -3,7 +3,7 @@
   "modes": [{
     "mode": ["powersave"],
     "booster": {
-      "duration": 1500,
+      "duration": 2000,
       "idle_delay": 1000,
       "enter": [ ["@preset", "powersave_active"] ],
       "exit": [ ["@preset", "powersave_inactive"] ]
@@ -39,14 +39,6 @@
       "exit": [
         ["@preset", "fast_inactive"]
       ]
-    }
-  }, {
-    "mode": ["pedestal"],
-    "booster": {
-      "duration": 3000,
-      "idle_delay": 2000,
-      "enter": [ ["@preset", "pedestal_active"] ],
-      "exit": [ ["@preset", "pedestal_inactive"] ]
     }
   }]
 }
