@@ -228,9 +228,7 @@
       "game": [
         ["@preset", "common_gaming"],
         ["@values", "hispeed_freq", "902400", "0", "0"],
-        ["@cpu_freq", "cpu0", "307200", "1670400"],
-        ["@cpu_freq", "cpu3", "499200", "1651200"],
-        ["@cpu_freq", "cpu7", "595200", "1708800"],
+        ["@preset", "freq_low"],
         ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
     },
