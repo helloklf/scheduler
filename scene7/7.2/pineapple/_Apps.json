@@ -10,8 +10,7 @@
         ["$sched_boost", "2"]
       ],
       "exit": [
-        ["@preset", "powersave_inactive"],
-        ["$sched_boost", "0"]
+        ["@preset", "powersave_inactive"]
       ]
     }
   },{
@@ -24,8 +23,7 @@
         ["$sched_boost", "2"]
       ],
       "exit": [
-        ["@preset", "balance_inactive"],
-        ["$sched_boost", "0"]
+        ["@preset", "balance_inactive"]
       ]
     }
   }, {
@@ -38,8 +36,7 @@
         ["$sched_boost", "2"]
       ],
       "exit": [
-        ["@preset", "performance_inactive"],
-        ["$sched_boost", "0"]
+        ["@preset", "performance_inactive"]
       ]
     }
   }, {
@@ -52,8 +49,7 @@
         ["$sched_boost", "2"]
       ],
       "exit": [
-        ["@preset", "fast_inactive"],
-        ["$sched_boost", "0"]
+        ["@preset", "fast_inactive"]
       ]
     }
   }]
