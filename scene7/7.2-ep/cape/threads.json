@@ -1,14 +1,44 @@
 [
   {
+    "friendly": "闲鱼",
+    "packages": ["com.taobao.idlefish"],
+    "cpuset": {
+      "comm": {
+        "7": [],
+        "4-7": ["RenderThread", "1.ui", "1.raster", "taobao.idlefish"]
+      },
+      "other": "2-6"
+    }
+  },
+  {
     "friendly": "QQ",
     "packages": ["com.tencent.mobileqq"],
     "cpuset": {
+      "main_thread": "7",
       "comm": {
-        "4-7": ["RenderThread"],
-        "0-6": ["pool-"]
+        "4-6": ["RenderThread"]
       },
       "trashy": [],
-      "other": "0-7"
+      "other": "0-6"
+    }
+  },
+  {
+    "friendly": "优先大核",
+    "packages": [
+      "tv.danmaku.bili", "com.tencent.qqlive", 
+      "com.taobao.taobao", "com.jingdong.app.mall",
+      "com.tencent.news", "com.sina.weibo",
+      "com.netease.cloudmusic", "com.miui.player",
+      "com.tencent.mm",
+      "com.miui.notes",
+      "com.sankuai.meituan"
+    ],
+    "cpuset": {
+      "main_thread": "7",
+      "comm": {
+        "4-6": ["RenderThread"]
+      },
+      "other": "0-6"
     }
   },
   {
@@ -36,19 +66,6 @@
         "4-5": ["NativeThread", "Job.Worker"]
       },
       "other": "0-5"
-    }
-  },
-  {
-    "friendly": "传说对决",
-    "packages": ["com.garena.game.kgtw"],
-    "cpuset": {
-      "unity_main": "7",
-      "heavy_thread": "Thread-",
-      "heavy_cores": "4-6",
-      "comm": {
-        "4-6": ["UnityGfx"]
-      },
-      "other": "0-6"
     }
   },
   {
@@ -116,7 +133,8 @@
     ],
     "cpuset": {
       "comm": {
-        "4-7": ["GameThread", "RenderThread", "RHIThread", "FAsyncLoading"]
+        "7": ["GameThread"],
+        "4-6": ["RenderThread", "RHIThread"]
       },
       "other": "0-7"
     }

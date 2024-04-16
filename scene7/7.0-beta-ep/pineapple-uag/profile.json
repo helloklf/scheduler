@@ -9,11 +9,14 @@
       "max_cpus_cpu5": "/sys/devices/system/cpu/cpu5/core_ctl/max_cpus",
       "min_cpus_cpu5": "/sys/devices/system/cpu/cpu5/core_ctl/min_cpus",
       "core_ctl_5": "/sys/devices/system/cpu/cpu5/core_ctl/enable",
+      "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable",
       "cpu_min_2": "/sys/devices/system/cpu/cpufreq/policy2/scaling_min_freq",
       "cpu_max_2": "/sys/devices/system/cpu/cpufreq/policy2/scaling_max_freq",
       "cpu_min_5": "/sys/devices/system/cpu/cpufreq/policy5/scaling_min_freq",
       "cpu_max_5": "/sys/devices/system/cpu/cpufreq/policy5/scaling_max_freq",
-      "sched_boost": "/proc/sys/walt/sched_boost"
+      "sched_boost": "/proc/sys/walt/sched_boost",
+      "glk_disable": "/sys/module/migt/parameters/glk_disable",
+      "input_boost": "/proc/sys/walt/input_boost/sched_boost_on_input"
     },
     "features": {
       "gesture_boost": {

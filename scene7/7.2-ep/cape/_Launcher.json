@@ -3,24 +3,24 @@
   "modes": [{
     "mode": ["powersave"],
     "booster": {
-      "duration": 5000,
-      "idle_delay": 3000,
+      "duration": 3000,
+      "idle_delay": 1000,
       "enter": [
         ["@preset", "balance_active"],
         ["$sched_boost", "2"]
       ],
       "exit": [
-        ["@preset", "balance_inactive"]
+        ["@preset", "powersave_inactive"]
       ]
     }
   }, {
     "mode": ["balance"],
     "booster": {
-      "duration": 5000,
-      "idle_delay": 3000,
+      "duration": 3000,
+      "idle_delay": 1000,
       "enter": [
         ["@preset", "performance_active"],
-        ["$sched_boost", "1"]
+        ["$sched_boost", "2"]
       ],
       "exit": [
         ["@preset", "balance_inactive"]
@@ -29,22 +29,22 @@
   }, {
     "mode": ["performance"],
     "booster": {
-      "duration": 5000,
-      "idle_delay": 3000,
+      "duration": 3000,
+      "idle_delay": 1000,
       "enter": [
         ["@preset", "performance_active"],
-        ["$sched_boost", "1"]
+        ["$sched_boost", "2"]
       ],
       "exit": [["@preset", "performance_inactive"]]
     }
   }, {
     "mode": ["*"],
     "booster": {
-      "duration": 5000,
-      "idle_delay": 3000,
+      "duration": 3000,
+      "idle_delay": 1000,
       "enter": [
         ["@preset", "fast_active"],
-        ["$sched_boost", "1"]
+        ["$sched_boost", "2"]
       ],
       "exit": [["@preset", "fast_inactive"]]
     }

@@ -5,9 +5,40 @@
     "cpuset": {
       "comm": {
         "7": [],
-        "2-4,-7": ["RenderThread", "1.ui", "1.raster", "taobao.idlefish"]
+        "2-7": ["RenderThread", "1.ui", "1.raster", "taobao.idlefish"]
       },
-      "other": "2-7"
+      "other": "2-6"
+    }
+  },
+  {
+    "friendly": "QQ",
+    "packages": ["com.tencent.mobileqq"],
+    "cpuset": {
+      "main_thread": "7",
+      "comm": {
+        "2-6": ["RenderThread"]
+      },
+      "trashy": [],
+      "other": "2-6"
+    }
+  },
+  {
+    "friendly": "优先大核",
+    "packages": [
+      "tv.danmaku.bili", "com.tencent.qqlive", 
+      "com.taobao.taobao", "com.jingdong.app.mall",
+      "com.tencent.news", "com.sina.weibo",
+      "com.netease.cloudmusic", "com.miui.player",
+      "com.tencent.mm",
+      "com.miui.notes",
+      "com.sankuai.meituan"
+    ],
+    "cpuset": {
+      "main_thread": "7",
+      "comm": {
+        "2-6": ["RenderThread"]
+      },
+      "other": "2-6"
     }
   },
   {
