@@ -131,7 +131,9 @@
       ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
       ["$gpu_max_khz", "#990000000"],
       ["$bus_qos", "0"],
-      ["/proc/game_opt/disable_cpufreq_limit", "0"]
+      ["/proc/game_opt/disable_cpufreq_limit", "0"],
+      ["$mod_percent", "93"],
+      ["@gesture", "PAUSE"]
     ],
 
     "powersave_active": [
@@ -202,7 +204,6 @@
         ["@cpu_freq", "cpu4", "633600", "1996800"],
         ["@cpu_freq", "cpu7", "787200", "2131200"],
         ["$l3_boost", "#0"],
-        ["$mod_percent", "93"],
         ["$tchg", "#0"]
       ]
     },
@@ -222,7 +223,6 @@
         ["@cpu_freq", "cpu4", "633600", "2457600"],
         ["@cpu_freq", "cpu7", "787200", "2476800"],
         ["$l3_boost", "#0"],
-        ["$mod_percent", "93"],
         ["$tchg", "#0"]
       ]
     },
@@ -240,8 +240,7 @@
         ["@cpu_freq", "cpu0", "307200", "1804800"],
         ["@cpu_freq", "cpu4", "633600", "2572800"],
         ["@cpu_freq", "cpu7", "787200", "2707200"],
-        ["$l3_boost", "#0"],
-        ["$mod_percent", "95"]
+        ["$l3_boost", "#0"]
       ]
     },
     "fast": {
@@ -261,8 +260,7 @@
         ["$bus_ddr_min", "2736000"],
         ["@cpu_freq", "cpu0", "1056000", "1804800"],
         ["@cpu_freq", "cpu4", "1209600", "2745600"],
-        ["@cpu_freq", "cpu7", "1171200", "2995200"],
-        ["$mod_percent", "100"]
+        ["@cpu_freq", "cpu7", "1171200", "2995200"]
       ]
     }
   },
@@ -279,21 +277,6 @@
       "friendly": "原神",
       "categories": ["GenshinImpact"],
       "import": "_GenshinImpact.json"
-    },
-    {
-      "friendly": "星穹铁道",
-      "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
-      "import": "_HKRPG.json"
-    },
-    {
-      "friendly": "王者荣耀/LOL",
-      "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
-      "import": "_SGAME.json"
-    },
-    {
-      "friendly": "QQ飞车",
-      "packages": ["com.tencent.tmgp.speedmobile"],
-      "import": "_SpeedMobile.json"
     },
     {
       "friendly": "All",

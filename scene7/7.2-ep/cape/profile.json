@@ -89,7 +89,7 @@
       ["@uclamp", "0.00~max", "0.00~max", "0.5~max"]
     ],
     "common_inactive": [
-      ["@values", "min_freq", "307200", "633600", "787200"],
+      ["@values", "min_freq", "#307200", "#633600", "#787200"],
       ["@values", "latency", "0", "4000", "0", "4000", "0", "4000"],
       ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
       ["$sched_boost", "0"],

@@ -99,10 +99,10 @@ kgsl max_pwrlevel 0
 kgsl min_pwrlevel $pl_max
 kgsl default_pwrlevel $pl_max
 kgsl max_clock_mhz 999
-kgsl max_gpuclk 999000000
+kgsl max_gpuclk 1199000000
 kgsl min_clock_mhz 0
 kgsl devfreq/min_freq 0
-kgsl devfreq/max_freq 999000000
+kgsl devfreq/max_freq 1199000000
 
 
 cpus=3-6
