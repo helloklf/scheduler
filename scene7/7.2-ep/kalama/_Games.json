@@ -1,35 +1,34 @@
 {
   "friendly": "游戏(Games)",
-  "limiters": [
-    { "id": "g3:cpu0", "max": 1800000, "turning": 1500000, "min": 1000000, "margin": 300, "mode": "bottom" },
-    { "id": "g3:cpu3", "max": 2650000, "turning": 2450000, "min": 1500000, "margin": 350, "mode": "bottom" },
-    { "id": "g3:cpu7", "max": 2650000, "turning": 2450000, "min": 1700000, "margin": 350, "mode": "bottom" },
-
-    { "id": "g4:cpu0", "max": 1800000, "turning": 1500000, "min": 1000000, "margin": 250, "mode": "bottom" },
-    { "id": "g4:cpu3", "max": 2650000, "turning": 2450000, "min": 1500000, "margin": 500, "mode": "bottom" },
-    { "id": "g4:cpu7", "max": 2650000, "turning": 2450000, "min": 1700000, "margin": 500, "mode": "bottom" }
-  ],
   "modes": [
     {
       "mode": ["powersave"],
       "call": [
         ["@cpu_freq", "cpu0", "700000", "1700000"],
         ["@cpu_freq", "cpu3", "700000", "2300000"],
-        ["@cpu_freq", "cpu7", "700000", "2300000"]
-      ],
-      "fas": {
-        "mode": "fps",
-        "_60": ["2450000", "2450000"],
-        "_90": ["2450000", "2450000"],
-        "_120": ["2450000", "2450000"]
-      }
+        ["@cpu_freq", "cpu7", "700000", "2300000"],
+        ["@target_loads",
+          "85 1555200:95",
+          "85 1651200:95",
+          "85 1593600:95"
+        ],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"],
+        ["@values", "target_load_thresh", "0", "600", "600"]
+      ]
     },
     {
       "mode": ["balance"],
       "call": [
         ["@cpu_freq", "cpu0", "700000", "1700000"],
         ["@cpu_freq", "cpu3", "700000", "2500000"],
-        ["@cpu_freq", "cpu7", "700000", "2600000"]
+        ["@cpu_freq", "cpu7", "700000", "2600000"],
+        ["@target_loads",
+          "80 1555200:90",
+          "80 2188800:90 2323200:95",
+          "80 2092800:90 2476800:95"
+        ],
+        ["/proc/game_opt/disable_cpufreq_limit", "1"],
+        ["@values", "target_load_thresh", "600", "1024", "1024"]
       ]
     },
     {
@@ -37,16 +36,50 @@
       "call": [
         ["@cpu_freq", "cpu0", "1000000", "1800000"],
         ["@cpu_freq", "cpu3", "1100000", "2800000"],
-        ["@cpu_freq", "cpu7", "1100000", "2850000"]
+        ["@cpu_freq", "cpu7", "1100000", "2850000"],
+        ["@target_loads",
+          "80 1670400:85",
+          "80 2592000:81",
+          "80 2592000:85 2841600:90"
+        ],
+        ["/proc/game_opt/disable_cpufreq_limit", "1"],
+        ["@values", "target_load_thresh", "1024", "1024", "1024"]
       ]
     },
     {
-      "mode": ["*"],
+      "mode": ["fast"],
       "call": [
         ["@cpu_freq", "cpu0", "1000000", "1800000"],
         ["@cpu_freq", "cpu3", "1500000", "2850000"],
         ["@cpu_freq", "cpu7", "1700000", "3200000"],
-        ["@limiters", "g4:cpu0", "g4:cpu3", "g4:cpu7"]
+        ["@target_loads",
+          "70 1670400:80 1785600:90",
+          "70 2707200:80",
+          "72 2841600:85 2956800:90"
+        ],
+        ["/proc/game_opt/disable_cpufreq_limit", "1"],
+        ["@values", "target_load_thresh", "1024", "1024", "1024"]
+      ],
+      "fas": {
+        "mode": "boost",
+        "_60": ["2841600", "2707200"],
+        "_90": ["2841600", "2707200"],
+        "_120": ["2841600", "2707200"]
+      }
+    },
+    {
+      "mode": ["pedestal"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1000000", "1800000"],
+        ["@cpu_freq", "cpu3", "1500000", "2850000"],
+        ["@cpu_freq", "cpu7", "1700000", "3200000"],
+        ["@target_loads",
+          "65 1785600:87",
+          "65 2707200:78",
+          "65 2841600:80 2956800:85"
+        ],
+        ["/proc/game_opt/disable_cpufreq_limit", "1"],
+        ["@values", "target_load_thresh", "1024", "1024", "1024"]
       ],
       "fas": {
         "mode": "boost",

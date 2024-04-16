@@ -85,6 +85,9 @@ disable_migt() {
       lock_value 0 $file
     done
   fi
+  mkdir -p /cache/data/system/mcd
+  echo '0' > /cache/data/system/mcd/policy
+  mount --bind /cache/data/system/mcd/policy /data/system/mcd/policy
 }
 
 core_ctl_preset() {
@@ -118,8 +121,6 @@ lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
 core_ctl_preset
 disable_migt
 
-# Nubia(RedMagic)
-chmod 444 /sys/nbia/sched_affinity_ctrl
 
 # OnePlus
 hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
