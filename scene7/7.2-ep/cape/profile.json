@@ -97,7 +97,7 @@
     ],
     "common_app": [
       ["$bus_ddr_min", "547000"],
-      ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
+      ["@cpuset", "0-3", "0-6", "1-6", "0-7"],
       ["$gpu_max_khz", "#680000000"],
       ["$mod_percent", "100"]
     ],
@@ -108,7 +108,7 @@
       ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
       ["$gpu_max_khz", "#990000000"],
       ["$sched_boost", "0"],
-      ["$mod_percent", "95"]
+      ["$mod_percent", "93"]
     ],
 
     "powersave_active": [

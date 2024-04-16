@@ -7,24 +7,13 @@
         "7": [],
         "4-7": ["RenderThread", "1.ui", "1.raster", "taobao.idlefish"]
       },
-      "other": "2-6"
-    }
-  },
-  {
-    "friendly": "QQ",
-    "packages": ["com.tencent.mobileqq"],
-    "cpuset": {
-      "main_thread": "7",
-      "comm": {
-        "4-6": ["RenderThread"]
-      },
-      "trashy": [],
       "other": "0-6"
     }
   },
   {
     "friendly": "优先大核",
     "packages": [
+      "com.tencent.mobileqq",
       "tv.danmaku.bili", "com.tencent.qqlive", 
       "com.taobao.taobao", "com.jingdong.app.mall",
       "com.tencent.news", "com.sina.weibo",
