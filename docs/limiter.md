@@ -67,11 +67,13 @@
 | id | 格式为`**:[clusterExpr]`，必须在整套配置里保持不重名 | string |
 | mode | 工作模式 | string |
 | step | 连续升频时的跳频力度微调，范围 `-1 ~ 1` | float |
-| max | 最高频率限制，0或不配置为不限制 | int |
-| min | 最低频率限制，0或不配置为不限制 | int |
+| max | 最高频率限制(kHz)，0或不配置为不限制 | int |
+| min | 最低频率限制(kHz)，0或不配置为不限制 | int |
 | margin | 固定的余量(M Cycles) | int |
 | perfect | 能效/功耗最佳平衡频率，默认是CPU支持的最高频率×0.8 | int |
 | smoothness | 频率平滑度，默认`4`，最小为`1` | int |
+| mt | 计算此cluster的负载时的多核负载权重, `0 ~ 100`，默认 `0` | int |
+| excludes | 计算负载时排除的cpu核心，例如: [2, 3] | []int |
 
 
 #### 连续升频
@@ -160,3 +162,31 @@
   ```
 
   - 可以看出来，按比例设置余量并不科学，这会导致频率越高CPU的空余性能越多
+
+
+#### 多核负载权重(Scene7.2+)
+- 先说两个定义
+  > stLoad = Single Thread Load = cluster的各个核心最高负载<br>
+  > mtLoad = Multiple Thread Load = cluster的各个核心平均负载
+- 正在情况下，辅助调速器会根据`stLoad`决定是否调整频率
+- 当`mt`指定为非`0`数值时，则负载算法变为：
+  > loadRatio = ( stLoad * (100 - mt) + mtLoad * mt ) / 100
+- 因为`mt`数值越大，该cluster越不容易因为单个线程高负载升频
+* 注意：非游戏场景的非交互状态下，用于cluster0的辅助调速器，默认`mt`为`100`，其它情况下均默认为`0`
+
+#### 排除核心(Scene7.2+)
+- 有时候我们会故意把所有垃圾进程、线程集中在一颗核心，从而把更多的核心留给重要的进程、线程
+- 但是，一颗核心承载大量任务，可能会导致该cluster持续高负载，设置更高的`mt`又不利于该`cluster`上的其它任务正常运行
+
+- 你只将核心添加到 `excludes` 即可解决问题，典型搭配示例如：
+
+  ```
+  // 内核cpuset配置
+  ["/dev/cpuset/background/cpus", "1"],
+  ["/dev/cpuset/top-app/cpus", "0,2-7"]
+
+  // 调速器
+  {
+    "id": "p1:cpu0", "margin": 300, "excludes": [1] }
+  }
+  ```

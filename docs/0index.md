@@ -29,6 +29,7 @@
 ## [类目](categories.md)
 ## [传感器](./sensor.md)
 ## [CPUSET](./cpuset.md)
+## [CPUSET for App](./cpuset_for_app.md)
 ## [触摸升频](./booster.md)
 ## [预设](./presets.md)
 ## [别名](./alias.md)

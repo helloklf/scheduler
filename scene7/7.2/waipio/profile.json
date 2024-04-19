@@ -106,9 +106,10 @@
       ["$core_ctl_7", "#0"]
     ],
     "cpu7_off": [
-      ["$core_ctl_7", "#0"],
+      ["$core_ctl_7", "#1"],
       ["$min_cpus_cpu7", "#0"],
-      ["$max_cpus_cpu7", "#0"]
+      ["$max_cpus_cpu7", "#0"],
+      ["$core_ctl_7", "#0"]
     ],
     "cpu7_auto": [
       ["$core_ctl_7", "#1"],

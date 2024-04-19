@@ -16,8 +16,7 @@
   "call": [
     ["@cpuset", "0", "0-3", "0-5", "0-7"],
     ["$sched_boost", "0"],
-    ["$stune_top_boost", "0"],
-    ["@fps", "60"]
+    ["$stune_top_boost", "0"]
   ],
   "modes": [
     {

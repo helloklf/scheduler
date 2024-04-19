@@ -15,7 +15,7 @@
     "limiter": {
       "active_interval": 30,
       "gaming_interval": 30,
-      "inactive_interval": 150,
+      "inactive_interval": 100,
       "logger": false,
       "params": [
         { "id": "p1:cpu0", "step": -1, "max": 1555200, "min": 691200, "margin": 250 },
@@ -111,14 +111,16 @@
       ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
     ],
     "cpu7_on": [
-      ["$core_ctl_7", "#0"],
+      ["$core_ctl_7", "#1"],
       ["$max_cpus_cpu7", "#1"],
-      ["$min_cpus_cpu7", "#1"]
+      ["$min_cpus_cpu7", "#1"],
+      ["$core_ctl_7", "#0"]
     ],
     "cpu7_off": [
-      ["$core_ctl_7", "#0"],
+      ["$core_ctl_7", "#1"],
       ["$min_cpus_cpu7", "#0"],
-      ["$max_cpus_cpu7", "#0"]
+      ["$max_cpus_cpu7", "#0"],
+      ["$core_ctl_7", "#0"]
     ],
     "cpu7_auto": [
       ["$core_ctl_7", "#1"],
