@@ -113,7 +113,8 @@
       ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
       ["$gpu_max_khz", "#990000000"],
       ["$sched_boost", "0"],
-      ["$mod_percent", "93"]
+      ["$mod_percent", "93"],
+      ["@gesture", "PAUSE"]
     ],
 
     "powersave_active": [

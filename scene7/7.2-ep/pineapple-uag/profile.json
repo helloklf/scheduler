@@ -119,7 +119,8 @@
         ["/dev/cpuset/sf/cpus", "#2-3"],
         ["$sched_boost", "0"],
         ["@values", "hispeed_load", "80", "80", "80", "80"],
-        ["$mod_percent", "95"]
+        ["$mod_percent", "93"],
+        ["@gesture", "PAUSE"]
       ],
 
       "powersave_active": [

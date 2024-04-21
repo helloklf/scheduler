@@ -114,7 +114,8 @@
       ["$boost_affinity", "0"],
       ["$sched_boost", "#0"],
       ["$fpsgo", "#1"],
-      ["$ged_kpi", "#0"]
+      ["$ged_kpi", "#0"],
+      ["@gesture", "PAUSE"]
     ],
 
     "powersave_active": [

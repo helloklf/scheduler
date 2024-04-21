@@ -110,11 +110,11 @@
 
     "cores_force_on": [
       ["$core_ctl_6", "0"], ["$max_cpus_cpu6", "1"], ["$min_cpus_cpu6", "1"],
-      ["$core_ctl_7", "0"], ["$max_cpus_cpu7", "1"], ["$min_cpus_cpu7", "1"]
+      ["$core_ctl_7", "1"], ["$max_cpus_cpu7", "#1"], ["$min_cpus_cpu7", "#1"], ["$core_ctl_7", "0"]
     ],
     "cores_force_off": [
       ["$core_ctl_6", "0"], ["$max_cpus_cpu6", "1"], ["$min_cpus_cpu6", "1"],
-      ["$core_ctl_7", "0"], ["$max_cpus_cpu7", "1"], ["$min_cpus_cpu7", "1"]
+      ["$core_ctl_7", "1"], ["$max_cpus_cpu7", "#1"], ["$min_cpus_cpu7", "#1"], ["$core_ctl_7", "0"]
     ],
     "cores_auto_off": [
       ["$core_ctl_6", "1"], ["$min_cpus_cpu6", "0"], ["$max_cpus_cpu6", "1"],

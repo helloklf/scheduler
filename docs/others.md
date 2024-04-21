@@ -47,29 +47,6 @@
 }
 ```
 
-### `@big_little`
-- 适用于高通865及更早的处理器设置大小核任务迁移
-* 注意，Google Pixel4系列设置该参数会直接崩溃重启
-
-```json
-// 原始写法
-{
-  "call": [
-    ["/proc/sys/kernel/sched_downmigrate", "80 80"],
-    ["/proc/sys/kernel/sched_upmigrate", "90 90"],
-    ["/proc/sys/kernel/sched_group_downmigrate", "90"],
-    ["/proc/sys/kernel/sched_group_upmigrate", "100"]
-  ]
-}
-
-// 等效写法
-{
-  "call": [
-    ["@big_little", "80 80", "90 90", "90", "100"]
-  ]
-}
-```
-
 
 ### `@perf_turbo`
 - 适用于天玑1100 1200 8100 9000的一些关于GPU的调整

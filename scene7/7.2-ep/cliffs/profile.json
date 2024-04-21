@@ -89,7 +89,8 @@
     "common_gaming": [
       ["@limiters", "NONE"],
       ["@cpuset", "0-2", "0-5", "0-5", "0-7"],
-      ["@preset", "l3_max"]
+      ["@preset", "l3_max"],
+      ["@gesture", "PAUSE"]
     ],
 
     "l3_max": [

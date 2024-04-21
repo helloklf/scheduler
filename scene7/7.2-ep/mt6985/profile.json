@@ -88,7 +88,8 @@
     ],
     "comm_gaming": [
       ["@limiters", "NONE"],
-      ["@cpuset", "0-3", "0-5", "0-5", "0-7"]
+      ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
+      ["@gesture", "PAUSE"]
     ],
 
     "powersave_active": [

@@ -72,10 +72,10 @@
     "min_freq": [ ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"] ],
     "max_freq": [ ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"] ],
     "cores_force_on": [
-      ["$core_ctl_7", "0"], ["$max_cpus_cpu7", "1"], ["$min_cpus_cpu7", "1"]
+      ["$core_ctl_7", "1"], ["$max_cpus_cpu7", "#1"], ["$min_cpus_cpu7", "#1"], ["$core_ctl_7", "0"]
     ],
     "cores_force_off": [
-      ["$core_ctl_7", "0"], ["$min_cpus_cpu7", "0"], ["$max_cpus_cpu7", "0"]
+      ["$core_ctl_7", "1"], ["$min_cpus_cpu7", "#0"], ["$max_cpus_cpu7", "#0"], ["$core_ctl_7", "0"]
     ],
     "cores_auto_off": [
       ["$core_ctl_7", "1"], ["$min_cpus_cpu7", "0"], ["$max_cpus_cpu7", "1"]

@@ -23,7 +23,6 @@
   "author": "SCENE6",
   "projectUrl": "http://vtools.omarea.com/",
   "features": {
-    "strict": true,
     "pedestal": false
   }
 }
@@ -57,7 +56,6 @@
   "author": "yc9559",
   "projectUrl": "https://github.com/yc9559/uperf",
   "features": {
-    "strict": true,
     "pedestal": true
   },
   "files": [
@@ -74,13 +72,7 @@
 
 | 特性 | 描述 | 类型 |
 | :-: | :- | :-: |
-| strict | 是否支持严格模式 | bool |
 | pedestal | 是否支持底座模式 | bool |
-
-##### strict 严格模式
-- Scene主张根据应用类型做不同的性能调节策略
-- 即使一直处于`省电模式`或其它任一模式，性能也不应该是恒定的
-- 因此，强烈建议在配置中对不同类型的应用做出适配，并始终声明`strict`为`true`
 
 #### pedestal 底座模式
 - 底座模式被定义为无需考虑能耗的模式，

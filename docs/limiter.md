@@ -10,9 +10,6 @@
 {
   "features": {
     "limiter": {
-      "active_interval": 24,
-      "gaming_interval": 30,
-      "inactive_interval": 150,
       "logger": false,
       "params": [
         { "id": "p1:cpu0", "step": -1, "max": 1555200, "min": 691200, "margin": 250 },
@@ -34,11 +31,6 @@
   }
 }
 ```
-
-> 这里3个interval是指不同状态下轮询CPU负载的间隔时长(ms)
-- active_interval 交互状态(指最近发生了应用切换或用户操作了手机)下的【CPU负载轮询间隔】，默认24
-- gaming_interval 游戏类应用交互状态下的【CPU负载轮询间隔】默认， 30
-- inactive_interval 非交互状态下的【CPU负载轮询间隔】，默认 150
 
 > 下面的 `params` 则是添加了6条`limiter`执行策略
 - 留意ID格式，例如：`p1:cpu0` 的 `:`后其实一个 `clusterExpr`，说明可以在[基础](./basic.md)章节找到
@@ -173,6 +165,7 @@
   > loadRatio = ( stLoad * (100 - mt) + mtLoad * mt ) / 100
 - 因为`mt`数值越大，该cluster越不容易因为单个线程高负载升频
 * 注意：非游戏场景的非交互状态下，用于cluster0的辅助调速器，默认`mt`为`100`，其它情况下均默认为`0`
+* 不要在只有一颗核心的cluster上使用，以及确保设置`excludes`后参与负载计算的核心不少于两个
 
 #### 排除核心(Scene7.2+)
 - 有时候我们会故意把所有垃圾进程、线程集中在一颗核心，从而把更多的核心留给重要的进程、线程
