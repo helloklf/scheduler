@@ -19,7 +19,7 @@
           ["@cpuset", "0-3", "0-6", "0-6", "0-7"]
         ]
       }
-    },{
+    }, {
       "mode": ["balance"],
       "booster": {
       "duration": 2200,

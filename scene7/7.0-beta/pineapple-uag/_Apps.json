@@ -13,7 +13,7 @@
         ["@preset", "powersave_inactive"]
       ]
     }
-  },{
+  }, {
     "mode": ["balance"],
     "booster": {
       "duration": 3000,

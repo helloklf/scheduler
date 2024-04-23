@@ -235,6 +235,16 @@
   },
   "apps": [
     {
+      "friendly": "ELP",
+      "packages": [
+        "com.tencent.mobileqq",
+        "com.tencent.tim",
+        "org.telegram.messenger"
+      ],
+      "categories": ["Music", "Reader", "ShortVideo"],
+      "import": "_ELP.json"
+    },
+    {
       "friendly": "普通应用",
       "categories": ["ShortVideo", "Video"],
       "import": "_Apps.json"
@@ -250,7 +260,7 @@
           "enter": [["@preset", "balance_active"]],
           "exit": [["@preset", "balance_inactive"]]
         }
-      },{
+      }, {
         "mode": ["balance"],
         "booster": {
           "duration": 4000,
@@ -258,7 +268,7 @@
           "enter": [["@preset", "performance_active"]],
           "exit": [["@preset", "performance_inactive"]]
         }
-      },{
+      }, {
         "mode": ["*"],
         "booster": {
           "duration": 5000,

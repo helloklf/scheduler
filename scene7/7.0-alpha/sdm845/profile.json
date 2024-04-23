@@ -263,7 +263,7 @@
           "enter": [["@preset", "balance_active"]],
           "exit": [["@preset", "balance_inactive"]]
         }
-      },{
+      }, {
         "mode": ["balance"],
         "booster": {
           "duration": 4000,
@@ -271,7 +271,7 @@
           "enter": [["@preset", "performance_active"]],
           "exit": [["@preset", "performance_inactive"]]
         }
-      },{
+      }, {
         "mode": ["*"],
         "booster": {
           "duration": 5000,

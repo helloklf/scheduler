@@ -24,7 +24,7 @@
       "enter": [["@preset", "performance_active"]],
       "exit": [["@preset", "performance_inactive"]]
     }
-  },{
+  }, {
     "mode": ["fast"],
     "booster": {
       "duration": 3000,

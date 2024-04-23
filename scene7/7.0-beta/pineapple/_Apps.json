@@ -14,7 +14,7 @@
         ["$sched_boost", "0"]
       ]
     }
-  },{
+  }, {
     "mode": ["balance"],
     "booster": {
       "duration": 3000,

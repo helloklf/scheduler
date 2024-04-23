@@ -15,7 +15,7 @@
         ["@preset", "powersave_inactive"]
       ]
     }
-  },{
+  }, {
     "mode": ["balance"],
     "booster": {
       "duration": 3000,
@@ -29,7 +29,7 @@
         ["$gpu_dvfs_margin", "10"]
       ]
     }
-  },{
+  }, {
     "mode": ["performance"],
     "booster": {
       "duration": 4000,
@@ -43,7 +43,7 @@
         ["$gpu_dvfs_margin", "15"]
       ]
     }
-  },{
+  }, {
     "mode": ["fast"],
     "booster": {
       "duration": 4000,

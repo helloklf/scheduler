@@ -26,7 +26,7 @@
         ["@preset", "balance_inactive"]
       ]
     }
-  },{
+  }, {
     "mode": ["performance"],
     "booster": {
       "duration": 2000,
@@ -39,7 +39,7 @@
         ["@preset", "performance_inactive"]
       ]
     }
-  },{
+  }, {
     "mode": ["*"],
     "booster": {
       "duration": 3000,

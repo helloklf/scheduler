@@ -28,7 +28,7 @@
         ["@values", "target_loads", "90", "90", "90"]
       ]
     }
-  },{
+  }, {
     "mode": ["performance"],
     "booster": {
       "duration": 2000,
@@ -42,7 +42,7 @@
         ["@values", "target_loads", "85", "85", "85"]
       ]
     }
-  },{
+  }, {
     "mode": ["*"],
     "booster": {
       "duration": 3000,

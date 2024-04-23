@@ -17,7 +17,7 @@
           ["@fps", "30"]
         ]
       }
-    },{
+    }, {
       "mode": ["balance"],
       "booster": {
         "duration": 2000,
