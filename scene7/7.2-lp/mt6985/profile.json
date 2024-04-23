@@ -22,7 +22,7 @@
     "limiter": {
       "active_interval": 30,
       "gaming_interval": 30,
-      "inactive_interval": 150,
+      "inactive_interval": 100,
       "ddr_boost": false,
       "params": [
         { "id": "p1:cpu0", "max": 1700000, "turning": 1500000, "min": 1000000, "margin": 300 },
@@ -222,6 +222,16 @@
     }
   },
   "apps": [
+    {
+      "friendly": "ELP",
+      "packages": [
+        "com.tencent.mobileqq",
+        "com.tencent.tim",
+        "org.telegram.messenger"
+      ],
+      "categories": ["Music", "Reader", "ShortVideo"],
+      "import": "_ELP.json"
+    },
     {
       "friendly": "极速响应",
       "categories": ["Launcher"],

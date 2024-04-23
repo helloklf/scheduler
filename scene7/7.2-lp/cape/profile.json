@@ -265,6 +265,16 @@
     }
   },
   "apps": [
+    {
+      "friendly": "ELP",
+      "packages": [
+        "com.tencent.mobileqq",
+        "com.tencent.tim",
+        "org.telegram.messenger"
+      ],
+      "categories": ["Music", "Reader", "ShortVideo"],
+      "import": "_ELP.json"
+    },
     { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
     { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
     { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },

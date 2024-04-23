@@ -73,7 +73,6 @@
       "mode": ["performance"],
       "sensors": [
         {
-          "disable": false,
           "sensor": "/sys/class/power_supply/battery/temp",
           "interval": 2000,
           "props": ["$ddr_freq_min", "$gpu_freq"],
@@ -105,7 +104,6 @@
       ],
       "sensors": [
         {
-          "disable": false,
           "sensor": "/sys/class/power_supply/battery/temp",
           "interval": 2000,
           "props": ["$ddr_freq_min", "$gpu_freq"],

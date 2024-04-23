@@ -21,10 +21,10 @@
     "limiter": {
       "active_interval": 30,
       "gaming_interval": 30,
-      "inactive_interval": 150,
+      "inactive_interval": 100,
       "ddr_boost": true,
       "params": [
-        { "id": "p1:cpu0", "step": -1, "max": 1400000, "min": 400000, "margin": 200 },
+        { "id": "p1:cpu0", "step": -1, "max": 1400000, "min": 400000, "margin": 200, "excludes": [1] },
         { "id": "p1:cpu4", "step": -1, "max": 2150000, "turning": 1600000, "min": 700000, "margin": 350 },
         { "id": "p1:cpu7", "step": -1, "max": 2300000, "turning": 1600000, "min": 1300000, "margin": 350 },
 
@@ -49,7 +49,7 @@
         { "id": "g2:cpu4", "max": 2300000, "turning": 2300000, "min": 1700000, "margin": 300, "step": -1 },
         { "id": "g2:cpu7", "max": 2450000, "turning": 2100000, "min": 1700000, "margin": 300, "step": -1 },
 
-        { "id": "g3:cpu0", "max": 1800000, "turning": 1600000, "min": 1000000,  "margin": 300, "step": -1, "smoothness": 4 },
+        { "id": "g3:cpu0", "max": 1800000, "turning": 1600000, "min": 1000000, "margin": 300, "step": -1, "smoothness": 4 },
         { "id": "g3:cpu4", "max": 2650000, "turning": 2450000, "min": 1900000, "margin": 350, "step": -1, "smoothness": 4 },
         { "id": "g3:cpu7", "max": 2650000, "turning": 2400000, "min": 1900000, "margin": 350, "step": -1, "smoothness": 4 },
 
@@ -113,7 +113,7 @@
     "comm_app": [
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 0|cm_mgr_perf_enable 0|dsu_mode_change 0"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#18"],
-      ["@cpuset", "0-3", "0-7", "0-7", "0-7"]
+      ["@cpuset", "0-3", "0-6", "0-7", "0-7"]
     ],
     "comm_gaming": [
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode_change 0"],
@@ -245,6 +245,16 @@
     }
   },
   "apps": [
+    {
+      "friendly": "ELP",
+      "packages": [
+        "com.tencent.mobileqq",
+        "com.tencent.tim",
+        "org.telegram.messenger"
+      ],
+      "categories": ["Music", "Reader", "ShortVideo"],
+      "import": "_ELP.json"
+    },
     { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
     { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
     { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },

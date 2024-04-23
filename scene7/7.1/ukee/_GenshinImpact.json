@@ -84,7 +84,6 @@
       ],
       "sensors": [
         {
-          "disable": false,
           "sensor": "/sys/class/power_supply/battery/temp",
           "interval": 2000,
           "rules": [

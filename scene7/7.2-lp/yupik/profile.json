@@ -14,7 +14,7 @@
     "limiter": {
       "logger": false,
       "active_interval": 24,
-      "inactive_interval": 150,
+      "inactive_interval": 100,
       "params": [
         { "id": "active:cpu0", "max": 1804800, "min": 1152000, "margin": 400 },
 
@@ -273,9 +273,14 @@
   },
   "apps": [
     {
-      "friendly": "视频/短视频/滚动优化/社交/",
-      "categories": ["Video", "ShortVideo", "ScrollOpt", "Music", "Reader", "IM"],
-      "import": "_Apps.json"
+      "friendly": "ELP",
+      "packages": [
+        "com.tencent.mobileqq",
+        "com.tencent.tim",
+        "org.telegram.messenger"
+      ],
+      "categories": ["Music", "Reader", "ShortVideo"],
+      "import": "_ELP.json"
     },
     {
       "friendly": "极速响应",

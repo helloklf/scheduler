@@ -87,7 +87,6 @@
       "sensors": [
         {
           "sensor": "mtktscpu",
-          "disable": false,
           "interval": 200,
           "props": ["$gpu_max_opp", "$max_cpu_freq"],
           "rules": [

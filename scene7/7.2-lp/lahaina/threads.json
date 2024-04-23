@@ -58,9 +58,10 @@
     "friendly": "QQ飞车",
     "packages": ["com.tencent.tmgp.speedmobile"],
     "cpuset": {
+      "unity_main": "7",
+      "heavy_thread": "UnityGfx",
+      "heavy_cores": "6",
       "comm": {
-        "7": ["UnityMain"],
-        "6": ["UnityGfx"]
       },
       "other": "0-5"
     }

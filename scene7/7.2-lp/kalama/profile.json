@@ -17,21 +17,21 @@
       "inactive_interval": 100,
       "logger": false,
       "params": [
-        { "id": "p1:cpu0", "step": -0.9, "max": 1555200, "min": 556800, "margin": 100 },
-        { "id": "p1:cpu3", "step": -0.9, "max": 1785600, "min": 729600, "margin": 200 },
-        { "id": "p1:cpu7", "step": -0.8, "max": 1977600, "min": 864000, "margin": 220 },
+        { "id": "p1:cpu0", "step": -0.8, "max": 1555200, "min": 556800, "margin": 100, "excludes": [1] },
+        { "id": "p1:cpu3", "step": -0.8, "max": 1785600, "min": 614400, "margin": 220, "max_margin_ratio": 0.25 },
+        { "id": "p1:cpu7", "step": -0.8, "max": 1977600, "min": 729600, "margin": 220 },
 
-        { "id": "p2:cpu0", "step": -0.9, "max": 1555200, "min": 787200, "margin": 300 },
-        { "id": "p2:cpu3", "step": -0.7, "max": 2188800, "min": 1785600, "margin": 300 },
-        { "id": "p2:cpu7", "max": 2476800, "min": 1843200, "margin": 300 },
+        { "id": "p2:cpu0", "step": -0.8, "max": 1555200, "min": 787200, "margin": 300 },
+        { "id": "p2:cpu3", "step": -0.7, "max": 2188800, "min": 1651200, "margin": 300 },
+        { "id": "p2:cpu7", "step": -0.7, "max": 2476800, "min": 1708800, "margin": 300 },
 
         { "id": "p3:cpu0", "step": -0.8, "max": 1670400, "min": 902400, "margin": 300 },
-        { "id": "p3:cpu3", "step": -1, "max": 2457600, "min": 2188800, "margin": 300 },
-        { "id": "p3:cpu7", "max": 2726400, "min": 2342400, "margin": 300 },
+        { "id": "p3:cpu3", "step": -0.7, "max": 2457600, "min": 2054400, "margin": 300 },
+        { "id": "p3:cpu7", "step": -0.7, "max": 2726400, "min": 2092800, "margin": 300 },
 
-        { "id": "p4:cpu0", "max": 1804800, "min": 1228800, "margin": 300 },
-        { "id": "p4:cpu3", "step": -1, "max": 2803200, "min": 2457600, "margin": 300 },
-        { "id": "p4:cpu7", "max": 2995200, "min": 2726400, "margin": 300 },
+        { "id": "p4:cpu0", "step": -0.7, "max": 1804800, "min": 1228800, "margin": 300 },
+        { "id": "p4:cpu3", "step": -0.7, "max": 2803200, "min": 2323200, "margin": 300 },
+        { "id": "p4:cpu7", "step": -0.7, "max": 2995200, "min": 2476800, "margin": 300 },
 
         { "id": "inactive:cpu0", "max": 1555200, "min": 556800, "margin": 100 },
         { "id": "inactive:cpu3", "max": 1785600, "min": 614400, "margin": 120 },
@@ -99,11 +99,12 @@
     "common_inactive": [
       ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
       ["@values", "min_freq", "307200", "499200", "595200"],
-      ["/dev/cpuset/top-app/sf/cpus", "0-6"]
+      ["/dev/cpuset/top-app/sf/cpus", "0-6"],
+      ["@values", "hispeed_load", "90", "90", "90"]
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],
-      ["@cpuset", "0-2", "0-6", "0-7", "0-7"]
+      ["@cpuset", "0-2", "0-6", "0-6", "0-7"]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
@@ -147,42 +148,40 @@
       ["@preset", "common_active"],
       ["@limiters", "p1:cpu0", "p1:cpu3", "p1:cpu7"],
       ["@values", "hispeed_freq", "787200", "844800", "864000"],
-      ["@values", "hispeed_load", "85", "85", "85"]
+      ["@values", "hispeed_load", "85", "85", "85"],
+      ["@cpuset", "1", "0-6", "0-7", "0-7"]
     ],
     "powersave_inactive": [
       ["@preset", "common_inactive"],
       ["@preset", "cpu7_off"],
       ["@limiters", "idle:cpu0", "idle:cpu3", "idle:cpu7"],
       ["@values", "hispeed_freq", "0", "0", "0"],
-      ["@values", "hispeed_load", "90", "90", "90"],
       ["$uclamp_bg_max", "0.00"]
     ],
 
     "balance_active": [
       ["@preset", "common_active"],
       ["@limiters", "p2:cpu0", "p2:cpu3", "p2:cpu7"],
-      ["@values", "hispeed_freq", "672000", "1555200", "1651200"],
-      ["@values", "hispeed_load", "90", "90", "90"]
+      ["@values", "hispeed_freq", "1075200", "1056000", "1132800"],
+      ["@values", "hispeed_load", "87", "87", "87"]
     ],
     "balance_inactive": [
       ["@preset", "common_inactive"],
       ["@preset", "cpu7_auto"],
       ["@limiters", "inactive:cpu0", "inactive:cpu3", "inactive:cpu7"],
-      ["@values", "hispeed_freq", "691200", "499200", "595200"],
-      ["@values", "hispeed_load", "90", "90", "90"]
+      ["@values", "hispeed_freq", "787200", "844800", "864000"]
     ],
 
     "performance_active": [
       ["@preset", "common_active"],
       ["@limiters", "p3:cpu0", "p3:cpu3", "p3:cpu7"],
-      ["@values", "hispeed_freq", "902400", "1555200", "1651200"],
-      ["@values", "hispeed_load", "82", "82", "82"]
+      ["@values", "hispeed_freq", "1075200", "1401600", "1478400"],
+      ["@values", "hispeed_load", "85", "85", "85"]
     ],
     "performance_inactive": [
       ["@preset", "common_inactive"],
       ["@limiters", "p2:cpu0", "p2:cpu3", "p2:cpu7"],
-      ["@values", "hispeed_freq", "1075200", "1324800", "1286400"],
-      ["@values", "hispeed_load", "82", "82", "82"]
+      ["@values", "hispeed_freq", "1075200", "1056000", "1132800"]
     ],
 
     "fast_active": [
@@ -194,8 +193,7 @@
     "fast_inactive": [
       ["@preset", "common_inactive"],
       ["@limiters", "p3:cpu0", "p3:cpu3", "p3:cpu7"],
-      ["@values", "hispeed_freq", "1171200", "1440000", "1497600"],
-      ["@values", "hispeed_load", "82", "82", "82"]
+      ["@values", "hispeed_freq", "1075200", "1056000", "1132800"]
     ],
     "freq_low": [
       ["@values", "max_freq", "1670400", "#1920000", "#1977600"],
@@ -291,6 +289,16 @@
     }
   },
   "apps": [
+    {
+      "friendly": "ELP",
+      "packages": [
+        "com.tencent.mobileqq",
+        "com.tencent.tim",
+        "org.telegram.messenger"
+      ],
+      "categories": ["Music", "Reader", "ShortVideo"],
+      "import": "_ELP.json"
+    },
     { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
     { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
     { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },

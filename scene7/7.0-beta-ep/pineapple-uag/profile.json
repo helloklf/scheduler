@@ -72,7 +72,8 @@
       "cpu7_on": [
         ["$core_ctl_7", "1"],
         ["$max_cpus_cpu7", "#1"],
-        ["$min_cpus_cpu7", "#1"]
+        ["$min_cpus_cpu7", "#1"],
+        ["$core_ctl_7", "#0"]
       ],
       "cpu7_off": [
         ["$core_ctl_7", "1"],

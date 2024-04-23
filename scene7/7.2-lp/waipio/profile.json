@@ -246,6 +246,16 @@
   },
   "apps": [
     {
+      "friendly": "ELP",
+      "packages": [
+        "com.tencent.mobileqq",
+        "com.tencent.tim",
+        "org.telegram.messenger"
+      ],
+      "categories": ["Music", "Reader", "ShortVideo"],
+      "import": "_ELP.json"
+    },
+    {
       "fir": "模拟器",
       "packages": ["xyz.aethersx2.android", "com.aiwu.dolphinemu"],
       "import": "_Simulate.json"

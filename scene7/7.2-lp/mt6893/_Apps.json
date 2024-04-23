@@ -38,7 +38,7 @@
       ]
     }
   }, {
-    "mode": ["fast", "pedestal"],
+    "mode": ["*"],
     "booster": {
       "duration": 2000,
       "idle_delay": 1000,

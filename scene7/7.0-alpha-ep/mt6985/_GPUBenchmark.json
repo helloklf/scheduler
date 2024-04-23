@@ -10,7 +10,6 @@
           ],
           "sensors": [
             {
-              "disable": false,
               "sensor": "/sys/class/thermal/thermal_zone0/temp",
               "interval": 40,
               "props": ["/proc/gpufreqv2/fix_custom_freq_volt"],

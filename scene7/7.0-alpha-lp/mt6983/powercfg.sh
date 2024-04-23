@@ -24,14 +24,14 @@ set_value() {
 }
 
 core_ctl_policy() {
-  echo $1 > /sys/module/scheduler/holders/mtk_core_ctl/parameters/policy_enable
-  echo $1 > /sys/module/thermal_interface/holders/mtk_core_ctl/parameters/policy_enable
-  echo $1 > /sys/module/mtk_core_ctl/parameters/policy_enable
-  echo $1 > /sys/module/cpufreq_sugov_ext/holders/mtk_core_ctl/parameters/policy_enable
-  echo $1 > /sys/devices/system/cpu/cpu0/core_ctl/enable
-  echo $1 > /sys/devices/system/cpu/cpu4/core_ctl/enable
-  echo $1 > /sys/devices/system/cpu/cpu7/core_ctl/enable
-  echo $1 > /sys/module/cpufreq_sugov_ext/holders/mtk_core_ctl/parameters/policy_enable
+  lock_value $1 /sys/module/scheduler/holders/mtk_core_ctl/parameters/policy_enable
+  lock_value $1 /sys/module/thermal_interface/holders/mtk_core_ctl/parameters/policy_enable
+  lock_value $1 /sys/module/mtk_core_ctl/parameters/policy_enable
+  lock_value $1 /sys/module/cpufreq_sugov_ext/holders/mtk_core_ctl/parameters/policy_enable
+  lock_value $1 /sys/devices/system/cpu/cpu0/core_ctl/enable
+  lock_value $1 /sys/devices/system/cpu/cpu4/core_ctl/enable
+  lock_value $1 /sys/devices/system/cpu/cpu7/core_ctl/enable
+  lock_value $1 /sys/module/cpufreq_sugov_ext/holders/mtk_core_ctl/parameters/policy_enable
 }
 core_ctl_policy 0
 cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
