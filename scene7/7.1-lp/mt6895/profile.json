@@ -3,6 +3,8 @@
   "platform_name": "D8100",
   "alias": {
     "boost_affinity": "/sys/module/mtk_fpsgo/parameters/boost_affinity",
+    "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
+    "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
     "ddr_freq_min": "/sys/devices/platform/soc/1c00f000.dvfsrc/mtk-dvfsrc-devfreq/devfreq/mtk-dvfsrc-devfreq/min_freq",
     "ddr_freq_max": "/sys/devices/platform/soc/1c00f000.dvfsrc/mtk-dvfsrc-devfreq/devfreq/mtk-dvfsrc-devfreq/max_freq",
     "ddr_freq_cust": "/sys/class/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq",
@@ -85,12 +87,12 @@
       ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
     ],
     "cpu7_on": [
-      ["$max_cpus_cpu7", "1"],
-      ["$min_cpus_cpu7", "1"]
+      ["$max_cpus_cpu7", "#1"],
+      ["$min_cpus_cpu7", "#1"]
     ],
     "cpu7_off": [
-      ["$min_cpus_cpu7", "0"],
-      ["$max_cpus_cpu7", "0"]
+      ["$min_cpus_cpu7", "#0"],
+      ["$max_cpus_cpu7", "#0"]
     ],
     "common_actvie": [
       ["$cpu_max_0", "2000000"],

@@ -1,7 +1,7 @@
 {
     "friendly": "一般应用",
     "call": [
-        ["@fps", "0"]
+      ["@fps", "0"]
     ],
     "modes": [{
       "mode": ["powersave"],

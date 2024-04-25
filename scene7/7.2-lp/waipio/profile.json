@@ -252,7 +252,7 @@
         "com.tencent.tim",
         "org.telegram.messenger"
       ],
-      "categories": ["Music", "Reader", "ShortVideo"],
+      "categories": ["Music", "Reader", "ShortVideo", "Nav"],
       "import": "_ELP.json"
     },
     {
