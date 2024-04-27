@@ -3,13 +3,14 @@
     "friendly": "优先大核",
     "packages": [
       "com.tencent.mobileqq",
-      "tv.danmaku.bili", "com.tencent.qqlive", 
-      "com.taobao.taobao", "com.jingdong.app.mall", "com.taobao.idlefish",
+      "com.tencent.qqlive", "tv.danmaku.bili", "com.taobao.idlefish",
+      "com.taobao.taobao", "com.jingdong.app.mall",
       "com.tencent.news", "com.sina.weibo",
       "com.netease.cloudmusic", "com.miui.player",
       "com.tencent.mm",
       "com.miui.notes",
-      "com.sankuai.meituan"
+      "com.sankuai.meituan",
+      "com.android.vending"
     ],
     "cpuset": {
       "main_thread": "7",

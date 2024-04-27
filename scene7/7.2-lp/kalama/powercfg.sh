@@ -185,6 +185,7 @@ echo $cpus > /dev/cpuset/top-app/sf/cpus
 echo 0 > /dev/cpuset/top-app/sf/mems
 set_cpuset surfaceflinger "top-app/sf"
 
+rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost
 set_cpuset touch_report "foreground"
 set_cpuset system_server "foreground"

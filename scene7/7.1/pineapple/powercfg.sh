@@ -121,12 +121,8 @@ lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
 
 core_ctl_preset
 
-if [[ $(cat /dev/cpuset/background/untrustedapp/cgroup.procs) == "" ]]; then
-  rmdir /dev/cpuset/background/untrustedapp
-fi
-if [[ $(cat /dev/cpuset/foreground/boost/cgroup.procs) == "" ]]; then
-  rmdir /dev/cpuset/background/boost
-fi
+rmdir /dev/cpuset/background/untrustedapp
+rmdir /dev/cpuset/foreground/boost
 
 # OnePlus
 # hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''

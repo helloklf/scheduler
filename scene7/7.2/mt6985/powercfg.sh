@@ -42,12 +42,8 @@ hide_value() {
   fi
 }
 
-if [[ $(cat /dev/cpuset/background/untrustedapp/cgroup.procs) == "" ]]; then
-  rmdir /dev/cpuset/background/untrustedapp
-fi
-if [[ $(cat /dev/cpuset/foreground/boost/cgroup.procs) == "" ]]; then
-  rmdir /dev/cpuset/background/boost
-fi
+rmdir /dev/cpuset/background/untrustedapp
+rmdir /dev/cpuset/foreground/boost
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
@@ -61,42 +57,12 @@ hide_value $t_message/market_download_limit 0
 hide_value $t_message/modem_limit 0
 lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 
-
-exit
-
-set_cpuset(){
-  pgrep -f $1 | while read pid; do
-    echo $pid > /dev/cpuset/$2/cgroup.procs
-    taskset -p $3 $pid
-    ls /proc/$pid/task | while read tid
-    do
-      echo $tid > /dev/cpuset/$2/tasks
-      taskset -p $3 $tid
-    done
-  done
-}
-
-mkdir /dev/cpuset/foreground/4-5
-echo 4-5 > /dev/cpuset/foreground/4-5/cpus
-echo 0 > /dev/cpuset/foreground/4-5/mems
-
-set_cpuset surfaceflinger 'foreground/4-5' 38
-set_cpuset system_server 'foreground/4-5' 38
-set_cpuset update_engine 'top-app' f0
-set_cpuset android.hardware.graphics.composer 'foreground/4-5' 38
-
-
-
-# Derived from uperf
-ps_cache="$(ps -Ao pid,args)"
-# $1:task_name $2:cgroup_name
-change_task_cpuset() {
-  for temp_pid in $(echo "$ps_cache" | grep -i -E "$1" | awk '{print $1}'); do
-    for temp_tid in $(ls "/proc/$temp_pid/task/"); do
-      echo "$temp_tid" >"/dev/cpuset/$2/tasks"
-    done
-  done
-}
+hide_value /sys/kernel/fpsgo/fbt/limit_cfreq 0
+hide_value /sys/kernel/fpsgo/fbt/limit_rfreq 0
+hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
+hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
+ls /sys/devices/system/cpu/cpu*/online | xargs lock_value 0
+lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 
 metis=/sys/module/metis/parameters
 for file in $metis/*enable*; do

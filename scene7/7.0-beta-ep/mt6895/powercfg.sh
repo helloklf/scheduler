@@ -164,12 +164,8 @@ mk_cpuctl 'heavy' 1 0 1 max
 
 process_opt &
 
-if [[ $(cat /dev/cpuset/background/untrustedapp/cgroup.procs) == "" ]]; then
-  rmdir /dev/cpuset/background/untrustedapp
-fi
-if [[ $(cat /dev/cpuset/foreground/boost/cgroup.procs) == "" ]]; then
-  rmdir /dev/cpuset/background/boost
-fi
+rmdir /dev/cpuset/background/untrustedapp
+rmdir /dev/cpuset/foreground/boost
 
 
 t_message=/sys/class/thermal/thermal_message

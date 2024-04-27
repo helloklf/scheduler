@@ -42,12 +42,8 @@ hide_value() {
   fi
 }
 
-if [[ $(cat /dev/cpuset/background/untrustedapp/cgroup.procs) == "" ]]; then
-  rmdir /dev/cpuset/background/untrustedapp
-fi
-if [[ $(cat /dev/cpuset/foreground/boost/cgroup.procs) == "" ]]; then
-  rmdir /dev/cpuset/background/boost
-fi
+rmdir /dev/cpuset/background/untrustedapp
+rmdir /dev/cpuset/foreground/boost
 lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
 lock_value -1 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
 
@@ -67,9 +63,8 @@ hide_value /sys/kernel/fpsgo/fbt/limit_cfreq 0
 hide_value /sys/kernel/fpsgo/fbt/limit_rfreq 0
 hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
 hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
-
-
-hide_value /sys/kernel/fpsgo/fbt/enable_ceiling 0
+ls /sys/devices/system/cpu/cpu*/online | xargs lock_value 0
+lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 
 metis=/sys/module/metis/parameters
 for file in $metis/*enable*; do

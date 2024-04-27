@@ -4,7 +4,7 @@
     "mode": ["powersave"],
     "booster": {
       "duration": 3000,
-      "idle_delay": 1700,
+      "idle_delay": 1300,
       "enter": [
         ["@preset", "powersave_active"],
         ["@limiters", "p1:cpu0", "p1:cpu2", "p1:cpu5", "p1:cpu7"],
@@ -18,8 +18,8 @@
   }, {
     "mode": ["balance"],
     "booster": {
-      "duration": 3000,
-      "idle_delay": 1700,
+      "duration": 2000,
+      "idle_delay": 1000,
       "enter": [
         ["@preset", "balance_active"],
         ["$sched_boost", "2"]
@@ -31,8 +31,8 @@
   }, {
     "mode": ["performance"],
     "booster": {
-      "duration": 3000,
-      "idle_delay": 1700,
+      "duration": 2000,
+      "idle_delay": 1000,
       "enter": [
         ["@preset", "performance_active"],
         ["$sched_boost", "2"]
@@ -44,8 +44,8 @@
   }, {
     "mode": ["*"],
     "booster": {
-      "duration": 3000,
-      "idle_delay": 1700,
+      "duration": 2000,
+      "idle_delay": 1000,
       "enter": [
         ["@preset", "fast_active"],
         ["$sched_boost", "1"]

@@ -123,12 +123,8 @@ lock_value 0 /sys/kernel/ged/hal/dcs_mode
 lock_value 0 /sys/kernel/fpsgo/fbt/switch_idleprefer
 lock_value 0 /sys/kernel/fpsgo/fbt/thrm_enable
 
-if [[ $(cat /dev/cpuset/background/untrustedapp/cgroup.procs) == "" ]]; then
-  rmdir /dev/cpuset/background/untrustedapp
-fi
-if [[ $(cat /dev/cpuset/foreground/boost/cgroup.procs) == "" ]]; then
-  rmdir /dev/cpuset/background/boost
-fi
+rmdir /dev/cpuset/background/untrustedapp
+rmdir /dev/cpuset/foreground/boost
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then

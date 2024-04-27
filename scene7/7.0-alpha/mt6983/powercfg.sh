@@ -140,12 +140,8 @@ setprop persist.sys.miui_animator_sched.bigcores 4-7
 # echo 0 > /proc/sys/kernel/sched_util_clamp_min
 # echo 1-4 > /dev/cpuset/restricted/cpus
 # echo 0 > /dev/cpuset/restricted/sched_load_balance
-if [[ $(cat /dev/cpuset/background/untrustedapp/cgroup.procs) == "" ]]; then
-  rmdir /dev/cpuset/background/untrustedapp
-fi
-if [[ $(cat /dev/cpuset/foreground/boost/cgroup.procs) == "" ]]; then
-  rmdir /dev/cpuset/background/boost
-fi
+rmdir /dev/cpuset/background/untrustedapp
+rmdir /dev/cpuset/foreground/boost
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then

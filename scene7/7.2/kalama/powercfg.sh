@@ -179,6 +179,7 @@ mkdir /dev/cpuset/top-app/$cpus
 echo $cpus > /dev/cpuset/top-app/$cpus/cpus
 echo 0 > /dev/cpuset/top-app/$cpus/mems
 
+rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost
 set_cpuset surfaceflinger "top-app/$cpus"
 set_cpuset system_server "foreground"

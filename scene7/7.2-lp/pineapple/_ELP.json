@@ -11,7 +11,6 @@
         "enter": [
           ["@preset", "powersave_active"],
           ["@limiters", "p1:cpu0", "p1:cpu2", "p1:cpu5", "p1:cpu7"],
-          ["$sched_boost", "2"],
           ["@fps", "0"]
         ],
         "exit": [
