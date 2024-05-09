@@ -46,11 +46,11 @@
         { "id": "g4:cpu7", "max": 3100000, "turning": 2850000, "min": 2650000, "margin": 400, "smoothness": 4 },
 
 
-        { "id": "inactive:cpu0", "max": 1800000, "turning": 1500000, "min": 700000, "margin": 300 },
+        { "id": "inactive:cpu0", "max": 1800000, "turning": 1500000, "min": 800000, "margin": 300 },
         { "id": "inactive:cpu4", "max": 1900000, "min": 400000, "margin": 180 },
         { "id": "inactive:cpu7", "max": 2300000, "min": 500000, "margin": 200 },
 
-        { "id": "idle:cpu0", "max": 1600000, "min": 600000, "margin": 150 },
+        { "id": "idle:cpu0", "max": 1600000, "min": 700000, "margin": 180 },
         { "id": "idle:cpu4", "max": 1800000, "min": 400000, "margin": 120 },
         { "id": "idle:cpu7", "max": 2000000, "min": 500000, "margin": 140, "core_ctl": true }
       ]
@@ -105,7 +105,7 @@
     ],
     "common_app": [
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 0|cm_mgr_perf_enable 0"],
-      ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
+      ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#07"],
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
       ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"]
@@ -237,36 +237,12 @@
       "categories": ["Music", "Reader", "ShortVideo", "Nav"],
       "import": "_ELP.json"
     },
-    {
-      "friendly": "极速响应",
-      "categories": ["Launcher"],
-      "import": "_Launcher.json"
-    },
-    {
-      "friendly": "待机",
-      "packages": ["standby"],
-      "import": "_Standby.json"
-    },
-    {
-      "friendly": "扫码",
-      "categories": ["Scanner"],
-      "import": "_Scanner.json"
-    },
-    {
-      "friendly": "相机",
-      "categories": ["Camera"],
-      "import": "_Camera.json"
-    },
-    {
-      "friendly": "狗屎/毒瘤",
-      "categories": ["MiniProgram"],
-      "import": "_MiniProgram.json"
-    },
-    {
-      "friendly": "All",
-      "packages": ["*"],
-      "import": "_Apps.json"
-    }
+    { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
+    { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
+    { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
+    { "friendly": "待机", "packages": ["standby"], "import": "_Standby.json" },
+    { "friendly": "狗屎/毒瘤", "categories": ["MiniProgram"], "import": "_MiniProgram.json" },
+    { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
     {

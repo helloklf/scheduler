@@ -23,13 +23,6 @@
       "com.sankuai.meituan",
       "com.android.vending"
     ],
-    "cpuset": {
-      "main_thread": "7",
-      "comm": {
-        "4-6": ["RenderThread"]
-      },
-      "other": "0-6"
-    },
     "app_cpuset": {
       "main": "7",
       "render": "4-6",

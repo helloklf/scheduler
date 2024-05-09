@@ -49,7 +49,7 @@
 > governor: 通常来说，FAS配合performance调速器使用效果最佳，但如果FAS出错CPU频率会居高不下
 
 > mode: 默认会根据当前档位匹配不同的值，对应关系为：<br>
-> powersave->energy, balance->normal, performance->fps, fast->fps, pedestal->boost
+> powersave -> energy, balance -> normal, performance -> fps, fast -> fps, pedestal -> boost
 
 > _60/_90/... : 参数为 [BigMaxFreq, MiddleMaxFreq, MiddleOffset]，FAS默认采取大核中核同频策略，但有些时候大核中核所需的性能并不相同，同频策略会造成一些浪费。而MiddleOffset的作用就是，设定中核应该比大核的频率低(或高)多少个个级别
 
@@ -105,7 +105,7 @@
 > [较低频率]可以通过`lower_freq`参数指定，如果未指定，则SCENE会根据帧率和频率趋势自动计算该值<br>
 > 事实上，基本没有哪个游戏可以保证完全不掉帧，所以 slow_down_rate 设置到 接近或低于 `1` 是非常鲁莽的
 
-> lower_freq: 处理器频率不高于此值时，
+> lower_freq: 处理器频率不高于此值时，[slow_down_rate] 生效，如果未制定该值则由SCENE自动计算。
 
 > middle_optimum_freq: FAS默认会使中核大核保持频率相近，尽管有MiddleOffset可以使中核比大核频率低一些，但这又会使得大核频率较低时中核频率更低导致卡顿。<br>
 > middle_optimum_freq 则是以另一种形式解决中核大核同频。在中核频率低于middle_optimum_freq时，中核跟随大核一起升频，中核频率达到middle_optimum_freq之后不再继续跟随大核升频。<br>

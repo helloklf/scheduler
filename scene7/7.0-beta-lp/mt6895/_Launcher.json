@@ -4,7 +4,7 @@
     "mode": ["powersave"],
     "booster": {
       "duration": 3000,
-      "idle_delay": 400,
+      "idle_delay": 700,
       "enter": [["@preset", "balance_active"]],
       "exit": [["@preset", "powersave_inactive"]]
     }

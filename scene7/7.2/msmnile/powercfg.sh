@@ -79,20 +79,6 @@ process_opt(){
       # echo $tid > /dev/cpuset/$2/tasks
     done
   done
-
-  miui_home=$(pidof com.miui.home)
-  if [[ "$miui_home" != "" ]]; then
-    memcg=/dev/memcg
-    mem_fg=$memcg/scene_fg
-    if [[ -d $memcg ]] && [[ ! -e "$mem_fg" ]]; then
-      mkdir -p $mem_fg
-      echo 0 > $mem_fg/memory.swappiness
-      echo 1 > $mem_fg/memory.oom_control
-      echo 1 > $mem_fg/memory.use_hierarchy
-      echo 1 >  $mem_fg/memory.move_charge_at_immigrate
-    fi
-    echo $miui_home > $mem_fg/cgroup.procs
-  fi
 }
 
 # Default By Xiaomi

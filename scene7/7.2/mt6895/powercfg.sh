@@ -164,9 +164,19 @@ mk_cpuctl 'heavy' 1 0 1 max
 
 process_opt &
 
-rmdir /dev/cpuset/background/untrustedapp
-rmdir /dev/cpuset/foreground/boost
-
+clear_cpuset(){
+  rmdir /dev/cpuset/background/untrustedapp
+  rmdir /dev/cpuset/foreground/boost
+  if [[ -d /dev/cpuset/ui ]]; then
+    cat /dev/cpuset/ui/tasks | while read tid;
+    do
+      echo $tid > /dev/cpuset/top-app/tasks
+    done
+    rmdir /dev/cpuset/ui
+  fi
+}
+clear_cpuset
+clear_cpuset
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then

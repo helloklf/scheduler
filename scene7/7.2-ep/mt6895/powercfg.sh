@@ -164,9 +164,19 @@ mk_cpuctl 'heavy' 1 0 1 max
 
 process_opt &
 
-rmdir /dev/cpuset/background/untrustedapp
-rmdir /dev/cpuset/foreground/boost
-
+clear_cpuset(){
+  rmdir /dev/cpuset/background/untrustedapp
+  rmdir /dev/cpuset/foreground/boost
+  if [[ -d /dev/cpuset/ui ]]; then
+    cat /dev/cpuset/ui/tasks | while read tid;
+    do
+      echo $tid > /dev/cpuset/top-app/tasks
+    done
+    rmdir /dev/cpuset/ui
+  fi
+}
+clear_cpuset
+clear_cpuset
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
@@ -189,7 +199,7 @@ echo 2 > /sys/module/mtk_fpsgo/parameters/min_freq_limit_level # default 2
 echo 10 > /sys/module/mtk_fpsgo/parameters/variance # default 40
 # lock_value 0 /sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled
 lock_value 2 /sys/kernel/fpsgo/common/force_onoff
-lock_value 0 /sys/kernel/fpsgo/common/fpsgo_enable
+lock_value 1 /sys/kernel/fpsgo/common/fpsgo_enable
 
 hide_value /sys/kernel/fpsgo/fbt/limit_cfreq 0
 hide_value /sys/kernel/fpsgo/fbt/limit_rfreq 0

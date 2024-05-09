@@ -120,7 +120,8 @@
         ["/dev/cpuset/sf/cpus", "#2-3"],
         ["$sched_boost", "0"],
         ["@values", "hispeed_load", "90", "90", "90", "90"],
-        ["$mod_percent", "95"]
+        ["$mod_percent", "95"],
+        ["@values", "latency", "0", "0", "0", "0", "0", "0", "0", "0"]
       ],
 
       "powersave_active": [
@@ -191,8 +192,7 @@
         "game": [
           ["@preset", "common_gaming"],
           ["/proc/game_opt/disable_cpufreq_limit", "0"],
-          ["@values", "hispeed_freq", "0", "0", "0", "0"],
-          ["@values", "latency", "1000", "4000", "1000", "4000", "1000", "4000", "1000", "4000"]
+          ["@values", "hispeed_freq", "0", "0", "0", "0"]
         ]
       },
       "balance": {
@@ -207,8 +207,7 @@
         "game": [
           ["@preset", "common_gaming"],
           ["/proc/game_opt/disable_cpufreq_limit", "0"],
-          ["@values", "hispeed_freq", "0", "960000", "1113600", "1171200"],
-          ["@values", "latency", "1000", "2000", "1000", "2000", "1000", "2000", "1000", "2000"]
+          ["@values", "hispeed_freq", "0", "960000", "1113600", "1171200"]
         ]
       },
       "performance": {
@@ -223,8 +222,7 @@
         "game": [
           ["@preset", "common_gaming"],
           ["@preset", "limiter_off"],
-          ["@values", "hispeed_freq", "1017600", "1497600", "1497600", "1478400"],
-          ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "2000", "1000", "1000"]
+          ["@values", "hispeed_freq", "1017600", "1497600", "1497600", "1478400"]
         ]
       },
       "fast": {
@@ -239,8 +237,7 @@
         "game": [
           ["@preset", "common_gaming"],
           ["@preset", "limiter_off"],
-          ["@values", "hispeed_freq", "1574400", "1708800", "1708800", "1708800"],
-          ["@values", "latency", "1000", "1000", "2000", "0", "1000", "1000", "2000", "0"]
+          ["@values", "hispeed_freq", "1574400", "1708800", "1708800", "1708800"]
         ]
       }
     },

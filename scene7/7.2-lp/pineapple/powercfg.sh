@@ -99,6 +99,7 @@ disable_migt() {
 
 core_ctl_preset() {
   cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
+  lock_value 0 $cpu7_core_ctl_dir/min_partial_cpus
   echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
   echo 1 > $cpu7_core_ctl_dir/min_cpus
 

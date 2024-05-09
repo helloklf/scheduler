@@ -22,7 +22,7 @@
       "inactive_interval": 100,
       "logger": false,
       "params": [
-        { "id": "active:cpu0", "max": 1804800, "turning": 1516800, "min": 1075200, "margin": 350 },
+        { "id": "active:cpu0", "max": 1804800, "turning": 1516800, "min": 1075200, "margin": 350, "excludes": [1] },
 
         { "id": "p1:cpu4", "max": 2150400, "turning": 1862400, "min": 825600, "margin": 300 },
         { "id": "g1:cpu4", "max": 2150400, "turning": 1862400, "min": 1056000, "margin": 300 },
