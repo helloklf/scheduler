@@ -106,15 +106,15 @@
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
-      ["@cpuset", "0-2", "0-4", "0-5", "0-7"]
+      ["@cpuset", "0-2", "0-3", "0-5", "0-7"]
     ],
 
     "cores_force_on": [
-      ["$core_ctl_6", "0"], ["$max_cpus_cpu6", "1"], ["$min_cpus_cpu6", "1"],
+      ["$core_ctl_6", "1"], ["$max_cpus_cpu6", "#1"], ["$min_cpus_cpu6", "#1"], ["$core_ctl_6", "#0"],
       ["$core_ctl_7", "1"], ["$max_cpus_cpu7", "#1"], ["$min_cpus_cpu7", "#1"], ["$core_ctl_7", "0"]
     ],
     "cores_force_off": [
-      ["$core_ctl_6", "0"], ["$max_cpus_cpu6", "1"], ["$min_cpus_cpu6", "1"],
+      ["$core_ctl_6", "1"], ["$max_cpus_cpu6", "#1"], ["$min_cpus_cpu6", "#1"], ["$core_ctl_6", "#0"],
       ["$core_ctl_7", "1"], ["$max_cpus_cpu7", "#1"], ["$min_cpus_cpu7", "#1"], ["$core_ctl_7", "0"]
     ],
     "cores_auto_off": [
@@ -192,7 +192,7 @@
         ["@preset", "reset"],
         ["@preset", "powersave_active"],
         ["@values", "hispeed_freq", "1363200", "1094400", "1401600"],
-        ["@values", "hispeed_load", "90", "90"],
+        ["@values", "hispeed_load", "90", "90", "90"],
         ["@values", "sched_boost", "0", "0", "0", "0"],
         ["@preset", "bw_low"]
       ],
@@ -211,7 +211,7 @@
         ["@preset", "reset"],
         ["@preset", "balance_active"],
         ["@values", "hispeed_freq", "1363200", "1478400", "1401600"],
-        ["@values", "hispeed_load", "90", "90"],
+        ["@values", "hispeed_load", "90", "90", "90"],
         ["@values", "sched_boost", "1", "0", "0", "0"],
         ["@preset", "bw_max"]
       ],
@@ -231,7 +231,7 @@
         ["@preset", "performance_active"],
         ["@sched_limit", "0 0", "0 0", "0 0"],
         ["@values", "hispeed_freq", "1651200", "1478400", "1401600"],
-        ["@values", "hispeed_load", "87", "87"],
+        ["@values", "hispeed_load", "87", "87", "87"],
         ["@values", "sched_boost", "1", "0", "0", "0"],
         ["@preset", "bw_max"]
       ],
@@ -249,8 +249,8 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "fast_active"],
-        ["@values", "hispeed_freq", "0", "0"],
-        ["@values", "hispeed_load", "0", "0"],
+        ["@values", "hispeed_freq", "0", "0", "0"],
+        ["@values", "hispeed_load", "0", "0", "0"],
         ["@values", "sched_boost", "1", "0", "1", "10"],
         ["@preset", "bw_max"]
       ],

@@ -40,12 +40,12 @@
         { "id": "p4:cpu7", "mode": "BOTTOM", "max": 2649600, "min": 1401600, "margin": 400 },
 
         { "id": "inactive:cpu0", "max": 1804800, "turning": 1612800, "min": 883200, "margin": 180 },
-        { "id": "inactive:cpu4", "max": 1958400, "margin": 100 },
-        { "id": "inactive:cpu7", "max": 1977600, "margin": 140 },
+        { "id": "inactive:cpu4", "max": 2150400, "margin": 100 },
+        { "id": "inactive:cpu7", "max": 2169600, "margin": 140 },
 
         { "id": "idle:cpu0", "max": 1804800, "min": 883200, "margin": 130 },
-        { "id": "idle:cpu4", "max": 1958400, "min": 710400, "margin": 80 },
-        { "id": "idle:cpu7", "max": 1977600, "margin": 90 }
+        { "id": "idle:cpu4", "max": 1862400, "min": 710400, "margin": 80 },
+        { "id": "idle:cpu7", "max": 1862400, "margin": 90 }
       ]
     },
     "cpuset": {
@@ -312,11 +312,6 @@
       "friendly": "原神",
       "categories": ["GenshinImpact"],
       "import": "_GenshinImpact.json"
-    },
-    {
-      "friendly": "QQ飞车",
-      "packages": ["com.tencent.tmgp.speedmobile"],
-      "import": "_SpeedMobile.json"
     },
     {
       "friendly": "王者荣耀",

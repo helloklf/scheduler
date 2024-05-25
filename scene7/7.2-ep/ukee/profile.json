@@ -19,6 +19,9 @@
     "gesture_boost": {
       "enable": false,
       "enter": [
+        ["$cpu_max_0", "^2016000"],
+        ["$cpu_max_4", "^2496000"],
+        ["$cpu_max_7", "^2822400"],
         ["$sched_boost", "2"]
       ],
       "exit": [

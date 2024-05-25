@@ -49,7 +49,6 @@
 | bottom | 根据负载和余量调整频率下限，频率写入`scaling_min_freq` |
 | range | 根据负载调整频率上下限，上限同`upper`，下限为`(当前频率×负载)` + `(margin÷2)` |
 | performance | 将CPU调速器更改为performance，并以upper模式继续工作 |
-| powersave | 将CPU调速器更改为powersave，并以bottom模式继续工作 |
 
 
 ### 完整配置
