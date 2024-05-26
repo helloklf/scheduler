@@ -55,7 +55,10 @@
         "78 2457600:80 2668800:90"
       ],
       ["/proc/game_opt/disable_cpufreq_limit", "1"]
-    ]
+    ],
+    "tas": {
+      "min": 2611200
+    }
   }, {
     "mode": ["pedestal"],
     "call": [
@@ -69,6 +72,9 @@
         "75 2668800:85"
       ],
       ["/proc/game_opt/disable_cpufreq_limit", "1"]
-    ]
+    ],
+    "tas": {
+      "min": 2611200
+    }
   }]
 }

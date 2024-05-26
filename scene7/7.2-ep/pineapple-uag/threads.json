@@ -51,7 +51,7 @@
         "2-7": ["AsyncLoading", "FChunk"],
         "2-6": ["TaskGraphHP", "NativeThread", "RenderThread", "RHIThread"]
       },
-      "other": "0-6"
+      "other": "2-6"
     }
   },
   {
