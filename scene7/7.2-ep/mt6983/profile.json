@@ -18,6 +18,7 @@
     "limit_cfreq_m": "/sys/kernel/fpsgo/fbt/limit_cfreq_m",
     "limit_rfreq_m": "/sys/kernel/fpsgo/fbt/limit_rfreq_m",
     "perfmgr_enable": "/sys/module/mtk_fpsgo/parameters/perfmgr_enable",
+    "pandor_perfmgr_enable": "/sys/module/perfmgr_mtk/parameters/perfmgr_enable",
     "ddr_max": "/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq",
     "sched_boost": "/sys/kernel/fpsgo/fbt/switch_idleprefer"
   },
@@ -73,7 +74,8 @@
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode_change 0"],
       ["$ddr_force_opp", "999"],
       ["$ddr_freq_cust", "0"],
-      ["$perfmgr_enable", "#0"]
+      ["$perfmgr_enable", "#0"],
+      ["$pandor_perfmgr_enable", "#0"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]

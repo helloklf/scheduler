@@ -146,6 +146,8 @@ fi
 # hide_value /proc/oplus_scheduler/sched_assist/lb_enable 0
 # hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
 # hide_value /proc/oplus_scheduler/sched_assist/sched_assist_scene 0
+set_value '2000' /proc/oplus-votable/GAUGE_UPDATE/force_val
+set_value '1' /proc/oplus-votable/GAUGE_UPDATE/force_active
 
 
 kgsl(){

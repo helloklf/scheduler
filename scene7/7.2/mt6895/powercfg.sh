@@ -214,25 +214,6 @@ mount -t debugfs none /sys/kernel/debug
 
 # echo 0 > /sys/module/millet_core/parameters/millet_freeze_switch
 
-module=/data/adb/modules/scene_systemless
-module_system_etc=$module/system/etc
-module_vendor_etc=$module/system/vendor/etc
-
-for file in powercontable.xml power_app_cfg.xml powerscntbl.xml
-do
-  find /data/adb/modules -name $file | grep -v pandora | grep -v scene | while read found; do
-    rm -f $found
-  done
-done
-
-if [[ -d $module ]]; then
-  mkdir -p $module_system_etc
-  mkdir -p $module_vendor_etc
-  if [[ -f $cfg_dir/powerscntbl.xml ]];then
-    cp $cfg_dir/powerscntbl.xml $module_vendor_etc/powerscntbl.xml
-  fi
-fi
-
 
 # OnePlus
 hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
