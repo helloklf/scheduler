@@ -1,0 +1,15 @@
+{
+  "friendly": "FEAS",
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [["@msm_feas", "13"]]
+  }, {
+    "mode": ["balance"],
+    "call": [["@msm_feas", "7"]]
+  }, {
+    "mode": ["performance"],
+    "call": [["@msm_feas", "0"]]
+  }, {
+    "mode": [ "*"]
+  }]
+}

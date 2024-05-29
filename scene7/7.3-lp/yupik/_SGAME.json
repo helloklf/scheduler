@@ -1,0 +1,37 @@
+{
+  "friendly": "王者荣耀/LOL",
+  "cpuset": {
+    "unity_main": "7",
+    "heavy_thread": "Thread-",
+    "heavy_cores": "6",
+    "comm": {
+      "4-7": ["UnityPreload"],
+      "6": ["UnityGfx"],
+      "4-5": ["CoreThread"],
+      "0-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+    },
+    "other": "0-5"
+  },
+  "modes": [
+    {
+      "mode": ["powersave", "balance"],
+      "fas": {
+        "mode": "fps",
+        "_60": ["2208000", "2054400", "-2"],
+        "_90": ["2500000", "2400000", "-2"],
+        "_120": ["2500000", "2400000", "-2"]
+      }
+    },
+    
+    {
+      "mode": ["*"],
+      "fas": {
+        "mode": "fps",
+        "recent_frames": 10, "fast_down_rate": 5, "slow_down_rate": 0.6,
+        "_60": ["2208000", "2054400", "-2"],
+        "_90": ["2500000", "2400000", "-2"],
+        "_120": ["2500000", "2400000", "-2"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "friendly": "和平精英",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "_60": ["2361600", "2150400"],
+        "_90": ["2553600", "2342400"],
+        "_120": ["2745600", "2419200"]
+      },
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 3000,
+          "rules": [
+            { "threshold": [-1, 96], "enter_once": [["@preset", "bw_boost"]] },
+            { "threshold": [96, 65], "enter_once": [["@preset", "bw_max"]] },
+            { "threshold": [65, -1], "enter_once": [["@preset", "bw_max"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "big_min_freq": 1670400,
+        "_60": ["2649600", "2342400"],
+        "_90": ["2841600", "2419200"],
+        "_120": ["2841600", "2419200"]
+      },
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 5000,
+          "rules": [
+            { "threshold": [-1, 96], "enter_once": [["@preset", "bw_boost"]] },
+            { "threshold": [96, 65], "enter_once": [["@preset", "bw_max"]] },
+            { "threshold": [65, -1], "enter_once": [["@preset", "bw_max"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "mode": "fps",
+        "recent_frames": 10, "fast_down_rate": 7, "slow_down_rate": 2,
+        "big_min_freq": 1958400,
+        "_60": ["2841600", "2342400"],
+        "_90": ["3200000", "2419200"],
+        "_120": ["3200000", "2419200"]
+      },
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 3000,
+          "rules": [
+            { "threshold": [-1, 96], "enter_once": [["@preset", "bw_boost"]] },
+            { "threshold": [96,  65], "enter_once": [["@preset", "bw_boost"]] },
+            { "threshold": [65,  -1], "enter_once": [["@preset", "bw_max"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["fast"],
+      "fas": {
+        "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 1.6,
+        "big_min_freq": 2169600,
+        "_60": ["2649600", "2342400"],
+        "_90": ["2841600", "2419200"],
+        "_120": ["2841600", "2419200"]
+      },
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 3000,
+          "rules": [
+            { "threshold": [-1, 100], "enter_once": [["@preset", "bw_boost"]] },
+            { "threshold": [99,  75], "enter_once": [["@preset", "bw_boost"]] },
+            { "threshold": [70,  -1], "enter_once": [["@preset", "bw_max"]] }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "friendly": "Games",
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["@preset", "common_gaming"],
+      ["@values", "hispeed_freq", "787200", "787200", "787200"],
+      ["@values", "max_freq", "1670400", "#2188800", "#2150400"],
+      ["@values", "min_freq", "595200", "633600", "633600"],
+      ["@target_loads",
+        "80 1593600:85",
+        "80 1708800:85",
+        "80 1766400:88"
+      ],
+      ["/proc/game_opt/disable_cpufreq_limit", "0"]
+    ]
+  }, {
+    "mode": ["balance"],
+    "call": [
+      ["@preset", "common_gaming"],
+      ["@values", "hispeed_freq", "1017600", "1056000", "1094400"],
+      ["@values", "max_freq", "1843200", "#2361600", "#2457600"],
+      ["@values", "min_freq", "787200", "787200", "787200"],
+      ["@target_loads",
+        "80 1593600:85",
+        "80 2188800:85",
+        "80 2304000:88"
+      ],
+      ["/proc/game_opt/disable_cpufreq_limit", "1"]
+    ]
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["@preset", "common_gaming"],
+      ["@values", "hispeed_freq", "1228800", "1401600", "1459200"],
+      ["@values", "max_freq", "#1804800", "#2611200", "#2803200"],
+      ["@values", "min_freq", "1017600", "1056000", "1094400"],
+      ["@target_loads",
+        "80 1708800:85",
+        "80 2361600:85",
+        "80 2457600:84 2668800:87"
+      ],
+      ["/proc/game_opt/disable_cpufreq_limit", "1"]
+    ]
+  }, {
+    "mode": ["fast"],
+    "call": [
+      ["@preset", "common_gaming"],
+      ["@values", "hispeed_freq", "1593600", "1708800", "1766400"],
+      ["@values", "max_freq", "#1900800", "#2611200", "#3014400"],
+      ["@values", "min_freq", "1228800", "1401600", "1459200"],
+      ["@target_loads",
+        "75 1708800:85",
+        "78 2572800:80",
+        "78 2457600:80 2668800:90"
+      ],
+      ["/proc/game_opt/disable_cpufreq_limit", "1"]
+    ],
+    "tas": {
+      "min": 2611200
+    }
+  }, {
+    "mode": ["pedestal"],
+    "call": [
+      ["@preset", "common_gaming"],
+      ["@values", "hispeed_freq", "1593600", "1708800", "1766400"],
+      ["@values", "max_freq", "#1900800", "#2611200", "#2803200"],
+      ["@values", "min_freq", "1228800", "1401600", "1459200"],
+      ["@target_loads",
+        "75 1708800:85",
+        "75",
+        "75 2668800:85"
+      ],
+      ["/proc/game_opt/disable_cpufreq_limit", "1"]
+    ],
+    "tas": {
+      "min": 2611200
+    }
+  }]
+}

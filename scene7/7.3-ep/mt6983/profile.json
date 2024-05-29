@@ -1,0 +1,239 @@
+{
+  "platform": "mt6983",
+  "platform_name": "D9000",
+  "alias": {
+    "gpu_freq": "/sys/kernel/ged/hal/custom_upbound_gpu_freq",
+    "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
+    "boost_affinity": "/sys/module/mtk_fpsgo/parameters/boost_affinity",
+    "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
+    "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
+    "ddr_freq_min": "/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq",
+    "ddr_freq_cust": "/sys/class/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq",
+    "ged_kpi": "/sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled",
+    "fpsgo": "/sys/kernel/fpsgo/common/fpsgo_enable",
+    "cpufreq": "/proc/cpudvfs/cpufreq_debug",
+    "ddr_force_opp": "/sys/devices/platform/1c00f000.dvfsrc/1c00f000.dvfsrc:dvfsrc-helper/dvfsrc_force_vcore_dvfs_opp",
+    "limit_cfreq": "/sys/kernel/fpsgo/fbt/limit_cfreq",
+    "limit_rfreq": "/sys/kernel/fpsgo/fbt/limit_rfreq",
+    "limit_cfreq_m": "/sys/kernel/fpsgo/fbt/limit_cfreq_m",
+    "limit_rfreq_m": "/sys/kernel/fpsgo/fbt/limit_rfreq_m",
+    "perfmgr_enable": "/sys/module/mtk_fpsgo/parameters/perfmgr_enable",
+    "pandor_perfmgr_enable": "/sys/module/perfmgr_mtk/parameters/perfmgr_enable",
+    "ddr_max": "/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq",
+    "sched_boost": "/sys/kernel/fpsgo/fbt/switch_idleprefer"
+  },
+  "features": {
+    "limiter": {
+      "active_interval": 30,
+      "gaming_interval": 30,
+      "inactive_interval": 100,
+      "ddr_boost": true,
+      "params": [
+        { "id": "p1:cpu0", "step": -0.7, "max": 1400000, "min": 700000, "margin": 250 },
+        { "id": "p1:cpu4", "step": -0.7, "max": 2150000, "turning": 1800000, "min": 1300000, "margin": 400 },
+        { "id": "p1:cpu7", "step": -0.7, "max": 2300000, "turning": 1800000, "min": 1300000, "margin": 400 },
+
+        { "id": "p2:cpu0", "max": 1500000, "min": 1050000, "margin": 300 },
+        { "id": "p2:cpu4", "max": 2400000, "min": 2050000, "margin": 400 },
+        { "id": "p2:cpu7", "max": 2650000, "turning": 2300000, "min": 2100000, "margin": 400 },
+
+        { "id": "p3:cpu0", "max": 1600000, "min": 1400000, "margin": 300 },
+        { "id": "p3:cpu4", "max": 2650000, "min": 2300000, "margin": 300 },
+        { "id": "p3:cpu7", "max": 2800000, "min": 2300000, "margin": 300 },
+
+        { "id": "p4:cpu0", "max": 1600000, "min": 1500000, "margin": 300 },
+        { "id": "p4:cpu4", "max": 2650000, "min": 2650000, "margin": 300 },
+        { "id": "p4:cpu7", "max": 2800000, "min": 2650000, "margin": 300 },
+
+
+        { "id": "inactive:cpu0","max": 1500000, "min": 700000, "margin": 100 },
+        { "id": "inactive:cpu4","max": 2100000, "min": 700000, "margin": 100 },
+        { "id": "inactive:cpu7","max": 2100000, "min": 1300000, "margin": 130 },
+
+        { "id": "idle:cpu0","max": 1200000, "min": 400000, "margin": 100 },
+        { "id": "idle:cpu4","max": 1800000, "min": 400000, "margin": 100 },
+        { "id": "idle:cpu7","max": 1800000, "min": 1300000, "margin": 100, "core_ctl": true }
+      ]
+    },
+    "gesture_boost": {
+      "enable": true,
+      "enter": [
+        ["$gpu_min_opp", "28"],
+        ["$ddr_freq_cust", "4266000000"]
+      ],
+      "exit": [
+        ["$gpu_min_opp", "99"],
+        ["$ddr_freq_cust", "#0"]
+      ]
+    }
+  },
+  "presets": {
+    "reset": [
+      ["@mtk_reset"],
+      ["@governor", "schedutil"],
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode_change 0"],
+      ["$ddr_force_opp", "999"],
+      ["$ddr_freq_cust", "0"],
+      ["$perfmgr_enable", "#0"],
+      ["$pandor_perfmgr_enable", "#0"]
+    ],
+    "min_freq": [
+      ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
+    ],
+    "max_freq": [
+      ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
+    ],
+    "cpu7_on": [
+      ["$max_cpus_cpu7", "#1"],
+      ["$min_cpus_cpu7", "#1"]
+    ],
+    "cpu7_off": [
+      ["$min_cpus_cpu7", "#0"],
+      ["$max_cpus_cpu7", "#0"]
+    ],
+    "common_actvie": [
+      ["@preset", "cpu7_on"],
+      ["$ddr_max", "#5500000000"],
+      ["$sched_boost", "1"]
+    ],
+    "common_inactvie": [
+      ["@values", "min_freq", "200000", "400000", "1300000"],
+      ["$gpu_min_opp", "99"],
+      ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
+      ["$sched_boost", "0"]
+    ],
+    "comm_app": [
+      ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
+      ["$gpu_freq", "#10"]
+    ],
+    "comm_gaming": [
+      ["@preset", "common_actvie"],
+      ["@limiters", "NONE"],
+      ["$gpu_freq", "#0"],
+      ["$gpu_min_opp", "99"],
+      ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
+      ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
+      ["$boost_affinity", "0"],
+      ["$sched_boost", "#0"],
+      ["$fpsgo", "#1"],
+      ["$ged_kpi", "#0"],
+      ["@gesture", "PAUSE"]
+    ],
+
+    "powersave_active": [
+      ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
+      ["@preset", "common_actvie"],
+      ["$ddr_freq_min", "#1866000000"],
+      ["@values", "min_freq", "400000", "700000", "1300000"]
+    ],
+    "powersave_inactive": [
+      ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
+      ["@preset", "common_inactvie"],
+      ["$ddr_freq_min", "#800000000"],
+      ["@preset", "cpu7_off"]
+    ],
+    "balance_active": [
+      ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
+      ["@preset", "common_actvie"],
+      ["$ddr_freq_min", "#2667000000"],
+      ["@values", "min_freq", "500000", "700000", "1300000"]
+    ],
+    "balance_inactive": [
+      ["@limiters", "inactive:cpu0", "inactive:cpu4", "inactive:cpu7"],
+      ["@preset", "common_inactvie"],
+      ["$ddr_freq_min", "#800000000"]
+    ],
+    "performance_active": [
+      ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
+      ["@values", "min_freq", "700000", "900000", "1300000"],
+      ["@preset", "common_actvie"],
+      ["$ddr_freq_min", "#320000000"]
+    ],
+    "performance_inactive": [
+      ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
+      ["@preset", "common_inactvie"],
+      ["$ddr_freq_min", "#800000000"]
+    ],
+    "fast_active": [
+      ["@limiters", "p4:cpu0", "p4:cpu4", "p4:cpu7"],
+      ["@preset", "common_actvie"],
+      ["$ddr_freq_min", "#320000000"],
+      ["@values", "min_freq", "1000000", "1000000", "1300000"]
+    ],
+    "fast_inactive": [
+      ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
+      ["@preset", "common_inactvie"],
+      ["$ddr_freq_min", "#1866000000"]
+    ]
+  },
+  "schemes": {
+    "powersave": {
+      "call": [
+        ["@preset", "reset"]
+      ],
+      "app": [
+        ["@preset", "comm_app"],
+        ["@preset", "powersave_active"]
+      ]
+    },
+    "balance": {
+      "call": [
+        ["@preset", "reset"]
+      ],
+      "app": [
+        ["@preset", "comm_app"],
+        ["@preset", "balance_active"]
+      ]
+    },
+    "performance": {
+      "call": [
+        ["@preset", "reset"]
+      ],
+      "app": [
+        ["@preset", "comm_app"],
+        ["@preset", "performance_active"]
+      ]
+    },
+    "fast": {
+      "call": [
+        ["@preset", "reset"]
+      ],
+      "app": [
+        ["@preset", "comm_app"],
+        ["@preset", "fast_active"]
+      ]
+    },
+    "pedestal": {
+      "call": [
+        ["@preset", "reset"]
+      ],
+      "app": [
+        ["@preset", "comm_app"],
+        ["@preset", "fast_active"]
+      ]
+    }
+  },
+  "apps": [
+    { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
+    { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
+    { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
+    { "friendly": "待机", "packages": ["standby"], "import": "_Standby.json" },
+    { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
+  ],
+  "games": [
+    {
+      "friendly": "双核强化",
+      "packages": [
+        "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact",
+        "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig",
+        "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"
+      ],
+      "import": "_DualCore.json"
+    },
+    {
+      "friendly": "All",
+      "packages": ["*"],
+      "import": "_Games.json"
+    }
+  ]
+}

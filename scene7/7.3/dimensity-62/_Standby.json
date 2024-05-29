@@ -1,0 +1,22 @@
+{
+  "friendly": "待机",
+  "packages": ["standby"],
+  "call": [
+    ["@limiters", "NONE"]
+  ],
+  "booster": {
+    "duration": 3500,
+    "idle_delay": 3000,
+    "enter": [
+      ["@cpuset", "0-4", "1-6", "1-7", "1-7"],
+      ["@cpu_freq", "policy0", "1500MHz", "1800MHz"],
+      ["@cpu_freq", "policy6", "1500MHz", "2200MHz"]
+    ],
+    "exit": [
+      ["@cpuset", "0-3", "0-3", "0-7", "0-7"],
+      ["@cpu_freq", "policy0", "min", "1800MHz"],
+      ["@cpu_freq", "policy6", "min", "1800MHz"],
+      ["@mtk_renew"]
+    ]
+  }
+}

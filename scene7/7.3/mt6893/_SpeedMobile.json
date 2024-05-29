@@ -1,0 +1,34 @@
+{
+  "friendly": "QQ飞车",
+  "limiters": [
+    { "id": "speed1:cpu4", "max": 1985000, "turning": 1740000, "min": 1451000, "margin": 400, "step": -1, "smoothness": 6 },
+    { "id": "speed2:cpu4", "max": 2354000, "turning": 1985000, "min": 1624000, "margin": 400, "step": -1, "smoothness": 6 },
+    { "id": "speed3:cpu4", "max": 2354000, "turning": 1985000, "min": 1800000, "margin": 400, "step": -1, "smoothness": 6 }
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "speed1:cpu4", "p1:cpu7"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "speed1:cpu4", "p2:cpu7"]
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "speed2:cpu4",  "p3:cpu7"]
+      ]
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@limiters", "speed3:cpu4",  "p4:cpu7"]
+      ]
+    }
+  ]
+}

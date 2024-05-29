@@ -1,0 +1,80 @@
+{
+  "friendly": "QQ飞车",
+  "call": [
+    ["@values", "target_loads", "50", "50", "60"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "middle_optimum_freq": 1612800,
+        "big_min_freq": 1075200, "middle_min_freq": 710400,
+        "_60": ["2361600", "1766400", "-2"],
+        "_90": ["2649600", "1862400", "-3"],
+        "_120": ["2841600", "1958400", "-4"]
+      },
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 3000,
+          "rules": [
+            { "threshold": [-1, 95], "enter_once": [["@preset", "bw_boost"]] },
+            { "threshold": [95,  70], "enter_once": [["@preset", "bw_max"]] },
+            { "threshold": [70,  -1], "enter_once": [["@preset", "bw_max"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "middle_optimum_freq": 1708800, "slow_down_rate": 3.5,
+        "_60": ["2361600", "2073600", "-2"],
+        "_90": ["2841600", "2246400", "-3"],
+        "_120": ["2841600", "2342400", "-4"]
+      },
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 3000,
+          "rules": [
+            { "threshold": [-1, 95], "enter_once": [["@preset", "bw_boost"]] },
+            { "threshold": [95,  70], "enter_once": [["@preset", "bw_boost"]] },
+            { "threshold": [70,  -1], "enter_once": [["@preset", "bw_max"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "mode": "fps",
+        "middle_optimum_freq": 1920000, "slow_down_rate": 2.8,
+        "_60": ["2649600", "2150400", "-2"],
+        "_90": ["2841600", "2342400", "-3"],
+        "_120": ["2841600", "2419200", "-4"]
+      },
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 3000,
+          "rules": [
+            { "threshold": [-1, 95], "enter_once": [["@preset", "bw_boost"]] },
+            { "threshold": [95,  70], "enter_once": [["@preset", "bw_boost"]] },
+            { "threshold": [70,  -1], "enter_once": [["@preset", "bw_max"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["fast"],
+      "fas": {
+        "mode": "fps",
+        "recent_frames": 10, "fast_down_rate": 5, "slow_down_rate": 2.8,
+        "_60": ["2649600", "2073600"],
+        "_90": ["2841600", "2419200"],
+        "_120": ["3200000", "2419200"]
+      }
+    }
+  ]
+}
