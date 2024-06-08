@@ -3,6 +3,17 @@
   "call": [
     ["$bus_ddr_min", "#2092000"]
   ],
+  "booster": {
+    "duration": 30000,
+    "idle_delay": 30000,
+    "ignore_load": true,
+    "enter": [
+      ["@fps", "0"]
+    ],
+    "exit": [
+      ["@fps", "30"]
+    ]
+  },
   "modes": [
     {
       "mode": ["powersave"],

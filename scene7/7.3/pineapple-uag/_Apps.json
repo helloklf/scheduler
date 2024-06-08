@@ -2,6 +2,11 @@
   "friendly": "一般应用",
   "modes": [{
     "mode": ["powersave"],
+    "call": [
+      ["@limiters", "a1:cpu0", "a1:cpu2"],
+      ["/dev/cpuset/sf/cpus", "#2-4"],
+      ["/dev/cpuset/display/cpus", "#2-4"]
+    ],
     "booster": {
       "duration": 3000,
       "idle_delay": 1700,
@@ -15,6 +20,11 @@
     }
   }, {
     "mode": ["balance"],
+    "call": [
+      ["@limiters", "a2:cpu0", "a2:cpu2"],
+      ["/dev/cpuset/sf/cpus", "#2-4"],
+      ["/dev/cpuset/display/cpus", "#2-4"]
+    ],
     "booster": {
       "duration": 3000,
       "idle_delay": 1700,

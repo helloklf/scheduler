@@ -1,5 +1,5 @@
 {
-  "friendly": "原神",
+  "friendly": "FEAS",
   "call": [
     ["@cpuset", "0-3", "0-3", "0-5", "0-7"]
   ],

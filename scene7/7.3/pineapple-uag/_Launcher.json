@@ -1,32 +1,63 @@
 {
   "friendly": "极速响应",
-  "modes": [{
-    "mode": ["powersave"],
-    "booster": {
-      "duration": 4000, "idle_delay": 1000,
-      "enter": [ ["@preset", "balance_active"], ["$sched_boost", "1"] ],
-      "exit": [ ["@preset", "powersave_inactive"], ["$sched_boost", "0"] ]
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@cpuset", "2-4", "0-6", "2-6", "2-7"],
+        ["/dev/cpuset/sf/cpus", "#2-4"]
+      ],
+      "booster": {
+        "duration": 3000,
+        "idle_delay": 1700,
+        "enter": [
+          ["@preset", "balance_active"],
+          ["$sched_boost", "1"],
+          ["@limiters", "NONE"]
+        ],
+        "exit": [
+          ["@preset", "powersave_inactive"],
+          ["$sched_boost", "0"],
+          ["@limiters", "a1:cpu0", "a1:cpu2"]
+        ]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@cpuset", "2-4", "0-6", "2-6", "2-7"],
+        ["/dev/cpuset/sf/cpus", "#2-4"]
+      ],
+      "booster": {
+        "duration": 3000,
+        "idle_delay": 1700,
+        "enter": [
+          ["@preset", "performance_active"],
+          ["$sched_boost", "1"],
+          ["@limiters", "NONE"]
+        ],
+        "exit": [
+          ["@preset", "balance_inactive"],
+          ["$sched_boost", "0"],
+          ["@limiters", "a2:cpu0", "a2:cpu2"]
+        ]
+      }
+    },
+      {
+      "mode": ["performance"],
+      "booster": {
+        "duration": 3000, "idle_delay": 1000,
+        "enter": [ ["@preset", "performance_active"], ["$sched_boost", "1"] ],
+        "exit": [ ["@preset", "balance_inactive"], ["$sched_boost", "0"] ]
+      }
+    },
+      {
+      "mode": ["*"],
+      "booster": {
+        "duration": 3000, "idle_delay": 1000,
+        "enter": [ ["@preset", "fast_active"], ["$sched_boost", "1"] ],
+        "exit": [ ["@preset", "performance_inactive"], ["$sched_boost", "0"] ]
+      }
     }
-  }, {
-    "mode": ["balance"],
-    "booster": {
-      "duration": 4000, "idle_delay": 1000,
-      "enter": [ ["@preset", "performance_active"], ["$sched_boost", "1"] ],
-      "exit": [ ["@preset", "powersave_inactive"], ["$sched_boost", "0"] ]
-    }
-  }, {
-    "mode": ["performance"],
-    "booster": {
-      "duration": 3000, "idle_delay": 1000,
-      "enter": [ ["@preset", "performance_active"], ["$sched_boost", "1"] ],
-      "exit": [ ["@preset", "balance_inactive"], ["$sched_boost", "0"] ]
-    }
-  }, {
-    "mode": ["*"],
-    "booster": {
-      "duration": 3000, "idle_delay": 1000,
-      "enter": [ ["@preset", "fast_active"], ["$sched_boost", "1"] ],
-      "exit": [ ["@preset", "balance_inactive"], ["$sched_boost", "0"] ]
-    }
-  }]
+  ]
 }

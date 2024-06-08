@@ -45,7 +45,7 @@ hide_value() {
 rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost
 lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
-lock_value -1 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
+# lock_value -1 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
@@ -65,6 +65,7 @@ hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
 hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
 ls /sys/devices/system/cpu/cpu*/online | xargs lock_value 0
 lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
+lock_value 1 /sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled
 
 metis=/sys/module/metis/parameters
 for file in $metis/*enable*; do

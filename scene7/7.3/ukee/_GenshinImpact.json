@@ -24,6 +24,17 @@
     {"id": "ys5:cpu4", "step": -1.0, "max": 2745600, "min": 1400000, "margin": 300, "smoothness": 6, "mode": "BOTTOM"},
     {"id": "ys5:cpu7", "step": -1.0, "max": 2995200, "min": 1200000, "margin": 300, "smoothness": 6, "mode": "BOTTOM"}
   ],
+  "booster": {
+    "duration": 30000,
+    "idle_delay": 30000,
+    "ignore_load": true,
+    "enter": [
+      ["@fps", "0"]
+    ],
+    "exit": [
+      ["@fps", "30"]
+    ]
+  },
   "modes": [
     {
       "mode": ["powersave"],

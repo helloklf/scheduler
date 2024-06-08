@@ -101,20 +101,17 @@ core_ctl_preset() {
   lock_value 0 $cpu2_core_ctl_dir/enable
 
   cpu5_core_ctl_dir=/sys/devices/system/cpu/cpu5/core_ctl
-  lock_value 0 $cpu5_core_ctl_dir/min_cpus
-  lock_value 0 $cpu5_core_ctl_dir/enable
-  lock_value 0 $cpu5_core_ctl_dir/min_partial_cpus
+  lock_value 1 $cpu5_core_ctl_dir/enable
   lock_value 2 $cpu5_core_ctl_dir/max_cpus
-  lock_value 50 $cpu5_core_ctl_dir/busy_up_thres
-  lock_value 25 $cpu5_core_ctl_dir/busy_down_thres
+  lock_value 2 $cpu5_core_ctl_dir/min_cpus
+  lock_value 0 $cpu5_core_ctl_dir/min_partial_cpus
+  lock_value 0 $cpu5_core_ctl_dir/enable
 }
 
 hide_value /sys/module/msm_performance/parameters/cpu_max_freq '0:4294967295 1:4294967295 2:4294967295 3:4294967295 4:4294967295 5:4294967295 6:4294967295 7:4294967295'
 chattr +i  /sys/module/msm_performance/parameters/cpu_max_freq
 hide_value /sys/module/msm_performance/parameters/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
 chattr +i  /sys/module/msm_performance/parameters/cpu_min_freq
-lock_value 2-6 /dev/cpuset/display/cpus
-lock_value 2-6 /dev/cpuset/sf/cpus
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
@@ -136,19 +133,26 @@ rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost
 
 # OnePlus
-# hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
-# lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
+hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
+lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
 if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
-  # chmod 444 /proc/game_opt/rt_info
-  # hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
+  chmod 444 /proc/game_opt/rt_info
+  hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
   # hide_value /proc/game_opt/disable_cpufreq_limit 1
 fi
-# hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
-# hide_value /proc/oplus_scheduler/sched_assist/lb_enable 0
-# hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-# hide_value /proc/oplus_scheduler/sched_assist/sched_assist_scene 0
-
+hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
+hide_value /proc/oplus_scheduler/sched_assist/lb_enable 0
+hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
+hide_value /proc/oplus_scheduler/sched_assist/sched_assist_scene 0
+set_value '2000' /proc/oplus-votable/GAUGE_UPDATE/force_val
+set_value '1' /proc/oplus-votable/GAUGE_UPDATE/force_active
+lock_value 2-6 /dev/cpuset/display/cpus
+lock_value 2-6 /dev/cpuset/sf/cpus
+lock_value 2-6 /dev/cpuset/oiface_bg/cpus
+lock_value 2-6 /dev/cpuset/oiface_fg/cpus
+lock_value 2-6 /dev/cpuset/oiface_fg+/cpus
+lock_value 2-6 /dev/cpuset/h-background/cpus
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1

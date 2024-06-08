@@ -3,6 +3,17 @@
   "call": [
     ["@cpuset", "0-3", "0-3", "0-5", "0-7"]
   ],
+  "booster": {
+    "duration": 30000,
+    "idle_delay": 30000,
+    "ignore_load": true,
+    "enter": [
+      ["@fps", "0"]
+    ],
+    "exit": [
+      ["@fps", "30"]
+    ]
+  },
   "modes": [
     {
       "mode": ["powersave"],

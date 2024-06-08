@@ -37,7 +37,7 @@
     "friendly": "鸣潮",
     "packages": ["com.kurogame.mingchao"],
     "cpuset": {
-      "main_thread": "4-7",
+      "main_thread": "4-6",
       "comm": {
         "7": ["GameThread"],
         "4-7": ["AsyncLoading", "FChunk"],

@@ -13,6 +13,17 @@
     { "id": "ys4:cpu4", "active_interval": 32, "mode": "BOTTOM", "max": 2419200, "min": 1056000, "margin": 400, "smoothness": 8 },
     { "id": "ys4:cpu7", "active_interval": 32, "mode": "BOTTOM", "max": 3200000, "min": 1075200, "margin": 400, "smoothness": 8 }
   ],
+  "booster": {
+    "duration": 30000,
+    "idle_delay": 30000,
+    "ignore_load": true,
+    "enter": [
+      ["@fps", "0"]
+    ],
+    "exit": [
+      ["@fps", "30"]
+    ]
+  },
   "call": [
     ["$stune_top_boost", "0"], ["$stune_top_perf", "0"]
   ],

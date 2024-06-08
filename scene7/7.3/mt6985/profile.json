@@ -35,7 +35,7 @@
 
         { "id": "p3:cpu0", "max": 1800000, "turning": 1600000, "min": 1400000, "margin": 300 },
         { "id": "p3:cpu4", "max": 2600000, "min": 2400000, "margin": 300 },
-        { "id": "p3:cpu7", "max": 2800000, "turning": 2600000, "min": 2400000, "margin": 300 },
+        { "id": "p3:cpu7", "max": 2800000, "min": 2400000, "margin": 300 },
 
         { "id": "p4:cpu0", "max": 2000000, "min": 1500000, "margin": 300 },
         { "id": "p4:cpu4", "max": 2850000, "min": 2650000, "margin": 300 },
@@ -128,22 +128,22 @@
     "freq_low": [
       ["$cpufreq", "0 220000 1700000|4 400000 2100000|7 1200000 2100000"],
       ["@values", "max_freq", "1700000", "#2100000", "#2100000"],
-      ["@values", "min_freq", "220000", "400000", "400000"]
+      ["@values", "min_freq", "220000", "400000", "1200000"]
     ],
     "freq_middle": [
-      ["$cpufreq", "0 220000 1700000|4 400000 2400000|7 1200000 2400000"],
+      ["$cpufreq", "0 220000 1700000|4 500000 2400000|7 1200000 2400000"],
       ["@values", "max_freq", "1700000", "#2400000", "#2400000"],
-      ["@values", "min_freq", "220000", "400000", "400000"]
+      ["@values", "min_freq", "220000", "500000", "1200000"]
     ],
     "freq_high": [
-      ["$cpufreq", "0 220000 1700000|4 400000 2650000|7 1200000 2800000"],
+      ["$cpufreq", "0 220000 1700000|4 700000 2650000|7 1200000 2800000"],
       ["@values", "max_freq", "1700000", "#2650000", "#2800000"],
-      ["@values", "min_freq", "220000", "400000", "400000"]
+      ["@values", "min_freq", "220000", "700000", "1200000"]
     ],
     "freq_extreme": [
-      ["$cpufreq", "0 220000 1900000|4 400000 2850000|7 1200000 3050000"],
+      ["$cpufreq", "0 220000 1900000|4 700000 2850000|7 1200000 3050000"],
       ["@values", "max_freq", "#1900000", "#2850000", "#3050000"],
-      ["@values", "min_freq", "220000", "400000", "400000"]
+      ["@values", "min_freq", "220000", "700000", "1200000"]
     ]
   },
   "schemes": {
@@ -219,12 +219,8 @@
   ],
   "games": [
     {
-      "friendly": "原神",
-      "categories": ["GenshinImpact"],
-      "import": "_GenshinImpact.json"
-    },
-    {
       "friendly": "王者荣耀/LOL M/QQ飞车/和平精英/星穹铁道/我的世界/使命召唤/暗区突围/穿越火线/王牌战士/光遇(CN)/光遇(Global)/蛋仔派对/决战平安京",
+      "categories": ["GenshinImpact"],
       "packages": [
         "com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm",
         "com.tencent.tmgp.speedmobile",
@@ -235,9 +231,7 @@
         "com.netease.sky", "com.tgc.sky.android",
         "com.netease.party", "com.netease.moba.aligames"
       ],
-      "call": [
-        ["@mtk_feas", "5"]
-      ]
+      "import": "_FEAS.json"
     },
     {
       "friendly": "All",
