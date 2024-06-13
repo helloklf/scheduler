@@ -19,13 +19,6 @@ set_cpuset(){
   done
 }
 
-governor_cover() {
-  policy=/sys/devices/system/cpu/cpufreq/policy
-  ls $policy* | while read cluster; do
-    hide_value ${policy}${cluster}/scaling_governor $1
-  done
-}
-
 set_value() {
   value=$1
   path=$2

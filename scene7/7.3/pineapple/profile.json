@@ -128,7 +128,8 @@
       "limiter_off": [
         ["/proc/game_opt/disable_cpufreq_limit", "#1"],
         ["/sys/module/migt/parameters/glk_disable", "#1"],
-        ["/sys/module/perfmgr/parameters/perfmgr_enable", "#0"]
+        ["/sys/module/perfmgr/parameters/perfmgr_enable", "#0"],
+        ["/sys/module/migt/parameters/glk_freq_limit_walt", "#0"]
       ],
       "limiter_on": [
         ["/proc/game_opt/disable_cpufreq_limit", "#0"],
@@ -322,7 +323,7 @@
       {
         "friendly": "双核强化",
         "packages": [
-          "com.kurogame.mingchao",
+          "com.kurogame.mingchao", "com.kurogame.wutheringwaves.global",
           "com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece", "com.tencent.lolm",
           "com.tencent.tmgp.speedmobile",
           "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact",

@@ -11,7 +11,7 @@
   ],
   "call": [
     ["@preset", "common_gaming"],
-    ["/proc/game_opt/disable_cpufreq_limit", "1"]
+    ["/proc/game_opt/disable_cpufreq_limit", "#1"]
   ],
   "modes": [
     {
@@ -42,6 +42,7 @@
           "75 1766400:80 2188800:90",
           "75 1766400:80 2131200:90"
         ],
+        ["@presets", "limiter_off"],
         ["@values", "target_load_thresh", "600", "1024", "1024"]
       ]
     },

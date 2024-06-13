@@ -45,7 +45,7 @@ disable_migt() {
     hide_value $migt/glk_freq_limit_start '0'
     hide_value $migt/glk_freq_limit_walt '0'
     hide_value $migt/glk_maxfreq '0 0 0'
-    hide_value $migt/glk_minfreq '307200  480000 595200'
+    hide_value $migt/glk_minfreq '307200 480000 595200'
     hide_value $migt/migt_ceiling_freq '0 0 0'
     hide_value $migt/glk_disable '1'
     hide_value $migt/mi_freq_enable '0'
@@ -145,6 +145,10 @@ hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
 hide_value /proc/oplus_scheduler/sched_assist/lb_enable 0
 hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
 hide_value /proc/oplus_scheduler/sched_assist/sched_assist_scene 0
+lock_value 0 /proc/jank_info/cpu_jank_info/task_track_enable
+lock_value 0 /proc/jank_info/cpu_jank_info/clm_enable
+lock_value 0 /proc/jank_info/cpu_jank_info/enable
+lock_value 0 /proc/task_info/task_cpustats/task_cpustats_enable
 set_value '2000' /proc/oplus-votable/GAUGE_UPDATE/force_val
 set_value '1' /proc/oplus-votable/GAUGE_UPDATE/force_active
 lock_value 2-6 /dev/cpuset/display/cpus

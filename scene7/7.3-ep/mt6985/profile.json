@@ -67,8 +67,7 @@
       ["$perfmgr_enable", "#0"],
       ["$perfmgr_enable2", "#0"],
       ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "800000000"],
-      ["$cpus_limit", "#3000000 3350000"],
-      ["/proc/gpufreqv2/fix_custom_freq_volt", "0 0"]
+      ["$cpus_limit", "#3000000 3350000"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]

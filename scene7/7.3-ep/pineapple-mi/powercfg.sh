@@ -145,6 +145,8 @@ hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
 hide_value /proc/oplus_scheduler/sched_assist/lb_enable 0
 hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
 hide_value /proc/oplus_scheduler/sched_assist/sched_assist_scene 0
+lock_value 0 /proc/jank_info/cpu_jank_info/task_track_enable
+lock_value 0 /proc/jank_info/cpu_jank_info/clm_enable
 set_value '2000' /proc/oplus-votable/GAUGE_UPDATE/force_val
 set_value '1' /proc/oplus-votable/GAUGE_UPDATE/force_active
 lock_value 2-6 /dev/cpuset/display/cpus
