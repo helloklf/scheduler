@@ -1,10 +1,10 @@
 {
-  "version": "HP",
+  "version": "EP-MeiZu",
   "versionCode": 20240613001,
   "author": "SCENE7",
   "projectUrl": "http://vtools.omarea.com/",
   "features": {
     "strict": true,
-    "pedestal": false
+    "pedestal": true
   }
 }

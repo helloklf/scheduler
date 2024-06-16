@@ -72,7 +72,8 @@
       ["@msm_reset"],
       ["$bus_ddr_min", "547000"],
       ["$l3_boost", "0"],
-      ["@governor", "walt"]
+      ["@governor", "walt"],
+      ["$sched_boost", "0"]
     ],
 
     "hispeed_freq": [
@@ -125,7 +126,8 @@
     ],
     "common_inactive": [
       ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
-      ["@values", "min_freq", "307200", "499200", "595200"]
+      ["@values", "min_freq", "307200", "499200", "595200"],
+      ["$sched_boost", "0"]
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],

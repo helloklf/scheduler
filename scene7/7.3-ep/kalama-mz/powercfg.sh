@@ -149,7 +149,11 @@ echo -R 444 /sys/kernel/msm_performance/parameters
 # Meizu
 lock_value 0 /proc/mz_scheduler/vip_task/enabled
 # [MB] [swappiness] [MB] [swappiness] [MB] [swappiness]
-echo 3072 100 2048 125 1024 160 > /proc/mz_memory/reclaim_opt/kswapd_reclaim_swappiness
+echo 3072 125 2048 150 1024 160 > /proc/mz_memory/reclaim_opt/kswapd_reclaim_swappiness
+for tz in /sys/class/thermal/*/mode
+do
+  echo disabled > $tz
+done
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1

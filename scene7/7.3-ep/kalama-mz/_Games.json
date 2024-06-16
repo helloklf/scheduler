@@ -1,5 +1,31 @@
 {
   "friendly": "游戏(Games)",
+  "limiters": [
+    { "id": "g0:cpu3", "step": -0.7,
+      "max": 2188800, "min": 614400, "margin": 240, "mode": "performance" },
+    { "id": "g0:cpu7", "step": -0.7,
+      "max": 2227200, "min": 729600, "margin": 300, "mode": "performance" },
+
+    { "id": "g1:cpu3", "step": -0.7,
+      "max": 2457600, "min": 729600, "margin": 240, "mode": "performance" },
+    { "id": "g1:cpu7", "step": -0.7,
+      "max": 2476800, "min": 998400, "margin": 300, "mode": "performance" },
+
+    { "id": "g2:cpu3", "step": -0.7,
+      "max": 2707200, "min": 729600, "margin": 400, "mode": "performance" },
+    { "id": "g2:cpu7", "step": -0.5,
+      "max": 2841600, "min": 1132800, "margin": 400, "mode": "performance" },
+
+    { "id": "g3:cpu3", "step": -0.5,
+      "max": 2803200, "min": 1056000, "margin": 400, "mode": "performance" },
+    { "id": "g3:cpu7", "step": -0.5,
+      "max": 2995200, "min": 1132800, "margin": 400, "mode": "performance" },
+
+    { "id": "g4:cpu3", "step": -0.5,
+      "max": 2803200, "min": 1401600, "margin": 400, "mode": "performance" },
+    { "id": "g4:cpu7", "step": -0.5,
+      "max": 3187200, "min": 1593600, "margin": 400, "mode": "performance" }
+  ],
   "modes": [
     {
       "mode": ["powersave"],
@@ -13,7 +39,7 @@
           "85 1593600:95"
         ],
         ["/proc/game_opt/disable_cpufreq_limit", "0"],
-        ["@values", "target_load_thresh", "0", "600", "600"]
+        ["@limiters", "g0:cpu3", "g0:cpu7"]
       ]
     },
     {
@@ -28,7 +54,7 @@
           "80 2092800:90 2476800:95"
         ],
         ["@presets", "limiter_off"],
-        ["@values", "target_load_thresh", "#600", "#1024", "#1024"]
+        ["@limiters", "g1:cpu3", "g1:cpu7"]
       ]
     },
     {
@@ -43,8 +69,12 @@
           "80 2592000:85 2841600:90"
         ],
         ["@presets", "limiter_off"],
-        ["@values", "target_load_thresh", "#1024", "#1024", "#1024"]
-      ]
+        ["@limiters", "g2:cpu3", "g2:cpu7"]
+      ],
+      "tas": {
+        "t": 93,
+        "min": 2054400
+      }
     },
     {
       "mode": ["fast"],
@@ -58,16 +88,17 @@
           "72 2841600:85 2956800:90"
         ],
         ["@presets", "limiter_off"],
-        ["@values", "target_load_thresh", "#1024", "#1024", "#1024"]
+        ["@limiters", "g3:cpu3", "g3:cpu7"]
       ],
-      "fas": {
+      "_fas": {
         "mode": "boost",
         "_60": ["2841600", "2707200"],
         "_90": ["2841600", "2707200"],
         "_120": ["2841600", "2707200"]
       },
       "tas": {
-        "min": 2592000
+        "t": 93,
+        "min": 2054400
       }
     },
     {
@@ -82,16 +113,17 @@
           "65 2841600:78"
         ],
         ["@presets", "limiter_off"],
-        ["@values", "target_load_thresh", "#1024", "#1024", "#1024"]
+        ["@limiters", "g4:cpu3", "g4:cpu7"]
       ],
-      "fas": {
+      "_fas": {
         "mode": "boost",
         "_60": ["2956800", "2803200"],
         "_90": ["2956800", "2803200"],
         "_120": ["2956800", "2803200"]
       },
       "tas": {
-        "min": 2592000
+        "t": 93,
+        "min": 2054400
       }
     }
   ]
