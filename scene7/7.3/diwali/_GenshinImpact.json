@@ -22,9 +22,9 @@
     { "id": "ys-p4:cpu4", "max": 2227200, "turning": 1996800, "min": 1324800, "margin": 150, "active_interval": 48, "smoothness": 5 },
     { "id": "ys-p4:cpu7", "max": 2400000, "turning": 2054400, "min": 1056000, "margin": 150, "mode": "performance", "active_interval": 48, "smoothness": 5 },
 
-    { "id": "ys-p5:cpu0", "mode": "RANGE", "max": 1785600, "min": 1075200, "margin": 300, "smoothness": 5 },
-    { "id": "ys-p5:cpu4", "mode": "RANGE", "max": 2419200, "min": 1555200, "margin": 300, "active_interval": 48, "smoothness": 5 },
-    { "id": "ys-p5:cpu7", "mode": "RANGE", "max": 2630400, "min": 1056000, "margin": 300, "active_interval": 48, "smoothness": 5 }
+    { "id": "ys-p5:cpu0", "mode": "performance", "max": 1785600, "min": 1075200, "margin": 300, "smoothness": 5 },
+    { "id": "ys-p5:cpu4", "mode": "performance", "max": 2419200, "min": 1555200, "margin": 300, "active_interval": 48, "smoothness": 5 },
+    { "id": "ys-p5:cpu7", "mode": "performance", "max": 2630400, "min": 1056000, "margin": 300, "active_interval": 48, "smoothness": 5 }
   ],
   "modes": [
     {

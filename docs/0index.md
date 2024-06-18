@@ -35,6 +35,7 @@
 ## [别名](./alias.md)
 ## [新特性](./new_features.md)
 ## [描述](./manifest.md)
+## [温控](./tas.md)
 
 <br />
 

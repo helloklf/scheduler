@@ -109,6 +109,8 @@ process_opt() {
   move_to_heavy media.audio.qc.codec.qti.media.c2audio@1.0-service
   move_to_heavy vendor.xiaomi.hw.touchfeature@1.0-service
   move_to_heavy 'android:ui'
+  set_cpuset scene-daemon foreground
+  set_cpuset vendor.oplus.hardware.gameopt-service foreground
 
   kernel_thread_set
 
@@ -250,7 +252,6 @@ if [[ $(getprop ro.cc.device.name) != "" ]] || [[ -d /my_heytap ]]; then
   hide_value /proc/sys/walt/sched_group_upmigrate 95
   hide_value /proc/sys/walt/sched_group_downmigrate 78
   hide_value /proc/sys/kernel/sched_energy_aware 0
-  hide_value /proc/sys/walt/sched_force_lb_enable 0
   stop miuibooster
 fi
 
@@ -264,7 +265,6 @@ if [[ -d  /proc/game_opt ]]; then
 fi
 hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
 hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-echo 0 > /proc/sys/kernel/sched_force_lb_enable
 lock_value N /sys/module/sched_assist_common/parameters/boost_kill
 lock_value N /sys/module/task_sched_info/parameters/sched_info_ctrl
 for service in orms-hal-1-0 # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
@@ -285,6 +285,10 @@ if [[ -d $fbg ]]; then
     hide_value $fbg/$file 0
   done
 fi
+# Realme only
+# if [[ $(getprop ro.product.vendor.brand) == 'realme' ]]; then
+#   stop gameopt_hal_service-1-0
+# fi
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
@@ -337,8 +341,8 @@ echo 7 > /dev/cpuset/top-app/7/cpus
 echo 0 > /dev/cpuset/top-app/7/mems
 
 mkdir /dev/cpuset/top-app/sf
-echo 0-5 > /dev/cpuset/top-app/sf/cpus
 echo 0 > /dev/cpuset/top-app/sf/mems
+echo 0-5 > /dev/cpuset/top-app/sf/cpus
 set_cpuset surfaceflinger "top-app/sf"
 set_cpuset vendor.qti.hardware.display.composer-service 'top-app/sf'
 

@@ -5,12 +5,10 @@
   "cape-mi": "cape",
   "waipiop": "waipio",
   "sdm778g": "yupik",
-  "cliffs7": "cliffs",
-  "cliffs7-uag": "cliffs",
+  "cliffs": "cliffs",
+  "cliffs-uag": "cliffs",
   "kalamap": "kalama",
   "kalama-uag": "kalama",
   "kalama-mi": "kalama",
-  "ukee-mi": "ukee",
-  "8gen3-mi": "pineapple-mi",
-  "8gen3-uag": "pineapple-uag"
+  "ukee-mi": "ukee"
 }

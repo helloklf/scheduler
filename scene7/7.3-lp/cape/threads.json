@@ -44,6 +44,7 @@
     "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
     "cpuset": {
       "main_thread": "4-6",
+      "mvp": ["RenderThread", "RHIThread"],
       "comm": {
         "7": ["GameThread"],
         "4-7": ["AsyncLoading", "FChunk"],
@@ -86,6 +87,8 @@
       "unity_main": "7",
       "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "4-6",
+      "heavy_mvp": true,
+      "mvp": ["UnityGfx"],
       "comm": {
         "4-7": ["UnityPreload"],
         "4-6": ["CoreThread", "Apollo-", "NativeThread", "Worker Thread"],

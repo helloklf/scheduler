@@ -331,8 +331,8 @@ echo 7 > /dev/cpuset/top-app/7/cpus
 echo 0 > /dev/cpuset/top-app/7/mems
 
 mkdir /dev/cpuset/top-app/sf
-echo 0-5 > /dev/cpuset/top-app/sf/cpus
 echo 0 > /dev/cpuset/top-app/sf/mems
+echo 0-5 > /dev/cpuset/top-app/sf/cpus
 set_cpuset surfaceflinger "top-app/sf"
 set_cpuset vendor.qti.hardware.display.composer-service 'top-app/sf'
 

@@ -1,10 +1,10 @@
 {
-  "version": "HP-OPPO",
-  "versionCode": 20240617002,
+  "version": "EP-MeiZu",
+  "versionCode": 20240609001,
   "author": "SCENE7",
   "projectUrl": "http://vtools.omarea.com/",
   "features": {
     "strict": true,
-    "pedestal": false
+    "pedestal": true
   }
 }

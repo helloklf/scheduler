@@ -1,7 +1,5 @@
 {
   "friendly": "所有游戏",
-  "limiters": [
-  ],
   "call": [
     ["@values", "target_load_thresh", "600", "1024", "1024", "1024"]
   ],

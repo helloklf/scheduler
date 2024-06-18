@@ -28,7 +28,7 @@
           { "id": "p1:cpu5", "step": -0.9, "max": 1824000, "min": 844800, "margin": 200 },
           { "id": "p1:cpu7", "step": -0.8, "max": 1939200, "min": 902400, "margin": 200, "core_ctl": true },
   
-          { "id": "p2:cpu0", "step": -0.8, "max": 1689600, "min": 672000, "margin": 120 },
+          { "id": "p2:cpu0", "step": -0.8, "max": 1689600, "min": 672000,  "margin": 120 },
           { "id": "p2:cpu2", "step": -0.9, "max": 2380800, "min": 1612800, "margin": 200 },
           { "id": "p2:cpu5", "step": -0.7, "max": 2131200, "min": 1497600, "margin": 200 },
           { "id": "p2:cpu7", "step": -0.7, "max": 2380800, "min": 1708800, "margin": 200 },
