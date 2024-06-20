@@ -59,13 +59,14 @@
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "cpuset": {
-      "unity_main": "5-6",
+      "mvp": ["UnityMain"],
+      "unity_main": "2-4",
       "heavy_thread": "UnityGfx",
       "heavy_cores": "7",
       "comm": {
-        "2-4": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"]
+        "2-6": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"]
       },
-      "other": "2-4"
+      "other": "2-6"
     }
   },
   {
@@ -90,7 +91,7 @@
       "heavy_cores": "7",
       "comm": {
         "2-4": ["RenderThread"],
-        "5-6": ["FAsyncLoading", "TaskGraphNP", "Thread-", "NativeThread", "MainThread"]
+        "2-6": ["FAsyncLoading", "TaskGraphNP", "Thread-", "NativeThread", "MainThread"]
       },
       "other": "2-6"
     }

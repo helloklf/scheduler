@@ -107,6 +107,7 @@ core_ctl_preset() {
   lock_value 0 $cpu5_core_ctl_dir/min_partial_cpus
   lock_value 0 $cpu5_core_ctl_dir/enable
 }
+core_ctl_preset
 
 hide_value /sys/module/msm_performance/parameters/cpu_max_freq '0:4294967295 1:4294967295 2:4294967295 3:4294967295 4:4294967295 5:4294967295 6:4294967295 7:4294967295'
 chattr +i  /sys/module/msm_performance/parameters/cpu_max_freq
@@ -127,10 +128,9 @@ hide_value $t_message/cpu_nolimit_temp 49500
 
 lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
 
-core_ctl_preset
-
 rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost
+
 
 # OnePlus
 hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
@@ -141,20 +141,26 @@ if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
   # hide_value /proc/game_opt/disable_cpufreq_limit 1
 fi
-hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
-hide_value /proc/oplus_scheduler/sched_assist/lb_enable 0
-hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-hide_value /proc/oplus_scheduler/sched_assist/sched_assist_scene 0
-lock_value 0 /proc/jank_info/cpu_jank_info/task_track_enable
-lock_value 0 /proc/jank_info/cpu_jank_info/clm_enable
 set_value '2000' /proc/oplus-votable/GAUGE_UPDATE/force_val
 set_value '1' /proc/oplus-votable/GAUGE_UPDATE/force_active
-lock_value 2-6 /dev/cpuset/display/cpus
-lock_value 2-6 /dev/cpuset/sf/cpus
-lock_value 2-6 /dev/cpuset/oiface_bg/cpus
-lock_value 2-6 /dev/cpuset/oiface_fg/cpus
-lock_value 2-6 /dev/cpuset/oiface_fg+/cpus
-lock_value 2-6 /dev/cpuset/h-background/cpus
+oplus_shced_remove(){
+  hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
+  # hide_value /proc/oplus_scheduler/sched_assist/lb_enable 0
+  hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
+  hide_value /proc/oplus_scheduler/sched_assist/sched_assist_scene 0
+  lock_value 0 /proc/jank_info/cpu_jank_info/task_track_enable
+  lock_value 0 /proc/jank_info/cpu_jank_info/clm_enable
+  lock_value '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0' /proc/oplus_frame_boost/stune_boost
+  lock_value 2-6 /dev/cpuset/display/cpus
+  lock_value 2-6 /dev/cpuset/sf/cpus
+  lock_value 2-6 /dev/cpuset/oiface_bg/cpus
+  lock_value 2-6 /dev/cpuset/oiface_fg/cpus
+  lock_value 2-6 /dev/cpuset/oiface_fg+/cpus
+  lock_value 2-6 /dev/cpuset/h-background/cpus
+  echo $(pgrep hybridswapd) > /dev/cpuset/foreground/cgroup.procs
+  echo '' > /proc/sys/walt/sched_lib_name # libunity.so, libfb.so
+}
+# oplus_shced_remove
 
 
 # MeiZu
@@ -172,6 +178,19 @@ if [[ -d /proc/mz_info ]]; then
   # echo 0 > /proc/mz_thermal_boost/boost_enabled
   # echo 0 > /proc/mz_thermal_boost/sched_boost_enabled
 fi
+
+
+# 借鉴了 nakixii 的做法
+mount -t debugfs none /sys/kernel/debug
+echo "5000000" > /sys/kernel/debug/sched/migration_cost_ns
+echo "12500000" > /sys/kernel/debug/sched/wakeup_granularity_ns
+# 实验性的
+echo 12000000 > /sys/kernel/debug/sched/latency_ns
+echo 33554432 > /sys/class/kgsl/kgsl/full_cache_threshold
+echo 0 > /sys/class/kgsl/kgsl-3d0/gpu_llc_slice_enable
+echo 0 > /sys/class/kgsl/kgsl-3d0/gpuhtw_llc_slice_enable
+echo 1 > /sys/class/kgsl/kgsl-3d0/throttling
+echo 0 > /sys/class/kgsl/kgsl-3d0/l3_vote
 
 
 bus_dcvs(){
@@ -194,7 +213,7 @@ bus_dcvs DDR/soc:qcom,memlat:ddr:prime 4224000 547000
 bus_dcvs DDR/soc:qcom,memlat:ddr:prime-latfloor 4224000 547000
 bus_dcvs DDR/soc:qcom,memlat:ddr:gold-compute 1555000 547000
 bus_dcvs DDR/soc:qcom,memlat:ddr:gold 4224000 547000
-bus_dcvs_value DDR/soc:qcom,memlat:ddr:silver/ipm_ceil 100
+bus_dcvs_value DDR/soc:qcom,memlat:ddr:silver/ipm_ceil 100 # default 400
 bus_dcvs L3/soc:qcom,memlat:l3:silver 2035200 364800
 bus_dcvs L3/soc:qcom,memlat:l3:prime 2035200 364800
 bus_dcvs L3/soc:qcom,memlat:l3:gold 2035200 364800

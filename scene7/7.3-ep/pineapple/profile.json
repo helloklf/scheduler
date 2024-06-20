@@ -46,7 +46,9 @@
     "presets": {
       "reset": [
         ["@msm_reset"],
-        ["@governor", "walt"]
+        ["@governor", "walt"],
+        ["/dev/cpuset/sf/cpus", "#2-6"],
+        ["/dev/cpuset/display/cpus", "#2-6"]
       ],
   
       "hispeed_freq": [
