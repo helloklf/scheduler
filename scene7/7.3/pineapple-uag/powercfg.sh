@@ -45,7 +45,7 @@ disable_migt() {
     hide_value $migt/glk_freq_limit_start '0'
     hide_value $migt/glk_freq_limit_walt '0'
     hide_value $migt/glk_maxfreq '0 0 0'
-    hide_value $migt/glk_minfreq '307200  480000 595200'
+    hide_value $migt/glk_minfreq '307200 480000 595200'
     hide_value $migt/migt_ceiling_freq '0 0 0'
     hide_value $migt/glk_disable '1'
     hide_value $migt/mi_freq_enable '0'
@@ -90,6 +90,13 @@ disable_migt() {
   mount --bind /cache/data/system/mcd/policy /data/system/mcd/policy
 }
 
+echo 2265600 3148800 2956800 3302400 > /proc/sys/walt/sched_fmax_cap
+for c in 0 2 5 7; do
+  lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_high_freq
+  lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_low_freq
+done
+echo 1024 > /proc/sys/kernel/sched_util_clamp_max
+echo 1024 > /proc/sys/kernel/sched_util_clamp_min
 
 core_ctl_preset() {
   cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
@@ -107,6 +114,7 @@ core_ctl_preset() {
   lock_value 0 $cpu5_core_ctl_dir/min_partial_cpus
   lock_value 0 $cpu5_core_ctl_dir/enable
 }
+# core_ctl_preset
 
 hide_value /sys/module/msm_performance/parameters/cpu_max_freq '0:4294967295 1:4294967295 2:4294967295 3:4294967295 4:4294967295 5:4294967295 6:4294967295 7:4294967295'
 chattr +i  /sys/module/msm_performance/parameters/cpu_max_freq
@@ -127,37 +135,34 @@ hide_value $t_message/cpu_nolimit_temp 49500
 
 lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
 
-core_ctl_preset
-
 rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost
 
 # OnePlus
-hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
-lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
 if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
   chmod 444 /proc/game_opt/rt_info
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
   # hide_value /proc/game_opt/disable_cpufreq_limit 1
 fi
-hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
-hide_value /proc/oplus_scheduler/sched_assist/lb_enable 0
-hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-hide_value /proc/oplus_scheduler/sched_assist/sched_assist_scene 0
-lock_value 0 /proc/jank_info/cpu_jank_info/task_track_enable
-lock_value 0 /proc/jank_info/cpu_jank_info/clm_enable
 set_value '2000' /proc/oplus-votable/GAUGE_UPDATE/force_val
 set_value '1' /proc/oplus-votable/GAUGE_UPDATE/force_active
-lock_value 80 /proc/sys/walt/sched_group_downmigrate # xiaomi 80, oneplus 380
-lock_value 90 /proc/sys/walt/sched_group_upmigrate # xiaomi 90, oneplus 400
-lock_value 35 /proc/sys/walt/sched_min_task_util_for_colocation # xiaomi 35, oneplus 1000
-echo '' > /proc/sys/walt/sched_lib_name # libunity.so, libfb.so
 
-sf=$(pidof surfaceflinger)
-for pid in `ls /proc/$sf/task`; do
-  cat /proc/$pid/comm
-done
+# MeiZu
+if [[ -d /proc/mz_info ]]; then
+  echo 4 > /proc/mz_scheduler/vip_task/enabled
+  echo 0 > /proc/mz_thermal_dcvs/dcvs_enabled
+  echo 0 > /proc/mz_mm_vip/vip_enable
+  echo 0 > /proc/mz_frame_sync/enable
+  echo 0 > /proc/mz_frame_sync/freq_enable
+  # chmod 444 > /proc/mz_frame_sync/ctrl # Boom!
+  echo 1 > /proc/mz_lock/enabled
+  echo 0 > /proc/mz_freq/adapt_sched_boost/enabled_one
+  echo 0 > /proc/mz_freq/adapt_sched_boost/enabled_two
+  echo 0 > /proc/mz_freq/adapt_sched_boost/enabled_three
+  # echo 0 > /proc/mz_thermal_boost/boost_enabled
+  # echo 0 > /proc/mz_thermal_boost/sched_boost_enabled
+fi
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1

@@ -9,21 +9,21 @@
     { "id": "g1:cpu3", "step": -0.7,
       "max": 2457600, "min": 729600, "margin": 240, "mode": "performance" },
     { "id": "g1:cpu7", "step": -0.7,
-      "max": 2476800, "min": 998400, "margin": 300, "mode": "performance" },
+      "max": 2592000, "min": 998400, "margin": 300, "mode": "performance" },
 
     { "id": "g2:cpu3", "step": -0.7,
       "max": 2707200, "min": 729600, "margin": 400, "mode": "performance" },
     { "id": "g2:cpu7", "step": -0.5,
-      "max": 2841600, "min": 1132800, "margin": 400, "mode": "performance" },
+      "max": 2995200, "min": 1132800, "margin": 400, "mode": "performance" },
 
     { "id": "g3:cpu3", "step": -0.5,
       "max": 2803200, "min": 1056000, "margin": 400, "mode": "performance" },
     { "id": "g3:cpu7", "step": -0.5,
-      "max": 2995200, "min": 1132800, "margin": 400, "mode": "performance" },
+      "max": 3187200, "min": 1132800, "margin": 400, "mode": "performance" },
 
     { "id": "g4:cpu3", "step": -0.5,
       "max": 2803200, "min": 1401600, "margin": 400, "mode": "performance" },
-    { "id": "g4:cpu7", "step": -0.5,
+    { "id": "g4:cpu7", "step": -0.5, "target_margin": "700 2841600:350",
       "max": 3187200, "min": 1593600, "margin": 400, "mode": "performance" }
   ],
   "modes": [
@@ -40,7 +40,10 @@
         ],
         ["/proc/game_opt/disable_cpufreq_limit", "0"],
         ["@limiters", "g0:cpu3", "g0:cpu7"]
-      ]
+      ],
+      "tas": {
+        "min": 2054400
+      }
     },
     {
       "mode": ["balance"],
@@ -55,7 +58,11 @@
         ],
         ["@presets", "limiter_off"],
         ["@limiters", "g1:cpu3", "g1:cpu7"]
-      ]
+      ],
+      "tas": {
+        "t": 93,
+        "min": 2054400
+      }
     },
     {
       "mode": ["performance"],
@@ -122,7 +129,6 @@
         "_120": ["2956800", "2803200"]
       },
       "tas": {
-        "t": 93,
         "min": 2054400
       }
     }

@@ -55,6 +55,16 @@
       ["/sys/devices/system/cpu/cpufreq/policy7/walt/down_rate_limit_us"],
       ["/sys/devices/system/cpu/cpufreq/policy7/walt/up_rate_limit_us"]
     ],
+    "target_loads": [
+      ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_loads"],
+      ["/sys/devices/system/cpu/cpu3/cpufreq/walt/target_loads"],
+      ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_loads"]
+    ],
+    "target_load_thresh": [
+      ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_load_thresh"],
+      ["/sys/devices/system/cpu/cpu3/cpufreq/walt/target_load_thresh"],
+      ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_load_thresh"]
+    ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_3"], ["$cpu_min_7"]
     ],
@@ -76,9 +86,14 @@
       ["$min_cpus_cpu7", "#0"],
       ["$max_cpus_cpu7", "#1"]
     ],
+    "limiter_off": [
+      ["/proc/game_opt/disable_cpufreq_limit", "1"],
+      ["/sys/module/migt/parameters/glk_disable", "1"],
+      ["/sys/module/perfmgr/parameters/perfmgr_enable", "#0"]
+    ],
     "common_active": [
       ["@preset", "cpu7_on"],
-      ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"]
+      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"]
     ],
     "common_inactive": [
       ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
@@ -93,31 +108,39 @@
       ["@limiters", "NONE"],
       ["@cpuset", "0-2", "0-5", "0-5", "0-7"],
       ["@preset", "l3_max"],
-      ["@gesture", "PAUSE"]
+      ["$mod_percent", "93"],
+      ["@gesture", "PAUSE"],
+      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"]
     ],
 
+    "l3": [
+      ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:gold/max_freq", "1804800"],
+      ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime/max_freq", "1804800"],
+      ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime-compute/max_freq", "1804800"],
+      ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:l3:silver/max_freq", "1804800"]
+    ],
     "l3_max": [
-      ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:gold/max_freq", "#1804800"],
-      ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime/max_freq", "#1804800"],
-      ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime-compute/max_freq", "#1804800"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:l3:silver/max_freq", "#1804800"]
+      ["@values", "l3", "1804800", "1804800", "1804800", "1804800"]
+    ],
+    "l3_low": [
+      ["@values", "l3", "1574400", "1574400", "1574400", "1574400"]
     ],
 
     "ddr_max": [
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq", "4224000"],
+      ["@values", "ddr", "2736000", "1555000", "4224000", "4224000", "4224000", "1555000"]
+    ],
+    "ddr_low": [
+      ["@values", "ddr", "2736000", "1555000", "2736000", "2736000", "2736000", "1555000"]
+    ],
+    "ddr_mid": [
+      ["@values", "ddr", "2736000", "1555000", "3187000", "3187000", "3187000", "1555000"]
+    ],
+    "ddr": [
+      ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq", "2736000"],
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:gold-compute/max_freq", "1555000"],
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:gold/max_freq", "4224000"],
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:prime-latfloor/max_freq", "4224000"],
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:prime/max_freq", "4224000"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:silver/max_freq", "1555000"]
-    ],
-
-    "ddr_low": [
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq", "2736000"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:gold-compute/max_freq", "1555000"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:gold/max_freq", "2736000"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:prime-latfloor/max_freq", "2736000"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:prime/max_freq", "2736000"],
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:silver/max_freq", "1555000"]
     ],
 
@@ -233,7 +256,6 @@
         ["@preset", "common_gaming"],
         ["@values", "hispeed_freq", "902400", "0", "0"],
         ["@preset", "freq_low"],
-        ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
         ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
     },
@@ -252,7 +274,6 @@
         ["@preset", "common_gaming"],
         ["@values", "hispeed_freq", "902400", "1190400", "1209600"],
         ["@preset", "freq_middle"],
-        ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
         ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
     },
@@ -283,7 +304,7 @@
       "app": [
         ["@preset", "common_app"],
         ["$bus_ddr", "3187000"],
-        ["@values", "max_freq", "#1900800", "#2803200", "#3014400"]
+        ["@values", "max_freq", "#1900800", "#2611200", "#2803200"]
       ],
       "game": [
         ["$perfmgr_enable", "#0"],
@@ -303,7 +324,7 @@
       "app": [
         ["@preset", "common_app"],
         ["$bus_ddr", "3187000"],
-        ["@values", "max_freq", "#1900800", "#2611200", "#2803200"]
+        ["@values", "max_freq", "#1900800", "#2803200", "#3014400"]
       ],
       "game": [
         ["$perfmgr_enable", "#0"],

@@ -45,7 +45,7 @@ disable_migt() {
     hide_value $migt/glk_freq_limit_start '0'
     hide_value $migt/glk_freq_limit_walt '0'
     hide_value $migt/glk_maxfreq '0 0 0'
-    hide_value $migt/glk_minfreq '307200  480000 595200'
+    hide_value $migt/glk_minfreq '307200 480000 595200'
     hide_value $migt/migt_ceiling_freq '0 0 0'
     hide_value $migt/glk_disable '1'
     hide_value $migt/mi_freq_enable '0'
@@ -90,6 +90,13 @@ disable_migt() {
   mount --bind /cache/data/system/mcd/policy /data/system/mcd/policy
 }
 
+echo 2265600 3148800 2956800 3302400 > /proc/sys/walt/sched_fmax_cap
+for c in 0 2 5 7; do
+  lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_high_freq
+  lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_low_freq
+done
+echo 1024 > /proc/sys/kernel/sched_util_clamp_max
+echo 1024 > /proc/sys/kernel/sched_util_clamp_min
 
 core_ctl_preset() {
   cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
@@ -130,7 +137,6 @@ lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
 
 rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost
-
 
 # OnePlus
 if [[ -d  /proc/game_opt ]]; then

@@ -190,3 +190,6 @@ set_cpuset update_engine "top-app/$cpus"
 set_cpuset audioserver 'foreground'
 set_cpuset android.hardware.audio.service_64 'foreground'
 set_cpuset vendor.qti.hardware.display.composer-service "top-app/$cpus"
+set_cpuset vendor.qti.hardware.perf-hal-service 'foreground'
+set_cpuset kswapd 'foreground'
+

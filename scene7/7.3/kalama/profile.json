@@ -151,8 +151,7 @@
       ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime-compute/max_freq", "1574400"],
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:l3:silver/max_freq", "1574400"]
     ],
-
-    "ddr_max": [
+    "ddr": [
       ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq", "4224000"],
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:gold-compute/max_freq", "1555000"],
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:gold/max_freq", "4224000"],
@@ -161,13 +160,16 @@
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:silver/max_freq", "1555000"]
     ],
 
+    "ddr_max": [
+      ["@values", "ddr", "4224000", "1555000", "4224000", "4224000", "4224000", "1555000"]
+    ],
+
+    "ddr_mid": [
+      ["@values", "ddr", "3187000", "1555000", "3187000", "3187000", "3187000", "1555000"]
+    ],
+
     "ddr_low": [
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq", "2736000"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:gold-compute/max_freq", "1555000"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:gold/max_freq", "2736000"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:prime-latfloor/max_freq", "2736000"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:prime/max_freq", "2736000"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:silver/max_freq", "1555000"]
+      ["@values", "ddr", "2736000", "1555000", "2736000", "2736000", "2736000", "1555000"]
     ],
 
     "powersave_active": [

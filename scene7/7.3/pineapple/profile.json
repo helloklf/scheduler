@@ -25,17 +25,6 @@
         "inactive_interval": 100,
         "ddr_boost": false,
         "params": [
-          { "id": "g1:cpu0", "mode": "upper", "max": 1689600, "min": 902400, "margin": 300 },
-          { "id": "g1:cpu2", "mode": "upper", "max": 2035200, "min": 729600, "margin": 300 },
-
-          { "id": "g2:cpu0", "mode": "upper", "max": 1824000, "min": 902400, "margin": 300 },
-          { "id": "g2:cpu2", "mode": "upper", "max": 2438400, "min": 729600, "margin": 300 },
-      
-          { "id": "g3:cpu0", "mode": "upper", "max": 1824000, "min": 902400, "margin": 400 },
-          { "id": "g3:cpu2", "mode": "upper", "max": 2630400, "min": 960000, "margin": 350 },
-      
-          { "id": "g4:cpu0", "mode": "upper", "max": 1824000, "min": 902400, "margin": 400 },
-          { "id": "g4:cpu2", "mode": "upper", "max": 2956800, "min": 1190400, "margin": 400 }
         ]
       },
       "cpuset": {
@@ -58,8 +47,7 @@
     "presets": {
       "reset": [
         ["@msm_reset"],
-        ["@governor", "walt"],
-        ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000", "1000", "1000"]
+        ["@governor", "walt"]
       ],
   
       "hispeed_freq": [
@@ -96,6 +84,12 @@
         ["/sys/devices/system/cpu/cpu5/cpufreq/walt/target_load_thresh"],
         ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_load_thresh"]
       ],
+      "memlat": [
+        ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/decay_rate", "90"],
+        ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/window_ms", "40"],
+        ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/sample_ms", "4"],
+        ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq", "#2736000"]
+      ],
       "min_freq": [
         ["$cpu_min_0"], ["$cpu_min_2"], ["$cpu_min_5"], ["$cpu_min_7"]
       ],
@@ -125,8 +119,8 @@
         ["/sys/module/migt/parameters/glk_freq_limit_walt", "#0"]
       ],
       "limiter_on": [
-        ["/proc/game_opt/disable_cpufreq_limit", "#0"],
-        ["/sys/module/migt/parameters/glk_disable", "#0"]
+        ["/proc/game_opt/disable_cpufreq_limit", "0"],
+        ["/sys/module/migt/parameters/glk_disable", "0"]
       ],
       "common_active": [
         ["@preset", "cpu7_on"]
@@ -139,8 +133,7 @@
       "common_app": [
         ["$perfmgr_enable", "0"],
         ["@cpuset", "0-1", "0-6", "2-6", "2-7"],
-        ["/dev/cpuset/sf/cpus", "#2-6"],
-        ["/dev/cpuset/display/cpus", "#2-6"],
+        ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000", "1000", "1000"],
         ["@values", "target_load_thresh", "1024", "1024", "1024", "1024"],
         ["$mod_percent", "100"]
       ],
@@ -148,11 +141,10 @@
         ["@preset", "common_active"],
         ["@limiters", "NONE"],
         ["@cpuset", "0-1", "0-6", "0-6", "2-7"],
-        ["/dev/cpuset/sf/cpus", "#2-6"],
-        ["/dev/cpuset/display/cpus", "#2-6"],
         ["$sched_boost", "0"],
         ["@values", "hispeed_load", "90", "90", "90", "90"],
-        ["$mod_percent", "95"]
+        ["$mod_percent", "94"],
+        ["@values", "latency", "2000", "2000", "2000", "2000", "2000", "2000", "2000", "2000"]
       ],
 
       "powersave_active": [
@@ -270,7 +262,7 @@
         ],
         "game": [
           ["@preset", "common_gaming"],
-          ["@preset", "limiter_off"],
+          ["@preset", "limiter_on"],
           ["@values", "hispeed_freq", "0", "960000", "1113600", "1171200"]
         ]
       },

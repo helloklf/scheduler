@@ -44,7 +44,7 @@
       "idle_delay": 1700,
       "enter": [
         ["@preset", "fast_active"],
-        ["$sched_boost", "#2"]
+        ["$sched_boost", "#1"]
       ],
       "exit": [
         ["@preset", "fast_inactive"]

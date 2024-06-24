@@ -36,7 +36,7 @@
           ["$cpu_max_2", "^2707200"],
           ["$cpu_max_5", "^2707200"],
           ["$cpu_max_7", "^2803200"],
-          ["$sched_boost", "2"]
+          ["$sched_boost", "1"]
         ],
         "exit": [
           ["$sched_boost", "0"]
@@ -46,9 +46,7 @@
     "presets": {
       "reset": [
         ["@msm_reset"],
-        ["@governor", "walt"],
-        ["/dev/cpuset/sf/cpus", "#2-6"],
-        ["/dev/cpuset/display/cpus", "#2-6"]
+        ["@governor", "walt"]
       ],
   
       "hispeed_freq": [
@@ -134,7 +132,6 @@
       "common_app": [
         ["$perfmgr_enable", "0"],
         ["@cpuset", "0-1", "0-6", "2-6", "2-7"],
-        ["/dev/cpuset/sf/cpus", "#2-4"],
         ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000", "1000", "1000"],
         ["@values", "target_load_thresh", "1024", "1024", "1024", "1024"],
         ["$mod_percent", "100"],
@@ -144,7 +141,6 @@
         ["@preset", "common_active"],
         ["@limiters", "NONE"],
         ["@cpuset", "0-1", "0-6", "0-6", "2-7"],
-        ["/dev/cpuset/sf/cpus", "#2-4"],
         ["$sched_boost", "0"],
         ["@values", "hispeed_load", "80", "80", "80", "80"],
         ["$mod_percent", "94"],
@@ -333,7 +329,6 @@
           "com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece", "com.tencent.lolm",
           "com.tencent.tmgp.speedmobile",
           "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact",
-          "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig",
           "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"
         ],
         "import": "_DualCore.json"

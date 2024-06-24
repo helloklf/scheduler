@@ -9,18 +9,6 @@
     }
   },
   {
-    "friendly": "QQ",
-    "packages": ["com.tencent.mobileqq"],
-    "cpuset": {
-      "comm": {
-        "4-7": ["RenderThread"],
-        "0-6": ["pool-"]
-      },
-      "trashy": [],
-      "other": "0-7"
-    }
-  },
-  {
     "friendly": "优先大核",
     "packages": [
       "com.tencent.mobileqq",
@@ -44,6 +32,9 @@
     "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
     "cpuset": {
       "main_thread": "4-6",
+      "mvp": [
+        "GameThread", "RHIThread", "RenderThread"
+      ],
       "comm": {
         "7": ["GameThread"],
         "4-7": ["AsyncLoading", "FChunk"],

@@ -4,10 +4,12 @@
     "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
     "cpuset": {
       "main_thread": "3-6",
+      "mvp": [
+        "GameThread", "RHIThread", "RenderThread"
+      ],
       "comm": {
         "7": ["GameThread"],
-        "3-7": ["AsyncLoading", "FChunk"],
-        "3-6": ["TaskGraphHP", "NativeThread", "RenderThread", "RHIThread"]
+        "3-6": ["TaskGraphHP", "NativeThread", "RenderThread", "AsyncLoading", "FChunk", "RHIThread"]
       },
       "other": "0-6"
     }
@@ -30,7 +32,12 @@
       "unity_main": "6",
       "heavy_thread": "UnityGfx",
       "heavy_cores": "7",
+      "heavy_mvp": true,
       "heavy_switch": false,
+      "load_boost": {
+        "UnityMain": -20
+      },
+      "mvp": ["UnityGfx", "UnityMain"],
       "comm": {
         "3-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"],
         "0-5": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"]
@@ -43,10 +50,12 @@
     "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
     "cpuset": {
       "unity_main": "7",
-      "heavy_thread": "Thread-",
+      "heavy_thread": "UnityGfx,Thread-",
       "heavy_cores": "3-6",
+      "heavy_mvp": true,
+      "mvp": ["UnityGfx", "UnityMain"],
       "comm": {
-        "3-6": ["UnityGfx", "UnityPreload", "NativeThread", "CoreThread", "Worker Thread", "Apollo-"]
+        "3-6": ["UnityPreload", "NativeThread", "CoreThread", "Worker Thread", "Apollo-"]
       },
       "other": "0-6"
     }
@@ -55,11 +64,16 @@
     "friendly": "LOL Mobile",
     "packages": ["com.tencent.lolm"],
     "cpuset": {
-      "heavy_thread": "Thread-",
+      "heavy_thread": "UnityGfx,Thread-",
       "heavy_cores": "3-6",
+      "heavy_mvp": true,
+      "load_boost": {
+        "UnityMain": -25
+      },
+      "mvp": ["UnityGfx", "UnityMain"],
       "comm": {
         "7": ["UnityMain"],
-        "3-6": ["UnityGfx", "NativeThread", "CoreThread", "Worker Thread"]
+        "3-6": ["NativeThread", "CoreThread", "Worker Thread"]
       },
       "other": "0-6"
     }
@@ -70,9 +84,11 @@
     "cpuset": {
       "heavy_thread": "Thread-",
       "heavy_cores": "7",
+      "heavy_boost": -25,
+      "mvp": ["RenderThread", "RHIThread"],
       "comm": {
         "3-6": [
-          "RenderThread",
+          "RenderThread", "RHIThread",
           "FAsyncLoading", "TaskGraphNP", "Thread-", "NativeThread", "MainThread"]
       },
       "other": "0-6"
@@ -83,6 +99,10 @@
     "packages": ["com.tencent.tmgp.speedmobile"],
     "cpuset": {
       "unity_main": "7",
+      "load_boost": {
+        "UnityMain": -25
+      },
+      "mvp": ["UnityGfx"],
       "comm": {
         "3-6": ["UnityGfx", "Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
       },

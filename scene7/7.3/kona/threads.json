@@ -9,18 +9,6 @@
     }
   },
   {
-    "friendly": "QQ",
-    "packages": ["com.tencent.mobileqq"],
-    "cpuset": {
-      "comm": {
-        "4-7": ["RenderThread"],
-        "0-6": ["pool-"]
-      },
-      "trashy": [],
-      "other": "0-7"
-    }
-  },
-  {
     "friendly": "优先大核",
     "packages": [
       "com.tencent.mobileqq",
@@ -84,6 +72,7 @@
     "cpuset": {
       "heavy_thread": "Thread-",
       "heavy_cores": "7",
+      "heavy_boost": -30,
       "comm": {
         "4-6": ["RenderThread", "RHIThread", "TaskGraphNP"]
       },
@@ -95,10 +84,9 @@
     "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
     "cpuset": {
       "unity_main": "7",
-      "heavy_thread": "Thread-",
+      "heavy_thread": "UnityGfx,Thread-",
       "heavy_cores": "6",
       "comm": {
-        "6": ["UnityGfx"],
         "4-5": [
           "CoreThread", "UnityPreload", "Worker Thread", "Apollo-",
           "FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage"

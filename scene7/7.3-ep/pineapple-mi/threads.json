@@ -46,6 +46,9 @@
     "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
     "cpuset": {
       "main_thread": "2-6",
+      "mvp": [
+        "GameThread", "RHIThread", "RenderThread"
+      ],
       "comm": {
         "7": ["GameThread"],
         "2-4": ["RHIThread", "RenderThread"],
@@ -108,15 +111,16 @@
   },
   {
     "friendly": "和平精英",
-    "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
+    "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig"],
     "cpuset": {
       "heavy_thread": "Thread-",
       "heavy_cores": "7",
+      "heavy_boost": -20,
       "comm": {
-        "5-6": ["RenderThread"],
-        "2-4": ["FAsyncLoading", "TaskGraphNP", "Thread-", "NativeThread", "MainThread"]
+        "2-4": ["RenderThread", "RHIThread"],
+        "2-6": ["FAsyncLoading", "TaskGraphNP", "Thread-", "NativeThread", "MainThread"]
       },
-      "other": "2-4"
+      "other": "2-6"
     }
   },
   {
