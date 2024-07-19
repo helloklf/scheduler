@@ -36,8 +36,8 @@
         "main_thread": "4-6",
         "comm": {
           "7": ["GameThread"],
-          "4-7": ["AsyncLoading", "FChunk"],
-          "4-6": ["TaskGraphHP", "NativeThread", "RenderThread", "RHIThread"]
+          "4-7": ["FChunk"],
+          "4-6": ["FAsyncLoading", "TaskGraphHP", "NativeThread", "RenderThread", "RHIThread"]
         },
         "other": "0-6"
       }

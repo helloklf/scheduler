@@ -25,6 +25,10 @@
       ],
       "exit": [
       ]
+    },
+    "limiter": {
+      "l3_boost": true,
+      "ddr_boost": true
     }
   },
   "presets": {
@@ -248,14 +252,15 @@
     "balance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "ddr_mid"],
         ["$bus_ddr", "3187000"]
       ],
       "app": [
         ["@preset", "common_app"],
+        ["@preset", "ddr_mid"],
         ["@values", "max_freq", "1785600", "2592000", "2726400"]
       ],
       "game": [
+        ["@preset", "ddr_max"],
         ["$perfmgr_enable", "#0"],
         ["@preset", "common_gaming"],
         ["@values", "hispeed_freq", "902400", "1113600", "1171200"]
@@ -264,14 +269,15 @@
     "performance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "ddr_mid"],
         ["$bus_ddr", "3187000"]
       ],
       "app": [
         ["@preset", "common_app"],
+        ["@preset", "ddr_mid"],
         ["@values", "max_freq", "2016000", "2707200", "2841600"]
       ],
       "game": [
+        ["@preset", "ddr_max"],
         ["$perfmgr_enable", "#0"],
         ["@preset", "common_gaming"],
         ["$l3_boost", "#1593600"]

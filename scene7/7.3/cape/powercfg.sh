@@ -242,15 +242,10 @@ process_opt &
 
 # CC'MIUI/HyperOS or ColorOS
 if [[ $(getprop ro.cc.device.name) != "" ]] || [[ -d /my_heytap ]]; then
-  # for cpu in cpu0 cpu4 cpu7; do
-  #   hide_value /sys/devices/system/cpu/$cpu/cpufreq/scaling_governor walt
-  # done
   hide_value /proc/sys/walt/sched_upmigrate '85 95'
   hide_value /proc/sys/walt/sched_downmigrate '70 80'
   hide_value /proc/sys/walt/sched_group_upmigrate 95
   hide_value /proc/sys/walt/sched_group_downmigrate 78
-  hide_value /proc/sys/kernel/sched_energy_aware 0
-  hide_value /proc/sys/walt/sched_force_lb_enable 0
   stop miuibooster
 fi
 
@@ -264,16 +259,13 @@ if [[ -d  /proc/game_opt ]]; then
 fi
 hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
 hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-echo 0 > /proc/sys/kernel/sched_force_lb_enable
 lock_value N /sys/module/sched_assist_common/parameters/boost_kill
 lock_value N /sys/module/task_sched_info/parameters/sched_info_ctrl
 for service in orms-hal-1-0 # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
 do
   stop $service
 done
-setprop persist.sys.hans.skipframe.enable false
 lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
-echo 0 0 0 0 0 0 0 0 0 0 0 0 0 > /proc/oplus_frame_boost/stune_boost
 lock_value 0 /sys/module/oplus_bsp_sched_assist/parameters/boost_kill
 for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
   lock_value 0 /sys/kernel/msm_performance/parameters/$file

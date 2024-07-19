@@ -257,7 +257,7 @@
     "balance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "ddr_mid"],
+        ["@preset", "ddr_max"],
         ["$bus_ddr", "3187000"]
       ],
       "app": [

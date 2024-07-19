@@ -34,9 +34,6 @@
       "heavy_cores": "7",
       "heavy_mvp": true,
       "heavy_switch": false,
-      "load_boost": {
-        "UnityMain": -20
-      },
       "mvp": ["UnityGfx", "UnityMain"],
       "comm": {
         "3-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"],
@@ -67,9 +64,6 @@
       "heavy_thread": "UnityGfx,Thread-",
       "heavy_cores": "3-6",
       "heavy_mvp": true,
-      "load_boost": {
-        "UnityMain": -25
-      },
       "mvp": ["UnityGfx", "UnityMain"],
       "comm": {
         "7": ["UnityMain"],
@@ -99,9 +93,6 @@
     "packages": ["com.tencent.tmgp.speedmobile"],
     "cpuset": {
       "unity_main": "7",
-      "load_boost": {
-        "UnityMain": -25
-      },
       "mvp": ["UnityGfx"],
       "comm": {
         "3-6": ["UnityGfx", "Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]

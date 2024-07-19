@@ -66,9 +66,6 @@
       "unity_main": "2-4",
       "heavy_thread": "UnityGfx",
       "heavy_cores": "7",
-      "load_boost": {
-        "UnityMain": -15
-      },
       "comm": {
         "2-6": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"]
       },
@@ -110,9 +107,6 @@
       "unity_main": "7",
       "heavy_thread": "UnityGfx",
       "heavy_cores": "2-4",
-      "load_boost": {
-        "UnityMain": -20
-      },
       "comm": {
         "2-6": ["UnityChoreograp", "Job.Worker", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
       },

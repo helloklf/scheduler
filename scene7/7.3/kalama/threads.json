@@ -63,9 +63,6 @@
       "unity_main": "7",
       "heavy_thread": "Thread-;UnityGfx",
       "heavy_cores": "6",
-      "load_boost": {
-        "UnityMain": -18
-      },
       "comm": {
         "3-5": ["NativeThread", "CoreThread", "Worker Thread"]
       },
@@ -90,9 +87,6 @@
     "packages": ["com.tencent.tmgp.speedmobile"],
     "cpuset": {
       "unity_main": "7",
-      "load_boost": {
-        "UnityMain": -27
-      },
       "comm": {
         "7": "IL2CPP",
         "6": ["UnityGfx"],

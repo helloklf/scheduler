@@ -83,7 +83,7 @@
     "reset": [
       ["@mtk_reset"],
       ["@governor", "schedutil"],
-      ["$boost_affinity", "0"],
+      ["$boost_affinity", "#0"],
       ["$ddr_force_opp", "999"],
       ["$ddr_freq_cust", "0"],
       ["$ddr_max", "#5500000000"]
@@ -111,12 +111,12 @@
       ["@uclamp", "0.00~5.00", "0.00~max", "0.0~max"]
     ],
     "comm_app": [
-      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 0|cm_mgr_perf_enable 0|dsu_mode_change 0"],
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 0|cm_mgr_perf_enable 0|dsu_mode 0"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#18"],
       ["@cpuset", "0-3", "0-6", "0-7", "0-7"]
     ],
     "comm_gaming": [
-      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode_change 0"],
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode 1"],
       ["@limiters", "NONE"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#0"],
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
@@ -263,25 +263,9 @@
   ],
   "games": [
     {
-      "friendly": "和平精英",
-      "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
-      "import": "_PUBG.json"
-    },
-    {
-      "friendly": "王者荣耀/LOL",
-      "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
-      "import": "_SGAME.json"
-    },
-    {
-      "friendly": "QQ飞车",
-      "packages": ["com.tencent.tmgp.speedmobile"],
-      "import": "_SpeedMobile.json"
-    },
-    {
       "friendly": "双核强化",
       "packages": [
         "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact",
-        "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig",
         "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"
       ],
       "import": "_FASDualCore.json"

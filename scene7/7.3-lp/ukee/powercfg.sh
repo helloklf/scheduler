@@ -109,6 +109,8 @@ process_opt() {
   move_to_heavy media.audio.qc.codec.qti.media.c2audio@1.0-service
   move_to_heavy vendor.xiaomi.hw.touchfeature@1.0-service
   move_to_heavy 'android:ui'
+  set_cpuset scene-daemon foreground
+  set_cpuset vendor.oplus.hardware.gameopt-service foreground
 
   kernel_thread_set
 
@@ -240,6 +242,16 @@ disable_migt
 
 process_opt &
 
+# CC'MIUI/HyperOS or ColorOS
+if [[ $(getprop ro.cc.device.name) != "" ]] || [[ -d /my_heytap ]]; then
+  hide_value /proc/sys/walt/sched_upmigrate '85 95'
+  hide_value /proc/sys/walt/sched_downmigrate '70 80'
+  hide_value /proc/sys/walt/sched_group_upmigrate 95
+  hide_value /proc/sys/walt/sched_group_downmigrate 78
+  # hide_value /proc/sys/kernel/sched_energy_aware 0
+  stop miuibooster
+fi
+
 # OnePlus
 hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
 lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
@@ -250,21 +262,28 @@ if [[ -d  /proc/game_opt ]]; then
 fi
 hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
 hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-echo 0 > /proc/sys/kernel/sched_force_lb_enable
 lock_value N /sys/module/sched_assist_common/parameters/boost_kill
 lock_value N /sys/module/task_sched_info/parameters/sched_info_ctrl
 for service in orms-hal-1-0 # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
 do
   stop $service
 done
-setprop persist.sys.hans.skipframe.enable false
 lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
-echo 0 0 0 0 0 0 0 0 0 0 0 0 0 > /proc/oplus_frame_boost/stune_boost
 lock_value 0 /sys/module/oplus_bsp_sched_assist/parameters/boost_kill
 for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
   lock_value 0 /sys/kernel/msm_performance/parameters/$file
 done
 echo -R 444 /sys/kernel/msm_performance/parameters
+fbg=/proc/sys/fbg
+if [[ -d $fbg ]]; then
+  for file in frame_boost_enabled  input_boost_enabled  slide_boost_enabled; do
+    hide_value $fbg/$file 0
+  done
+fi
+# Realme only
+# if [[ $(getprop ro.product.vendor.brand) == 'realme' ]]; then
+#   stop gameopt_hal_service-1-0
+# fi
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1

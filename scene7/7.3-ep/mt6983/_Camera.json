@@ -2,7 +2,7 @@
   "friendly": "相机",
   "call": [
     ["@limiters", "NONE"],
-    ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode_change 0"]
+    ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode 1"]
   ],
   "modes": [{
     "mode": ["powersave", "balance"],

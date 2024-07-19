@@ -34,7 +34,7 @@
     {
       "mode": ["fast"],
       "fas": {
-        "middle_optimum_freq": 2100000, "middle_min_freq": 1500000,
+        "middle_optimum_freq": 2100000, "middle_min_freq": 1300000,
         "mode": "fps",
         "_60": ["2000000", "1900000", "-1"],
         "_90": ["2400000", "2400000", "-1"],
