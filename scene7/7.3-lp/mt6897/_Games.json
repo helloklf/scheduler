@@ -4,8 +4,7 @@
     {
       "mode": ["powersave"],
       "fas": {
-        "lower_freq": 1400000, "slow_down_rate": 2.8,
-        "thread_analyzer": true, "mode": "energy",
+        "lower_freq": 1400000,
         "_60": ["2400000", "1800000"],
         "_90": ["2400000", "1800000"],
         "_120": ["2400000", "1800000"]
@@ -14,8 +13,8 @@
     {
       "mode": ["balance"],
       "fas": {
-        "lower_freq": 1600000, "slow_down_rate": 2.6,
-        "thread_analyzer": true, "mode": "normal",
+        "lower_freq": 1600000,
+        "thread_analyzer": true,
         "_60": ["2660000", "2400000"],
         "_90": ["2660000", "2400000"],
         "_120": ["2660000", "2400000"]
@@ -24,8 +23,8 @@
     {
       "mode": ["performance"],
       "fas": {
-        "lower_freq": 1700000, "slow_down_rate": 2.4,
-        "perfect_load": 0.92, "mode": "normal",
+        "lower_freq": 1700000,
+        "perfect_load": 0.92,
         "_60": ["2800000", "2660000"],
         "_90": ["2800000", "2660000"],
         "_120": ["2800000", "2660000"]
@@ -34,8 +33,8 @@
     {
       "mode": ["fast"],
       "fas": {
-        "lower_freq": 1900000, "slow_down_rate": 2.4,
-        "perfect_load": 0.90, "mode": "normal",
+        "lower_freq": 1900000,
+        "perfect_load": 0.90,
         "_60": ["3000000", "2800000"],
         "_90": ["3000000", "2800000"],
         "_120": ["3000000", "2800000"]

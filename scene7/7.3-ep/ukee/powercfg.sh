@@ -226,6 +226,7 @@ hide_value /sys/module/msm_performance/parameters/cpu_min_freq '0:0 1:0 2:0 3:0 
 chattr +i  /sys/module/msm_performance/parameters/cpu_min_freq
 
 rmdir /dev/cpuset/background/untrustedapp
+rmdir /dev/cpuset/foreground/boost
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
@@ -246,10 +247,15 @@ process_opt &
 
 # CC'MIUI/HyperOS or ColorOS
 if [[ $(getprop ro.cc.device.name) != "" ]] || [[ -d /my_heytap ]]; then
+  # for cpu in cpu0 cpu4 cpu7; do
+  #   hide_value /sys/devices/system/cpu/$cpu/cpufreq/scaling_governor walt
+  # done
   hide_value /proc/sys/walt/sched_upmigrate '85 95'
   hide_value /proc/sys/walt/sched_downmigrate '70 80'
   hide_value /proc/sys/walt/sched_group_upmigrate 95
   hide_value /proc/sys/walt/sched_group_downmigrate 78
+  hide_value /proc/sys/kernel/sched_energy_aware 0
+  hide_value /proc/sys/walt/sched_force_lb_enable 1
   stop miuibooster
 fi
 

@@ -92,11 +92,13 @@
     "comm_app": [
       ["$ddr_map", "1700000:4100000 1600000:3094000 1500000:2133000 1400000:1600000"],
       ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
-      ["@preset", "freq_extreme"]
+      ["@preset", "freq_extreme"],
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 0"]
     ],
     "comm_gaming": [
       ["@limiters", "NONE"],
-      ["@cpuset", "0-3", "0-5", "0-5", "0-7"]
+      ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 1"]
     ],
 
     "powersave_active": [
@@ -241,14 +243,17 @@
   ],
   "games": [
     {
-      "friendly": "原神",
-      "categories": ["GenshinImpact"],
-      "import": "_GenshinImpact.json"
+      "friendly": "双核强化",
+      "packages": [
+        "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact",
+        "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"
+      ],
+      "import": "_FASDualCore.json"
     },
     {
       "friendly": "All",
       "packages": ["*"],
-      "import": "_Games.json"
+      "import": "_FAS.json"
     }
   ]
 }

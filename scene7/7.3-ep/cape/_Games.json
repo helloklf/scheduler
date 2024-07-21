@@ -10,8 +10,7 @@
     { "id": "g4:cpu7", "max": 2918400, "turning": 2592000, "min": 1766400, "margin": 500, "mode": "bottom" }
   ],
   "call": [
-    ["@preset", "common_gaming"],
-    ["/proc/game_opt/disable_cpufreq_limit", "#1"]
+    ["@preset", "common_gaming"]
   ],
   "modes": [
     {
@@ -27,6 +26,7 @@
           "80 1651200:85 2131200:90"
         ],
         ["/proc/game_opt/disable_cpufreq_limit", "0"],
+        ["$perfmgr_enable", "1"],
         ["@values", "target_load_thresh", "0", "600", "600"]
       ],
       "tas": {

@@ -4,7 +4,7 @@
     "mode": ["powersave"],
     "fas": {
       "middle_optimum_freq": 1555200,
-      "recent_frames": 8, "fast_down_rate": 6, "slow_down_rate": 3.5,
+      "fast_down_rate": 6, "slow_down_rate": 3.5,
       "_60": ["1785600", "1555200", "-2"],
       "_90": ["2035200", "1670400", "-2"],
       "_120": ["2150400", "1881600", "-2"]
@@ -23,7 +23,7 @@
   }, {
     "mode": ["balance"],
     "fas": {
-      "recent_frames": 6, "fast_down_rate": 8, "slow_down_rate": 5,
+      "fast_down_rate": 8, "slow_down_rate": 5,
       "_60": ["1785600", "1670400", "-1"],
       "_90": ["2150400", "1881600", "-2"],
       "_120": ["2265600", "1996800", "-2"]

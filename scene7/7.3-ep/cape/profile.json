@@ -33,8 +33,7 @@
     "reset": [
       ["@msm_reset"],
       ["$l3_boost", "0"],
-      ["@governor", "walt"],
-      ["$perfmgr_enable", "#0"]
+      ["@governor", "walt"]
     ],
 
     "hispeed_freq": [
@@ -105,7 +104,7 @@
     ],
     "common_app": [
       ["$bus_ddr_min", "547000"],
-      ["@cpuset", "0-3", "0-6", "1-6", "0-7"],
+      ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
       ["$gpu_max_khz", "#680000000"],
       ["$mod_percent", "100"]
     ],
@@ -259,7 +258,6 @@
         ["@values", "max_freq", "2016000", "2745600", "3187200"]
       ],
       "game": [
-        ["$perfmgr_enable", "#0"],
         ["$l3_boost", "#1804800"],
         ["$bus_ddr", "3196000"],
         ["$bus_ddr_min", "2736000"]
@@ -275,7 +273,6 @@
         ["@values", "max_freq", "2016000", "2745600", "3187200"]
       ],
       "game": [
-        ["$perfmgr_enable", "#0"],
         ["$l3_boost", "#1804800"],
         ["$bus_ddr", "3196000"],
         ["$bus_ddr_min", "2736000"]
