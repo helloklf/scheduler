@@ -142,8 +142,7 @@
       ["@preset", "common_inactive"],
       ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
       ["@values", "min_freq", "307200", "633600", "806400"],
-      ["@preset", "cpu7_off"],
-      ["$uclamp_bg_max", "0.00"]
+      ["@preset", "cpu7_off"]
     ],
 
     "balance_active": [

@@ -93,7 +93,6 @@
     "common_active": [
       ["@preset", "cpu7_on"],
       ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],
-      ["$uclamp_bg_max", "max"],
       ["/dev/cpuset/top-app/sf/cpus", "3-6"]
     ],
     "common_inactive": [
@@ -155,8 +154,7 @@
       ["@preset", "common_inactive"],
       ["@preset", "cpu7_off"],
       ["@limiters", "idle:cpu0", "idle:cpu3", "idle:cpu7"],
-      ["@values", "hispeed_freq", "0", "0", "0"],
-      ["$uclamp_bg_max", "0.00"]
+      ["@values", "hispeed_freq", "0", "0", "0"]
     ],
 
     "balance_active": [

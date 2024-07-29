@@ -258,16 +258,6 @@
     ],
     "games": [
       {
-        "friendly": "原神",
-        "categories": ["GenshinImpact"],
-        "import": "_GenshinImpact.json"
-      },
-      {
-        "friendly": "QQ飞车",
-        "packages": ["com.tencent.tmgp.speedmobile"],
-        "import": "_SpeedMobile.json"
-      },
-      {
         "friendly": "双核强化",
         "packages": [
           "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact",

@@ -1,0 +1,10 @@
+{
+  "version": "LP(开发调试配置)",
+  "versionCode": 10003,
+  "author": "SCENE7",
+  "projectUrl": "http://vtools.omarea.com/",
+  "features": {
+    "strict": true,
+    "pedestal": false
+  }
+}

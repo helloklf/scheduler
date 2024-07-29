@@ -113,8 +113,7 @@
     ],
     "common_active": [
       ["@preset", "cpu7_on"],
-      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
-      ["$uclamp_bg_max", "max"]
+      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"]
     ],
     "common_inactive": [
       ["@values", "min_freq", "#307200", "#633600", "#787200"],
@@ -148,8 +147,7 @@
       ["@preset", "common_inactive"],
       ["@preset", "cpu7_off"],
       ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
-      ["@values", "hispeed_freq", "0", "0", "0"],
-      ["$uclamp_bg_max", "0.00"]
+      ["@values", "hispeed_freq", "0", "0", "0"]
     ],
 
     "balance_active": [

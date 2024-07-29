@@ -15,8 +15,8 @@
     ],
     "exit": [
       ["@cpu_freq", "policy0", "min", "1600MHz"],
-      ["@cpu_freq", "policy2", "min", "1800MHz"],
-      ["@cpu_freq", "policy5", "min", "1800MHz"],
+      ["@cpu_freq", "policy2", "min", "1920000"],
+      ["@cpu_freq", "policy5", "min", "1920000"],
       ["@cpu_freq", "policy7", "min", "2100MHz"]
     ]
   }
