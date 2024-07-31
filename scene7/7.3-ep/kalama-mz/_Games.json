@@ -1,30 +1,7 @@
 {
   "friendly": "游戏(Games)",
-  "limiters": [
-    { "id": "g0:cpu3", "step": -0.7, "target_margin": "240",
-      "max": 2188800, "min": 614400, "margin": 240, "mode": "performance" },
-    { "id": "g0:cpu7", "step": -0.7, "target_margin": "300",
-      "max": 2227200, "min": 729600, "margin": 300, "mode": "performance" },
-
-    { "id": "g1:cpu3", "step": -0.7, "target_margin": "240",
-      "max": 2457600, "min": 729600, "margin": 240, "mode": "performance" },
-    { "id": "g1:cpu7", "step": -0.7, "target_margin": "300",
-      "max": 2592000, "min": 998400, "margin": 300, "mode": "performance" },
-
-    { "id": "g2:cpu3", "step": -0.7, "target_margin": "400",
-      "max": 2707200, "min": 729600, "margin": 400, "mode": "performance" },
-    { "id": "g2:cpu7", "step": -0.5, "target_margin": "400",
-      "max": 2995200, "min": 1132800, "margin": 400, "mode": "performance" },
-
-    { "id": "g3:cpu3", "step": -0.5, "target_margin": "400",
-      "max": 2803200, "min": 1056000, "margin": 400, "mode": "performance" },
-    { "id": "g3:cpu7", "step": -0.5, "target_margin": "400",
-      "max": 2956800, "min": 1132800, "margin": 400, "mode": "performance" },
-
-    { "id": "g4:cpu3", "step": -0.5, "target_margin": "400",
-      "max": 2803200, "min": 1401600, "margin": 400, "mode": "performance" },
-    { "id": "g4:cpu7", "step": -0.5, "target_margin": "700 2841600:350",
-      "max": 3187200, "min": 1593600, "margin": 400, "mode": "performance" }
+  "call": [
+    ["@limiters", "NONE"]
   ],
   "modes": [
     {
@@ -38,11 +15,16 @@
           "85 1651200:95",
           "85 1593600:95"
         ],
-        ["/proc/game_opt/disable_cpufreq_limit", "0"],
-        ["@limiters", "g0:cpu3", "g0:cpu7"]
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ],
       "tas": {
         "min": 2054400
+      },
+      "_fas": {
+        "mode": "boost",
+        "_60": ["1593600", "1651200"],
+        "_90": ["1593600", "1651200"],
+        "_120": ["1593600", "1651200"]
       }
     },
     {
@@ -56,9 +38,14 @@
           "80 2188800:90 2323200:95",
           "80 2092800:90 2476800:95"
         ],
-        ["@presets", "limiter_off"],
-        ["@limiters", "g1:cpu3", "g1:cpu7"]
+        ["@presets", "limiter_off"]
       ],
+      "_fas": {
+        "mode": "boost",
+        "_60": ["2227200", "2188800"],
+        "_90": ["2227200", "2188800"],
+        "_120": ["2227200", "2188800"]
+      },
       "tas": {
         "t": 93,
         "min": 2054400
@@ -75,9 +62,14 @@
           "80 2592000:81",
           "80 2592000:85 2841600:90"
         ],
-        ["@presets", "limiter_off"],
-        ["@limiters", "g2:cpu3", "g2:cpu7"]
+        ["@presets", "limiter_off"]
       ],
+      "_fas": {
+        "mode": "boost",
+        "_60": ["2592000", "2457600"],
+        "_90": ["2592000", "2457600"],
+        "_120": ["2592000", "2457600"]
+      },
       "tas": {
         "t": 93,
         "min": 2054400
@@ -94,8 +86,7 @@
           "70 2707200:80",
           "72 2841600:85 2956800:90"
         ],
-        ["@presets", "limiter_off"],
-        ["@limiters", "g3:cpu3", "g3:cpu7"]
+        ["@presets", "limiter_off"]
       ],
       "_fas": {
         "mode": "boost",
@@ -119,8 +110,7 @@
           "65 2707200:77",
           "65 2841600:78"
         ],
-        ["@presets", "limiter_off"],
-        ["@limiters", "g4:cpu3", "g4:cpu7"]
+        ["@presets", "limiter_off"]
       ],
       "_fas": {
         "mode": "boost",

@@ -2,25 +2,13 @@
   "friendly": "一般应用",
   "limiters": [
     { "id": "a0:cpu3", "target_margin": "250 1785600:170",
-      "max": 1920000, "min": 614400, "margin": 250, "mode": "performance" },
-
-    { "id": "a1:cpu3", "target_margin": "300 1920000:200",
-      "max": 2188800, "min": 614400, "margin": 300, "mode": "performance" },
-
-    { "id": "a2:cpu3", "target_margin": "400 2188800:270",
-      "max": 2457600, "min": 729600, "margin": 400, "mode": "performance" },
-
-    { "id": "a3:cpu3", "target_margin": "400 2457600:250",
-      "max": 2707200, "min": 729600, "margin": 400, "mode": "performance" },
-
-    { "id": "a4:cpu3", "target_margin": "500",
-      "max": 2803200, "min": 1056000, "margin": 500, "mode": "performance" }
+      "max": 1920000, "min": 614400, "margin": 250, "mode": "performance" }
   ],
   "modes": [{
     "mode": ["powersave"],
     "booster": {
       "duration": 3500,
-      "idle_delay": 1700,
+      "idle_delay": 1500,
       "enter": [
         ["@preset", "powersave_active"],
         ["$sched_boost", "2"],
@@ -35,45 +23,39 @@
     "mode": ["balance"],
     "booster": {
       "duration": 3500,
-      "idle_delay": 1700,
+      "idle_delay": 1500,
       "enter": [
         ["@preset", "balance_active"],
-        ["$sched_boost", "#1"],
-        ["@limiters", "a2:cpu3"]
+        ["$sched_boost", "#1"]
       ],
       "exit": [
-        ["@preset", "balance_inactive"],
-        ["@limiters", "a1:cpu3"]
+        ["@preset", "balance_inactive"]
       ]
     }
   }, {
     "mode": ["performance"],
     "booster": {
       "duration": 3500,
-      "idle_delay": 1700,
+      "idle_delay": 1500,
       "enter": [
         ["@preset", "performance_active"],
-        ["$sched_boost", "#1"],
-        ["@limiters", "a3:cpu3"]
+        ["$sched_boost", "#1"]
       ],
       "exit": [
-        ["@preset", "performance_inactive"],
-        ["@limiters", "a1:cpu3"]
+        ["@preset", "performance_inactive"]
       ]
     }
   }, {
     "mode": ["*"],
     "booster": {
       "duration": 3500,
-      "idle_delay": 1700,
+      "idle_delay": 1500,
       "enter": [
         ["@preset", "fast_active"],
-        ["$sched_boost", "#1"],
-        ["@limiters", "a4:cpu3"]
+        ["$sched_boost", "#1"]
       ],
       "exit": [
-        ["@preset", "fast_inactive"],
-        ["@limiters", "a2:cpu3"]
+        ["@preset", "fast_inactive"]
       ]
     }
   }]
