@@ -1,6 +1,6 @@
 {
-  "platform": "mt6985",
-  "platform_name": "D9200",
+  "platform": "mt6989",
+  "platform_name": "D9300",
   "alias": {
     "boost_affinity": "/sys/module/mtk_fpsgo/parameters/boost_affinity",
     "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
@@ -15,7 +15,6 @@
     "gpu_max_freq": "/sys/kernel/ged/hal/custom_upbound_gpu_freq",
     "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
     "cpufreq": "/proc/powerhal_cpu_ctrl/perfserv_freq",
-    "ddr_map": "/sys/module/mtk_fpsgo/parameters/ddrfreq_remap_table",
     "cpus_limit": "/sys/module/mtk_fpsgo/parameters/cpus_limit"
   },
   "features": {

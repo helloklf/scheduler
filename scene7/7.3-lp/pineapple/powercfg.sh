@@ -38,72 +38,35 @@ hide_value() {
   fi
 }
 
+echo 2265600 3148800 2956800 3302400 > /proc/sys/walt/sched_fmax_cap
+for c in 0 2 5 7; do
+  lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_high_freq
+  lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_low_freq
+done
+echo 1024 > /proc/sys/kernel/sched_util_clamp_max
+echo 1024 > /proc/sys/kernel/sched_util_clamp_min
 
-disable_migt() {
-  migt=/sys/module/migt/parameters
-  if [[ -e $migt ]]; then
-    hide_value $migt/migt_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
-    hide_value $migt/glk_freq_limit_start '0'
-    hide_value $migt/glk_freq_limit_walt '0'
-    hide_value $migt/glk_maxfreq '0 0 0'
-    hide_value $migt/glk_minfreq '307200 499200 595200'
-    hide_value $migt/migt_ceiling_freq '0 0 0'
-    hide_value $migt/glk_disable '1'
-    hide_value $migt/mi_freq_enable '0'
-    hide_value $migt/force_stask_to_big '0'
-    hide_value $migt/glk_fbreak_enable '0'
-    hide_value $migt/force_reset_runtime '0'
+core_ctl_preset() {
+  cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
+  echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
+  echo 1 > $cpu7_core_ctl_dir/min_cpus
 
-    settings put secure speed_mode_enable 1
-    chmod 000 $migt/*
-    chmod 000 /sys/module/migt
-    chmod 000 /sys/module/sched_walt/holders/migt/parameters
-  fi
+  cpu2_core_ctl_dir=/sys/devices/system/cpu/cpu2/core_ctl
+  lock_value 3 $cpu2_core_ctl_dir/min_cpus
+  lock_value 0 $cpu2_core_ctl_dir/enable
 
-  glk=/proc/sys/glk
-  if [[ -d $glk ]]; then
-    hide_value $glk/glk_disable '1'
-    hide_value $glk/freq_break_enable '0'
-    hide_value $glk/game_minfreq_limit '0 0 0'
-    hide_value $glk/game_maxfreq_limit '0 0 0'
-    hide_value $glk/game_lowspeed_load '30 30 30'
-    hide_value $glk/game_hispeed_load '80 80 80'
-  fi
-
-  migt=/proc/sys/migt
-  if [[ -d $migt ]]; then
-    hide_value $migt/force_stask_tob '0'
-    hide_value $migt/enable_pkg_monitor '0'
-    hide_value $migt/boost_pid '0'
-    hide_value $migt/force_forbidden_walt_lb '0'
-  fi
-
-  chmod 000 /sys/class/misc/migt
-  chmod 000 /sys/module/sched_walt/holders/migt
-
-  metis=/sys/module/metis/parameters
-  if [[ -d $metis ]]; then
-    for file in $metis/*enable; do
-      hide_value $file 0
-    done
-    for file in $metis/reset*; do
-      hide_value $file 0
-    done
-    hide_value $metis/cluaff_control 0
-    hide_value $metis/in_perf_mod 0
-    hide_value $metis/limit_bgtask_sched 0
-    echo 0,0,0,0 > $metis/min_cluster_freqs
-    echo 0,0,0,0 > $metis/user_min_freq
-  fi
+  cpu5_core_ctl_dir=/sys/devices/system/cpu/cpu5/core_ctl
+  lock_value 1 $cpu5_core_ctl_dir/enable
+  lock_value 2 $cpu5_core_ctl_dir/max_cpus
+  lock_value 2 $cpu5_core_ctl_dir/min_cpus
+  lock_value 0 $cpu5_core_ctl_dir/min_partial_cpus
+  lock_value 0 $cpu5_core_ctl_dir/enable
 }
 
 hide_value /sys/module/msm_performance/parameters/cpu_max_freq '0:4294967295 1:4294967295 2:4294967295 3:4294967295 4:4294967295 5:4294967295 6:4294967295 7:4294967295'
 chattr +i  /sys/module/msm_performance/parameters/cpu_max_freq
 hide_value /sys/module/msm_performance/parameters/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
 chattr +i  /sys/module/msm_performance/parameters/cpu_min_freq
-
-rmdir /dev/cpuset/background/untrustedapp
-rmdir /dev/cpuset/foreground/boost
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
@@ -119,24 +82,35 @@ hide_value $t_message/cpu_nolimit_temp 49500
 
 lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
 
-disable_migt
 
+rmdir /dev/cpuset/background/untrustedapp
+rmdir /dev/cpuset/foreground/boost
 
 # OnePlus
-# hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
-# lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
 if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
-  # hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
+  chmod 444 /proc/game_opt/rt_info
+  hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
   # hide_value /proc/game_opt/disable_cpufreq_limit 1
-  hide_value /proc/sys/walt/sched_downmigrate "40 70 70"
-  hide_value /proc/sys/walt/sched_upmigrate "60 90 85"
 fi
-# hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
-# hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-lock_value 2-6 /dev/cpuset/display/cpus
-lock_value 2-6 /dev/cpuset/sf/cpus
+set_value '2000' /proc/oplus-votable/GAUGE_UPDATE/force_val
+set_value '1' /proc/oplus-votable/GAUGE_UPDATE/force_active
 
+# MeiZu
+if [[ -d /proc/mz_info ]]; then
+  echo 4 > /proc/mz_scheduler/vip_task/enabled
+  echo 0 > /proc/mz_thermal_dcvs/dcvs_enabled
+  echo 0 > /proc/mz_mm_vip/vip_enable
+  echo 0 > /proc/mz_frame_sync/enable
+  echo 0 > /proc/mz_frame_sync/freq_enable
+  # chmod 444 > /proc/mz_frame_sync/ctrl # Boom!
+  echo 1 > /proc/mz_lock/enabled
+  echo 0 > /proc/mz_freq/adapt_sched_boost/enabled_one
+  echo 0 > /proc/mz_freq/adapt_sched_boost/enabled_two
+  echo 0 > /proc/mz_freq/adapt_sched_boost/enabled_three
+  # echo 0 > /proc/mz_thermal_boost/boost_enabled
+  # echo 0 > /proc/mz_thermal_boost/sched_boost_enabled
+fi
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1

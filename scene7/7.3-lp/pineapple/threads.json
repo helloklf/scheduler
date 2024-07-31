@@ -1,7 +1,7 @@
 [
   {
     "friendly": "鸣潮",
-    "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
+    "packages": ["com.kurogame.mingchao"],
     "cpuset": {
       "main_thread": "4-7",
       "comm": {

@@ -38,58 +38,6 @@ hide_value() {
   fi
 }
 
-disable_migt() {
-  migt=/sys/module/migt/parameters
-  if [[ -e $migt ]]; then
-    hide_value $migt/migt_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
-    hide_value $migt/glk_freq_limit_start '0'
-    hide_value $migt/glk_freq_limit_walt '0'
-    hide_value $migt/glk_maxfreq '0 0 0'
-    hide_value $migt/glk_minfreq '307200 480000 595200'
-    hide_value $migt/migt_ceiling_freq '0 0 0'
-    hide_value $migt/glk_disable '1'
-    hide_value $migt/mi_freq_enable '0'
-    hide_value $migt/force_stask_to_big '0'
-    hide_value $migt/glk_fbreak_enable '0'
-    hide_value $migt/force_reset_runtime '0'
-
-    settings put secure speed_mode_enable 1
-    chmod 000 $migt/*
-    chmod 000 /sys/module/migt
-    chmod 000 /sys/module/sched_walt/holders/migt/parameters
-  fi
-
-  glk=/proc/sys/glk
-  if [[ -d $glk ]]; then
-    hide_value $glk/glk_disable '1'
-    hide_value $glk/freq_break_enable '0'
-    hide_value $glk/game_minfreq_limit '0 0 0'
-    hide_value $glk/game_maxfreq_limit '0 0 0'
-    hide_value $glk/game_lowspeed_load '30 30 30'
-    hide_value $glk/game_hispeed_load '80 80 80'
-  fi
-
-  migt=/proc/sys/migt
-  if [[ -d $migt ]]; then
-    hide_value $migt/force_stask_tob '0'
-    hide_value $migt/enable_pkg_monitor '0'
-    hide_value $migt/boost_pid '0'
-  fi
-
-  chmod 000 /sys/class/misc/migt
-  chmod 000 /sys/module/sched_walt/holders/migt
-
-  metis=/sys/module/metis/parameters
-  if [[ -d $metis ]]; then
-    for file in $metis/*enable; do
-      lock_value 0 $file
-    done
-  fi
-  mkdir -p /cache/data/system/mcd
-  echo '0' > /cache/data/system/mcd/policy
-  mount --bind /cache/data/system/mcd/policy /data/system/mcd/policy
-}
-
 echo 2265600 3148800 2956800 3302400 > /proc/sys/walt/sched_fmax_cap
 for c in 0 2 5 7; do
   lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_high_freq
