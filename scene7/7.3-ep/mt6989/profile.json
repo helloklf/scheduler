@@ -79,12 +79,15 @@
     ],
     "comm_app": [
       ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
-      ["@preset", "freq_extreme"]
+      ["@preset", "freq_extreme"],
+      ["$gpu_max_freq", "#14"]
     ],
     "comm_gaming": [
       ["@limiters", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
-      ["@gesture", "PAUSE"]
+      ["@gesture", "PAUSE"],
+      ["$gpu_max_freq", "#9"],
+      ["$boost_affinity", "#0"]
     ],
 
     "powersave_active": [

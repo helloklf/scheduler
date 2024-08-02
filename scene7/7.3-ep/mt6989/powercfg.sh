@@ -67,7 +67,6 @@ if [[ $(cat /proc/version | grep Pandora) == '' ]]; then
   hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
   hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
 fi
-ls /sys/devices/system/cpu/cpu*/online | xargs lock_value 0
 echo 0 300000 2000000 > /proc/cpudvfs/cpufreq_debug
 echo 4 550000 2850000 > /proc/cpudvfs/cpufreq_debug
 echo 7 600000 3400000 > /proc/cpudvfs/cpufreq_debug

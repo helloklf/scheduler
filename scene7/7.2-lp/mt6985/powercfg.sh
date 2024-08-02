@@ -61,7 +61,6 @@ hide_value /sys/kernel/fpsgo/fbt/limit_cfreq 0
 hide_value /sys/kernel/fpsgo/fbt/limit_rfreq 0
 hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
 hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
-ls /sys/devices/system/cpu/cpu*/online | xargs lock_value 0
 lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 
 metis=/sys/module/metis/parameters

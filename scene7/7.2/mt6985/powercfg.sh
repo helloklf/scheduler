@@ -64,7 +64,6 @@ hide_value /sys/kernel/fpsgo/fbt/limit_rfreq 0
 hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
 hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
 fi
-ls /sys/devices/system/cpu/cpu*/online | xargs lock_value 0
 lock_value 1 /sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled
 lock_value '220000 2000000 400000 3000000 1200000 3350000' /proc/powerhal_cpu_ctrl/perfserv_freq
 
