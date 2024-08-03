@@ -85,7 +85,7 @@
     "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
     "cpuset": {
       "unity_main": "7",
-      "heavy_thread": "UnityGfx,Thread-",
+      "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "6",
       "comm": {
         "4-5": [
