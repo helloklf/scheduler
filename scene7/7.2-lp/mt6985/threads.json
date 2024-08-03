@@ -45,11 +45,9 @@
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "cpuset": {
-      "interval": 5000,
       "unity_main": "7",
       "heavy_thread": "UnityGfx",
       "heavy_cores": "6",
-      "heavy_switch": false,
       "comm": {
         "4-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende"],
         "0-3": [

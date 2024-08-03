@@ -44,8 +44,6 @@ hide_value() {
 
 rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost
-lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
-# lock_value -1 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
@@ -77,3 +75,7 @@ done
 if [[ -d $metis ]]; then
   chmod -R 444 $metis
 fi
+
+chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
+chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_tid
+lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
