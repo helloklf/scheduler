@@ -64,6 +64,21 @@ lock_value '3000000 3350000' /sys/module/mtk_fpsgo/parameters/cpus_limit
 echo 0 > /proc/powerhal_cpu_ctrl/adpf_enable
 lock_value 1 /sys/module/mtk_fpsgo/parameters/better_perf
 
+chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
+chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_tid
+lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
+
+echo 1 > /sys/module/migt/parameters/force_reset_runtime
+# lock_value 0 /sys/module/migt/parameters/enable_pkg_monitor
+lock_value 1 /sys/module/migt/parameters/glk_disable
+lock_value 0 /sys/module/migt/parameters/glk_fbreak_enable
+lock_value 0 /sys/module/migt/parameters/force_cluster_sched_enable
+lock_value -1 /sys/module/migt/parameters/render_prefer_cluster
+lock_value -1 /sys/module/migt/parameters/vip_prefer_cluster
+lock_value -1 /sys/module/migt/parameters/stask_prefer_cluster
+lock_value -1 /sys/module/migt/parameters/ip_prefer_cluster
+lock_value 1 /sys/module/migt/parameters/affinity_only
+
 metis=/sys/module/metis/parameters
 for file in $metis/*enable*; do
   lock_value 0 $file
@@ -71,7 +86,3 @@ done
 if [[ -d $metis ]]; then
   chmod -R 444 $metis
 fi
-
-chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
-chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_tid
-lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity

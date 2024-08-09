@@ -11,14 +11,6 @@
       "other": "0-7"
     }
   },
-
-  {
-    "friendly": "禁用线程分配",
-    "packages": ["*"],
-    "cpuset": {
-    }
-  },
-
   {
     "friendly": "闲鱼",
     "packages": ["com.taobao.idlefish"],

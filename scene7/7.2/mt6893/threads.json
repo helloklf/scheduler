@@ -81,11 +81,12 @@
   },
   {
     "friendly": "和平精英",
-    "packages": ["com.tencent.tmgp.pubgmhd"],
+    "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
     "cpuset": {
+      "heavy_thread": "Thread-",
+      "heavy_cores": "7",
       "comm": {
-        "7": ["RenderThread"],
-        "4-6": ["Thread-", "TaskGraphNP"]
+        "4-6": ["RenderThread", "TaskGraphNP"]
       },
       "other": "0-6"
     }

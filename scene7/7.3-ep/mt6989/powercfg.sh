@@ -1,5 +1,3 @@
-cfg_dir=$(cd $(dirname $0); pwd)
-
 set_value() {
   value=$1
   path=$2
@@ -44,8 +42,6 @@ hide_value() {
 
 rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost
-lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
-# lock_value -1 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
@@ -55,24 +51,33 @@ if [[ -f $t_message/cpu_limits ]]; then
   done
   chmod 444 $t_message/cpu_limits
 fi
-hide_value $t_message/market_download_limit 0
-hide_value $t_message/modem_limit 0
+lock_value 0 $t_message/market_download_limit
+lock_value 0 $t_message/modem_limit
 lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 
-
 lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
-if [[ $(cat /proc/version | grep Pandora) == '' ]]; then
-  hide_value /sys/kernel/fpsgo/fbt/limit_cfreq 0
-  hide_value /sys/kernel/fpsgo/fbt/limit_rfreq 0
-  hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
-  hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
-fi
 echo 0 300000 2000000 > /proc/cpudvfs/cpufreq_debug
 echo 4 550000 2850000 > /proc/cpudvfs/cpufreq_debug
-echo 7 600000 3400000 > /proc/cpudvfs/cpufreq_debug
-lock_value '300000 2000000 550000 2850000 600000 3400000' /proc/powerhal_cpu_ctrl/perfserv_freq
+echo 7 600000 3250000 > /proc/cpudvfs/cpufreq_debug
+lock_value '300000 2000000 550000 2850000 600000 3250000' /proc/powerhal_cpu_ctrl/perfserv_freq
+lock_value '3000000 3350000' /sys/module/mtk_fpsgo/parameters/cpus_limit
 echo 0 > /proc/powerhal_cpu_ctrl/adpf_enable
 lock_value 1 /sys/module/mtk_fpsgo/parameters/better_perf
+
+chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
+chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_tid
+lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
+
+echo 1 > /sys/module/migt/parameters/force_reset_runtime
+# lock_value 0 /sys/module/migt/parameters/enable_pkg_monitor
+lock_value 1 /sys/module/migt/parameters/glk_disable
+lock_value 0 /sys/module/migt/parameters/glk_fbreak_enable
+lock_value 0 /sys/module/migt/parameters/force_cluster_sched_enable
+lock_value -1 /sys/module/migt/parameters/render_prefer_cluster
+lock_value -1 /sys/module/migt/parameters/vip_prefer_cluster
+lock_value -1 /sys/module/migt/parameters/stask_prefer_cluster
+lock_value -1 /sys/module/migt/parameters/ip_prefer_cluster
+lock_value 1 /sys/module/migt/parameters/affinity_only
 
 metis=/sys/module/metis/parameters
 for file in $metis/*enable*; do
@@ -81,7 +86,3 @@ done
 if [[ -d $metis ]]; then
   chmod -R 444 $metis
 fi
-
-chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
-chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_tid
-lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity

@@ -160,7 +160,7 @@ kgsl min_pwrlevel $pl_max
 kgsl default_pwrlevel $pl_max
 kgsl max_clock_mhz 999
 kgsl max_gpuclk 999000000
-kgsl min_clock_mhz 0
+kgsl min_clock_mhz 220 # 默认124易卡顿，且并不会更省电
 kgsl devfreq/min_freq 0
 kgsl devfreq/max_freq 999000000
 

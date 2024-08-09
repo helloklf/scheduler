@@ -233,7 +233,7 @@
         ["@preset", "reset"],
         ["@preset", "balance_active"],
         ["$bus_ddr", "2736000"],
-        ["@preset", "ddr_low"]
+        ["@preset", "ddr_max"]
       ],
       "app": [
         ["@preset", "common_app"]

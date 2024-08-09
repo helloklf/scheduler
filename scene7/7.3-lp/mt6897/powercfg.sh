@@ -86,3 +86,6 @@ lock_value 0 /sys/kernel/fpsgo/fbt/boost_VIP
 lock_value 0 /sys/kernel/fpsgo/fbt/set_vvip
 lock_value 0 /sys/kernel/fpsgo/fbt/set_ls
 lock_value 0 /sys/kernel/fpsgo/fbt/blc_boost
+chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
+chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_tid
+lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity

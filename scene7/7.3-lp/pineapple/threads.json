@@ -3,13 +3,13 @@
     "friendly": "鸣潮",
     "packages": ["com.kurogame.mingchao"],
     "cpuset": {
-      "main_thread": "4-7",
+      "main_thread": "2-6",
       "comm": {
         "7": ["GameThread"],
         "2-7": ["AsyncLoading", "FChunk"],
-        "2-6": ["TaskGraphHP", "NativeThread", "RenderThread", "RHIThread"]
+        "2-4": ["RenderThread", "RHIThread"]
       },
-      "other": "0-6"
+      "other": "2-6"
     }
   },
   {
