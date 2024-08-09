@@ -34,9 +34,6 @@
     "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
     "cpuset": {
       "main_thread": "2-6",
-      "mvp": [
-        "GameThread", "RHIThread", "RenderThread"
-      ],
       "comm": {
         "7": ["GameThread"],
         "2-4": ["RHIThread", "RenderThread"],
@@ -90,7 +87,6 @@
     "cpuset": {
       "heavy_thread": "Thread-",
       "heavy_cores": "7",
-      "heavy_boost": -20,
       "comm": {
         "2-4": ["RenderThread", "RHIThread"],
         "2-6": ["FAsyncLoading", "TaskGraphNP", "Thread-", "NativeThread", "MainThread"]
@@ -105,7 +101,6 @@
       "unity_main": "7",
       "heavy_thread": "UnityGfx",
       "heavy_cores": "2-4",
-      "heavy_boost": -20,
       "comm": {
         "2-6": ["Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
       },

@@ -4,9 +4,6 @@
     "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
     "cpuset": {
       "main_thread": "3-6",
-      "mvp": [
-        "GameThread", "RHIThread", "RenderThread"
-      ],
       "comm": {
         "7": ["GameThread"],
         "3-6": ["TaskGraphHP", "NativeThread", "RenderThread", "AsyncLoading", "FChunk", "RHIThread"]
@@ -32,9 +29,7 @@
       "unity_main": "6",
       "heavy_thread": "UnityGfx",
       "heavy_cores": "7",
-      "heavy_mvp": true,
       "heavy_switch": false,
-      "mvp": ["UnityGfx", "UnityMain"],
       "comm": {
         "3-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"],
         "0-5": ["Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-"]
@@ -49,8 +44,6 @@
       "unity_main": "7",
       "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "3-6",
-      "heavy_mvp": true,
-      "mvp": ["UnityGfx", "UnityMain"],
       "comm": {
         "3-6": ["UnityPreload", "NativeThread", "CoreThread", "Worker Thread", "Apollo-"]
       },
@@ -63,8 +56,6 @@
     "cpuset": {
       "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "3-6",
-      "heavy_mvp": true,
-      "mvp": ["UnityGfx", "UnityMain"],
       "comm": {
         "7": ["UnityMain"],
         "3-6": ["NativeThread", "CoreThread", "Worker Thread"]
@@ -78,8 +69,6 @@
     "cpuset": {
       "heavy_thread": "Thread-",
       "heavy_cores": "7",
-      "heavy_boost": -25,
-      "mvp": ["RenderThread", "RHIThread"],
       "comm": {
         "3-6": [
           "RenderThread", "RHIThread",
@@ -93,7 +82,6 @@
     "packages": ["com.tencent.tmgp.speedmobile"],
     "cpuset": {
       "unity_main": "7",
-      "mvp": ["UnityGfx"],
       "comm": {
         "3-6": ["UnityGfx", "Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
       },

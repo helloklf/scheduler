@@ -44,7 +44,6 @@
     "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
     "cpuset": {
       "main_thread": "4-6",
-      "mvp": ["RHIThread"],
       "comm": {
         "7": ["GameThread"],
         "4-7": ["FChunk"],

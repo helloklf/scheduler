@@ -86,3 +86,13 @@ done
 if [[ -d $metis ]]; then
   chmod -R 444 $metis
 fi
+
+lock_value 1 /sys/devices/system/cpu/cpu4/core_ctl/enable
+lock_value 3 /sys/devices/system/cpu/cpu4/core_ctl/max_cpus
+lock_value 3 /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
+lock_value 0 /sys/devices/system/cpu/cpu4/core_ctl/enable
+
+lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/enable
+lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/max_cpus
+lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/min_cpus
+lock_value 0 /sys/devices/system/cpu/cpu7/core_ctl/enable
