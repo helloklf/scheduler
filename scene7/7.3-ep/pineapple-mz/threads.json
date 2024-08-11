@@ -90,7 +90,8 @@
       "heavy_cores": "7",
       "comm": {
         "2-4": ["RenderThread", "RHIThread"],
-        "2-6": ["FAsyncLoading", "TaskGraphNP", "Thread-", "NativeThread", "MainThread"]
+        "2-6": ["FAsyncLoading", "Thread-", "MainThread"],
+        "5-6": ["TaskGraph", "NativeThread"]
       },
       "other": "2-6"
     }

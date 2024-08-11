@@ -46,23 +46,6 @@ done
 echo 1024 > /proc/sys/kernel/sched_util_clamp_max
 echo 1024 > /proc/sys/kernel/sched_util_clamp_min
 
-core_ctl_preset() {
-  cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
-  echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
-  echo 1 > $cpu7_core_ctl_dir/min_cpus
-
-  cpu2_core_ctl_dir=/sys/devices/system/cpu/cpu2/core_ctl
-  lock_value 3 $cpu2_core_ctl_dir/min_cpus
-  lock_value 0 $cpu2_core_ctl_dir/enable
-
-  cpu5_core_ctl_dir=/sys/devices/system/cpu/cpu5/core_ctl
-  lock_value 1 $cpu5_core_ctl_dir/enable
-  lock_value 2 $cpu5_core_ctl_dir/max_cpus
-  lock_value 2 $cpu5_core_ctl_dir/min_cpus
-  lock_value 0 $cpu5_core_ctl_dir/min_partial_cpus
-  lock_value 0 $cpu5_core_ctl_dir/enable
-}
-
 hide_value /sys/module/msm_performance/parameters/cpu_max_freq '0:4294967295 1:4294967295 2:4294967295 3:4294967295 4:4294967295 5:4294967295 6:4294967295 7:4294967295'
 chattr +i  /sys/module/msm_performance/parameters/cpu_max_freq
 hide_value /sys/module/msm_performance/parameters/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
@@ -81,8 +64,6 @@ hide_value $t_message/market_download_limit 0
 hide_value $t_message/cpu_nolimit_temp 49500
 
 lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
-
-core_ctl_preset
 
 rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost

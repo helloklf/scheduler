@@ -65,7 +65,7 @@
       "comm": {
         "2-6": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"]
       },
-      "other": "2-6"
+      "other": "2-4"
     }
   },
   {
@@ -76,7 +76,8 @@
       "heavy_cores": "2-4",
       "comm": {
         "7": ["UnityMain"],
-        "2-4": ["CoreThread", "Apollo", "Worker Thread"]
+        "2-4": ["Worker Thread"],
+        "2-6": ["CoreThread", "Apollo", "NativeThread"]
       },
       "other": "2-6"
     }
@@ -89,7 +90,8 @@
       "heavy_cores": "7",
       "comm": {
         "2-4": ["RenderThread", "RHIThread"],
-        "2-6": ["FAsyncLoading", "TaskGraphNP", "Thread-", "NativeThread", "MainThread"]
+        "2-6": ["FAsyncLoading", "Thread-", "MainThread"],
+        "5-6": ["TaskGraph", "NativeThread"]
       },
       "other": "2-6"
     }
@@ -102,7 +104,7 @@
       "heavy_thread": "UnityGfx",
       "heavy_cores": "2-4",
       "comm": {
-        "2-6": ["Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
+        "2-6": ["UnityChoreograp", "Job.Worker", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
       },
       "other": "2-6"
     }

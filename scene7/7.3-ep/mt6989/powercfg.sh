@@ -78,9 +78,19 @@ lock_value -1 /sys/module/migt/parameters/vip_prefer_cluster
 lock_value -1 /sys/module/migt/parameters/stask_prefer_cluster
 lock_value -1 /sys/module/migt/parameters/ip_prefer_cluster
 lock_value 1 /sys/module/migt/parameters/affinity_only
+lock_value 0 /sys/module/migt/parameters/glk_freq_limit_start
+echo '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' > /sys/module/migt/parameters/migt_ceiling_freq
+echo '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' > /sys/module/migt/parameters/migt_freq
 lock_value 0 /sys/module/metis/parameters/thermal_break_enable
 lock_value 0 /sys/module/metis/parameters/is_break_enable
 lock_value 0 /sys/module/metis/parameters/mi_freq_enable
+lock_value '0,0,0' /sys/module/metis/parameters/user_min_freq
+for file in /sys/kernel/fpsgo/fbt/*freq*
+do
+  lock_value 0 $file
+done
+chmod -R 444 /proc/perfmgr_powerhal
+chmod -R 444 /proc/perfmgr
 
 metis=/sys/module/metis/parameters
 for file in $metis/*enable*; do

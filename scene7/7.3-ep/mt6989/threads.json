@@ -22,7 +22,7 @@
           "Audio", "tp_schedule", "Binder:", "MIHOYO_NETWORK", "Thread-",
           "mali-cmar-backe", "mali-mem-"
         ],
-        "0-5": ["FMOD", "UnityPreload", "mali-cpu-", "mali-event-", "AsyncReadManage", "ged-swd"]
+        "0-5": ["FMOD", "UnityPreload", "mali-cpu-", "mali-event-", "AsyncReadManage", "ged-swd", "mali-compiler"]
       },
       "other": "0-3"
     }
