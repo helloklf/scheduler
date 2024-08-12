@@ -12,8 +12,7 @@
           "85 1651200:95",
           "85 1593600:95"
         ],
-        ["/proc/game_opt/disable_cpufreq_limit", "0"],
-        ["@values", "target_load_thresh", "0", "600", "600"]
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ],
       "tas": {
         "min": 2054400
@@ -30,10 +29,10 @@
           "80 2188800:90 2323200:95",
           "80 2092800:90 2476800:95"
         ],
-        ["@presets", "limiter_off"],
-        ["@values", "target_load_thresh", "#600", "#1024", "#1024"]
+        ["@presets", "limiter_off"]
       ],
       "tas": {
+        "t": 93,
         "min": 2054400
       }
     },
@@ -48,10 +47,10 @@
           "80 2592000:81",
           "80 2592000:85 2841600:90"
         ],
-        ["@presets", "limiter_off"],
-        ["@values", "target_load_thresh", "#1024", "#1024", "#1024"]
+        ["@presets", "limiter_off"]
       ],
       "tas": {
+        "t": 93,
         "min": 2054400
       }
     },
@@ -66,16 +65,16 @@
           "70 2707200:80",
           "72 2841600:85 2956800:90"
         ],
-        ["@presets", "limiter_off"],
-        ["@values", "target_load_thresh", "#1024", "#1024", "#1024"]
+        ["@presets", "limiter_off"]
       ],
-      "fas": {
+      "_fas": {
         "mode": "boost",
         "_60": ["2841600", "2707200"],
         "_90": ["2841600", "2707200"],
         "_120": ["2841600", "2707200"]
       },
       "tas": {
+        "t": 93,
         "min": 2054400
       }
     },
@@ -90,10 +89,9 @@
           "65 2707200:77",
           "65 2841600:78"
         ],
-        ["@presets", "limiter_off"],
-        ["@values", "target_load_thresh", "#1024", "#1024", "#1024"]
+        ["@presets", "limiter_off"]
       ],
-      "fas": {
+      "_fas": {
         "mode": "boost",
         "_60": ["2956800", "2803200"],
         "_90": ["2956800", "2803200"],

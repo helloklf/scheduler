@@ -1,7 +1,7 @@
 {
   "friendly": "FAS",
   "call": [
-    ["@target_loads", "80", "80", "80", "75"]
+    ["@target_loads", "80", "75", "75", "75"]
   ],
   "modes": [
     {

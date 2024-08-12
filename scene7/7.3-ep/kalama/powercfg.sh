@@ -145,9 +145,15 @@ done
 echo -R 444 /sys/kernel/msm_performance/parameters
 
 # Meizu
-lock_value 0 /proc/mz_scheduler/vip_task/enabled
-# [MB] [swappiness] [MB] [swappiness] [MB] [swappiness]
-echo 3072 125 2048 150 1024 160 > /proc/mz_memory/reclaim_opt/kswapd_reclaim_swappiness
+if [[ $(getprop ro.product.model | grep -i Note) == '' ]]; then
+  lock_value 0 /proc/mz_scheduler/vip_task/enabled
+  # [MB] [swappiness] [MB] [swappiness] [MB] [swappiness]
+  echo 3072 125 2048 150 1024 160 > /proc/mz_memory/reclaim_opt/kswapd_reclaim_swappiness
+  for tz in /sys/class/thermal/*/mode
+  do
+    echo disabled > $tz
+  done
+fi
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
@@ -201,9 +207,3 @@ done
 for file in /sys/devices/system/cpu/bus_dcvs/L3/*/min_freq; do
   lock_value 307200 $file
 done
-
-echo 128 > /dev/cpuctl/background/cpu.shares
-echo 128 > /dev/cpuctl/l-background/cpu.shares
-echo 384 > /dev/cpuctl/system-background/cpu.shares
-# echo 512 > /dev/cpuctl/foreground/cpu.shares
-# rmdir /dev/cpuset/background/untrustedapp

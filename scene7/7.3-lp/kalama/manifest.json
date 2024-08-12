@@ -1,10 +1,11 @@
 {
   "version": "LP",
-  "versionCode": 20240808002,
+  "versionCode": 20240811001,
   "author": "SCENE7",
   "projectUrl": "http://vtools.omarea.com/",
   "features": {
     "strict": true,
-    "pedestal": false
+    "pedestal": false,
+    "reboot": true
   }
 }

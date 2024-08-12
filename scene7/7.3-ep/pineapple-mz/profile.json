@@ -151,6 +151,7 @@
 
       "powersave_active": [
         ["@preset", "common_active"],
+        ["@values", "min_freq", "^787200", "^729600", "^729600", "^787200"],
         ["@target_loads",
           "80 1574400:90",
           "80 960000:85 1612800:90",

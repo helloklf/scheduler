@@ -110,6 +110,9 @@ if [[ -d /proc/mz_info ]]; then
   echo 0 > /proc/mz_freq/adapt_sched_boost/enabled_three
   # echo 0 > /proc/mz_thermal_boost/boost_enabled
   # echo 0 > /proc/mz_thermal_boost/sched_boost_enabled
+  # lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
+  stop traced_probes
+  lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
 fi
 
 kgsl(){

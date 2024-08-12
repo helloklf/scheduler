@@ -108,7 +108,9 @@
       ["$perfmgr_enable", "0"],
       ["@cpuset", "0-2", "0-6", "0-6", "0-7"],
       ["@values", "target_load_thresh", "#600", "#1024", "#1024"],
-      ["$mod_percent", "100"]
+      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
+      ["$mod_percent", "100"],
+      ["@preset", "memlat"]
     ],
     "common_gaming": [
       ["@preset", "common_active"],
@@ -117,7 +119,9 @@
       ["$sched_boost", "#0"],
       ["$mod_percent", "93"],
       ["@gesture", "PAUSE"],
-      ["@values", "target_load_thresh", "#1024", "#1024", "#1024"]
+      ["@values", "latency", "2000", "2000", "2000", "2000", "2000", "2000"],
+      ["@values", "target_load_thresh", "#1024", "#1024", "#1024"],
+      ["@values", "memlat", "#30", "#10", "#2", "#3187000"]
     ],
 
     "l3": [
@@ -149,6 +153,13 @@
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:prime-latfloor/max_freq", "4224000"],
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:prime/max_freq", "4224000"],
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:silver/max_freq", "1555000"]
+    ],
+
+    "bak_memlat": [
+      ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/decay_rate", "90"],
+      ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/window_ms", "40"],
+      ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/sample_ms", "4"],
+      ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq", "#2736000"]
     ],
 
     "powersave_active": [

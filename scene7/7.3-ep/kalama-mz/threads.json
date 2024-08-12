@@ -6,11 +6,9 @@
       "main_thread": "3-6",
       "comm": {
         "7": ["GameThread"],
-        "5": ["RenderThread"],
-        "6": ["RHIThread"],
-        "3-5": ["TaskGraphHP", "NativeThread", "AsyncLoading", "FChunk"]
+        "3-6": ["TaskGraphHP", "NativeThread", "RenderThread", "AsyncLoading", "FChunk", "RHIThread"]
       },
-      "other": "0-4"
+      "other": "0-6"
     }
   },
   {

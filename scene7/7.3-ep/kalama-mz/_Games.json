@@ -1,8 +1,5 @@
 {
   "friendly": "游戏(Games)",
-  "call": [
-    ["@limiters", "NONE"]
-  ],
   "modes": [
     {
       "mode": ["powersave"],
