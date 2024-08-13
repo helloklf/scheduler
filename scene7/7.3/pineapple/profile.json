@@ -37,7 +37,7 @@
           ["$cpu_max_2", "^2630400"],
           ["$cpu_max_5", "^2630400"],
           ["$cpu_max_7", "^2630400"],
-          ["$sched_boost", "2"]
+          ["$sched_boost", "1"]
         ],
         "exit": [
           ["$sched_boost", "0"]
@@ -310,10 +310,7 @@
         "friendly": "双核强化",
         "packages": [
           "com.kurogame.mingchao", "com.kurogame.wutheringwaves.global",
-          "com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece", "com.tencent.lolm",
-          "com.tencent.tmgp.speedmobile",
           "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact",
-          "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig",
           "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"
         ],
         "import": "_DualCore.json"

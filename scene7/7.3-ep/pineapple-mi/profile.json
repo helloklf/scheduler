@@ -36,7 +36,7 @@
           ["$cpu_max_2", "^2707200"],
           ["$cpu_max_5", "^2707200"],
           ["$cpu_max_7", "^2803200"],
-          ["$sched_boost", "2"]
+          ["$sched_boost", "1"]
         ],
         "exit": [
           ["$sched_boost", "0"]

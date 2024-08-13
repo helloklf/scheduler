@@ -119,5 +119,15 @@
       },
       "other": "2-6"
     }
+  },
+  {
+    "friendly": "永劫无间",
+    "packages": ["com.netease.l22"],
+    "cpuset": {
+      "unity_main": "7",
+      "heavy_thread": "Thread-",
+      "heavy_cores": "2-4",
+      "other": "2-6"
+    }
   }
 ]
