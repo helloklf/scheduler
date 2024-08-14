@@ -59,19 +59,6 @@
 - 用法如 ["@msm_feas", "MIN_FREQ_INDEX", "MAX_FREQ_INDEX"]
 - FREQ_INDEX 指定频率索引范围(0~N)，值越小频率越高，N的最大值取决于内核模块中的定义
 
-### `@scene_fas`
-- 使用指定参数尝试开启SCENE的FAS(如果支持)
-- 如果开启成功，会自动清掉`@limiters`指定的辅助调速器
-- 该函数至多有5个参数，形式如 ["@scene_fas", "大核频率", "中核频率", "FPS(120|90|60)", "中核频率档位偏移", "模式"]
-
-```json
-// 示例
-["@scene_fas", "2450000", "2050000", "120", "-2", "normal"]
-["@scene_fas", "2450000", "2050000", "120"] // 可省略最后几个参数
-["@scene_fas", "2450000", "2050000"] // 不指定FPS时，默认120
-```
-
-
 ### Utilization Clamping @uclamp
 - uclamp作为schedtune的替代方案，在Linux Kernel中引入
 - 因此，并非所有设备都能使用该特性

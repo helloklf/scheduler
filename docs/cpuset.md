@@ -11,7 +11,6 @@
   "packages": ["com.miHoYo.Yuanshen"],
   "call": [],
   "cpuset": {
-    "interval": 5000,
     "unity_main": "7",
     "heavy_thread": "UnityGfx",
     "heavy_cores": "4-6",
@@ -30,7 +29,6 @@
 - `heavy_thread` 用于指定重负载线程的名称。支持匹配多个线程名称，例如："Thread-,UnityGfx"。如果匹配到多个线程，则只会命中负载最高的那一个。
 - `heavy_cores` 需与heavy_thread配合使用，用于指定重负载线程可以使用的cpu核心。
 - `main_thread` Scene 7.2新增，用于指定运行主线程的cpu(更适用于一般应用，许多游戏的主线程都不是高负载线程)
-- `interval` 是线程亲和设置检查时间间隔，最小值为`50` 默认值为`5000`，单位是毫秒
 - `trashy` Scene 7.0.17新增，用于指定垃圾线程，本质上是通过cpuctl(cpu.uclamp.max)对线程进行限制，因此需要LinuxKernel 5+
 
 
@@ -66,44 +64,4 @@
     }
   }
 ]
-```
-
-
-## 高优先级任务
-- `mvp_thread` 基于高通MVP实现，改变指定线程的优先级，仅支持Linux Kernel 5.15+的高通处理器机型
-- 建议指定只需要运行在中核的线程，需要强制运行在超大核的线程不建议加入
-- 并且，该特性不同设备下表现不同，并不总是能带来好的结果！
-- 配置例如：
-```json
-{
-  "friendly": "鸣潮",
-  "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
-  "cpuset": {
-    "mvp": ["RenderThread", "RHIThread"],
-    "main_thread": "3-6",
-    "comm": {
-      "7": ["GameThread"],
-      "3-6": ["TaskGraphHP", "NativeThread", "RenderThread", "AsyncLoading", "FChunk", "RHIThread"]
-    },
-    "other": "0-6"
-  }
-}
-```
-
-- `heavy_mvp`与`heavy_thread`配合使用，设置是否提高重负载线程的优先级
-```
-{
-  "friendly": "王者荣耀",
-  "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
-  "cpuset": {
-    "unity_main": "7",
-    "heavy_thread": "Thread-,UnityGfx",
-    "heavy_cores": "3-6",
-    "heavy_mvp": true,
-    "comm": {
-      "3-6": ["UnityPreload", "NativeThread", "CoreThread", "Worker Thread", "Apollo-"]
-    },
-    "other": "0-6"
-  }
-}
 ```

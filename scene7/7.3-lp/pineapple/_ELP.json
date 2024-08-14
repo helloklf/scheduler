@@ -1,9 +1,10 @@
 {
-    "friendly": "一般应用",
-    "call": [
-      ["@fps", "0"]
-    ],
-    "modes": [{
+  "friendly": "一般应用",
+  "call": [
+    ["@fps", "0"]
+  ],
+  "modes": [
+    {
       "mode": ["powersave"],
       "booster": {
         "duration": 3000,
@@ -20,7 +21,8 @@
           ["@fps", "30"]
         ]
       }
-    }, {
+    },
+    {
       "mode": ["balance"],
       "booster": {
         "duration": 2000,
@@ -33,7 +35,8 @@
           ["@preset", "balance_inactive"]
         ]
       }
-    }, {
+    },
+    {
       "mode": ["performance"],
       "booster": {
         "duration": 2000,
@@ -46,7 +49,8 @@
           ["@preset", "performance_inactive"]
         ]
       }
-    }, {
+    },
+    {
       "mode": ["*"],
       "booster": {
         "duration": 2000,
@@ -59,5 +63,6 @@
           ["@preset", "fast_inactive"]
         ]
       }
-    }]
-  }
+    }
+  ]
+}

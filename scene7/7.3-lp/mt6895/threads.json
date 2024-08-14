@@ -88,7 +88,7 @@
       "heavy_thread": "Thread-",
       "heavy_cores": "7",
       "comm": {
-        "4-6": ["RenderThread", "TaskGraphNP"]
+        "4-6": ["RenderThread", "RHIThread", "TaskGraphNP"]
       },
       "other": "0-6"
     }
