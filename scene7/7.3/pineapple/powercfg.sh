@@ -38,58 +38,6 @@ hide_value() {
   fi
 }
 
-disable_migt() {
-  migt=/sys/module/migt/parameters
-  if [[ -e $migt ]]; then
-    hide_value $migt/migt_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
-    hide_value $migt/glk_freq_limit_start '0'
-    hide_value $migt/glk_freq_limit_walt '0'
-    hide_value $migt/glk_maxfreq '0 0 0'
-    hide_value $migt/glk_minfreq '307200 480000 595200'
-    hide_value $migt/migt_ceiling_freq '0 0 0'
-    hide_value $migt/glk_disable '1'
-    hide_value $migt/mi_freq_enable '0'
-    hide_value $migt/force_stask_to_big '0'
-    hide_value $migt/glk_fbreak_enable '0'
-    hide_value $migt/force_reset_runtime '0'
-
-    settings put secure speed_mode_enable 1
-    chmod 000 $migt/*
-    chmod 000 /sys/module/migt
-    chmod 000 /sys/module/sched_walt/holders/migt/parameters
-  fi
-
-  glk=/proc/sys/glk
-  if [[ -d $glk ]]; then
-    hide_value $glk/glk_disable '1'
-    hide_value $glk/freq_break_enable '0'
-    hide_value $glk/game_minfreq_limit '0 0 0'
-    hide_value $glk/game_maxfreq_limit '0 0 0'
-    hide_value $glk/game_lowspeed_load '30 30 30'
-    hide_value $glk/game_hispeed_load '80 80 80'
-  fi
-
-  migt=/proc/sys/migt
-  if [[ -d $migt ]]; then
-    hide_value $migt/force_stask_tob '0'
-    hide_value $migt/enable_pkg_monitor '0'
-    hide_value $migt/boost_pid '0'
-  fi
-
-  chmod 000 /sys/class/misc/migt
-  chmod 000 /sys/module/sched_walt/holders/migt
-
-  metis=/sys/module/metis/parameters
-  if [[ -d $metis ]]; then
-    for file in $metis/*enable; do
-      lock_value 0 $file
-    done
-  fi
-  mkdir -p /cache/data/system/mcd
-  echo '0' > /cache/data/system/mcd/policy
-  mount --bind /cache/data/system/mcd/policy /data/system/mcd/policy
-}
-
 echo 2265600 3148800 2956800 3302400 > /proc/sys/walt/sched_fmax_cap
 for c in 0 2 5 7; do
   lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_high_freq
@@ -97,24 +45,6 @@ for c in 0 2 5 7; do
 done
 echo 1024 > /proc/sys/kernel/sched_util_clamp_max
 echo 1024 > /proc/sys/kernel/sched_util_clamp_min
-
-core_ctl_preset() {
-  cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
-  echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
-  echo 1 > $cpu7_core_ctl_dir/min_cpus
-
-  cpu2_core_ctl_dir=/sys/devices/system/cpu/cpu2/core_ctl
-  lock_value 3 $cpu2_core_ctl_dir/min_cpus
-  lock_value 0 $cpu2_core_ctl_dir/enable
-
-  cpu5_core_ctl_dir=/sys/devices/system/cpu/cpu5/core_ctl
-  lock_value 1 $cpu5_core_ctl_dir/enable
-  lock_value 2 $cpu5_core_ctl_dir/max_cpus
-  lock_value 2 $cpu5_core_ctl_dir/min_cpus
-  lock_value 0 $cpu5_core_ctl_dir/min_partial_cpus
-  lock_value 0 $cpu5_core_ctl_dir/enable
-}
-# core_ctl_preset
 
 hide_value /sys/module/msm_performance/parameters/cpu_max_freq '0:4294967295 1:4294967295 2:4294967295 3:4294967295 4:4294967295 5:4294967295 6:4294967295 7:4294967295'
 chattr +i  /sys/module/msm_performance/parameters/cpu_max_freq
@@ -137,6 +67,31 @@ lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
 
 rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost
+
+# Xiaomi
+echo 1 > /sys/module/migt/parameters/force_reset_runtime
+# lock_value 0 /sys/module/migt/parameters/enable_pkg_monitor
+lock_value 1 /sys/module/migt/parameters/glk_disable
+lock_value 0 /sys/module/migt/parameters/glk_fbreak_enable
+lock_value 0 /sys/module/migt/parameters/force_cluster_sched_enable
+lock_value -1 /sys/module/migt/parameters/render_prefer_cluster
+lock_value -1 /sys/module/migt/parameters/vip_prefer_cluster
+lock_value -1 /sys/module/migt/parameters/stask_prefer_cluster
+lock_value -1 /sys/module/migt/parameters/ip_prefer_cluster
+lock_value 1 /sys/module/migt/parameters/affinity_only
+lock_value 0 /sys/module/migt/parameters/glk_freq_limit_start
+echo '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' > /sys/module/migt/parameters/migt_ceiling_freq
+echo '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' > /sys/module/migt/parameters/migt_freq
+echo 1 > /sys/module/metis/parameters/reset_clus_affinity_uidlist
+echo 1 > /sys/module/metis/parameters/reset_rebind_task
+lock_value 0 /sys/module/metis/parameters/thermal_break_enable
+lock_value 0 /sys/module/metis/parameters/is_break_enable
+lock_value 0 /sys/module/metis/parameters/mi_freq_enable
+lock_value '0,0,0' /sys/module/metis/parameters/user_min_freq
+for file in /sys/module/metis/parameters/add*
+do
+  chmod 444 $file
+done
 
 # OnePlus
 if [[ -d  /proc/game_opt ]]; then
@@ -162,6 +117,8 @@ if [[ -d /proc/mz_info ]]; then
   echo 0 > /proc/mz_freq/adapt_sched_boost/enabled_three
   # echo 0 > /proc/mz_thermal_boost/boost_enabled
   # echo 0 > /proc/mz_thermal_boost/sched_boost_enabled
+  stop traced_probes
+  # lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
 fi
 
 kgsl(){

@@ -76,7 +76,7 @@
       "heavy_cores": "2-4",
       "comm": {
         "7": ["UnityMain"],
-        "2-4": ["Worker Thread"],
+        "2-4": ["Worker Thread",  "Job.worker"],
         "2-6": ["CoreThread", "Apollo", "NativeThread"]
       },
       "other": "2-6"
@@ -114,7 +114,7 @@
     "packages": ["com.netease.l22"],
     "cpuset": {
       "unity_main": "7",
-      "heavy_thread": "Thread-",
+      "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "2-4",
       "other": "2-6"
     }

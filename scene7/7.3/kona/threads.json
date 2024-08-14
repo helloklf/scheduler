@@ -87,7 +87,7 @@
       "heavy_cores": "6",
       "comm": {
         "4-5": [
-          "CoreThread", "UnityPreload", "Worker Thread", "Apollo-",
+          "CoreThread", "UnityPreload", "Worker Thread", "Job.worker", "Apollo-",
           "FMOD", "UnityChoreograp", "NativeThread", "AsyncReadManage"
         ],
         "0-3": ["Audio", "tp_schedule"]

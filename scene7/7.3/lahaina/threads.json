@@ -72,7 +72,7 @@
       "comm": {
         "4-7": ["UnityPreload"],
         "4-5": ["CoreThread", "Apollo-"],
-        "0-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
+        "0-5": ["Worker Thread", "Job.worker", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
       },
       "other": "0-5"
     }

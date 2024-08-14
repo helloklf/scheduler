@@ -48,7 +48,7 @@
       "heavy_cores": "6",
       "comm": {
         "6": ["UnityGfx"],
-        "3-5": ["UnityPreload", "NativeThread", "CoreThread", "Worker Thread", "Apollo-"]
+        "3-5": ["UnityPreload", "NativeThread", "CoreThread", "Worker Thread", "Job.worker", "Apollo-"]
       },
       "other": "0-5"
     }

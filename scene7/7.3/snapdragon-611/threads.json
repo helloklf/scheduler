@@ -20,7 +20,7 @@
       "heavy_cores": "6",
       "comm": {
         "6-7": ["UnityPreload"],
-        "3-5": ["Worker Thread", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"],
+        "3-5": ["Worker Thread", "Job.worker", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"],
         "0-6": ["CoreThread"]
       },
       "other": "0-5"

@@ -20,7 +20,7 @@
       "heavy_cores": "7",
       "heavy_switch": false,
       "comm": {
-        "4-5": ["UnityMultiRende", "Worker Thread", "UnityPreload"],
+        "4-5": ["UnityMultiRende", "Worker Thread", "Job.worker", "UnityPreload"],
         "0-5": ["FMOD", "UnityChoreograp", "NativeThread"]
       },
       "other": "0-5"

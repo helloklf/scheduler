@@ -75,7 +75,7 @@
       "comm": {
         "7": ["UnityMain"],
         "4-7": ["UnityPreload"],
-        "4-5": ["CoreThread", "Worker Thread", "Apollo"],
+        "4-5": ["CoreThread", "Worker Thread", "Job.worker", "Apollo"],
         "0-5": ["NativeThread", "mali-"]
       },
       "other": "0-5"
