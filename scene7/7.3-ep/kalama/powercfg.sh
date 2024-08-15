@@ -171,7 +171,6 @@ kgsl devfreq/min_freq 0
 kgsl devfreq/max_freq 999000000
 
 
-
 cpus=3-6
 
 set_cpuset(){

@@ -25,6 +25,10 @@
       ],
       "exit": [
       ]
+    },
+    "limiter": {
+      "l3_boost": true,
+      "ddr_boost": true
     }
   },
   "presets": {
