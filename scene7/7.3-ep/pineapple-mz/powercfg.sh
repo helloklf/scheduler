@@ -119,18 +119,6 @@ if [[ -d /proc/mz_info ]]; then
   # echo 0 > /proc/mz_thermal_boost/sched_boost_enabled
 fi
 
-# 借鉴了 nakixii 的做法
-mount -t debugfs none /sys/kernel/debug
-echo "5000000" > /sys/kernel/debug/sched/migration_cost_ns
-echo "12500000" > /sys/kernel/debug/sched/wakeup_granularity_ns
-# 实验性的
-echo 12000000 > /sys/kernel/debug/sched/latency_ns
-echo 33554432 > /sys/class/kgsl/kgsl/full_cache_threshold
-echo 0 > /sys/class/kgsl/kgsl-3d0/gpu_llc_slice_enable
-echo 0 > /sys/class/kgsl/kgsl-3d0/gpuhtw_llc_slice_enable
-echo 1 > /sys/class/kgsl/kgsl-3d0/throttling
-echo 0 > /sys/class/kgsl/kgsl-3d0/l3_vote
-
 bus_dcvs(){
   chmod 664 /sys/devices/system/cpu/bus_dcvs/$1/min_freq
   chmod 664 /sys/devices/system/cpu/bus_dcvs/$1/max_freq

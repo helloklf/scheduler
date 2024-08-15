@@ -53,8 +53,8 @@ if [[ -f $t_message/cpu_limits ]]; then
   done
   chmod 444 $t_message/cpu_limits
 fi
-hide_value $t_message/market_download_limit 0
-hide_value $t_message/modem_limit 0
+lock_value 0 $t_message/market_download_limit
+lock_value 0 $t_message/modem_limit
 lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 
 

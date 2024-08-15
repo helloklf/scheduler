@@ -1,17 +1,5 @@
 [
   {
-    "friendly": "QQ",
-    "packages": ["com.tencent.mobileqq"],
-    "cpuset": {
-      "comm": {
-        "4-7": ["RenderThread"],
-        "0-6": ["pool-"]
-      },
-      "trashy": [],
-      "other": "0-7"
-    }
-  },
-  {
     "friendly": "闲鱼",
     "packages": ["com.taobao.idlefish"],
     "cpuset": {
