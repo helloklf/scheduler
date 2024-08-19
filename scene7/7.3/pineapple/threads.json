@@ -122,7 +122,7 @@
   },
   {
     "friendly": "永劫无间",
-    "packages": ["com.netease.l22"],
+    "packages": ["com.netease.l22", "com.netease.l22.mi"],
     "cpuset": {
       "unity_main": "7",
       "heavy_thread": "Thread-",
