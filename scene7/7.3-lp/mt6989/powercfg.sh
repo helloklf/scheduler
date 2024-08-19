@@ -61,7 +61,6 @@ echo 4 550000 2850000 > /proc/cpudvfs/cpufreq_debug
 echo 7 600000 3250000 > /proc/cpudvfs/cpufreq_debug
 lock_value '300000 2000000 550000 2850000 600000 3250000' /proc/powerhal_cpu_ctrl/perfserv_freq
 lock_value '3000000 3350000' /sys/module/mtk_fpsgo/parameters/cpus_limit
-echo 0 > /proc/powerhal_cpu_ctrl/adpf_enable
 lock_value 1 /sys/module/mtk_fpsgo/parameters/better_perf
 
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
@@ -77,7 +76,7 @@ lock_value -1 /sys/module/migt/parameters/render_prefer_cluster
 lock_value -1 /sys/module/migt/parameters/vip_prefer_cluster
 lock_value -1 /sys/module/migt/parameters/stask_prefer_cluster
 lock_value -1 /sys/module/migt/parameters/ip_prefer_cluster
-lock_value 1 /sys/module/migt/parameters/affinity_only
+# lock_value 1 /sys/module/migt/parameters/affinity_only
 echo 1 > /sys/module/metis/parameters/reset_clus_affinity_uidlist
 echo 1 > /sys/module/metis/parameters/reset_rebind_task
 lock_value 0 /sys/module/metis/parameters/thermal_break_enable

@@ -16,9 +16,12 @@
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "cpuset": {
-      "unity_main": "7",
+      "unity_main": "6",
       "heavy_thread": "UnityGfx",
-      "heavy_cores": "6",
+      "heavy_cores": "7",
+      "comm": {
+        "4-6": ["UnityMulti"]
+      },
       "other": "0-6"
     }
   },
@@ -52,13 +55,14 @@
     "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
     "cpuset": {
       "heavy_thread": "Thread-;UnityGfx",
-      "heavy_cores": "6",
+      "heavy_cores": "4-6",
       "comm": {
         "7": ["UnityMain"],
         "4-7": ["UnityPreload"],
-        "0-5": ["CoreThread", "Apollo", "Worker Thread", "Job.worker", "NativeThread", "mali-"]
+        "4-6": ["CoreThread", "Apollo", "UnityChoreo", "Job.worker"],
+        "0-6": ["Worker Thread", "Job.worker", "NativeThread", "mali-"]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {
