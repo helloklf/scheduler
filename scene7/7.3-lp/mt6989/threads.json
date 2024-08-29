@@ -7,7 +7,7 @@
       "comm": {
         "7": ["GameThread"],
         "4-7": ["FChunk"],
-        "4-6": ["RenderThread", "RHIThread"]
+        "4-6": ["TaskGraphHP", "RenderThread", "RHIThread"]
       },
       "other": "0-6"
     }
@@ -16,13 +16,14 @@
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "cpuset": {
-      "unity_main": "6",
+      "unity_main": "7",
       "heavy_thread": "UnityGfx",
-      "heavy_cores": "7",
+      "heavy_cores": "6",
       "comm": {
-        "4-6": ["UnityMulti"]
+        "4-5": ["UnityMultiRende", "Worker Thread", "UnityPreload"],
+        "0-5": ["FMOD", "UnityChoreograp", "NativeThread"]
       },
-      "other": "0-6"
+      "other": "0-5"
     }
   },
   {
@@ -73,6 +74,16 @@
       "heavy_thread": "UnityGfx",
       "heavy_cores": "6",
       "other": "4-5"
+    }
+  },
+  {
+    "friendly": "永劫无间",
+    "packages": ["com.netease.l22", "com.netease.l22.mi"],
+    "cpuset": {
+      "unity_main": "7",
+      "heavy_thread": "UnityGfx;Thread-",
+      "heavy_cores": "4-6",
+      "other": "0-6"
     }
   }
 ]

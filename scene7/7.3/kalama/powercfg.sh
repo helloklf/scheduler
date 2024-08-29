@@ -152,6 +152,11 @@ if [[ $(getprop ro.product.model | grep -i Note) == '' ]]; then
   do
     echo disabled > $tz
   done
+  stop traced_probes
+  # lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
+  for file in /sys/devices/system/cpu/cpufreq/policy*/walt/target_load_shift; do
+    lock_value 0 $file
+  done
 fi
 
 kgsl(){

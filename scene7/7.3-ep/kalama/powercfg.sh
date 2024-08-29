@@ -144,6 +144,7 @@ for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
 done
 echo -R 444 /sys/kernel/msm_performance/parameters
 
+
 # Meizu
 if [[ $(getprop ro.product.model | grep -i Note) == '' ]]; then
   lock_value 0 /proc/mz_scheduler/vip_task/enabled
@@ -152,6 +153,10 @@ if [[ $(getprop ro.product.model | grep -i Note) == '' ]]; then
   for tz in /sys/class/thermal/*/mode
   do
     echo disabled > $tz
+  done
+  stop traced_probes
+  for file in /sys/devices/system/cpu/cpufreq/policy*/walt/target_load_shift; do
+    lock_value 0 $file
   done
 fi
 

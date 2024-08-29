@@ -158,6 +158,11 @@ if [[ $(getprop ro.product.model | grep -i Note) == '' ]]; then
   do
     echo disabled > $tz
   done
+  stop traced_probes
+  lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
+  for file in /sys/devices/system/cpu/cpufreq/policy*/walt/target_load_shift; do
+    lock_value 0 $file
+  done
 fi
 
 kgsl(){
@@ -210,5 +215,3 @@ done
 for file in /sys/devices/system/cpu/bus_dcvs/L3/*/min_freq; do
   lock_value 307200 $file
 done
-
-# rmdir /dev/cpuset/background/untrustedapp
