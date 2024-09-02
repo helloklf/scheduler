@@ -1,6 +1,3 @@
-# target=`getprop ro.board.platform`
-cfg_dir=$(cd $(dirname $0); pwd)
-
 set_value() {
   value=$1
   path=$2
