@@ -168,13 +168,6 @@
       ],
       "app": [
         ["@preset", "common_app"]
-      ],
-      "game": [
-        ["@preset", "common_gaming"],
-        ["@limiters", "NONE"],
-        ["@values", "min_freq", "450000", "400000", "500000"],
-        ["@values", "max_freq", "#2000000", "#1900000", "#2350000"],
-        ["@values", "min_freq", "#450000", "#400000", "#500000"]
       ]
     },
     "balance": {
@@ -184,13 +177,6 @@
       ],
       "app": [
         ["@preset", "common_app"]
-      ],
-      "game": [
-        ["@preset", "common_gaming"],
-        ["@limiters", "NONE"],
-        ["@values", "min_freq", "450000", "400000", "500000"],
-        ["@values", "max_freq", "#2000000", "#2250000", "#2650000"],
-        ["@values", "min_freq", "#450000", "#400000", "#500000"]
       ]
     },
     "performance": {
@@ -200,13 +186,6 @@
       ],
       "app": [
         ["@preset", "common_app"]
-      ],
-      "game": [
-        ["@preset", "common_gaming"],
-        ["@limiters", "NONE"],
-        ["@values", "min_freq", "800000", "700000", "900000"],
-        ["@values", "max_freq", "#2000000", "#2650000", "#2850000"],
-        ["@values", "min_freq", "#800000", "#700000", "#900000"]
       ]
     },
     "fast": {
@@ -216,13 +195,15 @@
       ],
       "app": [
         ["@preset", "common_app"]
+      ]
+    },
+    "pedestal": {
+      "call": [
+        ["@preset", "reset"],
+        ["@preset", "fast_active"]
       ],
-      "game": [
-        ["@preset", "common_gaming"],
-        ["@limiters", "NONE"],
-        ["@values", "min_freq", "1600000", "1800000", "1800000"],
-        ["@values", "max_freq", "#2000000", "#2850000", "#3100000"],
-        ["@values", "min_freq", "#1600000", "#1800000", "#1800000"]
+      "app": [
+        ["@preset", "common_app"]
       ]
     }
   },
@@ -246,14 +227,17 @@
   ],
   "games": [
     {
-      "friendly": "王者荣耀/LOL",
-      "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
-      "import": "_SGAME.json"
+      "friendly": "双核强化",
+      "packages": [
+        "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact",
+        "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"
+      ],
+      "import": "_DualCore.json"
     },
     {
       "friendly": "All",
       "packages": ["*"],
-      "import": "_FAS.json"
+      "import": "_Games.json"
     }
   ]
 }
