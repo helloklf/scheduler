@@ -140,10 +140,6 @@ mkdir /dev/cpuset/heavy
 echo 0-6 > /dev/cpuset/heavy/cpus
 echo '' > /proc/sys/walt/sched_lib_name
 # mk_stune 'top-app/heavy' 0 0
-# echo 128 > /dev/cpuctl/background/cpu.shares
-# echo 128 > /dev/cpuctl/l-background/cpu.shares
-# echo 384 > /dev/cpuctl/system-background/cpu.shares
-# echo 512 > /dev/cpuctl/foreground/cpu.shares
 # rmdir /dev/cpuset/background/untrustedapp
 
 disable_migt() {
@@ -247,9 +243,6 @@ process_opt &
 
 # CC'MIUI/HyperOS or ColorOS
 if [[ $(getprop ro.cc.device.name) != "" ]] || [[ -d /my_heytap ]]; then
-  # for cpu in cpu0 cpu4 cpu7; do
-  #   hide_value /sys/devices/system/cpu/$cpu/cpufreq/scaling_governor walt
-  # done
   hide_value /proc/sys/walt/sched_upmigrate '85 95'
   hide_value /proc/sys/walt/sched_downmigrate '70 80'
   hide_value /proc/sys/walt/sched_group_upmigrate 95
@@ -299,22 +292,24 @@ bus_dcvs(){
   echo $2 > /sys/devices/system/cpu/bus_dcvs/$1
   chmod 444 /sys/devices/system/cpu/bus_dcvs/$1
 }
-bus_dcvs DDR/soc:qcom,memlat:ddr:silver/max_freq 1555000
-bus_dcvs DDR/19091000.qcom,bwmon-ddr/max_freq 2736000
-bus_dcvs DDR/soc:qcom,memlat:ddr:prime/max_freq 3196000
-bus_dcvs DDR/soc:qcom,memlat:ddr:prime-latfloor/max_freq 3196000
-bus_dcvs DDR/soc:qcom,memlat:ddr:gold-compute/max_freq 1555000
-bus_dcvs DDR/soc:qcom,memlat:ddr:gold/max_freq 3196000
-bus_dcvs L3/soc:qcom,memlat:l3:silver/max_freq 1708800
-bus_dcvs L3/soc:qcom,memlat:l3:prime/max_freq 1804800 # default 1708800
-bus_dcvs L3/soc:qcom,memlat:l3:gold/max_freq 1804800 # default 1708800
-bus_dcvs L3/soc:qcom,memlat:l3:prime-compute/max_freq 1804800 # default 1708800
-bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:gold/max_freq 1
-bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:prime-latfloor/max_freq 1
-bus_dcvs LLCC/soc:qcom,memlat:llcc:gold-compute/max_freq 600000
-bus_dcvs LLCC/190b6400.qcom,bwmon-llcc/max_freq 806000
-bus_dcvs LLCC/soc:qcom,memlat:llcc:silver/max_freq 600000
-bus_dcvs LLCC/soc:qcom,memlat:llcc:gold/max_freq 1066000
+if [[ $(cat /sys/devices/soc0/machine | tr 'a-z' 'A-Z') != 'UKEE' ]]; then
+  bus_dcvs DDR/soc:qcom,memlat:ddr:silver/max_freq 1555000
+  bus_dcvs DDR/19091000.qcom,bwmon-ddr/max_freq 2736000
+  bus_dcvs DDR/soc:qcom,memlat:ddr:prime/max_freq 3196000
+  bus_dcvs DDR/soc:qcom,memlat:ddr:prime-latfloor/max_freq 3196000
+  bus_dcvs DDR/soc:qcom,memlat:ddr:gold-compute/max_freq 1555000
+  bus_dcvs DDR/soc:qcom,memlat:ddr:gold/max_freq 3196000
+  bus_dcvs L3/soc:qcom,memlat:l3:silver/max_freq 1708800
+  bus_dcvs L3/soc:qcom,memlat:l3:prime/max_freq 1804800 # default 1708800
+  bus_dcvs L3/soc:qcom,memlat:l3:gold/max_freq 1804800 # default 1708800
+  bus_dcvs L3/soc:qcom,memlat:l3:prime-compute/max_freq 1804800 # default 1708800
+  bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:gold/max_freq 1
+  bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:prime-latfloor/max_freq 1
+  bus_dcvs LLCC/soc:qcom,memlat:llcc:gold-compute/max_freq 600000
+  bus_dcvs LLCC/190b6400.qcom,bwmon-llcc/max_freq 806000
+  bus_dcvs LLCC/soc:qcom,memlat:llcc:silver/max_freq 600000
+  bus_dcvs LLCC/soc:qcom,memlat:llcc:gold/max_freq 1066000
+fi
 
 set_cpuset(){
   pgrep -f $1 | while read pid; do

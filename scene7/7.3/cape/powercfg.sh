@@ -222,6 +222,7 @@ hide_value /sys/module/msm_performance/parameters/cpu_min_freq '0:0 1:0 2:0 3:0 
 chattr +i  /sys/module/msm_performance/parameters/cpu_min_freq
 
 rmdir /dev/cpuset/background/untrustedapp
+rmdir /dev/cpuset/foreground/boost
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
@@ -250,17 +251,15 @@ if [[ $(getprop ro.cc.device.name) != "" ]] || [[ -d /my_heytap ]]; then
 fi
 
 # OnePlus
+hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
 hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
 lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
 if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
   hide_value /proc/game_opt/disable_cpufreq_limit 1
+  hide_value /proc/game_opt/game_pid -1
 fi
-hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
-hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-lock_value N /sys/module/sched_assist_common/parameters/boost_kill
-lock_value N /sys/module/task_sched_info/parameters/sched_info_ctrl
 for service in orms-hal-1-0 # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
 do
   stop $service
@@ -291,22 +290,24 @@ bus_dcvs(){
   echo $2 > /sys/devices/system/cpu/bus_dcvs/$1
   chmod 444 /sys/devices/system/cpu/bus_dcvs/$1
 }
-bus_dcvs DDR/soc:qcom,memlat:ddr:silver/max_freq 1555000
-bus_dcvs DDR/19091000.qcom,bwmon-ddr/max_freq 2736000
-bus_dcvs DDR/soc:qcom,memlat:ddr:prime/max_freq 3196000
-bus_dcvs DDR/soc:qcom,memlat:ddr:prime-latfloor/max_freq 3196000
-bus_dcvs DDR/soc:qcom,memlat:ddr:gold-compute/max_freq 1555000
-bus_dcvs DDR/soc:qcom,memlat:ddr:gold/max_freq 3196000
-bus_dcvs L3/soc:qcom,memlat:l3:silver/max_freq 1708800
-bus_dcvs L3/soc:qcom,memlat:l3:prime/max_freq 1708800
-bus_dcvs L3/soc:qcom,memlat:l3:gold/max_freq 1708800
-bus_dcvs L3/soc:qcom,memlat:l3:prime-compute/max_freq 1708800
-bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:gold/max_freq 1
-bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:prime-latfloor/max_freq 1
-bus_dcvs LLCC/soc:qcom,memlat:llcc:gold-compute/max_freq 600000
-bus_dcvs LLCC/190b6400.qcom,bwmon-llcc/max_freq 806000
-bus_dcvs LLCC/soc:qcom,memlat:llcc:silver/max_freq 600000
-bus_dcvs LLCC/soc:qcom,memlat:llcc:gold/max_freq 1066000
+if [[ $(cat /sys/devices/soc0/machine | tr 'a-z' 'A-Z') != 'UKEE' ]]; then
+  bus_dcvs DDR/soc:qcom,memlat:ddr:silver/max_freq 1555000
+  bus_dcvs DDR/19091000.qcom,bwmon-ddr/max_freq 2736000
+  bus_dcvs DDR/soc:qcom,memlat:ddr:prime/max_freq 3196000
+  bus_dcvs DDR/soc:qcom,memlat:ddr:prime-latfloor/max_freq 3196000
+  bus_dcvs DDR/soc:qcom,memlat:ddr:gold-compute/max_freq 1555000
+  bus_dcvs DDR/soc:qcom,memlat:ddr:gold/max_freq 3196000
+  bus_dcvs L3/soc:qcom,memlat:l3:silver/max_freq 1708800
+    bus_dcvs L3/soc:qcom,memlat:l3:prime/max_freq 1804800 # default 1708800
+    bus_dcvs L3/soc:qcom,memlat:l3:gold/max_freq 1804800 # default 1708800
+    bus_dcvs L3/soc:qcom,memlat:l3:prime-compute/max_freq 1804800 # default 1708800
+  bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:gold/max_freq 1
+  bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:prime-latfloor/max_freq 1
+  bus_dcvs LLCC/soc:qcom,memlat:llcc:gold-compute/max_freq 600000
+  bus_dcvs LLCC/190b6400.qcom,bwmon-llcc/max_freq 806000
+  bus_dcvs LLCC/soc:qcom,memlat:llcc:silver/max_freq 600000
+  bus_dcvs LLCC/soc:qcom,memlat:llcc:gold/max_freq 1066000
+fi
 
 set_cpuset(){
   pgrep -f $1 | while read pid; do
