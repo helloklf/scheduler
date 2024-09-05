@@ -62,11 +62,6 @@
       ["/sys/devices/system/cpu/cpu3/cpufreq/walt/target_loads"],
       ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_loads"]
     ],
-    "target_load_thresh": [
-      ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_load_thresh"],
-      ["/sys/devices/system/cpu/cpu3/cpufreq/walt/target_load_thresh"],
-      ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_load_thresh"]
-    ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_3"], ["$cpu_min_7"]
     ],
@@ -109,7 +104,6 @@
       ["@preset", "common_active"],
       ["$perfmgr_enable", "0"],
       ["@cpuset", "0-2", "0-6", "0-6", "0-7"],
-      ["@values", "target_load_thresh", "#600", "#1024", "#1024"],
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
       ["@preset", "memlat"]
     ],
@@ -120,7 +114,6 @@
       ["$sched_boost", "#0"],
       ["@gesture", "PAUSE"],
       ["@values", "latency", "2000", "2000", "2000", "2000", "2000", "2000"],
-      ["@values", "target_load_thresh", "#1024", "#1024", "#1024"],
       ["@values", "memlat", "#30", "#10", "#2", "#3187000"]
     ],
 

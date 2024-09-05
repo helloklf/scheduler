@@ -317,11 +317,6 @@
   ],
   "games": [
     {
-      "friendly": "原神",
-      "categories": ["GenshinImpact"],
-      "import": "_GenshinImpact.json"
-    },
-    {
       "friendly": "All",
       "packages": ["*"],
       "import": "_FAS.json"

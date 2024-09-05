@@ -81,6 +81,23 @@
     "friendly": "COD Mobile",
     "packages": ["com.activision.callofduty.warzone"],
     "cpuset": {
+      "comm": {
+        "7": ["WZM_Main"],
+        "6": ["Backend"],
+        "3-5": ["Worker"]
+      },
+      "other": "0-6"
+    }
+  },
+  {
+    "friendly": "Fortnite",
+    "packages": ["com.epicgames.fortnite"],
+    "cpuset": {
+      "comm": {
+        "7": ["GameThread"],
+        "3-6": ["RHIThread", "AudioMi", "Foreground", "Background"]
+      },
+      "other": "0-6"
     }
   },
   {

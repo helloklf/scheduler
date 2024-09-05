@@ -108,6 +108,30 @@
       }
     },
     {
+      "friendly": "COD Mobile",
+      "packages": ["com.activision.callofduty.warzone"],
+      "cpuset": {
+        "comm": {
+          "7": ["WZM_Main"],
+          "2-4": ["Backend"],
+          "2-6": ["Worker"]
+        },
+        "other": "2-6"
+      }
+    },
+    {
+      "friendly": "Fortnite",
+      "packages": ["com.epicgames.fortnite"],
+      "cpuset": {
+        "comm": {
+          "7": ["GameThread"],
+          "2-4": ["RHIThread"],
+          "2-6": ["AudioMi", "Foreground", "Background"]
+        },
+        "other": "2-6"
+      }
+    },
+    {
       "friendly": "永劫无间",
       "packages": ["com.netease.l22", "com.netease.l22.mi"],
       "cpuset": {

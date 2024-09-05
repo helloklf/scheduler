@@ -165,6 +165,7 @@ if [[ $(getprop ro.product.model | grep -i Note) == '' ]]; then
   done
 fi
 
+
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
 }
