@@ -62,6 +62,16 @@
       ["/sys/devices/system/cpu/cpu3/cpufreq/walt/target_loads"],
       ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_loads"]
     ],
+    "target_load_thresh": [
+      ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_load_thresh"],
+      ["/sys/devices/system/cpu/cpu3/cpufreq/walt/target_load_thresh"],
+      ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_load_thresh"]
+    ],
+    "target_load_shift": [
+      ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_load_shift"],
+      ["/sys/devices/system/cpu/cpu3/cpufreq/walt/target_load_shift"],
+      ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_load_shift"]
+    ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_3"], ["$cpu_min_7"]
     ],

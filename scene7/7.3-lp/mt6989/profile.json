@@ -80,7 +80,8 @@
     "comm_app": [
       ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
       ["@preset", "freq_extreme"],
-      ["$gpu_max_freq", "#14"]
+      ["$gpu_max_freq", "#14"],
+      ["@chmod", "664", "/proc/perfmgr/perf_ioctl"]
     ],
     "comm_gaming": [
       ["@limiters", "NONE"],

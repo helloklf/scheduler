@@ -29,7 +29,7 @@
           "80 2188800:90 2323200:95",
           "80 2092800:90 2476800:95"
         ],
-        ["@presets", "limiter_off"]
+        ["@preset", "limiter_off"]
       ],
       "tas": {
         "t": 93,
@@ -47,7 +47,7 @@
           "80 2592000:81",
           "80 2592000:85 2841600:90"
         ],
-        ["@presets", "limiter_off"]
+        ["@preset", "limiter_off"]
       ],
       "_fas": {
         "mode": "boost",
@@ -71,7 +71,7 @@
           "70 2707200:80",
           "72 2841600:85 2956800:90"
         ],
-        ["@presets", "limiter_off"]
+        ["@preset", "limiter_off"]
       ],
       "_fas": {
         "mode": "boost",
@@ -95,7 +95,7 @@
           "65 2707200:77",
           "65 2841600:78"
         ],
-        ["@presets", "limiter_off"]
+        ["@preset", "limiter_off"]
       ],
       "_fas": {
         "mode": "boost",

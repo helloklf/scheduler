@@ -4,6 +4,7 @@
     {
       "mode": ["powersave"],
       "call": [
+        ["@chmod", "664", "/proc/perfmgr/perf_ioctl"],
         ["@cpu_freq", "cpu0", "400000", "1600000"],
         ["@cpu_freq", "cpu4", "550000", "2300000"],
         ["@cpu_freq", "cpu7", "600000", "2400000"]
@@ -12,6 +13,7 @@
     {
       "mode": ["balance"],
       "call": [
+        ["@chmod", "664", "/proc/perfmgr/perf_ioctl"],
         ["@cpu_freq", "cpu0", "800000", "1800000"],
         ["@cpu_freq", "cpu4", "550000", "2600000"],
         ["@cpu_freq", "cpu7", "900000", "2800000"]
@@ -20,6 +22,7 @@
     {
       "mode": ["performance"],
       "call": [
+        ["@chmod", "444", "/proc/perfmgr/perf_ioctl"],
         ["@cpu_freq", "cpu0", "800000", "2000000"],
         ["@cpu_freq", "cpu4", "600000", "2800000"],
         ["@cpu_freq", "cpu7", "1200000", "3000000"]
@@ -34,6 +37,7 @@
     {
       "mode": ["*"],
       "call": [
+        ["@chmod", "444", "/proc/perfmgr/perf_ioctl"],
         ["@cpu_freq", "cpu0", "800000", "2000000"],
         ["@cpu_freq", "cpu4", "900000", "2850000"],
         ["@cpu_freq", "cpu7", "1200000", "3250000"]

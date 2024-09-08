@@ -61,7 +61,6 @@ echo 4 550000 2850000 > /proc/cpudvfs/cpufreq_debug
 echo 7 600000 3250000 > /proc/cpudvfs/cpufreq_debug
 lock_value '300000 2000000 550000 2850000 600000 3250000' /proc/powerhal_cpu_ctrl/perfserv_freq
 lock_value '3000000 3350000' /sys/module/mtk_fpsgo/parameters/cpus_limit
-echo 0 > /proc/powerhal_cpu_ctrl/adpf_enable
 lock_value 1 /sys/module/mtk_fpsgo/parameters/better_perf
 
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
@@ -77,10 +76,13 @@ lock_value -1 /sys/module/migt/parameters/render_prefer_cluster
 lock_value -1 /sys/module/migt/parameters/vip_prefer_cluster
 lock_value -1 /sys/module/migt/parameters/stask_prefer_cluster
 lock_value -1 /sys/module/migt/parameters/ip_prefer_cluster
-lock_value 1 /sys/module/migt/parameters/affinity_only
+# lock_value 1 /sys/module/migt/parameters/affinity_only
+echo 0,0,0 > /sys/module/metis/parameters/user_min_freq
 lock_value 0 /sys/module/migt/parameters/glk_freq_limit_start
 echo '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' > /sys/module/migt/parameters/migt_ceiling_freq
 echo '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' > /sys/module/migt/parameters/migt_freq
+echo 1 > /sys/module/metis/parameters/reset_clus_affinity_uidlist
+echo 1 > /sys/module/metis/parameters/reset_rebind_task
 lock_value 0 /sys/module/metis/parameters/thermal_break_enable
 lock_value 0 /sys/module/metis/parameters/is_break_enable
 lock_value 0 /sys/module/metis/parameters/mi_freq_enable
@@ -89,8 +91,11 @@ for file in /sys/kernel/fpsgo/fbt/*freq*
 do
   lock_value 0 $file
 done
-chmod -R 444 /proc/perfmgr_powerhal
-chmod -R 444 /proc/perfmgr
+
+# chmod -R 444 /proc/perfmgr_powerhal
+chmod 444 /proc/perfmgr/global_reclaim
+# chmod 444 /proc/perfmgr/perf_ioctl
+chmod 444 /proc/perfmgr_touch_boost/ioctl_touch_boost
 
 metis=/sys/module/metis/parameters
 for file in $metis/*enable*; do

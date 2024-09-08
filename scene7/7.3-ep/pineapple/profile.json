@@ -77,6 +77,11 @@
         ["/sys/devices/system/cpu/cpu5/cpufreq/walt/target_loads"],
         ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_loads"]
       ],
+      "target_load_shift": [
+        ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_load_shift"],
+        ["/sys/devices/system/cpu/cpu3/cpufreq/walt/target_load_shift"],
+        ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_load_shift"]
+      ],
       "target_load_thresh": [
         ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_load_thresh"],
         ["/sys/devices/system/cpu/cpu2/cpufreq/walt/target_load_thresh"],
@@ -132,8 +137,7 @@
       "common_app": [
         ["$perfmgr_enable", "0"],
         ["@cpuset", "0-1", "0-6", "2-6", "2-7"],
-        ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000", "1000", "1000"],
-        ["@values", "target_load_thresh", "1024", "1024", "1024", "1024"]
+        ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000", "1000", "1000"]
       ],
       "common_gaming": [
         ["@preset", "common_active"],

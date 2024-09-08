@@ -155,7 +155,7 @@ if [[ $(getprop ro.product.model | grep -i Note) == '' ]]; then
     echo disabled > $tz
   done
   stop traced_probes
-  # lock_value 0 /sys/devices/system/cpu/cpufreq/policy0/walt/target_load_shift
+  # lock_value 0 /sys/devices/system/cpu/cpufreq/policy7/walt/target_load_thresh
   lock_value 0 /sys/devices/system/cpu/cpufreq/policy7/walt/target_load_shift
 fi
 

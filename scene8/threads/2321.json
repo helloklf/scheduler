@@ -62,7 +62,8 @@
         "heavy_thread": "UnityGfx",
         "heavy_cores": "7",
         "comm": {
-          "2-6": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"]
+          "2-4": ["UnityChoreograp", "UnityMultiRende"],
+          "2-6": ["NativeThread", "Worker Thread", "FMOD", "UnityPreload", "AsyncReadManage"]
         },
         "other": "2-6"
       }

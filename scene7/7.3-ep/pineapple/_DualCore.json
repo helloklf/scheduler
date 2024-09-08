@@ -1,8 +1,5 @@
 {
   "friendly": "双核强化",
-  "call": [
-    ["@values", "target_load_thresh", "600", "1024", "1024", "1024"]
-  ],
   "modes": [
     {
       "mode": ["powersave"],

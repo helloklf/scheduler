@@ -68,9 +68,11 @@
     "friendly": "星穹铁道",
     "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
     "cpuset": {
+      "unity_main": "7",
+      "heavy_thread": "UnityGfx",
+      "heavy_cores": "6",
+      "heavy_switch": false,
       "comm": {
-        "7": ["UnityMain"],
-        "6": ["UnityGfx"],
         "4-5": ["NativeThread", "Job.Worker"]
       },
       "other": "0-5"
@@ -85,7 +87,7 @@
       "heavy_cores": "6",
       "comm": {
         "4-7": ["UnityPreload"],
-        "4-5": ["CoreThread", "Apollo-", "NativeThread", "Worker Thread", "Job.worker"]
+        "4-5": ["CoreThread", "Apollo-", "NativeThread", "UnityChoreo", "Worker Thread", "Job.worker"]
       },
       "other": "0-5"
     }
@@ -111,7 +113,7 @@
       "heavy_cores": "6",
       "comm": {
         "7": "IL2CPP",
-        "4-5": ["Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "speedmobileThreadManager", "binder."]
+        "4-5": ["Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
       },
       "other": "0-5"
     }
