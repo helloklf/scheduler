@@ -71,7 +71,7 @@
     },
     {
       "friendly": "QQ飞车",
-      "packages": ["com.tencent.tmgp.speedmobile"],
+      "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
       "cpuset": {
         "unity_main": "7",
         "heavy_thread": "UnityGfx",

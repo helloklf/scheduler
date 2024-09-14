@@ -3,7 +3,7 @@
   "modes": [{
     "mode": ["powersave"],
     "booster": {
-      "duration": 4500,
+      "duration": 4000,
       "idle_delay": 2000,
       "enter": [ ["@preset", "powersave_active"] ],
       "exit": [ ["@preset", "powersave_inactive"] ]
@@ -11,16 +11,16 @@
   }, {
     "mode": ["balance"],
     "booster": {
-      "duration": 4500,
-      "idle_delay": 2000,
+      "duration": 4000,
+      "idle_delay": 1000,
       "enter": [ ["@preset", "balance_active"] ],
       "exit": [ ["@preset", "balance_inactive"] ]
     }
   }, {
     "mode": ["performance"],
     "booster": {
-      "duration": 4500,
-      "idle_delay": 2500,
+      "duration": 4000,
+      "idle_delay": 1000,
       "enter": [
         ["@preset", "performance_active"]
       ],
@@ -31,8 +31,8 @@
   }, {
     "mode": ["*"],
     "booster": {
-      "duration": 4500,
-      "idle_delay": 2500,
+      "duration": 4000,
+      "idle_delay": 1000,
       "enter": [
         ["@preset", "fast_active"]
       ],

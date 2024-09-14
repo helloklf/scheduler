@@ -286,7 +286,7 @@ any software that is unrelated to enhancing end-user experience. -->
             </FPS>
         </Activity>
     </Package>
-    <Package name="com.tencent.tmgp.speedmobile">
+    <Package name="com.tencent.tmgp.speedmobile", "com.garena.game.fctw">
         <Activity name="Common">
             <FPS value="Common">
                 <data cmd="PERF_RES_FRS_ENABLE" param1="1"></data>

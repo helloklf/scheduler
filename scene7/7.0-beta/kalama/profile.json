@@ -338,14 +338,14 @@
     },
     {
       "friendly": "QQ飞车",
-      "packages": ["com.tencent.tmgp.speedmobile"],
+      "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
       "import": "_SpeedMobile.json"
     },
     {
       "friendly": "王者荣耀/LOL M/QQ飞车/和平精英/星穹铁道/我的世界/使命召唤/暗区突围/穿越火线/王牌战士/光遇(CN)/光遇(Global)/蛋仔派对/决战平安京",
       "packages": [
         "com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm",
-        "com.tencent.tmgp.speedmobile",
+        "com.tencent.tmgp.speedmobile", "com.garena.game.fctw",
         "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig",
         "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea",
         "com.mojang.minecraftpe", 

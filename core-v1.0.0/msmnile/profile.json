@@ -124,7 +124,7 @@
     {
       "friendly": "QQ飞车",
       "match": ["speedmobile"],
-      "packages": ["com.tencent.tmgp.speedmobile"],
+      "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
       "stop_on": ["display", "leave", "scene"],
       "stop_on_enum": [
         "display 屏幕关闭后，自动停止scene-scheduler",

@@ -4,7 +4,8 @@
     {
       "mode": ["powersave"],
       "call": [
-        ["@chmod", "664", "/proc/perfmgr/perf_ioctl"]
+        ["@chmod", "664", "/proc/perfmgr/perf_ioctl"],
+        ["$cpufreq", "#300000 1700000 550000 2100000 600000 2300000"]
       ],
       "fas": {
         "ddr_boost": true,
@@ -16,7 +17,8 @@
     {
       "mode": ["balance"],
       "call": [
-        ["@chmod", "664", "/proc/perfmgr/perf_ioctl"]
+        ["@chmod", "664", "/proc/perfmgr/perf_ioctl"],
+        ["$cpufreq", "#300000 1700000 550000 2400000 600000 2600000"]
       ],
       "fas": {
         "ddr_boost": true,
@@ -28,7 +30,8 @@
     {
       "mode": ["performance"],
       "call": [
-        ["@chmod", "664", "/proc/perfmgr/perf_ioctl"]
+        ["@chmod", "664", "/proc/perfmgr/perf_ioctl"],
+        ["$cpufreq", "#300000 1700000 550000 2600000 600000 2800000"]
       ],
       "fas": {
         "ddr_boost": true,
@@ -41,7 +44,8 @@
     {
       "mode": ["fast"],
       "call": [
-        ["@chmod", "444", "/proc/perfmgr/perf_ioctl"]
+        ["@chmod", "444", "/proc/perfmgr/perf_ioctl"],
+        ["$cpufreq", "#300000 1900000 550000 2850000 600000 3250000"]
       ],
       "fas": {
         "ddr_boost": true,

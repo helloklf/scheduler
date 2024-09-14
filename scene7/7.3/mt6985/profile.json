@@ -225,7 +225,7 @@
       "categories": ["GenshinImpact"],
       "packages": [
         "com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm",
-        "com.tencent.tmgp.speedmobile",
+        "com.tencent.tmgp.speedmobile", "com.garena.game.fctw",
         "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig",
         "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea",
         "com.mojang.minecraftpe", 

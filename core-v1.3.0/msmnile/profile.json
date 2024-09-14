@@ -176,7 +176,7 @@
     {
       "friendly": "QQ飞车",
       "match": ["speedmobile"],
-      "packages": ["com.tencent.tmgp.speedmobile"],
+      "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
       "sensors": [],
       "affinity": {
         "interval": 5000,

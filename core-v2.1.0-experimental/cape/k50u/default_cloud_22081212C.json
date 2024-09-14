@@ -37,7 +37,7 @@
           "com.tencent.tmgp.sgame",
           "com.tencent.tmgp.sgamece",
           "com.tencent.ig",
-          "com.tencent.tmgp.speedmobile",
+          "com.tencent.tmgp.speedmobile", "com.garena.game.fctw",
           "com.tencent.lolm",
           "com.denachina.g13002010.denacn",
           "com.denachina.g13002010.mi",
@@ -107,7 +107,7 @@
           "com.miHoYo.enterprise.NGHSoD",
           "com.happyelements.AndroidAnimal",
           "cn.jj",
-          "com.tencent.tmgp.speedmobile",
+          "com.tencent.tmgp.speedmobile", "com.garena.game.fctw",
           "com.blizzard.wtcg.hearthstone",
           "com.tencent.peng",
           "com.tencent.qqgame.xq",
@@ -6002,7 +6002,7 @@
               ]
             },
             {
-              "game_name": "com.tencent.tmgp.speedmobile",
+              "game_name": "com.tencent.tmgp.speedmobile", "com.garena.game.fctw",
               "scene_ovrride": [
                 {
                   "scene_id": 5,

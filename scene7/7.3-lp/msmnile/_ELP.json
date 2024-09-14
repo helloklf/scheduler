@@ -9,10 +9,12 @@
         "duration": 2000,
         "idle_delay": 1000,
         "enter": [
+          ["@cpuset", "1", "0-3", "0-7", "0-7"],
           ["@preset", "powersave_active"],
           ["@fps", "0"]
         ],
         "exit": [
+          ["@cpuset", "0-3", "0-3", "0-7", "0-7"],
           ["@preset", "powersave_inactive"],
           ["@fps", "30"]
         ]

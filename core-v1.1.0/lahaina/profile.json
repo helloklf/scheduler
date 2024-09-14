@@ -561,7 +561,7 @@
     {
       "friendly": "QQ飞车",
       "match": ["speedmobile"],
-      "packages": ["com.tencent.tmgp.speedmobile"],
+      "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
       "stop_on": ["display", "leave", "scene"],
       "sensors": [],
       "modes": [

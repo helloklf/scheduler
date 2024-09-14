@@ -106,7 +106,7 @@
   },
   {
     "friendly": "QQ飞车",
-    "packages": ["com.tencent.tmgp.speedmobile"],
+    "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
     "cpuset": {
       "unity_main": "7",
       "heavy_thread": "UnityGfx",
@@ -139,7 +139,8 @@
     "packages": ["com.activision.callofduty.warzone"],
     "cpuset": {
       "comm": {
-        "7": ["WZM_Main"],
+        "7": ["Main"],
+        "4-7": ["Main"],
         "6": ["Backend"],
         "4-5": ["Worker"]
       },
@@ -170,6 +171,19 @@
         "4-5": [
           "Unity", "Thread-", "NativeThread", "Loading"
         ]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "高能英雄",
+    "packages": ["com.tencent.tmgp.gnyx"],
+    "cpuset": {
+      "heavy_thread": "Thread-",
+      "heavy_cores": "6",
+      "comm": {
+        "4-5":["Render"],
+        "7": ["RHIThread"]
       },
       "other": "0-5"
     }

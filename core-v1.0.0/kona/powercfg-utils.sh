@@ -782,7 +782,7 @@ adjustment_by_top_app() {
       # scene_scheduler "$top_app" "$action"
     ;;
 
-    "com.tencent.tmgp.speedmobile")
+    "com.tencent.tmgp.speedmobile", "com.garena.game.fctw")
       realme_gt_on=1
       cpuset '0' '0' '0-7' '0-7'
       # scene_scheduler "$top_app" "$action"

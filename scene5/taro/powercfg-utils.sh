@@ -241,7 +241,7 @@ adjustment_by_top_app() {
       realme_gt_on=1
     ;;
 
-    "com.tencent.tmgp.speedmobile")
+    "com.tencent.tmgp.speedmobile", "com.garena.game.fctw")
       realme_gt_on=1
     ;;
 

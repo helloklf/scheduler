@@ -75,11 +75,11 @@
       ["$core_ctl_7", "#0"]
     ],
     "common_inactvie": [
-      ["@values", "min_freq", "#300000", "#550000", "#600000"]
+      ["@values", "min_freq", "#300000", "#550000", "#600000"],
+      ["@cpuset", "0-3", "0-6", "0-6", "0-7"]
     ],
     "comm_app": [
       ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
-      ["@preset", "freq_extreme"],
       ["$gpu_max_freq", "#14"],
       ["@chmod", "664", "/proc/perfmgr/perf_ioctl"]
     ],
@@ -124,26 +124,6 @@
     "fast_inactive": [
       ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
       ["@preset", "common_inactvie"]
-    ],
-    "freq_low": [
-      ["$cpufreq", "#300000 1700000 550000 2100000 600000 2100000"],
-      ["@values", "max_freq", "1700000", "2100000", "2100000"],
-      ["@values", "min_freq", "300000", "550000", "600000"]
-    ],
-    "freq_middle": [
-      ["$cpufreq", "#300000 1700000 550000 2400000 600000 2400000"],
-      ["@values", "max_freq", "1700000", "2400000", "2400000"],
-      ["@values", "min_freq", "300000", "550000", "600000"]
-    ],
-    "freq_high": [
-      ["$cpufreq", "#300000 1700000 550000 2650000 600000 2800000"],
-      ["@values", "max_freq", "1700000", "2650000", "2800000"],
-      ["@values", "min_freq", "300000", "550000", "600000"]
-    ],
-    "freq_extreme": [
-      ["$cpufreq", "#300000 1900000 550000 2850000 600000 3250000"],
-      ["@values", "max_freq", "1900000", "2850000", "3250000"],
-      ["@values", "min_freq", "300000", "550000", "600000"]
     ]
   },
   "schemes": {
@@ -153,11 +133,11 @@
         ["@preset", "powersave_active"]
       ],
       "app": [
-        ["@preset", "comm_app"]
+        ["@preset", "comm_app"],
+        ["$cpufreq", "#300000 1600000 550000 2400000 600000 2600000"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
-        ["@preset", "freq_low"]
+        ["@preset", "comm_gaming"]
       ]
     },
     "balance": {
@@ -166,11 +146,11 @@
         ["@preset", "balance_active"]
       ],
       "app": [
-        ["@preset", "comm_app"]
+        ["@preset", "comm_app"],
+        ["$cpufreq", "#300000 1600000 550000 2600000 600000 2800000"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
-        ["@preset", "freq_middle"]
+        ["@preset", "comm_gaming"]
       ]
     },
     "performance": {
@@ -179,11 +159,11 @@
         ["@preset", "performance_active"]
       ],
       "app": [
-        ["@preset", "comm_app"]
+        ["@preset", "comm_app"],
+        ["$cpufreq", "#300000 1800000 550000 2600000 600000 3050000"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
-        ["@preset", "freq_high"]
+        ["@preset", "comm_gaming"]
       ]
     },
     "fast": {
@@ -192,11 +172,11 @@
         ["@preset", "fast_active"]
       ],
       "app": [
-        ["@preset", "comm_app"]
+        ["@preset", "comm_app"],
+        ["$cpufreq", "#300000 2000000 550000 2850000 600000 3250000"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
-        ["@preset", "freq_extreme"]
+        ["@preset", "comm_gaming"]
       ]
     }
   },

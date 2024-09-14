@@ -1,6 +1,6 @@
 {
   "friendly": "QQ飞车",
-  "packages": ["com.tencent.tmgp.speedmobile"],
+  "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
   "modes": [
     {
       "mode": ["balance"],
