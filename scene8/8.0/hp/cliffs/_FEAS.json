@@ -1,0 +1,48 @@
+{
+  "friendly": "Games",
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["@preset", "common_gaming"],
+      ["@values", "hispeed_freq", "787200", "787200", "787200"],
+      ["@values", "max_freq", "1670400", "#2188800", "#2150400"],
+      ["@values", "min_freq", "441600", "480000", "480000"],
+      ["@target_loads", "80 1593600:85", "80 1708800:87", "80 1766400:88"],
+      ["/proc/game_opt/disable_cpufreq_limit", "0"],
+      ["@msm_feas", "13"]
+    ]
+  }, {
+    "mode": ["balance"],
+    "call": [
+      ["@preset", "common_gaming"],
+      ["@values", "hispeed_freq", "902400", "940800", "960000"],
+      ["@values", "max_freq", "1843200", "#2361600", "#2457600"],
+      ["@values", "min_freq", "595200", "633600", "633600"],
+      ["@target_loads", "80 1593600:85", "80 1708800:84 2188800:90", "80 1766400:84 2304000:90"],
+      ["/proc/game_opt/disable_cpufreq_limit", "0"],
+      ["@msm_feas", "7"]
+    ]
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["@preset", "common_gaming"],
+      ["@values", "hispeed_freq", "1017600", "1056000", "1094400"],
+      ["@values", "max_freq", "#1804800", "#2611200", "#2803200"],
+      ["@values", "min_freq", "787200", "787200", "787200"],
+      ["@target_loads", "80 1708800:85", "80 2188800:85 2572800:90", "80 2457600:84 2668800:90"],
+      ["/proc/game_opt/disable_cpufreq_limit", "1"],
+      ["@msm_feas", "0"]
+    ]
+  }, {
+    "mode": ["fast"],
+    "call": [
+      ["@preset", "common_gaming"],
+      ["@values", "hispeed_freq", "1228800", "1401600", "1459200"],
+      ["@values", "max_freq", "#1900800", "#2611200", "#2803200"],
+      ["@values", "min_freq", "1017600", "940800", "960000"],
+      ["@target_loads", "80 1708800:85", "78 2361600:85 2611200:90", "78 2668800:83 2803200:90"],
+      ["/proc/game_opt/disable_cpufreq_limit", "1"],
+      ["$perfmgr_enable", "#0"]
+    ]
+  }]
+}

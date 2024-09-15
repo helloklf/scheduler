@@ -1,0 +1,51 @@
+{
+  "friendly": "原神",
+  "call": [
+    ["@cpuset", "0-3", "0-3", "0-5", "0-7"]
+  ],
+  "booster": {
+    "duration": 30000,
+    "idle_delay": 30000,
+    "ignore_load": true,
+    "enter": [
+      ["@fps", "0"]
+    ],
+    "exit": [
+      ["@fps", "30"]
+    ]
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1200000", "2000000"],
+        ["@cpu_freq", "cpu4", "1200000", "3000000"],
+        ["@cpu_freq", "cpu7", "1200000", "3000000"],
+        ["@mtk_feas", "10"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1200000", "2000000"],
+        ["@cpu_freq", "cpu4", "1200000", "3000000"],
+        ["@cpu_freq", "cpu7", "1200000", "3000000"],
+        ["@mtk_feas", "5"]
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1200000", "2000000"],
+        ["@cpu_freq", "cpu4", "1200000", "3000000"],
+        ["@cpu_freq", "cpu7", "1200000", "3000000"],
+        ["@mtk_feas", "0"]
+      ]
+    },
+    {
+      "mode": ["*"],
+      "call": [
+      ]
+    }
+  ]
+}

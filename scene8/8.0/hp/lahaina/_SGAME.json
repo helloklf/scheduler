@@ -1,0 +1,95 @@
+{
+  "friendly": "王者荣耀/LOL",
+  "limiters": [
+    {"id": "sgame0:cpu4", "step": -1, "mode": "performance",
+      "max": 1670400, "turning": 1324800, "min": 710400, "margin": 225, "smoothness": 6},
+    {"id": "sgame0:cpu7", "step": -1, "mode": "performance",
+      "max": 1900800, "turning": 1420800, "min": 844800, "margin": 265, "smoothness": 6},
+
+    {"id": "sgame1:cpu4", "step": -1, "mode": "performance",
+      "max": 1996800, "turning": 1555200, "min": 844800, "margin": 245, "smoothness": 4},
+    {"id": "sgame1:cpu7", "step": -1, "mode": "performance",
+      "max": 2150400, "turning": 1785600, "min": 1075200, "margin": 265, "smoothness": 4},
+
+    {"id": "sgame2:cpu4", "step": -1, "mode": "performance",
+      "max": 2112000, "turning": 1766400, "min": 1075200, "margin": 345, "smoothness": 4, "max_margin_ratio": 0.4},
+    {"id": "sgame2:cpu7", "step": -1, "mode": "performance",
+      "max": 2265600, "turning": 1900800, "min": 1075200, "margin": 345, "smoothness": 4, "max_margin_ratio": 0.4},
+
+    {"id": "sgame3:cpu4", "step": -1, "mode": "performance",
+      "max": 2342400, "turning": 1996800, "min": 1075200, "margin": 345, "smoothness": 6, "max_margin_ratio": 0.4},
+    {"id": "sgame3:cpu7", "step": -1, "mode": "performance",
+      "max": 2496000, "turning": 2265600, "min": 1420800, "margin": 345, "smoothness": 6, "max_margin_ratio": 0.4},
+
+    {"id": "sgame4:cpu4", "step": -1, "mode": "performance",
+      "max": 2419200, "turning": 2112000, "min": 1324800, "margin": 365, "smoothness": 16},
+    {"id": "sgame4:cpu7", "step": -0.93, "mode": "performance",
+      "max": 2841600, "turning": 2496000, "min": 1440000, "margin": 385, "smoothness": 16}
+  ],
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["$cpu_max_0", "1612800"],
+      ["$gpu_max_khz", "#315000000"]
+    ],
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 4000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@limiters", "active:cpu0", "sgame1:cpu4", "sgame1:cpu7"], ["@preset", "bw_normal"], ["@preset", "lat_boost"]] },
+          { "threshold": [99,  75], "enter_once": [["@limiters", "active:cpu0", "sgame0:cpu4", "sgame0:cpu7"], ["@preset", "bw_low"], ["@preset", "lat_normal"]] },
+          { "threshold": [70,  -1], "enter_once": [["@limiters", "active:cpu0", "sgame0:cpu4", "sgame0:cpu7"], ["@preset", "bw_low"], ["@preset", "lat_normal"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["balance"],
+    "call": [
+      ["$gpu_max_khz", "#400000000"]
+    ],
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 4000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@limiters", "sgame2:cpu4", "sgame2:cpu7"], ["@preset", "bw_normal"], ["@preset", "lat_boost"]] },
+          { "threshold": [99,  75], "enter_once": [["@limiters", "active:cpu0", "@limiters", "sgame1:cpu4", "sgame1:cpu7"], ["@preset", "bw_normal"], ["@preset", "lat_normal"]] },
+          { "threshold": [70,  -1], "enter_once": [["@limiters", "active:cpu0", "@limiters", "sgame0:cpu4", "sgame0:cpu7"], ["@preset", "bw_low"], ["@preset", "lat_normal"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["$gpu_max_khz", "#491000000"]
+    ],
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 5000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@limiters", "sgame3:cpu4", "sgame3:cpu7"], ["@preset", "bw_normal"], ["@preset", "lat_boost"]] },
+          { "threshold": [99,  75], "enter_once": [["@limiters", "sgame2:cpu4", "sgame2:cpu7"], ["@preset", "bw_normal"], ["@preset", "lat_normal"]] },
+          { "threshold": [70,  -1], "enter_once": [["@limiters", "sgame1:cpu4", "sgame1:cpu7"], ["@preset", "bw_low"], ["@preset", "lat_normal"]] }
+        ]
+      }
+    ]
+  }, {
+    "mode": ["*"],
+    "call": [
+      ["$gpu_max_khz", "#608000000"]
+    ],
+    "sensors": [
+      {
+        "sensor": "fps",
+        "interval": 5000,
+        "rules": [
+          { "threshold": [-1, 100], "enter_once": [["@limiters", "sgame4:cpu4", "sgame4:cpu7"], ["@preset", "bw_normal"], ["@preset", "lat_boost"]] },
+          { "threshold": [99,  75], "enter_once": [["@limiters", "sgame3:cpu4", "sgame3:cpu7"], ["@preset", "bw_normal"], ["@preset", "lat_normal"]] },
+          { "threshold": [70,  -1], "enter_once": [["@limiters", "sgame2:cpu4", "sgame2:cpu7"], ["@preset", "bw_normal"], ["@preset", "lat_normal"]] }
+        ]
+      }
+    ]
+  }]
+}

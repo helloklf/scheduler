@@ -1,0 +1,112 @@
+{
+  "friendly": "原神",
+  "limiters": [
+    { "id": "ys1:cpu4", "mode": "BOTTOM", "max": 2131200, "turning": 1708800, "min": 1056000, "margin": 300, "smoothness": 8 },
+    { "id": "ys1:cpu7", "mode": "BOTTOM", "max": 2131200, "turning": 1708800, "min": 1056000, "margin": 300, "smoothness": 8 },
+
+    { "id": "ys2:cpu4", "mode": "BOTTOM", "max": 2323200, "turning": 2131200, "min": 1401600, "margin": 300, "smoothness": 8 },
+    { "id": "ys2:cpu7", "mode": "BOTTOM", "max": 2323200, "turning": 2131200, "min": 1497600, "margin": 300, "smoothness": 8 },
+
+    { "id": "ys3:cpu4", "mode": "BOTTOM", "max": 2419200, "turning": 2323200, "min": 1708800, "margin": 400, "smoothness": 8 },
+    { "id": "ys3:cpu7", "mode": "BOTTOM", "max": 2419200, "turning": 2323200, "min": 1708800, "margin": 400, "smoothness": 8 },
+
+    { "id": "ys4:cpu4", "mode": "BOTTOM", "max": 2419200, "turning": 2323200, "min": 1920000, "margin": 500, "smoothness": 8 },
+    { "id": "ys4:cpu7", "mode": "BOTTOM", "max": 2649600, "turning": 2419200, "min": 1920000, "margin": 500, "smoothness": 8 }
+  ],
+  "booster": {
+    "duration": 30000,
+    "idle_delay": 30000,
+    "ignore_load": true,
+    "enter": [
+      ["@fps", "0"]
+    ],
+    "exit": [
+      ["@fps", "30"]
+    ]
+  },
+  "call": [
+    ["@cpuset", "0", "0-3", "0-5", "0-7"],
+    ["$sched_boost", "0"],
+    ["$stune_top_boost", "0"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1036800", "1785600"],
+        ["@cpu_freq", "cpu4", "1056000", "2227200"],
+        ["@cpu_freq", "cpu7", "1056000", "2227200"],
+        ["@limiters", "ys1:cpu4", "ys1:cpu7"]
+      ],
+      "sensors": [
+        {
+          "sensor": "cpu", "interval": 200,
+          "rules": [
+            { "threshold": [   -1, 90000], "enter": [["$gpu_max_khz", "510000000"]] },
+            { "threshold": [90000,    -1], "enter": [["$gpu_max_khz", "630000000"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1209600", "1785600"],
+        ["@cpu_freq", "cpu4", "1056000", "2323200"],
+        ["@cpu_freq", "cpu7", "1056000", "2323200"],
+        ["@limiters", "ys2:cpu4", "ys2:cpu7"]
+      ],
+      "sensors": [
+        {
+          "sensor": "cpu", "interval": 200,
+          "rules": [
+            { "threshold": [   -1, 90000], "enter": [["$gpu_max_khz", "510000000"]] },
+            { "threshold": [90000, 85000], "enter": [["$gpu_max_khz", "630000000"]] },
+            { "threshold": [85000,    -1], "enter": [["$gpu_max_khz", "730000000"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@values", "bw", "2288", "15258", "2288", "15258"],
+        ["@cpu_freq", "cpu0", "1209600", "1785600"],
+        ["@cpu_freq", "cpu4", "1056000", "2419200"],
+        ["@cpu_freq", "cpu7", "1056000", "2649600"],
+        ["@limiters", "ys3:cpu4", "ys3:cpu7"]
+      ],
+      "sensors": [
+        {
+          "sensor": "cpu", "interval": 200,
+          "props": ["$gpu_max_khz"],
+          "rules": [
+            { "threshold": [   -1, 95000], "values": ["510000000"] },
+            { "threshold": [95000, 90000], "values": ["610000000"] },
+            { "threshold": [90000, 85000], "values": ["610000000"] },
+            { "threshold": [85000,    -1], "values": ["730000000"] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@values", "bw", "2288", "15258", "2288", "15258"],
+        ["@limiters", "ys4:cpu4", "ys4:cpu7"]
+      ],
+      "sensors": [
+        {
+          "sensor": "cpu", "interval": 200,
+          "props": ["$gpu_max_khz"],
+          "rules": [
+            { "threshold": [   -1, 97000], "values": ["585000000"] },
+            { "threshold": [97000, 95000], "values": ["610000000"] },
+            { "threshold": [90000, 85000], "values": ["730000000"] },
+            { "threshold": [85000,    -1], "values": ["780000000"] }
+          ]
+        }
+      ]
+    }
+  ]
+}

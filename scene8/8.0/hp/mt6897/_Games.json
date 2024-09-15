@@ -1,0 +1,30 @@
+{
+  "friendly": "游戏",
+  "limiters": [
+    { "id": "g4:cpu4", "max": 3000000, "min": 2850000, "margin": 300 },
+    { "id": "g4:cpu7", "max": 3350000, "min": 3000000, "margin": 300 }
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+      ]
+    },
+    {
+      "mode": ["fast"],
+      "call": [
+        ["@limiters", "g4:cpu4", "g4:cpu7"]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "friendly": "游戏",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+      ],
+      "tas": {
+        "min": 2100000
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+      ],
+      "tas": {
+        "min": 2100000
+      }
+    },
+    {
+      "mode": ["fast"],
+      "call": [
+      ],
+      "tas": {
+        "min": 2100000
+      }
+    }
+  ]
+}
