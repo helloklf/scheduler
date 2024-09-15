@@ -1,4 +1,3 @@
-
 set_value() {
   value=$1
   path=$2
@@ -114,7 +113,6 @@ fi
 hide_value $t_message/temp_state 0
 hide_value $t_message/market_download_limit 0
 hide_value $t_message/cpu_nolimit_temp 49500
-
 lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
 
 core_ctl_preset
@@ -154,10 +152,18 @@ if [[ $(getprop ro.product.model | grep -i Note) == '' ]]; then
   done
   stop traced_probes
   # lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
-  for file in /sys/devices/system/cpu/cpufreq/policy*/walt/target_load_shift; do
-    lock_value 0 $file
-  done
+  echo 1017000 0 0 0 0 0 0 0 > /proc/sys/walt/input_boost/input_boost_freq
+  echo 70 70 > /proc/sys/walt/sched_upmigrate
+  echo 60 60 > /proc/sys/walt/sched_downmigrate
+  echo 1 > /proc/sys/walt/sched_asymcap_boost
 fi
+
+for dir in /sys/devices/system/cpu/cpufreq/policy*;do
+  lock_value 0 $dir/walt/adaptive_high_freq
+  lock_value 0 $dir/walt/adaptive_low_freq
+  echo 1024 > $dir/walt/target_load_thresh
+  echo 4 > $dir/walt/target_load_shift
+done
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
@@ -188,13 +194,15 @@ set_cpuset(){
 }
 
 rmdir /dev/cpuset/background/untrustedapp
+rmdir /dev/cpuset/foreground/boost
 mkdir /dev/cpuset/top-app/$cpus
 echo $cpus > /dev/cpuset/top-app/$cpus/cpus
 echo 0 > /dev/cpuset/top-app/$cpus/mems
-
-rmdir /dev/cpuset/background/untrustedapp
-rmdir /dev/cpuset/foreground/boost
-set_cpuset surfaceflinger "top-app/$cpus"
+mkdir /dev/cpuset/top-app/sf
+echo $cpus > /dev/cpuset/top-app/sf/cpus
+echo 0 > /dev/cpuset/top-app/sf/mems
+set_cpuset surfaceflinger "top-app/sf"
+set_cpuset touch_report "foreground"
 set_cpuset system_server "foreground"
 set_cpuset update_engine "top-app/$cpus"
 set_cpuset audioserver 'foreground'
@@ -203,3 +211,12 @@ set_cpuset vendor.qti.hardware.display.composer-service "top-app/$cpus"
 set_cpuset vendor.qti.hardware.perf-hal-service 'foreground'
 set_cpuset kswapd 'foreground'
 
+for file in /sys/devices/system/cpu/bus_dcvs/LLCC/*/min_freq; do
+  lock_value 300000 $file
+done
+for file in /sys/devices/system/cpu/bus_dcvs/DDR/*/min_freq; do
+  lock_value 547000 $file
+done
+for file in /sys/devices/system/cpu/bus_dcvs/L3/*/min_freq; do
+  lock_value 307200 $file
+done

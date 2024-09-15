@@ -1,5 +1,9 @@
 {
   "friendly": "游戏(Games)",
+  "call": [
+    ["/sys/module/mtk_fpsgo/parameters/p_perf", "1"],
+    ["/sys/module/mtk_fpsgo/parameters/better_perf", "1"]
+  ],
   "modes": [
     {
       "mode": ["powersave"],

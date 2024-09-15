@@ -79,7 +79,9 @@
       ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
       ["@preset", "freq_extreme"],
       ["$gpu_max_freq", "#14"],
-      ["@chmod", "664", "/proc/perfmgr/perf_ioctl"]
+      ["@chmod", "664", "/proc/perfmgr/perf_ioctl"],
+      ["/sys/module/mtk_fpsgo/parameters/p_perf", "0"],
+      ["/sys/module/mtk_fpsgo/parameters/better_perf", "0"]
     ],
     "comm_gaming": [
       ["@governor", "schedutil"],

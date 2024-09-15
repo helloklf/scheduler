@@ -8,6 +8,7 @@
     "bus_ddr_min": "/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/min_freq",
     "bus_ddr": "/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq",
     "l3_boost": "/sys/devices/system/cpu/bus_dcvs/L3/boost_freq",
+    "ddr_boost": "/sys/devices/system/cpu/bus_dcvs/DDR/boost_freq",
     "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable"
   },
   "features": {
@@ -51,6 +52,7 @@
       ["@msm_reset"],
       ["$bus_ddr_min", "547000"],
       ["$l3_boost", "0"],
+      ["$ddr_boost", "0"],
       ["@governor", "walt"]
     ],
 
@@ -227,8 +229,8 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "balance_active"],
-        ["$bus_ddr", "2736000"],
-        ["@preset", "ddr_low"]
+        ["$bus_ddr", "3187000"],
+        ["@preset", "ddr_max"]
       ],
       "app": [
         ["@preset", "common_app"]
@@ -244,6 +246,7 @@
       "call": [
         ["@preset", "reset"],
         ["@preset", "performance_active"],
+        ["$bus_ddr", "3187000"],
         ["@preset", "ddr_max"]
       ],
       "app": [

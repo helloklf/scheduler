@@ -9,6 +9,7 @@
     "bus_ddr_min": "/sys/devices/system/cpu/bus_dcvs/DDR/19091000.qcom,bwmon-ddr/min_freq",
     "bus_ddr": "/sys/devices/system/cpu/bus_dcvs/DDR/19091000.qcom,bwmon-ddr/max_freq",
     "l3_boost": "/sys/devices/system/cpu/bus_dcvs/L3/boost_freq",
+    "ddr_boost": "/sys/devices/system/cpu/bus_dcvs/DDR/boost_freq",
     "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable",
     "bus_qos": "/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq",
     "tchg": "/proc/touchpanel/game_switch_enable"
@@ -64,6 +65,7 @@
       ["@msm_reset"],
       ["$bus_ddr_min", "547000"],
       ["$l3_boost", "0"],
+      ["$ddr_boost", "0"],
       ["@governor", "walt"]
     ],
 

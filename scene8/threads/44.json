@@ -42,10 +42,10 @@
     "packages": ["com.tencent.tmgp.gnyx"],
     "cpuset": {
       "heavy_thread": "Thread-",
-      "heavy_cores": "6",
+      "heavy_cores": "7",
       "comm": {
         "4-5":["Render"],
-        "7": ["RHIThread"]
+        "6": ["RHIThread"]
       },
       "other": "0-5"
     }

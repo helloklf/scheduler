@@ -178,16 +178,16 @@ set_cpuset(){
 }
 
 rmdir /dev/cpuset/background/untrustedapp
+rmdir /dev/cpuset/foreground/boost
 mkdir /dev/cpuset/top-app/sf
 echo $cpus > /dev/cpuset/top-app/sf/cpus
 echo 0 > /dev/cpuset/top-app/sf/mems
 set_cpuset surfaceflinger "top-app/sf"
 
-rmdir /dev/cpuset/background/untrustedapp
-rmdir /dev/cpuset/foreground/boost
 set_cpuset touch_report "foreground"
 set_cpuset system_server "foreground"
-set_cpuset update_engine 'top-app/7'
+set_cpuset update_engine "top-app/$cpus"
+set_cpuset kswapd 'foreground'
 
 
 for file in /sys/devices/system/cpu/bus_dcvs/LLCC/*/min_freq; do
@@ -199,5 +199,3 @@ done
 for file in /sys/devices/system/cpu/bus_dcvs/L3/*/min_freq; do
   lock_value 307200 $file
 done
-
-# rmdir /dev/cpuset/background/untrustedapp

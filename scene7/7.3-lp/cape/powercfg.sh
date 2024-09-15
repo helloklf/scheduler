@@ -141,8 +141,6 @@ mk_cpuctl 'heavy' 1 0 0 max
 mkdir /dev/cpuset/heavy
 echo 0-6 > /dev/cpuset/heavy/cpus
 echo '' > /proc/sys/walt/sched_lib_name
-# mk_stune 'top-app/heavy' 0 0
-# rmdir /dev/cpuset/background/untrustedapp
 
 disable_migt() {
   migt=/sys/module/migt/parameters
@@ -224,6 +222,7 @@ hide_value /sys/module/msm_performance/parameters/cpu_min_freq '0:0 1:0 2:0 3:0 
 chattr +i  /sys/module/msm_performance/parameters/cpu_min_freq
 
 rmdir /dev/cpuset/background/untrustedapp
+rmdir /dev/cpuset/foreground/boost
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then

@@ -155,9 +155,16 @@ if [[ $(getprop ro.product.model | grep -i Note) == '' ]]; then
     echo disabled > $tz
   done
   stop traced_probes
-  # lock_value 0 /sys/devices/system/cpu/cpufreq/policy7/walt/target_load_thresh
-  lock_value 0 /sys/devices/system/cpu/cpufreq/policy7/walt/target_load_shift
+  echo 1017000 0 0 0 0 0 0 0 > /proc/sys/walt/input_boost/input_boost_freq
+  echo 70 70 > /proc/sys/walt/sched_upmigrate
+  echo 60 60 > /proc/sys/walt/sched_downmigrate
+  echo 1 > /proc/sys/walt/sched_asymcap_boost
 fi
+
+for dir in /sys/devices/system/cpu/cpufreq/policy*;do
+  lock_value 0 $dir/walt/adaptive_high_freq
+  lock_value 0 $dir/walt/adaptive_low_freq
+done
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1

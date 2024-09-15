@@ -3,7 +3,8 @@
     "call": [
       ["@fps", "0"]
     ],
-    "modes": [{
+  "modes": [
+    {
       "mode": ["powersave"],
       "booster": {
         "duration": 2000,
@@ -17,7 +18,8 @@
           ["@fps", "30"]
         ]
       }
-    }, {
+    },
+    {
       "mode": ["balance"],
       "booster": {
         "duration": 2000,
@@ -29,11 +31,12 @@
           ["@preset", "balance_inactive"]
         ]
         }
-    }, {
+    },
+    {
       "mode": ["performance"],
       "booster": {
-        "duration": 2000,
-        "idle_delay": 1000,
+        "duration": 2500,
+        "idle_delay": 1500,
         "enter": [
           ["@preset", "performance_active"]
         ],
@@ -41,11 +44,12 @@
           ["@preset", "performance_inactive"]
         ]
       }
-    }, {
+    },
+    {
     "mode": ["*"],
       "booster": {
-        "duration": 2000,
-        "idle_delay": 1000,
+        "duration": 2500,
+        "idle_delay": 1500,
         "enter": [
           ["@preset", "fast_active"]
         ],
@@ -53,5 +57,6 @@
           ["@preset", "fast_inactive"]
         ]
       }
-    }]
-  }
+    }
+  ]
+}

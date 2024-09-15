@@ -1,4 +1,3 @@
-
 set_value() {
   value=$1
   path=$2
@@ -84,6 +83,11 @@ fi
 # hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
 # hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
 
+
+for dir in /sys/devices/system/cpu/cpufreq/policy*;do
+  lock_value 0 $dir/walt/adaptive_high_freq
+  lock_value 0 $dir/walt/adaptive_low_freq
+done
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
