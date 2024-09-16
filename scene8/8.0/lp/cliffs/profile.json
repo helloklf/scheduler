@@ -9,7 +9,8 @@
     "bus_ddr": "/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq",
     "l3_boost": "/sys/devices/system/cpu/bus_dcvs/L3/boost_freq",
     "ddr_boost": "/sys/devices/system/cpu/bus_dcvs/DDR/boost_freq",
-    "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable"
+    "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable",
+    "sched_boost": "/proc/sys/walt/sched_boost"
   },
   "features": {
     "limiter": {
