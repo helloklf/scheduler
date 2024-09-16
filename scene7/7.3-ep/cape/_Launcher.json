@@ -36,7 +36,7 @@
         "idle_delay": 1000,
         "enter": [
           ["@preset", "performance_active"],
-          ["$sched_boost", "12"]
+          ["$sched_boost", "1"]
         ],
         "exit": [["@preset", "performance_inactive"]]
       }

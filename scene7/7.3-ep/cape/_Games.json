@@ -26,7 +26,7 @@
         ],
         ["/proc/game_opt/disable_cpufreq_limit", "0"],
         ["$perfmgr_enable", "1"],
-        ["@values", "target_load_thresh", "0", "600", "600"]
+        ["@values", "target_load_thresh", "600", "600", "600"]
       ],
       "tas": {
         "min": 2112000

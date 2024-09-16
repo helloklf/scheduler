@@ -26,7 +26,7 @@
         ],
         ["/proc/game_opt/disable_cpufreq_limit", "0"],
         ["$perfmgr_enable", "1"],
-        ["@values", "target_load_thresh", "0", "600", "600"]
+        ["@values", "target_load_thresh", "600", "600", "600"]
       ],
       "tas": {
         "min": 2112000
@@ -86,12 +86,6 @@
         ["@preset", "limiter_off"],
         ["@values", "target_load_thresh", "1024", "1024", "1024"]
       ],
-      "fas": {
-        "mode": "boost",
-        "_60": ["2995200", "2745600"],
-        "_90": ["2995200", "2745600"],
-        "_120": ["2995200", "2745600"]
-      },
       "tas": {
         "t": 92,
         "min": 2112000
@@ -112,12 +106,6 @@
         ["@preset", "limiter_off"],
         ["@values", "target_load_thresh", "1024", "1024", "1024"]
       ],
-      "fas": {
-        "mode": "boost",
-        "_60": ["2995200", "2745600"],
-        "_90": ["2995200", "2745600"],
-        "_120": ["2995200", "2745600"]
-      },
       "tas": {
         "t": 94,
         "min": 2112000
