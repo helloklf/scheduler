@@ -287,11 +287,6 @@
       "import": "_Scanner.json"
     },
     {
-      "friendly": "狗屎/毒瘤",
-      "categories": ["MiniProgram"],
-      "import": "_MiniProgram.json"
-    },
-    {
       "friendly": "待机",
       "packages": ["standby"],
       "call": [

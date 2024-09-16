@@ -1,8 +1,13 @@
 {
   "friendly": "相机",
   "packages": ["standby"],
+  "limiters": [
+    { "id": "cam:cpu0", "max": 1804800, "min": 556800, "margin": 100 },
+    { "id": "cam:cpu3", "max": 2803200, "min": 614400, "margin": 200 },
+    { "id": "cam:cpu7", "max": 2995200, "min": 729600, "margin": 200 }
+  ],
   "call": [
-    ["@limiters", "NONE"]
+    ["@limiters", "cam:cpu0", "cam:cpu3", "cam:cpu7"]
   ],
   "booster": {
     "duration": 5000,

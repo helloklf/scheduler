@@ -221,7 +221,6 @@
     { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
     { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
     { "friendly": "待机", "packages": ["standby"], "import": "_Standby.json" },
-    { "friendly": "狗屎/毒瘤", "categories": ["MiniProgram"], "import": "_MiniProgram.json" },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [

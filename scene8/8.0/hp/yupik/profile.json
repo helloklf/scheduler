@@ -289,11 +289,6 @@
       "import": "_Camera.json"
     },
     {
-      "friendly": "狗屎/毒瘤",
-      "categories": ["MiniProgram"],
-      "import": "_MiniProgram.json"
-    },
-    {
       "friendly": "All",
       "packages": ["*"],
       "import": "_Apps.json"
