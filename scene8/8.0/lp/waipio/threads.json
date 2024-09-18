@@ -139,12 +139,13 @@
     "friendly": "COD Mobile",
     "packages": ["com.activision.callofduty.warzone"],
     "cpuset": {
+      "heavy_cores": "7",
+      "heavy_thread": "Main",
       "comm": {
-        "7": ["Main"],
         "6": ["Backend"],
         "4-5": ["Worker"]
       },
-      "other": "0-6"
+      "other": "0-5"
     }
   },
   {

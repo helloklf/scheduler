@@ -12,7 +12,6 @@
   },
   "features": {
     "limiter": {
-      "logger": false,
       "active_interval": 24,
       "inactive_interval": 150,
       "params": [

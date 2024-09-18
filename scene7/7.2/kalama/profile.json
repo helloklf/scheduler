@@ -309,7 +309,7 @@
         ["$bus_ddr_min", "2736000"],
         ["@preset", "freq_extreme"],
         ["@limiters", "g4:cpu0", "g4:cpu3", "g4:cpu7"],
-        ["@presets", "limiter_off"]
+        ["@preset", "limiter_off"]
       ]
     }
   },

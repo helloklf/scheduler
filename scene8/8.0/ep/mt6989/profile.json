@@ -22,7 +22,6 @@
       "gaming_interval": 30,
       "inactive_interval": 100,
       "ddr_boost": false,
-      "logger": false,
       "params": [
         { "id": "p1:cpu0", "max": 2000000, "turning": 1800000, "min": 1200000, "margin": 300 },
         { "id": "p1:cpu4", "max": 2300000, "turning": 2100000, "min": 1800000, "margin": 300 },
@@ -49,9 +48,6 @@
         { "id": "idle:cpu4", "max": 1800000, "min": 550000, "margin": 100 },
         { "id": "idle:cpu7", "max": 1800000, "min": 600000, "margin": 100 }
       ]
-    },
-    "cpuset": {
-      "ipc": [0, 1.175, 1.275]
     },
     "gesture_boost": {
       "enable": false,

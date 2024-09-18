@@ -1,6 +1,5 @@
 {
   "friendly": "相机",
-  "packages": ["standby"],
   "call": [
     ["@limiters", "NONE"]
   ],

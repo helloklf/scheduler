@@ -1,0 +1,76 @@
+{
+  "friendly": "游戏",
+  "limiters": [
+    { "id": "g0:cpu0", "step": -0.7, "max": 1555200, "turning": 1056000, "min": 806400, "margin": 200 },
+    { "id": "g0:cpu4", "step": -0.9, "max": 1996800, "turning": 1651200, "min": 633600, "margin": 300 },
+    { "id": "g0:cpu7", "step": -0.9, "max": 1996800, "turning": 1651200, "min": 787200, "margin": 300 },
+
+    { "id": "g1:cpu0", "step": -0.7, "max": 1555200, "turning": 1228800, "min": 1056000, "margin": 200 },
+    { "id": "g1:cpu4", "step": -0.7, "max": 2227200, "turning": 1881600, "min": 768000, "margin": 300, "mode": "performance" },
+    { "id": "g1:cpu7", "step": -0.7, "max": 2246400, "turning": 1881600, "min": 1171200, "margin": 300, "mode": "performance" },
+
+    { "id": "g2:cpu0", "step": -0.7, "max": 1804800, "turning": 1440000, "min": 1056000, "margin": 250 },
+    { "id": "g2:cpu4", "step": -0.7, "max": 2457600, "turning": 2112000, "min": 768000, "margin": 300, "mode": "performance" },
+    { "id": "g2:cpu7", "step": -0.5, "max": 2476800, "turning": 2131200, "min": 1171200, "margin": 300, "mode": "performance" },
+
+    { "id": "g3:cpu0", "max": 1804800, "turning": 1555200, "min": 1440000, "margin": 250, "prefer": 3 },
+    { "id": "g3:cpu4", "max": 2745600, "turning": 2457600, "min": 2112000, "margin": 300, "prefer": 3 },
+    { "id": "g3:cpu7", "max": 2726400, "turning": 2476800, "min": 2131200, "margin": 300, "prefer": 3 },
+
+    { "id": "g4:cpu7", "turning": 2995200, "min": 2707200, "margin": 300, "prefer": 3 }
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
+        ["@limiters", "g1:cpu0", "g1:cpu4", "g1:cpu7"],
+        ["@msm_feas", "10"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "l3_boost": true, "ddr_boost": true,
+        "freq": ["2131200", "1996800"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
+        ["@limiters", "g2:cpu0", "g2:cpu4", "g2:cpu7"],
+        ["@msm_feas", "5"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "l3_boost": true, "ddr_boost": true,
+        "freq": ["2476800", "2227200"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"],
+        ["@msm_feas", "0"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "l3_boost": true, "ddr_boost": true,
+        "mode": "fps",
+        "freq": ["2707200", "2496000"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@limiters", "g4:cpu7"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "limiters": ["g4:cpu0", "g4:cpu4", "g4:cpu7"],
+        "l3_boost": true, "ddr_boost": true,
+        "mode": "fps",
+        "freq": ["2995200", "2745600"]
+      }
+    }
+  ]
+}

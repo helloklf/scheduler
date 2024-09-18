@@ -22,46 +22,34 @@
       "mode": ["powersave"],
       "fas": {
         "limiters": ["g1:cpu0", "g1:cpu4", "g1:cpu7"],
-        "l3_boost": true,
-        "ddr_boost": true,
-        "_60": ["2131200", "1996800"],
-        "_90": ["2131200", "1996800"],
-        "_120": ["2131200", "1996800"]
+        "l3_boost": true, "ddr_boost": true,
+        "freq": ["2131200", "1996800"]
       }
     },
     {
       "mode": ["balance"],
       "fas": {
         "limiters": ["g2:cpu0", "g2:cpu4", "g2:cpu7"],
-        "l3_boost": true,
-        "ddr_boost": true,
-        "_60": ["2476800", "2227200"],
-        "_90": ["2476800", "2227200"],
-        "_120": ["2476800", "2227200"]
+        "l3_boost": true, "ddr_boost": true,
+        "freq": ["2476800", "2227200"]
       }
     },
     {
       "mode": ["performance"],
       "fas": {
         "limiters": ["g3:cpu0", "g3:cpu4", "g3:cpu7"],
-        "l3_boost": true,
-        "ddr_boost": true,
+        "l3_boost": true, "ddr_boost": true,
         "mode": "fps",
-        "_60": ["2707200", "2496000"],
-        "_90": ["2707200", "2496000"],
-        "_120": ["2707200", "2496000"]
+        "freq": ["2707200", "2496000"]
       }
     },
     {
       "mode": ["*"],
       "fas": {
         "limiters": ["g4:cpu0", "g4:cpu4", "g4:cpu7"],
-        "l3_boost": true,
-        "ddr_boost": true,
+        "l3_boost": true, "ddr_boost": true,
         "mode": "fps",
-        "_60": ["2995200", "2745600"],
-        "_90": ["2995200", "2745600"],
-        "_120": ["2995200", "2745600"]
+        "freq": ["2995200", "2745600"]
       }
     }
   ]

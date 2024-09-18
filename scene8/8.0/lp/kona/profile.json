@@ -20,7 +20,6 @@
     "limiter": {
       "active_interval": 30,
       "inactive_interval": 100,
-      "logger": false,
       "params": [
         { "id": "active:cpu0", "max": 1804800, "turning": 1516800, "min": 1075200, "margin": 350, "excludes": [1] },
 

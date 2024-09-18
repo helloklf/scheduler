@@ -1,63 +1,81 @@
 {
-  "friendly": "Games",
+  "friendly": "游戏",
+  "limiters": [
+    { "id": "g1:cpu0", "step": -0.7, "max": 1708800, "min": 1228800, "margins": "300" },
+    { "id": "g1:cpu3", "step": -0.7, "max": 1920000, "min": 1190400, "margins": "300 1708800:200" },
+    { "id": "g1:cpu7", "step": -0.7, "max": 2150400, "min": 1209600, "margins": "300 1766400:200" },
+
+    { "id": "g2:cpu0", "step": -0.7, "max": 1708800, "min": 1228800, "margins": "300", "prefer": 3 },
+    { "id": "g2:cpu3", "step": -0.7, "max": 2361600, "min": 1708800, "margins": "300 2188800:200", "prefer": 3 },
+    { "id": "g2:cpu7", "step": -0.7, "max": 2457600, "min": 1766400, "margins": "300 2150400:200", "prefer": 3 },
+
+    { "id": "g3:cpu0", "max": 1843200, "min": 1478400, "margins": "300", "prefer": 3 },
+    { "id": "g3:cpu3", "max": 2611200, "min": 2188800, "margins": "300 2361600:200", "prefer": 3 },
+    { "id": "g3:cpu7", "max": 2668800, "min": 2150400, "margins": "300 2457600:200", "prefer": 3 }
+  ],
+  "call": [
+    ["@preset", "common_gaming"],
+    ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
+  ],
   "modes": [
     {
       "mode": ["powersave"],
       "call": [
-        ["@preset", "common_gaming"],
         ["@values", "hispeed_freq", "787200", "787200", "787200"],
-        ["@values", "max_freq", "1670400", "#2188800", "#2150400"],
-        ["@values", "min_freq", "441600", "480000", "480000"],
-        ["@target_loads", "80 1593600:85", "80 1708800:87", "80 1766400:88"],
+        ["@target_loads", "80 1593600:90", "85 1708800:87", "85 1766400:90"],
+        ["@limiters", "g1:cpu0", "g1:cpu3", "g1:cpu7"],
         ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ],
       "fas": {
+        "use": "whitelist",
         "lower_freq": 940800,
-        "_60": ["2150400", "1920000"],
-        "_90": ["2150400", "1920000"],
-        "_120": ["2150400", "1920000"]
+        "freq": ["2150400", "1920000"]
       }
     },
     {
       "mode": ["balance"],
       "call": [
-        ["@preset", "common_gaming"],
         ["@values", "hispeed_freq", "902400", "940800", "960000"],
-        ["@values", "max_freq", "1843200", "#2361600", "#2457600"],
-        ["@values", "min_freq", "595200", "633600", "633600"],
-        ["@target_loads", "80 1593600:85", "80 1708800:84 2188800:90", "80 1766400:84 2304000:90"],
-        ["/proc/game_opt/disable_cpufreq_limit", "0"]
+        ["@target_loads", "80 1593600:85 1708800:90", "82 1708800:85 2188800:92", "82 1766400:87 2150400:92"],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"],
+        ["@limiters", "g2:cpu0", "g2:cpu3", "g2:cpu7"]
       ],
       "fas": {
+        "use": "whitelist",
         "lower_freq": 1190400,
-        "_60": ["2457600", "2361600"],
-        "_90": ["2457600", "2361600"],
-        "_120": ["2457600", "2361600"]
+        "freq": ["2457600", "2361600"]
       }
     },
     {
       "mode": ["performance"],
       "call": [
-        ["@preset", "common_gaming"],
         ["@values", "hispeed_freq", "1017600", "1056000", "1094400"],
-        ["@values", "max_freq", "#1804800", "#2611200", "#2803200"],
-        ["@values", "min_freq", "787200", "787200", "787200"],
-        ["@target_loads", "80 1708800:85", "80 2188800:85 2572800:90", "80 2457600:84 2668800:90"],
-        ["/proc/game_opt/disable_cpufreq_limit", "1"],
-        ["$perfmgr_enable", "#0"]
-      ]
+        ["@target_loads", "80 1708800:90", "80 2188800:87 2572800:92", "80 2150400:85 2457600:90"],
+        ["@limiters", "g3:cpu0", "g3:cpu3", "g3:cpu7"],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "perfect_load": 0.9, "lower_freq": 1401600,
+        "freq": ["2668800", "2611200"]
+      }
     },
     {
       "mode": ["fast"],
       "call": [
-        ["@preset", "common_gaming"],
         ["@values", "hispeed_freq", "1228800", "1401600", "1459200"],
-        ["@values", "max_freq", "#1900800", "#2611200", "#2803200"],
-        ["@values", "min_freq", "1017600", "940800", "960000"],
-        ["@target_loads", "80 1708800:85", "78 2361600:85 2611200:90", "78 2668800:83 2803200:90"],
-        ["/proc/game_opt/disable_cpufreq_limit", "1"],
-        ["$perfmgr_enable", "#0"]
-      ]
+        ["@values", "max_freq", "#1843200", "#2803200", "#2841600"],
+        ["@values", "min_freq", "1056000", "1209600", "1209600"],
+        ["@target_loads", "80 1708800:90", "80 2361600:85 2611200:90", "80 2457600:85 2668800:90"],
+        ["@preset", "limiter_off"],
+        ["$l3_boost", "#1593600"],
+        ["$bus_ddr_min", "2736000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "perfect_load": 0.9, "lower_freq": 1593600,
+        "freq": ["2841600", "2803200"]
+      }
     }
   ]
 }

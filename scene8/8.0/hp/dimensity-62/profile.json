@@ -21,7 +21,6 @@
       "inactive_interval": 100,
       "max_margin_ratio": 0.45,
       "ddr_boost": true,
-      "logger": false,
       "params": [
         { "id": "p1:cpu0", "max": 1800000, "min": 1400000, "margin": 300 },
         { "id": "p1:cpu6", "max": 2100000, "min": 1600000, "margin": 300 },

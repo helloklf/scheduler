@@ -13,9 +13,6 @@
     "sched_boost": "/proc/sys/walt/sched_boost"
   },
   "features": {
-    "cpuset": {
-      "ipc": [0, 0.66, 1.10]
-    },
     "gesture_boost": {
       "enable": false,
       "enter": [

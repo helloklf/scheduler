@@ -58,7 +58,7 @@
           "75 2112000:80 2572800:90",
           "75 2246400:85 2592000:90"
         ],
-        ["@presets", "limiter_off"],
+        ["@preset", "limiter_off"],
         ["@values", "target_load_thresh", "1024", "1024", "1024"]
       ],
       "tas": {
@@ -78,7 +78,7 @@
           "70 2572800:80",
           "70 2592000:80 2707200:85"
         ],
-        ["@presets", "limiter_off"],
+        ["@preset", "limiter_off"],
         ["@values", "target_load_thresh", "1024", "1024", "1024"]
       ],
       "fas": {
@@ -104,7 +104,7 @@
           "70 2572800:80",
           "70 2592000:80"
         ],
-        ["@presets", "limiter_off"],
+        ["@preset", "limiter_off"],
         ["@values", "target_load_thresh", "1024", "1024", "1024"]
       ],
       "fas": {

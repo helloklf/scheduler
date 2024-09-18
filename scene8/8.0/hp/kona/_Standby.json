@@ -1,6 +1,5 @@
 {
   "friendly": "待机",
-  "packages": ["standby"],
   "call": [
     ["@limiters", "NONE"]
   ],

@@ -8,23 +8,46 @@
     {
       "mode": ["powersave"],
       "call": [
-      ]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "lower_freq": 1400000,
+        "freq": ["2400000", "1800000"]
+      }
     },
     {
       "mode": ["balance"],
       "call": [
-      ]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "lower_freq": 1600000,
+        "thread_analyzer": true,
+        "freq": ["2660000", "2400000"]
+      }
     },
     {
       "mode": ["performance"],
       "call": [
-      ]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "lower_freq": 1700000,
+        "perfect_load": 0.92,
+        "freq": ["2800000", "2660000"]
+      }
     },
     {
       "mode": ["fast"],
       "call": [
         ["@limiters", "g4:cpu4", "g4:cpu7"]
-      ]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "lower_freq": 1900000,
+        "perfect_load": 0.90,
+        "freq": ["3000000", "2800000"]
+      }
     }
   ]
 }
