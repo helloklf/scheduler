@@ -236,17 +236,20 @@ disable_migt
 
 process_opt &
 
-# CC'MIUI/HyperOS or ColorOS
-if [[ $(getprop ro.cc.device.name) != "" ]] || [[ -d /my_heytap ]]; then
+echo 1 > /proc/sys/walt/sched_asymcap_boost
+
+if [[ -d /my_heytap ]]; then
   hide_value /proc/sys/walt/sched_upmigrate '85 95'
   hide_value /proc/sys/walt/sched_downmigrate '70 80'
   hide_value /proc/sys/walt/sched_group_upmigrate 95
   hide_value /proc/sys/walt/sched_group_downmigrate 78
-  stop miuibooster
+  stop miuibooster # CC'MIUI/HyperOS
+  # echo 0 > /proc/sys/kernel/sched_energy_aware
 fi
 
 # OnePlus
-hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
+lock_value 0 /proc/oplus_scheduler/sched_assist/sched_assist_enabled
+lock_value 0 /proc/oplus_scheduler/sched_assist/sched_assist_scene
 hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
 lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
 if [[ -d  /proc/game_opt ]]; then

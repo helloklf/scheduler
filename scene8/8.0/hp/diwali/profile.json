@@ -248,11 +248,6 @@
     }
   },
   "apps": [
-    {
-      "fir": "模拟器",
-      "packages": ["xyz.aethersx2.android", "com.aiwu.dolphinemu"],
-      "import": "_Simulate.json"
-    },
     { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
     { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
     { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
@@ -260,33 +255,6 @@
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
-    {
-      "friendly": "原神",
-      "categories": ["GenshinImpact"],
-      "import": "_GenshinImpact.json"
-    },
-    {
-      "friendly": "和平精英",
-      "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
-      "cpuset": {
-        "heavy_thread": "RenderThread",
-        "heavy_cores": "7",
-        "comm": {
-          "4-6": ["Thread-", "TaskGraphNP"]
-        },
-        "other": "0-6"
-      }
-    },
-    {
-      "friendly": "王者荣耀/LOL",
-      "packages": ["com.tencent.tmgp.sgame"],
-      "import": "_SGAME.json"
-    },
-    {
-      "friendly": "QQ飞车",
-      "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
-      "import": "_SpeedMobile.json"
-    },
     {
       "friendly": "All",
       "packages": ["*"],

@@ -275,11 +275,6 @@
     }
   },
   "apps": [
-    {
-      "fir": "模拟器",
-      "packages": ["xyz.aethersx2.android", "com.aiwu.dolphinemu"],
-      "import": "_Simulate.json"
-    },
     { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
     { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
     { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },

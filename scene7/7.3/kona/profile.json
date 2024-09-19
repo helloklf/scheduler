@@ -152,7 +152,7 @@
     "powersave_active": [
       ["@preset", "common_actvie"],
       ["@limiters", "active:cpu0", "p1:cpu4", "p1:cpu7"],
-      ["@values", "min_freq", "1171200", "1056000", "1075200"],
+      ["@values", "min_freq", "1075200", "1056000", "1075200"],
       ["@repeat", "sched_config", "65 65", "75 80", "90", "100"]
     ],
     "powersave_inactive": [

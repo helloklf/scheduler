@@ -222,16 +222,6 @@
   ],
   "games": [
     {
-      "friendly": "原神",
-      "categories": ["GenshinImpact"],
-      "import": "_GenshinImpact.json"
-    },
-    {
-      "friendly": "王者荣耀/LOL",
-      "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
-      "import": "_SGAME.json"
-    },
-    {
       "friendly": "All",
       "packages": ["*"],
       "import": "_Games.json"

@@ -14,8 +14,7 @@
     { "id": "g3:cpu7", "max": 2668800, "min": 2150400, "margins": "300 2457600:200", "prefer": 3 }
   ],
   "call": [
-    ["@preset", "common_gaming"],
-    ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
+    ["@preset", "common_gaming"]
   ],
   "modes": [
     {
@@ -52,7 +51,7 @@
         ["@values", "hispeed_freq", "1017600", "1056000", "1094400"],
         ["@target_loads", "80 1708800:90", "80 2188800:87 2572800:92", "80 2150400:85 2457600:90"],
         ["@limiters", "g3:cpu0", "g3:cpu3", "g3:cpu7"],
-        ["/proc/game_opt/disable_cpufreq_limit", "0"]
+        ["@preset", "limiter_off"]
       ],
       "fas": {
         "use": "whitelist",
@@ -64,6 +63,7 @@
       "mode": ["fast"],
       "call": [
         ["@values", "hispeed_freq", "1228800", "1401600", "1459200"],
+        ["@limiters", "NONE"],
         ["@values", "max_freq", "#1843200", "#2803200", "#2841600"],
         ["@values", "min_freq", "1056000", "1209600", "1209600"],
         ["@target_loads", "80 1708800:90", "80 2361600:85 2611200:90", "80 2457600:85 2668800:90"],

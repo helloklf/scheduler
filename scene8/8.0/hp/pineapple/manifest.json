@@ -6,6 +6,7 @@
   "features": {
     "strict": true,
     "pedestal": false,
-    "reboot": true
+    "reboot": true,
+    "fas": true
   }
 }

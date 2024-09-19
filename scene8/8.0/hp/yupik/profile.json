@@ -295,23 +295,9 @@
   ],
   "games": [
     {
-      "friendly": "原神",
-      "categories": ["GenshinImpact"],
-      "import": "_GenshinImpact.json"
-    },
-    {
-      "friendly": "王者荣耀/LOL",
-      "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw"],
-      "import": "_SGAME.json"
-    },
-    {
-      "friendly": "QQ飞车",
-      "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
-      "import": "_SpeedMobile.json"
-    },
-    {
       "friendly": "All",
-      "packages": ["*"]
+      "packages": ["*"],
+      "import": "_Games.json"
     }
   ]
 }

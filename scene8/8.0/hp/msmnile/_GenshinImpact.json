@@ -13,17 +13,6 @@
     { "id": "ys4:cpu4", "mode": "BOTTOM", "max": 2419200, "turning": 2323200, "min": 1920000, "margin": 500, "smoothness": 8 },
     { "id": "ys4:cpu7", "mode": "BOTTOM", "max": 2649600, "turning": 2419200, "min": 1920000, "margin": 500, "smoothness": 8 }
   ],
-  "booster": {
-    "duration": 30000,
-    "idle_delay": 30000,
-    "ignore_load": true,
-    "enter": [
-      ["@fps", "0"]
-    ],
-    "exit": [
-      ["@fps", "30"]
-    ]
-  },
   "call": [
     ["@cpuset", "0", "0-3", "0-5", "0-7"],
     ["$sched_boost", "0"],
