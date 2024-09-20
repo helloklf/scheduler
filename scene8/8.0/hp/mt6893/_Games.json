@@ -16,11 +16,7 @@
 
     { "id": "g4:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1400000, "margin": 695, "smoothness": 6 },
     { "id": "g4:cpu4", "mode": "BOTTOM", "max": 2600000, "min": 1400000, "margin": 695, "smoothness": 6 },
-    { "id": "g4:cpu7", "mode": "BOTTOM", "max": 2800000, "min": 1400000, "margin": 695, "smoothness": 6 },
-
-    { "id": "sgame:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1075000, "margin": 605 },
-    { "id": "sgame:cpu4", "mode": "BOTTOM", "max": 2354000, "min": 1162000, "margin": 535 },
-    { "id": "sgame:cpu7", "mode": "BOTTOM", "max": 2463000, "min": 1370000, "margin": 545 }
+    { "id": "g4:cpu7", "mode": "BOTTOM", "max": 2800000, "min": 1400000, "margin": 695, "smoothness": 6 }
   ],
   "modes": [{
     "mode": ["powersave"],
@@ -36,7 +32,7 @@
   }, {
     "mode": ["balance"],
     "call": [
-      ["@limiters", "sgame:cpu0", "sgame:cpu4", "sgame:cpu7"]
+      ["@limiters", "g2:cpu0", "g2:cpu4", "g2:cpu7"]
     ],
     "booster": {
       "duration": 3000,

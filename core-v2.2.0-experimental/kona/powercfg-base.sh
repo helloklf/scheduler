@@ -228,6 +228,5 @@ if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
   hide_value /proc/game_opt/game_pid -1
 fi
-hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
 echo 0 > /proc/sys/kernel/sched_force_lb_enable
 echo N > /sys/module/task_sched_info/parameters/sched_info_ctrl

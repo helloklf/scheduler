@@ -300,16 +300,6 @@
   ],
   "games": [
     {
-      "friendly": "原神",
-      "categories": ["GenshinImpact"],
-      "import": "_GenshinImpact.json"
-    },
-    {
-      "friendly": "星穹铁道",
-      "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
-      "import": "_HKRPG.json"
-    },
-    {
       "friendly": "LOL",
       "packages": ["com.tencent.lolm"],
       "import": "_LOLM.json"
@@ -318,16 +308,6 @@
       "friendly": "王者荣耀/LOL",
       "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw"],
       "import": "_SGAME.json"
-    },
-    {
-      "friendly": "和平精英",
-      "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
-      "import": "_PUBG.json"
-    },
-    {
-      "friendly": "QQ飞车",
-      "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
-      "import": "_SpeedMobile.json"
     },
     {
       "friendly": "All",
