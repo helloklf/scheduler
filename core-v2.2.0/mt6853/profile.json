@@ -134,16 +134,16 @@
       "call": [
         ["@thermal_threshold", "-1"],
         ["@preset", "powersave_active"],
-        ["cci_mode", "0"],
-        ["dram_boost", "0"]
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
       ]
     },
     "balance": {
       "call": [
         ["@thermal_threshold", "-1"],
         ["@preset", "balance_active"],
-        ["cci_mode", "0"],
-        ["dram_boost", "0"]
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
       ]
     },
     "performance": {
@@ -152,12 +152,12 @@
         ["@preset", "performance_active"]
       ],
       "app": [
-        ["cci_mode", "0"],
-        ["dram_boost", "0"]
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
       ],
       "game": [
-        ["cci_mode", "1"],
-        ["dram_boost", "1"]
+        ["$cci_mode", "1"],
+        ["$dram_boost", "1"]
       ]
     },
     "fast": {
@@ -166,12 +166,12 @@
         ["@preset", "fast_active"]
       ],
       "app": [
-        ["cci_mode", "0"],
-        ["dram_boost", "0"]
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
       ],
       "game": [
-        ["cci_mode", "1"],
-        ["dram_boost", "1"]
+        ["$cci_mode", "1"],
+        ["$dram_boost", "1"]
       ]
     },
     "pedestal": {
@@ -180,12 +180,12 @@
         ["@preset", "pedestal_active"]
       ],
       "app": [
-        ["cci_mode", "0"],
-        ["dram_boost", "0"]
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
       ],
       "game": [
-        ["cci_mode", "1"],
-        ["dram_boost", "1"]
+        ["$cci_mode", "1"],
+        ["$dram_boost", "1"]
       ]
     }
   },

@@ -73,16 +73,19 @@ disable_migt() {
     chmod 444 $migt/add_bclus_affinity_uidlist
     chmod 444 $migt/add_mclus_affinity_uidlist
     chmod 444 $migt/add_lclus_affinity_uidlist
-    hide_value $migt/glk_freq_limit_start '0'
-    hide_value $migt/glk_freq_limit_walt '0'
-    hide_value $migt/glk_maxfreq '0 0 0'
-    hide_value $migt/glk_minfreq '300000 710400 844800'
-    hide_value $migt/migt_ceiling_freq '0 0 0'
-    hide_value $migt/glk_disable '1'
-    hide_value $migt/mi_freq_enable '0'
-    hide_value $migt/force_stask_to_big '0'
-    hide_value $migt/glk_fbreak_enable '0'
-    hide_value $migt/force_reset_runtime '0'
+    chmod 444 $migt/add_rebind_task_big
+    chmod 444 $migt/add_rebind_task_lit
+    chmod 444 $migt/add_rebind_task_mid
+    lock_value 0 $migt/glk_freq_limit_start '0'
+    lock_value 0 $migt/glk_freq_limit_walt '0'
+    lock_value '0 0 0' $migt/glk_maxfreq
+    lock_value '300000 710400 844800' $migt/glk_minfreq
+    lock_value '0 0 0' $migt/migt_ceiling_freq
+    lock_value 1 $migt/glk_disable
+    lock_value 0 $migt/mi_freq_enable
+    lock_value 0 $migt/force_stask_to_big
+    lock_value 0 $migt/glk_fbreak_enable
+    echo 1 > $migt/force_reset_runtime
     hide_value $migt/enable_pkg_monitor '0'
 
     settings put secure speed_mode_enable 1

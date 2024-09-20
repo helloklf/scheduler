@@ -123,8 +123,8 @@
       "call": [
         ["@thermal_threshold", "-1"],
         ["@preset", "powersave_active"],
-        ["cci_mode", "0"],
-        ["dram_boost", "0"]
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
       ],
       "app": [["@preset", "common_apps"]],
       "game": [["@preset", "common_gaming"]]
@@ -133,8 +133,8 @@
       "call": [
         ["@thermal_threshold", "-1"],
         ["@preset", "balance_active"],
-        ["cci_mode", "0"],
-        ["dram_boost", "0"]
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
       ],
       "app": [["@preset", "common_apps"]],
       "game": [["@preset", "common_gaming"]]
@@ -146,13 +146,13 @@
       ],
       "app": [
         ["@preset", "common_apps"],
-        ["cci_mode", "0"],
-        ["dram_boost", "0"]
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["cci_mode", "1"],
-        ["dram_boost", "1"]
+        ["$cci_mode", "1"],
+        ["$dram_boost", "1"]
       ]
     },
     "fast": {
@@ -162,13 +162,13 @@
       ],
       "app": [
         ["@preset", "common_apps"],
-        ["cci_mode", "0"],
-        ["dram_boost", "0"]
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["cci_mode", "1"],
-        ["dram_boost", "1"]
+        ["$cci_mode", "1"],
+        ["$dram_boost", "1"]
       ]
     }
   },

@@ -60,15 +60,15 @@ disable_migt() {
   if [[ -d $migt ]]; then
     echo 1 > $migt/force_reset_runtime
     hide_value $migt/migt_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
-    hide_value $migt/glk_freq_limit_start '0'
-    hide_value $migt/glk_freq_limit_walt '0'
-    hide_value $migt/glk_maxfreq '0 0 0'
-    hide_value $migt/glk_minfreq '300000 710400 844800'
-    hide_value $migt/migt_ceiling_freq '0 0 0'
-    hide_value $migt/glk_disable '1'
-    hide_value $migt/mi_freq_enable '0'
-    hide_value $migt/force_stask_to_big '0'
-    hide_value $migt/glk_fbreak_enable '0'
+    lock_value 0 $migt/glk_freq_limit_start '0'
+    lock_value 0 $migt/glk_freq_limit_walt '0'
+    lock_value '0 0 0' $migt/glk_maxfreq
+    lock_value '300000 710400 844800' $migt/glk_minfreq
+    lock_value '0 0 0' $migt/migt_ceiling_freq
+    lock_value 1 $migt/glk_disable
+    lock_value 0 $migt/mi_freq_enable
+    lock_value 0 $migt/force_stask_to_big
+    lock_value 0 $migt/glk_fbreak_enable
     chmod 444 $migt/set_render_as_stask
 
     settings put secure speed_mode_enable 1

@@ -22,7 +22,7 @@
       "inactive_interval": 100,
       "l3_boost": true,
       "params": [
-        { "id": "p1:cpu0", "max": 1804800, "turning": 1516800, "min": 1075200, "margin": 350 },
+        { "id": "p1:cpu0", "max": 1804800, "turning": 1516800, "min": 1075200, "margin": 350, "excludes": [1] },
         { "id": "p1:cpu4", "max": 2246400, "min": 1958400, "margins": "300 2150400:220" },
         { "id": "p1:cpu7", "max": 2649600, "min": 2169600, "margins": "300 2457600:200" },
 
@@ -50,7 +50,8 @@
       ["@msm_reset"],
       ["@thermal_threshold", "95000"],
       ["@governor", "schedutil"],
-      ["$perfmgr_enable", "0"]
+      ["$perfmgr_enable", "0"],
+      ["@values", "input_boost", "0:0 4:0 7:0", "0", "0"]
     ],
     "hispeed_freq": [
       ["/sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq"],
@@ -118,6 +119,11 @@
       ["/sys/class/devfreq/soc:qcom,cpu4-cpu-ddr-qoslat/min_freq", "2"],
       ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-lat/min_freq", "15258"],
       ["/sys/class/devfreq/soc:qcom,cpu4-llcc-ddr-lat/min_freq", "10437"]
+    ],
+    "input_boost": [
+      ["/sys/devices/system/cpu/cpu_boost/input_boost_freq", "0:1804800 4:2419200 7:2841600"],
+      ["/sys/devices/system/cpu/cpu_boost/sched_boost_on_input", "1"],
+      ["/sys/devices/system/cpu/cpu_boost/input_boost_ms", "120"]
     ],
     "common_actvie": [
       ["$cpu_max_0", "1804800"],
@@ -250,8 +256,8 @@
         ["$l3_min", "#1612800000"],
         ["@repeat", "sched_config", "65 63", "70 70", "70", "80"],
         ["@cpu_freq", "cpu0", "1420800", "1804800"],
-        ["@cpu_freq", "cpu4", "1478400", "2419200"],
-        ["@cpu_freq", "cpu7", "1516800", "max"],
+        ["@cpu_freq", "cpu4", "1382400", "2419200"],
+        ["@cpu_freq", "cpu7", "1401600", "max"],
         ["@preset", "bw_max"],
         ["@values", "target_loads", "50", "60", "60"]
       ]

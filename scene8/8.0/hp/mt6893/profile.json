@@ -37,22 +37,6 @@
 
         { "id": "p4:cpu7", "max": 3000000, "min": 2600000, "margin": 400 },
 
-        { "id": "g1:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1075000, "margin": 485, "smoothness": 6 },
-        { "id": "g1:cpu4", "mode": "BOTTOM", "max": 2354000, "min": 1162000, "margin": 375, "smoothness": 6 },
-        { "id": "g1:cpu7", "mode": "BOTTOM", "max": 2463000, "min": 1370000, "margin": 375, "smoothness": 6 },
-
-        { "id": "g2:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1075000, "margin": 605, "smoothness": 6 },
-        { "id": "g2:cpu4", "mode": "BOTTOM", "max": 2354000, "min": 1162000, "margin": 455, "smoothness": 6 },
-        { "id": "g2:cpu7", "mode": "BOTTOM", "max": 2463000, "min": 1370000, "margin": 485, "smoothness": 6 },
-
-        { "id": "g3:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1075000, "margin": 695, "smoothness": 6 },
-        { "id": "g3:cpu4", "mode": "BOTTOM", "max": 2354000, "min": 1162000, "margin": 605, "smoothness": 6 },
-        { "id": "g3:cpu7", "mode": "BOTTOM", "max": 2463000, "min": 1370000, "margin": 605, "smoothness": 6 },
-
-        { "id": "g4:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1400000, "margin": 695, "smoothness": 6 },
-        { "id": "g4:cpu4", "mode": "BOTTOM", "max": 2600000, "min": 1400000, "margin": 695, "smoothness": 6 },
-        { "id": "g4:cpu7", "mode": "BOTTOM", "max": 2800000, "min": 1400000, "margin": 695, "smoothness": 6 },
-
         { "id": "idle:cpu0", "max": 1525000, "margin": 130 },
         { "id": "idle:cpu4", "max": 1624000, "margin": 100 },
         { "id": "idle:cpu7", "max": 1820000, "margin": 100 }
@@ -146,16 +130,16 @@
       "call": [
         ["@thermal_threshold", "-1"],
         ["@preset", "powersave_active"],
-        ["cci_mode", "0"],
-        ["dram_boost", "0"]
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
       ]
     },
     "balance": {
       "call": [
         ["@thermal_threshold", "-1"],
         ["@preset", "balance_active"],
-        ["cci_mode", "0"],
-        ["dram_boost", "0"]
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
       ]
     },
     "performance": {
@@ -164,12 +148,12 @@
         ["@preset", "performance_active"]
       ],
       "app": [
-        ["cci_mode", "0"],
-        ["dram_boost", "0"]
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
       ],
       "game": [
-        ["cci_mode", "1"],
-        ["dram_boost", "1"]
+        ["$cci_mode", "1"],
+        ["$dram_boost", "1"]
       ]
     },
     "fast": {
@@ -178,12 +162,12 @@
         ["@preset", "fast_active"]
       ],
       "app": [
-        ["cci_mode", "0"],
-        ["dram_boost", "0"]
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
       ],
       "game": [
-        ["cci_mode", "1"],
-        ["dram_boost", "1"]
+        ["$cci_mode", "1"],
+        ["$dram_boost", "1"]
       ]
     },
     "pedestal": {
@@ -192,12 +176,12 @@
         ["@preset", "pedestal_active"]
       ],
       "app": [
-        ["cci_mode", "0"],
-        ["dram_boost", "0"]
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
       ],
       "game": [
-        ["cci_mode", "1"],
-        ["dram_boost", "1"]
+        ["$cci_mode", "1"],
+        ["$dram_boost", "1"]
       ]
     }
   },
@@ -210,18 +194,9 @@
   ],
   "games": [
     {
-      "friendly": "原神",
-      "categories": ["GenshinImpact"],
-      "import": "_GenshinImpact.json"
-    },
-    {
-      "friendly": "王者荣耀/LOL",
-      "packages": ["com.tencent.tmgp.sgame", "com.garena.game.kgtw", "com.tencent.lolm"],
-      "import": "_SGAME.json"
-    },
-    {
       "friendly": "All",
-      "packages": ["*"]
+      "packages": ["*"],
+      "import": "_Games.json"
     }
   ]
 }

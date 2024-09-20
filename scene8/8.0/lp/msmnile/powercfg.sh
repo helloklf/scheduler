@@ -131,7 +131,9 @@ disable_migt() {
     hide_value $migt/mi_freq_enable '0'
     hide_value $migt/force_stask_to_big '0'
     hide_value $migt/glk_fbreak_enable '0'
-    hide_value $migt/force_reset_runtime '0'
+    echo 1 > $migt/force_reset_runtime
+    echo 1 > $migt/reset_clus_affinity_uidlist
+    echo 1 > $migt/reset_rebind_task
 
     settings put secure speed_mode_enable 1
     chmod 000 $migt/*
