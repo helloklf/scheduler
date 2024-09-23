@@ -128,6 +128,8 @@ process_opt() {
   move_to_heavy media.audio.qc.codec.qti.media.c2audio@1.0-service
   move_to_heavy vendor.xiaomi.hw.touchfeature@1.0-service
   move_to_heavy 'android:ui'
+  killall process-tracker
+  killall traced_probes
 
   kernel_thread_set
 
@@ -222,36 +224,20 @@ disable_migt() {
 
 core_ctl_preset() {
   cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
-  echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
-  echo 1 > $cpu7_core_ctl_dir/not_preferred
   echo 1 > $cpu7_core_ctl_dir/max_cpus
   echo 0 > $cpu7_core_ctl_dir/min_cpus
-  # echo 1 > $cpu7_core_ctl_dir/nr_prev_assist_thresh
-  echo 1 > $cpu7_core_ctl_dir/task_thres
-  echo 15 > $cpu7_core_ctl_dir/busy_down_thres
-  echo 30 > $cpu7_core_ctl_dir/busy_up_thres
+  echo 60 > $cpu7_core_ctl_dir/busy_down_thres
+  echo 40 > $cpu7_core_ctl_dir/busy_up_thres
   echo 0 > $cpu7_core_ctl_dir/enable
 
   cpu4_core_ctl_dir=/sys/devices/system/cpu/cpu4/core_ctl
-  echo 50 > $cpu4_core_ctl_dir/offline_delay_ms
-  echo 1 1 1 > $cpu4_core_ctl_dir/not_preferred
   echo 3 > $cpu4_core_ctl_dir/max_cpus
-  echo 0 > $cpu4_core_ctl_dir/min_cpus
-  # echo 4294967295 > $cpu4_core_ctl_dir/nr_prev_assist_thresh
-  echo 3 > $cpu4_core_ctl_dir/task_thres
-  echo 15 > $cpu4_core_ctl_dir/busy_down_thres
-  echo 20 > $cpu4_core_ctl_dir/busy_up_thres
+  echo 3 > $cpu4_core_ctl_dir/min_cpus
   echo 0 > $cpu4_core_ctl_dir/enable
 
   cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
-  echo 50 > $cpu0_core_ctl_dir/offline_delay_ms
-  echo 0 1 1 1 > $cpu0_core_ctl_dir/not_preferred
   echo 4 > $cpu0_core_ctl_dir/max_cpus
-  echo 1 > $cpu0_core_ctl_dir/min_cpus
-  # echo 4294967295 > $cpu0_core_ctl_dir/nr_prev_assist_thresh
-  # echo 3 > $cpu0_core_ctl_dir/task_thres
-  echo 6 > $cpu0_core_ctl_dir/busy_down_thres
-  echo 15 > $cpu0_core_ctl_dir/busy_up_thres
+  echo 4 > $cpu0_core_ctl_dir/min_cpus
   echo 0 > $cpu0_core_ctl_dir/enable
 }
 
@@ -336,5 +322,5 @@ mk_cpuset 0-5
 set_cpuset touch_report "top-app/4-5"
 set_cpuset surfaceflinger "top-app/0-5"
 set_cpuset system_server "top-app/0-5"
-set_cpuset update_engine "top-app/0-5"
+set_cpuset update_engine "top-app/4-5"
 set_cpuset vendor.qti.hardware.display.composer-service "top-app/0-5"
