@@ -1,11 +1,6 @@
 {
   "friendly": "游戏",
   "limiters": [
-    {"id": "gboost3:cpu7", "step": -1, "mode": "BOTTOM", "ddr_boost": true,
-      "max": 2650000, "min": 500000, "margin": 285, "smoothness": 6},
-
-    {"id": "gboost4:cpu7", "step": -1, "mode": "BOTTOM", "ddr_boost": true,
-      "max": 2650000, "min": 700000, "margin": 325, "smoothness": 6}
   ],
   "modes": [
     {
@@ -25,7 +20,6 @@
     {
       "mode": ["performance"],
       "call": [
-        ["@limiters", "gboost3:cpu7"]
       ],
       "fas": {
         "use": "whitelist",
@@ -35,7 +29,6 @@
     {
       "mode": ["fast"],
       "call": [
-        ["@limiters", "gboost4:cpu7"]
       ],
       "fas": {
         "use": "whitelist",

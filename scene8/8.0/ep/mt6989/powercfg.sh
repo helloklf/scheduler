@@ -55,7 +55,7 @@ lock_value 0 $t_message/market_download_limit
 lock_value 0 $t_message/modem_limit
 lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 
-# lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
+lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 # echo 0 300000 2000000 > /proc/cpudvfs/cpufreq_debug
 # echo 4 550000 2850000 > /proc/cpudvfs/cpufreq_debug
 # echo 7 600000 3250000 > /proc/cpudvfs/cpufreq_debug

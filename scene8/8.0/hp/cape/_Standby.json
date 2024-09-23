@@ -1,7 +1,12 @@
 {
   "friendly": "待机",
   "call": [
-    ["@limiters", "NONE"]
+    ["@limiters", "NONE"],
+    ["@target_loads",
+      "80 1555200:90",
+      "80 1651200:85 1996800:90",
+      "80 1766400:85 2131200:90"
+    ]
   ],
   "booster": {
     "duration": 3500,

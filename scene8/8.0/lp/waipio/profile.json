@@ -17,8 +17,8 @@
       "inactive_interval": 150,
       "params": [
         { "id": "p1:cpu0", "step": -0.9, "max": 1574400, "turning": 1075200, "min": 614400, "margin": 160, "excludes": [1] },
-        { "id": "p1:cpu4", "step": -0.9, "max": 1766400, "turning": 1113600, "min": 768000, "margin": 250 },
-        { "id": "p1:cpu7", "step": -0.9, "max": 2054400, "turning": 1497600, "min": 806400, "margin": 250 },
+        { "id": "p1:cpu4", "step": -0.9, "max": 1766400, "turning": 1113600, "min": 768000, "margin": 220 },
+        { "id": "p1:cpu7", "step": -0.9, "max": 2054400, "turning": 1497600, "min": 806400, "margin": 220 },
 
         { "id": "p2:cpu0", "step": -0.8, "max": 1574400, "turning": 1075200, "min": 729600,  "margin": 180, "excludes": [1] },
         { "id": "p2:cpu4", "step": -0.7, "max": 1881600, "turning": 1555200, "min": 1113600, "margin": 280 },
@@ -63,7 +63,8 @@
       ["$bus_ddr_min", "547000"],
       ["$l3_boost", "0"],
       ["@governor", "walt"],
-      ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"]
+      ["@values", "hispeed_load", "90", "90", "90"],
+      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
     ],
 
     "hispeed_freq": [
@@ -114,25 +115,27 @@
     ],
     "common_active": [
       ["@preset", "cpu7_on"],
-      ["@uclamp", "0.00~max", "0.10~max", "1.00~max"],
-      ["@values", "latency", "1000", "2000", "1000", "2000", "1000", "2000"],
+      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
       ["@cpuset", "0-3", "0-3", "0-6", "0-7"]
     ],
     "common_inactive": [
-      ["@values", "latency", "1000", "8000", "1000", "8000", "1000", "8000"],
-      ["@uclamp", "0.00~max", "0.0~max", "0.0~max"],
+      ["@values", "latency", "0", "4000", "0", "4000", "0", "4000"],
       ["@cpuset", "0-3", "0-3", "0-6", "0-7"],
       ["@values", "hispeed_freq", "0", "0", "0"]
     ],
     "common_app": [
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:silver/max_freq", "768000"],
       ["$mod_percent", "100"],
-      ["@values", "target_load_thresh", "600", "600", "600"]
+      [
+        "@target_loads",
+        "80 1075200:85 1574400:90",
+        "82 1209600:85 1766400:90 2112000:95",
+        "82 1286400:85 1958400:90 2400000:95"
+      ]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:silver/max_freq", "1555000"],
-      ["@uclamp", "0.00~max", "0.0~max", "0.0~max"],
       ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
       ["$mod_percent", "93"],
       ["@gesture", "PAUSE"]
@@ -258,11 +261,6 @@
       ],
       "categories": ["Music", "Reader", "ShortVideo", "Nav"],
       "import": "_ELP.json"
-    },
-    {
-      "fir": "模拟器",
-      "packages": ["xyz.aethersx2.android", "com.aiwu.dolphinemu"],
-      "import": "_Simulate.json"
     },
     { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
     { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },

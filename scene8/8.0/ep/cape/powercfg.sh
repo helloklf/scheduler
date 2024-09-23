@@ -1,6 +1,3 @@
-# target=`getprop ro.board.platform`
-cfg_dir=$(cd $(dirname $0); pwd)
-
 set_value() {
   value=$1
   path=$2
@@ -102,13 +99,12 @@ process_opt() {
   move_to_heavy camerahalserver
   move_to_heavy surfaceflinger
   move_to_heavy system_server
-  move_to_heavy com.omarea.vtools
-  move_to_heavy com.omarea.gesture
   move_to_heavy android.hardware.audio.service_64
   move_to_heavy audioserver
   move_to_heavy media.audio.qc.codec.qti.media.c2audio@1.0-service
   move_to_heavy vendor.xiaomi.hw.touchfeature@1.0-service
   move_to_heavy 'android:ui'
+  set_cpuset vendor.oplus.hardware.gameopt-service foreground
 
   kernel_thread_set
 
@@ -247,13 +243,13 @@ if [[ $(getprop ro.cc.device.name) != "" ]] || [[ -d /my_heytap ]]; then
   hide_value /proc/sys/walt/sched_downmigrate '70 80'
   hide_value /proc/sys/walt/sched_group_upmigrate 95
   hide_value /proc/sys/walt/sched_group_downmigrate 78
-  hide_value /proc/sys/kernel/sched_energy_aware 0
-  hide_value /proc/sys/walt/sched_force_lb_enable 1
-  stop miuibooster
+  stop miuibooster # CC'MIUI/HyperOS
+  # echo 0 > /proc/sys/kernel/sched_energy_aware
 fi
 
 # OnePlus
-hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
+lock_value 0 /proc/oplus_scheduler/sched_assist/sched_assist_enabled
+lock_value 0 /proc/oplus_scheduler/sched_assist/sched_assist_scene
 hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
 lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
 if [[ -d  /proc/game_opt ]]; then

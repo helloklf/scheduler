@@ -188,8 +188,6 @@ process_opt() {
   move_to_heavy com.miui.home
   move_to_heavy surfaceflinger
   move_to_heavy system_server
-  move_to_heavy com.omarea.vtools
-  move_to_heavy com.omarea.gesture
 
   # set_cpuset mediaserver background
   # set_cpuset media.hwcodec background

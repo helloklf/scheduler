@@ -10,7 +10,9 @@
           ["@preset", "powersave_active"],
           ["$sched_boost", "2"]
         ],
-        "exit": [ ["@preset", "powersave_inactive"] ]
+        "exit": [
+          ["@preset", "powersave_inactive"]
+        ]
       }
     },
     {
@@ -22,7 +24,9 @@
           ["@preset", "balance_active"],
           ["$sched_boost", "2"]
         ],
-        "exit": [ ["@preset", "balance_inactive"] ]
+        "exit": [
+          ["@preset", "balance_inactive"]
+        ]
       }
     },
     {
@@ -38,7 +42,8 @@
           ["@preset", "performance_inactive"]
         ]
       }
-    }, {
+    },
+    {
       "mode": ["*"],
       "booster": {
         "duration": 3000,

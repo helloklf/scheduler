@@ -20,6 +20,10 @@
   ],
   "modes": [{
     "mode": ["powersave"],
+    "fas": {
+      "use": "whitelist",
+      "freq": ["2284000", "1985000"]
+    },
     "booster": {
       "duration": 3000,
       "enter": [
@@ -34,6 +38,10 @@
     "call": [
       ["@limiters", "g2:cpu0", "g2:cpu4", "g2:cpu7"]
     ],
+    "fas": {
+      "use": "whitelist",
+      "freq": ["2463000", "2200000"]
+    },
     "booster": {
       "duration": 3000,
       "enter": [
@@ -48,6 +56,11 @@
     "call": [
       ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"]
     ],
+    "fas": {
+      "use": "whitelist",
+      "mode": "normal",
+      "freq": ["2600000", "2354000"]
+    },
     "booster": {
       "duration": 3000,
       "enter": [
@@ -59,6 +72,11 @@
     }
   }, {
     "mode": ["fast", "pedestal"],
+    "fas": {
+      "use": "whitelist",
+      "mode": "normal",
+      "freq": ["2713000", "2600000"]
+    },
     "call": [
       ["$gpu_dvfs_margin", "25"],
       ["@limiters", "g4:cpu0", "g4:cpu4", "g4:cpu7"]

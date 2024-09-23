@@ -12,7 +12,6 @@
       "mode": ["balance"],
       "fas": {
         "lower_freq": 1600000,
-        "thread_analyzer": true,
         "freq": ["2660000", "2400000"]
       }
     },

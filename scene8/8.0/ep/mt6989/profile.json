@@ -27,7 +27,6 @@
         { "id": "p1:cpu4", "max": 2300000, "turning": 2100000, "min": 1800000, "margin": 300 },
         { "id": "p1:cpu7", "max": 2600000, "turning": 2300000, "min": 2000000, "margin": 300 },
 
-        { "id": "p2:cpu0", "max": 2000000, "turning": 1500000, "min": 1500000, "margin": 300 },
         { "id": "p2:cpu4", "max": 2650000, "turning": 2300000, "min": 2100000, "margin": 300 },
         { "id": "p2:cpu7", "max": 2800000, "turning": 2600000, "min": 2300000, "margin": 300 },
 
@@ -98,7 +97,7 @@
       ["@preset", "common_inactvie"]
     ],
     "balance_active": [
-      ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
+      ["@limiters", "p2:cpu4", "p2:cpu7"],
       ["@preset", "common_actvie"],
       ["@values", "min_freq", "500000", "550000", "600000"]
     ],
@@ -112,7 +111,7 @@
       ["@preset", "common_actvie"]
     ],
     "performance_inactive": [
-      ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
+      ["@limiters", "p2:cpu4", "p2:cpu7"],
       ["@preset", "common_inactvie"]
     ],
     "fast_active": [

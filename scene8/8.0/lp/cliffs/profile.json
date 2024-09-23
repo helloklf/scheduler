@@ -42,9 +42,6 @@
         { "id": "idle:cpu3", "max": 1708800, "min": 633600, "margin": 90 },
         { "id": "idle:cpu7", "max": 1766400, "min": 633600, "margin": 90 }
       ]
-    },
-    "cpuset": {
-      "ipc": [0, 0.758, 1.095]
     }
   },
   "presets": {

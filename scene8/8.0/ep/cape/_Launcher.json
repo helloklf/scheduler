@@ -38,7 +38,9 @@
           ["@preset", "performance_active"],
           ["$sched_boost", "1"]
         ],
-        "exit": [["@preset", "performance_inactive"]]
+        "exit": [
+          ["@preset", "performance_inactive"]
+        ]
       }
     },
     {
@@ -50,7 +52,9 @@
           ["@preset", "fast_active"],
           ["$sched_boost", "1"]
         ],
-        "exit": [["@preset", "fast_inactive"]]
+        "exit": [
+          ["@preset", "fast_inactive"]
+        ]
       }
     }
   ]

@@ -37,12 +37,9 @@
         { "id": "inactive:cpu7", "max": 2457600, "margin": 140 },
 
         { "id": "idle:cpu0", "max": 1804800, "min": 883200, "margin": 130 },
-        { "id": "idle:cpu4", "max": 2419200, "min": 710400, "margin": 80 },
+        { "id": "idle:cpu4", "max": 2419200, "margin": 80 },
         { "id": "idle:cpu7", "max": 2419200, "margin": 90 }
       ]
-    },
-    "cpuset": {
-      "ipc": [0, 0.612, 0.635]
     }
   },
   "presets": {
@@ -304,6 +301,11 @@
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
+    {
+      "friendly": "王者荣耀/LOL",
+      "packages": ["com.tencent.lolm", "com.tencent.tmgp.sgame", "com.garena.game.kgtw"],
+      "import": "_SGAME.json"
+    },
     {
       "friendly": "All",
       "packages": ["*"],

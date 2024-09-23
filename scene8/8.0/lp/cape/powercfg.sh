@@ -102,14 +102,11 @@ process_opt() {
   move_to_heavy camerahalserver
   move_to_heavy surfaceflinger
   move_to_heavy system_server
-  move_to_heavy com.omarea.vtools
-  move_to_heavy com.omarea.gesture
   move_to_heavy android.hardware.audio.service_64
   move_to_heavy audioserver
   move_to_heavy media.audio.qc.codec.qti.media.c2audio@1.0-service
   move_to_heavy vendor.xiaomi.hw.touchfeature@1.0-service
   move_to_heavy 'android:ui'
-  set_cpuset scene-daemon foreground
   set_cpuset vendor.oplus.hardware.gameopt-service foreground
 
   kernel_thread_set
@@ -245,6 +242,7 @@ core_ctl_preset
 disable_migt
 
 process_opt &
+echo 1 > /proc/sys/walt/sched_asymcap_boost
 
 # CC'MIUI/HyperOS or ColorOS
 if [[ $(getprop ro.cc.device.name) != "" ]] || [[ -d /my_heytap ]]; then
@@ -252,8 +250,8 @@ if [[ $(getprop ro.cc.device.name) != "" ]] || [[ -d /my_heytap ]]; then
   hide_value /proc/sys/walt/sched_downmigrate '70 80'
   hide_value /proc/sys/walt/sched_group_upmigrate 95
   hide_value /proc/sys/walt/sched_group_downmigrate 78
-  # hide_value /proc/sys/kernel/sched_energy_aware 0
-  stop miuibooster
+  stop miuibooster # CC'MIUI/HyperOS
+  # echo 0 > /proc/sys/kernel/sched_energy_aware
 fi
 
 # OnePlus
@@ -263,9 +261,8 @@ if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
   hide_value /proc/game_opt/disable_cpufreq_limit 1
+  hide_value /proc/game_opt/game_pid -1
 fi
-hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-lock_value N /sys/module/sched_assist_common/parameters/boost_kill
 for service in orms-hal-1-0 # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
 do
   stop $service

@@ -19,18 +19,20 @@
       "active_interval": 30,
       "gaming_interval": 30,
       "inactive_interval": 120,
+      "l3_boost": true,
+      "ddr_boost": true,
       "params": [
-        { "id": "p1:cpu0", "step": -1,   "max": 1555200, "min": 691200, "margin": 250 },
-        { "id": "p1:cpu4", "step": -0.7, "max": 2112000, "min": 768000, "margin": 270 },
-        { "id": "p1:cpu7", "step": -0.2, "max": 2246400, "min": 1036800, "margin": 250 },
+        { "id": "p1:cpu0", "step": -1,   "max": 1555200, "min": 691200,  "margin": 250 },
+        { "id": "p1:cpu4", "step": -0.7, "max": 2112000, "min": 768000,  "margins": "270 1881600:160" },
+        { "id": "p1:cpu7", "step": -0.5, "max": 2246400, "min": 1036800, "margins": "270 1996800:180" },
 
-        { "id": "p2:cpu0", "max": 1555200, "min": 1056000, "margin": 280 },
-        { "id": "p2:cpu4", "max": 2457600, "min": 1766400, "margin": 280 },
-        { "id": "p2:cpu7", "max": 2476800, "min": 1766400, "margin": 280 },
+        { "id": "p2:cpu0", "max": 1670400, "min": 1056000, "margins": "280 1555200:150" },
+        { "id": "p2:cpu4", "max": 2496000, "min": 1766400, "margins": "280 2112000:180" },
+        { "id": "p2:cpu7", "max": 2707200, "min": 1766400, "margins": "280 2476800:200" },
 
-        { "id": "p3:cpu0", "max": 1670400, "min": 1440000, "margin": 280 },
-        { "id": "p3:cpu4", "max": 2572800, "min": 2342400, "margin": 280 },
-        { "id": "p3:cpu7", "max": 2707200, "min": 2361600, "margin": 280 },
+        { "id": "p3:cpu0", "max": 1804800, "min": 1440000, "margins": "280 1670400:150" },
+        { "id": "p3:cpu4", "max": 2745600, "min": 2342400, "margins": "280 2572800:150" },
+        { "id": "p3:cpu7", "max": 2995200, "min": 2361600, "margins": "280 2707200:150" },
 
         { "id": "p4:cpu0", "max": 1804800, "min": 1574400, "margin": 200 },
         { "id": "p4:cpu4", "max": 2745600, "min": 2572800, "margin": 200 },
@@ -38,11 +40,11 @@
 
         { "id": "inactive:cpu0", "max": 1555200, "min": 556800, "margin": 120 },
         { "id": "inactive:cpu4", "max": 1881600, "margin": 130 },
-        { "id": "inactive:cpu7", "max": 1881600, "margin": 140 },
+        { "id": "inactive:cpu7", "max": 1996800, "margin": 140 },
 
         { "id": "idle:cpu0", "max": 1555200, "min": 441600, "margin": 90 },
         { "id": "idle:cpu4", "max": 1766400, "margin": 90 },
-        { "id": "idle:cpu7", "max": 1766400, "margin": 90, "core_ctl": true }
+        { "id": "idle:cpu7", "max": 1881600, "margin": 90, "core_ctl": true }
       ]
     },
     "gesture_boost": {
@@ -62,7 +64,8 @@
       ["$l3_boost", "0"],
       ["$ddr_boost", "0"],
       ["@governor", "walt"],
-      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
+      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
+      ["@values", "hispeed_load", "90", "90", "90"]
     ],
 
     "hispeed_freq": [
@@ -119,17 +122,17 @@
       ["@preset", "cpu7_on"]
     ],
     "common_inactive": [
-      ["@values", "min_freq", "307200", "633600", "787200"],
-      ["$sched_boost", "0"]
+      ["@values", "min_freq", "#307200", "#633600", "#787200"],
+      ["$sched_boost", "0"],
+      ["@values", "hispeed_load", "90", "90", "90"]
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],
-      ["@cpuset", "0-3", "0-3", "0-6", "0-7"],
+      ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
       ["$gpu_max_khz", "#680000000"]
     ],
     "common_gaming": [
-      ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
-      ["@cpuset", "0-2", "0-3", "0-5", "0-7"],
+      ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
       ["$gpu_max_khz", "#990000000"],
       ["$sched_boost", "0"]
     ],
@@ -137,20 +140,19 @@
     "powersave_active": [
       ["@preset", "common_active"],
       ["@target_loads",
-        "82 1555200:90",
-        "82 998400:85 1766400:90",
-        "82 1171200:85 1881600:90"
+        "85 1555200:90",
+        "85 1651200:90",
+        "85 1651200:90"
       ],
       ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
-      ["@values", "hispeed_freq", "1228800", "1113600", "1171200"],
-      ["@values", "hispeed_load", "90", "90", "90"]
+      ["@values", "hispeed_freq", "1228800", "1113600", "1171200"]
     ],
     "powersave_inactive": [
       ["@preset", "common_inactive"],
       ["@target_loads",
-        "85 1017600:90",
-        "85 998400:90 1440000:95",
-        "85 1171200:90 1536000:95"
+        "90 1555200:95",
+        "90 1440000:95",
+        "90 1536000:95"
       ],
       ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
       ["@values", "hispeed_freq", "0", "0", "0"]

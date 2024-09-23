@@ -99,13 +99,12 @@ process_opt() {
   move_to_heavy camerahalserver
   move_to_heavy surfaceflinger
   move_to_heavy system_server
-  move_to_heavy com.omarea.vtools
-  move_to_heavy com.omarea.gesture
   move_to_heavy android.hardware.audio.service_64
   move_to_heavy audioserver
   move_to_heavy media.audio.qc.codec.qti.media.c2audio@1.0-service
   move_to_heavy vendor.xiaomi.hw.touchfeature@1.0-service
   move_to_heavy 'android:ui'
+  set_cpuset vendor.oplus.hardware.gameopt-service foreground
 
   kernel_thread_set
 
@@ -241,9 +240,8 @@ disable_migt
 
 process_opt &
 
-echo 1 > /proc/sys/walt/sched_asymcap_boost
-
 if [[ -d /my_heytap ]]; then
+  echo 1 > /proc/sys/walt/sched_asymcap_boost
   hide_value /proc/sys/walt/sched_upmigrate '85 95'
   hide_value /proc/sys/walt/sched_downmigrate '70 80'
   hide_value /proc/sys/walt/sched_group_upmigrate 95
@@ -273,6 +271,16 @@ for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
   lock_value 0 /sys/kernel/msm_performance/parameters/$file
 done
 echo -R 444 /sys/kernel/msm_performance/parameters
+fbg=/proc/sys/fbg
+if [[ -d $fbg ]]; then
+  for file in frame_boost_enabled  input_boost_enabled  slide_boost_enabled; do
+    hide_value $fbg/$file 0
+  done
+fi
+# Realme only
+# if [[ $(getprop ro.product.vendor.brand) == 'realme' ]]; then
+#   stop gameopt_hal_service-1-0
+# fi
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1

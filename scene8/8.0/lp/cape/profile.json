@@ -10,6 +10,7 @@
     "bus_ddr": "/sys/devices/system/cpu/bus_dcvs/DDR/19091000.qcom,bwmon-ddr/max_freq",
     "l3_boost": "/sys/devices/system/cpu/bus_dcvs/L3/boost_freq",
     "ddr_boost": "/sys/devices/system/cpu/bus_dcvs/DDR/boost_freq",
+    "memlat_low": "/sys/devices/system/cpu/bus_dcvs/DDR/memlat",
     "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable",
     "bus_qos": "/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq",
     "tchg": "/proc/touchpanel/game_switch_enable"
@@ -18,13 +19,13 @@
     "limiter": {
       "active_interval": 30,
       "gaming_interval": 30,
-      "inactive_interval": 100,
+      "inactive_interval": 120,
       "l3_boost": true,
       "ddr_boost": true,
       "params": [
-        { "id": "p1:cpu0", "step":   -1, "max": 1555200, "turning": 1228800, "min": 691200, "margin": 250, "excludes": [1] },
-        { "id": "p1:cpu4", "step": -0.7, "max": 2112000, "turning": 1766400, "min": 768000, "margin": 250 },
-        { "id": "p1:cpu7", "step": -0.2, "max": 2246400, "turning": 1766400, "min": 787200, "margin": 270 },
+        { "id": "p1:cpu0", "step":   -1, "max": 1555200, "min": 691200, "margins": "250 1228800:125", "excludes": [1] },
+        { "id": "p1:cpu4", "step": -0.7, "max": 2112000, "min": 768000, "margins": "250 1766400:135" },
+        { "id": "p1:cpu7", "step": -0.2, "max": 2246400, "min": 787200, "margins": "270 1766400:135" },
 
         { "id": "p2:cpu0", "max": 1555200, "min": 1056000, "margin": 280 },
         { "id": "p2:cpu4", "max": 2457600, "min": 1766400, "margin": 280 },
@@ -39,13 +40,13 @@
         { "id": "p4:cpu7", "max": 2995200, "min": 2592000, "margin": 200 },
 
 
-        { "id": "inactive:cpu0", "max": 1440000, "min": 556800, "margin": 120 },
+        { "id": "inactive:cpu0", "max": 1555200, "min": 556800, "margin": 120 },
         { "id": "inactive:cpu4", "max": 1651200, "margin": 130 },
-        { "id": "inactive:cpu7", "max": 1651200, "margin": 140 },
+        { "id": "inactive:cpu7", "max": 1766400, "margin": 140 },
 
-        { "id": "idle:cpu0", "max": 1440000, "min": 441600, "margin": 80 },
-        { "id": "idle:cpu4", "max": 1555200, "margin": 80 },
-        { "id": "idle:cpu7", "max": 1536000, "margin": 80, "core_ctl": true }
+        { "id": "idle:cpu0", "max": 1555200, "min": 441600, "margin": 80 },
+        { "id": "idle:cpu4", "max": 1651200, "margin": 80 },
+        { "id": "idle:cpu7", "max": 1766400, "margin": 80, "core_ctl": true }
       ]
     },
     "gesture_boost": {
@@ -62,7 +63,9 @@
       ["$bus_ddr_min", "547000"],
       ["$l3_boost", "0"],
       ["$ddr_boost", "0"],
-      ["@governor", "walt"]
+      ["@governor", "walt"],
+      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
+      ["@values", "hispeed_load", "90", "90", "90"]
     ],
 
     "hispeed_freq": [
@@ -83,11 +86,6 @@
       ["/sys/devices/system/cpu/cpufreq/policy7/walt/down_rate_limit_us"],
       ["/sys/devices/system/cpu/cpufreq/policy7/walt/up_rate_limit_us"]
     ],
-    "target_loads": [
-      ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_loads"],
-      ["/sys/devices/system/cpu/cpu4/cpufreq/walt/target_loads"],
-      ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_loads"]
-    ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
     ],
@@ -97,25 +95,35 @@
     "cpu7_on": [
       ["$core_ctl_7", "#1"],
       ["$max_cpus_cpu7", "#1"],
-      ["$min_cpus_cpu7", "#1"]
+      ["$min_cpus_cpu7", "#1"],
+      ["$core_ctl_7", "#0"]
     ],
     "cpu7_off": [
       ["$core_ctl_7", "#1"],
       ["$min_cpus_cpu7", "#0"],
-      ["$max_cpus_cpu7", "#0"]
+      ["$max_cpus_cpu7", "#0"],
+      ["$core_ctl_7", "#0"]
     ],
     "cpu7_auto": [
-      ["$core_ctl_7", "1"],
+      ["$core_ctl_7", "#1"],
       ["$min_cpus_cpu7", "#0"],
       ["$max_cpus_cpu7", "#1"]
     ],
+    "limiter_off": [
+      ["/proc/game_opt/disable_cpufreq_limit", "1"],
+      ["/sys/module/migt/parameters/glk_disable", "1"],
+      ["/sys/module/perfmgr/parameters/perfmgr_enable", "#0"]
+    ],
+    "limiter_on": [
+      ["/proc/game_opt/disable_cpufreq_limit", "0"],
+      ["/sys/module/migt/parameters/glk_disable", "0"]
+    ],
     "common_active": [
-      ["@preset", "cpu7_on"],
-      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"]
+      ["@preset", "cpu7_on"]
     ],
     "common_inactive": [
       ["@values", "min_freq", "#307200", "#633600", "#787200"],
-      ["@values", "latency", "0", "4000", "0", "4000", "0", "4000"],
+      ["$sched_boost", "0"],
       ["@values", "hispeed_load", "90", "90", "90"]
     ],
     "common_app": [
@@ -137,25 +145,43 @@
 
     "powersave_active": [
       ["@preset", "common_active"],
+      ["@target_loads",
+        "82 1555200:90",
+        "82 998400:85 1766400:90",
+        "82 1171200:85 1881600:90"
+      ],
       ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
-      ["@values", "hispeed_freq", "1228800", "1113600", "1171200"],
-      ["@values", "hispeed_load", "90", "90", "90"]
+      ["@values", "hispeed_freq", "1228800", "1113600", "1171200"]
     ],
     "powersave_inactive": [
       ["@preset", "common_inactive"],
       ["@preset", "cpu7_off"],
+      ["@target_loads",
+        "85 1017600:90",
+        "85 998400:90 1440000:95",
+        "85 1171200:90 1536000:95"
+      ],
       ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
       ["@values", "hispeed_freq", "0", "0", "0"]
     ],
 
     "balance_active": [
       ["@preset", "common_active"],
+      ["@target_loads",
+        "80 1555200:90",
+        "80 1651200:85 1996800:90",
+        "80 1766400:85 2131200:90"
+      ],
       ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
-      ["@values", "hispeed_freq", "1228800", "1555200", "1651200"],
-      ["@values", "hispeed_load", "90", "90", "90"]
+      ["@values", "hispeed_freq", "1228800", "1555200", "1651200"]
     ],
     "balance_inactive": [
       ["@preset", "common_inactive"],
+      ["@target_loads",
+        "85 1017600:90",
+        "85 998400:90 1440000:95",
+        "85 1171200:90 1536000:95"
+      ],
       ["@limiters", "inactive:cpu0", "inactive:cpu4", "inactive:cpu7"],
       ["@preset", "cpu7_auto"],
       ["@values", "hispeed_freq", "691200", "633600", "787200"]
@@ -163,24 +189,42 @@
 
     "performance_active": [
       ["@preset", "common_active"],
+      ["@target_loads",
+        "80 1555200:90",
+        "80 1881600:85 2112000:90",
+        "80 1843200:85 2361600:90"
+      ],
       ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
-      ["@values", "hispeed_freq", "1228800", "1555200", "1651200"],
-      ["@values", "hispeed_load", "82", "82", "82"]
+      ["@values", "hispeed_freq", "1228800", "1555200", "1651200"]
     ],
     "performance_inactive": [
       ["@preset", "common_inactive"],
+      ["@target_loads",
+        "85 1017600:90",
+        "85 998400:90 1651200:95",
+        "85 1171200:90 1651200:95"
+      ],
       ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
       ["@values", "hispeed_freq", "1075200", "1324800", "1286400"]
     ],
 
     "fast_active": [
       ["@preset", "common_active"],
+      ["@target_loads",
+        "80 1670400:85",
+        "80 2188800:85",
+        "80 2227200:85"
+      ],
       ["@limiters", "p4:cpu0", "p4:cpu4", "p4:cpu7"],
-      ["@values", "hispeed_freq", "1228800", "1555200", "1651200"],
-      ["@values", "hispeed_load", "82", "82", "82"]
+      ["@values", "hispeed_freq", "1228800", "1555200", "1651200"]
     ],
     "fast_inactive": [
       ["@preset", "common_inactive"],
+      ["@target_loads",
+        "85 1670400:90",
+        "80 1766400:87 1996800:95",
+        "80 1766400:87 1996800:95"
+      ],
       ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
       ["@values", "hispeed_freq", "1171200", "1440000", "1497600"]
     ]
