@@ -1,18 +1,20 @@
 ## 场景
-- 在SCENE的设计理念中，每个应用都是一个场景，模式的定义并不仅限于4或5个模式
-- 如果时间允许，可以针对不同应用类型，甚至单个应用做适配优化
+- SCENE认为每个应用都是一个场景，
+- 允许针对不同应用类目或包名单独设置参数
 - 举个例子：
 
 ```json
 {
-  "schemes": {},
+  "schemes": {
+    "powersave": {
+      "call": []
+    }
+  },
   "apps": [
     {
       "friendly": "即时通讯",
       "packagess": ["com.tencent.mm", "com.tencent.mobileqq"],
-      "call": [],
-      "sensors": [],
-      "booster": {}
+      "call": []
     },
     {
       "friendly": "所有APP",
@@ -27,10 +29,7 @@
         "com.miHoYo.Yuanshen",
         "com.miHoYo.ys.mi"
       ],
-      "call": [],
-      "sensors": [],
-      "cpuset": {},
-      "booster": {}
+      "call": []
     },
     {
       "friendly": "所有游戏",
@@ -43,8 +42,8 @@
 
 > `packages`指定该场景会命中哪些应用(写的包名)<br>
 > `friendly` 是一个备注属性，可用于改善配置可读性<br>
-> 作为通配的 `"packages": ["*"]` 应该永远放在最后！<br>
-> SCENE6中，场景配置细分为 `"apps":[]` 和 `"games":[]` 两组<br>
+> 作为通配的 `["*"]` 应该永远放在最后一组！<br>
+> Scene将应用分为应用和游戏两个大类，分别命中`"apps":[]`和`"games":[]`两组参数<br>
 
 > SCENE判断应用是否为游戏的依据包括：<br>
 >   横屏启动、包含Unity或UE3或UE4库、引入部分手机厂家的游戏服务，<br>
@@ -53,7 +52,7 @@
 
 ### 场景下的模式细分 `modes`
 - 还没有结束，针对不同应用，还可以按不同模式进行配置
-- 每个模式又可以分别配置`call`, `booster`, `cpuset`, `sensors`
+- 每个模式又可以分别配置`call`, `booster`, `sensors`
 - 示例如下：
 
 ```json
@@ -66,13 +65,11 @@
     "com.miHoYo.GenshinImpact"
   ],
   "call": [],
-  "cpuset": {},
   "sensors": [],
   "modes": [
     {
       "mode": ["powersave", "balance"],
       "call": [],
-      "cpuset": {},
       "booster": {
         "duration": 2000,
         "enter": [],
@@ -137,3 +134,40 @@
 ```
 
 - 关于应用会如何分类可参考 [类目](./categories.md) 中的详细介绍
+
+
+#### 配置拆分
+- 为了让`profile.json`不变的巨大
+- Scene允许将对某个场景的配置拆分成独立文件
+- 使用`"import": "文件名.json"`进行关联
+- 例如
+
+  ```json
+  # profile.json
+  {
+    "schemes": {},
+    "apps": [
+      {
+        "friendly": "所有APP",
+        "packages": ["*"],
+        `"import": "Apps.json"`
+      }
+    ]
+  }
+
+  # Apps.json
+  {
+    "call": [],
+    "modes": [
+      {
+        "mode": ["powersave", "balance"],
+        "call": []
+      },
+      {
+        "mode": ["*"],
+        "call": []
+      }
+    ]
+  }
+  ```
+

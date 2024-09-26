@@ -60,8 +60,9 @@
 | max | 最高频率限制(kHz)，0或不配置为不限制 | int |
 | min | 最低频率限制(kHz)，0或不配置为不限制 | int |
 | margin | 固定的余量(M Cycles) | int |
-| target_margin | margin的增强版，支持按频率段设置余量 | string |
+| margins | margin的增强版，支持按频率段设置余量 | string |
 | perfect | 能效/功耗最佳平衡频率，默认是CPU支持的最高频率×0.8 | int |
+| turning | 拐点频率，当CPU频率高于此值，margin自动减半。如果使用margins配置余量，该参数不生效 | int |
 | smoothness | 频率平滑度，默认`4`，最小为`1` | int |
 | mt | 计算此cluster的负载时的多核负载权重, `0 ~ 100`，默认 `0` | int |
 | excludes | 计算负载时排除的cpu核心，例如: [2, 3] | []int |
@@ -158,12 +159,12 @@
 
 
 ##### 目标余量
-- Scene7.3 新增特性 `target_margin`，用于取代`margin`，支持设置不同频率下的余量
+- Scene7.3 新增特性 target_margin，8.0后改名为`margins`，用于取代`margin`，支持设置不同频率下的余量
 - 配置格式如：`400 2100000:300 2650000:200`
 - 这个例子表示：
-> CPU频率处于 `0 ~ 2100000KHz` 余量为400MHz <br>
-> CPU频率处于 `2100000KHz ~ 2650000KHz` 余量为300MHz <br>
-> CPU频率高于 `2650000KHz` 余量为200Mhz
+  > CPU频率处于 `0 ~ 2100000KHz` 余量为400MHz <br>
+  > CPU频率处于 `2100000KHz ~ 2650000KHz` 余量为300MHz <br>
+  > CPU频率高于 `2650000KHz` 余量为200Mhz
 
 
 #### 多核负载权重(Scene7.2+)
@@ -187,7 +188,7 @@
   ```
   // 内核cpuset配置
   ["/dev/cpuset/background/cpus", "1"],
-  ["/dev/cpuset/top-app/cpus", "0,2-7"]
+  ["/dev/cpuset/top-app/cpus", "0-7"]
 
   // 调速器
   {

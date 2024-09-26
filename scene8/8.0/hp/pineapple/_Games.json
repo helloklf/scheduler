@@ -1,7 +1,6 @@
 {
   "friendly": "所有游戏",
   "call": [
-    ["@values", "target_load_thresh", "600", "1024", "1024", "1024"]
   ],
   "modes": [
     {

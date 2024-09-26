@@ -34,7 +34,7 @@ lock_value() {
 hide_value() {
   if [[ -e "$1" ]]; then
     umount "$1" 2>/dev/null
-    c_path="/cache${1}"
+    c_path="/dev/scene${1}"
     if [[ ! -f "$c_path" ]]; then
       mkdir -p "$c_path"
       rm -r "$c_path"

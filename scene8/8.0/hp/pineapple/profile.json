@@ -27,9 +27,6 @@
         "params": [
         ]
       },
-      "cpuset": {
-        "ipc": [0, 0.87, 0.87, 1.46]
-      },
       "gesture_boost": {
         "enable": true,
         "enter": [
@@ -47,7 +44,9 @@
     "presets": {
       "reset": [
         ["@msm_reset"],
-        ["@governor", "walt"]
+        ["@governor", "walt"],
+        ["/sys/devices/system/cpu/bus_dcvs/L3/boost_freq", "364800"],
+        ["/sys/devices/system/cpu/bus_dcvs/DDR/boost_freq", "547000"]
       ],
   
       "hispeed_freq": [
@@ -77,12 +76,6 @@
         ["/sys/devices/system/cpu/cpu2/cpufreq/walt/target_loads"],
         ["/sys/devices/system/cpu/cpu5/cpufreq/walt/target_loads"],
         ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_loads"]
-      ],
-      "target_load_thresh": [
-        ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_load_thresh"],
-        ["/sys/devices/system/cpu/cpu2/cpufreq/walt/target_load_thresh"],
-        ["/sys/devices/system/cpu/cpu5/cpufreq/walt/target_load_thresh"],
-        ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_load_thresh"]
       ],
       "memlat": [
         ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/decay_rate", "90"],
@@ -133,8 +126,7 @@
       "common_app": [
         ["$perfmgr_enable", "0"],
         ["@cpuset", "0-1", "0-6", "2-6", "2-7"],
-        ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000", "1000", "1000"],
-        ["@values", "target_load_thresh", "1024", "1024", "1024", "1024"]
+        ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000", "1000", "1000"]
       ],
       "common_gaming": [
         ["@preset", "common_active"],

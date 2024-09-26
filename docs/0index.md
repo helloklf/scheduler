@@ -26,7 +26,7 @@
 ## [创建空配置](./empty.md)
 ## [基础](./basic.md)
 ## [场景](./apps.md)
-## [类目](categories.md)
+## [类目](./categories.md)
 ## [传感器](./sensor.md)
 ## [CPUSET](./cpuset.md)
 ## [CPUSET for App](./cpuset_for_app.md)
