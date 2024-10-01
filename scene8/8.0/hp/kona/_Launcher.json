@@ -29,7 +29,7 @@
   }, {
     "mode": ["performance"],
     "call": [
-      ["@values", "input_boost", "0:1804800 4:2150400 7:2265600", "1", "120"]
+      ["@values", "input_boost", "0:1804800 4:2150400 7:2265600", "1", "200"]
     ],
     "booster": {
       "duration": 4000,

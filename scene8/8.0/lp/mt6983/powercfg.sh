@@ -71,12 +71,10 @@ lock_value () {
 hide_value() {
   if [[ -e "$1" ]]; then
     umount "$1" 2>/dev/null
-    c_path="/cache${1}"
+    c_path="/dev/scene${1}"
     if [[ ! -f "$c_path" ]]; then
       mkdir -p "$c_path"
       rm -r "$c_path"
-    else
-      chattr -i "$c_path"
     fi
     chattr -i "$c_path"
     cp -f "$1" "$c_path"
@@ -166,15 +164,13 @@ echo 0 > /sys/module/ged/parameters/gpu_cust_boost_freq
 
 
 # OnePlus
-hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
-lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
 if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
 fi
 hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
 lock_value N /sys/module/sched_assist_common/parameters/boost_kill
-for service in orms-hal-1-0 # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
+for service in orms-hal-1-0 vendor.oplus.ormsHalService-aidl-default # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
 do
   stop $service
 done

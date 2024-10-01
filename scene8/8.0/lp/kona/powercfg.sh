@@ -86,6 +86,8 @@ disable_migt() {
     lock_value 0 $migt/force_stask_to_big
     lock_value 0 $migt/glk_fbreak_enable
     echo 1 > $migt/force_reset_runtime
+    echo 1 > $migt/reset_clus_affinity_uidlist
+    echo 1 > $migt/reset_rebind_task
     hide_value $migt/enable_pkg_monitor '0'
 
     settings put secure speed_mode_enable 1
@@ -112,9 +114,10 @@ disable_migt() {
 
 core_ctl_preset() {
   cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
+  echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
   echo 30 > $cpu7_core_ctl_dir/busy_down_thres
   echo 60 > $cpu7_core_ctl_dir/busy_up_thres
-  lock_value 0 $cpu7_core_ctl_dir/enable
+  echo 0 > $cpu7_core_ctl_dir/enable
 
   cpu4_core_ctl_dir=/sys/devices/system/cpu/cpu4/core_ctl
   lock_value 3 $cpu4_core_ctl_dir/max_cpus
@@ -176,15 +179,15 @@ lock_value 6881 /sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/max_freq
 
 
 # OnePlus
-hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
-lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
-if [[ -d  /proc/game_opt ]]; then
-  hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
-  hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
+if [[ -d /proc/game_opt ]]; then
+  lock_value '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647' /proc/game_opt/cpu_max_freq
+  lock_value '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' /proc/game_opt/cpu_min_freq
+  lock_value 1 /proc/game_opt/disable_cpufreq_limit
+  lock_value -1 /proc/game_opt/game_pid
 fi
 hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
 lock_value N /sys/module/sched_assist_common/parameters/boost_kill
-for service in orms-hal-1-0 # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
+for service in orms-hal-1-0 vendor.oplus.ormsHalService-aidl-default # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
 do
   stop $service
 done
@@ -193,6 +196,10 @@ for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
   lock_value 0 /sys/kernel/msm_performance/parameters/$file
 done
 echo -R 444 /sys/kernel/msm_performance/parameters
+
+killall process-tracker
+killall traced
+killall traced_probes
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1

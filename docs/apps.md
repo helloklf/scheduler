@@ -52,7 +52,7 @@
 
 ### 场景下的模式细分 `modes`
 - 还没有结束，针对不同应用，还可以按不同模式进行配置
-- 每个模式又可以分别配置`call`, `booster`, `sensors`
+- 每个模式又可以分别配置`call`, `booster`, `sensors`, `limiters`
 - 示例如下：
 
 ```json
@@ -66,6 +66,7 @@
   ],
   "call": [],
   "sensors": [],
+  "limiters": [],
   "modes": [
     {
       "mode": ["powersave", "balance"],

@@ -1,41 +1,42 @@
 {
   "friendly": "游戏(Games)",
   "call": [
-    ["@chmod", "444", "/proc/perfmgr/perf_ioctl"],
+    ["@preset", "comm_gaming"],
     ["/sys/module/mtk_fpsgo/parameters/p_perf", "1"],
-    ["/sys/module/mtk_fpsgo/parameters/better_perf", "1"]
+    ["/sys/module/mtk_fpsgo/parameters/better_perf", "1"],
+    ["/sys/kernel/fpsgo/fbt/enable_ceiling", "#0"]
   ],
   "modes": [
     {
       "mode": ["powersave"],
       "call": [
-        ["@cpu_freq", "cpu0", "400000", "1600000"],
-        ["@cpu_freq", "cpu4", "550000", "2300000"],
-        ["@cpu_freq", "cpu7", "600000", "2400000"]
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
+        ["@values", "max_freq", "1600000", "2000000", "2300000"],
+        ["@values", "min_freq", "400000", "550000", "600000"]
       ]
     },
     {
       "mode": ["balance"],
       "call": [
-        ["@cpu_freq", "cpu0", "800000", "1800000"],
-        ["@cpu_freq", "cpu4", "550000", "2600000"],
-        ["@cpu_freq", "cpu7", "900000", "2800000"]
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
+        ["@values", "max_freq", "1700000", "2400000", "2700000"],
+        ["@values", "min_freq", "700000", "550000", "900000"]
       ]
     },
     {
       "mode": ["performance"],
       "call": [
-        ["@cpu_freq", "cpu0", "800000", "2000000"],
-        ["@cpu_freq", "cpu4", "600000", "2800000"],
-        ["@cpu_freq", "cpu7", "1200000", "3000000"]
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling -1"],
+        ["@values", "max_freq", "1700000", "2600000", "3000000"],
+        ["@values", "min_freq", "800000", "600000", "900000"]
       ]
     },
     {
       "mode": ["*"],
       "call": [
-        ["@cpu_freq", "cpu0", "800000", "2000000"],
-        ["@cpu_freq", "cpu4", "900000", "2850000"],
-        ["@cpu_freq", "cpu7", "1200000", "3250000"]
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling -1"],
+        ["@values", "max_freq", "2000000", "2850000", "3250000"],
+        ["@values", "min_freq", "800000", "900000", "1200000"]
       ]
     }
   ]

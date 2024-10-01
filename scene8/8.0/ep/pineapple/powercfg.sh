@@ -67,7 +67,7 @@ lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
 
 rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost
-
+echo $(pgrep -ef kcompactd0) > /dev/cpuset/foreground/tasks
 
 # Xiaomi
 echo 1 > /sys/module/migt/parameters/force_reset_runtime
@@ -94,7 +94,6 @@ do
   chmod 444 $file
 done
 
-
 # OnePlus
 if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
@@ -119,7 +118,6 @@ bus_dcvs(){
 bus_dcvs_value() {
   echo $2 > /sys/devices/system/cpu/bus_dcvs/$1
 }
-
 
 # MeiZu
 if [[ -d /proc/mz_info ]]; then
@@ -158,7 +156,6 @@ if [[ -d /proc/mz_info ]]; then
   bus_dcvs LLCC/soc:qcom,memlat:llcc:silver 600000 300000
   bus_dcvs LLCC/soc:qcom,memlat:llcc:gold 1066000 300000
 fi
-
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1

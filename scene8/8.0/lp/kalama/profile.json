@@ -13,12 +13,9 @@
   },
   "features": {
     "limiter": {
-      "active_interval": 30,
-      "gaming_interval": 30,
-      "inactive_interval": 100,
       "params": [
         { "id": "p1:cpu0", "step": -0.8, "max": 1555200, "min": 556800, "margin": 150, "excludes": [1] },
-        { "id": "p1:cpu3", "step": -0.8, "max": 1785600, "min": 614400, "margin": 220, "max_margin_ratio": 0.25 },
+        { "id": "p1:cpu3", "step": -0.8, "max": 1785600, "min": 614400, "margin": 220 },
         { "id": "p1:cpu7", "step": -0.8, "max": 1977600, "min": 729600, "margin": 220 },
 
         { "id": "p2:cpu0", "step": -0.8, "max": 1555200, "min": 787200, "margin": 300 },

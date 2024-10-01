@@ -150,7 +150,7 @@ if [[ -f $t_message/cpu_limits ]]; then
   chmod 444 $t_message/cpu_limits
 fi
 hide_value $t_message/market_download_limit 0
-hide_value $t_message/cpu_nolimit_temp 47500
+hide_value $t_message/cpu_nolimit_temp 49500
 lock_value 0 /sys/module/aigov/parameters/enable
 
 core_ctl_preset
@@ -179,17 +179,15 @@ lock_value 6881 /sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/max_freq
 
 
 # OnePlus
-hide_value /proc/oplus_scheduler/sched_assist/sched_impt_task ''
-lock_value N /sys/module/oplus_ion_boost_pool/parameters/debug_boost_pool_enable
-if [[ -d  /proc/game_opt ]]; then
+if [[ -d /proc/game_opt ]]; then
   lock_value '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647' /proc/game_opt/cpu_max_freq
-  hide_value '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' /proc/game_opt/cpu_min_freq
+  lock_value '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' /proc/game_opt/cpu_min_freq
   lock_value 1 /proc/game_opt/disable_cpufreq_limit
   lock_value -1 /proc/game_opt/game_pid
 fi
 hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
 lock_value N /sys/module/sched_assist_common/parameters/boost_kill
-for service in orms-hal-1-0 # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
+for service in orms-hal-1-0 vendor.oplus.ormsHalService-aidl-default # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
 do
   stop $service
 done
@@ -202,7 +200,6 @@ echo -R 444 /sys/kernel/msm_performance/parameters
 killall process-tracker
 killall traced
 killall traced_probes
-
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1

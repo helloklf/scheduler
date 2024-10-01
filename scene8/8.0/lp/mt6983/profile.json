@@ -19,9 +19,6 @@
   },
   "features": {
     "limiter": {
-      "active_interval": 30,
-      "gaming_interval": 30,
-      "inactive_interval": 100,
       "ddr_boost": true,
       "params": [
         { "id": "p1:cpu0", "step": -1, "max": 1400000, "min": 400000, "margin": 200, "excludes": [1] },

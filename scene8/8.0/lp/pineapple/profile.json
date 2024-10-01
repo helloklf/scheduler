@@ -18,20 +18,17 @@
         "ipc": [0, 0.87, 0.87, 1.46]
       },
       "limiter": {
-        "active_interval": 30,
-        "gaming_interval": 30,
-        "inactive_interval": 100,
         "ddr_boost": false,
         "params": [
           { "id": "p1:cpu0", "step": -0.9, "max": 1689600, "min": 672000, "margin": 150 },
-          { "id": "p1:cpu2", "step": -0.9, "max": 1824000, "min": 960000, "margin": 150 },
-          { "id": "p1:cpu5", "step": -0.9, "max": 1824000, "min": 960000, "margin": 200 },
-          { "id": "p1:cpu7", "step": -0.8, "max": 1939200, "min": 902400, "margin": 200 },
+          { "id": "p1:cpu2", "step": -0.9, "max": 1920000, "min": 960000, "margins": "200 1708800:120" },
+          { "id": "p1:cpu5", "step": -0.9, "max": 1920000, "min": 960000, "margins": "200 1708800:120" },
+          { "id": "p1:cpu7", "step": -0.8, "max": 1939200, "min": 902400, "margins": "200 1708800:120" },
   
           { "id": "p2:cpu0", "step": -0.8, "max": 1689600, "min": 787200,  "margin": 150 },
-          { "id": "p2:cpu2", "step": -0.9, "max": 2380800, "min": 1612800, "margin": 200 },
-          { "id": "p2:cpu5", "step": -0.7, "max": 2131200, "min": 1497600, "margin": 200 },
-          { "id": "p2:cpu7", "step": -0.7, "max": 2380800, "min": 1708800, "margin": 200 },
+          { "id": "p2:cpu2", "step": -0.9, "max": 2380800, "min": 1612800, "margins": "200 2188800:120" },
+          { "id": "p2:cpu5", "step": -0.7, "max": 2131200, "min": 1497600, "margins": "200 2188800:120" },
+          { "id": "p2:cpu7", "step": -0.7, "max": 2380800, "min": 1708800, "margins": "200 2112000:150" },
   
           { "id": "p3:cpu0", "step": -0.8, "max": 1804800, "min": 1017600, "margin": 120 },
           { "id": "p3:cpu2", "step": -0.7, "max": 2515200, "min": 1920000, "margin": 300 },
@@ -44,8 +41,8 @@
           { "id": "p4:cpu7", "step": -0.7, "max": 2803200, "min": 2438400, "margin": 300 },
   
           { "id": "inactive:cpu0", "max": 1689600, "min": 672000, "margin": 100 },
-          { "id": "inactive:cpu2", "max": 1824000, "min": 614400, "margin": 120 },
-          { "id": "inactive:cpu5", "max": 1824000, "min": 614400, "margin": 120 },
+          { "id": "inactive:cpu2", "max": 1920000, "min": 614400, "margin": 120 },
+          { "id": "inactive:cpu5", "max": 1920000, "min": 614400, "margin": 120 },
           { "id": "inactive:cpu7", "max": 1939200, "min": 672000, "margin": 120 },
   
           { "id": "idle:cpu0", "max": 1689600, "min": 556800, "margin": 100 },
@@ -139,23 +136,25 @@
         ["/dev/cpuset/sf/cpus", "#2-6"],
         ["@values", "latency", "0", "2000", "0", "2000", "0", "2000", "0", "2000"],
         ["/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq", "0"],
-        ["/sys/devices/system/cpu/bus_dcvs/LLCC/240b7400.qcom,bwmon-llcc/max_freq", "806000"]
+        ["/sys/devices/system/cpu/bus_dcvs/LLCC/240b7400.qcom,bwmon-llcc/max_freq", "806000"],
+        ["$mod_percent", "100"]
       ],
       "common_gaming": [
         ["@limiters", "NONE"],
         ["@cpuset", "0-1", "0-3,5-6", "0-3,5-6", "0-7"],
         ["/dev/cpuset/sf/cpus", "#2-3"],
         ["$sched_boost", "0"],
-        ["/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq", "#1"]
+        ["/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq", "#1"],
+        ["$mod_percent", "94"]
       ],
 
       "powersave_active": [
         ["@preset", "common_active"],
         ["@target_loads",
-          "80 1574400:90",
-          "80 960000:85 1612800:90",
-          "80 960000:85 1612800:90",
-          "80 902400:85 1708800:90"],
+          "82 1574400:92",
+          "82 960000:87 1612800:92",
+          "82 960000:87 1612800:92",
+          "82 902400:87 1708800:92"],
         ["@limiters", "p1:cpu0", "p1:cpu2", "p1:cpu5", "p1:cpu7"],
         ["@hispeed_freq", "0", "844800", "844800", "844800"],
         ["@hispeed_load", "90", "90", "90", "90"]

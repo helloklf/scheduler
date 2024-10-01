@@ -8,30 +8,30 @@
     {
       "mode": ["powersave"],
       "call": [
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
         ["$cpufreq", "#300000 1700000 550000 2100000 600000 2300000"]
       ],
       "fas": {
-        "ddr_boost": true,
         "freq": ["2300000", "2100000", "-2"]
       }
     },
     {
       "mode": ["balance"],
       "call": [
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
         ["$cpufreq", "#300000 1700000 550000 2400000 600000 2600000"]
       ],
       "fas": {
-        "ddr_boost": true,
         "freq": ["2600000", "2400000", "-2"]
       }
     },
     {
       "mode": ["performance"],
       "call": [
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling -1"],
         ["$cpufreq", "#300000 1700000 550000 2600000 600000 2800000"]
       ],
       "fas": {
-        "ddr_boost": true,
         "lower_freq": 900000,
         "freq": ["2800000", "2600000", "-2"]
       }
@@ -39,10 +39,11 @@
     {
       "mode": ["fast"],
       "call": [
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling -1"],
         ["$cpufreq", "#300000 1900000 550000 2850000 600000 3250000"]
       ],
       "fas": {
-        "ddr_boost": true,
+        "mode": "normal",
         "lower_freq": 1000000,
         "freq": ["3250000", "2850000", "-2"]
       }

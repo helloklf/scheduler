@@ -104,6 +104,21 @@ fi
 set_value '2000' /proc/oplus-votable/GAUGE_UPDATE/force_val
 set_value '1' /proc/oplus-votable/GAUGE_UPDATE/force_active
 
+
+bus_dcvs(){
+  chmod 664 /sys/devices/system/cpu/bus_dcvs/$1/min_freq
+  chmod 664 /sys/devices/system/cpu/bus_dcvs/$1/max_freq
+  if [[ "$3" != "" ]]; then
+    echo $3 > /sys/devices/system/cpu/bus_dcvs/$1/min_freq
+  fi
+  echo $2 > /sys/devices/system/cpu/bus_dcvs/$1/max_freq
+  chmod 444 /sys/devices/system/cpu/bus_dcvs/$1/min_freq
+  chmod 444 /sys/devices/system/cpu/bus_dcvs/$1/max_freq
+}
+bus_dcvs_value() {
+  echo $2 > /sys/devices/system/cpu/bus_dcvs/$1
+}
+
 # MeiZu
 if [[ -d /proc/mz_info ]]; then
   echo 4 > /proc/mz_scheduler/vip_task/enabled
@@ -120,6 +135,26 @@ if [[ -d /proc/mz_info ]]; then
   # echo 0 > /proc/mz_thermal_boost/sched_boost_enabled
   stop traced_probes
   lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
+
+  bus_dcvs DDR/soc:qcom,memlat:ddr:silver 1555000 547000
+  bus_dcvs DDR/24091000.qcom,bwmon-ddr 2736000 547000
+  bus_dcvs DDR/24091000.qcom,bwmon-ddr/sample_ms 10
+  bus_dcvs DDR/soc:qcom,memlat:ddr:prime 4224000 547000
+  bus_dcvs DDR/soc:qcom,memlat:ddr:prime-latfloor 4224000 547000
+  bus_dcvs DDR/soc:qcom,memlat:ddr:gold-compute 1555000 547000
+  bus_dcvs DDR/soc:qcom,memlat:ddr:gold 4224000 547000
+  bus_dcvs_value DDR/soc:qcom,memlat:ddr:silver/ipm_ceil 100 # default 400
+  bus_dcvs L3/soc:qcom,memlat:l3:silver 2035200 364800
+  bus_dcvs L3/soc:qcom,memlat:l3:prime 2035200 364800
+  bus_dcvs L3/soc:qcom,memlat:l3:gold 2035200 364800
+  bus_dcvs L3/soc:qcom,memlat:l3:prime-compute 2035200 364800
+  bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:gold 1 0
+  bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:prime 1 0
+  bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:prime-latfloor 1 0
+  bus_dcvs LLCC/soc:qcom,memlat:llcc:gold-compute 600000 300000
+  bus_dcvs LLCC/240b7400.qcom,bwmon-llcc 806000 300000
+  bus_dcvs LLCC/soc:qcom,memlat:llcc:silver 600000 300000
+  bus_dcvs LLCC/soc:qcom,memlat:llcc:gold 1066000 300000
 fi
 
 kgsl(){

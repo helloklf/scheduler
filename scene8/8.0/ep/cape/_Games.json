@@ -1,13 +1,13 @@
 {
   "friendly": "游戏(Games)",
   "limiters": [
-    { "id": "g3:cpu0", "max": 1804800, "turning": 1555200, "min": 1056000, "margin": 200, "mode": "bottom" },
-    { "id": "g3:cpu4", "max": 2745600, "turning": 2112000, "min": 1555200, "margin": 250, "mode": "bottom" },
-    { "id": "g3:cpu7", "max": 2918400, "turning": 2361600, "min": 1651200, "margin": 250, "mode": "bottom" },
+    { "id": "g3:cpu0", "max": 1804800, "min": 1056000, "margins": "200 1555200:100", "mode": "bottom" },
+    { "id": "g3:cpu4", "max": 2745600, "min": 1555200, "margins": "250 2112000:125", "mode": "bottom" },
+    { "id": "g3:cpu7", "max": 2918400, "min": 1651200, "margins": "250 2361600:125", "mode": "bottom" },
 
-    { "id": "g4:cpu0", "max": 1804800, "turning": 1555200, "min": 1056000, "margin": 400, "mode": "bottom" },
-    { "id": "g4:cpu4", "max": 2745600, "turning": 2572800, "min": 1766400, "margin": 500, "mode": "bottom" },
-    { "id": "g4:cpu7", "max": 2918400, "turning": 2592000, "min": 1766400, "margin": 500, "mode": "bottom" }
+    { "id": "g4:cpu0", "max": 1804800, "min": 1056000, "margins": "400 1555200:200", "mode": "bottom" },
+    { "id": "g4:cpu4", "max": 2745600, "min": 1766400, "margins": "500 2572800:250", "mode": "bottom" },
+    { "id": "g4:cpu7", "max": 2918400, "min": 1766400, "margins": "500 2592000:250", "mode": "bottom" }
   ],
   "call": [
     ["@preset", "common_gaming"]
@@ -72,7 +72,7 @@
       }
     },
     {
-      "mode": ["fast"],
+      "mode": ["*"],
       "call": [
         ["@values", "latency", "1000", "0", "1000", "0", "1000", "0"],
         ["@values", "max_freq", "#2016000", "#2745600", "#3187200"],
@@ -88,26 +88,6 @@
       ],
       "tas": {
         "t": 92,
-        "min": 2112000
-      }
-    },
-    {
-      "mode": ["pedestal"],
-      "call": [
-        ["@values", "latency", "1000", "0", "1000", "0", "1000", "0"],
-        ["@values", "max_freq", "#2016000", "#2745600", "#3187200"],
-        ["@values", "min_freq", "1056000", "1766400", "1766400"],
-        ["@limiters", "g4:cpu0", "g4:cpu4", "g4:cpu7"],
-        ["@target_loads",
-          "70 1670400:85",
-          "70 2572800:80",
-          "70 2592000:80"
-        ],
-        ["@preset", "limiter_off"],
-        ["@values", "target_load_thresh", "1024", "1024", "1024"]
-      ],
-      "tas": {
-        "t": 94,
         "min": 2112000
       }
     }

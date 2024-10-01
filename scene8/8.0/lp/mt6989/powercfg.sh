@@ -22,12 +22,10 @@ lock_value () {
 hide_value() {
   if [[ -e "$1" ]]; then
     umount "$1" 2>/dev/null
-    c_path="/cache${1}"
+    c_path="/dev/scene${1}"
     if [[ ! -f "$c_path" ]]; then
       mkdir -p "$c_path"
       rm -r "$c_path"
-    else
-      chattr -i "$c_path"
     fi
     chattr -i "$c_path"
     cp -f "$1" "$c_path"
@@ -55,7 +53,11 @@ lock_value 0 $t_message/market_download_limit
 lock_value 0 $t_message/modem_limit
 lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 
-# lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
+lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
+lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
+hide_value /proc/perfmgr/perf_ioctl
+kill -9 $(pidof gbe)
+kill -9 $(pidof fpsgo)
 # echo 0 300000 2000000 > /proc/cpudvfs/cpufreq_debug
 # echo 4 550000 2850000 > /proc/cpudvfs/cpufreq_debug
 # echo 7 600000 3250000 > /proc/cpudvfs/cpufreq_debug

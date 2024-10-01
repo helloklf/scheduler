@@ -80,16 +80,16 @@
     ],
     "comm_app": [
       ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
-      ["$gpu_max_freq", "#14"],
       ["@chmod", "664", "/proc/perfmgr/perf_ioctl"],
       ["/sys/module/mtk_fpsgo/parameters/p_perf", "0"],
-      ["/sys/module/mtk_fpsgo/parameters/better_perf", "0"]
+      ["/sys/module/mtk_fpsgo/parameters/better_perf", "0"],
+      ["$gpu_max_freq", "#22"]
     ],
     "comm_gaming": [
       ["@limiters", "NONE"],
       ["@preset", "common_actvie"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
-      ["$gpu_max_freq", "#22"]
+      ["$gpu_max_freq", "#14"]
     ],
 
     "powersave_active": [

@@ -13,8 +13,6 @@
   },
   "features": {
     "limiter": {
-      "active_interval": 20,
-      "inactive_interval": 100,
       "params": [
   
         { "id": "p1:cpu0", "max": 1766400, "min": 403200, "margin": 400, "mode": "performance", "excludes": [1] },

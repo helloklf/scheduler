@@ -19,26 +19,23 @@
   },
   "features": {
     "limiter": {
-      "active_interval": 30,
-      "gaming_interval": 30,
-      "inactive_interval": 120,
       "ddr_boost": false,
       "params": [
-        { "id": "p1:cpu0", "step": -0.8, "max": 1800000, "turning": 1600000, "min": 800000, "margin": 300 },
-        { "id": "p1:cpu4", "step": -0.7, "max": 2300000, "turning": 1800000, "min": 800000, "margin": 300 },
-        { "id": "p1:cpu7", "step": -0.7, "max": 2600000, "turning": 2400000, "min": 1000000, "margin": 400 },
+        { "id": "p1:cpu0", "step": -0.8, "max": 1800000, "min": 800000,  "margins": "300 1600000:150" },
+        { "id": "p1:cpu4", "step": -0.7, "max": 2300000, "min": 800000,  "margins": "300 1700000:150 2100000:100" },
+        { "id": "p1:cpu7", "step": -0.7, "max": 2400000, "min": 1000000, "margins": "400 1900000:200 2100000:100" },
 
-        { "id": "p2:cpu0", "max": 1800000, "turning": 1600000, "min": 1200000, "margin": 300 },
-        { "id": "p2:cpu4", "max": 2660000, "turning": 2300000, "min": 1800000, "margin": 300 },
-        { "id": "p2:cpu7", "max": 2660000, "turning": 2400000, "min": 1800000, "margin": 300 },
+        { "id": "p2:cpu0", "max": 1800000, "min": 1200000, "margins": "300 1600000:150" },
+        { "id": "p2:cpu4", "max": 2660000, "min": 1800000, "margins": "300 2300000:150" },
+        { "id": "p2:cpu7", "max": 2660000, "min": 1800000, "margins": "300 2400000:150" },
 
         { "id": "p3:cpu0", "max": 2000000, "min": 1600000, "margin": 300 },
-        { "id": "p3:cpu4", "max": 2660000, "min": 2400000, "margin": 300 },
-        { "id": "p3:cpu7", "max": 2800000, "min": 2400000, "margin": 300 },
+        { "id": "p3:cpu4", "max": 2660000, "min": 2100000, "margin": 300 },
+        { "id": "p3:cpu7", "max": 2800000, "min": 2300000, "margin": 300 },
 
         { "id": "p4:cpu0", "max": 2000000, "min": 1600000, "margin": 300 },
-        { "id": "p4:cpu4", "max": 2850000, "min": 2600000, "margin": 300 },
-        { "id": "p4:cpu7", "max": 3000000, "min": 2800000, "margin": 300 },
+        { "id": "p4:cpu4", "max": 2850000, "min": 2400000, "margin": 300 },
+        { "id": "p4:cpu7", "max": 3000000, "min": 2600000, "margin": 300 },
 
         { "id": "inactive:cpu0","max": 1600000, "min": 600000, "margin": 120 },
         { "id": "inactive:cpu4","max": 2100000, "min": 500000, "margin": 120 },

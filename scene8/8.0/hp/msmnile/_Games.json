@@ -1,8 +1,8 @@
 {
   "friendly": "游戏",
   "limiters": [
-    { "id": "g1:cpu4", "mode": "BOTTOM", "max": 1920000, "min": 1056000, "margin": "200 1708800:150", "smoothness": 8 },
-    { "id": "g1:cpu7", "mode": "BOTTOM", "max": 2131200, "min": 1056000, "margin": "200 1708800:150", "smoothness": 8 },
+    { "id": "g1:cpu4", "mode": "BOTTOM", "max": 1920000, "min": 1056000, "margins": "200 1708800:150", "smoothness": 8 },
+    { "id": "g1:cpu7", "mode": "BOTTOM", "max": 2131200, "min": 1056000, "margins": "200 1708800:150", "smoothness": 8 },
 
     { "id": "g2:cpu4", "mode": "BOTTOM", "max": 2227200, "min": 1056000, "margins": "250 2131200:180", "smoothness": 8 },
     { "id": "g2:cpu7", "mode": "BOTTOM", "max": 2419200, "min": 1056000, "margins": "250 2131200:180", "smoothness": 8 },
