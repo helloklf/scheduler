@@ -121,7 +121,7 @@
       ["$mod_percent", "100"]
     ],
     "common_gaming": [
-      ["$mod_percent", "93"],
+      ["$mod_percent", "94"],
       ["@uclamp", "0.00~max", "0.0~max", "0.0~max"],
       ["@cpuset", "0-3", "1-3", "0-5", "0-7"]
     ],

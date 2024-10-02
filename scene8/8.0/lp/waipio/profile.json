@@ -134,7 +134,7 @@
       ["@limiters", "NONE"],
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:silver/max_freq", "1555000"],
       ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
-      ["$mod_percent", "93"],
+      ["$mod_percent", "94"],
       ["@gesture", "PAUSE"]
     ],
 

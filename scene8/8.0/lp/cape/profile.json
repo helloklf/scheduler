@@ -136,7 +136,7 @@
       ["$gpu_max_khz", "#990000000"],
       ["$bus_qos", "0"],
       ["/proc/game_opt/disable_cpufreq_limit", "0"],
-      ["$mod_percent", "93"],
+      ["$mod_percent", "94"],
       ["@gesture", "PAUSE"]
     ],
 

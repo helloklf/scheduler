@@ -238,7 +238,7 @@
         ["$l3_boost", "1612800"],
         ["$bus_ddr_min", "2092000"],
         ["@preset", "common_gaming"],
-        ["$mod_percent", "93"]
+        ["$mod_percent", "94"]
       ]
     }
   },

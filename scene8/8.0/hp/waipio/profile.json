@@ -132,7 +132,7 @@
     ],
     "common_gaming": [
       ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
-      ["$mod_percent", "93"],
+      ["$mod_percent", "94"],
       ["@gesture", "PAUSE"]
     ],
 

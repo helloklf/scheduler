@@ -71,7 +71,7 @@
     "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
     "cpuset": {
       "unity_main": "7",
-      "heavy_thread": "UnityGfx",
+      "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "6",
       "comm": {
         "7": "IL2CPP",

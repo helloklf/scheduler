@@ -86,7 +86,7 @@
     "bw_low": [
     ],
     "cores_force_on": [
-      ["$core_ctl_4", "0"], ["$max_cpus_cpu7", "4"], ["$min_cpus_cpu4", "4"]
+      ["$core_ctl_4", "0"], ["$max_cpus_cpu4", "4"], ["$min_cpus_cpu4", "4"]
     ],
     "cores_force_off": [
       ["$core_ctl_4", "0"], ["$min_cpus_cpu4", "0"], ["$max_cpus_cpu4", "0"]

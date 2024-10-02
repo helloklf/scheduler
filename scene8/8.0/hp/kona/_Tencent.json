@@ -22,6 +22,11 @@
       "max": 3200000, "min": 1632000, "margins": "450" },
 
 
+    { "id": "g1n:cpu4", "mode": "performance", "smoothness": 30, "prefer": 2,
+      "max": 1958400, "min": 710400, "margins": "280 1766400:200" },
+    { "id": "g1n:cpu7", "mode": "performance", "smoothness": 5, "prefer": 2,
+      "max": 2457600, "min": 844800, "margins": "280 1977600:200" },
+
     { "id": "g2n:cpu4", "mode": "performance", "smoothness": 30, "prefer": 2,
       "max": 2246400, "min": 1056000, "margins": "300 1862400:200" },
     { "id": "g2n:cpu7", "mode": "performance", "smoothness": 5, "prefer": 2,
@@ -41,7 +46,8 @@
     {
       "mode": ["powersave"],
       "call": [
-        ["@limiters", "g1:cpu4", "g1:cpu7"]
+        ["@limiters", "g1:cpu4", "g1:cpu7"],
+        ["@limiters+fas", "g1n:cpu4", "g1n:cpu7"]
       ]
     },
     {
