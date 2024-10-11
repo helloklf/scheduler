@@ -48,10 +48,9 @@ hide_value() {
       mkdir -p "$c_path"
       rm -r "$c_path"
     fi
-    chattr -i "$c_path"
     cp -f "$1" "$c_path"
     if [[ "$2" != "" ]]; then
-      lock_value "$2" "$1"
+      set_value "$2" "$1"
     fi
     mount --bind "$c_path" "$1"
   else

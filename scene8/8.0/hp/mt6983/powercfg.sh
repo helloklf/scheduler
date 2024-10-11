@@ -76,10 +76,9 @@ hide_value() {
       mkdir -p "$c_path"
       rm -r "$c_path"
     fi
-    chattr -i "$c_path"
     cp -f "$1" "$c_path"
     if [[ "$2" != "" ]]; then
-      lock_value "$2" "$1"
+      set_value "$2" "$1"
     fi
     mount --bind "$c_path" "$1"
   else
@@ -187,6 +186,5 @@ echo 4-5 > /dev/cpuset/foreground/4-5/cpus
 echo 0 > /dev/cpuset/foreground/4-5/mems
 
 set_cpuset surfaceflinger 'foreground/4-5' 38
-set_cpuset system_server 'foreground/4-5' 38
 set_cpuset update_engine 'top-app' f0
 set_cpuset android.hardware.graphics.composer 'foreground/4-5' 38

@@ -2,119 +2,94 @@
   "friendly": "王者荣耀/LOL",
   "limiters": [
     {"id": "sgame0:cpu4", "step": -1, "mode": "performance",
-      "max": 1670400, "min": 710400, "margins": "225 1324800:150", "smoothness": 6},
+      "max": 1670400, "min": 710400, "margins": "200 1075200:150"},
     {"id": "sgame0:cpu7", "step": -1, "mode": "performance",
-      "max": 1900800, "min": 844800, "margins": "265 1420800:150", "smoothness": 6},
+      "max": 1900800, "min": 844800, "margins": "265 1420800:150"},
 
     {"id": "sgame1:cpu4", "step": -1, "mode": "performance",
-      "max": 1996800, "min": 844800, "margins": "245 1555200:150" },
+      "max": 1996800, "min": 844800, "margins": "200 1209600:180 1440000:150" },
     {"id": "sgame1:cpu7", "step": -1, "mode": "performance",
-      "max": 2150400, "min": 1075200, "margins": "265 178560:180" },
+      "max": 2150400, "min": 1075200, "margins": "265 1420800:200 178560:180" },
 
     {"id": "sgame2:cpu4", "step": -1, "mode": "performance",
-      "max": 2112000, "min": 1075200, "margins": "345 1766400:180"},
+      "max": 1996800, "min": 960000, "margins": "220 1555200:170 1766400:120"},
     {"id": "sgame2:cpu7", "step": -1, "mode": "performance",
-      "max": 2265600, "min": 1075200, "margins": "345 1900800:180"},
+      "max": 2265600, "min": 1075200, "margins": "265 1670400:200 1900800:160"},
 
     {"id": "sgame3:cpu4", "step": -1, "mode": "performance",
-      "max": 2112000, "min": 1075200, "margins": "345 1900800:180", "smoothness": 6},
+      "max": 2112000, "min": 1075200, "margins": "240 1555200:200 1766400:160"},
     {"id": "sgame3:cpu7", "step": -1, "mode": "performance",
-      "max": 2496000, "min": 1420800, "margins": "345 2265600:180", "smoothness": 6}
+      "max": 2496000, "min": 1420800, "margins": "265 178560:210 2265600:160"}
   ],
-  "modes": [{
-    "mode": ["powersave"],
-    "call": [
-      ["$cpu_max_0", "1612800"],
-      ["$gpu_max_khz", "#315000000"],
-      ["@limiters", "active:cpu0", "sgame0:cpu4", "sgame0:cpu7"]
-    ],
-    "sensors": [
-      {
-        "sensor": "fps",
-        "interval": 8000,
-        "rules": [
-          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"], ["@preset", "lat_boost"]] },
-          { "threshold": [99,  75], "enter_once": [["@preset", "bw_low"], ["@preset", "lat_normal"]] },
-          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"], ["@preset", "lat_normal"]] }
-        ]
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@preset", "bw_low"],
+        ["$cpu_max_0", "1612800"],
+        ["@limiters", "active:cpu0", "sgame0:cpu4", "sgame0:cpu7"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "ddr_boost": true, "l3_boost": true,
+        "_60": ["1670400", "1555200", "-2"],
+        "_90": ["1900800", "1670400", "-2"],
+        "_120": ["2150400", "1766400", "-3"]
       }
-    ],
-    "fas": {
-      "use": "whitelist",
-      "_60": ["1670400", "1555200", "-2"],
-      "_90": ["1900800", "1766400", "-2"],
-      "_120": ["2150400", "1881600", "-2"]
-    }
-  }, {
-    "mode": ["balance"],
-    "call": [
-      ["$gpu_max_khz", "#400000000"],
-      ["@limiters", "active:cpu0", "sgame1:cpu4", "sgame1:cpu7"]
-    ],
-    "sensors": [
-      {
-        "sensor": "fps",
-        "interval": 8000,
-        "rules": [
-          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"], ["@preset", "lat_boost"]] },
-          { "threshold": [99,  75], "enter_once": [["@preset", "bw_normal"], ["@preset", "lat_normal"]] },
-          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"], ["@preset", "lat_normal"]] }
-        ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@preset", "bw_low"],
+        ["@limiters", "active:cpu0", "sgame1:cpu4", "sgame1:cpu7"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "ddr_boost": true, "l3_boost": true,
+        "_60": ["1900800", "1670400", "-2"],
+        "_90": ["2150400", "1766400", "-3"],
+        "_120": ["2380800", "1996800", "-3"]
       }
-    ],
-    "fas": {
-      "use": "whitelist",
-      "_60": ["1900800", "1881600", "-2"],
-      "_90": ["2150400", "1996800", "-3"],
-      "_120": ["2380800", "1996800", "-3"]
-    }
-  }, {
-    "mode": ["performance"],
-    "call": [
-      ["$gpu_max_khz", "#491000000"],
-      ["@limiters", "active:cpu0", "sgame2:cpu4", "sgame2:cpu7"]
-    ],
-    "sensors": [
-      {
-        "sensor": "fps",
-        "interval": 8000,
-        "rules": [
-          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"], ["@preset", "lat_boost"]] },
-          { "threshold": [99,  75], "enter_once": [["@preset", "bw_normal"], ["@preset", "lat_normal"]] },
-          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"], ["@preset", "lat_normal"]] }
-        ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "active:cpu0", "sgame2:cpu4", "sgame2:cpu7"]
+      ],
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 8000,
+          "rules": [
+            { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"]] },
+            { "threshold": [99,  75], "enter_once": [["@preset", "bw_normal"]] },
+            { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"]] }
+          ]
+        }
+      ],
+      "fas": {
+        "use": "whitelist",
+        "mode": "normal",
+        "ddr_boost": true, "l3_boost": true,
+        "_60": ["1785600", "1670400", "-2"],
+        "_90": ["2265600", "1881600", "-3"],
+        "_120": ["2496000", "1996800", "-3"]
       }
-    ],
-    "fas": {
-      "use": "whitelist",
-      "mode": "normal",
-      "_60": ["2496000", "2112000", "-2"],
-      "_90": ["2496000", "2112000", "-3"],
-      "_120": ["2496000", "2112000", "-3"]
-    }
-  }, {
-    "mode": ["*"],
-    "call": [
-      ["$gpu_max_khz", "#608000000"],
-      ["@limiters", "sgame3:cpu4", "sgame3:cpu7"]
-    ],
-    "sensors": [
-      {
-        "sensor": "fps",
-        "interval": 8000,
-        "rules": [
-          { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"], ["@preset", "lat_boost"]] },
-          { "threshold": [99,  75], "enter_once": [["@preset", "bw_normal"], ["@preset", "lat_normal"]] },
-          { "threshold": [70,  -1], "enter_once": [["@preset", "bw_normal"], ["@preset", "lat_normal"]] }
-        ]
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@limiters", "sgame3:cpu4", "sgame3:cpu7"],
+        ["@preset", "bw_normal"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "mode": "normal",
+        "ddr_boost": true, "l3_boost": true,
+        "_60": ["1900800", "1670400", "-2"],
+        "_90": ["2380800", "1881600", "-3"],
+        "_120": ["2841600", "2112000", "-3"]
       }
-    ],
-    "fas": {
-      "use": "whitelist",
-      "mode": "normal",
-      "_60": ["2496000", "2227200", "-2"],
-      "_90": ["2496000", "2227200", "-3"],
-      "_120": ["2496000", "2227200", "-3"]
     }
-  }]
+  ]
 }

@@ -27,10 +27,9 @@ hide_value() {
       mkdir -p "$c_path"
       rm -r "$c_path"
     fi
-    chattr -i "$c_path"
     cp -f "$1" "$c_path"
     if [[ "$2" != "" ]]; then
-      lock_value "$2" "$1"
+      set_value "$2" "$1"
     fi
     mount --bind "$c_path" "$1"
   else
@@ -55,9 +54,11 @@ lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 
 lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
+
 hide_value /proc/perfmgr/perf_ioctl
-kill -9 $(pidof gbe)
-kill -9 $(pidof fpsgo)
+# kill -9 $(pidof gbe)
+# kill -9 $(pidof fpsgo)
+
 # echo 0 300000 2000000 > /proc/cpudvfs/cpufreq_debug
 # echo 4 550000 2850000 > /proc/cpudvfs/cpufreq_debug
 # echo 7 600000 3250000 > /proc/cpudvfs/cpufreq_debug
@@ -67,7 +68,6 @@ kill -9 $(pidof fpsgo)
 
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_tid
-lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
 
 # echo 1 > /sys/module/migt/parameters/force_reset_runtime
 # lock_value 0 /sys/module/migt/parameters/enable_pkg_monitor
@@ -97,7 +97,7 @@ lock_value 0 /sys/module/metis/parameters/mi_freq_enable
 # chmod -R 444 /proc/perfmgr_powerhal
 chmod 444 /proc/perfmgr/global_reclaim
 # chmod 444 /proc/perfmgr/perf_ioctl
-chmod 444 /proc/perfmgr_touch_boost/ioctl_touch_boost
+# chmod 444 /proc/perfmgr_touch_boost/ioctl_touch_boost
 
 metis=/sys/module/metis/parameters
 for file in $metis/*enable*; do
@@ -116,3 +116,8 @@ lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/enable
 lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/max_cpus
 lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/min_cpus
 lock_value 0 /sys/devices/system/cpu/cpu7/core_ctl/enable
+
+mount -t debugfs none /sys/kernel/debug
+echo 12000000 > /sys/kernel/debug/sched/latency_ns # default 24000000
+echo 2000000 > /sys/kernel/debug/sched/min_granularity_ns # default 3000000
+echo 3000000 > /sys/kernel/debug/sched/wakeup_granularity_ns # default 4000000

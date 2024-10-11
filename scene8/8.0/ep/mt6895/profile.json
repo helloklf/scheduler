@@ -19,23 +19,23 @@
       "ddr_boost": false,
       "params": [
         { "id": "p1:cpu0", "max": 2000000, "min": 1600000, "margin": 500 },
-        { "id": "p1:cpu4", "max": 2450000, "turning": 2100000, "min": 1600000, "margin": 300 },
-        { "id": "p1:cpu7", "max": 2400000, "turning": 2100000, "min": 1800000, "margin": 300 },
+        { "id": "p1:cpu4", "max": 2450000, "min": 1600000, "margins": "300 2100000:150" },
+        { "id": "p1:cpu7", "max": 2650000, "min": 1800000, "margins": "300 2100000:200 2450000:120" },
 
-        { "id": "p2:cpu4", "max": 2450000, "min": 2200000, "margin": 400 },
-        { "id": "p2:cpu7", "max": 2650000, "min": 2450000, "margin": 400 },
+        { "id": "p2:cpu4", "max": 2650000, "min": 2200000, "margins": "400 2450000:200" },
+        { "id": "p2:cpu7", "max": 2850000, "min": 2450000, "margins": "400" },
 
-        { "id": "p3:cpu4", "max": 2650000, "min": 2450000, "margin": 350 },
+        { "id": "p3:cpu4", "max": 2850000, "min": 2450000, "margins": "350 2650000:200" },
         { "id": "p3:cpu7", "max": 2850000, "min": 2650000, "margin": 350 },
 
 
-        { "id": "inactive:cpu0", "max": 1800000, "turning": 1500000, "min": 800000, "margin": 300 },
-        { "id": "inactive:cpu4", "max": 1900000, "min": 400000, "margin": 180 },
-        { "id": "inactive:cpu7", "max": 2300000, "min": 500000, "margin": 200 },
+        { "id": "inactive:cpu0", "max": 1800000, "min": 800000, "margins": "300 1500000:200" },
+        { "id": "inactive:cpu4", "max": 1900000, "min": 400000, "margins": "180 1800000:100" },
+        { "id": "inactive:cpu7", "max": 2300000, "min": 500000, "margins": "200 1800000:100" },
 
         { "id": "idle:cpu0", "max": 1600000, "min": 700000, "margin": 180 },
         { "id": "idle:cpu4", "max": 1800000, "min": 400000, "margin": 120 },
-        { "id": "idle:cpu7", "max": 2000000, "min": 500000, "margin": 140, "core_ctl": true }
+        { "id": "idle:cpu7", "max": 2000000, "min": 500000, "margins": "140 1800000:100", "core_ctl": true }
       ]
     },
     "gesture_boost": {

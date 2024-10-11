@@ -4,6 +4,8 @@
   "alias": {
     "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
     "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
+    "max_cpus_cpu4": "/sys/devices/system/cpu/cpu4/core_ctl/max_cpus",
+    "min_cpus_cpu4": "/sys/devices/system/cpu/cpu4/core_ctl/min_cpus",
     "ddr_freq_min": "/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq",
     "ddr_freq_cust": "/sys/class/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq",
     "ged_kpi": "/sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled",
@@ -37,11 +39,11 @@
 
 
         { "id": "inactive:cpu0","max": 1800000, "min": 500000, "margin": 120 },
-        { "id": "inactive:cpu4","max": 1800000, "min": 550000, "margin": 120 },
-        { "id": "inactive:cpu7","max": 1800000, "min": 600000, "margin": 120 },
+        { "id": "inactive:cpu4","max": 1900000, "min": 550000, "margin": 120 },
+        { "id": "inactive:cpu7","max": 1900000, "min": 600000, "margin": 120 },
 
         { "id": "idle:cpu0","max": 1500000, "min": 500000, "margin": 100 },
-        { "id": "idle:cpu4","max": 1700000, "min": 550000, "margin": 100 },
+        { "id": "idle:cpu4","max": 1700000, "min": 550000, "margin": 100, "core_ctl": true },
         { "id": "idle:cpu7","max": 1700000, "min": 600000, "margin": 100, "core_ctl": true }
       ]
     },
@@ -67,6 +69,8 @@
       ["$core_ctl_7", "1"],
       ["$max_cpus_cpu7", "#1"],
       ["$min_cpus_cpu7", "#1"],
+      ["$max_cpus_cpu4", "#3"],
+      ["$min_cpus_cpu7", "#3"],
       ["$core_ctl_7", "#0"]
     ],
     "common_inactvie": [

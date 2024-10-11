@@ -11,8 +11,6 @@
       "idle_delay": 2000,
       "enter": [
         ["@limiters", "launcher:cpu4", "launcher:cpu7"],
-        ["$stune_top_perf", "1"],
-        ["$stune_top_boost", "10"],
         ["@preset", "comm_active"]
       ],
       "exit": [["@preset", "powersave_inactive"]]
@@ -24,9 +22,6 @@
       "idle_delay": 2000,
       "enter": [
         ["@limiters", "NONE"],
-        ["$stune_top_boost", "100"],
-        ["$stune_top_perf", "1"],
-        ["$sched_boost", "2"],
         ["@values", "max_freq", "1804800", "2419200", "3300000"],
         ["@preset", "comm_active"]
       ],
