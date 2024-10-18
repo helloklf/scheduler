@@ -56,8 +56,6 @@ lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 
 hide_value /proc/perfmgr/perf_ioctl
-# kill -9 $(pidof gbe)
-# kill -9 $(pidof fpsgo)
 
 # echo 0 300000 2000000 > /proc/cpudvfs/cpufreq_debug
 # echo 4 550000 2850000 > /proc/cpudvfs/cpufreq_debug
@@ -96,8 +94,6 @@ lock_value 0 /sys/module/metis/parameters/mi_freq_enable
 
 # chmod -R 444 /proc/perfmgr_powerhal
 chmod 444 /proc/perfmgr/global_reclaim
-# chmod 444 /proc/perfmgr/perf_ioctl
-# chmod 444 /proc/perfmgr_touch_boost/ioctl_touch_boost
 
 metis=/sys/module/metis/parameters
 for file in $metis/*enable*; do
@@ -107,6 +103,7 @@ if [[ -d $metis ]]; then
   chmod -R 444 $metis
 fi
 
+# echo 1 > /sys/module/mtk_core_ctl/parameters/policy_enable
 lock_value 1 /sys/devices/system/cpu/cpu4/core_ctl/enable
 lock_value 3 /sys/devices/system/cpu/cpu4/core_ctl/max_cpus
 lock_value 3 /sys/devices/system/cpu/cpu4/core_ctl/min_cpus

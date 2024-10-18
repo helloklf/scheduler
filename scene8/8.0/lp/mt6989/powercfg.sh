@@ -55,8 +55,6 @@ lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 hide_value /proc/perfmgr/perf_ioctl
-kill -9 $(pidof gbe)
-kill -9 $(pidof fpsgo)
 # echo 0 300000 2000000 > /proc/cpudvfs/cpufreq_debug
 # echo 4 550000 2850000 > /proc/cpudvfs/cpufreq_debug
 # echo 7 600000 3250000 > /proc/cpudvfs/cpufreq_debug
@@ -107,3 +105,8 @@ lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/enable
 lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/max_cpus
 lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/min_cpus
 lock_value 0 /sys/devices/system/cpu/cpu7/core_ctl/enable
+
+mount -t debugfs none /sys/kernel/debug
+echo 12000000 > /sys/kernel/debug/sched/latency_ns # default 24000000
+echo 2000000 > /sys/kernel/debug/sched/min_granularity_ns # default 3000000
+echo 3000000 > /sys/kernel/debug/sched/wakeup_granularity_ns # default 4000000

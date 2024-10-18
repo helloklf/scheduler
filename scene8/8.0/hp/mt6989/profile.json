@@ -37,13 +37,13 @@
         { "id": "p4:cpu7", "max": 3250000, "min": 2800000, "margin": 300 },
 
 
-        { "id": "inactive:cpu0", "max": 1800000, "min": 500000, "margin": 120 },
-        { "id": "inactive:cpu4", "max": 2100000, "min": 550000, "margin": 120 },
-        { "id": "inactive:cpu7", "max": 2100000, "min": 600000, "margin": 120 },
+        { "id": "inactive:cpu0", "max": 1800000, "min": 1000000, "margin": 120 },
+        { "id": "inactive:cpu4", "max": 2100000, "min": 1000000, "margin": 120 },
+        { "id": "inactive:cpu7", "max": 2100000, "min": 1000000, "margin": 120 },
 
-        { "id": "idle:cpu0", "max": 1800000, "min": 500000, "margin": 100 },
-        { "id": "idle:cpu4", "max": 1800000, "min": 550000, "margin": 100 },
-        { "id": "idle:cpu7", "max": 1800000, "min": 600000, "margin": 100 }
+        { "id": "idle:cpu0", "max": 1600000, "min": 800000, "margin": 100 },
+        { "id": "idle:cpu4", "max": 1800000, "min": 800000, "margin": 100 },
+        { "id": "idle:cpu7", "max": 1800000, "min": 800000, "margin": 100 }
       ]
     },
     "gesture_boost": {
@@ -54,10 +54,11 @@
   },
   "presets": {
     "reset": [
+      ["@governor", "sugov_ext"],
       ["$perfmgr_enable", "#0"],
       ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", " 754000000"],
       ["$cpus_limit", "#2850000 3350000"],
-      ["$cpufreq", "300000 2000000 550000 2850000 600000 3400000"]
+      ["$cpufreq", "300000 2000000 550000 2850000 600000 3250000"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
@@ -70,19 +71,18 @@
       ["$uclamp_boost", "0"]
     ],
     "comm_app": [
-      ["@governor", "sugov_ext"],
       ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
-      ["$gpu_max_freq", "#14"],
+      ["$gpu_max_freq", "#24"],
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
       ["/sys/module/mtk_fpsgo/parameters/p_perf", "0"],
       ["/sys/module/mtk_fpsgo/parameters/better_perf", "0"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "1"]
     ],
     "comm_gaming": [
-      ["@governor", "schedutil"],
       ["@limiters", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["@gesture", "PAUSE"],
-      ["$gpu_max_freq", "#9"],
+      ["$gpu_max_freq", "#09"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "#0"],
       ["$uclamp_boost", "0"]
     ],
@@ -181,6 +181,13 @@
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
+    {
+      "friendly": "双核强化",
+      "packages": [
+        "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact"
+      ],
+      "import": "_DualCore.json"
+    },
     {
       "friendly": "All",
       "packages": ["*"],

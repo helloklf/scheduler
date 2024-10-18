@@ -35,7 +35,7 @@
 
         { "id": "p4:cpu0", "step": -0.50, "max": 2000000, "min": 1500000, "margins": "300 1800000:120" },
         { "id": "p4:cpu4", "step": -0.50, "max": 2800000, "min": 2400000, "margins": "250 2600000:120" },
-        { "id": "p4:cpu7", "step": -0.50, "max": 3050000, "min": 2600000, "margins": "250 2800000:120" },
+        { "id": "p4:cpu7", "step": -0.50, "max": 3000000, "min": 2600000, "margins": "250 2800000:120" },
 
 
         { "id": "inactive:cpu0","max": 1800000, "min": 500000, "margin": 120 },
@@ -78,14 +78,14 @@
     ],
     "comm_app": [
       ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
-      ["$gpu_max_freq", "#22"],
+      ["$gpu_max_freq", "#24"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "1"]
     ],
     "comm_gaming": [
       ["@limiters", "NONE"],
       ["@preset", "common_actvie"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
-      ["$gpu_max_freq", "#14"],
+      ["$gpu_max_freq", "#09"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "0"],
       ["$uclamp_boost", "0"]
     ],
@@ -164,7 +164,7 @@
       "app": [
         ["@preset", "comm_app"],
         ["@preset", "performance_active"],
-        ["$cpufreq", "#300000 1800000 550000 2600000 600000 3050000"]
+        ["$cpufreq", "#300000 1800000 550000 2600000 600000 3000000"]
       ],
       "game": [
         ["@preset", "comm_gaming"]
