@@ -157,7 +157,6 @@ disable_migt() {
     hide_value $migt/force_stask_to_big '0'
     hide_value $migt/glk_fbreak_enable '0'
 
-    settings put secure speed_mode_enable 1
     chmod 000 $migt/*
     chmod 000 /sys/module/migt
     chmod 000 /sys/module/sched_walt/holders/migt/parameters

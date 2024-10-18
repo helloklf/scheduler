@@ -122,7 +122,6 @@ disable_migt() {
     hide_value $migt/glk_fbreak_enable '0'
     chmod 444 $migt/set_render_as_stask
 
-    settings put secure speed_mode_enable 1
     chmod 000 $migt/*
   fi
 

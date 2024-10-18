@@ -57,7 +57,6 @@ disable_migt() {
     echo 1 > $migt/reset_clus_affinity_uidlist
     echo 1 > $migt/reset_rebind_task
 
-    settings put secure speed_mode_enable 1
   fi
 
   glk=/proc/sys/glk

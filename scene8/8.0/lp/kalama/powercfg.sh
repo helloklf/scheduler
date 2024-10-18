@@ -37,6 +37,47 @@ hide_value() {
   fi
 }
 
+
+c_min(){
+  cat /sys/devices/system/cpu/cpu$1/cpufreq/cpuinfo_min_freq
+}
+
+for dir in /sys/module/migt/parameters /sys/module/metis/parameters /proc/sys/migt /sys/class/misc/migt;do
+  if [[ -d $dir ]];then
+    for file in `ls $dir`; do
+      case "$file" in
+        'add_'*)
+          chmod 444 $dir/$file
+        ;;
+        glk_maxfreq)
+          lock_value '0 0 0' $dir/$file
+        ;;
+        min_cluster_freqs|user_min_freq)
+          lock_value '0,0,0' $dir/$file
+        ;;
+        glk_minfreq)
+          lock_value "$(c_min 0) $(c_min 4) $(c_min 7)" $dir/$file
+        ;;
+        migt_ceiling_freq|migt_freq)
+          lock_value '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' $dir/$file
+        ;;
+        glk_fbreak_enable|force_cluster_sched_enable|glk_freq_limit_start|glk_freq_limit_walt|thermal_break_enable|is_break_enable|mi_freq_enable|force_stask_to_big|freq_break_enable)
+          lock_value 0 $dir/$file
+        ;;
+        render_prefer_cluster|vip_prefer_cluster|stask_prefer_cluster|ip_prefer_cluster)
+          lock_value -1 $dir/$file
+        ;;
+        glk_disable|affinity_only|force_reset_runtime|reset_clus_affinity_uidlist|reset_rebind_task)
+          lock_value 1 $dir/$file
+        ;;
+        game_minfreq_limit|game_maxfreq_limit)
+          lock_value '0 0 0' $dir/$file
+        ;;
+      esac
+    done
+  fi
+done
+
 disable_migt() {
   migt=/sys/module/migt/parameters
   if [[ -e $migt ]]; then
@@ -54,7 +95,6 @@ disable_migt() {
     echo 1 > $migt/reset_clus_affinity_uidlist
     echo 1 > $migt/reset_rebind_task
 
-    settings put secure speed_mode_enable 1
     chmod 000 $migt/*
     chmod 000 /sys/module/migt
     chmod 000 /sys/module/sched_walt/holders/migt/parameters

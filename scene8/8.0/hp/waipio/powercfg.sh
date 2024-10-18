@@ -189,7 +189,6 @@ disable_migt() {
     echo 1 > $migt/reset_clus_affinity_uidlist
     echo 1 > $migt/reset_rebind_task
 
-    settings put secure speed_mode_enable 1
     chmod 000 $migt/*
     chmod 000 /sys/module/migt
     chmod 000 /sys/module/sched_walt/holders/migt/parameters

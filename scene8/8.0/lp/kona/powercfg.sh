@@ -89,7 +89,6 @@ disable_migt() {
     echo 1 > $migt/reset_rebind_task
     hide_value $migt/enable_pkg_monitor '0'
 
-    settings put secure speed_mode_enable 1
     chmod 000 $migt/*
   fi
 

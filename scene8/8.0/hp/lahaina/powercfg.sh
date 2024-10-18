@@ -70,7 +70,6 @@ disable_migt() {
     lock_value 0 $migt/glk_fbreak_enable
     chmod 444 $migt/set_render_as_stask
 
-    settings put secure speed_mode_enable 1
     chmod 000 $migt/*
   fi
 
