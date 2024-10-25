@@ -1,6 +1,7 @@
 {
   "friendly": "游戏(FAS)",
   "call": [
+    ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_perf_mode_ceiling_opp 2"],
     ["/sys/module/mtk_fpsgo/parameters/p_perf", "1"],
     ["/sys/module/mtk_fpsgo/parameters/better_perf", "1"]
   ],
@@ -47,7 +48,7 @@
     {
       "mode": ["performance"],
       "call": [
-        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling -1"],
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 2"],
         ["$cpufreq", "#300000 1700000 550000 2600000 600000 2800000"]
       ],
       "fas": {
@@ -59,7 +60,7 @@
     {
       "mode": ["fast"],
       "call": [
-        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling -1"],
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 2"],
         ["$cpufreq", "#300000 1900000 550000 2850000 600000 3250000"]
       ],
       "fas": {

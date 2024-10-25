@@ -16,7 +16,8 @@
     "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",
     "ddr_map": "/sys/module/mtk_fpsgo/parameters/ddrfreq_remap_table",
-    "cpus_limit": "/sys/module/mtk_fpsgo/parameters/cpus_limit"
+    "cpus_limit": "/sys/module/mtk_fpsgo/parameters/cpus_limit",
+    "switch_idleprefer": "/sys/kernel/fpsgo/fbt/switch_idleprefer"
   },
   "features": {
     "limiter": {
@@ -86,12 +87,14 @@
       ["$ddr_map", "1700000:4100000 1600000:3094000 1500000:2133000 1400000:1600000"],
       ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
       ["@preset", "freq_extreme"],
-      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 0"]
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 0"],
+      ["$switch_idleprefer", "#1"]
     ],
     "comm_gaming": [
       ["@limiters", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
-      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 1"]
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 1"],
+      ["$switch_idleprefer", "#0"]
     ],
 
     "powersave_active": [

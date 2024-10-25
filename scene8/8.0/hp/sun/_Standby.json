@@ -1,0 +1,19 @@
+{
+  "friendly": "待机",
+  "call": [
+    ["@limiters", "NONE"]
+  ],
+  "booster": {
+    "duration": 3500,
+    "idle_delay": 2000,
+    "enter": [
+      ["@preset", "common_active"],
+      ["@cpu_freq", "policy0", "min", "3072000"],
+      ["@cpu_freq", "policy6", "min", "4089600"]
+    ],
+    "exit": [
+      ["@cpu_freq", "policy0", "min", "2227200"],
+      ["@cpu_freq", "policy6", "min", "2841600"]
+    ]
+  }
+}

@@ -2,7 +2,6 @@
   "friendly": "游戏(Games)",
   "call": [
     ["@preset", "comm_gaming"],
-    ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_perf_mode_ceiling_opp 2"],
     ["/sys/module/mtk_fpsgo/parameters/p_perf", "1"],
     ["/sys/module/mtk_fpsgo/parameters/better_perf", "1"],
     ["/sys/kernel/fpsgo/fbt/enable_ceiling", "#0"]
@@ -19,11 +18,7 @@
           "0 20|1 20|2 20",
           "0 15|1 15|2 15"
         ]
-      ],
-      "fas": {
-        "use": "whitelist",
-        "freq": ["2200000", "2200000"]
-      }
+      ]
     },
     {
       "mode": ["balance"],
@@ -36,11 +31,7 @@
           "0 20|1 20|2 20",
           "0 15|1 15|2 15"
         ]
-      ],
-      "fas": {
-        "use": "whitelist",
-        "freq": ["2400000", "2400000"]
-      }
+      ]
     },
     {
       "mode": ["performance"],
@@ -53,12 +44,7 @@
           "0 20|1 20|2 20",
           "0 15|1 15|2 15"
         ]
-      ],
-      "fas": {
-        "use": "whitelist",
-        "lower_freq": 900000,
-        "freq": ["2600000", "2600000"]
-      }
+      ]
     },
     {
       "mode": ["*"],
@@ -71,13 +57,7 @@
           "0 20|1 20|2 20",
           "0 15|1 15|2 15"
         ]
-      ],
-      "fas": {
-        "use": "whitelist",
-        "mode": "normal",
-        "lower_freq": 1000000,
-        "freq": ["2800000", "2800000"]
-      }
+      ]
     }
   ]
 }
