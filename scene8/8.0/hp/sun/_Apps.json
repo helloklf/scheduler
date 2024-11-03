@@ -6,11 +6,13 @@
       "duration": 3000,
       "idle_delay": 1700,
       "enter": [
+        ["@limiters", "NONE"],
         ["@preset", "powersave_active"],
-        ["$sched_boost", "2"]
+        ["@preset", "cpu6_auto"]
       ],
       "exit": [
-        ["@preset", "powersave_inactive"]
+        ["@preset", "powersave_inactive"],
+        ["@limiters", "idle:cpu0", "idle:cpu6"]
       ]
     }
   }, {
@@ -20,7 +22,7 @@
       "idle_delay": 1700,
       "enter": [
         ["@preset", "balance_active"],
-        ["$sched_boost", "2"]
+        ["@preset", "cpu6_auto"]
       ],
       "exit": [
         ["@preset", "balance_inactive"]
@@ -32,8 +34,7 @@
       "duration": 3000,
       "idle_delay": 1700,
       "enter": [
-        ["@preset", "performance_active"],
-        ["$sched_boost", "1"]
+        ["@preset", "performance_active"]
       ],
       "exit": [
         ["@preset", "performance_inactive"]

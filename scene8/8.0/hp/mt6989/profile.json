@@ -21,20 +21,20 @@
       "ddr_boost": false,
       "params": [
         { "id": "p1:cpu0", "max": 1800000, "min": 1200000, "margins": "300 1500000:150 1800000:120" },
-        { "id": "p1:cpu4", "max": 2300000, "min": 1800000, "margins": "300 2100000:120" },
-        { "id": "p1:cpu7", "max": 2400000, "min": 2000000, "margins": "300 2300000:120" },
+        { "id": "p1:cpu4", "max": 2300000, "min": 1700000, "margins": "300 1900000:120" },
+        { "id": "p1:cpu7", "max": 2400000, "min": 1700000, "margins": "300 2100000:120" },
 
         { "id": "p1:cpu0", "max": 2000000, "min": 1500000, "margins": "200 1800000:120" },
-        { "id": "p2:cpu4", "max": 2600000, "min": 2000000, "margins": "300 2300000:120" },
-        { "id": "p2:cpu7", "max": 2800000, "min": 2300000, "margins": "300 2600000:120" },
+        { "id": "p2:cpu4", "max": 2400000, "min": 2000000, "margins": "300 2300000:120" },
+        { "id": "p2:cpu7", "max": 2600000, "min": 2300000, "margins": "300 2600000:120" },
 
         { "id": "p3:cpu0", "max": 2000000, "min": 1500000, "margins": "200 1800000:100" },
-        { "id": "p3:cpu4", "max": 2850000, "min": 2400000, "margin": 300 },
-        { "id": "p3:cpu7", "max": 3000000, "min": 2600000, "margin": 300 },
+        { "id": "p3:cpu4", "max": 2600000, "min": 2400000, "margin": 300 },
+        { "id": "p3:cpu7", "max": 2800000, "min": 2600000, "margin": 300 },
 
-        { "id": "p4:cpu0", "max": 2000000, "min": 1800000, "margins": "200 1800000:100" },
-        { "id": "p4:cpu4", "max": 2850000, "min": 2600000, "margin": 300 },
-        { "id": "p4:cpu7", "max": 3250000, "min": 2800000, "margin": 300 },
+        { "id": "p4:cpu0", "max": 2000000, "min": 1800000, "margin": 200 },
+        { "id": "p4:cpu4", "max": 2800000, "min": 2600000, "margin": 300 },
+        { "id": "p4:cpu7", "max": 3000000, "min": 2800000, "margin": 300 },
 
 
         { "id": "inactive:cpu0", "max": 1800000, "min": 1000000, "margin": 120 },
@@ -92,9 +92,9 @@
       ["/sys/module/mtk_fpsgo/parameters/better_perf", "0"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "1"],
       ["@values", "target_loads",
-        "0 0|1 0|2 0",
+        "0 1200000|1 0|2 0",
         "0 20|1 20|2 20",
-        "0 20|1 20|2 20"
+        "0 12|1 20|2 20"
       ]
     ],
     "comm_gaming": [

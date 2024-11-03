@@ -67,6 +67,9 @@ lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
 rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost
 echo $(pgrep -ef kcompactd0) > /dev/cpuset/foreground/tasks
+echo 80 80 > /sys/devices/system/cpu/cpu6/core_ctl/busy_up_thres
+echo 55 55 > /sys/devices/system/cpu/cpu6/core_ctl/busy_down_thres
+echo 24 > /sys/devices/system/cpu/cpu6/core_ctl/offline_delay_ms
 
 # Xiaomi
 if [[ -d /sys/module/migt ]]; then
@@ -125,6 +128,8 @@ if [[ -d /proc/mz_info ]]; then
   stop traced_probes
   # lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
 fi
+
+exit 0
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1

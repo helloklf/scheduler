@@ -8,12 +8,12 @@
     "idle_delay": 2000,
     "enter": [
       ["@preset", "common_active"],
-      ["@cpu_freq", "policy0", "min", "3072000"],
-      ["@cpu_freq", "policy6", "min", "4089600"]
+      ["@cpu_freq", "policy0", "min", "2800000"],
+      ["@cpu_freq", "policy6", "min", "3200000"]
     ],
     "exit": [
-      ["@cpu_freq", "policy0", "min", "2227200"],
-      ["@cpu_freq", "policy6", "min", "2841600"]
+      ["@cpu_freq", "policy0", "min", "2400000"],
+      ["@cpu_freq", "policy6", "min", "2800000"]
     ]
   }
 }

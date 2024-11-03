@@ -1,9 +1,8 @@
 {
   "friendly": "扫码",
   "call": [
-    ["@cpu_freq", "policy2", "2112000", "max"],
-    ["@cpu_freq", "policy5", "2112000", "max"],
-    ["@cpu_freq", "policy7", "2131200", "max"],
+    ["@cpu_freq", "policy0", "2400000", "max"],
+    ["@cpu_freq", "policy6", "2400000", "max"],
     ["$max_cpus_cpu7", "1"]
   ]
 }

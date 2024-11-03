@@ -30,7 +30,7 @@
       "call": [
         ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
         ["@values", "max_freq", "1700000", "2300000", "2300000"],
-        ["@values", "min_freq", "700000", "700000", "700000"],
+        ["@values", "min_freq", "700000", "800000", "800000"],
         ["@values", "target_loads",
           "0 1200000|1 1700000|2 1700000",
           "0 20|1 20|2 20",
