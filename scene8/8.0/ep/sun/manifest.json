@@ -1,5 +1,5 @@
 {
-  "version": "HP(开发调试阶段，慎用)",
+  "version": "EP(DevTest)",
   "versionCode": 2024111001,
   "author": "SCENE8",
   "projectUrl": "http://vtools.omarea.com/",
@@ -7,6 +7,6 @@
     "strict": true,
     "pedestal": false,
     "reboot": false,
-    "fas": true
+    "fas": false
   }
 }

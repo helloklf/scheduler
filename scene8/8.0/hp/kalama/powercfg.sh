@@ -39,7 +39,7 @@ hide_value() {
 
 
 c_min(){
-  cat /sys/devices/system/cpu/cpu$1/cpufreq/cpuinfo_min_freq
+  echo $(cat /sys/devices/system/cpu/cpufreq/policy*/cpuinfo_min_freq)
 }
 disable_migt() {
   for dir in /sys/module/migt/parameters /sys/module/metis/parameters /proc/sys/migt /sys/class/misc/migt;do
@@ -56,7 +56,7 @@ disable_migt() {
             lock_value '0,0,0' $dir/$file
           ;;
           glk_minfreq)
-            lock_value "$(c_min 0) $(c_min 4) $(c_min 7)" $dir/$file
+            lock_value "$(c_min)" $dir/$file
           ;;
           migt_ceiling_freq|migt_freq)
             lock_value '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' $dir/$file

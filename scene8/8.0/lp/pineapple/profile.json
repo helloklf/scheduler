@@ -134,7 +134,7 @@
         ["@values", "latency", "0", "2000", "0", "2000", "0", "2000", "0", "2000"],
         ["/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq", "0"],
         ["/sys/devices/system/cpu/bus_dcvs/LLCC/240b7400.qcom,bwmon-llcc/max_freq", "806000"],
-        ["$mod_percent", "100"]
+        ["$mod_percent", "105"]
       ],
       "common_gaming": [
         ["@limiters", "NONE"],
@@ -142,7 +142,7 @@
         ["/dev/cpuset/sf/cpus", "#2-3"],
         ["$sched_boost", "0"],
         ["/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq", "#1"],
-        ["$mod_percent", "94"]
+        ["$mod_percent", "95"]
       ],
 
       "powersave_active": [

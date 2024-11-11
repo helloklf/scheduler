@@ -106,6 +106,9 @@ lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/max_cpus
 lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/min_cpus
 lock_value 0 /sys/devices/system/cpu/cpu7/core_ctl/enable
 
+lock_value 256 /dev/cpuctl/background/cpu.shares
+lock_value 20 /dev/cpuctl/background/cpu.uclamp.max
+
 mount -t debugfs none /sys/kernel/debug
 echo 12000000 > /sys/kernel/debug/sched/latency_ns # default 24000000
 echo 2000000 > /sys/kernel/debug/sched/min_granularity_ns # default 3000000

@@ -73,10 +73,6 @@ echo 24 > /sys/devices/system/cpu/cpu6/core_ctl/offline_delay_ms
 lock_value 256 /dev/cpuctl/background/cpu.shares
 lock_value 25 /dev/cpuctl/background/cpu.uclamp.max
 
-
-c_min(){
-  echo $(cat /sys/devices/system/cpu/cpufreq/policy*/cpuinfo_min_freq)
-}
 # Xiaomi
 if [[ -d /proc/mi_display ]]; then
   for dir in /sys/module/migt/parameters /sys/module/metis/parameters /proc/sys/migt /sys/class/misc/migt;do
@@ -93,7 +89,7 @@ if [[ -d /proc/mi_display ]]; then
             lock_value '0,0,0' $dir/$file
           ;;
           glk_minfreq)
-            lock_value "$(c_min)" $dir/$file
+            lock_value "$(c_min 0) $(c_min 4) $(c_min 7)" $dir/$file
           ;;
           migt_ceiling_freq|migt_freq)
             lock_value '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' $dir/$file
@@ -144,6 +140,7 @@ if [[ -d /proc/mz_info ]]; then
   # lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
 fi
 
+exit 0
 
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1

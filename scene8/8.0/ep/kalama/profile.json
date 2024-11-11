@@ -112,7 +112,8 @@
       ["$perfmgr_enable", "0"],
       ["@cpuset", "0-2", "0-6", "0-6", "0-7"],
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
-      ["@preset", "memlat"]
+      ["@preset", "memlat"],
+      ["$mod_percent", "110"]
     ],
     "common_gaming": [
       ["@preset", "common_active"],
@@ -121,7 +122,8 @@
       ["$sched_boost", "#0"],
       ["@gesture", "PAUSE"],
       ["@values", "latency", "2000", "2000", "2000", "2000", "2000", "2000"],
-      ["@values", "memlat", "#30", "#10", "#2", "#3187000"]
+      ["@values", "memlat", "#30", "#10", "#2", "#3187000"],
+      ["$mod_percent", "100"]
     ],
 
     "l3": [

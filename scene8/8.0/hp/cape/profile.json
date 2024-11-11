@@ -126,12 +126,14 @@
     "common_app": [
       ["$perfmgr_enable", "0"],
       ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
-      ["$gpu_max_khz", "#680000000"]
+      ["$gpu_max_khz", "#680000000"],
+      ["$mod_percent", "110"]
     ],
     "common_gaming": [
       ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
       ["$gpu_max_khz", "#990000000"],
-      ["$sched_boost", "0"]
+      ["$sched_boost", "0"],
+      ["$mod_percent", "100"]
     ],
 
     "powersave_active": [

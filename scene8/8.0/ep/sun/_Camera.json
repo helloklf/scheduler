@@ -1,0 +1,18 @@
+{
+  "friendly": "相机",
+  "call": [
+    ["@limiters", "NONE"]
+  ],
+  "booster": {
+    "duration": 5000,
+    "idle_delay": 5000,
+    "enter": [
+      ["@cpu_freq", "policy0", "min", "2400000"],
+      ["@cpu_freq", "policy6", "min", "3283200"]
+    ],
+    "exit": [
+      ["@cpu_freq", "policy0", "min", "1996800"],
+      ["@cpu_freq", "policy6", "min", "2841600"]
+    ]
+  }
+}

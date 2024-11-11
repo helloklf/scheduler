@@ -119,12 +119,14 @@
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],
-      ["@cpuset", "0-2", "0-6", "0-6", "0-7"]
+      ["@cpuset", "0-2", "0-6", "0-6", "0-7"],
+      ["$mod_percent", "110"]
     ],
     "common_gaming": [
       ["@cpuset", "0-2", "0-5", "0-5", "0-7"],
       ["@preset", "l3_max"],
-      ["$sched_boost", "0"]
+      ["$sched_boost", "0"],
+      ["$mod_percent", "100"]
     ],
 
     "l3_max": [

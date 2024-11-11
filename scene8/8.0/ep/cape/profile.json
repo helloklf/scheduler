@@ -110,7 +110,7 @@
       ["$bus_ddr_min", "547000"],
       ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
       ["$gpu_max_khz", "#680000000"],
-      ["$mod_percent", "100"]
+      ["$mod_percent", "110"]
     ],
     "common_gaming": [
       ["@preset", "common_active"],
