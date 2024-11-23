@@ -96,7 +96,8 @@
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],
-      ["@cpuset", "0-2", "0-6", "0-6", "0-7"]
+      ["@cpuset", "0-2", "0-6", "0-6", "0-7"],
+      ["$mod_percent", "110"]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
@@ -104,7 +105,8 @@
       ["@preset", "l3_max"],
       ["$mod_percent", "94"],
       ["@gesture", "PAUSE"],
-      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"]
+      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
+      ["$mod_percent", "100"]
     ],
 
     "l3": [

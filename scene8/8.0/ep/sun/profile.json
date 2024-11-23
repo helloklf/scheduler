@@ -98,7 +98,7 @@
         ["$perfmgr_enable", "0"],
         ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
         ["@values", "latency", "0", "1000", "0", "1000"],
-        ["$mod_percent", "110"]
+        ["$mod_percent", "125"]
       ],
       "common_gaming": [
         ["@preset", "common_active"],
@@ -191,7 +191,6 @@
         "game": [
           ["@preset", "common_gaming"],
           ["@preset", "limiter_on"],
-          ["/proc/game_opt/disable_cpufreq_limit", "0"],
           ["@values", "hispeed_freq", "1152000", "0"]
         ]
       },

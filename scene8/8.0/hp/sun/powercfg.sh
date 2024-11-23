@@ -70,9 +70,7 @@ echo $(pgrep -ef kcompactd0) > /dev/cpuset/foreground/tasks
 echo 80 80 > /sys/devices/system/cpu/cpu6/core_ctl/busy_up_thres
 echo 55 55 > /sys/devices/system/cpu/cpu6/core_ctl/busy_down_thres
 echo 24 > /sys/devices/system/cpu/cpu6/core_ctl/offline_delay_ms
-lock_value 256 /dev/cpuctl/background/cpu.shares
-lock_value 25 /dev/cpuctl/background/cpu.uclamp.max
-
+pgrep kswapd0 > /dev/cpuset/top-app/tasks
 
 c_min(){
   echo $(cat /sys/devices/system/cpu/cpufreq/policy*/cpuinfo_min_freq)
@@ -101,6 +99,10 @@ if [[ -d /proc/mi_display ]]; then
           glk_fbreak_enable|force_cluster_sched_enable|glk_freq_limit_start|glk_freq_limit_walt|thermal_break_enable|is_break_enable|mi_freq_enable|force_stask_to_big|freq_break_enable)
             lock_value 0 $dir/$file
           ;;
+          # 导致Xiaomi 15上日常会非常激进的使用大核
+          mi_fboost_enable)
+            lock_value 0 $dir/$file
+          ;;
           render_prefer_cluster|vip_prefer_cluster|stask_prefer_cluster|ip_prefer_cluster)
             lock_value -1 $dir/$file
           ;;
@@ -124,6 +126,14 @@ if [[ -d  /proc/game_opt ]]; then
   # hide_value /proc/game_opt/disable_cpufreq_limit 1
   set_value '1000' /proc/oplus-votable/GAUGE_UPDATE/force_val
   set_value '1' /proc/oplus-votable/GAUGE_UPDATE/force_active
+  mkdir /dev/memcg/scene_active
+  echo 1 > /dev/memcg/scene_active/memory.move_charge_at_immigrate
+  echo 10 > /dev/memcg/scene_active/memory.swappiness
+  pidof com.android.launcher > /dev/memcg/scene_active/cgroup.procs
+  pidof com.android.systemui > /dev/memcg/scene_active/cgroup.procs
+  pidof surfaceflinger > /dev/memcg/scene_active/cgroup.procs
+  pidof system_server > /dev/memcg/scene_active/cgroup.procs
+  pidof  vendor.qti.hardware.display.composer-service > /dev/memcg/scene_active/cgroup.procs
 fi
 
 # MeiZu

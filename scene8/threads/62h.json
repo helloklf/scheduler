@@ -35,12 +35,12 @@
     "friendly": "鸣潮",
     "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
     "cpuset": {
-      "main_thread": "0-5",
+      "main_thread": "1-5",
       "comm": {
         "6-7": ["GameThread", "RHIThread"],
         "1-7": ["AsyncLoading", "FChunk"]
       },
-      "other": "0-5"
+      "other": "1-5"
     }
   },
   {
@@ -50,7 +50,7 @@
       "comm": {
         "6-7": ["UnityMain", "UnityGfx"]
       },
-      "other": "0-5"
+      "other": "1-5"
     }
   },
   {
@@ -60,7 +60,7 @@
       "unity_main": "6-7",
       "heavy_thread": "UnityGfx",
       "heavy_cores": "6-7",
-      "other": "0-5"
+      "other": "1-5"
     }
   },
   {
@@ -72,7 +72,7 @@
       "comm": {
         "6-7": ["UnityMain"]
       },
-      "other": "0-5"
+      "other": "1-5"
     }
   },
   {
@@ -84,7 +84,7 @@
       "comm": {
         "1-7": ["RenderThread", "RHIThread"]
       },
-      "other": "0-5"
+      "other": "1-5"
     }
   },
   {
@@ -94,7 +94,7 @@
       "unity_main": "6-7",
       "heavy_thread": "UnityGfx",
       "heavy_cores": "1-7",
-      "other": "0-5"
+      "other": "1-5"
     }
   },
   {
@@ -106,7 +106,7 @@
       "comm": {
         "1-7": ["Backend", "Worker"]
       },
-      "other": "0-5"
+      "other": "1-5"
     }
   },
   {
@@ -116,7 +116,7 @@
       "comm": {
         "6-7": ["GameThread", "RHIThread"]
       },
-      "other": "0-5"
+      "other": "1-5"
     }
   },
   {
@@ -126,7 +126,7 @@
       "unity_main": "6-7",
       "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "6-7",
-      "other": "0-5"
+      "other": "1-5"
     }
   },
   {
@@ -138,7 +138,7 @@
       "comm": {
         "1-7":["Render", "RHIThread"]
       },
-      "other": "0-5"
+      "other": "1-5"
     }
   }
 ]

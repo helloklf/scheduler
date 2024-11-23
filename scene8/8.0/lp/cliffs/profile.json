@@ -102,12 +102,14 @@
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],
-      ["@cpuset", "0-2", "0-6", "0-7", "0-7"]
+      ["@cpuset", "0-2", "0-6", "0-7", "0-7"],
+      ["$mod_percent", "105"]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
       ["@cpuset", "0-2", "0-5", "0-5", "0-7"],
-      ["/dev/cpuset/top-app/sf/cpus", "3-5"]
+      ["/dev/cpuset/top-app/sf/cpus", "3-5"],
+      ["$mod_percent", "95"]
     ],
 
     "l3_max": [

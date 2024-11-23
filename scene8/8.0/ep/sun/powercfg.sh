@@ -70,8 +70,7 @@ echo $(pgrep -ef kcompactd0) > /dev/cpuset/foreground/tasks
 echo 80 80 > /sys/devices/system/cpu/cpu6/core_ctl/busy_up_thres
 echo 55 55 > /sys/devices/system/cpu/cpu6/core_ctl/busy_down_thres
 echo 24 > /sys/devices/system/cpu/cpu6/core_ctl/offline_delay_ms
-lock_value 256 /dev/cpuctl/background/cpu.shares
-lock_value 25 /dev/cpuctl/background/cpu.uclamp.max
+pgrep kswapd0 > /dev/cpuset/top-app/tasks
 
 # Xiaomi
 if [[ -d /proc/mi_display ]]; then
@@ -93,6 +92,10 @@ if [[ -d /proc/mi_display ]]; then
           ;;
           migt_ceiling_freq|migt_freq)
             lock_value '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' $dir/$file
+          ;;
+          # 导致Xiaomi 15上日常会非常激进的使用大核
+          mi_fboost_enable)
+            set_value 1 $dir/$file
           ;;
           glk_fbreak_enable|force_cluster_sched_enable|glk_freq_limit_start|glk_freq_limit_walt|thermal_break_enable|is_break_enable|mi_freq_enable|force_stask_to_big|freq_break_enable)
             lock_value 0 $dir/$file
@@ -140,19 +143,20 @@ if [[ -d /proc/mz_info ]]; then
   # lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
 fi
 
-exit 0
-
 kgsl(){
   lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
 }
+
 pl_max=$(($(cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels)-1))
 kgsl thermal_pwrlevel 0
-kgsl min_pwrlevel $pl_max
 kgsl max_pwrlevel 0
-kgsl min_pwrlevel $pl_max
-kgsl default_pwrlevel $pl_max
 kgsl max_clock_mhz 1100
 kgsl max_gpuclk 1100000000
-kgsl min_clock_mhz 0
-kgsl devfreq/min_freq 0
 kgsl devfreq/max_freq 1100000000
+if [[ ! -d  /proc/game_opt ]]; then
+  kgsl min_pwrlevel $pl_max
+  kgsl min_pwrlevel $pl_max
+  kgsl default_pwrlevel $pl_max
+  kgsl min_clock_mhz 0
+  kgsl devfreq/min_freq 0
+fi
