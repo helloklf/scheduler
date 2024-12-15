@@ -5,7 +5,7 @@
   "projectUrl": "http://vtools.omarea.com/",
   "features": {
     "strict": true,
-    "pedestal": true,
+    "pedestal": false,
     "fas": true,
     "reboot": true
   }

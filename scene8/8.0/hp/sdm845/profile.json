@@ -38,8 +38,7 @@
   "presets": {
     "reset": [
       ["@thermal_threshold", "100000"],
-      ["@msm_reset"],
-      ["@governor", "schedutil"]
+      ["@msm_reset"]
     ],
     "hispeed_freq": [
       ["/sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq"],
@@ -289,7 +288,10 @@
     },
     {
       "friendly": "Games",
-      "packages": ["*"]
+      "packages": ["*"],
+      "call": [
+        ["@governor", "schedutil"]
+      ]
     }
   ]
 }

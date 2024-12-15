@@ -143,8 +143,11 @@ if [[ -d /proc/mz_info ]]; then
   # lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
 fi
 
+exit 0
+
+# 8Elite禁用GPUBoost动画很容易卡顿
 kgsl(){
-  lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
+  set_value $2 /sys/class/kgsl/kgsl-3d0/$1
 }
 
 pl_max=$(($(cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels)-1))
@@ -156,7 +159,7 @@ kgsl devfreq/max_freq 1100000000
 if [[ ! -d  /proc/game_opt ]]; then
   kgsl min_pwrlevel $pl_max
   kgsl min_pwrlevel $pl_max
-  kgsl default_pwrlevel $pl_max
+  kgsl default_pwrlevel $(($pl_max-1))
   kgsl min_clock_mhz 0
   kgsl devfreq/min_freq 0
 fi

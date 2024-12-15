@@ -26,10 +26,9 @@
     "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece"],
     "cpuset": {
       "unity_main": "7",
-      "heavy_thread": "Thread-",
+      "heavy_thread": "Thread-;UnityGfx",
       "heavy_cores": "6",
       "comm": {
-        "6": ["UnityGfx"],
         "4-5": ["CoreThread", "UnityPreload", "Worker Thread", "Job.worker", "NativeThread"],
         "0-5": ["FMOD", "UnityChoreograp", "AsyncReadManage"],
         "0-3": ["Audio", "tp_schedule"]

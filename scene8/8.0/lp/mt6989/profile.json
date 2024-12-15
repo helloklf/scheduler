@@ -177,7 +177,8 @@
       "app": [
         ["@preset", "comm_app"],
         ["@preset", "fast_active"],
-        ["$cpufreq", "#300000 2000000 550000 2850000 600000 3250000"]
+        ["$cpufreq", "#300000 2000000 550000 2850000 600000 3250000"],
+        ["$gpu_max_freq", "#10"]
       ],
       "game": [
         ["@preset", "comm_gaming"]

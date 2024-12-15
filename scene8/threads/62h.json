@@ -92,7 +92,7 @@
     "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
     "cpuset": {
       "unity_main": "6-7",
-      "heavy_thread": "UnityGfx",
+      "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "1-7",
       "other": "1-5"
     }

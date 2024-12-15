@@ -182,7 +182,8 @@
         ["@preset", "fast_active"]
       ],
       "app": [
-        ["@preset", "comm_app"]
+        ["@preset", "comm_app"],
+        ["$gpu_max_freq", "#10"]
       ]
     },
     "pedestal": {
@@ -191,7 +192,8 @@
         ["@preset", "fast_active"]
       ],
       "app": [
-        ["@preset", "comm_app"]
+        ["@preset", "comm_app"],
+        ["$gpu_max_freq", "#5"]
       ]
     }
   },

@@ -105,7 +105,7 @@
     "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
     "cpuset": {
       "unity_main": "7",
-      "heavy_thread": "UnityGfx",
+      "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "2-4",
       "comm": {
         "2-6": ["UnityChoreograp", "Job.Worker", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]

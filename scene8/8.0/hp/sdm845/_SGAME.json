@@ -1,5 +1,8 @@
 {
   "friendly": "王者荣耀",
+  "call": [
+    ["@governor", "schedutil"]
+  ],
   "limiters": [
     {"id": "sgame3:cpu4", "step": -1, "mode": "BOTTOM",
       "max": 2246400, "min": 1612800, "margin": 455, "smoothness": 12},
