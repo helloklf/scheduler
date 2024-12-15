@@ -1,0 +1,219 @@
+{
+  "platform": "mt6989",
+  "platform_name": "D9300",
+  "alias": {
+    "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
+    "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
+    "ddr_freq_min": "/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq",
+    "ddr_freq_cust": "/sys/class/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq",
+    "ged_kpi": "/sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled",
+    "fpsgo": "/sys/kernel/fpsgo/common/fpsgo_enable",
+    "perfmgr_enable": "/sys/module/mtk_fpsgo/parameters/perfmgr_enable",
+    "ddr_max": "/sys/class/devfreq/mtk-dvfsrc-devfreq/max_freq",
+    "gpu_max_freq": "/sys/kernel/ged/hal/custom_upbound_gpu_freq",
+    "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
+    "cpufreq": "/proc/powerhal_cpu_ctrl/perfserv_freq",
+    "cpus_limit": "/sys/module/mtk_fpsgo/parameters/cpus_limit",
+    "uclamp_boost": "/dev/cpuctl/top-app/cpu.uclamp.min"
+  },
+  "features": {
+    "limiter": {
+      "ddr_boost": false,
+      "params": [
+        { "id": "p1:cpu0", "max": 1800000, "min": 1200000, "margins": "300 1500000:150 1800000:120" },
+        { "id": "p1:cpu4", "max": 2300000, "min": 1700000, "margins": "300 1900000:120" },
+        { "id": "p1:cpu7", "max": 2400000, "min": 1700000, "margins": "300 2100000:120" },
+
+        { "id": "p1:cpu0", "max": 2000000, "min": 1500000, "margins": "200 1800000:120" },
+        { "id": "p2:cpu4", "max": 2400000, "min": 2000000, "margins": "300 2300000:120" },
+        { "id": "p2:cpu7", "max": 2600000, "min": 2300000, "margins": "300 2600000:120" },
+
+        { "id": "p3:cpu0", "max": 2000000, "min": 1500000, "margins": "200 1800000:100" },
+        { "id": "p3:cpu4", "max": 2600000, "min": 2400000, "margin": 300 },
+        { "id": "p3:cpu7", "max": 2800000, "min": 2600000, "margin": 300 },
+
+        { "id": "p4:cpu0", "max": 2000000, "min": 1800000, "margin": 200 },
+        { "id": "p4:cpu4", "max": 2800000, "min": 2600000, "margin": 300 },
+        { "id": "p4:cpu7", "max": 3000000, "min": 2800000, "margin": 300 },
+
+
+        { "id": "inactive:cpu0", "max": 1800000, "min": 1000000, "margin": 120 },
+        { "id": "inactive:cpu4", "max": 2100000, "min": 1000000, "margin": 120 },
+        { "id": "inactive:cpu7", "max": 2100000, "min": 1000000, "margin": 120 },
+
+        { "id": "idle:cpu0", "max": 1600000, "min": 800000, "margin": 100 },
+        { "id": "idle:cpu4", "max": 1800000, "min": 800000, "margin": 100 },
+        { "id": "idle:cpu7", "max": 1800000, "min": 800000, "margin": 100 }
+      ]
+    },
+    "gesture_boost": {
+      "enable": false,
+      "enter": [],
+      "exit": []
+    }
+  },
+  "presets": {
+    "reset": [
+      ["@governor", "sugov_ext"],
+      ["$perfmgr_enable", "#0"],
+      ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", " 754000000"],
+      ["$cpus_limit", "#2850000 3350000"],
+      ["$cpufreq", "300000 2000000 550000 2850000 600000 3250000"]
+    ],
+    "min_freq": [
+      ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
+    ],
+    "max_freq": [
+      ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
+    ],
+    "latency": [
+      ["/sys/devices/system/cpu/cpufreq/policy0/sugov_ext/down_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy0/sugov_ext/up_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy4/sugov_ext/down_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy4/sugov_ext/up_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy7/sugov_ext/down_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy7/sugov_ext/up_rate_limit_us"]
+    ],
+    "target_loads": [
+      ["/sys/devices/system/cpu/sched_ctl/sched_turn_point_freq", "0 1500000|1 1700000|2 1700000"],
+      ["/sys/devices/system/cpu/sched_ctl/sched_target_margin", "0 20|1 20|2 20"],
+      ["/sys/devices/system/cpu/sched_ctl/sched_target_margin_low", "0 20|1 20|2 20"]
+    ],
+    "common_inactvie": [
+      ["@values", "min_freq", "300000", "550000", "600000"],
+      ["$uclamp_boost", "0"]
+    ],
+    "comm_app": [
+      ["@values", "latency", "1000", "0", "1000", "0", "1000", "0"],
+      ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
+      ["$gpu_max_freq", "#24"],
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
+      ["/sys/module/mtk_fpsgo/parameters/p_perf", "0"],
+      ["/sys/module/mtk_fpsgo/parameters/better_perf", "0"],
+      ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "1"],
+      ["@values", "target_loads",
+        "0 1200000|1 0|2 0",
+        "0 20|1 20|2 20",
+        "0 12|1 20|2 20"
+      ]
+    ],
+    "comm_gaming": [
+      ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],
+      ["@limiters", "NONE"],
+      ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
+      ["@gesture", "PAUSE"],
+      ["$gpu_max_freq", "#9"],
+      ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "#0"],
+      ["$uclamp_boost", "0"]
+    ],
+
+    "powersave_active": [
+      ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
+      ["@preset", "common_actvie"],
+      ["@values", "min_freq", "^500000", "^60000", "^600000"],
+      ["$uclamp_boost", "20"]
+    ],
+    "powersave_inactive": [
+      ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
+      ["@preset", "common_inactvie"]
+    ],
+    "balance_active": [
+      ["@limiters", "p2:cpu4", "p2:cpu7"],
+      ["@preset", "common_actvie"],
+      ["@values", "min_freq", "^600000", "^700000", "^900000"],
+      ["$uclamp_boost", "30"]
+    ],
+    "balance_inactive": [
+      ["@limiters", "inactive:cpu0", "inactive:cpu4", "inactive:cpu7"],
+      ["@preset", "common_inactvie"]
+    ],
+    "performance_active": [
+      ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
+      ["@values", "min_freq", "^600000", "^700000", "^900000"],
+      ["@preset", "common_actvie"],
+      ["$uclamp_boost", "50"]
+    ],
+    "performance_inactive": [
+      ["@limiters", "p2:cpu4", "p2:cpu7"],
+      ["@preset", "common_inactvie"]
+    ],
+    "fast_active": [
+      ["@limiters", "p4:cpu0", "p4:cpu4", "p4:cpu7"],
+      ["@preset", "common_actvie"],
+      ["@values", "min_freq", "^600000", "^700000", "^1200000"],
+      ["$uclamp_boost", "50"]
+    ],
+    "fast_inactive": [
+      ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
+      ["@preset", "common_inactvie"]
+    ]
+  },
+  "schemes": {
+    "powersave": {
+      "call": [
+        ["@preset", "reset"],
+        ["@preset", "powersave_active"]
+      ],
+      "app": [
+        ["@preset", "comm_app"]
+      ]
+    },
+    "balance": {
+      "call": [
+        ["@preset", "reset"],
+        ["@preset", "balance_active"]
+      ],
+      "app": [
+        ["@preset", "comm_app"]
+      ]
+    },
+    "performance": {
+      "call": [
+        ["@preset", "reset"],
+        ["@preset", "performance_active"]
+      ],
+      "app": [
+        ["@preset", "comm_app"]
+      ]
+    },
+    "fast": {
+      "call": [
+        ["@preset", "reset"],
+        ["@preset", "fast_active"]
+      ],
+      "app": [
+        ["@preset", "comm_app"],
+        ["$gpu_max_freq", "#10"]
+      ]
+    },
+    "pedestal": {
+      "call": [
+        ["@preset", "reset"],
+        ["@preset", "fast_active"]
+      ],
+      "app": [
+        ["@preset", "comm_app"],
+        ["$gpu_max_freq", "#5"]
+      ]
+    }
+  },
+  "apps": [
+    { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
+    { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
+    { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
+  ],
+  "games": [
+    {
+      "friendly": "双核强化",
+      "packages": [
+        "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact"
+      ],
+      "import": "_DualCore.json"
+    },
+    {
+      "friendly": "All",
+      "packages": ["*"],
+      "import": "_Games.json"
+    }
+  ]
+}

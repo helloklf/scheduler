@@ -1,0 +1,94 @@
+{
+  "friendly": "游戏",
+  "limiters": [
+
+    { "id": "g1:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1075000, "margin": 485, "smoothness": 6 },
+    { "id": "g1:cpu4", "mode": "BOTTOM", "max": 2354000, "min": 1162000, "margin": 375, "smoothness": 6 },
+    { "id": "g1:cpu7", "mode": "BOTTOM", "max": 2463000, "min": 1370000, "margin": 375, "smoothness": 6 },
+
+    { "id": "g2:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1075000, "margin": 605, "smoothness": 6 },
+    { "id": "g2:cpu4", "mode": "BOTTOM", "max": 2354000, "min": 1162000, "margin": 455, "smoothness": 6 },
+    { "id": "g2:cpu7", "mode": "BOTTOM", "max": 2463000, "min": 1370000, "margin": 485, "smoothness": 6 },
+
+    { "id": "g3:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1075000, "margin": 695, "smoothness": 6 },
+    { "id": "g3:cpu4", "mode": "BOTTOM", "max": 2354000, "min": 1162000, "margin": 605, "smoothness": 6 },
+    { "id": "g3:cpu7", "mode": "BOTTOM", "max": 2463000, "min": 1370000, "margin": 605, "smoothness": 6 },
+
+    { "id": "g4:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1400000, "margin": 695, "smoothness": 6 },
+    { "id": "g4:cpu4", "mode": "BOTTOM", "max": 2600000, "min": 1400000, "margin": 695, "smoothness": 6 },
+    { "id": "g4:cpu7", "mode": "BOTTOM", "max": 2800000, "min": 1400000, "margin": 695, "smoothness": 6 }
+  ],
+  "modes": [{
+    "mode": ["powersave"],
+    "fas": {
+      "use": "whitelist",
+      "freq": ["2284000", "1985000"]
+    },
+    "booster": {
+      "duration": 3000,
+      "enter": [
+        ["$deisolation", "4|5|6|7"]
+      ],
+      "exit": [
+        ["$deisolation", "4|5|6|7"]
+      ]
+    }
+  }, {
+    "mode": ["balance"],
+    "call": [
+      ["@limiters", "g2:cpu0", "g2:cpu4", "g2:cpu7"]
+    ],
+    "fas": {
+      "use": "whitelist",
+      "freq": ["2463000", "2200000"]
+    },
+    "booster": {
+      "duration": 3000,
+      "enter": [
+        ["$deisolation", "4|5|6|7"]
+      ],
+      "exit": [
+        ["$deisolation", "4|5|6|7"]
+      ]
+    }
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"]
+    ],
+    "fas": {
+      "use": "whitelist",
+      "mode": "normal",
+      "freq": ["2600000", "2354000"]
+    },
+    "booster": {
+      "duration": 3000,
+      "enter": [
+        ["$deisolation", "4|5|6|7"]
+      ],
+      "exit": [
+        ["$deisolation", "4|5|6|7"]
+      ]
+    }
+  }, {
+    "mode": ["fast", "pedestal"],
+    "fas": {
+      "use": "whitelist",
+      "mode": "normal",
+      "freq": ["2713000", "2600000"]
+    },
+    "call": [
+      ["$gpu_dvfs_margin", "25"],
+      ["@limiters", "g4:cpu0", "g4:cpu4", "g4:cpu7"]
+    ],
+    "booster": {
+      "duration": 2000,
+      "enter": [
+        ["$deisolation", "4|5|6|7"]
+      ],
+      "exit": [
+        ["$deisolation", "4|5|6|7"]
+      ]
+    }
+  }]
+}

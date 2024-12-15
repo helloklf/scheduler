@@ -1,0 +1,95 @@
+{
+  "friendly": "游戏(Games)",
+  "limiters": [
+    { "id": "g3:cpu0", "max": 1804800, "min": 1056000, "margins": "200 1555200:100", "mode": "bottom" },
+    { "id": "g3:cpu4", "max": 2745600, "min": 1555200, "margins": "250 2112000:125", "mode": "bottom" },
+    { "id": "g3:cpu7", "max": 2918400, "min": 1651200, "margins": "250 2361600:125", "mode": "bottom" },
+
+    { "id": "g4:cpu0", "max": 1804800, "min": 1056000, "margins": "400 1555200:200", "mode": "bottom" },
+    { "id": "g4:cpu4", "max": 2745600, "min": 1766400, "margins": "500 2572800:250", "mode": "bottom" },
+    { "id": "g4:cpu7", "max": 2918400, "min": 1766400, "margins": "500 2592000:250", "mode": "bottom" }
+  ],
+  "call": [
+    ["@preset", "common_gaming"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
+        ["@values", "max_freq", "#1670400", "#2342400", "#2476800"],
+        ["@values", "min_freq", "556800", "633600", "787200"],
+        ["@target_loads",
+          "80 1555200:85 1670400:90",
+          "80 1651200:85 2188800:90",
+          "80 1651200:85 2131200:90"
+        ],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"],
+        ["$perfmgr_enable", "1"],
+        ["@values", "target_load_thresh", "600", "600", "600"]
+      ],
+      "tas": {
+        "min": 2112000
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@values", "latency", "1000", "2000", "1000", "2000", "1000", "2000"],
+        ["@values", "max_freq", "#1804800", "#2649600", "#2707200"],
+        ["@values", "min_freq", "1056000", "1324800", "1401600"],
+        ["@target_loads",
+          "75 1555200:80 1670400:90",
+          "75 1766400:80 2188800:90",
+          "75 1766400:80 2131200:90"
+        ],
+        ["@preset", "limiter_off"],
+        ["@values", "target_load_thresh", "600", "1024", "1024"]
+      ],
+      "tas": {
+        "t": 94,
+        "min": 2112000
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
+        ["@values", "max_freq", "#2016000", "#2745600", "#2822400"],
+        ["@values", "min_freq", "1056000", "1555200", "1651200"],
+        ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"],
+        ["@target_loads",
+          "75 1670400:85",
+          "75 2112000:80 2572800:90",
+          "75 2246400:85 2592000:90"
+        ],
+        ["@preset", "limiter_off"],
+        ["@values", "target_load_thresh", "1024", "1024", "1024"]
+      ],
+      "tas": {
+        "t": 94,
+        "min": 2112000
+      }
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@values", "latency", "1000", "0", "1000", "0", "1000", "0"],
+        ["@values", "max_freq", "#2016000", "#2745600", "#3187200"],
+        ["@values", "min_freq", "1056000", "1766400", "1766400"],
+        ["@limiters", "g4:cpu0", "g4:cpu4", "g4:cpu7"],
+        ["@target_loads",
+          "70 1670400:85",
+          "70 2572800:80",
+          "70 2592000:80 2707200:85"
+        ],
+        ["@preset", "limiter_off"],
+        ["@values", "target_load_thresh", "1024", "1024", "1024"]
+      ],
+      "tas": {
+        "t": 92,
+        "min": 2112000
+      }
+    }
+  ]
+}

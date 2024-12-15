@@ -1,0 +1,54 @@
+{
+  "friendly": "游戏",
+  "limiters": [
+    { "id": "g1:cpu4", "mode": "BOTTOM", "max": 1920000, "min": 1056000, "margins": "200 1708800:150", "smoothness": 8 },
+    { "id": "g1:cpu7", "mode": "BOTTOM", "max": 2131200, "min": 1056000, "margins": "200 1708800:150", "smoothness": 8 },
+
+    { "id": "g2:cpu4", "mode": "BOTTOM", "max": 2227200, "min": 1056000, "margins": "250 2131200:180", "smoothness": 8 },
+    { "id": "g2:cpu7", "mode": "BOTTOM", "max": 2419200, "min": 1056000, "margins": "250 2131200:180", "smoothness": 8 },
+
+    { "id": "g3:cpu4", "mode": "BOTTOM", "max": 2419200, "min": 1497600, "margins": "300 2131200:180", "smoothness": 8 },
+    { "id": "g3:cpu7", "mode": "BOTTOM", "max": 2841600, "min": 1497600, "margins": "300 2419200:200", "smoothness": 8 },
+
+    { "id": "g4:cpu4", "mode": "BOTTOM", "max": 2419200, "min": 1708800, "margins": "400 2227200:220", "smoothness": 8 },
+    { "id": "g4:cpu7", "mode": "BOTTOM", "max": 2841600, "min": 1708800, "margins": "400 2419200:220", "smoothness": 8 }
+  ],
+  "call": [
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@values", "min_freq", "#1036800", "#1056000", "#1056000"],
+        ["@values", "max_freq", "#1785600", "#1920000", "#2227200"],
+        ["@limiters", "g1:cpu4", "g1:cpu7"]
+      ]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@values", "min_freq", "#1209600", "#1056000", "#1056000"],
+        ["@values", "max_freq", "#1785600", "#2227200", "#2419200"],
+        ["@limiters", "g2:cpu4", "g2:cpu7"]
+      ]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@values", "bw", "2288", "15258", "2288", "15258"],
+        ["@values", "min_freq", "#1209600", "#1497600", "#1497600"],
+        ["@values", "max_freq", "#1785600", "#2419200", "#2841600"],
+        ["@limiters", "g3:cpu4", "g3:cpu7"]
+      ]
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@values", "bw", "2288", "15258", "2288", "15258"],
+        ["@values", "min_freq", "#1209600", "#1708800", "#1708800"],
+        ["@values", "max_freq", "#1785600", "#2419200", "#3000000"],
+        ["@limiters", "g4:cpu4", "g4:cpu7"]
+      ]
+    }
+  ]
+}

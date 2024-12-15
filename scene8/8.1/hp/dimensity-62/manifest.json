@@ -1,0 +1,10 @@
+{
+  "version": "dimensity6+2",
+  "versionCode": 2024091501,
+  "author": "SCENE8",
+  "projectUrl": "http://vtools.omarea.com/",
+  "features": {
+    "strict": true,
+    "pedestal": false
+  }
+}
