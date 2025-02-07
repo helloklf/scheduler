@@ -110,7 +110,7 @@
     "powersave_active": [
       ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
       ["@preset", "common_actvie"],
-      ["@values", "min_freq", "^500000", "^60000", "^600000"],
+      ["@values", "min_freq", "^500000", "^600000", "^600000"],
       ["$uclamp_boost", "20"]
     ],
     "powersave_inactive": [

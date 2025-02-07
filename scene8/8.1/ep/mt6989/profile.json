@@ -80,7 +80,7 @@
 
     "powersave_active": [
       ["@preset", "common_actvie"],
-      ["@values", "min_freq", "^500000", "^60000", "^600000"],
+      ["@values", "min_freq", "^500000", "^600000", "^600000"],
       ["$uclamp_boost", "20"]
     ],
     "powersave_inactive": [
@@ -130,7 +130,7 @@
     "balance": {
       "call": [
         ["@preset", "reset"],
-        ["@values", "max_freq", "1700000", "2100000", "2700000"],
+        ["@values", "max_freq", "#1700000", "#2100000", "#2700000"],
         ["@preset", "balance_active"]
       ],
       "app": [
@@ -145,7 +145,7 @@
     "performance": {
       "call": [
         ["@preset", "reset"],
-        ["@values", "max_freq", "1700000", "2400000", "3000000"],
+        ["@values", "max_freq", "#1700000", "#2400000", "#3000000"],
         ["@preset", "performance_active"]
       ],
       "app": [
@@ -160,7 +160,7 @@
     "fast": {
       "call": [
         ["@preset", "reset"],
-        ["@values", "max_freq", "2000000", "2600000", "3250000"],
+        ["@values", "max_freq", "#2000000", "#2600000", "#3250000"],
         ["@preset", "fast_active"]
       ],
       "app": [

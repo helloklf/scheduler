@@ -12,7 +12,7 @@
       "mode": ["powersave"],
       "call": [
         ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
-        ["@values", "max_freq", "1600000", "1900000", "2300000"],
+        ["@values", "max_freq", "#1600000", "#1900000", "#2300000"],
         ["@values", "min_freq", "400000", "550000", "600000"],
         ["@values", "target_loads",
           "0 1200000|1 1700000|2 1700000",
@@ -25,7 +25,7 @@
       "mode": ["balance"],
       "call": [
         ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
-        ["@values", "max_freq", "1700000", "2100000", "2700000"],
+        ["@values", "max_freq", "#1700000", "#2100000", "#2700000"],
         ["@values", "min_freq", "700000", "800000", "900000"],
         ["@values", "target_loads",
           "0 1500000|1 2000000|2 2100000",
@@ -38,7 +38,7 @@
       "mode": ["performance"],
       "call": [
         ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 2"],
-        ["@values", "max_freq", "1700000", "2400000", "3000000"],
+        ["@values", "max_freq", "#1700000", "#2400000", "#3000000"],
         ["@values", "min_freq", "800000", "800000", "900000"],
         ["@values", "target_loads",
           "0 1500000|1 2100000|2 2400000",
@@ -51,7 +51,7 @@
       "mode": ["*"],
       "call": [
         ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 2"],
-        ["@values", "max_freq", "2000000", "2600000", "3250000"],
+        ["@values", "max_freq", "#2000000", "#2600000", "#3250000"],
         ["@values", "min_freq", "800000", "900000", "1200000"],
         ["@values", "target_loads",
           "0 1500000|1 2400000|2 2800000",
