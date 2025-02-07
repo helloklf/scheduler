@@ -96,7 +96,7 @@
       ["$cpu_max_0", "1804800"],
       ["@preset", "cores_force_on"]
     ],
-    "common_inactvie": [
+    "common_inactive": [
     ],
     "common_app": [
       ["@cpuset", "0-3", "0-3", "0-5", "0-7"]
@@ -147,7 +147,7 @@
     ],
     "balance_inactive": [
       ["@limiters", "inactive:cpu0", "inactive:cpu6", "inactive:cpu7"],
-      ["@preset", "common_inactvie"],
+      ["@preset", "common_inactive"],
       ["@values", "min_freq", "300000", "652800", "806400"],
       ["@repeat", "sched_config", "85", "95", "150", "400"],
       ["@sched_limit", "0 0", "0 4000", "0 4000"]
@@ -162,7 +162,7 @@
     ],
     "performance_inactive": [
       ["@limiters", "NONE"],
-      ["@preset", "common_inactvie"],
+      ["@preset", "common_inactive"],
       ["@values", "min_freq", "576000", "652800", "806400"],
       ["@repeat", "sched_config", "85", "95", "150", "400"],
       ["@sched_limit", "0 0", "0 4000", "0 4000"]
@@ -177,7 +177,7 @@
     ],
     "fast_inactive": [
       ["@limiters", "NONE"],
-      ["@preset", "common_inactvie"],
+      ["@preset", "common_inactive"],
       ["@values", "min_freq", "1363200", "1094400", "1094400"],
       ["@repeat", "sched_config", "85", "95", "150", "400"],
       ["@sched_limit", "0 0", "0 4000", "0 4000"]

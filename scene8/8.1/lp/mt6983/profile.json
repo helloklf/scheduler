@@ -112,7 +112,7 @@
       ["@preset", "cpu7_on"],
       ["@uclamp", "0.00~20.00", "0.00~max", "0.5~max"]
     ],
-    "common_inactvie": [
+    "common_inactive": [
       ["$gpu_min_opp", "99"],
       ["@uclamp", "0.00~5.00", "0.00~max", "0.0~max"]
     ],
@@ -140,7 +140,7 @@
     "powersave_inactive": [
       ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
       ["@values", "min_freq", "200000", "400000", "1300000"],
-      ["@preset", "common_inactvie"],
+      ["@preset", "common_inactive"],
       ["$ddr_freq_min", "#800000000"],
       ["@preset", "cpu7_off"]
     ],
@@ -153,7 +153,7 @@
     "balance_inactive": [
       ["@limiters", "inactive:cpu0", "inactive:cpu4", "inactive:cpu7"],
       ["@values", "min_freq", "200000", "400000", "1300000"],
-      ["@preset", "common_inactvie"],
+      ["@preset", "common_inactive"],
       ["$ddr_freq_min", "#800000000"]
     ],
     "performance_active": [
@@ -164,7 +164,7 @@
     ],
     "performance_inactive": [
       ["@limiters", "NONE"],
-      ["@preset", "common_inactvie"],
+      ["@preset", "common_inactive"],
       ["$ddr_freq_min", "#800000000"],
       ["@cpu_freq", "cpu0", "200000", "1400000"],
       ["@cpu_freq", "cpu4", "400000", "2300000"],
@@ -178,7 +178,7 @@
     ],
     "fast_inactive": [
       ["@limiters", "NONE"],
-      ["@preset", "common_inactvie"],
+      ["@preset", "common_inactive"],
       ["$ddr_freq_min", "#1866000000"],
       ["@cpu_freq", "cpu0", "500000", "1800000"],
       ["@cpu_freq", "cpu4", "700000", "2650000"],

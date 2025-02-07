@@ -126,6 +126,8 @@ if [[ -d  /proc/game_opt ]]; then
   # hide_value /proc/game_opt/disable_cpufreq_limit 1
   set_value '1000' /proc/oplus-votable/GAUGE_UPDATE/force_val
   set_value '1' /proc/oplus-votable/GAUGE_UPDATE/force_active
+  stop horae
+  stop thermal-engine
   mkdir /dev/memcg/scene_active
   echo 1 > /dev/memcg/scene_active/memory.move_charge_at_immigrate
   echo 10 > /dev/memcg/scene_active/memory.swappiness

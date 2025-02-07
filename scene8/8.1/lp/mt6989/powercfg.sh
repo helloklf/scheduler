@@ -113,3 +113,29 @@ mount -t debugfs none /sys/kernel/debug
 echo 12000000 > /sys/kernel/debug/sched/latency_ns # default 24000000
 echo 2000000 > /sys/kernel/debug/sched/min_granularity_ns # default 3000000
 echo 3000000 > /sys/kernel/debug/sched/wakeup_granularity_ns # default 4000000
+
+mkdir /dev/memcg/scene_active
+echo 1 > /dev/memcg/scene_active/memory.move_charge_at_immigrate
+echo 10 > /dev/memcg/scene_active/memory.swappiness
+pidof com.android.launcher > /dev/memcg/scene_active/cgroup.procs
+pidof com.android.systemui > /dev/memcg/scene_active/cgroup.procs
+pidof surfaceflinger > /dev/memcg/scene_active/cgroup.procs
+pidof system_server > /dev/memcg/scene_active/cgroup.procs
+pidof  vendor.qti.hardware.display.composer-service > /dev/memcg/scene_active/cgroup.procs
+
+
+# vivo
+if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; then
+  stop vivo-vperf-hal-1-0
+  stop vendor.vivoperfservice
+  echo 1 > /sys/class/cms_class/scene_disable
+  echo 1 > /sys/class/cms_class/freq_test
+  echo 0 > /sys/class/cms_class/cms_enable
+  echo 0 > /sys/rsc/svp/svp_enable
+  echo 0 > /sys/rsc/svp/enabled
+  echo 0 > /proc/powerhal_cpu_ctrl/adpf_enable
+  stop thermal_core
+  stop thermald
+  # stop vendor.thermal-mediatek # 会导致玩不了原神？d'n'm'd！
+  stop touch_boost
+fi

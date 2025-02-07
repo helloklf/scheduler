@@ -144,7 +144,7 @@
       ["@preset", "cores_force_on"],
       ["@sched_limit", "0 0", "0 0", "0 0"]
     ],
-    "common_inactvie": [
+    "common_inactive": [
       ["@values", "min_freq", "300000", "710400", "844800"],
       ["@repeat", "sched_config", "85 85", "95 95", "85", "100"],
       ["@sched_limit", "0 0", "0 4000", "0 4000"],
@@ -171,7 +171,7 @@
       ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
       ["@values", "min_freq", "300000", "710400", "844800"],
       ["@preset", "cores_force_off"],
-      ["@preset", "common_inactvie"]
+      ["@preset", "common_inactive"]
     ],
 
     "balance_active": [
@@ -183,7 +183,7 @@
     "balance_inactive": [
       ["@limiters", "inactive:cpu0", "inactive:cpu4", "inactive:cpu7"],
       ["@values", "min_freq", "300000", "710400", "844800"],
-      ["@preset", "common_inactvie"]
+      ["@preset", "common_inactive"]
     ],
 
     "performance_active": [
@@ -195,7 +195,7 @@
     "performance_inactive": [
       ["@limiters", "NONE"],
       ["@values", "max_freq", "1804800", "2150400", "2361600"],
-      ["@preset", "common_inactvie"]
+      ["@preset", "common_inactive"]
     ],
 
     "fast_active": [
@@ -208,7 +208,7 @@
     "fast_inactive": [
       ["@limiters", "NONE"],
       ["@values", "max_freq", "1804800", "2246400", "2457600"],
-      ["@preset", "common_inactvie"]
+      ["@preset", "common_inactive"]
     ]
   },
   "schemes": {

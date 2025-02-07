@@ -70,7 +70,7 @@
     "common_actvie": [
       ["$cpu_max_0", "2000000"]
     ],
-    "common_inactvie": [
+    "common_inactive": [
       ["@values", "min_freq", "450000", "200000", "500000"],
       ["$ddr_freq_min", "#800000000"],
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"]
@@ -99,7 +99,7 @@
     ],
     "powersave_inactive": [
       ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
-      ["@preset", "common_inactvie"]
+      ["@preset", "common_inactive"]
     ],
     "balance_active": [
       ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
@@ -109,7 +109,7 @@
     ],
     "balance_inactive": [
       ["@limiters", "inactive:cpu0", "inactive:cpu4", "inactive:cpu7"],
-      ["@preset", "common_inactvie"]
+      ["@preset", "common_inactive"]
     ],
     "performance_active": [
       ["@limiters", "p3:cpu4", "p3:cpu7"],
@@ -119,7 +119,7 @@
     ],
     "performance_inactive": [
       ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
-      ["@preset", "common_inactvie"]
+      ["@preset", "common_inactive"]
     ],
     "fast_active": [
       ["@values", "max_freq", "2000000", "2850000", "3100000"],
@@ -129,7 +129,7 @@
     ],
     "fast_inactive": [
       ["@limiters", "p3:cpu4", "p3:cpu7"],
-      ["@preset", "common_inactvie"]
+      ["@preset", "common_inactive"]
     ]
   },
   "schemes": {

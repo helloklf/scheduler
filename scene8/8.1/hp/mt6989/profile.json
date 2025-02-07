@@ -79,7 +79,7 @@
       ["/sys/devices/system/cpu/sched_ctl/sched_target_margin", "0 20|1 20|2 20"],
       ["/sys/devices/system/cpu/sched_ctl/sched_target_margin_low", "0 20|1 20|2 20"]
     ],
-    "common_inactvie": [
+    "common_inactive": [
       ["@values", "min_freq", "300000", "550000", "600000"],
       ["$uclamp_boost", "0"]
     ],
@@ -115,7 +115,7 @@
     ],
     "powersave_inactive": [
       ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
-      ["@preset", "common_inactvie"]
+      ["@preset", "common_inactive"]
     ],
     "balance_active": [
       ["@limiters", "p2:cpu4", "p2:cpu7"],
@@ -125,7 +125,7 @@
     ],
     "balance_inactive": [
       ["@limiters", "inactive:cpu0", "inactive:cpu4", "inactive:cpu7"],
-      ["@preset", "common_inactvie"]
+      ["@preset", "common_inactive"]
     ],
     "performance_active": [
       ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
@@ -135,7 +135,7 @@
     ],
     "performance_inactive": [
       ["@limiters", "p2:cpu4", "p2:cpu7"],
-      ["@preset", "common_inactvie"]
+      ["@preset", "common_inactive"]
     ],
     "fast_active": [
       ["@limiters", "p4:cpu0", "p4:cpu4", "p4:cpu7"],
@@ -145,7 +145,7 @@
     ],
     "fast_inactive": [
       ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
-      ["@preset", "common_inactvie"]
+      ["@preset", "common_inactive"]
     ]
   },
   "schemes": {

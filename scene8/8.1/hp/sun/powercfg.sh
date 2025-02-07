@@ -126,6 +126,8 @@ if [[ -d  /proc/game_opt ]]; then
   # hide_value /proc/game_opt/disable_cpufreq_limit 1
   set_value '1000' /proc/oplus-votable/GAUGE_UPDATE/force_val
   set_value '1' /proc/oplus-votable/GAUGE_UPDATE/force_active
+  stop horae
+  stop thermal-engine
   mkdir /dev/memcg/scene_active
   echo 1 > /dev/memcg/scene_active/memory.move_charge_at_immigrate
   echo 10 > /dev/memcg/scene_active/memory.swappiness
@@ -155,17 +157,19 @@ if [[ -d /proc/mz_info ]]; then
 fi
 
 
-kgsl(){
-  lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
-}
-pl_max=$(($(cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels)-1))
-kgsl thermal_pwrlevel 0
-kgsl min_pwrlevel $pl_max
-kgsl max_pwrlevel 0
-kgsl min_pwrlevel $pl_max
-kgsl default_pwrlevel $pl_max
-kgsl max_clock_mhz 1100
-kgsl max_gpuclk 1100000000
-kgsl min_clock_mhz 0
-kgsl devfreq/min_freq 0
-kgsl devfreq/max_freq 1100000000
+if [[ "$gpu_lock" != "0" ]]; then
+  kgsl(){
+    lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
+  }
+  pl_max=$(($(cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels)-1))
+  kgsl thermal_pwrlevel 0
+  kgsl min_pwrlevel $pl_max
+  kgsl max_pwrlevel 0
+  kgsl min_pwrlevel $pl_max
+  kgsl default_pwrlevel $pl_max
+  kgsl max_clock_mhz 1199
+  kgsl max_gpuclk 1199000000
+  kgsl min_clock_mhz 0
+  kgsl devfreq/min_freq 0
+  kgsl devfreq/max_freq 1199000000
+fi

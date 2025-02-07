@@ -192,7 +192,6 @@ if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
 fi
 hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-lock_value N /sys/module/sched_assist_common/parameters/boost_kill
 for service in orms-hal-1-0 vendor.oplus.ormsHalService-aidl-default # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
 do
   stop $service
@@ -204,17 +203,19 @@ done
 echo -R 444 /sys/kernel/msm_performance/parameters
 
 
-kgsl(){
-  lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
-}
-pl_max=$(($(cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels)-1))
-kgsl thermal_pwrlevel 0
-kgsl min_pwrlevel $pl_max
-kgsl max_pwrlevel 0
-kgsl min_pwrlevel $pl_max
-kgsl default_pwrlevel $pl_max
-kgsl max_clock_mhz 999
-kgsl max_gpuclk 999000000
-kgsl min_clock_mhz 0
-kgsl devfreq/min_freq 0
-kgsl devfreq/max_freq 999000000
+if [[ "$gpu_lock" != "0" ]]; then
+  kgsl(){
+    lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
+  }
+  pl_max=$(($(cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels)-1))
+  kgsl thermal_pwrlevel 0
+  kgsl min_pwrlevel $pl_max
+  kgsl max_pwrlevel 0
+  kgsl min_pwrlevel $pl_max
+  kgsl default_pwrlevel $pl_max
+  kgsl max_clock_mhz 999
+  kgsl max_gpuclk 999000000
+  kgsl min_clock_mhz 0
+  kgsl devfreq/min_freq 0
+  kgsl devfreq/max_freq 999000000
+fi

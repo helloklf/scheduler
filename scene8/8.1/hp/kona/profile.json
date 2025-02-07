@@ -132,7 +132,7 @@
       ["@sched_limit", "0 0", "0 0", "0 0"],
       ["@values", "hispeed_load", "80", "80", "80"]
     ],
-    "common_inactvie": [
+    "common_inactive": [
       ["@values", "min_freq", "#300000", "#710400", "#844800"],
       ["@repeat", "sched_config", "85 85", "95 95", "85", "100"],
       ["@sched_limit", "0 0", "0 4000", "0 4000"],
@@ -156,7 +156,7 @@
       ["@repeat", "sched_config", "50 50", "65 65", "80", "90"]
     ],
     "powersave_inactive": [
-      ["@preset", "common_inactvie"],
+      ["@preset", "common_inactive"],
       ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"]
     ],
 
@@ -167,7 +167,7 @@
       ["@repeat", "sched_config", "45 45", "60 60", "80", "90"]
     ],
     "balance_inactive": [
-      ["@preset", "common_inactvie"],
+      ["@preset", "common_inactive"],
       ["@limiters", "inactive:cpu0", "inactive:cpu4", "inactive:cpu7"]
     ],
 
@@ -178,7 +178,7 @@
       ["@repeat", "sched_config", "45 45", "60 60", "80", "90"]
     ],
     "performance_inactive": [
-      ["@preset", "common_inactvie"],
+      ["@preset", "common_inactive"],
       ["@limiters", "p1:cpu4", "p1:cpu7"]
     ],
 
@@ -190,7 +190,7 @@
       ["@repeat", "sched_config", "40 40", "55 55", "80", "90"]
     ],
     "fast_inactive": [
-      ["@preset", "common_inactvie"],
+      ["@preset", "common_inactive"],
       ["@limiters", "p2:cpu4", "p2:cpu7"]
     ]
   },

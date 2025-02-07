@@ -80,7 +80,7 @@
       ["@preset", "cores_force_on"],
       ["@cpuset", "1", "0-3", "0-5", "0-7"]
     ],
-    "common_inactvie": [
+    "common_inactive": [
       ["@cpuset", "0-3", "0-3", "0-5", "0-7"]
     ],
     "common_app": [
@@ -127,7 +127,7 @@
     ],
     "powersave_idle": [
       ["@limiters", "idle:cpu0", "idle:cpu6"],
-      ["@preset", "common_inactvie"],
+      ["@preset", "common_inactive"],
       ["@values", "min_freq", "300000", "710400"],
       ["@preset", "cores_auto_off"],
       ["@repeat", "sched_config", "85", "95", "150", "400"]
@@ -141,7 +141,7 @@
     ],
     "balance_inactive": [
       ["@limiters", "NONE"],
-      ["@preset", "common_inactvie"],
+      ["@preset", "common_inactive"],
       ["@values", "min_freq", "300000", "710400"],
       ["@repeat", "sched_config", "85", "95", "150", "400"]
     ],
@@ -154,7 +154,7 @@
     ],
     "performance_inactive": [
       ["@limiters", "NONE"],
-      ["@preset", "common_inactvie"],
+      ["@preset", "common_inactive"],
       ["@values", "min_freq", "1209600", "710400"],
       ["@repeat", "sched_config", "85", "95", "150", "400"]
     ],
@@ -167,7 +167,7 @@
     ],
     "fast_inactive": [
       ["@limiters", "NONE"],
-      ["@preset", "common_inactvie"],
+      ["@preset", "common_inactive"],
       ["@values", "min_freq", "1209600", "710400"],
       ["@repeat", "sched_config", "85", "95", "150", "400"]
     ]

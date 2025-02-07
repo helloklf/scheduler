@@ -55,7 +55,7 @@
       ["/sys/devices/system/cpu/sched_ctl/sched_target_margin", "0 20|1 20|2 20"],
       ["/sys/devices/system/cpu/sched_ctl/sched_target_margin_low", "0 20|1 20|2 20"]
     ],
-    "common_inactvie": [
+    "common_inactive": [
       ["@values", "min_freq", "300000", "550000", "600000"],
       ["$uclamp_boost", "0"]
     ],
@@ -84,7 +84,7 @@
       ["$uclamp_boost", "20"]
     ],
     "powersave_inactive": [
-      ["@preset", "common_inactvie"]
+      ["@preset", "common_inactive"]
     ],
     "balance_active": [
       ["@preset", "common_actvie"],
@@ -92,7 +92,7 @@
       ["$uclamp_boost", "30"]
     ],
     "balance_inactive": [
-      ["@preset", "common_inactvie"]
+      ["@preset", "common_inactive"]
     ],
     "performance_active": [
       ["@values", "min_freq", "^700000", "^900000", "^1200000"],
@@ -100,7 +100,7 @@
       ["$uclamp_boost", "50"]
     ],
     "performance_inactive": [
-      ["@preset", "common_inactvie"]
+      ["@preset", "common_inactive"]
     ],
     "fast_active": [
       ["@preset", "common_actvie"],
@@ -108,7 +108,7 @@
       ["$uclamp_boost", "50"]
     ],
     "fast_inactive": [
-      ["@preset", "common_inactvie"]
+      ["@preset", "common_inactive"]
     ]
   },
   "schemes": {

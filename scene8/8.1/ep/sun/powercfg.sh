@@ -123,6 +123,16 @@ if [[ -d  /proc/game_opt ]]; then
   # hide_value /proc/game_opt/disable_cpufreq_limit 1
   set_value '1000' /proc/oplus-votable/GAUGE_UPDATE/force_val
   set_value '1' /proc/oplus-votable/GAUGE_UPDATE/force_active
+  stop horae
+  stop thermal-engine
+  mkdir /dev/memcg/scene_active
+  echo 1 > /dev/memcg/scene_active/memory.move_charge_at_immigrate
+  echo 10 > /dev/memcg/scene_active/memory.swappiness
+  pidof com.android.launcher > /dev/memcg/scene_active/cgroup.procs
+  pidof com.android.systemui > /dev/memcg/scene_active/cgroup.procs
+  pidof surfaceflinger > /dev/memcg/scene_active/cgroup.procs
+  pidof system_server > /dev/memcg/scene_active/cgroup.procs
+  pidof  vendor.qti.hardware.display.composer-service > /dev/memcg/scene_active/cgroup.procs
 fi
 
 # MeiZu
@@ -143,23 +153,19 @@ if [[ -d /proc/mz_info ]]; then
   # lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
 fi
 
-exit 0
-
-# 8Elite禁用GPUBoost动画很容易卡顿
-kgsl(){
-  set_value $2 /sys/class/kgsl/kgsl-3d0/$1
-}
-
-pl_max=$(($(cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels)-1))
-kgsl thermal_pwrlevel 0
-kgsl max_pwrlevel 0
-kgsl max_clock_mhz 1100
-kgsl max_gpuclk 1100000000
-kgsl devfreq/max_freq 1100000000
-if [[ ! -d  /proc/game_opt ]]; then
+if [[ "$gpu_lock" != "0" ]]; then
+  kgsl(){
+    lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
+  }
+  pl_max=$(($(cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels)-1))
+  kgsl thermal_pwrlevel 0
   kgsl min_pwrlevel $pl_max
+  kgsl max_pwrlevel 0
   kgsl min_pwrlevel $pl_max
-  kgsl default_pwrlevel $(($pl_max-1))
+  kgsl default_pwrlevel $pl_max
+  kgsl max_clock_mhz 1199
+  kgsl max_gpuclk 1199000000
   kgsl min_clock_mhz 0
   kgsl devfreq/min_freq 0
+  kgsl devfreq/max_freq 1199000000
 fi
