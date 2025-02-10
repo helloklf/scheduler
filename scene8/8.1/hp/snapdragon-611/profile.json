@@ -92,7 +92,7 @@
     "max_freq": [
       ["$cpu_max_0"], ["$cpu_max_6"], ["$cpu_max_7"]
     ],
-    "common_actvie": [
+    "common_active": [
       ["$cpu_max_0", "1804800"],
       ["@preset", "cores_force_on"]
     ],
@@ -125,7 +125,7 @@
 
     "powersave_active": [
       ["@limiters", "p1:cpu0", "p1:cpu6", "p1:cpu7"],
-      ["@preset", "common_actvie"],
+      ["@preset", "common_active"],
       ["@values", "min_freq", "1094400", "940800", "1094400"],
       ["@repeat", "sched_config", "70", "80", "150", "400"],
       ["@sched_limit", "0 0", "0 0", "0 0"]
@@ -140,7 +140,7 @@
 
     "balance_active": [
       ["@limiters", "p2:cpu6", "p2:cpu7"],
-      ["@preset", "common_actvie"],
+      ["@preset", "common_active"],
       ["@values", "min_freq", "1209600", "1478400", "1401600"],
       ["@repeat", "sched_config", "65", "75", "150", "400"],
       ["@sched_limit", "0 0", "0 0", "0 0"]
@@ -155,7 +155,7 @@
 
     "performance_active": [
       ["@limiters", "p3:cpu6", "p3:cpu7"],
-      ["@preset", "common_actvie"],
+      ["@preset", "common_active"],
       ["@values", "min_freq", "1363200", "1478400", "1401600"],
       ["@repeat", "sched_config", "62", "70", "150", "400"],
       ["@sched_limit", "0 0", "0 0", "0 0"]
@@ -170,7 +170,7 @@
 
     "fast_active": [
       ["@limiters", "p4:cpu6", "p4:cpu7"],
-      ["@preset", "common_actvie"],
+      ["@preset", "common_active"],
       ["@values", "min_freq", "1516800", "1900800", "1996800"],
       ["@repeat", "sched_config", "62 62", "70 78", "300", "400"],
       ["@sched_limit", "4000 0", "4000 0", "4000 0"]

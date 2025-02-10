@@ -139,7 +139,7 @@
       ["/sys/class/devfreq/soc:qcom,cpu4-cpu-llcc-lat/min_freq", "15258"],
       ["/sys/class/devfreq/soc:qcom,cpu4-llcc-ddr-lat/min_freq", "10437"]
     ],
-    "common_actvie": [
+    "common_active": [
       ["$cpu_max_0", "1804800"],
       ["@preset", "cores_force_on"],
       ["@sched_limit", "0 0", "0 0", "0 0"]
@@ -162,7 +162,7 @@
     ],
 
     "powersave_active": [
-      ["@preset", "common_actvie"],
+      ["@preset", "common_active"],
       ["@limiters", "active:cpu0", "p1:cpu4", "p1:cpu7"],
       ["@values", "min_freq", "1075200", "825600", "806400"],
       ["@repeat", "sched_config", "65 65", "75 80", "90", "100"]
@@ -175,7 +175,7 @@
     ],
 
     "balance_active": [
-      ["@preset", "common_actvie"],
+      ["@preset", "common_active"],
       ["@limiters", "p2:cpu4", "p2:cpu7"],
       ["@values", "min_freq", "1171200", "1056000", "806400"],
       ["@repeat", "sched_config", "65 65", "75 80", "90", "100"]
@@ -187,7 +187,7 @@
     ],
 
     "performance_active": [
-      ["@preset", "common_actvie"],
+      ["@preset", "common_active"],
       ["@limiters", "p3:cpu4", "p3:cpu7"],
       ["@values", "min_freq", "1209600", "1286400", "806400"],
       ["@repeat", "sched_config", "62 62", "70 78", "80", "90"]
@@ -199,7 +199,7 @@
     ],
 
     "fast_active": [
-      ["@preset", "common_actvie"],
+      ["@preset", "common_active"],
       ["@limiters", "NONE"],
       ["@values", "min_freq", "1497600", "1440000", "1401600"],
       ["@values", "max_freq", "1804800", "2419200", "3200000"],

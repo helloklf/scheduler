@@ -83,7 +83,7 @@
       ["$min_cpus_cpu7", "#0"],
       ["$max_cpus_cpu7", "#1"]
     ],
-    "common_actvie": [
+    "common_active": [
       ["$cpu_max_0", "2000000"],
       ["@preset", "cpu7_on"]
     ],
@@ -112,7 +112,7 @@
       ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
       ["@values", "min_freq", "800000", "500000", "600000"],
       ["$ddr_freq_min", "#2133000000"],
-      ["@preset", "common_actvie"]
+      ["@preset", "common_active"]
     ],
     "powersave_inactive": [
       ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
@@ -122,7 +122,7 @@
       ["@limiters", "p2:cpu4", "p2:cpu7"],
       ["@values", "min_freq", "1000000", "900000", "800000"],
       ["$ddr_freq_min", "#2133000000"],
-      ["@preset", "common_actvie"]
+      ["@preset", "common_active"]
     ],
     "balance_inactive": [
       ["@limiters", "inactive:cpu0", "inactive:cpu4", "inactive:cpu7"],
@@ -132,7 +132,7 @@
       ["@limiters", "p3:cpu4", "p3:cpu7"],
       ["@values", "min_freq", "1200000", "1600000", "1600000"],
       ["$ddr_freq_min", "3200000000"],
-      ["@preset", "common_actvie"]
+      ["@preset", "common_active"]
     ],
     "performance_inactive": [
       ["@limiters", "p2:cpu4", "p2:cpu7"],
@@ -142,7 +142,7 @@
       ["@values", "max_freq", "2000000", "2850000", "3100000"],
       ["@values", "min_freq", "1200000", "1600000", "1600000"],
       ["$ddr_freq_min", "3200000000"],
-      ["@preset", "common_actvie"]
+      ["@preset", "common_active"]
     ],
     "fast_inactive": [
       ["@limiters", "p3:cpu4", "p3:cpu7"],

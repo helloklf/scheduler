@@ -58,7 +58,7 @@
       ["$perfmgr_enable", "#0"],
       ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", " 754000000"],
       ["$cpus_limit", "#2850000 3350000"],
-      ["$cpufreq", "300000 2000000 550000 2850000 600000 3250000"]
+      ["$cpufreq", "#300000 2000000 550000 2850000 600000 3250000"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
@@ -109,7 +109,7 @@
 
     "powersave_active": [
       ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
-      ["@preset", "common_actvie"],
+      ["@preset", "common_active"],
       ["@values", "min_freq", "^500000", "^600000", "^600000"],
       ["$uclamp_boost", "20"]
     ],
@@ -119,7 +119,7 @@
     ],
     "balance_active": [
       ["@limiters", "p2:cpu4", "p2:cpu7"],
-      ["@preset", "common_actvie"],
+      ["@preset", "common_active"],
       ["@values", "min_freq", "^600000", "^700000", "^900000"],
       ["$uclamp_boost", "30"]
     ],
@@ -130,7 +130,7 @@
     "performance_active": [
       ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
       ["@values", "min_freq", "^600000", "^700000", "^900000"],
-      ["@preset", "common_actvie"],
+      ["@preset", "common_active"],
       ["$uclamp_boost", "50"]
     ],
     "performance_inactive": [
@@ -139,7 +139,7 @@
     ],
     "fast_active": [
       ["@limiters", "p4:cpu0", "p4:cpu4", "p4:cpu7"],
-      ["@preset", "common_actvie"],
+      ["@preset", "common_active"],
       ["@values", "min_freq", "^600000", "^700000", "^1200000"],
       ["$uclamp_boost", "50"]
     ],

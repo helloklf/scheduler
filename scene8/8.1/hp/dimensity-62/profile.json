@@ -81,7 +81,7 @@
       ["$fpsgo", "#1"],
       ["$ged_kpi", "#0"]
     ],
-    "common_actvie": [
+    "common_active": [
       ["$cpu_max_0", "2000000"]
     ],
     "common_inactive": [
@@ -112,7 +112,7 @@
       ["@limiters", "p1:cpu0", "p1:cpu6"],
       ["@values", "min_freq", "800000", "500000", "600000"],
       ["$ddr_freq_min", "#2133000000"],
-      ["@preset", "common_actvie"]
+      ["@preset", "common_active"]
     ],
     "powersave_inactive": [
       ["@limiters", "idle:cpu0", "idle:cpu6"],
@@ -123,7 +123,7 @@
       ["@limiters", "p2:cpu6"],
       ["@values", "min_freq", "1000000", "900000", "800000"],
       ["$ddr_freq_min", "#2133000000"],
-      ["@preset", "common_actvie"]
+      ["@preset", "common_active"]
     ],
     "balance_inactive": [
       ["@limiters", "inactive:cpu0", "inactive:cpu6"],
@@ -134,7 +134,7 @@
       ["@limiters", "p3:cpu6"],
       ["@values", "min_freq", "1200000", "1600000", "1600000"],
       ["$ddr_freq_min", "3200000000"],
-      ["@preset", "common_actvie"]
+      ["@preset", "common_active"]
     ],
     "performance_inactive": [
       ["@limiters", "p2:cpu6"],
@@ -145,7 +145,7 @@
       ["@cpu_freq", "policy0", "1200000", "2000000"],
       ["@cpu_freq", "policy6", "1600000", "2850000"],
       ["$ddr_freq_min", "3200000000"],
-      ["@preset", "common_actvie"]
+      ["@preset", "common_active"]
     ],
     "fast_inactive": [
       ["@limiters", "p3:cpu6"],

@@ -128,14 +128,19 @@ pidof  vendor.qti.hardware.display.composer-service > /dev/memcg/scene_active/cg
 if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; then
   stop vivo-vperf-hal-1-0
   stop vendor.vivoperfservice
-  echo 1 > /sys/class/cms_class/scene_disable
-  echo 1 > /sys/class/cms_class/freq_test
-  echo 0 > /sys/class/cms_class/cms_enable
-  echo 0 > /sys/rsc/svp/svp_enable
-  echo 0 > /sys/rsc/svp/enabled
+  # echo 0 > /sys/rsc/svp/svp_enable
+  # echo 0 > /sys/rsc/svp/enabled
   echo 0 > /proc/powerhal_cpu_ctrl/adpf_enable
   stop thermal_core
   stop thermald
   # stop vendor.thermal-mediatek # 会导致玩不了原神？d'n'm'd！
   stop touch_boost
+  # rmmod mtk_cg_peak_power_throttling
+  # rmmod mtk_gpu_power_throttling
+  # rmmod mtk_cpu_power_throttling
+  # rmmod mtk_md_power_throttling
+  if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
+    lock_value "MAX_TTJ 95000 95000 90000" /sys/kernel/thermal/max_ttj
+    lock_value "TTJ 95000 95000 90000" /sys/kernel/thermal/ttj
+  fi
 fi
