@@ -34,9 +34,6 @@
         "use": "whitelist",
         "l3_boost": true, "ddr_boost": true,
         "freq": ["2630400", "2630400"]
-      },
-      "tas": {
-        "min": 2035200
       }
     },
     {
@@ -54,9 +51,6 @@
         "use": "whitelist",
         "l3_boost": true, "ddr_boost": true,
         "freq": ["2995200", "2841600"]
-      },
-      "tas": {
-        "min": 2035200
       }
     },
     {
@@ -74,9 +68,6 @@
         "use": "whitelist",
         "l3_boost": true, "ddr_boost": true,
         "freq": ["3110400", "2956800"]
-      },
-      "tas": {
-        "min": 2035200
       }
     }
   ]

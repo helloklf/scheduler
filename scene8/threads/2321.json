@@ -101,6 +101,19 @@
     }
   },
   {
+    "friendly": "PUBG(UE4)",
+    "packages": ["com.pubg.imobile", "com.pubg.krmobile"],
+    "cpuset": {
+      "heavy_thread": "Thread-",
+      "heavy_cores": "7",
+      "comm": {
+        "4": ["RenderThread"],
+        "2-3": ["TaskGraph", "MainThread", "NativeThread"]
+      },
+      "other": "2-3,5-6"
+    }
+  },
+  {
     "friendly": "QQ飞车",
     "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
     "cpuset": {

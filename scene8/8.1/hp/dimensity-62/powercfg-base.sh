@@ -198,7 +198,6 @@ hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
 # FEAS dependence, But it will not work if you change the frequency, So disable it
 lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 
-mount -t debugfs none /sys/kernel/debug
 # lock_value 0 /sys/kernel/ged/hal/custom_upbound_gpu_freq
 dvfs_loading_mode=/sys/kernel/ged/hal/dvfs_loading_mode
 if [[ $(cat $dvfs_loading_mode) != "0" ]]; then

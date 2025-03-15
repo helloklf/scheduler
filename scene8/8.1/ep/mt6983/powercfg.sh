@@ -151,7 +151,6 @@ echo 0 > /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 
 hide_value /sys/kernel/fpsgo/fbt/enable_ceiling 0
 
-mount -t debugfs none /sys/kernel/debug
 echo 0 > /sys/class/devfreq/13000000.mali/min_freq
 echo 99 > /sys/kernel/ged/hal/custom_boost_gpu_freq
 echo 0 > /sys/module/ged/parameters/gpu_cust_boost_freq

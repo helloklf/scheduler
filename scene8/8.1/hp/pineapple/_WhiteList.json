@@ -1,0 +1,9 @@
+{
+    "friendly": "白名单应用",
+    "call": [
+        ["@limiters", "NONE"],
+        ["@values", "max_freq", "#1804800", "^2841600", "^2841600", "^3052800"],
+        ["/sys/devices/system/cpu/bus_dcvs/DDR/boost_freq", "4224000"],
+        ["@cpuset", "0-1,5-6", "0-6", "0-7", "0-7"]
+    ]
+}

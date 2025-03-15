@@ -208,7 +208,6 @@ lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 
 hide_value /sys/kernel/fpsgo/fbt/enable_ceiling 0
 
-mount -t debugfs none /sys/kernel/debug
 
 # echo 0 > /sys/module/millet_core/parameters/millet_freeze_switch
 

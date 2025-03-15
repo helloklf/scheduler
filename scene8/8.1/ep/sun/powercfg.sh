@@ -133,6 +133,11 @@ if [[ -d  /proc/game_opt ]]; then
   pidof surfaceflinger > /dev/memcg/scene_active/cgroup.procs
   pidof system_server > /dev/memcg/scene_active/cgroup.procs
   pidof  vendor.qti.hardware.display.composer-service > /dev/memcg/scene_active/cgroup.procs
+  echo 99 > /proc/sys/walt/walt_rtg_cfs_boost_prio # default 119
+  echo 100 > /proc/sys/walt/sched_pipeline_util_thres # default 400
+  echo 100 > /proc/sys/walt/walt_low_latency_task_threshold # default 325
+  echo '' > /proc/sys/walt/sched_lib_name # default libunity.so, libfb.so
+  echo '' > /proc/sys/walt/sched_lib_task # default UnityMain
 fi
 
 # MeiZu
@@ -153,19 +158,18 @@ if [[ -d /proc/mz_info ]]; then
   # lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
 fi
 
+kgsl(){
+  lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
+}
+kgsl thermal_pwrlevel 0
+kgsl max_pwrlevel 0
+kgsl max_clock_mhz 1199
+kgsl max_gpuclk 1199000000
+kgsl devfreq/max_freq 1199000000
 if [[ "$gpu_lock" != "0" ]]; then
-  kgsl(){
-    lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
-  }
   pl_max=$(($(cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels)-1))
-  kgsl thermal_pwrlevel 0
-  kgsl min_pwrlevel $pl_max
-  kgsl max_pwrlevel 0
   kgsl min_pwrlevel $pl_max
   kgsl default_pwrlevel $pl_max
-  kgsl max_clock_mhz 1199
-  kgsl max_gpuclk 1199000000
   kgsl min_clock_mhz 0
   kgsl devfreq/min_freq 0
-  kgsl devfreq/max_freq 1199000000
 fi

@@ -117,7 +117,6 @@ lock_value 0 /sys/devices/system/cpu/cpu7/core_ctl/enable
 lock_value 256 /dev/cpuctl/background/cpu.shares
 lock_value 20 /dev/cpuctl/background/cpu.uclamp.max
 
-mount -t debugfs none /sys/kernel/debug
 echo 12000000 > /sys/kernel/debug/sched/latency_ns # default 24000000
 echo 2000000 > /sys/kernel/debug/sched/min_granularity_ns # default 3000000
 echo 3000000 > /sys/kernel/debug/sched/wakeup_granularity_ns # default 4000000
@@ -148,7 +147,7 @@ if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; th
   # rmmod mtk_cpu_power_throttling
   # rmmod mtk_md_power_throttling
   if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
-    lock_value "MAX_TTJ 95000 95000 90000" /sys/kernel/thermal/max_ttj
-    lock_value "TTJ 95000 95000 90000" /sys/kernel/thermal/ttj
+    lock_value "MAX_TTJ 95000 90000 90000" /sys/kernel/thermal/max_ttj
+    lock_value "TTJ 90000 90000 90000" /sys/kernel/thermal/ttj
   fi
 fi
