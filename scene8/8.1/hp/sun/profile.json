@@ -18,18 +18,21 @@
       "limiter": {
         "ddr_boost": false,
         "params": [
-          { "id": "inactive:cpu0", "max": 2400000, "min": 1152000, "margin": 120 },
+          { "id": "p1:cpu0", "step": -1, "max": 2227200, "min": 748800, "margins": "200 1152000:130", "excludes": [0] },
+          { "id": "p1:cpu6", "step": -1, "max": 2400000, "min": 1017600, "margins": "200 1209600:130" },
+
+          { "id": "inactive:cpu0", "max": 2227200, "min": 556800, "margin": 120, "excludes": [0] },
           { "id": "inactive:cpu6", "max": 2400000, "min": 1017600, "margin": 120, "core_ctl": true },
   
-          { "id": "idle:cpu0", "max": 2000000, "min": 960000, "margin": 100 },
-          { "id": "idle:cpu6", "max": 2000000, "min": 1017600, "margin": 100, "core_ctl": true }
+          { "id": "idle:cpu0", "max": 1785600, "min": 556800, "margin": 100, "excludes": [0] },
+          { "id": "idle:cpu6", "max": 1958400, "min": 1017600, "margin": 100, "core_ctl": true }
         ]
       },
       "gesture_boost": {
         "enable": true,
         "enter": [
           ["$cpu_max_0", "^2400000"],
-          ["$cpu_max_6", "^3513600"]
+          ["$cpu_max_6", "^2841600"]
         ],
         "exit": [
         ]
@@ -115,10 +118,10 @@
 
       "powersave_active": [
         ["@preset", "common_active"],
-        ["@values", "min_freq", "^748800", "^614400"],
+        ["@values", "min_freq", "^748800", "^1017600"],
         ["@target_loads",
-          "80 1363200:85 1785600:90",
-          "80 1401600:85 2438400:90"],
+          "80 1152000:85 1555200:90",
+          "80 1401600:85 1958400:90"],
         ["@values", "hispeed_freq", "960000", "1017600"]
       ],
       "powersave_inactive": [
@@ -126,16 +129,16 @@
         ["@preset", "cpu6_off"],
         ["@target_loads",
           "85 1152000:90",
-          "85 1401600:90 1958400:95"],
+          "85 1209600:90 1689600:95"],
         ["@values", "hispeed_freq", "0", "0"]
       ],
 
       "balance_active": [
         ["@preset", "common_active"],
-        ["@values", "min_freq", "960000", "1017600"],
+        ["@values", "min_freq", "748800", "1017600"],
         ["@target_loads",
-          "80 1555200:85 1996800:90",
-          "80 1958400:85 2438400:90"],
+          "80 1152000:85 1555200:85 1996800:90",
+          "80 1689600:85 2246400:90"],
         ["@values", "hispeed_freq", "1152000", "1401600"]
       ],
       "balance_inactive": [

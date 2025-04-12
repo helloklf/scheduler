@@ -42,6 +42,10 @@
     }
   },
   "presets": {
+    "reset": [
+      ["@thermal_threshold", "-1"],
+      ["$gpu_dvfs_margin", "15"]
+    ],
     "util_active": [
       ["$util_max_fg", "1024"], ["$util_min_fg", "0"],
       ["$util_max_top", "1024"], ["$util_min_top", "0"],
@@ -126,7 +130,7 @@
   "schemes": {
     "powersave": {
       "call": [
-        ["@thermal_threshold", "-1"],
+        ["@preset", "reset"],
         ["@preset", "powersave_active"],
         ["$cci_mode", "0"],
         ["$dram_boost", "0"]
@@ -134,7 +138,7 @@
     },
     "balance": {
       "call": [
-        ["@thermal_threshold", "-1"],
+        ["@preset", "reset"],
         ["@preset", "balance_active"],
         ["$cci_mode", "0"],
         ["$dram_boost", "0"]
@@ -142,7 +146,7 @@
     },
     "performance": {
       "call": [
-        ["@thermal_threshold", "-1"],
+        ["@preset", "reset"],
         ["@preset", "performance_active"]
       ],
       "app": [
@@ -156,7 +160,7 @@
     },
     "fast": {
       "call": [
-        ["@thermal_threshold", "-1"],
+        ["@preset", "reset"],
         ["@preset", "fast_active"]
       ],
       "app": [
@@ -170,7 +174,7 @@
     },
     "pedestal": {
       "call": [
-        ["@thermal_threshold", "-1"],
+        ["@preset", "reset"],
         ["@preset", "pedestal_active"]
       ],
       "app": [

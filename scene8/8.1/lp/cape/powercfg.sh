@@ -224,6 +224,9 @@ chattr +i  /sys/module/msm_performance/parameters/cpu_min_freq
 rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost
 
+lock_value 128 /dev/cpuctl/background/cpu.shares
+lock_value 20 /dev/cpuctl/background/cpu.uclamp.max
+
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
   for i in $(seq 0 7); do

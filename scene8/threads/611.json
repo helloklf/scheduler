@@ -19,6 +19,7 @@
         "heavy_thread": "UnityGfx;Thread-",
         "heavy_cores": "6",
         "comm": {
+          "0-7": ["IL2CPP"],
           "6-7": ["UnityPreload"],
           "3-5": ["Worker Thread", "Job.worker", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"],
           "0-6": ["CoreThread"]

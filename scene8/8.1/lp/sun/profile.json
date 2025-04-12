@@ -18,16 +18,23 @@
       "limiter": {
         "ddr_boost": false,
         "params": [
+          { "id": "p1:cpu0", "step": -1, "max": 1785600, "min": 748800, "margins": "200 1152000:130", "excludes": [0] },
+          { "id": "p1:cpu6", "step": -1, "max": 2438400, "min": 1017600, "margins": "200 1209600:130" },
+
+          { "id": "inactive:cpu0", "max": 1785600, "min": 556800, "margin": 120, "excludes": [0] },
+          { "id": "inactive:cpu6", "max": 1958400, "min": 1017600, "margin": 120, "core_ctl": true },
+  
+          { "id": "idle:cpu0", "max": 1555200, "min": 556800, "margin": 100, "excludes": [0] },
+          { "id": "idle:cpu6", "max": 1958400, "min": 1017600, "margin": 100, "core_ctl": true }
         ]
       },
       "gesture_boost": {
         "enable": true,
         "enter": [
-          ["$cpu_max_0", "^2400000"],
-          ["$cpu_max_6", "^3283200"]
+          ["$cpu_max_0", "^2227200"],
+          ["$cpu_max_6", "^2841600"]
         ],
         "exit": [
-          ["$sched_boost", "0"]
         ]
       }
     },
@@ -113,67 +120,64 @@
         ["@preset", "common_active"],
         ["@values", "min_freq", "^748800", "^1017600"],
         ["@target_loads",
-          "80 1363200:85 1785600:90",
-          "80 1401600:85 2438400:90"],
-        ["@values", "hispeed_freq", "960000", "1401600"]
+          "80 1152000:85 1363200:90",
+          "80 1209600:85 1689600:90"],
+        ["@values", "hispeed_freq", "748800", "1017600"]
       ],
       "powersave_inactive": [
         ["@preset", "common_inactive"],
         ["@preset", "cpu6_off"],
         ["@target_loads",
           "85 1152000:90",
-          "85 1401600:90 1958400:95"],
+          "85 1209600:90 1689600:95"],
         ["@values", "hispeed_freq", "0", "0"]
       ],
 
       "balance_active": [
         ["@preset", "common_active"],
-        ["@values", "min_freq", "960000", "1017600"],
+        ["@values", "min_freq", "748800", "1017600"],
         ["@target_loads",
-          "77 1152000:80 1555200:85 1996800:90",
-          "77 1401600:80 1958400:85 2438400:90"],
-        ["@values", "hispeed_freq", "1152000", "1401600"],
-        ["$sched_boost", "1"]
+          "80 1363200:85 1555200:90",
+          "80 1689600:85 1958400:90"],
+        ["@values", "hispeed_freq", "960000", "1209600"]
       ],
       "balance_inactive": [
         ["@preset", "common_inactive"],
         ["@preset", "cpu6_auto"],
         ["@target_loads",
-          "85 1363200:90",
-          "85 1401600:90 1958400:95"],
+          "85 1152000:90",
+          "85 1209600:90 1689600:95"],
         ["@values", "hispeed_freq", "0", "0"]
       ],
 
       "performance_active": [
         ["@preset", "common_active"],
-        ["@values", "min_freq", "1152000", "1017600"],
+        ["@values", "min_freq", "748800", "1017600"],
         ["@target_loads",
-          "75 1555200:80 1996800:85 2400000:95",
-          "75 2246400:80 2841600:90 3283200:95"],
-        ["@values", "hispeed_freq", "1152000", "1401600"],
-        ["$sched_boost", "1"]
+          "80 1555200:85 2227200:95",
+          "80 1958400:85 2841600:90 3283200:95"],
+        ["@values", "hispeed_freq", "1152000", "1401600"]
       ],
       "performance_inactive": [
         ["@preset", "common_inactive"],
         ["@target_loads",
-          "85 1555200:90",
-          "83 1958400:85 2438400:90"],
+          "83 1555200:90",
+          "83 1958400:87 2438400:93"],
         ["@values", "hispeed_freq", "1152000", "1017600"]
       ],
 
       "fast_active": [
         ["@preset", "common_active"],
-        ["@values", "min_freq", "1152000", "1401600"],
+        ["@values", "min_freq", "960000", "1017600"],
         ["@target_loads",
-          "75 1689600:80 1996800:85 2400000:90",
-          "75 2246400:80 2841600:85 3513600:90"],
-        ["@values", "hispeed_freq", "1555200", "1958400"],
-        ["$sched_boost", "1"]
+          "78 1996800:83 2400000:87 2745600:95",
+          "78 2246400:83 2841600:87 3513600:95"],
+        ["@values", "hispeed_freq", "1555200", "1689600"]
       ],
       "fast_inactive": [
         ["@target_loads",
-          "85 1996800:90",
-          "83 2246400:87 2841600:95"],
+          "80 1996800:87 2400000:95",
+          "80 2246400:87 2841600:95"],
         ["@values", "hispeed_freq", "1152000", "1017600"]
       ]
     },
@@ -185,7 +189,7 @@
         ],
         "app": [
           ["@preset", "common_app"],
-          ["@values", "max_freq", "1996800", "#2841600"],
+          ["@values", "max_freq", "1996800", "#2438400"],
           ["@preset", "powersave_active"]
         ],
         "game": [
@@ -200,12 +204,12 @@
         ],
         "app": [
           ["@preset", "common_app"],
-          ["@values", "max_freq", "2400000", "#3513600"],
+          ["@values", "max_freq", "2400000", "#2841600"],
           ["@preset", "balance_active"]
         ],
         "game": [
           ["@preset", "common_gaming"],
-          ["@preset", "limiter_off"],
+          ["@preset", "limiter_on"],
           ["@values", "hispeed_freq", "1152000", "1017600"]
         ]
       },
@@ -215,13 +219,13 @@
         ],
         "app": [
           ["@preset", "common_app"],
-          ["@values", "max_freq", "2918400", "#4089600"],
+          ["@values", "max_freq", "2400000", "#3283200"],
           ["@preset", "performance_active"]
         ],
         "game": [
           ["@preset", "common_gaming"],
           ["@preset", "limiter_off"],
-          ["@values", "hispeed_freq", "1152000", "1401600"]
+          ["@values", "hispeed_freq", "1152000", "1017600"]
         ]
       },
       "fast": {
@@ -230,7 +234,7 @@
         ],
         "app": [
           ["@preset", "common_app"],
-          ["@values", "max_freq", "2918400", "#4089600"],
+          ["@values", "max_freq", "2745600", "#3513600"],
           ["@preset", "fast_active"]
         ],
         "game": [
@@ -241,6 +245,16 @@
       }
     },
     "apps": [
+      {
+        "friendly": "ELP",
+        "packages": [
+          "com.tencent.mobileqq",
+          "com.tencent.tim",
+          "org.telegram.messenger"
+        ],
+        "categories": ["Music", "Reader", "ShortVideo", "Nav"],
+        "import": "_ELP.json"
+      },
       { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
       { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
       { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },

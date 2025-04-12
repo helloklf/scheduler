@@ -1,5 +1,7 @@
 {
   "friendly": "FAS",
+  "limiters": [
+  ],
   "modes": [
     {
       "mode": ["powersave"],

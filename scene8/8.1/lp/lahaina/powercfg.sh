@@ -175,8 +175,16 @@ do
   lock_value 0 /dev/cpuctl/$group/cpu.uclamp.sched_boost_no_override
 done
 
-# echo libunity.so, libfb.so > /proc/sys/kernel/sched_lib_name
-# echo 240 > /proc/sys/kernel/sched_lib_mask_force
+
+lock_value 128 /dev/cpuctl/background/cpu.shares
+lock_value 512 /dev/cpuctl/foreground/cpu.shares
+lock_value 20 /dev/cpuctl/background/cpu.uclamp.max
+
+echo 99 > /proc/sys/walt/walt_rtg_cfs_boost_prio # default 119
+echo 1 > /proc/sys/walt/sched_pipeline_util_thres # default 400
+echo 1 > /proc/sys/walt/walt_low_latency_task_threshold # default 325
+echo '' > /proc/sys/walt/sched_lib_name # default libunity.so, libfb.so
+echo '' > /proc/sys/walt/sched_lib_task # default UnityMain
 
 for i in 4 5 6 7; do
   verify_or_set 1593600000 /sys/class/devfreq/18590100.qcom,cpu$i-cpu-l3-lat/max_freq

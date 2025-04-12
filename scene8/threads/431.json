@@ -33,7 +33,6 @@
       "unity_main": "7",
       "heavy_thread": "UnityGfx",
       "heavy_cores": "6",
-      "heavy_switch": false,
       "comm": {
         "4-5": ["NativeThread", "Job.Worker"]
       },
@@ -48,7 +47,7 @@
       "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "6",
       "comm": {
-        "4-7": ["UnityPreload"],
+        "4-7": ["UnityPreload", "IL2CPP"],
         "4-5": ["CoreThread", "Apollo-", "NativeThread", "UnityChoreo", "Worker Thread", "Job.worker"]
       },
       "other": "0-5"

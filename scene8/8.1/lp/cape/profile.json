@@ -60,7 +60,7 @@
       ["$bus_ddr_min", "547000"],
       ["$l3_boost", "0"],
       ["$ddr_boost", "0"],
-      ["@governor", "walt"],
+      ["@governor", "uag", "walt"],
       ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
       ["@values", "hispeed_load", "90", "90", "90"]
     ],

@@ -158,6 +158,11 @@ if [[ $(getprop ro.product.model | grep -i Note) == '' ]]; then
   echo 70 70 > /proc/sys/walt/sched_upmigrate
   echo 60 60 > /proc/sys/walt/sched_downmigrate
   # echo 1 > /proc/sys/walt/sched_asymcap_boost
+  echo 99 > /proc/sys/walt/walt_rtg_cfs_boost_prio # default 119
+  echo 1 > /proc/sys/walt/sched_pipeline_util_thres # default 400
+  echo 1 > /proc/sys/walt/walt_low_latency_task_threshold # default 325
+  echo '' > /proc/sys/walt/sched_lib_name # default libunity.so, libfb.so
+  echo '' > /proc/sys/walt/sched_lib_task # default UnityMain
 fi
 
 for dir in /sys/devices/system/cpu/cpufreq/policy*;do

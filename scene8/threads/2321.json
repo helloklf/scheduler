@@ -81,6 +81,7 @@
       "heavy_cores": "4",
       "comm": {
         "7": ["UnityMain"],
+        "2-7": ["IL2CPP"],
         "2-3": ["Worker Thread", "Job.worker"],
         "2-3,5-6": ["CoreThread", "Apollo", "NativeThread"]
       },

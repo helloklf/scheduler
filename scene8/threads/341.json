@@ -44,6 +44,7 @@
       "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "6",
       "comm": {
+        "3-7": ["IL2CPP"],
         "3-5": ["UnityPreload", "NativeThread", "UnityChoreograp", "CoreThread", "Worker Thread", "Job.worker", "Apollo-"]
       },
       "other": "0-5"
@@ -71,10 +72,9 @@
       "heavy_thread": "Thread-",
       "heavy_cores": "7",
       "comm": {
-        "6": ["RenderThread"],
-        "3-5": ["TaskGraph", "MainThread", "NativeThread"]
+        "3-6": ["RenderThread", "TaskGraph", "MainThread", "NativeThread"]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {

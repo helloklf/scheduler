@@ -140,12 +140,12 @@ hide_value() {
 }
 
 thermal_basic(){
-echo 95 70 > /proc/driver/thermal/clatm_gpu_threshold
-echo 3 117000 0 mtktscpu-sysrst 85000 0 cpu_adaptive_0 76000 0 cpu_adaptive_1 0 0 no-cooler 0 0 > /proc/driver/thermal/tzcpu
-echo 4 120000 0 mtk-cl-kshutdown02 110000 0 no-cooler 100000 0 no-cooler 90000 0 no-cooler 0 0 no-cooler 0 0 no-cooler 0 0 no-cooler 0 0 no-cooler 0 0 no-cooler 0 0 no-cooler 1000 > /proc/driver/thermal/tzbtspa
-echo 2 100000 90000 80000 85000 93000 85000 235000 2000 230000 2000 500 500 13500 > /proc/driver/thermal/clctm
-echo 0 3 4 11 3 15 1 15 > /proc/driver/thermal/clatm_cpu_min_opp
-echo 1 3 4 5 0 0 0 0 > /proc/driver/thermal/clatm_cpu_min_opp
+  echo 95 70 > /proc/driver/thermal/clatm_gpu_threshold
+  echo 3 117000 0 mtktscpu-sysrst 85000 0 cpu_adaptive_0 76000 0 cpu_adaptive_1 0 0 no-cooler 0 0 > /proc/driver/thermal/tzcpu
+  echo 4 120000 0 mtk-cl-kshutdown02 110000 0 no-cooler 100000 0 no-cooler 90000 0 no-cooler 0 0 no-cooler 0 0 no-cooler 0 0 no-cooler 0 0 no-cooler 0 0 no-cooler 0 0 no-cooler 1000 > /proc/driver/thermal/tzbtspa
+  echo 2 100000 90000 80000 85000 93000 85000 235000 2000 230000 2000 500 500 13500 > /proc/driver/thermal/clctm
+  echo 0 3 4 11 3 15 1 15 > /proc/driver/thermal/clatm_cpu_min_opp
+  echo 1 3 4 5 0 0 0 0 > /proc/driver/thermal/clatm_cpu_min_opp
 }
 
 echo 0 > /sys/devices/system/cpu/perf/enable
