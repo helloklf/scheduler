@@ -1,0 +1,57 @@
+{
+  "friendly": "极速响应",
+  "call": [
+    ["$gpu_dvfs_margin", "40"]
+  ],
+  "modes": [{
+    "mode": ["powersave"],
+    "booster": {
+      "duration": 3000,
+      "idle_delay": 1000,
+      "enter": [
+        ["@preset", "balance_active"]
+      ],
+      "exit": [
+        ["@preset", "powersave_inactive"]
+      ]
+    }
+  }, {
+    "mode": ["balance"],
+    "booster": {
+      "duration": 3000,
+      "idle_delay": 2000,
+      "enter": [
+        ["@preset", "performance_active"]
+      ],
+      "exit": [
+        ["@preset", "powersave_inactive"]
+      ]
+    }
+  }, {
+    "mode": ["performance"],
+    "booster": {
+      "duration": 4000,
+      "idle_delay": 2000,
+      "enter": [
+        ["@preset", "performance_active"]
+      ],
+      "exit": [
+        ["@preset", "balance_inactive"]
+      ]
+    }
+  }, {
+    "mode": ["fast"],
+    "booster": {
+      "duration": 4000,
+      "idle_delay": 2000,
+      "enter": [
+        ["$gpu_dvfs_margin", "130"],
+        ["@preset", "fast_active"]
+      ],
+      "exit": [
+        ["$gpu_dvfs_margin", "35"],
+        ["@preset", "balance_inactive"]
+      ]
+    }
+  }]
+}

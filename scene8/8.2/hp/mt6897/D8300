@@ -1,0 +1,71 @@
+2200000 2100000 2000000 1900000 1800000 1700000 1600000 1500000 1400000 1300000 1200000 1100000 1000000 900000 800000 700000 600000 480000
+
+3200000 3100000 3000000 2900000 2850000 2800000 2660000 2600000 2500000 2400000 2300000 2200000 2100000 2000000 1900000 1800000 1700000 1600000 1500000 1400000 1300000 1200000 1100000 1000000 900000 800000 700000 600000 500000 400000
+
+3350000 3200000 3100000 3050000 3000000 2900000 2800000 2700000 2600000 2500000 2400000 2300000 2200000 2100000 2000000 1900000 1800000 1700000 1600000 1500000 1400000 1300000 1200000 1100000 1000000 900000 800000 700000 600000 500000 400000
+
+[00] freq: 1400000, volt: 83125, vsram: 83125, posdiv: 1, margin: 10000, power: 3809
+[01] freq: 1383000, volt: 82500, vsram: 82500, posdiv: 1, margin: 9375, power: 3707
+[02] freq: 1367000, volt: 81875, vsram: 81875, posdiv: 1, margin: 10000, power: 3611
+[03] freq: 1351000, volt: 81875, vsram: 81875, posdiv: 1, margin: 9375, power: 3570
+[04] freq: 1335000, volt: 81250, vsram: 81250, posdiv: 1, margin: 9375, power: 3476
+[05] freq: 1319000, volt: 80625, vsram: 80625, posdiv: 1, margin: 9375, power: 3383
+[06] freq: 1303000, volt: 80000, vsram: 80000, posdiv: 1, margin: 9375, power: 3293
+[07] freq: 1287000, volt: 79375, vsram: 79375, posdiv: 1, margin: 9375, power: 3203
+[08] freq: 1271000, volt: 79375, vsram: 79375, posdiv: 1, margin: 8750, power: 3165
+[09] freq: 1255000, volt: 78750, vsram: 78750, posdiv: 1, margin: 8750, power: 3078
+[10] freq: 1238000, volt: 78125, vsram: 78125, posdiv: 1, margin: 8750, power: 2990
+[11] freq: 1222000, volt: 77500, vsram: 77500, posdiv: 1, margin: 8750, power: 2908
+[12] freq: 1206000, volt: 77500, vsram: 77500, posdiv: 1, margin: 8125, power: 2871
+[13] freq: 1190000, volt: 76875, vsram: 76875, posdiv: 1, margin: 8125, power: 2789
+[14] freq: 1174000, volt: 76250, vsram: 76250, posdiv: 1, margin: 8125, power: 2709
+[15] freq: 1158000, volt: 75625, vsram: 75625, posdiv: 1, margin: 8125, power: 2632
+[16] freq: 1142000, volt: 75625, vsram: 75625, posdiv: 1, margin: 7500, power: 2597
+[17] freq: 1126000, volt: 75000, vsram: 75000, posdiv: 1, margin: 7500, power: 2520
+[18] freq: 1110000, volt: 74375, vsram: 75000, posdiv: 1, margin: 7500, power: 2446
+[19] freq: 1093000, volt: 73750, vsram: 75000, posdiv: 1, margin: 7500, power: 2372
+[20] freq: 1077000, volt: 73125, vsram: 75000, posdiv: 1, margin: 7500, power: 2301
+[21] freq: 1061000, volt: 73125, vsram: 75000, posdiv: 1, margin: 6875, power: 2268
+[22] freq: 1045000, volt: 72500, vsram: 75000, posdiv: 1, margin: 6875, power: 2198
+[23] freq: 1029000, volt: 71875, vsram: 75000, posdiv: 1, margin: 6875, power: 2130
+[24] freq: 1013000, volt: 71250, vsram: 75000, posdiv: 1, margin: 6875, power: 2064
+[25] freq: 997000, volt: 71250, vsram: 75000, posdiv: 1, margin: 6250, power: 2033
+[26] freq: 981000, volt: 70625, vsram: 75000, posdiv: 1, margin: 6250, power: 1969
+[27] freq: 965000, volt: 70000, vsram: 75000, posdiv: 1, margin: 6250, power: 1906
+[28] freq: 948000, volt: 69375, vsram: 75000, posdiv: 2, margin: 6250, power: 1842
+[29] freq: 932000, volt: 68750, vsram: 75000, posdiv: 2, margin: 6250, power: 1782
+[30] freq: 916000, volt: 68750, vsram: 75000, posdiv: 2, margin: 6250, power: 1753
+[31] freq: 900000, volt: 68125, vsram: 75000, posdiv: 2, margin: 6250, power: 1695
+[32] freq: 884000, volt: 67500, vsram: 75000, posdiv: 2, margin: 6250, power: 1638
+[33] freq: 868000, volt: 66875, vsram: 75000, posdiv: 2, margin: 6250, power: 1582
+[34] freq: 852000, volt: 66875, vsram: 75000, posdiv: 2, margin: 5625, power: 1555
+[35] freq: 836000, volt: 66250, vsram: 75000, posdiv: 2, margin: 5625, power: 1501
+[36] freq: 820000, volt: 65625, vsram: 75000, posdiv: 2, margin: 5625, power: 1448
+[37] freq: 800000, volt: 65000, vsram: 75000, posdiv: 2, margin: 5625, power: 1390
+[38] freq: 780000, volt: 64375, vsram: 75000, posdiv: 2, margin: 5000, power: 1334
+[39] freq: 760000, volt: 63750, vsram: 75000, posdiv: 2, margin: 5000, power: 1279
+[40] freq: 740000, volt: 63125, vsram: 75000, posdiv: 2, margin: 5000, power: 1225
+[41] freq: 720000, volt: 62500, vsram: 75000, posdiv: 2, margin: 5000, power: 1173
+[42] freq: 701000, volt: 61875, vsram: 75000, posdiv: 2, margin: 5000, power: 1124
+[43] freq: 681000, volt: 61250, vsram: 75000, posdiv: 2, margin: 4375, power: 1075
+[44] freq: 661000, volt: 60625, vsram: 75000, posdiv: 2, margin: 4375, power: 1027
+[45] freq: 641000, volt: 60625, vsram: 75000, posdiv: 2, margin: 3750, power: 999
+[46] freq: 621000, volt: 60000, vsram: 75000, posdiv: 2, margin: 3750, power: 953
+[47] freq: 601000, volt: 59375, vsram: 75000, posdiv: 2, margin: 3750, power: 908
+[48] freq: 582000, volt: 58750, vsram: 75000, posdiv: 2, margin: 3125, power: 866
+[49] freq: 562000, volt: 58125, vsram: 75000, posdiv: 2, margin: 3125, power: 824
+[50] freq: 542000, volt: 57500, vsram: 75000, posdiv: 2, margin: 3125, power: 783
+[51] freq: 522000, volt: 56875, vsram: 75000, posdiv: 2, margin: 3125, power: 743
+[52] freq: 502000, volt: 56250, vsram: 75000, posdiv: 2, margin: 3125, power: 704
+[53] freq: 483000, volt: 55625, vsram: 75000, posdiv: 2, margin: 3125, power: 668
+[54] freq: 463000, volt: 55000, vsram: 75000, posdiv: 3, margin: 2500, power: 631
+[55] freq: 443000, volt: 54375, vsram: 75000, posdiv: 3, margin: 2500, power: 595
+[56] freq: 423000, volt: 53750, vsram: 75000, posdiv: 3, margin: 2500, power: 561
+[57] freq: 403000, volt: 53125, vsram: 75000, posdiv: 3, margin: 2500, power: 527
+[58] freq: 383000, volt: 52500, vsram: 75000, posdiv: 3, margin: 2500, power: 495
+[59] freq: 364000, volt: 51875, vsram: 75000, posdiv: 3, margin: 1875, power: 464
+[60] freq: 344000, volt: 51250, vsram: 75000, posdiv: 3, margin: 1875, power: 435
+[61] freq: 324000, volt: 50625, vsram: 75000, posdiv: 3, margin: 1875, power: 406
+[62] freq: 304000, volt: 50000, vsram: 75000, posdiv: 3, margin: 1875, power: 377
+[63] freq: 284000, volt: 49375, vsram: 75000, posdiv: 3, margin: 1875, power: 349
+[64] freq: 265000, volt: 48750, vsram: 75000, posdiv: 3, margin: 1250, power: 323

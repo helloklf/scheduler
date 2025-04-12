@@ -1,0 +1,257 @@
+{
+    "platform": "sun",
+    "platform_name": "8GEN4",
+    "alias": {
+      "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
+      "mod_percent": "/sys/class/kgsl/kgsl-3d0/devfreq/mod_percent",
+      "max_cpus_cpu6": "/sys/devices/system/cpu/cpu6/core_ctl/max_cpus",
+      "min_cpus_cpu6": "/sys/devices/system/cpu/cpu6/core_ctl/min_cpus",
+      "core_ctl_5": "/sys/devices/system/cpu/cpu5/core_ctl/enable",
+      "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable",
+      "cpu_min_6": "/sys/devices/system/cpu/cpufreq/policy6/scaling_min_freq",
+      "cpu_max_6": "/sys/devices/system/cpu/cpufreq/policy6/scaling_max_freq",
+      "sched_boost": "/proc/sys/walt/sched_boost",
+      "glk_disable": "/sys/module/migt/parameters/glk_disable",
+      "input_boost": "/proc/sys/walt/input_boost/sched_boost_on_input"
+    },
+    "features": {
+      "limiter": {
+        "ddr_boost": false,
+        "params": [
+        ]
+      },
+      "gesture_boost": {
+        "enable": true,
+        "enter": [
+          ["$cpu_max_0", "^2400000"],
+          ["$cpu_max_6", "^3283200"]
+        ],
+        "exit": [
+          ["$sched_boost", "0"]
+        ]
+      }
+    },
+    "presets": {
+      "reset": [
+        ["@msm_reset"],
+        ["@governor", "walt"]
+      ],
+  
+      "hispeed_freq": [
+        ["/sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_freq"],
+        ["/sys/devices/system/cpu/cpufreq/policy6/walt/hispeed_freq"]
+      ],
+      "hispeed_load": [
+        ["/sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_load"],
+        ["/sys/devices/system/cpu/cpufreq/policy6/walt/hispeed_load"]
+      ],
+      "latency": [
+        ["/sys/devices/system/cpu/cpufreq/policy0/walt/down_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy0/walt/up_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy6/walt/down_rate_limit_us"],
+        ["/sys/devices/system/cpu/cpufreq/policy6/walt/up_rate_limit_us"]
+      ],
+      "target_loads": [
+        ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_loads"],
+        ["/sys/devices/system/cpu/cpu6/cpufreq/walt/target_loads"]
+      ],
+      "min_freq": [
+        ["$cpu_min_0"], ["$cpu_min_6"]
+      ],
+      "max_freq": [
+        ["$cpu_max_0"], ["$cpu_max_6"]
+      ],
+      "cpu6_on": [
+        ["$core_ctl_6", "1"],
+        ["$max_cpus_cpu6", "#2"],
+        ["$min_cpus_cpu6", "#2"],
+        ["$core_ctl_6", "#0"]
+      ],
+      "cpu6_off": [
+        ["$core_ctl_6", "1"],
+        ["$min_cpus_cpu6", "#0"],
+        ["$max_cpus_cpu6", "#0"]
+      ],
+      "cpu6_auto": [
+        ["$core_ctl_6", "1"],
+        ["$min_cpus_cpu6", "#0"],
+        ["$max_cpus_cpu6", "#2"]
+      ],
+      "limiter_off": [
+        ["/proc/game_opt/disable_cpufreq_limit", "#1"],
+        ["/sys/module/migt/parameters/glk_disable", "#1"],
+        ["/sys/module/perfmgr/parameters/perfmgr_enable", "#0"],
+        ["/sys/module/migt/parameters/glk_freq_limit_walt", "#0"]
+      ],
+      "limiter_on": [
+        ["/proc/game_opt/disable_cpufreq_limit", "0"],
+        ["/sys/module/migt/parameters/glk_disable", "0"]
+      ],
+      "common_active": [
+        ["@preset", "cpu6_on"]
+      ],
+      "common_inactive": [
+        ["@values", "min_freq", "0", "0"],
+        ["$sched_boost", "0"]
+      ],
+      "common_app": [
+        ["$perfmgr_enable", "0"],
+        ["@cpuset", "0-3", "0-5", "0-7", "0-7"],
+        ["@values", "latency", "0", "1000", "0", "1000"],
+        ["$mod_percent", "125"]
+      ],
+      "common_gaming": [
+        ["@preset", "common_active"],
+        ["@limiters", "NONE"],
+        ["@cpuset", "0-1", "0-5", "0-5", "0-7"],
+        ["$sched_boost", "0"],
+        ["@values", "latency", "0", "2000", "0", "2000"],
+        ["$mod_percent", "100"]
+      ],
+
+      "powersave_active": [
+        ["@preset", "common_active"],
+        ["@values", "min_freq", "^748800", "^1017600"],
+        ["@target_loads",
+          "80 1363200:85 1785600:90",
+          "80 1401600:85 2438400:90"],
+        ["@values", "hispeed_freq", "960000", "1401600"]
+      ],
+      "powersave_inactive": [
+        ["@preset", "common_inactive"],
+        ["@preset", "cpu6_off"],
+        ["@target_loads",
+          "85 1152000:90",
+          "85 1401600:90 1958400:95"],
+        ["@values", "hispeed_freq", "0", "0"]
+      ],
+
+      "balance_active": [
+        ["@preset", "common_active"],
+        ["@values", "min_freq", "960000", "1017600"],
+        ["@target_loads",
+          "77 1152000:80 1555200:85 1996800:90",
+          "77 1401600:80 1958400:85 2438400:90"],
+        ["@values", "hispeed_freq", "1152000", "1401600"],
+        ["$sched_boost", "1"]
+      ],
+      "balance_inactive": [
+        ["@preset", "common_inactive"],
+        ["@preset", "cpu6_auto"],
+        ["@target_loads",
+          "85 1363200:90",
+          "85 1401600:90 1958400:95"],
+        ["@values", "hispeed_freq", "0", "0"]
+      ],
+
+      "performance_active": [
+        ["@preset", "common_active"],
+        ["@values", "min_freq", "1152000", "1017600"],
+        ["@target_loads",
+          "75 1555200:80 1996800:85 2400000:95",
+          "75 2246400:80 2841600:90 3283200:95"],
+        ["@values", "hispeed_freq", "1152000", "1401600"],
+        ["$sched_boost", "1"]
+      ],
+      "performance_inactive": [
+        ["@preset", "common_inactive"],
+        ["@target_loads",
+          "85 1555200:90",
+          "83 1958400:85 2438400:90"],
+        ["@values", "hispeed_freq", "1152000", "1017600"]
+      ],
+
+      "fast_active": [
+        ["@preset", "common_active"],
+        ["@values", "min_freq", "1152000", "1401600"],
+        ["@target_loads",
+          "75 1689600:80 1996800:85 2400000:90",
+          "75 2246400:80 2841600:85 3513600:90"],
+        ["@values", "hispeed_freq", "1555200", "1958400"],
+        ["$sched_boost", "1"]
+      ],
+      "fast_inactive": [
+        ["@target_loads",
+          "85 1996800:90",
+          "83 2246400:87 2841600:95"],
+        ["@values", "hispeed_freq", "1152000", "1017600"]
+      ]
+    },
+    "schemes": {
+      "powersave": {
+        "call": [
+          ["@preset", "reset"],
+          ["/sys/devices/system/cpu/cpufreq/boost", "0"]
+        ],
+        "app": [
+          ["@preset", "common_app"],
+          ["@values", "max_freq", "1996800", "#2841600"],
+          ["@preset", "powersave_active"]
+        ],
+        "game": [
+          ["@preset", "common_gaming"],
+          ["@preset", "limiter_on"],
+          ["@values", "hispeed_freq", "1152000", "0"]
+        ]
+      },
+      "balance": {
+        "call": [
+          ["@preset", "reset"]
+        ],
+        "app": [
+          ["@preset", "common_app"],
+          ["@values", "max_freq", "2400000", "#3513600"],
+          ["@preset", "balance_active"]
+        ],
+        "game": [
+          ["@preset", "common_gaming"],
+          ["@preset", "limiter_off"],
+          ["@values", "hispeed_freq", "1152000", "1017600"]
+        ]
+      },
+      "performance": {
+        "call": [
+          ["@preset", "reset"]
+        ],
+        "app": [
+          ["@preset", "common_app"],
+          ["@values", "max_freq", "2918400", "#4089600"],
+          ["@preset", "performance_active"]
+        ],
+        "game": [
+          ["@preset", "common_gaming"],
+          ["@preset", "limiter_off"],
+          ["@values", "hispeed_freq", "1152000", "1401600"]
+        ]
+      },
+      "fast": {
+        "call": [
+          ["@preset", "reset"]
+        ],
+        "app": [
+          ["@preset", "common_app"],
+          ["@values", "max_freq", "2918400", "#4089600"],
+          ["@preset", "fast_active"]
+        ],
+        "game": [
+          ["@preset", "common_gaming"],
+          ["@preset", "limiter_off"],
+          ["@values", "hispeed_freq", "1152000", "1401600"]
+        ]
+      }
+    },
+    "apps": [
+      { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
+      { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
+      { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
+      { "friendly": "待机", "packages": ["standby"], "import": "_Standby.json" },
+      { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
+    ],
+    "games": [
+      {
+        "friendly": "All",
+        "packages": ["*"],
+        "import": "_Games.json"
+      }
+    ]
+  }

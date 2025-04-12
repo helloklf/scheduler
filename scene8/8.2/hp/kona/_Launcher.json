@@ -1,0 +1,54 @@
+{
+  "friendly": "极速响应",
+  "modes": [{
+    "mode": ["powersave"],
+    "call": [
+      ["@values", "input_boost", "0:1804800 4:1862400 7:1862400", "1", "80"]
+    ],
+    "booster": {
+      "duration": 3000,
+      "idle_delay": 1000,
+      "enter": [
+        ["@preset", "balance_active"]
+      ],
+      "exit": [
+        ["@preset", "balance_inactive"]
+      ]
+    }
+  }, {
+    "mode": ["balance"],
+    "call": [
+      ["@values", "input_boost", "0:1804800 4:1862400 7:1862400", "1", "120"]
+    ],
+    "booster": {
+      "duration": 3000,
+      "idle_delay": 1000,
+      "enter": [["@preset", "performance_active"]],
+      "exit": [["@preset", "balance_inactive"]]
+    }
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["@values", "input_boost", "0:1804800 4:2150400 7:2265600", "1", "200"]
+    ],
+    "booster": {
+      "duration": 4000,
+      "idle_delay": 1000,
+      "enter": [["@preset", "fast_active"]],
+      "exit": [["@preset", "performance_inactive"]]
+    }
+  }, {
+    "mode": ["*"],
+    "call": [
+      ["@values", "input_boost", "0:1804800 4:2419200 7:2841600", "1", "200"]
+    ],
+    "booster": {
+      "enter": [
+        ["@preset", "fast_active"]
+      ],
+      "exit": [
+        ["@preset", "performance_inactive"]
+      ]
+    }
+  }]
+}

@@ -1,0 +1,64 @@
+{
+  "friendly": "一般应用",
+  "modes": [{
+    "mode": ["powersave"],
+    "booster": {
+      "duration": 2000,
+      "idle_delay": 1000,
+      "enter": [
+        ["@preset", "powersave_active"],
+        ["@values", "target_loads", "80", "80", "80"],
+        ["@cpuset", "1", "0-6", "0-6", "0-7"]
+      ],
+      "exit": [
+        ["@preset", "powersave_inactive"],
+        ["@cpuset", "0-3", "0-6", "0-6", "0-7"]
+      ]
+    }
+  }, {
+    "mode": ["balance"],
+    "booster": {
+      "duration": 2000,
+      "idle_delay": 1000,
+      "enter": [
+        ["@preset", "balance_active"],
+        ["@values", "target_loads", "80", "80", "80"]
+      ],
+      "exit": [
+        ["@preset", "balance_inactive"]
+      ]
+    }
+  }, {
+    "mode": ["performance"],
+    "call": [
+      ["@values", "input_boost", "0:1804800 4:1862400 7:1862400", "1", "120"]
+    ],
+    "booster": {
+      "duration": 2000,
+      "idle_delay": 1000,
+      "enter": [
+        ["@preset", "performance_active"],
+        ["@values", "target_loads", "75", "75", "75"]
+      ],
+      "exit": [
+        ["@preset", "performance_inactive"]
+      ]
+    }
+  }, {
+    "mode": ["*"],
+    "call": [
+      ["@values", "input_boost", "0:1804800 4:2419200 7:2841600", "1", "200"]
+    ],
+    "booster": {
+      "duration": 3000,
+      "idle_delay": 1000,
+      "enter": [
+        ["@preset", "fast_active"],
+        ["@values", "target_loads", "50", "60", "60"]
+      ],
+      "exit": [
+        ["@preset", "fast_inactive"]
+      ]
+    }
+  }]
+}

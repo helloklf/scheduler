@@ -1,0 +1,33 @@
+{
+  "friendly": "游戏(FAS)",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "ddr_boost": true,
+        "freq": ["2400000", "2100000", "-2"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "ddr_boost": true,
+        "freq": ["2600000", "2400000", "-2"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "ddr_boost": true,
+        "freq": ["2800000", "2600000", "-2"]
+      }
+    },
+    {
+      "mode": ["fast"],
+      "fas": {
+        "ddr_boost": true,
+        "freq": ["3050000", "3000000", "-2"]
+      }
+    }
+  ]
+}

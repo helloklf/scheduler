@@ -1,0 +1,22 @@
+{
+  "friendly": "相机",
+  "call": [
+    ["@limiters", "NONE"],
+    ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
+    ["@cpuset", "0-1", "0-4", "0-7", "0-7"]
+  ],
+  "booster": {
+    "duration": 3000,
+    "idle_delay": 4000,
+    "enter": [
+      ["@cpu_freq", "policy0", "1200MHz", "max"],
+      ["@cpu_freq", "policy4", "1600MHz", "2.4Ghz"],
+      ["@cpu_freq", "policy7", "1600MHz", "2.5Ghz"]
+    ],
+    "exit": [
+      ["@cpu_freq", "policy0", "min", "max"],
+      ["@cpu_freq", "policy4", "min", "1800MHz"],
+      ["@cpu_freq", "policy7", "min", "1800MHz"]
+    ]
+  }
+}

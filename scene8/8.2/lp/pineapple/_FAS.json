@@ -1,0 +1,35 @@
+{
+  "friendly": "FAS",
+  "call": [
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "l3_boost": true, "ddr_boost": true,
+        "freq": ["2380800", "2380800"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "l3_boost": true, "ddr_boost": true,
+        "freq": ["2630400", "2630400"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "l3_boost": true, "ddr_boost": true,
+        "freq": ["2995200", "2841600"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "fas": {
+        "l3_boost": true, "ddr_boost": true,
+        "freq": ["3110400", "2956800"]
+      }
+    }
+  ]
+}
