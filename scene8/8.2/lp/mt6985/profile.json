@@ -21,7 +21,7 @@
   },
   "features": {
     "limiter": {
-      "ddr_boost": false,
+      "ddr_boost": true,
       "params": [
         { "id": "p1:cpu0", "step": -0.50, "max": 1700000, "min": 500000,  "margins": "300 1500000:150", "excludes": [1] },
         { "id": "p1:cpu4", "step": -0.50, "max": 2100000, "min": 1200000, "margins": "300 1900000:150" },
@@ -167,33 +167,31 @@
     "powersave": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "powersave_active"]
+        ["@preset", "powersave_active"],
+        ["$gpu_max_freq", "#14"]
       ],
       "app": [
-        ["@preset", "comm_app"],
-        ["$gpu_max_freq", "#28"]
+        ["@preset", "comm_app"]
       ],
       "game": [
         ["$ddr_map", "2300000:6400000 2000000:5500000 1700000:4100000 1600000:3094000 1500000:2133000 1400000:1866000"],
         ["@preset", "comm_gaming"],
-        ["@preset", "freq_low"],
-        ["$gpu_max_freq", "#14"]
+        ["@preset", "freq_low"]
       ]
     },
     "balance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "balance_active"]
+        ["@preset", "balance_active"],
+        ["$gpu_max_freq", "#14"]
       ],
       "app": [
-        ["@preset", "comm_app"],
-        ["$gpu_max_freq", "#22"]
+        ["@preset", "comm_app"]
       ],
       "game": [
         ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000 1500000:2133000 1400000:1866000"],
         ["@preset", "comm_gaming"],
-        ["@preset", "freq_middle"],
-        ["$gpu_max_freq", "#14"]
+        ["@preset", "freq_middle"]
       ]
     },
     "performance": {

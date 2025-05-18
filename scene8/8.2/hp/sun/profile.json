@@ -118,7 +118,7 @@
 
       "powersave_active": [
         ["@preset", "common_active"],
-        ["@values", "min_freq", "^748800", "^1017600"],
+        ["@values", "min_freq", "556800", "^1017600"],
         ["@target_loads",
           "80 1152000:85 1555200:90",
           "80 1401600:85 1958400:90"],
@@ -152,7 +152,7 @@
 
       "performance_active": [
         ["@preset", "common_active"],
-        ["@values", "min_freq", "960000", "1017600"],
+        ["@values", "min_freq", "748800", "1017600"],
         ["@target_loads",
           "80 1996800:85 2400000:95",
           "80 2246400:85 2841600:90 3283200:95"],
@@ -168,7 +168,7 @@
 
       "fast_active": [
         ["@preset", "common_active"],
-        ["@values", "min_freq", "1152000", "1401600"],
+        ["@values", "min_freq", "960000", "1401600"],
         ["@target_loads",
           "78 1996800:83 2400000:87 2745600:95",
           "78 2246400:83 2841600:87 3513600:95"],

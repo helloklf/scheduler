@@ -25,8 +25,8 @@
         "duration": 2000,
         "idle_delay": 1000,
         "enter": [
-          ["@limiters", "NONE"],
-          ["@preset", "balance_active"]
+          ["@preset", "balance_active"],
+          ["@limiters", "p2:cpu0", "p2:cpu6"]
         ],
         "exit": [
           ["@preset", "balance_inactive"],
@@ -39,10 +39,12 @@
         "duration": 2500,
         "idle_delay": 1500,
         "enter": [
-          ["@preset", "performance_active"]
+          ["@preset", "performance_active"],
+          ["@limiters", "p3:cpu0", "p3:cpu6"]
         ],
         "exit": [
-          ["@preset", "performance_inactive"]
+          ["@preset", "performance_inactive"],
+          ["@limiters", "inactive:cpu0", "inactive:cpu6"]
         ]
       }
     }, {

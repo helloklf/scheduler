@@ -3,6 +3,23 @@
   "call": [
     ["@preset", "common_gaming"]
   ],
+  "limiters": [
+    { "id": "g1:cpu0", "mode": "performance", "max": 1555200, "min": 556800, "margin": 300, "excludes": [1] },
+    { "id": "g1:cpu3", "mode": "performance", "max": 1785600, "min": 614400, "margins": "300 1651200:200" },
+    { "id": "g1:cpu7", "mode": "performance", "max": 1977600, "min": 595200, "margins": "300 1708800: 200" },
+
+    { "id": "g2:cpu0", "mode": "performance", "max": 1555200, "min": 787200, "margin": 300 },
+    { "id": "g2:cpu3", "mode": "performance", "max": 2188800, "min": 614400, "margins": "300 2054400:200" },
+    { "id": "g2:cpu7", "mode": "performance", "max": 2476800, "min": 729600, "margins": "300 2092800:200" },
+
+    { "id": "g3:cpu0", "mode": "performance", "max": 1670400, "min": 787200, "margin": 300 },
+    { "id": "g3:cpu3", "mode": "performance", "max": 2457600, "min": 614400, "margins": "300 2323200:200" },
+    { "id": "g3:cpu7", "mode": "performance", "max": 2726400, "min": 729600, "margins": "300 2476800:200" },
+
+    { "id": "g4:cpu0", "mode": "performance", "max": 1804800, "min": 902400, "margin": 300 },
+    { "id": "g4:cpu3", "mode": "performance", "max": 2803200, "min": 729600, "margin": 300 },
+    { "id": "g4:cpu7", "mode": "performance", "max": 2995200, "min": 998400, "margin": 300 }
+  ],
   "modes": [
     {
       "mode": ["powersave"],
