@@ -45,6 +45,7 @@
     "reset": [
       ["@msm_reset"],
       ["@thermal_threshold", "99800"],
+      ["@governor", "schedutil"],
       ["@preset", "ufshc_perf_off", "bw_max"],
       ["$gpu_min_khz", "#0"]
     ],
@@ -217,6 +218,16 @@
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
+    {
+      "friendly": "腾讯游戏",
+      "packages": [
+        "com.tencent.lolm", "com.tencent.tmgp.sgame", "com.garena.game.kgtw",
+        "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig",
+        "com.tencent.tmgp.speedmobile", "com.garena.game.fctw",
+        "com.tencent.tmgp.gnyx"
+      ],
+      "import": "_Tencent.json"
+    },
     {
       "friendly": "All",
       "packages": ["*"],

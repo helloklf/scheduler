@@ -1,9 +1,9 @@
 {
   "friendly": "游戏",
   "limiters": [
-    { "id": "gboost:cpu0", "max": 1200000, "min":  800000, "turning": 1200000, "margin": 300, "mode": "bottom" },
-    { "id": "gboost:cpu4", "max": 2650000, "min": 1300000, "turning": 2450000, "margin": 500, "mode": "bottom" },
-    { "id": "gboost:cpu7", "max": 2800000, "min": 1300000, "turning": 2650000, "margin": 500, "mode": "bottom" }
+    { "id": "gboost:cpu0", "max": 1200000, "min":  800000, "margin": 300, "mode": "bottom" },
+    { "id": "gboost:cpu4", "max": 2650000, "min": 1300000, "margin": 500, "mode": "bottom" },
+    { "id": "gboost:cpu7", "max": 2800000, "min": 1300000, "margin": 500, "mode": "bottom" }
   ],
   "call": [
     ["@preset", "comm_gaming"]

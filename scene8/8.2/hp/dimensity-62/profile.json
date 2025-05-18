@@ -33,10 +33,10 @@
         { "id": "g2:cpu6", "max": 2450000, "min": 1000000, "margin": 420, "mode": "performance", "step": -1 },
 
         { "id": "g3:cpu0", "max": 2000000, "min": 1800000, "margin": 400, "mode": "upper", "step": -1 },
-        { "id": "g3:cpu6", "max": 2650000, "turning": 2450000, "min": 1400000, "margin": 430, "mode": "performance", "step": -1 },
+        { "id": "g3:cpu6", "max": 2650000, "min": 1400000, "margin": 430, "mode": "performance", "step": -1 },
 
         { "id": "g4:cpu0", "max": 2000000, "min": 1800000, "margin": 400, "mode": "upper", "step": -1 },
-        { "id": "g4:cpu6", "max": 3000000, "turning": 2650000, "min": 1400000, "margin": 450, "mode": "performance", "step": -1 },
+        { "id": "g4:cpu6", "max": 3000000, "min": 1400000, "margin": 450, "mode": "performance", "step": -1 },
 
 
         { "id": "inactive:cpu0", "max": 1800000, "min": 1000000, "margin": 200 },

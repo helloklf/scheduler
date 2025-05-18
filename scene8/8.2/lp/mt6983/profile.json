@@ -22,37 +22,37 @@
       "ddr_boost": true,
       "params": [
         { "id": "p1:cpu0", "step": -1, "max": 1400000, "min": 400000, "margin": 200, "excludes": [1] },
-        { "id": "p1:cpu4", "step": -1, "max": 2150000, "turning": 1600000, "min": 700000, "margin": 350 },
-        { "id": "p1:cpu7", "step": -1, "max": 2300000, "turning": 1600000, "min": 1300000, "margin": 350 },
+        { "id": "p1:cpu4", "step": -1, "max": 2150000, "min": 700000, "margin": 350 },
+        { "id": "p1:cpu7", "step": -1, "max": 2300000, "min": 1300000, "margin": 350 },
 
         { "id": "p2:cpu0", "max": 1500000, "min": 800000, "margin": 250 },
-        { "id": "p2:cpu4", "max": 2400000, "turning": 2100000, "min": 1600000, "margin": 300 },
-        { "id": "p2:cpu7", "max": 2450000, "turning": 2300000, "min": 1800000, "margin": 300 },
+        { "id": "p2:cpu4", "max": 2400000, "min": 1600000, "margin": 300 },
+        { "id": "p2:cpu7", "max": 2450000, "min": 1800000, "margin": 300 },
 
         { "id": "p3:cpu0", "max": 1600000, "min": 1400000, "margin": 270 },
-        { "id": "p3:cpu4", "max": 2650000, "turning": 2400000, "min": 1900000, "margin": 300 },
-        { "id": "p3:cpu7", "max": 2650000, "turning": 2450000, "min": 2100000, "margin": 300 },
+        { "id": "p3:cpu4", "max": 2650000, "min": 1900000, "margin": 300 },
+        { "id": "p3:cpu7", "max": 2650000, "min": 2100000, "margin": 300 },
 
         { "id": "p4:cpu0", "max": 1600000, "min": 1500000, "margin": 300 },
         { "id": "p4:cpu4", "max": 2650000, "min": 2450000, "margin": 300 },
         { "id": "p4:cpu7", "max": 2800000, "min": 2450000, "margin": 300 },
 
 
-        { "id": "g1:cpu0", "max": 1400000, "turning": 1000000, "min": 500000, "margin": 280, "step": -1 },
-        { "id": "g1:cpu4", "max": 2100000, "turning": 1800000, "min": 1300000, "margin": 230, "step": -1 },
-        { "id": "g1:cpu7", "max": 2100000, "turning": 1800000, "min": 1300000, "margin": 250, "step": -1 },
+        { "id": "g1:cpu0", "max": 1400000, "min": 500000, "margin": 280, "step": -1 },
+        { "id": "g1:cpu4", "max": 2100000, "min": 1300000, "margin": 230, "step": -1 },
+        { "id": "g1:cpu7", "max": 2100000, "min": 1300000, "margin": 250, "step": -1 },
 
-        { "id": "g2:cpu0", "max": 1500000, "turning": 1200000, "min": 800000,  "margin": 300, "step": -1 },
-        { "id": "g2:cpu4", "max": 2300000, "turning": 2300000, "min": 1700000, "margin": 300, "step": -1 },
-        { "id": "g2:cpu7", "max": 2450000, "turning": 2100000, "min": 1700000, "margin": 300, "step": -1 },
+        { "id": "g2:cpu0", "max": 1500000, "min": 800000,  "margin": 300, "step": -1 },
+        { "id": "g2:cpu4", "max": 2300000, "min": 1700000, "margin": 300, "step": -1 },
+        { "id": "g2:cpu7", "max": 2450000, "min": 1700000, "margin": 300, "step": -1 },
 
-        { "id": "g3:cpu0", "max": 1800000, "turning": 1600000, "min": 1000000, "margin": 300, "step": -1, "smoothness": 4 },
-        { "id": "g3:cpu4", "max": 2650000, "turning": 2450000, "min": 1900000, "margin": 350, "step": -1, "smoothness": 4 },
-        { "id": "g3:cpu7", "max": 2650000, "turning": 2400000, "min": 1900000, "margin": 350, "step": -1, "smoothness": 4 },
+        { "id": "g3:cpu0", "max": 1800000, "min": 1000000, "margin": 300, "step": -1, "smoothness": 4 },
+        { "id": "g3:cpu4", "max": 2650000, "min": 1900000, "margin": 350, "step": -1, "smoothness": 4 },
+        { "id": "g3:cpu7", "max": 2650000, "min": 1900000, "margin": 350, "step": -1, "smoothness": 4 },
 
-        { "id": "g4:cpu0", "max": 1800000, "turning": 1600000, "min": 1200000, "margin": 280, "step": -1, "smoothness": 6 },
-        { "id": "g4:cpu4", "max": 2850000, "turning": 2650000, "min": 2100000, "margin": 400, "step": -1, "smoothness": 6 },
-        { "id": "g4:cpu7", "max": 2800000, "turning": 2650000, "min": 2100000, "margin": 400, "step": -1, "smoothness": 6 },
+        { "id": "g4:cpu0", "max": 1800000, "min": 1200000, "margin": 280, "step": -1, "smoothness": 6 },
+        { "id": "g4:cpu4", "max": 2850000, "min": 2100000, "margin": 400, "step": -1, "smoothness": 6 },
+        { "id": "g4:cpu7", "max": 2800000, "min": 2100000, "margin": 400, "step": -1, "smoothness": 6 },
 
 
         { "id": "inactive:cpu0", "max": 1500000, "min": 400000, "margin": 80 },

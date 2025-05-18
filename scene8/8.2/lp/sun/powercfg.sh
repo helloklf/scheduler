@@ -37,8 +37,7 @@ hide_value() {
   fi
 }
 
-echo 2265600 3148800 2956800 3302400 > /proc/sys/walt/sched_fmax_cap
-for c in 0 2 5 7; do
+for c in 0 6; do
   lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_high_freq
   lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_low_freq
 done
@@ -116,6 +115,7 @@ if [[ -d /proc/mi_display ]]; then
       done
     fi
   done
+  am force-stop com.xiaomi.joyose
 fi
 
 # OnePlus

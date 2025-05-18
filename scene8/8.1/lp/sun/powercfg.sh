@@ -116,6 +116,7 @@ if [[ -d /proc/mi_display ]]; then
       done
     fi
   done
+  am force-stop com.xiaomi.joyose
 fi
 
 # OnePlus

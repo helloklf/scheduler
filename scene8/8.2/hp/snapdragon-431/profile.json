@@ -31,23 +31,23 @@
         { "id": "p4:cpu7", "max": 3000000, "min": 2550000, "margin": 200 },
 
 
-        { "id": "g0:cpu0", "step": -0.7, "max": 1600000, "turning": 1400000, "min": 800000, "margin": 200 },
-        { "id": "g0:cpu4", "step": -0.9, "max": 2000000, "turning": 1700000, "min": 600000, "margin": 300 },
-        { "id": "g0:cpu7", "step": -0.9, "max": 2000000, "turning": 1700000, "min": 700000, "margin": 300 },
+        { "id": "g0:cpu0", "step": -0.7, "max": 1600000, "min": 800000, "margin": 200 },
+        { "id": "g0:cpu4", "step": -0.9, "max": 2000000, "min": 600000, "margin": 300 },
+        { "id": "g0:cpu7", "step": -0.9, "max": 2000000, "min": 700000, "margin": 300 },
 
-        { "id": "g1:cpu0", "step": -0.7, "max": 1600000, "turning": 1500000, "min": 1100000, "margin": 200 },
-        { "id": "g1:cpu4", "step": -0.7, "max": 2200000, "turning": 1900000, "min": 800000, "margin": 300, "mode": "performance" },
-        { "id": "g1:cpu7", "step": -0.7, "max": 2300000, "turning": 1900000, "min": 800000, "margin": 300, "mode": "performance" },
+        { "id": "g1:cpu0", "step": -0.7, "max": 1600000, "min": 1100000, "margin": 200 },
+        { "id": "g1:cpu4", "step": -0.7, "max": 2200000, "min": 800000, "margin": 300, "mode": "performance" },
+        { "id": "g1:cpu7", "step": -0.7, "max": 2300000, "min": 800000, "margin": 300, "mode": "performance" },
 
-        { "id": "g2:cpu0", "step": -0.7, "max": 1800000, "turning": 1500000, "min": 1100000, "margin": 250 },
-        { "id": "g2:cpu4", "step": -0.7, "max": 2500000, "turning": 2150000, "min": 1100000, "margin": 300, "mode": "performance" },
-        { "id": "g2:cpu7", "step": -0.5, "max": 2500000, "turning": 2150000, "min": 1100000, "margin": 300, "mode": "performance" },
+        { "id": "g2:cpu0", "step": -0.7, "max": 1800000, "min": 1100000, "margin": 250 },
+        { "id": "g2:cpu4", "step": -0.7, "max": 2500000, "min": 1100000, "margin": 300, "mode": "performance" },
+        { "id": "g2:cpu7", "step": -0.5, "max": 2500000, "min": 1100000, "margin": 300, "mode": "performance" },
 
-        { "id": "g3:cpu0", "max": 2000000, "turning": 1750000, "min": 1500000, "margin": 250 },
-        { "id": "g3:cpu4", "max": 2750000, "turning": 2500000, "min": 2100000, "margin": 300 },
-        { "id": "g3:cpu7", "max": 2850000, "turning": 2500000, "min": 2100000, "margin": 300 },
+        { "id": "g3:cpu0", "max": 2000000, "min": 1500000, "margin": 250 },
+        { "id": "g3:cpu4", "max": 2750000, "min": 2100000, "margin": 300 },
+        { "id": "g3:cpu7", "max": 2850000, "min": 2100000, "margin": 300 },
 
-        { "id": "g4:cpu7", "turning": 3000000, "min": 2700000, "margin": 300 },
+        { "id": "g4:cpu7", "min": 2700000, "margin": 300 },
 
 
         { "id": "inactive:cpu0", "max": 1600000, "min": 600000, "margin": 120 },

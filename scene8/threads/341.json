@@ -69,10 +69,9 @@
     "friendly": "PUBG(UE4)",
     "packages": ["com.pubg.imobile", "com.pubg.krmobile"],
     "cpuset": {
-      "heavy_thread": "Thread-",
-      "heavy_cores": "7",
       "comm": {
-        "3-6": ["RenderThread", "TaskGraph", "MainThread", "NativeThread"]
+        "7": ["UEGameThread"],
+        "3-6": ["RenderThread", "MainThread", "TaskGraph", "NativeThread"]
       },
       "other": "0-6"
     }
@@ -85,8 +84,8 @@
       "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "6",
       "comm": {
-      "3-7": "IL2CPP",
-      "3-5": ["Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
+        "3-7": "IL2CPP",
+        "3-5": ["UnityGfxRender", "Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
       },
       "other": "3-5"
     }

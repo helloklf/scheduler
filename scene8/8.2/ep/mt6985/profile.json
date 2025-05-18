@@ -23,17 +23,17 @@
     "limiter": {
       "ddr_boost": false,
       "params": [
-        { "id": "p1:cpu0", "max": 1700000, "turning": 1500000, "min": 1000000, "margin": 300 },
-        { "id": "p1:cpu4", "max": 2300000, "turning": 2100000, "min": 1800000, "margin": 300 },
-        { "id": "p1:cpu7", "max": 2300000, "turning": 2100000, "min": 1800000, "margin": 300 },
+        { "id": "p1:cpu0", "max": 1700000, "min": 1000000, "margin": 300 },
+        { "id": "p1:cpu4", "max": 2300000, "min": 1800000, "margin": 300 },
+        { "id": "p1:cpu7", "max": 2300000, "min": 1800000, "margin": 300 },
 
-        { "id": "p2:cpu0", "max": 1700000, "turning": 1500000, "min": 1200000, "margin": 300 },
-        { "id": "p2:cpu4", "max": 2650000, "turning": 2300000, "min": 2100000, "margin": 300 },
-        { "id": "p2:cpu7", "max": 2650000, "turning": 2300000, "min": 2100000, "margin": 300 },
+        { "id": "p2:cpu0", "max": 1700000, "min": 1200000, "margin": 300 },
+        { "id": "p2:cpu4", "max": 2650000, "min": 2100000, "margin": 300 },
+        { "id": "p2:cpu7", "max": 2650000, "min": 2100000, "margin": 300 },
 
-        { "id": "p3:cpu0", "max": 1800000, "turning": 1600000, "min": 1400000, "margin": 300 },
+        { "id": "p3:cpu0", "max": 1800000, "min": 1400000, "margin": 300 },
         { "id": "p3:cpu4", "max": 2600000, "min": 2400000, "margin": 300 },
-        { "id": "p3:cpu7", "max": 2800000, "turning": 2600000, "min": 2400000, "margin": 300 },
+        { "id": "p3:cpu7", "max": 2800000, "min": 2400000, "margin": 300 },
 
         { "id": "p4:cpu0", "max": 2000000, "min": 1500000, "margin": 300 },
         { "id": "p4:cpu4", "max": 2850000, "min": 2650000, "margin": 300 },

@@ -37,8 +37,7 @@ hide_value() {
   fi
 }
 
-echo 2265600 3148800 2956800 3302400 > /proc/sys/walt/sched_fmax_cap
-for c in 0 2 5 7; do
+for c in 0 6; do
   lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_high_freq
   lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_low_freq
 done
@@ -72,6 +71,9 @@ echo 55 55 > /sys/devices/system/cpu/cpu6/core_ctl/busy_down_thres
 echo 24 > /sys/devices/system/cpu/cpu6/core_ctl/offline_delay_ms
 pgrep kswapd0 > /dev/cpuset/top-app/tasks
 
+c_min(){
+  echo $(cat /sys/devices/system/cpu/cpufreq/policy*/cpuinfo_min_freq)
+}
 # Xiaomi
 if [[ -d /proc/mi_display ]]; then
   for dir in /sys/module/migt/parameters /sys/module/metis/parameters /proc/sys/migt /sys/class/misc/migt;do
@@ -88,17 +90,17 @@ if [[ -d /proc/mi_display ]]; then
             lock_value '0,0,0' $dir/$file
           ;;
           glk_minfreq)
-            lock_value "$(c_min 0) $(c_min 4) $(c_min 7)" $dir/$file
+            lock_value "$(c_min)" $dir/$file
           ;;
           migt_ceiling_freq|migt_freq)
             lock_value '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' $dir/$file
           ;;
+          glk_fbreak_enable|force_cluster_sched_enable|glk_freq_limit_start|glk_freq_limit_walt|thermal_break_enable|is_break_enable|mi_freq_enable|force_stask_to_big|freq_break_enable)
+            lock_value 0 $dir/$file
+          ;;
           # 导致Xiaomi 15上日常会非常激进的使用大核
           mi_fboost_enable)
             set_value 1 $dir/$file
-          ;;
-          glk_fbreak_enable|force_cluster_sched_enable|glk_freq_limit_start|glk_freq_limit_walt|thermal_break_enable|is_break_enable|mi_freq_enable|force_stask_to_big|freq_break_enable)
-            lock_value 0 $dir/$file
           ;;
           render_prefer_cluster|vip_prefer_cluster|stask_prefer_cluster|ip_prefer_cluster)
             lock_value -1 $dir/$file
@@ -113,6 +115,7 @@ if [[ -d /proc/mi_display ]]; then
       done
     fi
   done
+  am force-stop com.xiaomi.joyose
 fi
 
 # OnePlus

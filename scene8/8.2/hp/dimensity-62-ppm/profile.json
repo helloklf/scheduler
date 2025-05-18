@@ -35,7 +35,7 @@
 
         { "id": "g1:cpu6", "max": 1900800, "min": 1478400, "margin": 350, "smoothness": 6 },
 
-        { "id": "g2:cpu6", "max": 2208000, "turning": 1900800, "min": 1478400, "margin": 400, "smoothness": 6 },
+        { "id": "g2:cpu6", "max": 2208000, "min": 1478400, "margin": 400, "smoothness": 6 },
 
         { "id": "g3:cpu6", "max": 1996800, "min": 1094400, "margin": 420, "mode": "BOTTOM", "smoothness": 6 },
 
