@@ -98,13 +98,13 @@
     "common_active": [
       ["@preset", "cpu7_on"],
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
-      ["/dev/cpuset/top-app/sf/cpus", "3-6"]
+      ["/dev/cpuset/sf/cpus", "3-6"]
     ],
     "common_inactive": [
       ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
       ["@values", "min_freq", "307200", "499200", "595200"],
       ["@values", "hispeed_load", "90", "90", "90"],
-      ["/dev/cpuset/top-app/sf/cpus", "0-6"],
+      ["/dev/cpuset/sf/cpus", "0-6"],
       ["$sched_boost", "#0"]
     ],
     "common_app": [

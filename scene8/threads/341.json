@@ -3,12 +3,18 @@
     "friendly": "鸣潮",
     "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
     "cpuset": {
-      "main_thread": "3-6",
+      "cgroup": {
+        "sf": "0-3,5-6",
+        "fg": "0-3,5-6",
+        "sys-bg": "0-3,5-6"
+      },
+      "main_thread": "3,5-6",
       "comm": {
         "7": ["GameThread"],
-        "3-6": ["TaskGraphHP", "NativeThread", "RenderThread", "AsyncLoading", "FChunk", "RHIThread"]
+        "4": ["RHIThread"],
+        "3,5-6": ["TaskGraphHP", "NativeThread", "RenderThread", "AsyncLoading", "FChunk"]
       },
-      "other": "0-6"
+      "other": "0-3,5-6"
     }
   },
   {
@@ -80,14 +86,19 @@
     "friendly": "QQ飞车",
     "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
     "cpuset": {
+      "cgroup": {
+        "sf": "0-3,5-6",
+        "fg": "0-3,5-6",
+        "sys-bg": "0-3,5-6"
+      },
       "unity_main": "7",
       "heavy_thread": "UnityGfx;Thread-",
-      "heavy_cores": "6",
+      "heavy_cores": "4",
       "comm": {
         "3-7": "IL2CPP",
-        "3-5": ["UnityGfxRender", "Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
+        "3,5-6": ["UnityGfxRender", "Job.Worker", "UnityChoreograp", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
       },
-      "other": "3-5"
+      "other": "3,5-6"
     }
   },
   {

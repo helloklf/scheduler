@@ -201,10 +201,10 @@ rmdir /dev/cpuset/foreground/boost
 mkdir /dev/cpuset/top-app/$cpus
 echo $cpus > /dev/cpuset/top-app/$cpus/cpus
 echo 0 > /dev/cpuset/top-app/$cpus/mems
-mkdir /dev/cpuset/top-app/sf
-echo $cpus > /dev/cpuset/top-app/sf/cpus
-echo 0 > /dev/cpuset/top-app/sf/mems
-set_cpuset surfaceflinger "top-app/sf"
+mkdir /dev/cpuset/sf
+echo $cpus > /dev/cpuset/sf/cpus
+echo 0 > /dev/cpuset/sf/mems
+set_cpuset surfaceflinger "sf"
 set_cpuset touch_report "foreground"
 set_cpuset system_server "foreground"
 set_cpuset update_engine "top-app/$cpus"

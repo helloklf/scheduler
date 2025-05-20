@@ -23,14 +23,14 @@
       "limiter": {
         "ddr_boost": false,
         "params": [
-          { "id": "p1:cpu0", "step": -1, "max": 1785600, "min": 748800,  "margins": "170 1152000:120", "core_ctl": true, "excludes": [0], "prefer": 1 },
-          { "id": "p1:cpu6", "step": -1, "max": 1958400, "min": 1017600, "margins": "200 1209600:130", "core_ctl": true },
+          { "id": "p1:cpu0","max": 1785600, "min": 748800,  "margins": "170 1152000:120", "core_ctl": true, "excludes": [0], "prefer": 1 },
+          { "id": "p1:cpu6","max": 1958400, "min": 1017600, "margins": "200 1209600:130", "core_ctl": true },
 
-          { "id": "p2:cpu0", "step": -1, "max": 1996800, "min": 960000,  "margins": "200 1555200:130 1785600:100", "excludes": [0] },
-          { "id": "p2:cpu6", "step": -1, "max": 2438400, "min": 1017600, "margins": "200 1689600:130 2246400:100" },
+          { "id": "p2:cpu0","max": 1996800, "min": 960000,  "margins": "200 1555200:130 1785600:100", "excludes": [0] },
+          { "id": "p2:cpu6","max": 2438400, "min": 1017600, "margins": "200 1689600:130 2246400:100" },
 
-          { "id": "p3:cpu0", "step": -1, "max": 2400000, "min": 1152000, "margins": "200 1785600:130 2227200:100", "excludes": [0] },
-          { "id": "p3:cpu6", "step": -1, "max": 2841600, "min": 1209600, "margins": "200 1958400:130 2438400:100" },
+          { "id": "p3:cpu0","max": 2400000, "min": 1152000, "margins": "200 1785600:130 2227200:100", "excludes": [0] },
+          { "id": "p3:cpu6","max": 2841600, "min": 1209600, "margins": "200 1958400:130 2438400:100" },
 
           { "id": "inactive:cpu0", "max": 1785600, "min": 556800,  "margins": "120 960000:90",  "core_ctl": true, "excludes": [0] },
           { "id": "inactive:cpu6", "max": 1958400, "min": 1017600, "margins": "120 1689600:90", "core_ctl": true },

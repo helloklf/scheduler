@@ -18,8 +18,8 @@
       "limiter": {
         "ddr_boost": false,
         "params": [
-          { "id": "p1:cpu0", "step": -1, "max": 2227200, "min": 748800, "margins": "200 1152000:130", "excludes": [0] },
-          { "id": "p1:cpu6", "step": -1, "max": 2400000, "min": 1017600, "margins": "200 1209600:130" },
+          { "id": "p1:cpu0","max": 2227200, "min": 748800, "margins": "200 1152000:130", "excludes": [0] },
+          { "id": "p1:cpu6","max": 2400000, "min": 1017600, "margins": "200 1209600:130" },
 
           { "id": "inactive:cpu0", "max": 2227200, "min": 556800, "margin": 120, "excludes": [0] },
           { "id": "inactive:cpu6", "max": 2400000, "min": 1017600, "margin": 120, "core_ctl": true },

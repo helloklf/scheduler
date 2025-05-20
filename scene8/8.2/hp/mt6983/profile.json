@@ -24,9 +24,9 @@
     "limiter": {
       "ddr_boost": true,
       "params": [
-        { "id": "p1:cpu0", "step": -0.7, "max": 1400000, "min": 500000, "margin": 250 },
-        { "id": "p1:cpu4", "step": -0.7, "max": 2150000, "min": 700000, "margin": 400 },
-        { "id": "p1:cpu7", "step": -0.7, "max": 2300000, "min": 1300000, "margin": 400 },
+        { "id": "p1:cpu0","max": 1400000, "min": 500000, "margin": 250 },
+        { "id": "p1:cpu4","max": 2150000, "min": 700000, "margin": 400 },
+        { "id": "p1:cpu7","max": 2300000, "min": 1300000, "margin": 400 },
 
         { "id": "p2:cpu0", "max": 1500000, "min": 1050000, "margin": 300 },
         { "id": "p2:cpu4", "max": 2400000, "min": 2050000, "margin": 400 },

@@ -12,9 +12,9 @@
     "limiter": {
       "logger": false,
       "params": [
-        { "id": "p1:cpu0", "step": -1, "max": 1555200, "min": 691200, "margin": 250 },
-        { "id": "p1:cpu4", "step": -0.7, "max": 2112000, "min": 768000, "margin": 270 },
-        { "id": "p1:cpu7", "step": -0.2, "max": 2246400, "min": 1171200, "margin": 250 },
+        { "id": "p1:cpu0", "max": 1555200, "min": 691200, "margin": 250 },
+        { "id": "p1:cpu4", "max": 2112000, "min": 768000, "margin": 270 },
+        { "id": "p1:cpu7", "max": 2246400, "min": 1171200, "margin": 250 },
 
         { "id": "idle:cpu0", "max": 1440000, "margin": 70 },
         { "id": "idle:cpu4", "max": 1555200, "margin": 70 },
@@ -56,41 +56,16 @@
 | :- | :- | :-: |
 | id | 格式为`**:[clusterExpr]`，必须在整套配置里保持不重名 | string |
 | mode | 工作模式 | string |
-| step | 连续升频时的跳频力度微调，范围 `-1 ~ 1` | float |
 | max | 最高频率限制(kHz)，0或不配置为不限制 | int |
 | min | 最低频率限制(kHz)，0或不配置为不限制 | int |
 | margin | 固定的余量(M Cycles) | int |
 | margins | margin的增强版，支持按频率段设置余量 | string |
 | perfect | 能效/功耗最佳平衡频率，默认是cluster支持的最高频率×0.8 | int |
-| turning | 拐点频率，当CPU频率高于此值，margin自动减半。如果使用margins配置余量，该参数不生效 | int |
 | smoothness | 频率平滑度，默认`4`，最小为`1` | int |
 | mt | 计算此cluster的负载时的多核负载权重, `0 ~ 100`，默认 `0` | int |
 | excludes | 计算负载时排除的cpu核心，例如: [2, 3] | []int |
 | prefer | 偏好，可配置为 `1`、`2`、`3`，默认`2` | int |
 
-
-#### 连续升频
-- 使用Limiter通常是为了减少CPU余量降低功耗
-- 因此经常把`margin`设置的非常小，这导致升频变得非常谨慎和缓慢
-- 为了解决这个问题，limiter在连续的上调频率时，会不断加大升频幅度
-- 跳频机制只会在用户操作手机或运行游戏，且频率低于`perfect`时生效，这对减少卡顿非常有用
-- `step`(**stepAdj**)参数在跳频过程的大致作用，可以通过一段假代码来描述
-
-  ```
-  nextFreq = currentFreq * loadRatio + margin
-  scale = 1 + ((连续升频次数 / 0.1) * (1 + stepAdj))
-  if gaming {
-    nextFreq = nextFreq * scale
-  } else {
-    nextFreq = nextFreq * scale * scale
-  }
-  ```
-
-  > 建议
-  - 从上面的代码就可以看出来，判定为`游戏`时跳频力度会有所收敛，
-  - 这是因为游戏的负载通常趋于稳定，减少跳频可以有效降低功耗，
-  - 有些游戏，甚至可以将`step`设置为`-1`来完全禁止跳频
-  - 但在平常多任务切换的使用中，限制跳频并且余量也很小的话就容易发生卡顿
 
 #### 频率平滑度
 - 有一种假设是，CPU在完成同样多计算任务时，使用相对稳定的中等频率，会比使用忽高忽低的频率更加节能
