@@ -1,0 +1,73 @@
+{
+  "friendly": "王者荣耀",
+  "call": [
+    ["@governor", "schedutil"]
+  ],
+  "limiters": [
+    {"id": "sgame1:cpu4","mode": "performance",
+      "max": 2649600, "min": 1056000, "margin": 240},
+
+    {"id": "sgame2:cpu4","mode": "performance",
+      "max": 2803200, "min": 1056000, "margin": 280, "smoothness": 8},
+
+    {"id": "sgame3:cpu4","mode": "performance",
+      "max": 2246400, "min": 1612800, "margin": 320, "smoothness": 8},
+
+    {"id": "sgame4:cpu4","mode": "performance",
+      "max": 2450000, "min": 1843200, "margin": 360, "smoothness": 10}
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "sgame1:cpu4"]
+      ],
+      "sensors": [{
+        "sensor": "fps",
+        "interval": 10000,
+        "props": ["$cpu_min_0", "$cpu_min_4",  "$cpu_max_0", "$cpu_max_4"],
+        "rules": [{
+          "threshold": [-1, 35],
+          "values": ["1420800", "1843200",    "1766400", "2649600"]
+        }, {
+          "threshold": [35, -1],
+          "values": ["1228800", "1612800",    "1766400", "2323200"]
+        }]
+      }]
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "sgame2:cpu4"]
+      ],
+      "sensors": [{
+        "sensor": "fps",
+        "interval": 10000,
+        "props": ["$cpu_min_0", "$cpu_min_4",  "$cpu_max_0", "$cpu_max_4"],
+        "rules": [{
+          "threshold": [-1, 35],
+          "values": ["1420800", "1843200",    "1766400", "2803200"]
+        }, {
+          "threshold": [35, -1],
+          "values": ["1228800", "1612800",    "1766400", "2476800"]
+        }]
+      }]
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1420800", "1766400"],
+        ["@cpu_freq", "cpu4", "1612800", "2803200"],
+        ["@limiters", "sgame3:cpu4"]
+      ]
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1420800", "1766400"],
+        ["@cpu_freq", "cpu4", "1612800", "2803200"],
+        ["@limiters", "sgame4:cpu4"]
+      ]
+    }
+  ]
+}

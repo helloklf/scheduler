@@ -1,0 +1,17 @@
+# /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
+# 614400 806400 902400 1094400 1228800 1363200 1555200 1651200 1804800
+
+# /sys/devices/system/cpu/cpu4/cpufreq/scaling_available_frequencies
+# 652800 940800 1132800 1382400 1555200 1651200 1804800 2054400 2208000 2361600
+
+# /sys/devices/system/cpu/cpu7/cpufreq/scaling_available_frequencies
+# 768000 940800 1094400 1286400 1401600 1612800 1766400 1977600 2169600 2361600 2400000
+
+# /sys/class/kgsl/kgsl-3d0/devfreq/available_frequencies
+# 443000000 285000000 230000000
+
+# /sys/devices/system/cpu/bus_dcvs/DDR/available_frequencies
+# 547000 768000 1017000 1353600 1555000 1708000 2092000
+
+# /sys/devices/system/cpu/bus_dcvs/L3/available_frequencies
+# 307200 537600 652800 748800 844800 979200 1056000 1209600 1344000 1612800 1670400

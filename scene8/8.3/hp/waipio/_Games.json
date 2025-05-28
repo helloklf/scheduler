@@ -1,0 +1,75 @@
+{
+  "friendly": "游戏",
+  "limiters": [
+    { "id": "g1:cpu0","max": 1689600, "min": 729600, "margin": 245, "smoothness": 8 },
+    { "id": "g1:cpu4","max": 1651200, "min": 883200, "margin": 245, "smoothness": 4 },
+    { "id": "g1:cpu7","max": 1728000, "min": 806400, "margin": 200, "smoothness": 4 },
+
+    { "id": "g2:cpu0","max": 1689600, "min": 960000, "margin": 265, "smoothness": 6 },
+    { "id": "g2:cpu4","max": 1881600, "min": 883200, "margin": 285, "smoothness": 4 },
+    { "id": "g2:cpu7","max": 1958400, "min": 940800, "margin": 225, "smoothness": 4 },
+
+    { "id": "g3:cpu0","max": 1689600, "min": 960000, "margin": 280, "smoothness": 8 },
+    { "id": "g3:cpu4","max": 1996800, "min": 883200, "margin": 300, "smoothness": 5 },
+    { "id": "g3:cpu7","max": 2169600, "min": 940800, "margin": 260, "smoothness": 5 },
+
+    { "id": "g4:cpu0","max": 1785600, "min": 1574400, "margin": 250, "smoothness": 8 },
+    { "id": "g4:cpu4","max": 2112000, "min": 1996800, "margin": 300, "smoothness": 5 },
+    { "id": "g4:cpu7","max": 2400000, "min": 2169600, "margin": 300, "smoothness": 5 }
+  ],
+  "call": [
+    ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@target_loads", "87 1574400:95", "87 1113600:90 1555200:97", "87 1286400:90 1766400:97"],
+        ["@values", "max_freq", "#1574400", "#1651200", "#1728000"],
+        ["@limiters", "g1:cpu0", "g1:cpu4", "g1:cpu7"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["1728000", "1651200"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@target_loads", "85 1574400:95 1689600:97", "85 1555200:90 1766400:97", "85 1766400:87 1996800:97"],
+        ["@values", "max_freq", "#1574400", "#1881600", "#1958400"],
+        ["@limiters", "g2:cpu0", "g2:cpu4", "g2:cpu7"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["1958400", "1766400"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@target_loads", "83 1574400:92 1689600:97", "83 1555200:87 1766400:93", "83 1728000:90 1958400:95"],
+        ["@values", "max_freq", "#1689600", "#1996800", "#2169600"],
+        ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "mode": "normal",
+        "freq": ["2169600", "1996800"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@target_loads", "83 1574400:92 1689600:97", "83 1766400:90 1996800:95", "83 1728000:87 2169600:95"],
+        ["@values", "max_freq", "#1689600", "#2112000", "#2400000"],
+        ["@limiters", "g4:cpu0", "g4:cpu4", "g4:cpu7"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "mode": "normal",
+        "freq": ["2400000", "2112000"]
+      }
+    }
+  ]
+}
