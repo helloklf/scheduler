@@ -6,12 +6,10 @@
       "duration": 3000,
       "idle_delay": 1700,
       "enter": [
-        ["@limiters", "p1:cpu0", "p1:cpu6"],
         ["@preset", "powersave_active"]
       ],
       "exit": [
-        ["@preset", "powersave_inactive"],
-        ["@limiters", "idle:cpu0", "idle:cpu6"]
+        ["@preset", "powersave_inactive"]
       ]
     }
   }, {
@@ -20,12 +18,10 @@
       "duration": 3000,
       "idle_delay": 1700,
       "enter": [
-        ["@limiters", "NONE"],
         ["@preset", "balance_active"]
       ],
       "exit": [
-        ["@preset", "balance_inactive"],
-        ["@limiters", "inactive:cpu0", "inactive:cpu6"]
+        ["@preset", "balance_inactive"]
       ]
     }
   }, {
