@@ -95,17 +95,17 @@ if [[ -d /proc/mi_display ]]; then
           migt_ceiling_freq|migt_freq)
             lock_value '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' $dir/$file
           ;;
-          glk_fbreak_enable|force_cluster_sched_enable|glk_freq_limit_start|glk_freq_limit_walt|thermal_break_enable|is_break_enable|mi_freq_enable|force_stask_to_big|freq_break_enable)
+          glk_fbreak_enable|force_cluster_sched_enable|glk_freq_limit_start|glk_freq_limit_walt|thermal_break_enable|is_break_enable|mi_freq_enable|force_stask_to_big|freq_break_enable|enable_pkg_monitor|flt_enable_other|flt_in_frame_enable|cluaff_control|override_schedboost_in_coldstart|metis_schlat_enable|limit_bgtask_sched)
             lock_value 0 $dir/$file
           ;;
           # 导致Xiaomi 15上日常会非常激进的使用大核
           mi_fboost_enable)
-            lock_value 0 $dir/$file
+            set_value 1 $dir/$file
           ;;
           render_prefer_cluster|vip_prefer_cluster|stask_prefer_cluster|ip_prefer_cluster)
             lock_value -1 $dir/$file
           ;;
-          glk_disable|affinity_only|force_reset_runtime|reset_clus_affinity_uidlist|reset_rebind_task)
+          glk_disable|affinity_only|force_reset_runtime|reset_clus_affinity_uidlist|reset_rebind_task|clean_user_group)
             lock_value 1 $dir/$file
           ;;
           game_minfreq_limit|game_maxfreq_limit)
@@ -115,6 +115,7 @@ if [[ -d /proc/mi_display ]]; then
       done
     fi
   done
+  chmod 444 /sys/module/metis/parameters
   am force-stop com.xiaomi.joyose
 fi
 
@@ -162,19 +163,4 @@ echo 1 > /proc/sys/walt/sched_pipeline_util_thres # default 400
 echo 1 > /proc/sys/walt/walt_low_latency_task_threshold # default 325
 echo '' > /proc/sys/walt/sched_lib_name # default libunity.so, libfb.so
 echo '' > /proc/sys/walt/sched_lib_task # default UnityMain
-
-kgsl(){
-  lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
-}
-kgsl thermal_pwrlevel 0
-kgsl max_pwrlevel 0
-kgsl max_clock_mhz 1199
-kgsl max_gpuclk 1199000000
-kgsl devfreq/max_freq 1199000000
-if [[ "$gpu_lock" != "0" ]]; then
-  pl_max=$(($(cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels)-1))
-  kgsl min_pwrlevel $pl_max
-  kgsl default_pwrlevel $pl_max
-  kgsl min_clock_mhz 0
-  kgsl devfreq/min_freq 0
-fi
+echo 1 > /proc/sys/walt/sched_disable_mvp_thres # default 3000

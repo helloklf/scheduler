@@ -163,6 +163,7 @@ if [[ $(getprop ro.product.model | grep -i Note) == '' ]]; then
   echo 1 > /proc/sys/walt/walt_low_latency_task_threshold # default 325
   echo '' > /proc/sys/walt/sched_lib_name # default libunity.so, libfb.so
   echo '' > /proc/sys/walt/sched_lib_task # default UnityMain
+  echo 1 > /proc/sys/walt/sched_disable_mvp_thres # default 3000
 fi
 
 for dir in /sys/devices/system/cpu/cpufreq/policy*;do
@@ -172,22 +173,6 @@ for dir in /sys/devices/system/cpu/cpufreq/policy*;do
   echo 4 > $dir/walt/target_load_shift
 done
 
-if [[ "$gpu_lock" != "0" ]]; then
-  kgsl(){
-    lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
-  }
-  pl_max=$(($(cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels)-1))
-  kgsl thermal_pwrlevel 0
-  kgsl min_pwrlevel $pl_max
-  kgsl max_pwrlevel 0
-  kgsl min_pwrlevel $pl_max
-  kgsl default_pwrlevel $pl_max
-  kgsl max_clock_mhz 999
-  kgsl max_gpuclk 999000000
-  kgsl min_clock_mhz 220 # 默认124易卡顿，且并不会更省电
-  kgsl devfreq/min_freq 0
-  kgsl devfreq/max_freq 999000000
-fi
 
 
 cpus=3-6

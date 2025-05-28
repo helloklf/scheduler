@@ -88,21 +88,6 @@ for dir in /sys/devices/system/cpu/cpufreq/policy*;do
   lock_value 0 $dir/walt/adaptive_low_freq
 done
 
-kgsl(){
-  lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
-}
-kgsl thermal_pwrlevel 0
-kgsl max_pwrlevel 0
-kgsl max_clock_mhz 1199
-kgsl max_gpuclk 1199000000
-kgsl devfreq/max_freq 1199000000
-if [[ "$gpu_lock" != "0" ]]; then
-  pl_max=$(($(cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels)-1))
-  kgsl min_pwrlevel $pl_max
-  kgsl default_pwrlevel $pl_max
-  kgsl min_clock_mhz 0
-  kgsl devfreq/min_freq 0
-fi
 
 cpus=3-6
 

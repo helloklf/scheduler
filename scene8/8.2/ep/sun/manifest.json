@@ -1,11 +1,11 @@
 {
   "version": "EP",
-  "versionCode": 20250309,
+  "versionCode": 20250525,
   "author": "SCENE8",
   "projectUrl": "http://vtools.omarea.com/",
   "features": {
     "strict": true,
-    "pedestal": false,
+    "pedestal": true,
     "reboot": false,
     "fas": false
   }

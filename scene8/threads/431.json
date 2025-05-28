@@ -69,6 +69,8 @@
     "friendly": "PUBG(UE4)",
     "packages": ["com.pubg.imobile", "com.pubg.krmobile"],
     "cpuset": {
+      "heavy_thread": "UEGameThread;Thread-",
+      "heavy_cores": "7",
       "comm": {
         "7": ["UEGameThread"],
         "6": ["RenderThread"],
@@ -187,6 +189,18 @@
       "main": "7",
       "render": "4-6",
       "other": "0-6"
+    }
+  },
+  {
+    "friendly": "卡拉彼卡",
+    "packages": ["com.idreamsky.klbqm"],
+    "cpuset": {
+      "heavy_thread": "Thread-",
+      "heavy_cores": "7",
+      "comm": {
+        "6":["Render"]
+      },
+      "other": "0-5"
     }
   }
 ]

@@ -185,6 +185,7 @@ echo 1 > /proc/sys/walt/sched_pipeline_util_thres # default 400
 echo 1 > /proc/sys/walt/walt_low_latency_task_threshold # default 325
 echo '' > /proc/sys/walt/sched_lib_name # default libunity.so, libfb.so
 echo '' > /proc/sys/walt/sched_lib_task # default UnityMain
+echo 1 > /proc/sys/walt/sched_disable_mvp_thres # default 3000
 
 for i in 4 5 6 7; do
   verify_or_set 1593600000 /sys/class/devfreq/18590100.qcom,cpu$i-cpu-l3-lat/max_freq
@@ -211,18 +212,3 @@ done
 echo -R 444 /sys/kernel/msm_performance/parameters
 
 
-kgsl(){
-  lock_value $2 /sys/class/kgsl/kgsl-3d0/$1
-}
-kgsl thermal_pwrlevel 0
-kgsl max_pwrlevel 0
-kgsl max_clock_mhz 999
-kgsl max_gpuclk 999000000
-kgsl devfreq/max_freq 999000000
-if [[ "$gpu_lock" != "0" ]]; then
-  pl_max=$(($(cat /sys/class/kgsl/kgsl-3d0/num_pwrlevels)-1))
-  kgsl min_pwrlevel $pl_max
-  kgsl default_pwrlevel $pl_max
-  kgsl min_clock_mhz 0
-  kgsl devfreq/min_freq 0
-fi
