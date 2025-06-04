@@ -6,7 +6,7 @@
     { "id": "dual_boost:cpu7", "max": 2800000, "min": 1300000, "margin": 450, "mode": "bottom" }
   ],
   "call": [
-    ["@preset", "comm_gaming"]
+    ["@preset", "common_gaming"]
   ],
   "modes": [
     {

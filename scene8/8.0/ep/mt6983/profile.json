@@ -108,11 +108,11 @@
       ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
       ["$sched_boost", "0"]
     ],
-    "comm_app": [
+    "common_app": [
       ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
       ["$gpu_freq", "#10"]
     ],
-    "comm_gaming": [
+    "common_gaming": [
       ["@preset", "common_actvie"],
       ["@limiters", "NONE"],
       ["$gpu_freq", "#0"],
@@ -178,7 +178,7 @@
         ["@preset", "reset"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["@preset", "powersave_active"]
       ]
     },
@@ -187,7 +187,7 @@
         ["@preset", "reset"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["@preset", "balance_active"]
       ]
     },
@@ -196,7 +196,7 @@
         ["@preset", "reset"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["@preset", "performance_active"]
       ]
     },
@@ -205,7 +205,7 @@
         ["@preset", "reset"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["@preset", "fast_active"]
       ]
     },
@@ -214,7 +214,7 @@
         ["@preset", "reset"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["@preset", "fast_active"]
       ]
     }

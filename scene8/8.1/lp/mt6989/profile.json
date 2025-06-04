@@ -57,7 +57,7 @@
     "reset": [
       ["@governor", "sugov_ext"],
       ["$perfmgr_enable", "0"],
-      ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", " 754000000"]
+      ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
@@ -76,12 +76,12 @@
     "common_inactive": [
       ["@values", "min_freq", "#300000", "#550000", "#600000"]
     ],
-    "comm_app": [
+    "common_app": [
       ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
       ["$gpu_max_freq", "#24"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "1"]
     ],
-    "comm_gaming": [
+    "common_gaming": [
       ["@limiters", "NONE"],
       ["@preset", "common_active"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
@@ -137,12 +137,12 @@
         ["@preset", "reset"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["@preset", "powersave_active"],
         ["$cpufreq", "#300000 1600000 550000 2400000 600000 2600000"]
       ],
       "game": [
-        ["@preset", "comm_gaming"]
+        ["@preset", "common_gaming"]
       ]
     },
     "balance": {
@@ -150,12 +150,12 @@
         ["@preset", "reset"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["@preset", "balance_active"],
         ["$cpufreq", "#300000 1600000 550000 2600000 600000 2800000"]
       ],
       "game": [
-        ["@preset", "comm_gaming"]
+        ["@preset", "common_gaming"]
       ]
     },
     "performance": {
@@ -163,12 +163,12 @@
         ["@preset", "reset"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["@preset", "performance_active"],
         ["$cpufreq", "#300000 1800000 550000 2600000 600000 3000000"]
       ],
       "game": [
-        ["@preset", "comm_gaming"]
+        ["@preset", "common_gaming"]
       ]
     },
     "fast": {
@@ -176,13 +176,13 @@
         ["@preset", "reset"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["@preset", "fast_active"],
         ["$cpufreq", "#300000 2000000 550000 2850000 600000 3250000"],
         ["$gpu_max_freq", "#10"]
       ],
       "game": [
-        ["@preset", "comm_gaming"]
+        ["@preset", "common_gaming"]
       ]
     }
   },

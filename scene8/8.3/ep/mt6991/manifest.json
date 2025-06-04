@@ -1,11 +1,12 @@
 {
-  "version": "EP",
-  "versionCode": 20250501,
+  "version": "EP(兼容性测试配置)",
+  "versionCode": 10042,
   "author": "SCENE8",
   "projectUrl": "http://vtools.omarea.com/",
   "features": {
     "strict": true,
-    "pedestal": true,
+    "pedestal": false,
+    "fas": true,
     "reboot": true
   }
 }

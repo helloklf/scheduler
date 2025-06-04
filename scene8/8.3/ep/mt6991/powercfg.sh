@@ -56,13 +56,13 @@ lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 
 # hide_value /proc/perfmgr/perf_ioctl
-mount mount --bind /proc/perfmgr/xgff_boost_ioctl /proc/perfmgr/perf_ioctl
+mount --bind /proc/perfmgr/fpsgo_lr_ioctl /proc/perfmgr/perf_ioctl
 
-# echo 0 300000 2000000 > /proc/cpudvfs/cpufreq_debug
-# echo 4 550000 2850000 > /proc/cpudvfs/cpufreq_debug
-# echo 7 600000 3250000 > /proc/cpudvfs/cpufreq_debug
-# lock_value '300000 2000000 550000 2850000 600000 3250000' /proc/powerhal_cpu_ctrl/perfserv_freq
-# lock_value '3000000 3350000' /sys/module/mtk_fpsgo/parameters/cpus_limit
+# echo 0 339000 2400000 > /proc/cpudvfs/cpufreq_debug
+# echo 4 622000 3300000 > /proc/cpudvfs/cpufreq_debug
+# echo 7 798000 3600000 > /proc/cpudvfs/cpufreq_debug
+# lock_value '339000 2400000 622000 3300000 798000 3600000' /proc/powerhal_cpu_ctrl/perfserv_freq
+# lock_value '3300000 3600000' /sys/module/mtk_fpsgo/parameters/cpus_limit
 # lock_value 1 /sys/module/mtk_fpsgo/parameters/better_perf
 
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
@@ -93,7 +93,7 @@ lock_value 0 /sys/module/metis/parameters/mi_freq_enable
 #   lock_value 0 $file
 # done
 
-chmod -R 444 /proc/perfmgr_powerhal
+# chmod -R 444 /proc/perfmgr_powerhal
 chmod 444 /proc/perfmgr/global_reclaim
 
 metis=/sys/module/metis/parameters
@@ -147,8 +147,73 @@ if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; th
   # rmmod mtk_gpu_power_throttling
   # rmmod mtk_cpu_power_throttling
   # rmmod mtk_md_power_throttling
-  if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
-    lock_value "MAX_TTJ 95000 90000 90000" /sys/kernel/thermal/max_ttj
-    lock_value "TTJ 90000 90000 90000" /sys/kernel/thermal/ttj
-  fi
 fi
+if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
+  lock_value "MAX_TTJ 95000 90000 90000" /sys/kernel/thermal/max_ttj
+  lock_value "TTJ 90000 90000 90000" /sys/kernel/thermal/ttj
+fi
+
+
+lock_value 1 /proc/game_opt/disable_cpufreq_limit
+lock_value 1 /sys/module/migt/parameters/glk_disable
+lock_value 0 /sys/module/perfmgr/parameters/perfmgr_enable
+lock_value 0 /sys/module/migt/parameters/glk_freq_limit_walt
+lock_value 0 /sys/module/cpufreq_bouncing/parameters/enable
+lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
+lock_value 0 /proc/task_overload/skip_goplus_enabled
+stop vendor.oplus.ormsHalService-aidl-default
+
+# set_slc [cpu%] [gpu%]
+set_slc_force_ratio(){
+  chmod 777 /proc/oplus_slc/force_ratio
+  echo 1,$1 > /proc/oplus_slc/force_ratio # cpu
+  echo 2,$2 > /proc/oplus_slc/force_ratio # gpu
+  chmod 444 /proc/oplus_slc/force_ratio
+}
+
+set_cpuset(){
+  pgrep -f $1 | while read pid; do
+    echo $pid > /dev/cpuset/$2/cgroup.procs
+    ls /proc/$pid/task | while read tid
+    do
+      echo $tid > /dev/cpuset/$2/tasks
+    done
+  done
+}
+
+mkdir /dev/cpuset/top-app/7
+echo 7 > /dev/cpuset/top-app/7/cpus
+echo 0 > /dev/cpuset/top-app/7/mems
+
+set_cpuset touch_report 'foreground'
+set_cpuset surfaceflinger 'foreground'
+set_cpuset system_server 'foreground'
+set_cpuset update_engine 'top-app/7'
+set_cpuset vendor.qti.hardware.display.composer-service 'foreground'
+
+for file in ls /sys/kernel/fpsgo/fbt/*limit*
+do
+  lock_value 0 $file
+done
+
+stop_services(){
+  services="magt fpsgo ged oiface midasd frs uart_launcher touch_boost oplus_sched oplus_sched_rename"
+  for service in $services; do
+    stop $service
+    killall $service
+  done
+}
+# stop_services
+
+gpu_ulimit(){
+  # release gpu 1.6ghz
+  for i in $(seq 0 9); do
+    echo "switch $i 0 0" > /proc/gpufreq/limit_table
+  done
+  # gpt index temp opp
+  echo "enable" > /sys/kernel/thermal/gpt
+  echo "gpt 1 85000 7" > /sys/kernel/thermal/gpt
+  echo "gpt 2 90000 12" > /sys/kernel/thermal/gpt
+  echo "disable" > /sys/kernel/thermal/gpt
+}
+gpu_ulimit

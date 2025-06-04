@@ -32,9 +32,9 @@
     "reset": [
       ["@governor", "sugov_ext"],
       ["$perfmgr_enable", "#0"],
-      ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", " 754000000"],
-      ["$cpus_limit", "#2850000 3350000"],
-      ["$cpufreq", "#300000 2000000 550000 2850000 600000 3250000"]
+      ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"],
+      ["$cpus_limit", "#3300000 3600000"],
+      ["$cpufreq", "#339000 2400000 622000 3300000 798000 3600000"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
@@ -50,16 +50,11 @@
       ["/sys/devices/system/cpu/cpufreq/policy7/sugov_ext/down_rate_limit_us"],
       ["/sys/devices/system/cpu/cpufreq/policy7/sugov_ext/up_rate_limit_us"]
     ],
-    "target_loads": [
-      ["/sys/devices/system/cpu/sched_ctl/sched_turn_point_freq", "0 1500000|1 1700000|2 1700000"],
-      ["/sys/devices/system/cpu/sched_ctl/sched_target_margin", "0 20|1 20|2 20"],
-      ["/sys/devices/system/cpu/sched_ctl/sched_target_margin_low", "0 20|1 20|2 20"]
-    ],
     "common_inactive": [
-      ["@values", "min_freq", "300000", "550000", "600000"],
+      ["@values", "min_freq", "339000", "622000", "798000"],
       ["$uclamp_boost", "0"]
     ],
-    "comm_app": [
+    "common_app": [
       ["@values", "latency", "1000", "0", "1000", "0", "1000", "0"],
       ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
       ["$gpu_max_freq", "#24"],
@@ -68,19 +63,29 @@
       ["/sys/module/mtk_fpsgo/parameters/better_perf", "0"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "1"]
     ],
-    "comm_gaming": [
+    "common_gaming": [
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
       ["@limiters", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["@gesture", "PAUSE"],
-      ["$gpu_max_freq", "#9"],
+      ["$gpu_max_freq", "#7"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "#0"],
       ["$uclamp_boost", "0"]
+    ],
+    "limiter_off": [
+      ["/proc/game_opt/disable_cpufreq_limit", "#1"],
+      ["/sys/module/migt/parameters/glk_disable", "#1"],
+      ["/sys/module/perfmgr/parameters/perfmgr_enable", "#0"],
+      ["/sys/module/migt/parameters/glk_freq_limit_walt", "#0"]
+    ],
+    "limiter_on": [
+      ["/proc/game_opt/disable_cpufreq_limit", "0"],
+      ["/sys/module/migt/parameters/glk_disable", "0"]
     ],
 
     "powersave_active": [
       ["@preset", "common_active"],
-      ["@values", "min_freq", "^500000", "^600000", "^600000"],
+      ["@values", "min_freq", "^500000", "^600000", "^798000"],
       ["$uclamp_boost", "20"]
     ],
     "powersave_inactive": [
@@ -118,75 +123,50 @@
         ["@preset", "powersave_active"]
       ],
       "app": [
-        ["@values", "max_freq", "1600000", "1900000", "2300000"],
-        ["@preset", "comm_app"],
-        ["@values", "target_loads",
-          "0 1000000|1 1200000|2 1700000",
-          "0 20|1 20|2 20",
-          "0 17|1 17|2 17"
-        ]
+        ["@values", "max_freq", "1800000", "2100000", "2400000"],
+        ["@preset", "common_app"]
       ]
     },
     "balance": {
       "call": [
         ["@preset", "reset"],
-        ["@values", "max_freq", "#1700000", "#2100000", "#2700000"],
+        ["@values", "max_freq", "#1800000", "#2400000", "#2800000"],
         ["@preset", "balance_active"]
       ],
       "app": [
-        ["@preset", "comm_app"],
-        ["@values", "target_loads",
-          "0 1200000|1 1700000|2 1700000",
-          "0 25|1 25|2 25",
-          "0 20|1 20|2 20"
-        ]
+        ["@preset", "common_app"]
       ]
     },
     "performance": {
       "call": [
         ["@preset", "reset"],
-        ["@values", "max_freq", "#1700000", "#2400000", "#3000000"],
+        ["@values", "max_freq", "#2000000", "#2600000", "#3000000"],
         ["@preset", "performance_active"]
       ],
       "app": [
-        ["@preset", "comm_app"],
-        ["@values", "target_loads",
-          "0 1500000|1 2100000|2 2100000",
-          "0 25|1 25|2 25",
-          "0 20|1 20|2 20"
-        ]
+        ["@preset", "common_app"]
       ]
     },
     "fast": {
       "call": [
         ["@preset", "reset"],
-        ["@values", "max_freq", "#2000000", "#2600000", "#3250000"],
+        ["@values", "max_freq", "#2200000", "#3000000", "#3300000"],
         ["@preset", "fast_active"]
       ],
       "app": [
-        ["@preset", "comm_app"],
-        ["@values", "target_loads",
-          "0 1500000|1 2100000|2 2100000",
-          "0 25|1 25|2 25",
-          "0 20|1 20|2 20"
-        ],
+        ["@preset", "common_app"],
         ["$gpu_max_freq", "#10"]
       ]
     },
     "pedestal": {
       "call": [
         ["@preset", "reset"],
-        ["@values", "max_freq", "#2000000", "#2600000", "#3250000"],
+        ["@values", "max_freq", "#2400000", "#3300000", "#3600000"],
         ["@preset", "fast_active"]
       ],
       "app": [
-        ["@preset", "comm_app"],
-        ["@values", "target_loads",
-          "0 1500000|1 2100000|2 2100000",
-          "0 30|1 30|2 30",
-          "0 25|1 25|2 25"
-        ],
-        ["$gpu_max_freq", "#5"]
+        ["@preset", "common_app"],
+        ["$gpu_max_freq", "#7"]
       ]
     }
   },

@@ -56,7 +56,7 @@
     "reset": [
       ["@governor", "sugov_ext"],
       ["$perfmgr_enable", "#0"],
-      ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", " 754000000"],
+      ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"],
       ["$cpus_limit", "#2850000 3350000"],
       ["$cpufreq", "#300000 2000000 550000 2850000 600000 3250000"]
     ],
@@ -83,7 +83,7 @@
       ["@values", "min_freq", "300000", "550000", "600000"],
       ["$uclamp_boost", "0"]
     ],
-    "comm_app": [
+    "common_app": [
       ["@values", "latency", "1000", "0", "1000", "0", "1000", "0"],
       ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
       ["$gpu_max_freq", "#24"],
@@ -97,7 +97,7 @@
         "0 12|1 20|2 20"
       ]
     ],
-    "comm_gaming": [
+    "common_gaming": [
       ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],
       ["@limiters", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
@@ -155,7 +155,7 @@
         ["@preset", "powersave_active"]
       ],
       "app": [
-        ["@preset", "comm_app"]
+        ["@preset", "common_app"]
       ]
     },
     "balance": {
@@ -164,7 +164,7 @@
         ["@preset", "balance_active"]
       ],
       "app": [
-        ["@preset", "comm_app"]
+        ["@preset", "common_app"]
       ]
     },
     "performance": {
@@ -173,7 +173,7 @@
         ["@preset", "performance_active"]
       ],
       "app": [
-        ["@preset", "comm_app"]
+        ["@preset", "common_app"]
       ]
     },
     "fast": {
@@ -182,7 +182,7 @@
         ["@preset", "fast_active"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["$gpu_max_freq", "#10"]
       ]
     },
@@ -192,7 +192,7 @@
         ["@preset", "fast_active"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["$gpu_max_freq", "#5"]
       ]
     }

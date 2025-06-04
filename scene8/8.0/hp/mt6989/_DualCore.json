@@ -1,7 +1,7 @@
 {
   "friendly": "游戏(Games)",
   "call": [
-    ["@preset", "comm_gaming"],
+    ["@preset", "common_gaming"],
     ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_perf_mode_ceiling_opp 2"],
     ["/sys/module/mtk_fpsgo/parameters/p_perf", "1"],
     ["/sys/module/mtk_fpsgo/parameters/better_perf", "1"],
@@ -45,7 +45,7 @@
     {
       "mode": ["performance"],
       "call": [
-        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling -3"],
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling -1"],
         ["@values", "max_freq", "1700000", "2600000", "2600000"],
         ["@values", "min_freq", "800000", "900000", "900000"],
         ["@values", "target_loads",

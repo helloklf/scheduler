@@ -55,7 +55,7 @@ lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 # hide_value /proc/perfmgr/perf_ioctl
-mount mount --bind /proc/perfmgr/xgff_boost_ioctl /proc/perfmgr/perf_ioctl
+mount --bind /proc/perfmgr/xgff_boost_ioctl /proc/perfmgr/perf_ioctl
 
 # echo 0 300000 2000000 > /proc/cpudvfs/cpufreq_debug
 # echo 4 550000 2850000 > /proc/cpudvfs/cpufreq_debug
@@ -144,3 +144,5 @@ if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; th
     lock_value "TTJ 90000 90000 90000" /sys/kernel/thermal/ttj
   fi
 fi
+
+lock_value 0 /sys/module/cpufreq_bouncing/parameters/enable

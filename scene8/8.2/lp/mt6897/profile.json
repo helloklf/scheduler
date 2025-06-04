@@ -100,13 +100,13 @@
       ["@values", "min_freq", "480000", "400000", "400000"],
       ["$ddr_freq_min", "800000000"]
     ],
-    "comm_app": [
+    "common_app": [
       ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
       ["@preset", "freq_extreme"],
       ["$cpufreq", "0 480000 2000000|4 400000 2850000|7 400000 3000000"],
       ["/sys/kernel/fpsgo/fbt/boost_ta", "0"]
     ],
-    "comm_gaming": [
+    "common_gaming": [
       ["@limiters", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["/sys/kernel/fpsgo/fbt/boost_ta", "1"]
@@ -179,11 +179,11 @@
         ["$gpu_max_freq", "#14"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["$gpu_max_freq", "#31"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
+        ["@preset", "common_gaming"],
         ["@preset", "freq_low"],
         ["$gpu_max_freq", "#31"]
       ]
@@ -194,11 +194,11 @@
         ["@preset", "balance_active"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["$gpu_max_freq", "#31"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
+        ["@preset", "common_gaming"],
         ["@preset", "freq_middle"],
         ["$gpu_max_freq", "#13"]
       ]
@@ -209,11 +209,11 @@
         ["@preset", "performance_active"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["$gpu_max_freq", "#13"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
+        ["@preset", "common_gaming"],
         ["@preset", "freq_high"],
         ["$gpu_max_freq", "#0"]
       ]
@@ -224,11 +224,11 @@
         ["@preset", "fast_active"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["$gpu_max_freq", "#13"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
+        ["@preset", "common_gaming"],
         ["@preset", "freq_extreme"],
         ["$gpu_max_freq", "#0"]
       ]

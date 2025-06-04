@@ -110,11 +110,11 @@
       ["@cpuset", "0-3", "0-3", "0-6", "0-7"],
       ["@uclamp", "0.00~max", "0.00~max", "0.00~max"]
     ],
-    "comm_app": [
+    "common_app": [
       ["$gpu_max_khz", "#540000000"],
       ["$mod_percent", "100"]
     ],
-    "comm_gaming": [
+    "common_gaming": [
       ["@limiters", "NONE"],
       ["@uclamp", "0.00~max", "0.00~max", "1.00~max"],
       ["@cpuset", "0-2", "1-3", "0-5", "0-7"],
@@ -189,7 +189,7 @@
       ],
       "game": [
         ["@preset", "bw_low"],
-        ["@preset", "comm_gaming"],
+        ["@preset", "common_gaming"],
         ["@cpu_freq", "cpu0", "1209600", "1804800"],
         ["@cpu_freq", "cpu4", "710400", "1766400"],
         ["@cpu_freq", "cpu7", "844800", "1900800"],
@@ -209,7 +209,7 @@
         ["@preset", "common_app"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
+        ["@preset", "common_gaming"],
         ["@cpu_freq", "cpu0", "1209600", "1804800"],
         ["@cpu_freq", "cpu4", "844800", "1996800"],
         ["@cpu_freq", "cpu7", "844800", "2265600"],
@@ -229,7 +229,7 @@
         ["@preset", "common_app"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
+        ["@preset", "common_gaming"],
         ["@cpu_freq", "cpu0", "1305600", "1804800"],
         ["@cpu_freq", "cpu4", "960000", "2227200"],
         ["@cpu_freq", "cpu7", "844800", "2496000"],
@@ -248,7 +248,7 @@
         ["@preset", "bw_normal"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
+        ["@preset", "common_gaming"],
         ["@cpu_freq", "cpu0", "1401600", "1804800"],
         ["@cpu_freq", "cpu4", "1209600", "2419200"],
         ["@cpu_freq", "cpu7", "1075200", "2841600"],

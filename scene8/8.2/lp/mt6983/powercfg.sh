@@ -150,7 +150,7 @@ hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
 hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
 # lock_value /sys/kernel/ged/hal/fastdvfs_mode 0
 hide_value /sys/kernel/fpsgo/fbt/enable_ceiling 0
-lock_value /sys/module/cpufreq_bouncing/parameters/enable 0
+lock_value 0 /sys/module/cpufreq_bouncing/parameters/enable
 
 # FEAS dependence, But it will not work if you change the frequency, So disable it
 # hide_value /sys/module/mtk_fpsgo/parameters/perfmgr_enable 0

@@ -116,12 +116,12 @@
       ["$gpu_min_opp", "99"],
       ["@uclamp", "0.00~5.00", "0.00~max", "0.0~max"]
     ],
-    "comm_app": [
+    "common_app": [
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 0|cm_mgr_perf_enable 0|dsu_mode 0"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#18"],
       ["@cpuset", "0-3", "0-6", "0-7", "0-7"]
     ],
-    "comm_gaming": [
+    "common_gaming": [
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode 1"],
       ["@limiters", "NONE"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#0"],
@@ -192,11 +192,11 @@
         ["@preset", "powersave_active"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["$gpu_freq", "#20"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
+        ["@preset", "common_gaming"],
         ["@values", "min_freq", "400000", "400000", "1300000"],
         ["@values", "max_freq", "#1500000", "#1900000", "#1900000"],
         ["$ddr_freq_min", "#1866000000"]
@@ -208,11 +208,11 @@
         ["@preset", "balance_active"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["$gpu_freq", "#15"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
+        ["@preset", "common_gaming"],
         ["@values", "min_freq", "700000", "700000", "1300000"],
         ["@values", "max_freq", "#1600000", "#2450000", "#2400000"],
         ["$ddr_freq_min", "#1866000000"]
@@ -224,11 +224,11 @@
         ["@preset", "performance_active"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["$gpu_freq", "#10"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
+        ["@preset", "common_gaming"],
         ["@values", "min_freq", "800000", "1000000", "1300000"],
         ["@values", "max_freq", "#1600000", "#2650000", "#2800000"]
       ]
@@ -239,11 +239,11 @@
         ["@preset", "fast_active"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["$gpu_freq", "#10"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
+        ["@preset", "common_gaming"],
         ["@values", "min_freq", "1000000", "1000000", "1300000"],
         ["@values", "max_freq", "#1800000", "#2850000", "#3000000"],
         ["$ddr_freq_min", "#2667000000"]

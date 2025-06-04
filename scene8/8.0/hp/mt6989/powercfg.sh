@@ -56,7 +56,7 @@ lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 
 # hide_value /proc/perfmgr/perf_ioctl
-mount mount --bind /proc/perfmgr/xgff_boost_ioctl /proc/perfmgr/perf_ioctl
+mount --bind /proc/perfmgr/xgff_boost_ioctl /proc/perfmgr/perf_ioctl
 
 # echo 0 300000 2000000 > /proc/cpudvfs/cpufreq_debug
 # echo 4 550000 2850000 > /proc/cpudvfs/cpufreq_debug

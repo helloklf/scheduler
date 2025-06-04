@@ -138,11 +138,11 @@
       ["@sched_limit", "0 0", "0 4000", "0 4000"],
       ["@values", "target_loads", "90", "90", "90"]
     ],
-    "comm_app": [
+    "common_app": [
       ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
       ["$l3_min", "0"]
     ],
-    "comm_gaming": [
+    "common_gaming": [
       ["@limiters", "NONE"],
       ["@repeat", "sched_config", "62 62", "70 70", "70", "80"],
       ["@values", "sched_boost", "1", "0", "0", "0"],
@@ -202,13 +202,13 @@
         ["@values", "hispeed_freq", "1612800", "1478400", "1632000"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["@values", "sched_boost", "1", "0", "0", "0"],
         ["@preset", "bw_max"],
         ["@values", "target_loads", "80", "80", "80"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
+        ["@preset", "common_gaming"],
         ["$l3_min", "#300000000"],
         ["@cpu_freq", "cpu0", "1248000", "1804800"],
         ["@cpu_freq", "cpu4", "825600", "1958400"],
@@ -224,13 +224,13 @@
         ["@values", "hispeed_freq", "1516800", "1574400", "1747200"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["@values", "sched_boost", "1", "0", "0", "0"],
         ["@preset", "bw_max"],
         ["@values", "target_loads", "75", "75", "75"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
+        ["@preset", "common_gaming"],
         ["$l3_min", "#1612800000"],
         ["@cpu_freq", "cpu0", "1344000", "1804800"],
         ["@cpu_freq", "cpu4", "1056000", "2246400"],
@@ -246,13 +246,13 @@
         ["@values", "hispeed_freq", "1612800", "1670400", "1747200"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["@values", "sched_boost", "1", "0", "1", "10"],
         ["@preset", "bw_max"],
         ["@values", "target_loads", "70", "70", "70"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
+        ["@preset", "common_gaming"],
         ["$l3_min", "#1612800000"],
         ["@cpu_freq", "cpu0", "1420800", "1804800"],
         ["@cpu_freq", "cpu4", "1382400", "2419200"],
@@ -268,13 +268,13 @@
         ["@values", "hispeed_freq", "1612800", "1766400", "1747200"]
       ],
       "app": [
-        ["@preset", "comm_app"],
+        ["@preset", "common_app"],
         ["@values", "sched_boost", "1", "0", "1", "10"],
         ["@preset", "bw_max"],
         ["@values", "target_loads", "65", "65", "65"]
       ],
       "game": [
-        ["@preset", "comm_gaming"],
+        ["@preset", "common_gaming"],
         ["$l3_min", "#1612800000"],
         ["@cpu_freq", "cpu0", "1420800", "1804800"],
         ["@cpu_freq", "cpu4", "1478400", "2419200"],
