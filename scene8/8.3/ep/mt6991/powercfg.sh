@@ -149,6 +149,7 @@ if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; th
   # rmmod mtk_md_power_throttling
 fi
 if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
+  lock_value "MIN_TTJ 90000 90000 90000" /sys/kernel/thermal/min_ttj
   lock_value "MAX_TTJ 95000 90000 90000" /sys/kernel/thermal/max_ttj
   lock_value "TTJ 90000 90000 90000" /sys/kernel/thermal/ttj
 fi

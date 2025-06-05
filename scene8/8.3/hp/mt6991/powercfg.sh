@@ -164,7 +164,6 @@ lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
 lock_value 0 /proc/task_overload/skip_goplus_enabled
 stop vendor.oplus.ormsHalService-aidl-default
 
-
 # set_slc [cpu%] [gpu%]
 set_slc_force_ratio(){
   chmod 777 /proc/oplus_slc/force_ratio
@@ -206,3 +205,16 @@ stop_services(){
   done
 }
 # stop_services
+
+gpu_ulimit(){
+  # release gpu 1.6ghz
+  for i in $(seq 0 9); do
+    echo "switch $i 0 0" > /proc/gpufreq/limit_table
+  done
+  # gpt index temp opp
+  echo "enable" > /sys/kernel/thermal/gpt
+  echo "gpt 1 80000 7" > /sys/kernel/thermal/gpt
+  echo "gpt 2 85000 12" > /sys/kernel/thermal/gpt
+  # echo "disable" > /sys/kernel/thermal/gpt
+}
+gpu_ulimit

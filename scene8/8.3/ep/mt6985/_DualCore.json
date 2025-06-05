@@ -2,28 +2,38 @@
   "friendly": "游戏(Games)",
   "limiters": [
     { "id": "g3:cpu0", "max": 1800000, "min": 1000000, "margin": 300, "mode": "bottom" },
-    { "id": "g3:cpu4", "max": 2850000, "min": 1600000, "margin": 350, "mode": "bottom" },
-    { "id": "g3:cpu7", "max": 2650000, "min": 1600000, "margin": 350, "mode": "bottom" },
+    { "id": "g3:cpu4", "max": 2600000, "min": 1500000, "margin": 350, "mode": "bottom" },
+    { "id": "g3:cpu7", "max": 2600000, "min": 1500000, "margin": 350, "mode": "bottom" },
 
-    { "id": "g4:cpu0", "max": 1800000, "min": 1000000, "margin": 250, "mode": "bottom" },
-    { "id": "g4:cpu4", "max": 2850000, "min": 1600000, "margin": 500, "mode": "bottom" },
-    { "id": "g4:cpu7", "max": 2650000, "min": 1600000, "margin": 500, "mode": "bottom" }
+    { "id": "g4:cpu0", "max": 1800000, "min": 1000000, "margin": 300, "mode": "bottom" },
+    { "id": "g4:cpu4", "max": 2600000, "min": 1600000, "margin": 400, "mode": "bottom" },
+    { "id": "g4:cpu7", "max": 2600000, "min": 1700000, "margin": 400, "mode": "bottom" }
   ],
   "modes": [
     {
       "mode": ["powersave"],
       "call": [
-        ["@cpu_freq", "cpu0", "400000", "1500000"],
-        ["@cpu_freq", "cpu4", "1000000", "2450000"],
-        ["@cpu_freq", "cpu7", "1300000", "2200000"]
+        ["@cpu_freq", "cpu0", "500000", "1500000"],
+        ["@cpu_freq", "cpu4", "900000", "2400000"],
+        ["@cpu_freq", "cpu7", "1200000", "2200000"],
+        ["@values", "target_loads",
+          "0 1200000|1 1500000|2 1500000",
+          "0 25|1 20|2 20",
+          "0 20|1 15|2 15"
+        ]
       ]
     },
     {
       "mode": ["balance"],
       "call": [
         ["@cpu_freq", "cpu0", "800000", "1600000"],
-        ["@cpu_freq", "cpu4", "1200000", "2650000"],
-        ["@cpu_freq", "cpu7", "1300000", "2450000"]
+        ["@cpu_freq", "cpu4", "1200000", "2600000"],
+        ["@cpu_freq", "cpu7", "1300000", "2500000"],
+        ["@values", "target_loads",
+          "0 1200000|1 1900000|2 1900000",
+          "0 25|1 20|2 20",
+          "0 20|1 15|2 15"
+        ]
       ]
     },
     {
@@ -31,7 +41,12 @@
       "call": [
         ["@cpu_freq", "cpu0", "1000000", "1800000"],
         ["@cpu_freq", "cpu4", "1500000", "2850000"],
-        ["@cpu_freq", "cpu7", "1600000", "2650000"]
+        ["@cpu_freq", "cpu7", "1600000", "2800000"],
+        ["@values", "target_loads",
+          "0 1200000|1 2300000|2 2300000",
+          "0 25|1 20|2 20",
+          "0 20|1 15|2 15"
+        ]
       ]
     },
     {
@@ -39,8 +54,29 @@
       "call": [
         ["@cpu_freq", "cpu0", "1000000", "1800000"],
         ["@cpu_freq", "cpu4", "1600000", "3000000"],
-        ["@cpu_freq", "cpu7", "1600000", "3000000"],
-        ["@limiters", "g4:cpu0", "g4:cpu4", "g4:cpu7"]
+        ["@cpu_freq", "cpu7", "1700000", "3000000"],
+        ["@limiters", "g4:cpu0", "g4:cpu4", "g4:cpu7"],
+        ["/sys/kernel/helio-dvfsrc/dvfsrc_qos_mode", "1"],
+        ["@values", "target_loads",
+          "0 1200000|1 2500000|2 2500000",
+          "0 25|1 20|2 20",
+          "0 15|1 15|2 15"
+        ]
+      ]
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@cpu_freq", "cpu0", "1000000", "2000000"],
+        ["@cpu_freq", "cpu4", "1600000", "3000000"],
+        ["@cpu_freq", "cpu7", "1700000", "3350000"],
+        ["@limiters", "g4:cpu0", "g4:cpu4", "g4:cpu7"],
+        ["/sys/kernel/helio-dvfsrc/dvfsrc_qos_mode", "1"],
+        ["@values", "target_loads",
+          "0 1200000|1 2500000|2 2500000",
+          "0 30|1 25|2 25",
+          "0 20|1 20|2 20"
+        ]
       ]
     }
   ]

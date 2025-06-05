@@ -69,29 +69,48 @@
     "max_freq": [
       ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
     ],
+    "latency": [
+      ["/sys/devices/system/cpu/cpufreq/policy0/sugov_ext/down_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy0/sugov_ext/up_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy4/sugov_ext/down_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy4/sugov_ext/up_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy7/sugov_ext/down_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy7/sugov_ext/up_rate_limit_us"]
+    ],
+    "target_loads": [
+      ["/sys/devices/system/cpu/sched_ctl/sched_turn_point_freq", "0 1500000|1 1700000|2 1700000"],
+      ["/sys/devices/system/cpu/sched_ctl/sched_target_margin_low", "0 20|1 20|2 20"],
+      ["/sys/devices/system/cpu/sched_ctl/sched_target_margin", "0 20|1 20|2 20"]
+    ],
     "common_active": [
     ],
     "common_inactive": [
-      ["@values", "min_freq", "200000", "400000", "1200000"]
+      ["@values", "min_freq", "220000", "400000", "1200000"]
     ],
     "common_app": [
       ["$ddr_map", "1700000:4100000 1600000:3094000 1500000:2133000 1400000:1600000"],
       ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
       ["$cpufreq", "0 220000 1900000|4 700000 2850000|7 1200000 3050000"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 0"],
-      ["$switch_idleprefer", "#1"]
+      ["$switch_idleprefer", "#1"],
+      ["/sys/kernel/helio-dvfsrc/dvfsrc_qos_mode", "0"]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 1"],
-      ["$switch_idleprefer", "#0"]
+      ["$switch_idleprefer", "#0"],
+        ["@values", "target_loads",
+          "0 1500000|1 1800000|2 1800000",
+          "0 22|1 22|2 22",
+          "0 18|1 18|2 18"
+        ]
     ],
 
     "powersave_active": [
       ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
       ["@preset", "common_active"],
-      ["@values", "min_freq", "400000", "700000", "1200000"]
+      ["@values", "min_freq", "500000", "700000", "1200000"]
     ],
     "powersave_inactive": [
       ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
@@ -153,10 +172,15 @@
         ["$gpu_max_freq", "#14"]
       ],
       "app": [
-        ["@preset", "common_app"]
+        ["@preset", "common_app"],
+        ["@values", "target_loads",
+          "0 1000000|1 1200000|2 1700000",
+          "0 20|1 20|2 20",
+          "0 17|1 17|2 17"
+        ]
       ],
       "game": [
-        ["$ddr_map", "2300000:6400000 2000000:5500000 1700000:4100000 1600000:3094000 1500000:2133000 1400000:1866000"],
+        ["$ddr_map", "2300000:6400000 2000000:5500000 1700000:4100000 1600000:3094000"],
         ["@preset", "common_gaming"],
         ["@preset", "freq_low"]
       ]
@@ -168,10 +192,15 @@
         ["$gpu_max_freq", "#14"]
       ],
       "app": [
-        ["@preset", "common_app"]
+        ["@preset", "common_app"],
+        ["@values", "target_loads",
+          "0 1200000|1 1700000|2 1700000",
+          "0 25|1 25|2 25",
+          "0 20|1 20|2 20"
+        ]
       ],
       "game": [
-        ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000 1500000:2133000 1400000:1866000"],
+        ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000"],
         ["@preset", "common_gaming"],
         ["@preset", "freq_middle"]
       ]
@@ -183,10 +212,15 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$gpu_max_freq", "#14"]
+        ["$gpu_max_freq", "#14"],
+        ["@values", "target_loads",
+          "0 1500000|1 2100000|2 2100000",
+          "0 25|1 25|2 25",
+          "0 20|1 20|2 20"
+        ]
       ],
       "game": [
-        ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000 1500000:2133000 1400000:1866000"],
+        ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000"],
         ["@preset", "common_gaming"],
         ["@preset", "freq_high"],
         ["$gpu_max_freq", "#08"]
@@ -199,10 +233,15 @@
       ],
       "app": [
         ["@preset", "common_app"],
+        ["@values", "target_loads",
+          "0 1500000|1 2100000|2 2100000",
+          "0 25|1 25|2 25",
+          "0 20|1 20|2 20"
+        ],
         ["$gpu_max_freq", "#14"]
       ],
       "game": [
-        ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000 1500000:2133000 1400000:1866000"],
+        ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000"],
         ["@preset", "common_gaming"],
         ["@preset", "freq_extreme"],
         ["$gpu_max_freq", "#03"]
