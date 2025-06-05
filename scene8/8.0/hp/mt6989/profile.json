@@ -76,8 +76,8 @@
     ],
     "target_loads": [
       ["/sys/devices/system/cpu/sched_ctl/sched_turn_point_freq", "0 1500000|1 1700000|2 1700000"],
-      ["/sys/devices/system/cpu/sched_ctl/sched_target_margin", "0 20|1 20|2 20"],
-      ["/sys/devices/system/cpu/sched_ctl/sched_target_margin_low", "0 20|1 20|2 20"]
+      ["/sys/devices/system/cpu/sched_ctl/sched_target_margin_low", "0 20|1 20|2 20"],
+      ["/sys/devices/system/cpu/sched_ctl/sched_target_margin", "0 20|1 20|2 20"]
     ],
     "common_inactvie": [
       ["@values", "min_freq", "300000", "550000", "600000"],
