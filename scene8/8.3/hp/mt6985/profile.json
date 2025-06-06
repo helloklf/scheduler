@@ -223,7 +223,7 @@
         ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000"],
         ["@preset", "common_gaming"],
         ["@preset", "freq_high"],
-        ["$gpu_max_freq", "#08"]
+        ["$gpu_max_freq", "#8"]
       ]
     },
     "fast": {
@@ -244,7 +244,7 @@
         ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000"],
         ["@preset", "common_gaming"],
         ["@preset", "freq_extreme"],
-        ["$gpu_max_freq", "#03"]
+        ["$gpu_max_freq", "#3"]
       ]
     }
   },

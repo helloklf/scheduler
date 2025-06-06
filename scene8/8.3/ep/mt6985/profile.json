@@ -69,14 +69,16 @@
       ["@preset", "freq_extreme"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 0"],
       ["$switch_idleprefer", "#1"],
-      ["/sys/kernel/helio-dvfsrc/dvfsrc_qos_mode", "0"]
+      ["/sys/kernel/helio-dvfsrc/dvfsrc_qos_mode", "0"],
+      ["$gpu_max_freq", "#8"]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["@gesture", "PAUSE"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 1"],
-      ["$switch_idleprefer", "#0"]
+      ["$switch_idleprefer", "#0"],
+      ["$gpu_max_freq", "#3"]
     ],
 
     "powersave_active": [
@@ -132,8 +134,7 @@
     "powersave": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "powersave_active"],
-        ["$gpu_max_freq", "#14"]
+        ["@preset", "powersave_active"]
       ],
       "app": [
         ["@preset", "common_app"],
@@ -153,8 +154,7 @@
     "balance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "balance_active"],
-        ["$gpu_max_freq", "#14"]
+        ["@preset", "balance_active"]
       ],
       "app": [
         ["@preset", "common_app"],
@@ -178,7 +178,6 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$gpu_max_freq", "#14"],
         ["@preset", "freq_extreme"],
         ["@values", "target_loads",
           "0 1500000|1 2100000|2 2100000",
@@ -189,8 +188,7 @@
       "game": [
         ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1400000:3094000"],
         ["@preset", "common_gaming"],
-        ["@preset", "freq_high"],
-        ["$gpu_max_freq", "#08"]
+        ["@preset", "freq_high"]
       ]
     },
     "fast": {
@@ -205,14 +203,12 @@
           "0 1500000|1 2100000|2 2100000",
           "0 25|1 25|2 25",
           "0 20|1 20|2 20"
-        ],
-        ["$gpu_max_freq", "#14"]
+        ]
       ],
       "game": [
         ["$ddr_map", "2850000:8533000 2300000:6400000 1900000:5500000 1700000:4100000"],
         ["@preset", "common_gaming"],
-        ["@preset", "freq_extreme"],
-        ["$gpu_max_freq", "#03"]
+        ["@preset", "freq_extreme"]
       ]
     },
     "pedestal": {
@@ -226,8 +222,7 @@
           "0 1500000|1 2100000|2 2100000",
           "0 30|1 30|2 30",
           "0 25|1 25|2 25"
-        ],
-        ["$gpu_max_freq", "#14"]
+        ]
       ],
       "game": [
         ["$ddr_map", "2800000:8533000 2300000:6400000 1700000:5500000 1500000:4100000"],
