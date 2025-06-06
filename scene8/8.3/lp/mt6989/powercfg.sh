@@ -147,3 +147,4 @@ if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; th
 fi
 
 lock_value 0 /sys/module/cpufreq_bouncing/parameters/enable
+lock_value 0 /sys/module/mtk_fpsgo/parameters/cfp_onoff

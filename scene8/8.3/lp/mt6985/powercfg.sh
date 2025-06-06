@@ -64,6 +64,8 @@ fi
 lock_value 1 /sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled
 lock_value '220000 2000000 400000 3000000 1200000 3350000' /proc/powerhal_cpu_ctrl/perfserv_freq
 lock_value '3000000 3350000' /sys/module/mtk_fpsgo/parameters/cpus_limit
+lock_value 0 /sys/module/cpufreq_bouncing/parameters/enable
+lock_value 0 /sys/module/mtk_fpsgo/parameters/cfp_onoff
 
 metis=/sys/module/metis/parameters
 for file in $metis/*enable*; do

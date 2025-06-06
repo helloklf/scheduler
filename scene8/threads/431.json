@@ -7,7 +7,8 @@
       "comm": {
         "7": ["GameThread"],
         "4-7": ["FChunk"],
-        "4-6": ["TaskGraphHP", "RenderThread", "RHIThread"]
+        "4-6": ["RenderThread", "RHIThread"],
+        "0-3": ["AsyncLoading", "mali-", "V8", "Backgro"]
       },
       "other": "0-6"
     }
