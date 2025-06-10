@@ -91,8 +91,8 @@
       ["$max_cpus_cpu7", "#1"]
     ],
     "limiter_off": [
-      ["/proc/game_opt/disable_cpufreq_limit", "1"],
-      ["/sys/module/migt/parameters/glk_disable", "1"],
+      ["/proc/game_opt/disable_cpufreq_limit", "#1"],
+      ["/sys/module/migt/parameters/glk_disable", "#1"],
       ["/sys/module/perfmgr/parameters/perfmgr_enable", "#0"]
     ],
     "common_active": [

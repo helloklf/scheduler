@@ -14,7 +14,8 @@
     "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
     "cpufreq": "/proc/powerhal_cpu_ctrl/perfserv_freq",
     "cpus_limit": "/sys/module/mtk_fpsgo/parameters/cpus_limit",
-    "uclamp_boost": "/dev/cpuctl/top-app/cpu.uclamp.min"
+    "uclamp_boost": "/dev/cpuctl/top-app/cpu.uclamp.min",
+    "core_ctl": "/sys/module/mtk_core_ctl/parameters/policy_enable"
   },
   "features": {
     "limiter": {
@@ -95,7 +96,8 @@
         "0 1200000|1 0|2 0",
         "0 20|1 20|2 20",
         "0 12|1 20|2 20"
-      ]
+      ],
+      ["$core_ctl", "#1"]
     ],
     "common_gaming": [
       ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],
@@ -104,7 +106,8 @@
       ["@gesture", "PAUSE"],
       ["$gpu_max_freq", "#9"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "#0"],
-      ["$uclamp_boost", "0"]
+      ["$uclamp_boost", "0"],
+      ["$core_ctl", "#0"]
     ],
 
     "powersave_active": [

@@ -28,7 +28,7 @@
           "80 2188800:85",
           "80 2304000:88"
         ],
-        ["/proc/game_opt/disable_cpufreq_limit", "1"]
+        ["/proc/game_opt/disable_cpufreq_limit", "#1"]
       ]
     },
     {
@@ -43,7 +43,7 @@
           "80 2361600:85",
           "80 2457600:85 2668800:87"
         ],
-        ["/proc/game_opt/disable_cpufreq_limit", "1"]
+        ["/proc/game_opt/disable_cpufreq_limit", "#1"]
       ]
     },
     {
@@ -58,7 +58,7 @@
           "78 2572800:80",
           "78 2457600:82 2668800:90"
         ],
-        ["/proc/game_opt/disable_cpufreq_limit", "1"]
+        ["/proc/game_opt/disable_cpufreq_limit", "#1"]
       ],
       "tas": {
         "min": 2611200
@@ -76,7 +76,7 @@
           "75",
           "75 2668800:85"
         ],
-        ["/proc/game_opt/disable_cpufreq_limit", "1"]
+        ["/proc/game_opt/disable_cpufreq_limit", "#1"]
       ],
       "tas": {
         "min": 2611200

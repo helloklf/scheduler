@@ -17,7 +17,8 @@
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",
     "ddr_map": "/sys/module/mtk_fpsgo/parameters/ddrfreq_remap_table",
     "cpus_limit": "/sys/module/mtk_fpsgo/parameters/cpus_limit",
-    "switch_idleprefer": "/sys/kernel/fpsgo/fbt/switch_idleprefer"
+    "switch_idleprefer": "/sys/kernel/fpsgo/fbt/switch_idleprefer",
+    "core_ctl": "/sys/module/mtk_core_ctl/parameters/policy_enable"
   },
   "features": {
     "limiter": {
@@ -70,7 +71,8 @@
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 0"],
       ["$switch_idleprefer", "#1"],
       ["/sys/kernel/helio-dvfsrc/dvfsrc_qos_mode", "0"],
-      ["$gpu_max_freq", "#8"]
+      ["$gpu_max_freq", "#8"],
+      ["$core_ctl", "#1"]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
@@ -78,7 +80,8 @@
       ["@gesture", "PAUSE"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 1"],
       ["$switch_idleprefer", "#0"],
-      ["$gpu_max_freq", "#3"]
+      ["$gpu_max_freq", "#3"],
+      ["$core_ctl", "#0"]
     ],
 
     "powersave_active": [

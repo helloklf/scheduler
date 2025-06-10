@@ -241,7 +241,7 @@
         ["@values", "min_freq", "691200", "768000", "921600"],
         ["$l3_boost", "#0"],
         ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"],
-        ["/proc/game_opt/disable_cpufreq_limit", "1"]
+        ["/proc/game_opt/disable_cpufreq_limit", "#1"]
       ]
     },
     "fast": {
@@ -262,7 +262,7 @@
         ["$bus_ddr_min", "2736000"],
         ["@values", "max_freq", "2200000", "2850000", "3200000"],
         ["@values", "min_freq",  "900000", "1200000", "1200000"],
-        ["/proc/game_opt/disable_cpufreq_limit", "1"]
+        ["/proc/game_opt/disable_cpufreq_limit", "#1"]
       ]
     }
   },

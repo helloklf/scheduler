@@ -17,7 +17,8 @@
     "cpufreq": "/proc/cpudvfs/cpufreq_debug",
     "ddr_map": "/sys/module/mtk_fpsgo/parameters/ddrfreq_remap_table",
     "cpus_limit": "/sys/module/mtk_fpsgo/parameters/cpus_limit",
-    "switch_idleprefer": "/sys/kernel/fpsgo/fbt/switch_idleprefer"
+    "switch_idleprefer": "/sys/kernel/fpsgo/fbt/switch_idleprefer",
+    "core_ctl": "/sys/module/mtk_core_ctl/parameters/policy_enable"
   },
   "features": {
     "limiter": {
@@ -93,18 +94,20 @@
       ["$cpufreq", "0 220000 1900000|4 700000 2850000|7 1200000 3050000"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 0"],
       ["$switch_idleprefer", "#1"],
-      ["/sys/kernel/helio-dvfsrc/dvfsrc_qos_mode", "0"]
+      ["/sys/kernel/helio-dvfsrc/dvfsrc_qos_mode", "0"],
+      ["$core_ctl", "#1"]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 1"],
       ["$switch_idleprefer", "#0"],
-        ["@values", "target_loads",
-          "0 1500000|1 1800000|2 1800000",
-          "0 22|1 22|2 22",
-          "0 18|1 18|2 18"
-        ]
+      ["@values", "target_loads",
+        "0 1500000|1 1800000|2 1800000",
+        "0 22|1 22|2 22",
+        "0 18|1 18|2 18"
+      ],
+      ["$core_ctl", "#0"]
     ],
 
     "powersave_active": [
