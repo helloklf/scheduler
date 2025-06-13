@@ -37,27 +37,45 @@ hide_value() {
   fi
 }
 
+c_min(){
+  echo $(cat /sys/devices/system/cpu/cpufreq/policy*/cpuinfo_min_freq)
+}
 disable_migt() {
-  migt=/sys/module/migt/parameters
-  if [[ -e $migt ]]; then
-    hide_value $migt/migt_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
-    hide_value $migt/glk_freq_limit_start '0'
-    hide_value $migt/glk_freq_limit_walt '0'
-    hide_value $migt/glk_maxfreq '0 0 0'
-    hide_value $migt/glk_minfreq '307200 499200 595200'
-    hide_value $migt/migt_ceiling_freq '0 0 0'
-    hide_value $migt/glk_disable '1'
-    hide_value $migt/mi_freq_enable '0'
-    hide_value $migt/force_stask_to_big '0'
-    hide_value $migt/glk_fbreak_enable '0'
-    echo 1 > $migt/force_reset_runtime
-    echo 1 > $migt/reset_clus_affinity_uidlist
-    echo 1 > $migt/reset_rebind_task
-
-    chmod 000 $migt/*
-    chmod 000 /sys/module/migt
-    chmod 000 /sys/module/sched_walt/holders/migt/parameters
-  fi
+  for dir in /sys/module/migt/parameters /sys/module/metis/parameters /proc/sys/migt /sys/class/misc/migt;do
+    if [[ -d $dir ]];then
+      for file in `ls $dir`; do
+        case "$file" in
+          'add_'*)
+            chmod 444 $dir/$file
+          ;;
+          glk_maxfreq)
+            lock_value '0 0 0' $dir/$file
+          ;;
+          min_cluster_freqs|user_min_freq)
+            lock_value '0,0,0' $dir/$file
+          ;;
+          glk_minfreq)
+            lock_value "$(c_min)" $dir/$file
+          ;;
+          migt_ceiling_freq|migt_freq)
+            lock_value '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' $dir/$file
+          ;;
+          glk_fbreak_enable|force_cluster_sched_enable|glk_freq_limit_start|glk_freq_limit_walt|thermal_break_enable|is_break_enable|mi_freq_enable|force_stask_to_big|freq_break_enable)
+            lock_value 0 $dir/$file
+          ;;
+          render_prefer_cluster|vip_prefer_cluster|stask_prefer_cluster|ip_prefer_cluster)
+            lock_value -1 $dir/$file
+          ;;
+          glk_disable|affinity_only|force_reset_runtime|reset_clus_affinity_uidlist|reset_rebind_task)
+            lock_value 1 $dir/$file
+          ;;
+          game_minfreq_limit|game_maxfreq_limit)
+            lock_value '0 0 0' $dir/$file
+          ;;
+        esac
+      done
+    fi
+  done
 
   glk=/proc/sys/glk
   if [[ -d $glk ]]; then
@@ -65,8 +83,6 @@ disable_migt() {
     hide_value $glk/freq_break_enable '0'
     hide_value $glk/game_minfreq_limit '0 0 0'
     hide_value $glk/game_maxfreq_limit '0 0 0'
-    hide_value $glk/game_lowspeed_load '30 30 30'
-    hide_value $glk/game_hispeed_load '80 80 80'
   fi
 
   migt=/proc/sys/migt
@@ -74,24 +90,6 @@ disable_migt() {
     hide_value $migt/force_stask_tob '0'
     hide_value $migt/enable_pkg_monitor '0'
     hide_value $migt/boost_pid '0'
-  fi
-
-  chmod 000 /sys/class/misc/migt
-  chmod 000 /sys/module/sched_walt/holders/migt
-
-  metis=/sys/module/metis/parameters
-  if [[ -d $metis ]]; then
-    for file in $metis/*enable; do
-      hide_value $file 0
-    done
-    for file in $metis/reset*; do
-      hide_value $file 0
-    done
-    hide_value $metis/cluaff_control 0
-    hide_value $metis/in_perf_mod 0
-    hide_value $metis/limit_bgtask_sched 0
-    echo 0,0,0 > $metis/min_cluster_freqs
-    echo 0,0,0 > $metis/user_min_freq
   fi
 }
 

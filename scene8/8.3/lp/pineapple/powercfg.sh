@@ -104,9 +104,12 @@ if [[ -d  /proc/game_opt ]]; then
   chmod 444 /proc/game_opt/rt_info
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
   # hide_value /proc/game_opt/disable_cpufreq_limit 1
+  lock_value 0 /sys/module/cpufreq_bouncing/parameters/enable
+  lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
+  lock_value 0 /proc/task_overload/skip_goplus_enabled
+  lock_value 0 /sys/module/mtk_fpsgo/parameters/cfp_onoff
+  stop vendor.oplus.ormsHalService-aidl-default
 fi
-set_value '2000' /proc/oplus-votable/GAUGE_UPDATE/force_val
-set_value '1' /proc/oplus-votable/GAUGE_UPDATE/force_active
 
 
 bus_dcvs(){

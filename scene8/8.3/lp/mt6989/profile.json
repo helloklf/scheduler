@@ -81,7 +81,8 @@
       ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
       ["$gpu_max_freq", "#24"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "1"],
-      ["$core_ctl", "#1"]
+      ["$core_ctl", "#1"],
+      ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "0"]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
@@ -91,7 +92,8 @@
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "0"],
       ["$uclamp_boost", "0"],
       ["$cpufreq", "#300000 2000000 550000 2850000 600000 3250000"],
-      ["$core_ctl", "#0"]
+      ["$core_ctl", "#0"],
+      ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "1"]
     ],
 
     "powersave_active": [

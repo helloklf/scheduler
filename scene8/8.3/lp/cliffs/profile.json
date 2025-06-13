@@ -48,7 +48,7 @@
       ["$bus_ddr_min", "547000"],
       ["$l3_boost", "0"],
       ["$ddr_boost", "0"],
-      ["@governor", "walt"]
+      ["@governor", "uag", "walt"]
     ],
 
     "hispeed_freq": [
@@ -78,7 +78,8 @@
     "cpu7_on": [
       ["$core_ctl_7", "1"],
       ["$max_cpus_cpu7", "#1"],
-      ["$min_cpus_cpu7", "#1"]
+      ["$min_cpus_cpu7", "#1"],
+      ["$core_ctl_7", "#0"]
     ],
     "cpu7_off": [
       ["$core_ctl_7", "1"],

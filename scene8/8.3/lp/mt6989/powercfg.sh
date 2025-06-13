@@ -98,6 +98,15 @@ lock_value 0 /sys/module/metis/parameters/mi_freq_enable
 chmod 444 /proc/perfmgr/global_reclaim
 chmod 444 /proc/perfmgr_touch_boost/ioctl_touch_boost
 
+metis=/sys/module/metis/parameters
+for file in $metis/*enable*; do
+  lock_value 0 $file
+done
+if [[ -d $metis ]]; then
+  chmod -R 444 $metis
+fi
+
+# echo 1 > /sys/module/mtk_core_ctl/parameters/policy_enable
 lock_value 1 /sys/devices/system/cpu/cpu4/core_ctl/enable
 lock_value 3 /sys/devices/system/cpu/cpu4/core_ctl/max_cpus
 lock_value 3 /sys/devices/system/cpu/cpu4/core_ctl/min_cpus

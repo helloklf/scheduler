@@ -156,6 +156,9 @@ disable_migt() {
     hide_value $migt/mi_freq_enable '0'
     hide_value $migt/force_stask_to_big '0'
     hide_value $migt/glk_fbreak_enable '0'
+    echo 1 > $migt/force_reset_runtime
+    echo 1 > $migt/reset_clus_affinity_uidlist
+    echo 1 > $migt/reset_rebind_task
 
     chmod 000 $migt/*
     chmod 000 /sys/module/migt
@@ -219,6 +222,9 @@ chattr +i  /sys/module/msm_performance/parameters/cpu_min_freq
 rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost
 
+lock_value 128 /dev/cpuctl/background/cpu.shares
+lock_value 20 /dev/cpuctl/background/cpu.uclamp.max
+
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
   for i in $(seq 0 7); do
@@ -236,8 +242,8 @@ disable_migt
 
 process_opt &
 
-# CC'MIUI/HyperOS or ColorOS
-if [[ $(getprop ro.cc.device.name) != "" ]] || [[ -d /my_heytap ]]; then
+if [[ -d /my_heytap ]]; then
+  # echo 1 > /proc/sys/walt/sched_asymcap_boost
   hide_value /proc/sys/walt/sched_upmigrate '85 95'
   hide_value /proc/sys/walt/sched_downmigrate '70 80'
   hide_value /proc/sys/walt/sched_group_upmigrate 95
@@ -265,30 +271,40 @@ for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
   lock_value 0 /sys/kernel/msm_performance/parameters/$file
 done
 echo -R 444 /sys/kernel/msm_performance/parameters
+fbg=/proc/sys/fbg
+if [[ -d $fbg ]]; then
+  for file in frame_boost_enabled  input_boost_enabled  slide_boost_enabled; do
+    hide_value $fbg/$file 0
+  done
+fi
 
 
 bus_dcvs(){
   echo $2 > /sys/devices/system/cpu/bus_dcvs/$1
   chmod 444 /sys/devices/system/cpu/bus_dcvs/$1
 }
+bus_dcvs DDR/soc:qcom,memlat:ddr:silver/max_freq 1555000
+bus_dcvs DDR/19091000.qcom,bwmon-ddr/max_freq 2736000
+bus_dcvs DDR/soc:qcom,memlat:ddr:prime/max_freq 3196000
+bus_dcvs DDR/soc:qcom,memlat:ddr:prime-latfloor/max_freq 3196000
+bus_dcvs DDR/soc:qcom,memlat:ddr:gold-compute/max_freq 1555000
+bus_dcvs DDR/soc:qcom,memlat:ddr:gold/max_freq 3196000
+bus_dcvs L3/soc:qcom,memlat:l3:silver/max_freq 1708800
 if [[ $(cat /sys/devices/soc0/machine | tr 'a-z' 'A-Z') != 'UKEE' ]]; then
-  bus_dcvs DDR/soc:qcom,memlat:ddr:silver/max_freq 1555000
-  bus_dcvs DDR/19091000.qcom,bwmon-ddr/max_freq 2736000
-  bus_dcvs DDR/soc:qcom,memlat:ddr:prime/max_freq 3196000
-  bus_dcvs DDR/soc:qcom,memlat:ddr:prime-latfloor/max_freq 3196000
-  bus_dcvs DDR/soc:qcom,memlat:ddr:gold-compute/max_freq 1555000
-  bus_dcvs DDR/soc:qcom,memlat:ddr:gold/max_freq 3196000
-  bus_dcvs L3/soc:qcom,memlat:l3:silver/max_freq 1708800
   bus_dcvs L3/soc:qcom,memlat:l3:prime/max_freq 1804800 # default 1708800
   bus_dcvs L3/soc:qcom,memlat:l3:gold/max_freq 1804800 # default 1708800
   bus_dcvs L3/soc:qcom,memlat:l3:prime-compute/max_freq 1804800 # default 1708800
-  bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:gold/max_freq 1
-  bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:prime-latfloor/max_freq 1
-  bus_dcvs LLCC/soc:qcom,memlat:llcc:gold-compute/max_freq 600000
-  bus_dcvs LLCC/190b6400.qcom,bwmon-llcc/max_freq 806000
-  bus_dcvs LLCC/soc:qcom,memlat:llcc:silver/max_freq 600000
-  bus_dcvs LLCC/soc:qcom,memlat:llcc:gold/max_freq 1066000
+else
+  bus_dcvs L3/soc:qcom,memlat:l3:prime/max_freq 1708800
+  bus_dcvs L3/soc:qcom,memlat:l3:gold/max_freq 1708800
+  bus_dcvs L3/soc:qcom,memlat:l3:prime-compute/max_freq 1708800
 fi
+bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:gold/max_freq 1
+bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:prime-latfloor/max_freq 1
+bus_dcvs LLCC/soc:qcom,memlat:llcc:gold-compute/max_freq 600000
+bus_dcvs LLCC/190b6400.qcom,bwmon-llcc/max_freq 806000
+bus_dcvs LLCC/soc:qcom,memlat:llcc:silver/max_freq 600000
+bus_dcvs LLCC/soc:qcom,memlat:llcc:gold/max_freq 1066000
 
 set_cpuset(){
   pgrep -f $1 | while read pid; do

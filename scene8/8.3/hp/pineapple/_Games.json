@@ -17,7 +17,7 @@
       ],
       "fas": {
         "use": "whitelist",
-        "l3_boost": true, "ddr_boost": true,
+        "l3_boost": true,
         "freq": ["2380800", "2380800"]
       }
     },
@@ -34,7 +34,7 @@
       ],
       "fas": {
         "use": "whitelist",
-        "l3_boost": true, "ddr_boost": true,
+        "l3_boost": true,
         "freq": ["2630400", "2630400"]
       }
     },
@@ -51,7 +51,7 @@
       ],
       "fas": {
         "use": "whitelist",
-        "l3_boost": true, "ddr_boost": true,
+        "l3_boost": true,
         "freq": ["2995200", "2841600"]
       }
     },
@@ -68,7 +68,7 @@
       ],
       "fas": {
         "use": "whitelist",
-        "l3_boost": true, "ddr_boost": true,
+        "l3_boost": true,
         "freq": ["3110400", "2956800"]
       }
     }

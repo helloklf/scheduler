@@ -1,6 +1,3 @@
-# target=`getprop ro.board.platform`
-cfg_dir=$(cd $(dirname $0); pwd)
-
 set_value() {
   value=$1
   path=$2
@@ -244,10 +241,9 @@ core_ctl_preset
 disable_migt
 
 process_opt &
-# echo 1 > /proc/sys/walt/sched_asymcap_boost
 
-# CC'MIUI/HyperOS or ColorOS
-if [[ $(getprop ro.cc.device.name) != "" ]] || [[ -d /my_heytap ]]; then
+if [[ -d /my_heytap ]]; then
+  # echo 1 > /proc/sys/walt/sched_asymcap_boost
   hide_value /proc/sys/walt/sched_upmigrate '85 95'
   hide_value /proc/sys/walt/sched_downmigrate '70 80'
   hide_value /proc/sys/walt/sched_group_upmigrate 95
@@ -257,6 +253,8 @@ if [[ $(getprop ro.cc.device.name) != "" ]] || [[ -d /my_heytap ]]; then
 fi
 
 # OnePlus
+lock_value 0 /proc/oplus_scheduler/sched_assist/sched_assist_enabled
+lock_value 0 /proc/oplus_scheduler/sched_assist/sched_assist_scene
 if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
@@ -292,9 +290,15 @@ bus_dcvs DDR/soc:qcom,memlat:ddr:prime-latfloor/max_freq 3196000
 bus_dcvs DDR/soc:qcom,memlat:ddr:gold-compute/max_freq 1555000
 bus_dcvs DDR/soc:qcom,memlat:ddr:gold/max_freq 3196000
 bus_dcvs L3/soc:qcom,memlat:l3:silver/max_freq 1708800
-bus_dcvs L3/soc:qcom,memlat:l3:prime/max_freq 1708800
-bus_dcvs L3/soc:qcom,memlat:l3:gold/max_freq 1708800
-bus_dcvs L3/soc:qcom,memlat:l3:prime-compute/max_freq 1708800
+if [[ $(cat /sys/devices/soc0/machine | tr 'a-z' 'A-Z') != 'UKEE' ]]; then
+  bus_dcvs L3/soc:qcom,memlat:l3:prime/max_freq 1804800 # default 1708800
+  bus_dcvs L3/soc:qcom,memlat:l3:gold/max_freq 1804800 # default 1708800
+  bus_dcvs L3/soc:qcom,memlat:l3:prime-compute/max_freq 1804800 # default 1708800
+else
+  bus_dcvs L3/soc:qcom,memlat:l3:prime/max_freq 1708800
+  bus_dcvs L3/soc:qcom,memlat:l3:gold/max_freq 1708800
+  bus_dcvs L3/soc:qcom,memlat:l3:prime-compute/max_freq 1708800
+fi
 bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:gold/max_freq 1
 bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:prime-latfloor/max_freq 1
 bus_dcvs LLCC/soc:qcom,memlat:llcc:gold-compute/max_freq 600000
