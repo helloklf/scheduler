@@ -7,7 +7,7 @@
     {
       "mode": ["powersave"],
       "fas": {
-        "ddr_boost": true, "l3 _boost": true,
+        "l3 _boost": true,
         "big_min_freq": 1075200, "middle_min_freq": 710400,
         "_60": ["2361600", "1766400", "-2"],
         "_90": ["2361600", "1862400", "-3"],
@@ -17,7 +17,7 @@
     {
       "mode": ["balance"],
       "fas": {
-        "ddr_boost": true, "l3 _boost": true,
+        "l3 _boost": true,
         "_60": ["2361600", "2073600", "-2"],
         "_90": ["2649600", "2246400", "-3"],
         "_120": ["2841600", "2342400", "-4"]
@@ -26,7 +26,7 @@
     {
       "mode": ["performance"],
       "fas": {
-        "ddr_boost": true, "l3 _boost": true,
+        "l3 _boost": true,
         "mode": "fps",
         "_60": ["2649600", "2150400", "-2"],
         "_90": ["2841600", "2342400", "-3"],

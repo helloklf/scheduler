@@ -4,43 +4,35 @@
     {
       "mode": ["powersave"],
       "fas": {
-        "ddr_boost": true, "l3 _boost": true,
-        "_60": ["2361600", "2150400"],
-        "_90": ["2553600", "2342400"],
-        "_120": ["2745600", "2419200"]
+        "l3 _boost": true,
+        "freq": ["2745600", "2419200"]
       }
     },
     {
       "mode": ["balance"],
       "fas": {
-        "ddr_boost": true, "l3 _boost": true,
+        "l3 _boost": true,
         "big_min_freq": 1670400,
-        "_60": ["2649600", "2342400"],
-        "_90": ["2841600", "2419200"],
-        "_120": ["2841600", "2419200"]
+        "freq": ["2841600", "2419200"]
       }
     },
     {
       "mode": ["performance"],
       "fas": {
-        "ddr_boost": true, "l3 _boost": true,
+        "l3 _boost": true,
         "mode": "fps",
         "recent_frames": 10, "fast_down_rate": 7, "slow_down_rate": 2,
         "big_min_freq": 1958400,
-        "_60": ["2841600", "2342400"],
-        "_90": ["3200000", "2419200"],
-        "_120": ["3200000", "2419200"]
+        "freq": ["3200000", "2419200"]
       }
     },
     {
       "mode": ["fast"],
       "fas": {
-        "ddr_boost": true, "l3 _boost": true,
+        "l3 _boost": true,
         "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 1.6,
         "big_min_freq": 2169600,
-        "_60": ["2649600", "2342400"],
-        "_90": ["2841600", "2419200"],
-        "_120": ["2841600", "2419200"]
+        "freq": ["2841600", "2419200"]
       }
     }
   ]
