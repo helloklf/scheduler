@@ -111,6 +111,21 @@ if [[ -d  /proc/game_opt ]]; then
   stop vendor.oplus.ormsHalService-aidl-default
 fi
 
+
+bus_dcvs(){
+  chmod 664 /sys/devices/system/cpu/bus_dcvs/$1/min_freq
+  chmod 664 /sys/devices/system/cpu/bus_dcvs/$1/max_freq
+  if [[ "$3" != "" ]]; then
+    echo $3 > /sys/devices/system/cpu/bus_dcvs/$1/min_freq
+  fi
+  echo $2 > /sys/devices/system/cpu/bus_dcvs/$1/max_freq
+  chmod 444 /sys/devices/system/cpu/bus_dcvs/$1/min_freq
+  chmod 444 /sys/devices/system/cpu/bus_dcvs/$1/max_freq
+}
+bus_dcvs_value() {
+  echo $2 > /sys/devices/system/cpu/bus_dcvs/$1
+}
+
 # MeiZu
 if [[ -d /proc/mz_info ]]; then
   echo 4 > /proc/mz_scheduler/vip_task/enabled
@@ -126,6 +141,32 @@ if [[ -d /proc/mz_info ]]; then
   # echo 0 > /proc/mz_thermal_boost/boost_enabled
   # echo 0 > /proc/mz_thermal_boost/sched_boost_enabled
   stop traced_probes
-  # lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
+  set_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
+
+  bus_dcvs DDR/soc:qcom,memlat:ddr:silver 1555000 547000
+  bus_dcvs DDR/24091000.qcom,bwmon-ddr 2736000 547000
+  bus_dcvs DDR/24091000.qcom,bwmon-ddr/sample_ms 10
+  bus_dcvs DDR/soc:qcom,memlat:ddr:prime 4224000 547000
+  bus_dcvs DDR/soc:qcom,memlat:ddr:prime-latfloor 4224000 547000
+  bus_dcvs DDR/soc:qcom,memlat:ddr:gold-compute 1555000 547000
+  bus_dcvs DDR/soc:qcom,memlat:ddr:gold 4224000 547000
+  bus_dcvs_value DDR/soc:qcom,memlat:ddr:silver/ipm_ceil 100 # default 400
+  bus_dcvs L3/soc:qcom,memlat:l3:silver 2035200 364800
+  bus_dcvs L3/soc:qcom,memlat:l3:prime 2035200 364800
+  bus_dcvs L3/soc:qcom,memlat:l3:gold 2035200 364800
+  bus_dcvs L3/soc:qcom,memlat:l3:prime-compute 2035200 364800
+  bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:gold 1 0
+  bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:prime 1 0
+  bus_dcvs DDRQOS/soc:qcom,memlat:ddrqos:prime-latfloor 1 0
+  bus_dcvs LLCC/soc:qcom,memlat:llcc:gold-compute 600000 300000
+  bus_dcvs LLCC/240b7400.qcom,bwmon-llcc 806000 300000
+  bus_dcvs LLCC/soc:qcom,memlat:llcc:silver 600000 300000
+  bus_dcvs LLCC/soc:qcom,memlat:llcc:gold 1066000 300000
 fi
 
+echo 99 > /proc/sys/walt/walt_rtg_cfs_boost_prio # default 119
+echo 1 > /proc/sys/walt/sched_pipeline_util_thres # default 400
+echo 1 > /proc/sys/walt/walt_low_latency_task_threshold # default 325
+echo '' > /proc/sys/walt/sched_lib_name # default libunity.so, libfb.so
+echo '' > /proc/sys/walt/sched_lib_task # default UnityMain
+echo 1 > /proc/sys/walt/sched_disable_mvp_thres # default 3000

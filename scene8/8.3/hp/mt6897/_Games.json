@@ -32,7 +32,6 @@
       "fas": {
         "use": "whitelist",
         "lower_freq": 1700000,
-        "perfect_load": 0.92,
         "freq": ["2800000", "2660000"]
       }
     },
@@ -44,7 +43,6 @@
       "fas": {
         "use": "whitelist",
         "lower_freq": 1900000,
-        "perfect_load": 0.90,
         "freq": ["3000000", "2800000"]
       }
     }

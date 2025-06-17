@@ -55,7 +55,7 @@
       ],
       "fas": {
         "use": "whitelist",
-        "perfect_load": 0.9, "lower_freq": 1478400,
+        "lower_freq": 1478400,
         "big_min_freq": 864000,
         "middle_min_freq": 729600,
         "freq": ["2841600", "2707200", "-1"]
@@ -74,7 +74,7 @@
       ],
       "fas": {
         "use": "whitelist",
-        "perfect_load": 0.9, "lower_freq": 1478400,
+        "lower_freq": 1478400,
         "big_min_freq": 864000,
         "middle_min_freq": 729600,
         "freq": ["2956800", "2803200", "-1"]

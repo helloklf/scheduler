@@ -1,10 +1,11 @@
 {
   "version": "HP",
-  "versionCode": 20250510,
+  "versionCode": 20250515,
   "author": "SCENE8",
   "projectUrl": "http://vtools.omarea.com/",
   "features": {
     "strict": true,
-    "pedestal": false
+    "pedestal": false,
+    "fas": true
   }
 }

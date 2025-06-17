@@ -26,25 +26,54 @@
       "mode": ["powersave"],
       "call": [
         ["@limiters+fas", "g1:cpu4", "g1:cpu7"]
-      ]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "l3_boost": true,
+        "big_min_freq": 1075200, "middle_min_freq": 710400,
+        "recent_frames": 8, "fast_down_rate": 6, "slow_down_rate": 3,
+        "_freq": ["2649600", "1958400", "-2"]
+      }
     },
     {
       "mode": ["balance"],
       "call": [
         ["@limiters+fas", "g2:cpu4", "g2:cpu7"]
-      ]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "l3_boost": true,
+        "recent_frames": 8, "fast_down_rate": 6, "slow_down_rate": 2.2,
+        "_freq": ["2841600", "2342400", "-2"]
+      }
     },
     {
       "mode": ["performance"],
       "call": [
         ["@limiters+fas", "g3:cpu4", "g3:cpu7"]
-      ]
+      ],
+      "fas": {
+        "mode": "fps",
+        "use": "whitelist",
+        "l3_boost": true,
+        "recent_frames": 7, "fast_down_rate": 6, "slow_down_rate": 2.0,
+        "lower_freq": 1862400,
+        "_freq": ["2841600", "2419200"]
+      }
     },
     {
       "mode": ["fast"],
       "call": [
         ["@limiters+fas", "g4:cpu4", "g4:cpu7"]
-      ]
+      ],
+      "fas": {
+        "mode": "fps",
+        "l3_boost": true,
+        "use": "whitelist",
+        "recent_frames": 7, "fast_down_rate": 6, "slow_down_rate": 2.0,
+        "lower_freq": 1862400,
+        "_freq": ["3200000", "2419200"]
+      }
     }
   ]
 }

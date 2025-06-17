@@ -57,7 +57,7 @@
         ["/proc/game_opt/disable_cpufreq_limit", "#1"]
       ],
       "fas": {
-        "perfect_load": 0.9, "lower_freq": 1478400,
+        "lower_freq": 1478400,
         "freq": ["2841600", "2707200", "-1"]
       }
     },
@@ -73,7 +73,7 @@
         ["/proc/game_opt/disable_cpufreq_limit", "#1"]
       ],
       "fas": {
-        "perfect_load": 0.9, "lower_freq": 1478400,
+        "lower_freq": 1478400,
         "freq": ["2956800", "2803200", "-1"]
       }
     }

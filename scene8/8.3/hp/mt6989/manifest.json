@@ -7,6 +7,6 @@
     "strict": true,
     "pedestal": false,
     "fas": true,
-    "reboot": true
+    "reboot": false
   }
 }

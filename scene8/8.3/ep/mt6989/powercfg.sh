@@ -67,6 +67,7 @@ mount --bind /proc/perfmgr/xgff_boost_ioctl /proc/perfmgr/perf_ioctl
 
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_tid
+lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
 
 # echo 1 > /sys/module/migt/parameters/force_reset_runtime
 # lock_value 0 /sys/module/migt/parameters/enable_pkg_monitor
@@ -93,8 +94,9 @@ lock_value 0 /sys/module/metis/parameters/mi_freq_enable
 #   lock_value 0 $file
 # done
 
-chmod -R 444 /proc/perfmgr_powerhal
+# chmod -R 444 /proc/perfmgr_powerhal
 chmod 444 /proc/perfmgr/global_reclaim
+chmod 444 /proc/perfmgr_touch_boost/ioctl_touch_boost
 
 metis=/sys/module/metis/parameters
 for file in $metis/*enable*; do

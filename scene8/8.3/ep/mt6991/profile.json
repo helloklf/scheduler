@@ -61,7 +61,8 @@
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
       ["/sys/module/mtk_fpsgo/parameters/p_perf", "0"],
       ["/sys/module/mtk_fpsgo/parameters/better_perf", "0"],
-      ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "1"]
+      ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "1"],
+      ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "0"]
     ],
     "common_gaming": [
       ["@values", "latency", "10", "10", "10", "10", "10", "10"],
@@ -70,7 +71,8 @@
       ["@gesture", "PAUSE"],
       ["$gpu_max_freq", "#7"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "#0"],
-      ["$uclamp_boost", "0"]
+      ["$uclamp_boost", "0"],
+      ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "1"]
     ],
     "limiter_off": [
       ["/proc/game_opt/disable_cpufreq_limit", "#1"],
