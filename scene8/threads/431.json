@@ -3,14 +3,15 @@
     "friendly": "鸣潮",
     "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
     "cpuset": {
-      "main_thread": "4-6",
+      "main_thread": "0-5",
       "comm": {
         "7": ["GameThread", "mali-compile"],
         "4-7": ["FChunk"],
-        "4-6": ["RenderThread", "RHIThread"],
-        "0-3": ["AsyncLoading", "mali-", "V8", "Backgro"]
+        "4-5": ["RenderThread"],
+        "6": ["RHIThread"],
+        "0-3": ["AsyncLoading", "mali-cpu", "V8", "Backgro"]
       },
-      "other": "0-6"
+      "other": "0-5"
     }
   },
   {
@@ -202,6 +203,32 @@
         "6":["Render"]
       },
       "other": "0-5"
+    }
+  },
+  {
+    "friendly": "学园偶像大师",
+    "packages": ["com.bandainamcoent.idolmaster_gakuen"],
+    "cpuset": {
+      "unity_main": "7",
+      "heavy_thread": "UnityGfx;Thread-",
+      "heavy_cores": "6",
+      "comm": {
+        "4-6": ["Thread-", "Job.worker"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "音游",
+    "packages": [
+      "com.bilibili.star.bili", "jp.co.craftegg.band", "net.gamon.bdTW", "com.bushiroad.en.bangdreamgbp", "com.hermes.mk", "com.hermes.mk.bilibili", "com.sega.pjsekai", "com.hermes.mk.asia"
+    ],
+    "cpuset": {
+      "unity_main": "7",
+      "comm": {
+        "4-6": ["UnityGfx", "Job.worker"]
+      },
+      "other": "0-6"
     }
   }
 ]

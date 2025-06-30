@@ -167,5 +167,31 @@
       },
       "other": "1-5"
     }
+  },
+  {
+    "friendly": "学园偶像大师",
+    "packages": ["com.bandainamcoent.idolmaster_gakuen"],
+    "cpuset": {
+      "unity_main": "7",
+      "heavy_thread": "UnityGfx;Thread-",
+      "heavy_cores": "6",
+      "comm": {
+        "4-6": ["Thread-", "Job.worker"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "音游",
+    "packages": [
+      "com.bilibili.star.bili", "jp.co.craftegg.band", "net.gamon.bdTW", "com.bushiroad.en.bangdreamgbp", "com.hermes.mk", "com.hermes.mk.bilibili", "com.sega.pjsekai", "com.hermes.mk.asia"
+    ],
+    "cpuset": {
+      "unity_main": "7",
+      "comm": {
+        "4-6": ["UnityGfx", "Job.worker"]
+      },
+      "other": "0-6"
+    }
   }
 ]
