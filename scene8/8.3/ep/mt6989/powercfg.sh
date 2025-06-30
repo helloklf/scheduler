@@ -55,13 +55,17 @@ lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 
-# hide_value /proc/perfmgr/perf_ioctl
+if [[ $(grep /proc/perfmgr/perf_ioctl /proc/mounts) == '' ]]; then
 mount --bind /proc/perfmgr/xgff_boost_ioctl /proc/perfmgr/perf_ioctl
+fi
+chmod 444 /proc/perfmgr/global_reclaim
 
 # echo 0 300000 2000000 > /proc/cpudvfs/cpufreq_debug
 # echo 4 550000 2850000 > /proc/cpudvfs/cpufreq_debug
 # echo 7 600000 3250000 > /proc/cpudvfs/cpufreq_debug
-# lock_value '300000 2000000 550000 2850000 600000 3250000' /proc/powerhal_cpu_ctrl/perfserv_freq
+umount /proc/powerhal_cpu_ctrl/perfserv_freq
+echo '300000 2000000 550000 2850000 600000 3250000' > /proc/powerhal_cpu_ctrl/perfserv_freq
+mount --bind /proc/powerhal_cpu_ctrl/adpf_enable /proc/powerhal_cpu_ctrl/perfserv_freq
 # lock_value '3000000 3350000' /sys/module/mtk_fpsgo/parameters/cpus_limit
 # lock_value 1 /sys/module/mtk_fpsgo/parameters/better_perf
 
@@ -94,10 +98,6 @@ lock_value 0 /sys/module/metis/parameters/mi_freq_enable
 #   lock_value 0 $file
 # done
 
-# chmod -R 444 /proc/perfmgr_powerhal
-chmod 444 /proc/perfmgr/global_reclaim
-chmod 444 /proc/perfmgr_touch_boost/ioctl_touch_boost
-
 metis=/sys/module/metis/parameters
 for file in $metis/*enable*; do
   lock_value 0 $file
@@ -120,20 +120,6 @@ lock_value 0 /sys/devices/system/cpu/cpu7/core_ctl/enable
 lock_value 256 /dev/cpuctl/background/cpu.shares
 lock_value 20 /dev/cpuctl/background/cpu.uclamp.max
 
-echo 12000000 > /sys/kernel/debug/sched/latency_ns # default 24000000
-echo 2000000 > /sys/kernel/debug/sched/min_granularity_ns # default 3000000
-echo 3000000 > /sys/kernel/debug/sched/wakeup_granularity_ns # default 4000000
-
-mkdir /dev/memcg/scene_active
-echo 1 > /dev/memcg/scene_active/memory.move_charge_at_immigrate
-echo 10 > /dev/memcg/scene_active/memory.swappiness
-pidof com.android.launcher > /dev/memcg/scene_active/cgroup.procs
-pidof com.android.systemui > /dev/memcg/scene_active/cgroup.procs
-pidof surfaceflinger > /dev/memcg/scene_active/cgroup.procs
-pidof system_server > /dev/memcg/scene_active/cgroup.procs
-pidof  vendor.qti.hardware.display.composer-service > /dev/memcg/scene_active/cgroup.procs
-
-
 # vivo
 if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; then
   stop vivo-vperf-hal-1-0
@@ -155,5 +141,33 @@ if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; th
   fi
 fi
 
+lock_value 1 /proc/game_opt/disable_cpufreq_limit
+lock_value 1 /sys/module/migt/parameters/glk_disable
+lock_value 0 /sys/module/perfmgr/parameters/perfmgr_enable
+lock_value 0 /sys/module/migt/parameters/glk_freq_limit_walt
 lock_value 0 /sys/module/cpufreq_bouncing/parameters/enable
+lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
+lock_value 0 /proc/task_overload/skip_goplus_enabled
 lock_value 0 /sys/module/mtk_fpsgo/parameters/cfp_onoff
+lock_value 0 /proc/touch_boost/enable
+stop vendor.oplus.ormsHalService-aidl-default
+
+set_cpuset(){
+  pgrep -f $1 | while read pid; do
+    echo $pid > /dev/cpuset/$2/cgroup.procs
+    ls /proc/$pid/task | while read tid
+    do
+      echo $tid > /dev/cpuset/$2/tasks
+    done
+  done
+}
+
+mkdir /dev/cpuset/top-app/7
+echo 7 > /dev/cpuset/top-app/7/cpus
+echo 0 > /dev/cpuset/top-app/7/mems
+
+set_cpuset touch_report 'foreground'
+set_cpuset surfaceflinger 'foreground'
+set_cpuset system_server 'foreground'
+set_cpuset update_engine 'top-app/7'
+set_cpuset vendor.qti.hardware.display.composer-service 'foreground'

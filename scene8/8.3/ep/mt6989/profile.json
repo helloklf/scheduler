@@ -22,11 +22,6 @@
       "ddr_boost": false,
       "params": [
       ]
-    },
-    "gesture_boost": {
-      "enable": false,
-      "enter": [],
-      "exit": []
     }
   },
   "presets": {
@@ -34,8 +29,7 @@
       ["@governor", "sugov_ext"],
       ["$perfmgr_enable", "#0"],
       ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"],
-      ["$cpus_limit", "#2850000 3350000"],
-      ["$cpufreq", "#300000 2000000 550000 2850000 600000 3250000"]
+      ["$cpus_limit", "#2850000 3250000"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
@@ -57,138 +51,168 @@
       ["/sys/devices/system/cpu/sched_ctl/sched_target_margin", "0 20|1 20|2 20"]
     ],
     "common_inactive": [
-      ["@values", "min_freq", "300000", "550000", "600000"],
+      ["@values", "min_freq", "#300000", "#550000", "#600000"],
       ["$uclamp_boost", "0"]
+    ],
+    "gpu_params": [
+      ["/sys/kernel/ged/hal/force_loading_base", "0"],
+      ["/sys/kernel/ged/hal/dvfs_loading_mode", "0"],
+      ["/sys/kernel/ged/hal/dvfs_workload_mode", "0"],
+      ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "30"],
+      ["/sys/kernel/ged/hal/dvfs_margin_value", "530"],
+      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "3"],
+      ["/sys/kernel/ged/hal/loading_window_size", "8"],
+      ["/sys/kernel/ged/hal/ged_fallback_tuning", "50"]
     ],
     "common_app": [
       ["@values", "latency", "1000", "0", "1000", "0", "1000", "0"],
-      ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
+      ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
       ["$gpu_max_freq", "#24"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
       ["/sys/module/mtk_fpsgo/parameters/p_perf", "0"],
       ["/sys/module/mtk_fpsgo/parameters/better_perf", "0"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "1"],
-      ["$core_ctl", "#1"]
+      ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "0"],
+      ["$core_ctl", "#1"],
+      ["@values", "gpu_params", "0", "0", "0", "30", "530", "3", "8", "50"]
     ],
     "common_gaming": [
+      ["@preset", "common_active"],
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
       ["@limiters", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["@gesture", "PAUSE"],
       ["$gpu_max_freq", "#9"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "#0"],
+      ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "1"],
       ["$uclamp_boost", "0"],
-      ["$core_ctl", "#0"]
+      ["$core_ctl", "#0"],
+      ["@values", "gpu_params", "#1", "#1", "#1", "#15", "#515", "2", "8", "8"]
     ],
 
     "powersave_active": [
       ["@preset", "common_active"],
       ["@values", "min_freq", "^500000", "^600000", "^600000"],
-      ["$uclamp_boost", "20"]
+      ["$uclamp_boost", "20"],
+      ["@values", "target_loads",
+        "0 1200000|1 1200000|2 1200000",
+        "0 15|1 17|2 17",
+        "0 10|1 12|2 12"
+      ]
     ],
     "powersave_inactive": [
-      ["@preset", "common_inactive"]
+      ["@preset", "common_inactive"],
+      ["@values", "target_loads",
+        "0 900000|1 900000|2 900000",
+        "0 12|1 12|2 12",
+        "0 8|1 8|2 8"
+      ]
     ],
     "balance_active": [
       ["@preset", "common_active"],
       ["@values", "min_freq", "^600000", "^700000", "^900000"],
-      ["$uclamp_boost", "30"]
+      ["$uclamp_boost", "30"],
+      ["@values", "target_loads",
+        "0 1200000|1 1900000|2 2100000",
+        "0 20|1 20|2 20",
+        "0 15|1 15|2 15"
+      ]
     ],
     "balance_inactive": [
-      ["@preset", "common_inactive"]
+      ["@preset", "common_inactive"],
+      ["@values", "target_loads",
+        "0 1200000|1 1200000|2 1200000",
+        "0 15|1 15|2 15",
+        "0 10|1 10|2 10"
+      ]
     ],
     "performance_active": [
-      ["@values", "min_freq", "^700000", "^900000", "^1200000"],
       ["@preset", "common_active"],
-      ["$uclamp_boost", "50"]
+      ["@values", "min_freq", "^700000", "^900000", "^1200000"],
+      ["$uclamp_boost", "50"],
+      ["@values", "target_loads",
+        "0 1500000|1 1900000|2 1900000",
+        "0 25|1 25|2 25",
+        "0 20|1 20|2 20"
+      ]
     ],
     "performance_inactive": [
-      ["@preset", "common_inactive"]
+      ["@preset", "common_inactive"],
+      ["@values", "target_loads",
+        "0 1200000|1 1700000|2 1700000",
+        "0 20|1 20|2 20",
+        "0 15|1 15|2 15"
+      ]
     ],
     "fast_active": [
       ["@preset", "common_active"],
       ["@values", "min_freq", "^600000", "^900000", "^1200000"],
-      ["$uclamp_boost", "50"]
+      ["$uclamp_boost", "50"],
+      ["@values", "target_loads",
+        "0 1600000|1 2100000|2 2100000",
+        "0 25|1 25|2 25",
+        "0 20|1 20|2 20"
+      ]
     ],
     "fast_inactive": [
-      ["@preset", "common_inactive"]
+      ["@preset", "common_inactive"],
+      ["@values", "target_loads",
+        "0 1600000|1 1900000|2 1900000",
+        "0 20|1 20|2 20",
+        "0 15|1 15|2 15"
+      ]
     ]
   },
   "schemes": {
     "powersave": {
       "call": [
-        ["@preset", "reset"],
-        ["@preset", "powersave_active"]
+        ["@preset", "reset"]
       ],
       "app": [
-        ["@values", "max_freq", "1600000", "1900000", "2300000"],
         ["@preset", "common_app"],
-        ["@values", "target_loads",
-          "0 1000000|1 1200000|2 1700000",
-          "0 20|1 20|2 20",
-          "0 17|1 17|2 17"
-        ]
+        ["@preset", "powersave_active"],
+        ["@values", "max_freq", "#1800000", "#1900000", "#2300000"]
       ]
     },
     "balance": {
       "call": [
-        ["@preset", "reset"],
-        ["@values", "max_freq", "#1700000", "#2100000", "#2700000"],
-        ["@preset", "balance_active"]
+        ["@preset", "reset"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@values", "target_loads",
-          "0 1200000|1 1700000|2 1700000",
-          "0 25|1 25|2 25",
-          "0 20|1 20|2 20"
-        ]
+        ["@preset", "balance_active"],
+        ["@values", "max_freq", "#2000000", "#2400000", "#2700000"]
       ]
     },
     "performance": {
       "call": [
-        ["@preset", "reset"],
-        ["@values", "max_freq", "#1700000", "#2400000", "#3000000"],
-        ["@preset", "performance_active"]
+        ["@preset", "reset"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@values", "target_loads",
-          "0 1500000|1 2100000|2 2100000",
-          "0 25|1 25|2 25",
-          "0 20|1 20|2 20"
-        ]
+        ["@preset", "performance_active"],
+        ["@values", "max_freq", "#2000000", "#2600000", "#3000000"]
       ]
     },
     "fast": {
       "call": [
-        ["@preset", "reset"],
-        ["@values", "max_freq", "#2000000", "#2600000", "#3250000"],
-        ["@preset", "fast_active"]
+        ["@preset", "reset"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@values", "target_loads",
-          "0 1500000|1 2100000|2 2100000",
-          "0 25|1 25|2 25",
-          "0 20|1 20|2 20"
-        ],
+        ["@preset", "fast_active"],
+        ["@values", "max_freq", "#2000000", "#2800000", "#3250000"],
         ["$gpu_max_freq", "#10"]
       ]
     },
     "pedestal": {
       "call": [
-        ["@preset", "reset"],
-        ["@values", "max_freq", "#2000000", "#2600000", "#3250000"],
-        ["@preset", "fast_active"]
+        ["@preset", "reset"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@values", "target_loads",
-          "0 1500000|1 2100000|2 2100000",
-          "0 30|1 30|2 30",
-          "0 25|1 25|2 25"
-        ],
+        ["@preset", "fast_active"],
+        ["@values", "max_freq", "#2000000", "#2850000", "#3250000"],
         ["$gpu_max_freq", "#5"]
       ]
     }
