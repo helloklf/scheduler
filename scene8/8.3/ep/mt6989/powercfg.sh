@@ -63,6 +63,7 @@ chmod 444 /proc/perfmgr/global_reclaim
 # echo 0 300000 2000000 > /proc/cpudvfs/cpufreq_debug
 # echo 4 550000 2850000 > /proc/cpudvfs/cpufreq_debug
 # echo 7 600000 3250000 > /proc/cpudvfs/cpufreq_debug
+echo 0 > /proc/powerhal_cpu_ctrl/adpf_enable
 umount /proc/powerhal_cpu_ctrl/perfserv_freq
 echo '300000 2000000 550000 2850000 600000 3250000' > /proc/powerhal_cpu_ctrl/perfserv_freq
 mount --bind /proc/powerhal_cpu_ctrl/adpf_enable /proc/powerhal_cpu_ctrl/perfserv_freq
@@ -171,3 +172,10 @@ set_cpuset surfaceflinger 'foreground'
 set_cpuset system_server 'foreground'
 set_cpuset update_engine 'top-app/7'
 set_cpuset vendor.qti.hardware.display.composer-service 'foreground'
+
+# The logd of K70U is too busy.
+getprop | grep log.tag | while read row
+do
+  prop=$(echo $row | cut -f2 -d '[' | cut -f1 -d ']')
+  setprop $prop E || resetprop $prop E
+done

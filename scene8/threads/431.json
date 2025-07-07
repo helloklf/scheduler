@@ -49,7 +49,7 @@
       "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "6",
       "comm": {
-        "4-7": ["UnityPreload", "IL2CPP"],
+        "4-7": ["UnityPreload", "IL2CPP", "btm_"],
         "4-5": ["CoreThread", "Apollo-", "NativeThread", "UnityChoreo", "Worker Thread", "Job.worker"]
       },
       "other": "0-5"
@@ -213,7 +213,7 @@
       "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "6",
       "comm": {
-        "4-6": ["Thread-", "Job.worker"]
+        "4-6": ["Thread-", "Job."]
       },
       "other": "0-5"
     }
@@ -226,7 +226,7 @@
     "cpuset": {
       "unity_main": "7",
       "comm": {
-        "4-6": ["UnityGfx", "Job.worker"]
+        "4-6": ["UnityGfx", "Job."]
       },
       "other": "0-6"
     }

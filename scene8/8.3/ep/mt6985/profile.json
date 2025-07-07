@@ -25,11 +25,6 @@
       "ddr_boost": true,
       "params": [
       ]
-    },
-    "gesture_boost": {
-      "enable": false,
-      "enter": [],
-      "exit": []
     }
   },
   "presets": {

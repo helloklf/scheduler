@@ -110,6 +110,7 @@ process_opt() {
 
   for name in 'kcompactd0' 'aal_sof' 'kfps' 'kworker'
     do
+    # 0-5
     taskset -p 3f $(pgrep -ef $name) > /dev/null
     done
 }
@@ -145,11 +146,13 @@ hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
 hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
 # lock_value /sys/kernel/ged/hal/fastdvfs_mode 0
 hide_value /sys/kernel/fpsgo/fbt/enable_ceiling 0
-lock_value 0 /sys/module/cpufreq_bouncing/parameters/enable
 lock_value 0 /sys/module/mtk_fpsgo/parameters/cfp_onoff
+lock_value 0 /proc/touch_boost/enable
 
 # FEAS dependence, But it will not work if you change the frequency, So disable it
 echo 0 > /sys/module/mtk_fpsgo/parameters/perfmgr_enable
+
+hide_value /sys/kernel/fpsgo/fbt/enable_ceiling 0
 
 echo 0 > /sys/class/devfreq/13000000.mali/min_freq
 echo 99 > /sys/kernel/ged/hal/custom_boost_gpu_freq
@@ -160,23 +163,19 @@ echo 0 > /sys/module/ged/parameters/gpu_cust_boost_freq
 if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
+
+  lock_value 1 /proc/game_opt/disable_cpufreq_limit
+  lock_value 0 /sys/module/cpufreq_bouncing/parameters/enable
+  lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
+  lock_value 0 /proc/task_overload/skip_goplus_enabled
+  stop vendor.oplus.ormsHalService-aidl-default
 fi
-hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-for service in orms-hal-1-0 vendor.oplus.ormsHalService-aidl-default # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
-do
-  stop $service
-done
 
 
 set_cpuset(){
   pgrep -f $1 | while read pid; do
     echo $pid > /dev/cpuset/$2/cgroup.procs
     taskset -p $3 $pid
-    ls /proc/$pid/task | while read tid
-    do
-      echo $tid > /dev/cpuset/$2/tasks
-      taskset -p $3 $tid
-    done
   done
 }
 
@@ -185,5 +184,6 @@ echo 4-5 > /dev/cpuset/foreground/4-5/cpus
 echo 0 > /dev/cpuset/foreground/4-5/mems
 
 set_cpuset surfaceflinger 'foreground/4-5' 38
+set_cpuset system_server 'foreground' 3f
+set_cpuset android.hardware.graphics.composer 'foreground' 3f
 set_cpuset update_engine 'top-app' f0
-set_cpuset android.hardware.graphics.composer 'foreground/4-5' 38

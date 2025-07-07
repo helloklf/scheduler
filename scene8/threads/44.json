@@ -29,7 +29,7 @@
       "heavy_thread": "Thread-;UnityGfx",
       "heavy_cores": "6",
       "comm": {
-        "4-7": ["IL2CPP"],
+        "4-7": ["IL2CPP", "btm_"],
         "4-5": ["CoreThread", "UnityPreload", "Worker Thread", "Job.worker", "NativeThread"],
         "0-5": ["FMOD", "UnityChoreograp", "AsyncReadManage"],
         "0-3": ["Audio", "tp_schedule"]

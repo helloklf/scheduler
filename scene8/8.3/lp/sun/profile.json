@@ -110,7 +110,6 @@
         ["/sys/module/migt/parameters/glk_disable", "0"]
       ],
       "common_active": [
-        ["@preset", "cpu6_on"]
       ],
       "common_inactive": [
         ["@values", "min_freq", "0", "0"],
@@ -128,7 +127,8 @@
         ["@cpuset", "0-1", "0-4", "0-4", "0-7"],
         ["$sched_boost", "0"],
         ["@values", "latency", "0", "2000", "0", "2000"],
-        ["$mod_percent", "100"]
+        ["$mod_percent", "100"],
+        ["@preset", "cpu6_on"]
       ],
 
       "powersave_active": [
@@ -154,7 +154,8 @@
         ["@target_loads",
           "80 1152000:85 1555200:90",
           "80 1689600:85 1958400:90"],
-        ["@values", "hispeed_freq", "960000", "1209600"]
+        ["@values", "hispeed_freq", "960000", "1209600"],
+        ["@preset", "cpu6_on"]
       ],
       "balance_inactive": [
         ["@preset", "common_inactive"],
@@ -171,7 +172,8 @@
         ["@target_loads",
           "80 1555200:85 2227200:95",
           "80 1958400:85 2841600:90 3283200:95"],
-        ["@values", "hispeed_freq", "1152000", "1401600"]
+        ["@values", "hispeed_freq", "1152000", "1401600"],
+        ["@preset", "cpu6_on"]
       ],
       "performance_inactive": [
         ["@preset", "common_inactive"],
@@ -187,7 +189,8 @@
         ["@target_loads",
           "78 1996800:83 2400000:87 2745600:95",
           "78 2246400:83 2841600:87 3513600:95"],
-        ["@values", "hispeed_freq", "1152000", "1401600"]
+        ["@values", "hispeed_freq", "1152000", "1401600"],
+        ["@preset", "cpu6_on"]
       ],
       "fast_inactive": [
         ["@target_loads",

@@ -55,18 +55,20 @@ lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 
-# hide_value /proc/perfmgr/perf_ioctl
-mount --bind /proc/perfmgr/fpsgo_lr_ioctl /proc/perfmgr/perf_ioctl
+if [[ $(grep /proc/perfmgr/perf_ioctl /proc/mounts) == '' ]]; then
+mount --bind /proc/perfmgr/ioctl_touch_boost /proc/perfmgr/perf_ioctl
+fi
+chmod 444 /proc/perfmgr/global_reclaim
 
-# echo 0 339000 2400000 > /proc/cpudvfs/cpufreq_debug
-# echo 4 622000 3300000 > /proc/cpudvfs/cpufreq_debug
-# echo 7 798000 3600000 > /proc/cpudvfs/cpufreq_debug
-# lock_value '339000 2400000 622000 3300000 798000 3600000' /proc/powerhal_cpu_ctrl/perfserv_freq
+umount /proc/powerhal_cpu_ctrl/perfserv_freq
+echo '339000 2400000 622000 3300000 798000 3600000' > /proc/powerhal_cpu_ctrl/perfserv_freq
+mount --bind /proc/powerhal_cpu_ctrl/adpf_enable /proc/powerhal_cpu_ctrl/perfserv_freq
 # lock_value '3300000 3600000' /sys/module/mtk_fpsgo/parameters/cpus_limit
 # lock_value 1 /sys/module/mtk_fpsgo/parameters/better_perf
 
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_tid
+lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
 
 # echo 1 > /sys/module/migt/parameters/force_reset_runtime
 # lock_value 0 /sys/module/migt/parameters/enable_pkg_monitor
@@ -93,9 +95,6 @@ lock_value 0 /sys/module/metis/parameters/mi_freq_enable
 #   lock_value 0 $file
 # done
 
-# chmod -R 444 /proc/perfmgr_powerhal
-chmod 444 /proc/perfmgr/global_reclaim
-
 metis=/sys/module/metis/parameters
 for file in $metis/*enable*; do
   lock_value 0 $file
@@ -114,23 +113,6 @@ lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/enable
 lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/max_cpus
 lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/min_cpus
 lock_value 0 /sys/devices/system/cpu/cpu7/core_ctl/enable
-
-lock_value 256 /dev/cpuctl/background/cpu.shares
-lock_value 20 /dev/cpuctl/background/cpu.uclamp.max
-
-echo 12000000 > /sys/kernel/debug/sched/latency_ns # default 24000000
-echo 2000000 > /sys/kernel/debug/sched/min_granularity_ns # default 3000000
-echo 3000000 > /sys/kernel/debug/sched/wakeup_granularity_ns # default 4000000
-
-mkdir /dev/memcg/scene_active
-echo 1 > /dev/memcg/scene_active/memory.move_charge_at_immigrate
-echo 10 > /dev/memcg/scene_active/memory.swappiness
-pidof com.android.launcher > /dev/memcg/scene_active/cgroup.procs
-pidof com.android.systemui > /dev/memcg/scene_active/cgroup.procs
-pidof surfaceflinger > /dev/memcg/scene_active/cgroup.procs
-pidof system_server > /dev/memcg/scene_active/cgroup.procs
-pidof  vendor.qti.hardware.display.composer-service > /dev/memcg/scene_active/cgroup.procs
-
 
 # vivo
 if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; then
@@ -154,7 +136,6 @@ if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
   lock_value "TTJ 90000 90000 90000" /sys/kernel/thermal/ttj
 fi
 
-
 lock_value 1 /proc/game_opt/disable_cpufreq_limit
 lock_value 1 /sys/module/migt/parameters/glk_disable
 lock_value 0 /sys/module/perfmgr/parameters/perfmgr_enable
@@ -163,6 +144,7 @@ lock_value 0 /sys/module/cpufreq_bouncing/parameters/enable
 lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
 lock_value 0 /proc/task_overload/skip_goplus_enabled
 lock_value 0 /sys/module/mtk_fpsgo/parameters/cfp_onoff
+lock_value 0 /proc/touch_boost/enable
 stop vendor.oplus.ormsHalService-aidl-default
 
 # set_slc [cpu%] [gpu%]

@@ -21,11 +21,6 @@
       "ddr_boost": false,
       "params": [
       ]
-    },
-    "gesture_boost": {
-      "enable": false,
-      "enter": [],
-      "exit": []
     }
   },
   "presets": {
@@ -62,7 +57,11 @@
       ["/sys/module/mtk_fpsgo/parameters/p_perf", "0"],
       ["/sys/module/mtk_fpsgo/parameters/better_perf", "0"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "1"],
-      ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "0"]
+      ["@ioctl", "/proc/easmgr/eas_ioctl",
+        "0x40046715", "500000", "0x40046716", "25",
+        "0x40046717", "200000", "0x40046718", "25",
+        "0x40046719", "200000", "0x4004671A", "25"
+      ]
     ],
     "common_gaming": [
       ["@values", "latency", "10", "10", "10", "10", "10", "10"],
@@ -71,8 +70,7 @@
       ["@gesture", "PAUSE"],
       ["$gpu_max_freq", "#7"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "#0"],
-      ["$uclamp_boost", "0"],
-      ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "1"]
+      ["$uclamp_boost", "0"]
     ],
     "limiter_off": [
       ["/proc/game_opt/disable_cpufreq_limit", "#1"],
@@ -127,6 +125,13 @@
       "app": [
         ["@values", "max_freq", "1800000", "2100000", "2400000"],
         ["@preset", "common_app"]
+      ],
+      "game": [
+        ["@ioctl", "/proc/easmgr/eas_ioctl",
+          "0x40046715", "500000", "0x40046716", "20",
+          "0x40046717", "200000", "0x40046718", "20",
+          "0x40046719", "200000", "0x4004671A", "20"
+        ]
       ]
     },
     "balance": {
@@ -137,6 +142,13 @@
       ],
       "app": [
         ["@preset", "common_app"]
+      ],
+      "game": [
+        ["@ioctl", "/proc/easmgr/eas_ioctl",
+          "0x40046715", "500000", "0x40046716", "25",
+          "0x40046717", "200000", "0x40046718", "25",
+          "0x40046719", "200000", "0x4004671A", "25"
+        ]
       ]
     },
     "performance": {
@@ -147,6 +159,14 @@
       ],
       "app": [
         ["@preset", "common_app"]
+      ],
+      "game": [
+        ["@governor", "schedutil"],
+        ["@ioctl", "/proc/easmgr/eas_ioctl",
+          "0x40046715", "500000", "0x40046716", "28",
+          "0x40046717", "200000", "0x40046718", "28",
+          "0x40046719", "200000", "0x4004671A", "28"
+        ]
       ]
     },
     "fast": {
@@ -158,6 +178,14 @@
       "app": [
         ["@preset", "common_app"],
         ["$gpu_max_freq", "#10"]
+      ],
+      "game": [
+        ["@governor", "schedutil"],
+        ["@ioctl", "/proc/easmgr/eas_ioctl",
+          "0x40046715", "500000", "0x40046716", "30",
+          "0x40046717", "200000", "0x40046718", "30",
+          "0x40046719", "200000", "0x4004671A", "30"
+        ]
       ]
     },
     "pedestal": {
@@ -169,6 +197,14 @@
       "app": [
         ["@preset", "common_app"],
         ["$gpu_max_freq", "#7"]
+      ],
+      "game": [
+        ["@governor", "schedutil"],
+        ["@ioctl", "/proc/easmgr/eas_ioctl",
+          "0x40046715", "500000", "0x40046716", "35",
+          "0x40046717", "200000", "0x40046718", "35",
+          "0x40046719", "200000", "0x4004671A", "35"
+        ]
       ]
     }
   },

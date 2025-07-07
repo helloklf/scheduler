@@ -26,7 +26,6 @@
     {
       "mode": ["performance"],
       "call": [
-        ["@governor", "schedutil"],
         ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling -1"],
         ["@values", "max_freq", "#2000000", "#2800000", "#2800000"],
         ["@values", "min_freq", "800000", "900000", "900000"]
@@ -35,7 +34,6 @@
     {
       "mode": ["fast"],
       "call": [
-        ["@governor", "schedutil"],
         ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling -1"],
         ["@values", "max_freq", "#2000000", "#3000000", "#3000000"],
         ["@values", "min_freq", "800000", "900000", "900000"]
@@ -44,7 +42,6 @@
     {
       "mode": ["*"],
       "call": [
-        ["@governor", "schedutil"],
         ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling -1"],
         ["@values", "max_freq", "#2400000", "#3300000", "#3300000"],
         ["@values", "min_freq", "800000", "900000", "900000"]

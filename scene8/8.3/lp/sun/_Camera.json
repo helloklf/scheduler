@@ -1,7 +1,8 @@
 {
   "friendly": "相机",
   "call": [
-    ["@limiters", "NONE"]
+    ["@limiters", "NONE"],
+    ["@preset", "cpu6_on"]
   ],
   "booster": {
     "duration": 5000,

@@ -53,16 +53,6 @@
     "common_inactive": [
       ["@values", "min_freq", "#300000", "#550000", "#600000"]
     ],
-    "gpu_params": [
-      ["/sys/kernel/ged/hal/force_loading_base", "0"],
-      ["/sys/kernel/ged/hal/dvfs_loading_mode", "0"],
-      ["/sys/kernel/ged/hal/dvfs_workload_mode", "0"],
-      ["/sys/kernel/ged/hal/timer_base_dvfs_margin", "30"],
-      ["/sys/kernel/ged/hal/dvfs_margin_value", "530"],
-      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "3"],
-      ["/sys/kernel/ged/hal/loading_window_size", "8"],
-      ["/sys/kernel/ged/hal/ged_fallback_tuning", "50"]
-    ],
     "common_app": [
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
       ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
@@ -72,20 +62,18 @@
       ["/sys/module/mtk_fpsgo/parameters/better_perf", "0"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "1"],
       ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "0"],
-      ["$core_ctl", "#1"],
-      ["@values", "gpu_params", "0", "0", "0", "30", "530", "3", "8", "50"]
+      ["$core_ctl", "#1"]
     ],
     "common_gaming": [
       ["@preset", "common_active"],
-      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
+      ["@values", "latency", "10", "10", "10", "10", "10", "10"],
       ["@limiters", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["@gesture", "PAUSE"],
       ["$gpu_max_freq", "#9"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "#0"],
       ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "1"],
-      ["$core_ctl", "#0"],
-      ["@values", "gpu_params", "#1", "#1", "#1", "#15", "#515", "1", "8", "8"]
+      ["$core_ctl", "#0"]
     ],
 
     "powersave_active": [
@@ -100,8 +88,8 @@
     "powersave_inactive": [
       ["@preset", "common_inactive"],
       ["@values", "target_loads",
-        "0 900000|1 900000|2 900000",
-        "0 12|1 12|2 12",
+        "0 500000|1 900000|2 900000",
+        "0 20|1 12|2 12",
         "0 8|1 8|2 8"
       ]
     ],
@@ -165,7 +153,7 @@
       "app": [
         ["@preset", "common_app"],
         ["@preset", "powersave_active"],
-        ["@values", "max_freq", "#1600000", "#1900000", "#2100000"]
+        ["@values", "max_freq", "#1600000", "#1900000", "#1900000"]
       ]
     },
     "balance": {

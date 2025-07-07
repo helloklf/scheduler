@@ -10,7 +10,7 @@ set_value() {
   fi;
 }
 
-lock_value () {
+lock_value() {
   if [[ -f $2 ]];then
     chmod 644 $2
     echo $1 > $2
@@ -56,7 +56,9 @@ lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 
 # hide_value /proc/perfmgr/perf_ioctl
-mount --bind /proc/perfmgr/fpsgo_lr_ioctl /proc/perfmgr/perf_ioctl
+# mount --bind /proc/perfmgr/fpsgo_lr_ioctl /proc/perfmgr/perf_ioctl
+umount /proc/perfmgr/perf_ioctl
+mount --bind /proc/perfmgr_touch_boost/ioctl_touch_boost /proc/perfmgr/perf_ioctl
 
 # echo 0 339000 2400000 > /proc/cpudvfs/cpufreq_debug
 # echo 4 622000 3300000 > /proc/cpudvfs/cpufreq_debug
@@ -162,6 +164,7 @@ lock_value 0 /sys/module/migt/parameters/glk_freq_limit_walt
 lock_value 0 /sys/module/cpufreq_bouncing/parameters/enable
 lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
 lock_value 0 /proc/task_overload/skip_goplus_enabled
+lock_value 0 /sys/module/mtk_fpsgo/parameters/cfp_onoff
 stop vendor.oplus.ormsHalService-aidl-default
 
 # set_slc [cpu%] [gpu%]

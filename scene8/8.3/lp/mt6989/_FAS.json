@@ -21,7 +21,7 @@
         ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"]
       ],
       "fas": {
-        "freq": ["2700000", "2400000", "-2"]
+        "freq": ["2600000", "2400000", "-2"]
       }
     },
     {
@@ -41,7 +41,6 @@
       ],
       "fas": {
         "mode": "normal",
-        "ddr_boost": true,
         "lower_freq": 1000000,
         "freq": ["3250000", "2850000", "-2"]
       }

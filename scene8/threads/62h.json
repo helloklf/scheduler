@@ -70,7 +70,7 @@
       "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "5",
       "comm": {
-        "1-7": ["IL2CPP"],
+        "1-7": ["IL2CPP", "btm_"],
         "6": ["UnityMain"]
       },
       "other": "1-4"

@@ -6,28 +6,24 @@
     {
       "mode": ["powersave"],
       "fas": {
-        "ddr_boost": true,
         "freq": ["2200000", "2300000", "2"]
       }
     },
     {
       "mode": ["balance"],
       "fas": {
-        "ddr_boost": true,
         "freq": ["2400000", "2600000", "2"]
       }
     },
     {
       "mode": ["performance"],
       "fas": {
-        "ddr_boost": true,
         "freq": ["2700000", "2850000", "2"]
       }
     },
     {
       "mode": ["fast"],
       "fas": {
-        "ddr_boost": true,
         "freq": ["3050000", "3000000", "2"]
       }
     }

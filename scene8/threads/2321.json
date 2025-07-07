@@ -76,7 +76,7 @@
       "heavy_cores": "2-4",
       "comm": {
         "7": ["UnityMain"],
-        "2-7": ["IL2CPP"],
+        "2-7": ["IL2CPP", "btm_"],
         "2-4": ["Worker Thread", "Job.worker"],
         "2-6": ["CoreThread", "Apollo", "NativeThread"]
       },

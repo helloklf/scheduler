@@ -3,6 +3,7 @@
   "call": [
     ["@cpu_freq", "policy0", "2400000", "max"],
     ["@cpu_freq", "policy6", "2400000", "max"],
-    ["$max_cpus_cpu6", "2"]
+    ["$max_cpus_cpu6", "2"],
+    ["@preset", "cpu6_on"]
   ]
 }

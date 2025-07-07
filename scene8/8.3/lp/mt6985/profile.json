@@ -49,11 +49,6 @@
         { "id": "idle:cpu4","max": 1800000, "min": 500000,  "margin": 100 },
         { "id": "idle:cpu7","max": 1800000, "min": 1200000, "margin": 100, "core_ctl": true }
       ]
-    },
-    "gesture_boost": {
-      "enable": false,
-      "enter": [],
-      "exit": []
     }
   },
   "presets": {
