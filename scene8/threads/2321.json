@@ -85,7 +85,7 @@
   },
   {
     "friendly": "和平精英",
-    "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce", "com.tencent.ig"],
+    "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce"],
     "cpuset": {
       "heavy_thread": "Thread-",
       "heavy_cores": "7",
@@ -98,7 +98,7 @@
   },
   {
     "friendly": "PUBG(UE4)",
-    "packages": ["com.pubg.imobile", "com.pubg.krmobile"],
+    "packages": ["com.pubg.imobile", "com.pubg.krmobile", "com.tencent.ig"],
     "cpuset": {
       "heavy_thread": "UEGameThread;Thread-",
       "heavy_cores": "7",
