@@ -63,7 +63,7 @@
       ["/sys/module/mtk_fpsgo/parameters/better_perf", "0"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "1"],
       ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "0"],
-      ["$core_ctl", "#1"]
+      ["$core_ctl", "#0"]
     ],
     "common_gaming": [
       ["@preset", "common_active"],
@@ -189,8 +189,7 @@
       "app": [
         ["@preset", "common_app"],
         ["@preset", "fast_active"],
-        ["@values", "max_freq", "#2000000", "#2800000", "#3250000"],
-        ["$gpu_max_freq", "#10"]
+        ["@values", "max_freq", "#2000000", "#2800000", "#3250000"]
       ]
     },
     "pedestal": {
@@ -200,24 +199,16 @@
       "app": [
         ["@preset", "common_app"],
         ["@preset", "fast_active"],
-        ["@values", "max_freq", "#2000000", "#2850000", "#3250000"],
-        ["$gpu_max_freq", "#5"]
+        ["@values", "max_freq", "#2000000", "#2850000", "#3250000"]
       ]
     }
   },
   "apps": [
-    { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
+    { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
     { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
-    {
-      "friendly": "双核强化",
-      "packages": [
-        "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact"
-      ],
-      "import": "_DualCore.json"
-    },
     {
       "friendly": "All",
       "packages": ["*"],

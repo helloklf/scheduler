@@ -86,7 +86,7 @@
       ["@values", "min_freq", "#300000", "#550000", "#600000"]
     ],
     "common_app": [
-      ["@values", "latency", "1000", "0", "1000", "0", "1000", "0"],
+      ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],
       ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
       ["$gpu_max_freq", "#24"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "1"],
@@ -198,8 +198,7 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@preset", "fast_active"],
-        ["$gpu_max_freq", "#10"]
+        ["@preset", "fast_active"]
       ],
       "game": [
         ["@preset", "common_gaming"]
@@ -217,9 +216,9 @@
       "categories": ["Music", "Reader", "ShortVideo", "Nav"],
       "import": "_ELP.json"
     },
+    { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
     { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
     { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
-    { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
     { "friendly": "待机", "packages": ["standby"], "import": "_Standby.json" },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],

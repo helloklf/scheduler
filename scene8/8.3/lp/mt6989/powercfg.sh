@@ -63,6 +63,7 @@ chmod 444 /proc/perfmgr/global_reclaim
 # echo 0 300000 2000000 > /proc/cpudvfs/cpufreq_debug
 # echo 4 550000 2850000 > /proc/cpudvfs/cpufreq_debug
 # echo 7 600000 3250000 > /proc/cpudvfs/cpufreq_debug
+echo 0 > /proc/powerhal_cpu_ctrl/adpf_enable
 umount /proc/powerhal_cpu_ctrl/perfserv_freq
 echo '300000 2000000 550000 2850000 600000 3250000' > /proc/powerhal_cpu_ctrl/perfserv_freq
 mount --bind /proc/powerhal_cpu_ctrl/adpf_enable /proc/powerhal_cpu_ctrl/perfserv_freq
@@ -117,9 +118,6 @@ lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/max_cpus
 lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/min_cpus
 lock_value 0 /sys/devices/system/cpu/cpu7/core_ctl/enable
 
-lock_value 256 /dev/cpuctl/background/cpu.shares
-lock_value 20 /dev/cpuctl/background/cpu.uclamp.max
-
 # vivo
 if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; then
   stop vivo-vperf-hal-1-0
@@ -141,5 +139,44 @@ if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; th
   fi
 fi
 
+lock_value 1 /proc/game_opt/disable_cpufreq_limit
+lock_value 1 /sys/module/migt/parameters/glk_disable
+lock_value 0 /sys/module/perfmgr/parameters/perfmgr_enable
+lock_value 0 /sys/module/migt/parameters/glk_freq_limit_walt
 lock_value 0 /sys/module/cpufreq_bouncing/parameters/enable
+lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
+lock_value 0 /proc/task_overload/skip_goplus_enabled
 lock_value 0 /sys/module/mtk_fpsgo/parameters/cfp_onoff
+lock_value 0 /proc/touch_boost/enable
+stop vendor.oplus.ormsHalService-aidl-default
+
+set_cpuset(){
+  pgrep -f $1 | while read pid; do
+    echo $pid > /dev/cpuset/$2/cgroup.procs
+    ls /proc/$pid/task | while read tid
+    do
+      echo $tid > /dev/cpuset/$2/tasks
+    done
+  done
+}
+
+mkdir /dev/cpuset/top-app/7
+echo 7 > /dev/cpuset/top-app/7/cpus
+echo 0 > /dev/cpuset/top-app/7/mems
+
+set_cpuset touch_report 'foreground'
+set_cpuset surfaceflinger 'foreground'
+set_cpuset system_server 'foreground'
+set_cpuset update_engine 'top-app/7'
+set_cpuset vendor.qti.hardware.display.composer-service 'foreground'
+
+# The logd of K70U is too busy.
+getprop | grep log.tag | while read row
+do
+  prop=$(echo $row | cut -f2 -d '[' | cut -f1 -d ']')
+  setprop $prop E || resetprop $prop E
+done
+
+
+# k70u default 2
+# resetprop --delete persist.sys.advanced_visual_release

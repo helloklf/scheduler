@@ -4,7 +4,7 @@
     "mode": ["powersave"],
     "booster": {
       "duration": 2000,
-      "idle_delay": 1000,
+      "idle_delay": 700,
       "enter": [
         ["@preset", "powersave_active"]
       ],
@@ -16,7 +16,7 @@
     "mode": ["balance"],
     "booster": {
       "duration": 2000,
-      "idle_delay": 1000,
+      "idle_delay": 700,
       "enter": [
         ["@preset", "balance_active"]
       ],
@@ -27,8 +27,8 @@
   }, {
     "mode": ["performance"],
     "booster": {
-      "duration": 2000,
-      "idle_delay": 1000,
+      "duration": 2500,
+      "idle_delay": 700,
       "enter": [
         ["@preset", "performance_active"]
       ],
@@ -39,8 +39,8 @@
   }, {
     "mode": ["*"],
     "booster": {
-      "duration": 2000,
-      "idle_delay": 1000,
+      "duration": 2500,
+      "idle_delay": 700,
       "enter": [
         ["@preset", "fast_active"]
       ],

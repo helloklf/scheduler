@@ -118,9 +118,6 @@ lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/max_cpus
 lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/min_cpus
 lock_value 0 /sys/devices/system/cpu/cpu7/core_ctl/enable
 
-lock_value 256 /dev/cpuctl/background/cpu.shares
-lock_value 20 /dev/cpuctl/background/cpu.uclamp.max
-
 # vivo
 if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; then
   stop vivo-vperf-hal-1-0
@@ -179,3 +176,7 @@ do
   prop=$(echo $row | cut -f2 -d '[' | cut -f1 -d ']')
   setprop $prop E || resetprop $prop E
 done
+
+
+# k70u default 2
+# resetprop --delete persist.sys.advanced_visual_release
