@@ -3,7 +3,6 @@
   "modes": [
     {
       "mode": ["powersave"],
-      "call": [],
       "fas": {
         "use": "whitelist",
         "freq": ["2400000", "2100000", "-2"]
@@ -11,7 +10,6 @@
     },
     {
       "mode": ["balance"],
-      "call": [],
       "fas": {
         "use": "whitelist",
         "freq": ["2600000", "2400000", "-2"]
@@ -19,7 +17,6 @@
     },
     {
       "mode": ["performance"],
-      "call": [],
       "fas": {
         "use": "whitelist",
         "freq": ["2800000", "2600000", "-2"]
@@ -27,7 +24,6 @@
     },
     {
       "mode": ["fast"],
-      "call": [],
       "fas": {
         "use": "whitelist",
         "freq": ["3050000", "3000000", "-2"]

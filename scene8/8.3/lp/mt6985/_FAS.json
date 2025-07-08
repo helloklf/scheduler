@@ -1,7 +1,5 @@
 {
   "friendly": "游戏(FAS)",
-  "limiters": [
-  ],
   "modes": [
     {
       "mode": ["powersave"],
