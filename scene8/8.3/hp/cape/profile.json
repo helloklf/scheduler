@@ -19,9 +19,9 @@
       "l3_boost": true,
       "ddr_boost": true,
       "params": [
-        { "id": "p1:cpu0",  "max": 1555200, "min": 691200,  "margin": 250 },
-        { "id": "p1:cpu4","max": 2112000, "min": 768000,  "margins": "270 1766400:160" },
-        { "id": "p1:cpu7","max": 2246400, "min": 1036800, "margins": "270 1766400:180" },
+        { "id": "p1:cpu0", "max": 1555200, "min": 691200,  "margin": 250 },
+        { "id": "p1:cpu4", "max": 2112000, "min": 768000,  "margins": "270 1766400:160" },
+        { "id": "p1:cpu7", "max": 2246400, "min": 1036800, "margins": "270 1766400:180" },
 
         { "id": "p2:cpu0", "max": 1670400, "min": 1056000, "margins": "280 1555200:150" },
         { "id": "p2:cpu4", "max": 2496000, "min": 1766400, "margins": "280 2112000:150" },
@@ -62,7 +62,8 @@
       ["$ddr_boost", "0"],
       ["@governor", "walt"],
       ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
-      ["@values", "hispeed_load", "90", "90", "90"]
+      ["@values", "hispeed_load", "90", "90", "90"],
+      ["@preset", "common_active"]
     ],
 
     "hispeed_freq": [
@@ -224,8 +225,8 @@
     "powersave": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "powersave_active"],
-        ["$bus_ddr", "2736000"]
+        ["$bus_ddr", "2736000"],
+        ["@values", "max_freq", "1555200", "2112000", "2246400"]
       ],
       "app": [
         ["@preset", "common_app"]
@@ -234,8 +235,8 @@
     "balance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "balance_active"],
-        ["$bus_ddr", "2736000"]
+        ["$bus_ddr", "2736000"],
+        ["@values", "max_freq", "1670400", "2496000", "2707200"]
       ],
       "app": [
         ["@preset", "common_app"]
@@ -244,8 +245,8 @@
     "performance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "performance_active"],
-        ["$bus_ddr", "2736000"]
+        ["$bus_ddr", "2736000"],
+        ["@values", "max_freq", "1804800", "2745600", "2995200"]
       ],
       "app": [
         ["@preset", "common_app"]
@@ -254,8 +255,8 @@
     "fast": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "fast_active"],
-        ["$bus_ddr", "3196000"]
+        ["$bus_ddr", "3196000"],
+        ["@values", "max_freq", "1804800", "2745600", "2995200"]
       ],
       "app": [
         ["@preset", "common_app"]
