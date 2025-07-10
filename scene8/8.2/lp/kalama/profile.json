@@ -15,21 +15,21 @@
   "features": {
     "limiter": {
       "params": [
-        { "id": "p1:cpu0","max": 1555200, "min": 556800, "margin": 150, "excludes": [1] },
-        { "id": "p1:cpu3","max": 1785600, "min": 614400, "margin": 220 },
-        { "id": "p1:cpu7","max": 1977600, "min": 729600, "margin": 220 },
+        { "id": "p1:cpu0", "max": 1555200, "min": 556800, "margin": 150, "excludes": [1] },
+        { "id": "p1:cpu3", "max": 1785600, "min": 614400, "margin": 220 },
+        { "id": "p1:cpu7", "max": 1977600, "min": 729600, "margin": 220 },
 
-        { "id": "p2:cpu0","max": 1555200, "min": 787200, "margin": 300 },
-        { "id": "p2:cpu3","max": 2188800, "min": 1651200, "margin": 300 },
-        { "id": "p2:cpu7","max": 2476800, "min": 1708800, "margin": 300 },
+        { "id": "p2:cpu0", "max": 1555200, "min": 787200, "margin": 300 },
+        { "id": "p2:cpu3", "max": 2188800, "min": 1651200, "margin": 300 },
+        { "id": "p2:cpu7", "max": 2476800, "min": 1708800, "margin": 300 },
 
-        { "id": "p3:cpu0","max": 1670400, "min": 902400, "margin": 300 },
-        { "id": "p3:cpu3","max": 2457600, "min": 2054400, "margin": 300 },
-        { "id": "p3:cpu7","max": 2726400, "min": 2092800, "margin": 300 },
+        { "id": "p3:cpu0", "max": 1670400, "min": 902400, "margin": 300 },
+        { "id": "p3:cpu3", "max": 2457600, "min": 2054400, "margin": 300 },
+        { "id": "p3:cpu7", "max": 2726400, "min": 2092800, "margin": 300 },
 
-        { "id": "p4:cpu0","max": 1804800, "min": 1228800, "margin": 300 },
-        { "id": "p4:cpu3","max": 2803200, "min": 2323200, "margin": 300 },
-        { "id": "p4:cpu7","max": 2995200, "min": 2476800, "margin": 300 },
+        { "id": "p4:cpu0", "max": 1804800, "min": 1228800, "margin": 300 },
+        { "id": "p4:cpu3", "max": 2803200, "min": 2323200, "margin": 300 },
+        { "id": "p4:cpu7", "max": 2995200, "min": 2476800, "margin": 300 },
 
         { "id": "inactive:cpu0", "max": 1555200, "min": 556800, "margin": 100 },
         { "id": "inactive:cpu3", "max": 1785600, "min": 614400, "margin": 120 },

@@ -43,13 +43,13 @@
         { "id": "p4:cpu7", "max": 2800000, "min": 2650000, "margin": 300 },
 
 
-        { "id": "inactive:cpu0","max": 1500000, "min": 700000, "margin": 100 },
-        { "id": "inactive:cpu4","max": 2100000, "min": 700000, "margin": 100 },
-        { "id": "inactive:cpu7","max": 2100000, "min": 1300000, "margin": 130 },
+        { "id": "inactive:cpu0", "max": 1500000, "min": 700000, "margin": 100 },
+        { "id": "inactive:cpu4", "max": 2100000, "min": 700000, "margin": 100 },
+        { "id": "inactive:cpu7", "max": 2100000, "min": 1300000, "margin": 130 },
 
-        { "id": "idle:cpu0","max": 1200000, "min": 400000, "margin": 100 },
-        { "id": "idle:cpu4","max": 1800000, "min": 400000, "margin": 100 },
-        { "id": "idle:cpu7","max": 1800000, "min": 1300000, "margin": 100, "core_ctl": true }
+        { "id": "idle:cpu0", "max": 1200000, "min": 400000, "margin": 100 },
+        { "id": "idle:cpu4", "max": 1800000, "min": 400000, "margin": 100 },
+        { "id": "idle:cpu7", "max": 1800000, "min": 1300000, "margin": 100, "core_ctl": true }
       ]
     },
     "gesture_boost": {

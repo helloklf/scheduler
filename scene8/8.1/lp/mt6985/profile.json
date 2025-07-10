@@ -44,9 +44,9 @@
         { "id": "inactive:cpu4", "max": 2100000, "min": 500000,  "margin": 120 },
         { "id": "inactive:cpu7", "max": 2100000, "min": 1200000, "margin": 120 },
 
-        { "id": "idle:cpu0","max": 1400000, "min": 500000,  "margin": 100 },
-        { "id": "idle:cpu4","max": 1800000, "min": 500000,  "margin": 100 },
-        { "id": "idle:cpu7","max": 1800000, "min": 1200000, "margin": 100, "core_ctl": true }
+        { "id": "idle:cpu0", "max": 1400000, "min": 500000,  "margin": 100 },
+        { "id": "idle:cpu4", "max": 1800000, "min": 500000,  "margin": 100 },
+        { "id": "idle:cpu7", "max": 1800000, "min": 1200000, "margin": 100, "core_ctl": true }
       ]
     },
     "gesture_boost": {

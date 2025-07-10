@@ -1,13 +1,13 @@
 {
   "friendly": "游戏",
   "limiters": [
-    { "id": "g1:cpu0","max": 1708800, "min": 1228800, "margins": "300" },
-    { "id": "g1:cpu3","max": 1920000, "min": 1190400, "margins": "300 1708800:200" },
-    { "id": "g1:cpu7","max": 2150400, "min": 1209600, "margins": "300 1766400:200" },
+    { "id": "g1:cpu0", "max": 1708800, "min": 1228800, "margins": "300" },
+    { "id": "g1:cpu3", "max": 1920000, "min": 1190400, "margins": "300 1708800:200" },
+    { "id": "g1:cpu7", "max": 2150400, "min": 1209600, "margins": "300 1766400:200" },
 
-    { "id": "g2:cpu0","max": 1708800, "min": 1228800, "margins": "300", "prefer": 3 },
-    { "id": "g2:cpu3","max": 2361600, "min": 1708800, "margins": "300 2188800:200", "prefer": 3 },
-    { "id": "g2:cpu7","max": 2457600, "min": 1766400, "margins": "300 2150400:200", "prefer": 3 },
+    { "id": "g2:cpu0", "max": 1708800, "min": 1228800, "margins": "300", "prefer": 3 },
+    { "id": "g2:cpu3", "max": 2361600, "min": 1708800, "margins": "300 2188800:200", "prefer": 3 },
+    { "id": "g2:cpu7", "max": 2457600, "min": 1766400, "margins": "300 2150400:200", "prefer": 3 },
 
     { "id": "g3:cpu0", "max": 1843200, "min": 1478400, "margins": "300", "prefer": 3 },
     { "id": "g3:cpu3", "max": 2611200, "min": 2188800, "margins": "300 2361600:200", "prefer": 3 },

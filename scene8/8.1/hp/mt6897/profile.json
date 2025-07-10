@@ -37,13 +37,13 @@
         { "id": "p4:cpu4", "max": 2850000, "min": 2600000, "margin": 300 },
         { "id": "p4:cpu7", "max": 3000000, "min": 2800000, "margin": 300 },
 
-        { "id": "inactive:cpu0","max": 1600000, "min": 600000, "margin": 120 },
-        { "id": "inactive:cpu4","max": 2100000, "min": 500000, "margin": 120 },
-        { "id": "inactive:cpu7","max": 2100000, "min": 400000, "margin": 120 },
+        { "id": "inactive:cpu0", "max": 1600000, "min": 600000, "margin": 120 },
+        { "id": "inactive:cpu4", "max": 2100000, "min": 500000, "margin": 120 },
+        { "id": "inactive:cpu7", "max": 2100000, "min": 400000, "margin": 120 },
 
-        { "id": "idle:cpu0","max": 1500000, "min": 600000, "margin": 100 },
-        { "id": "idle:cpu4","max": 1800000, "min": 500000, "margin": 100 },
-        { "id": "idle:cpu7","max": 1800000, "min": 400000, "margin": 100, "core_ctl": true }
+        { "id": "idle:cpu0", "max": 1500000, "min": 600000, "margin": 100 },
+        { "id": "idle:cpu4", "max": 1800000, "min": 500000, "margin": 100 },
+        { "id": "idle:cpu7", "max": 1800000, "min": 400000, "margin": 100, "core_ctl": true }
       ]
     },
     "gesture_boost": {

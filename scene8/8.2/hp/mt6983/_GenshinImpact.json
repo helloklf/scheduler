@@ -1,21 +1,21 @@
 {
   "friendly": "原神",
   "limiters": [
-    {"id": "ys1:cpu0","max": 1600000, "min": 800000, "margin": 300, "smoothness": 6},
-    {"id": "ys1:cpu4","max": 2100000, "min": 1400000, "margin": 160, "smoothness": 6},
-    {"id": "ys1:cpu7","max": 2100000, "margin": 150, "smoothness": 6},
+    {"id": "ys1:cpu0", "max": 1600000, "min": 800000, "margin": 300, "smoothness": 6},
+    {"id": "ys1:cpu4", "max": 2100000, "min": 1400000, "margin": 160, "smoothness": 6},
+    {"id": "ys1:cpu7", "max": 2100000, "margin": 150, "smoothness": 6},
 
-    {"id": "ys2:cpu0","max": 1600000, "min": 800000,  "margin": 300, "smoothness": 6},
-    {"id": "ys2:cpu4","max": 2450000, "min": 1700000, "margin": 180, "smoothness": 6},
-    {"id": "ys2:cpu7","max": 2300000, "min": 1400000, "margin": 160, "smoothness": 6},
+    {"id": "ys2:cpu0", "max": 1600000, "min": 800000,  "margin": 300, "smoothness": 6},
+    {"id": "ys2:cpu4", "max": 2450000, "min": 1700000, "margin": 180, "smoothness": 6},
+    {"id": "ys2:cpu7", "max": 2300000, "min": 1400000, "margin": 160, "smoothness": 6},
 
-    {"id": "ys3:cpu0","max": 1600000, "min": 800000, "margin": 300, "smoothness": 6},
-    {"id": "ys3:cpu4","max": 2650000, "min": 1900000, "margin": 230, "smoothness": 6},
-    {"id": "ys3:cpu7","max": 2650000, "min": 1700000, "margin": 200, "smoothness": 6},
+    {"id": "ys3:cpu0", "max": 1600000, "min": 800000, "margin": 300, "smoothness": 6},
+    {"id": "ys3:cpu4", "max": 2650000, "min": 1900000, "margin": 230, "smoothness": 6},
+    {"id": "ys3:cpu7", "max": 2650000, "min": 1700000, "margin": 200, "smoothness": 6},
 
-    {"id": "ys4:cpu0","max": 1800000, "min": 1000000, "margin": 300, "smoothness": 6},
-    {"id": "ys4:cpu4","max": 2850000, "min": 2100000, "margin": 400, "smoothness": 6},
-    {"id": "ys4:cpu7","max": 3000000, "min": 1800000, "margin": 300, "smoothness": 6}
+    {"id": "ys4:cpu0", "max": 1800000, "min": 1000000, "margin": 300, "smoothness": 6},
+    {"id": "ys4:cpu4", "max": 2850000, "min": 2100000, "margin": 400, "smoothness": 6},
+    {"id": "ys4:cpu7", "max": 3000000, "min": 1800000, "margin": 300, "smoothness": 6}
   ],
   "modes": [
     {

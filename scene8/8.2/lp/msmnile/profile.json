@@ -10,25 +10,25 @@
   "features": {
     "limiter": {
       "params": [
-        { "id": "p1:cpu0","max": 1708800, "min": 1036800, "margin": 400, "excludes": [1] },
-        { "id": "p1:cpu4","max": 1708800, "min": 1056000, "margin": 300 },
-        { "id": "p1:cpu7","max": 1804800, "min": 1171200, "margin": 300 },
+        { "id": "p1:cpu0", "max": 1708800, "min": 1036800, "margin": 400, "excludes": [1] },
+        { "id": "p1:cpu4", "max": 1708800, "min": 1056000, "margin": 300 },
+        { "id": "p1:cpu7", "max": 1804800, "min": 1171200, "margin": 300 },
 
-        { "id": "p2:cpu0","max": 1708800, "min": 1478400, "margin": 450 },
-        { "id": "p2:cpu4","max": 2419200, "min": 1708800, "margin": 400 },
-        { "id": "p2:cpu7","max": 2419200, "min": 1804800, "margin": 400 },
+        { "id": "p2:cpu0", "max": 1708800, "min": 1478400, "margin": 450 },
+        { "id": "p2:cpu4", "max": 2419200, "min": 1708800, "margin": 400 },
+        { "id": "p2:cpu7", "max": 2419200, "min": 1804800, "margin": 400 },
 
-        { "id": "p3:cpu4","max": 2419200, "min": 2131200, "margin": 300 },
-        { "id": "p3:cpu7","max": 2841600, "min": 2419200, "margin": 300 },
+        { "id": "p3:cpu4", "max": 2419200, "min": 2131200, "margin": 300 },
+        { "id": "p3:cpu7", "max": 2841600, "min": 2419200, "margin": 300 },
 
 
-        { "id": "inactive:cpu0","max": 1600000, "min": 844800, "margin": 200 },
-        { "id": "inactive:cpu4","max": 1708800, "min": 768000, "margin": 170 },
-        { "id": "inactive:cpu7","max": 1920000, "min": 825600, "margin": 180 },
+        { "id": "inactive:cpu0", "max": 1600000, "min": 844800, "margin": 200 },
+        { "id": "inactive:cpu4", "max": 1708800, "min": 768000, "margin": 170 },
+        { "id": "inactive:cpu7", "max": 1920000, "min": 825600, "margin": 180 },
 
-        { "id": "idle:cpu0","max": 1600000, "min": 844800, "margin": 100 },
-        { "id": "idle:cpu4","max": 1401600, "min": 768000, "margin": 100 },
-        { "id": "idle:cpu7","max": 1497600, "min": 825600, "margin": 100, "core_ctl": true }
+        { "id": "idle:cpu0", "max": 1600000, "min": 844800, "margin": 100 },
+        { "id": "idle:cpu4", "max": 1401600, "min": 768000, "margin": 100 },
+        { "id": "idle:cpu7", "max": 1497600, "min": 825600, "margin": 100, "core_ctl": true }
       ]
     },
     "gesture_boost": {
