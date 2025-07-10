@@ -33,7 +33,8 @@
       ["$perfmgr_enable", "#0"],
       ["$perfmgr_enable2", "#0"],
       ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "800000000"],
-      ["$cpus_limit", "#3000000 3350000"]
+      ["$cpus_limit", "#3000000 3350000"],
+      ["@preset", "common_active"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
@@ -60,190 +61,164 @@
       ["@values", "min_freq", "220000", "400000", "1200000"]
     ],
     "common_app": [
+      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
       ["$ddr_map", "1700000:4100000 1600000:3094000 1500000:2133000 1400000:1600000"],
-      ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
+      ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
       ["@preset", "freq_extreme"],
-      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 0"],
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 0|cm_aggr 0|dsu_mode_change 0|cm_mgr_dram_opp_ceiling 3"],
       ["$switch_idleprefer", "#1"],
       ["/sys/kernel/helio-dvfsrc/dvfsrc_qos_mode", "0"],
       ["$gpu_max_freq", "#8"],
       ["$core_ctl", "#1"]
     ],
     "common_gaming": [
+      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
       ["@limiters", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["@gesture", "PAUSE"],
-      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 1"],
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 1|cm_aggr 1|dsu_mode_change 2|cm_mgr_dram_opp_ceiling -1"],
       ["$switch_idleprefer", "#0"],
+      ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "1866000000"],
       ["$gpu_max_freq", "#3"],
       ["$core_ctl", "#0"]
     ],
 
     "powersave_active": [
       ["@preset", "common_active"],
-      ["@values", "min_freq", "500000", "700000", "1200000"]
+      ["@values", "min_freq", "500000", "700000", "1200000"],
+      ["@values", "target_loads",
+        "0 1000000|1 1200000|2 1700000",
+        "0 20|1 20|2 20",
+        "0 17|1 17|2 17"
+      ]
     ],
     "powersave_inactive": [
-      ["@preset", "common_inactive"]
+      ["@preset", "common_inactive"],
+      ["@values", "target_loads",
+        "0 1000000|1 900000|2 1200000",
+        "0 17|1 17|2 17",
+        "0 12|1 12|2 12"
+      ]
     ],
     "balance_active": [
       ["@preset", "common_active"],
       ["@values", "min_freq", "500000", "700000", "1200000"]
     ],
     "balance_inactive": [
-      ["@preset", "common_inactive"]
+      ["@preset", "common_inactive"],
+      ["@values", "target_loads",
+        "0 1200000|1 1200000|2 1200000",
+        "0 20|1 20|2 20",
+        "0 15|1 15|2 15"
+      ]
     ],
     "performance_active": [
+      ["@preset", "common_active"],
       ["@values", "min_freq", "700000", "900000", "1200000"],
-      ["@preset", "common_active"]
+      ["@values", "target_loads",
+        "0 1500000|1 2100000|2 2100000",
+        "0 25|1 25|2 25",
+        "0 20|1 20|2 20"
+      ]
     ],
     "performance_inactive": [
-      ["@preset", "common_inactive"]
+      ["@preset", "common_inactive"],
+      ["@values", "target_loads",
+        "0 1200000|1 1200000|2 1200000",
+        "0 20|1 20|2 20",
+        "0 15|1 15|2 15"
+      ]
     ],
     "fast_active": [
       ["@preset", "common_active"],
-      ["@values", "min_freq", "1000000", "1000000", "1200000"]
+      ["@values", "min_freq", "1000000", "1000000", "1200000"],
+      ["@values", "target_loads",
+        "0 1500000|1 2100000|2 2100000",
+        "0 25|1 25|2 25",
+        "0 20|1 20|2 20"
+      ]
     ],
     "fast_inactive": [
-      ["@preset", "common_inactive"]
+      ["@preset", "common_inactive"],
+      ["@values", "target_loads",
+        "0 1500000|1 1600000|2 1600000",
+        "0 20|1 20|2 20",
+        "0 15|1 15|2 15"
+      ]
     ],
     "freq_low": [
-      ["$cpufreq", "0 220000 1800000|4 400000 2300000|7 1200000 2300000"],
+      ["$cpufreq", "0 220000 1800000|4 400000 2300000|7 1200000 2400000"],
       ["@values", "max_freq", "1700000", "2100000", "2100000"],
-      ["@values", "min_freq", "220000", "400000", "400000"]
+      ["@values", "min_freq", "220000", "400000", "1200000"]
     ],
     "freq_middle": [
-      ["$cpufreq", "0 220000 2000000|4 400000 2600000|7 1200000 2600000"],
+      ["$cpufreq", "0 220000 2000000|4 400000 2600000|7 1200000 2800000"],
       ["@values", "max_freq", "1700000", "2400000", "2400000"],
-      ["@values", "min_freq", "220000", "400000", "400000"]
+      ["@values", "min_freq", "220000", "400000", "1200000"]
     ],
     "freq_high": [
-      ["$cpufreq", "0 220000 2000000|4 400000 2850000|7 1200000 2800000"],
+      ["$cpufreq", "0 220000 2000000|4 400000 2850000|7 1200000 3050000"],
       ["@values", "max_freq", "1700000", "2650000", "2800000"],
-      ["@values", "min_freq", "220000", "400000", "400000"]
+      ["@values", "min_freq", "220000", "400000", "1200000"]
     ],
     "freq_extreme": [
-      ["$cpufreq", "0 220000 2000000|4 400000 2850000|7 1200000 3050000"],
+      ["$cpufreq", "0 220000 2000000|4 400000 2850000|7 1200000 3250000"],
       ["@values", "max_freq", "2000000", "2850000", "3050000"],
-      ["@values", "min_freq", "220000", "400000", "400000"]
+      ["@values", "min_freq", "220000", "400000", "1200000"]
     ]
   },
   "schemes": {
     "powersave": {
       "call": [
-        ["@preset", "reset"],
-        ["@preset", "powersave_active"]
+        ["@preset", "reset"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@preset", "freq_middle"],
-        ["@values", "target_loads",
-          "0 1000000|1 1200000|2 1700000",
-          "0 20|1 20|2 20",
-          "0 17|1 17|2 17"
-        ]
-      ],
-      "game": [
-        ["$ddr_map", "2300000:6400000 2000000:5500000 1700000:4100000 1600000:3094000"],
-        ["@preset", "common_gaming"],
-        ["@preset", "freq_low"]
+        ["@preset", "freq_middle"]
       ]
     },
     "balance": {
       "call": [
-        ["@preset", "reset"],
-        ["@preset", "balance_active"]
+        ["@preset", "reset"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@preset", "freq_high"],
-        ["@values", "target_loads",
-          "0 1200000|1 1700000|2 1700000",
-          "0 25|1 25|2 25",
-          "0 20|1 20|2 20"
-        ]
-      ],
-      "game": [
-        ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000"],
-        ["@preset", "common_gaming"],
-        ["@preset", "freq_middle"]
+        ["@preset", "freq_high"]
       ]
     },
     "performance": {
       "call": [
-        ["@preset", "reset"],
-        ["@preset", "performance_active"]
+        ["@preset", "reset"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@preset", "freq_extreme"],
-        ["@values", "target_loads",
-          "0 1500000|1 2100000|2 2100000",
-          "0 25|1 25|2 25",
-          "0 20|1 20|2 20"
-        ]
-      ],
-      "game": [
-        ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1400000:3094000"],
-        ["@preset", "common_gaming"],
-        ["@preset", "freq_high"]
+        ["@preset", "freq_extreme"]
       ]
     },
     "fast": {
       "call": [
-        ["@preset", "reset"],
-        ["@preset", "fast_active"]
+        ["@preset", "reset"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@preset", "freq_extreme"],
-        ["@values", "target_loads",
-          "0 1500000|1 2100000|2 2100000",
-          "0 25|1 25|2 25",
-          "0 20|1 20|2 20"
-        ]
-      ],
-      "game": [
-        ["$ddr_map", "2850000:8533000 2300000:6400000 1900000:5500000 1700000:4100000"],
-        ["@preset", "common_gaming"],
         ["@preset", "freq_extreme"]
       ]
     },
     "pedestal": {
       "call": [
-        ["@preset", "reset"],
-        ["@preset", "fast_active"]
+        ["@preset", "reset"]
       ],
       "app": [
-        ["@preset", "common_app"],
-        ["@values", "target_loads",
-          "0 1500000|1 2100000|2 2100000",
-          "0 30|1 30|2 30",
-          "0 25|1 25|2 25"
-        ]
-      ],
-      "game": [
-        ["$ddr_map", "2800000:8533000 2300000:6400000 1700000:5500000 1500000:4100000"],
-        ["@preset", "common_gaming"],
-        ["@preset", "freq_extreme"],
-        ["$gpu_max_freq", "#00"]
+        ["@preset", "common_app"]
       ]
     }
   },
   "apps": [
-    { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
+    { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
     { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
-    {
-      "friendly": "双核强化",
-      "packages": [
-        "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact",
-        "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"
-      ],
-      "import": "_DualCore.json"
-    },
     {
       "friendly": "All",
       "packages": ["*"],

@@ -51,13 +51,14 @@
       ["/sys/devices/system/cpu/sched_ctl/sched_target_margin", "0 20|1 20|2 20"]
     ],
     "common_inactive": [
-      ["@values", "min_freq", "#300000", "#550000", "#600000"]
+      ["@values", "min_freq", "#300000", "#550000", "#600000"],
+      ["$uclamp_boost", "0"]
     ],
     "common_app": [
-      ["@values", "latency", "100", "100", "100", "100", "100", "100"],
+      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
       ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
       ["$gpu_max_freq", "#24"],
-      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_passive 0|cm_passive 0|cm_perf_mode_ceiling_opp 0|cm_mgr_dram_opp_ceiling 3"],
       ["/sys/module/mtk_fpsgo/parameters/p_perf", "0"],
       ["/sys/module/mtk_fpsgo/parameters/better_perf", "0"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "1"],
@@ -66,13 +67,14 @@
     ],
     "common_gaming": [
       ["@preset", "common_active"],
-      ["@values", "latency", "10", "10", "10", "10", "10", "10"],
+      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
       ["@limiters", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["@gesture", "PAUSE"],
       ["$gpu_max_freq", "#9"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "#0"],
       ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "1"],
+      ["$uclamp_boost", "0"],
       ["$core_ctl", "#0"]
     ],
 
@@ -88,16 +90,16 @@
     "powersave_inactive": [
       ["@preset", "common_inactive"],
       ["@values", "target_loads",
-        "0 500000|1 900000|2 900000",
+        "0 500000|1 700000|2 700000",
         "0 20|1 12|2 12",
-        "0 8|1 8|2 8"
+        "0 10|1 8|2 8"
       ]
     ],
     "balance_active": [
       ["@preset", "common_active"],
       ["@values", "min_freq", "^600000", "^700000", "^900000"],
       ["@values", "target_loads",
-        "0 1200000|1 1900000|2 2100000",
+        "0 1200000|1 1900000|2 1900000",
         "0 20|1 20|2 20",
         "0 15|1 15|2 15"
       ]
@@ -105,7 +107,7 @@
     "balance_inactive": [
       ["@preset", "common_inactive"],
       ["@values", "target_loads",
-        "0 1200000|1 1200000|2 1200000",
+        "0 900000|1 900000|2 900000",
         "0 15|1 15|2 15",
         "0 10|1 10|2 10"
       ]
@@ -122,7 +124,7 @@
     "performance_inactive": [
       ["@preset", "common_inactive"],
       ["@values", "target_loads",
-        "0 1200000|1 1700000|2 1700000",
+        "0 1200000|1 1600000|2 1600000",
         "0 20|1 20|2 20",
         "0 15|1 15|2 15"
       ]
