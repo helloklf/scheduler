@@ -49,16 +49,6 @@ lock_value 4 $cpu0_core_ctl_dir/max_cpus
 lock_value 4 $cpu0_core_ctl_dir/min_cpus
 lock_value 0 $cpu0_core_ctl_dir/enable
 
-mk_cpuctl () {
-  mkdir -p "/dev/cpuctl/$1"
-  # echo $2 > /dev/cpuctl/$1/cpu.uclamp.sched_boost_no_override
-  echo $3 > /dev/cpuctl/$1/cpu.uclamp.latency_sensitive
-  echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
-  echo $5 > /dev/cpuctl/$1/cpu.uclamp.max
-  echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
-  # echo $5 > /dev/cpuctl/$1/cpu.uclamp.max
-}
-
 lock_value () {
   if [[ -f $2 ]];then
     chmod 644 $2

@@ -49,16 +49,6 @@ lock_value 4 $cpu0_core_ctl_dir/max_cpus
 lock_value 4 $cpu0_core_ctl_dir/min_cpus
 lock_value 0 $cpu0_core_ctl_dir/enable
 
-mk_cpuctl () {
-  mkdir -p "/dev/cpuctl/$1"
-  # echo $2 > /dev/cpuctl/$1/cpu.uclamp.sched_boost_no_override
-  echo $3 > /dev/cpuctl/$1/cpu.uclamp.latency_sensitive
-  echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
-  echo $5 > /dev/cpuctl/$1/cpu.uclamp.max
-  echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
-  # echo $5 > /dev/cpuctl/$1/cpu.uclamp.max
-}
-
 lock_value () {
   if [[ -f $2 ]];then
     chmod 644 $2
@@ -100,9 +90,6 @@ change_task_cpuset() {
 process_opt() {
   sleep 20
 
-  # change_task_cpuset 'camerahalserver' camera-daemon
-  # change_task_cpuset 'android:ui|lmkd' 'top-app'
-  # change_task_cpuset "surfaceflinger|system_server|android.hardware.graphics.composer|toucheventcheck|vendor.xiaomi.hw.touchfeature" "foreground"
   change_task_cpuset "svendor.mediatek.hardware.pq|android.hardware.sensors|statsd|logd|scene-daemon" "foreground"
   change_task_cpuset "aal_sof|kfps|dsp_send_thread|vdec_ipi_recv|mtk_drm_disp_id|disp_feature|hif_thread|main_thread|rx_thread|ged_" "system-background"
   change_task_cpuset 'mediaserver64|android.hardware.media.c2' 'foreground'

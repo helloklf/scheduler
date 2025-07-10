@@ -165,9 +165,6 @@ for dir in /sys/devices/system/cpu/cpufreq/policy*;do
 done
 
 
-
-cpus=3-6
-
 set_cpuset(){
   pgrep -f $1 | while read pid; do
     echo $pid > /dev/cpuset/$2/cgroup.procs
@@ -179,6 +176,7 @@ set_cpuset(){
 }
 
 rmdir /dev/cpuset/background/untrustedapp
+cpus=3-6
 mkdir /dev/cpuset/top-app/$cpus
 echo $cpus > /dev/cpuset/top-app/$cpus/cpus
 echo 0 > /dev/cpuset/top-app/$cpus/mems
