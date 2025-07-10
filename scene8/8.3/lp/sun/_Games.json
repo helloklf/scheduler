@@ -1,13 +1,15 @@
 {
   "friendly": "所有游戏",
-  "call": [],
+  "call": [
+    ["@limiters", "NONE"]
+  ],
   "modes": [
     {
       "mode": ["powersave"],
       "call": [
         ["@values", "max_freq", "1785600", "#2246400"],
         ["@values", "min_freq", "556800", "1017600"],
-        ["@governor", "scx", "walt"],
+        ["@governor", "walt"],
         ["@target_loads",
           "82 1152000:87 1363200:90",
           "82 1401600:87 1958400:95"
@@ -22,7 +24,7 @@
       "call": [
         ["@values", "max_freq", "#1996800", "#2438400"],
         ["@values", "min_freq", "748800", "1017600"],
-        ["@governor", "scx", "walt"],
+        ["@governor", "walt"],
         ["@target_loads",
           "80 1152000:83 1555200:88",
           "80 1401600:83 1958400:90 2438400:95"]

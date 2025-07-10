@@ -118,7 +118,6 @@
       ],
       "powersave_inactive": [
         ["@preset", "common_inactive"],
-        ["@preset", "cpu6_off"],
         ["@target_loads",
           "90 1152000:95",
           "90 1209600:95 1689600:97"],
@@ -129,15 +128,15 @@
         ["@preset", "common_active"],
         ["@values", "min_freq", "748800", "1017600"],
         ["@target_loads",
-          "80 1152000:85 1555200:85 1996800:90",
+          "80 1152000:85 1555200:90 1996800:95",
           "80 1401600:85 1958400:90"],
-        ["@values", "hispeed_freq", "1152000", "1401600"]
+        ["@values", "hispeed_freq", "960000", "0"]
       ],
       "balance_inactive": [
         ["@preset", "common_inactive"],
         ["@preset", "cpu6_auto"],
         ["@target_loads",
-          "85 1363200:90",
+          "85 1152000:90 1996800:95",
           "85 1401600:90 1958400:95"],
         ["@values", "hispeed_freq", "0", "0"]
       ],
@@ -148,14 +147,14 @@
         ["@target_loads",
           "80 1996800:85 2400000:95",
           "80 2246400:85 2841600:90 3283200:95"],
-        ["@values", "hispeed_freq", "1152000", "1401600"]
+        ["@values", "hispeed_freq", "960000", "0"]
       ],
       "performance_inactive": [
         ["@preset", "common_inactive"],
         ["@target_loads",
-          "83 1555200:90",
-          "83 1958400:87 2438400:93"],
-        ["@values", "hispeed_freq", "1152000", "1017600"]
+          "85 1555200:90 1996800:95",
+          "85 1958400:90 2438400:95"],
+        ["@values", "hispeed_freq", "0", "0"]
       ],
 
       "fast_active": [
@@ -164,13 +163,13 @@
         ["@target_loads",
           "78 1996800:83 2400000:87 2745600:95",
           "78 2246400:83 2841600:87 3513600:95"],
-        ["@values", "hispeed_freq", "1555200", "1958400"]
+        ["@values", "hispeed_freq", "1152000", "0"]
       ],
       "fast_inactive": [
         ["@target_loads",
-          "80 1996800:87 2400000:95",
-          "80 2246400:87 2841600:95"],
-        ["@values", "hispeed_freq", "1152000", "1017600"]
+          "85 1996800:90 2400000:95",
+          "85 2246400:90 2841600:95"],
+        ["@values", "hispeed_freq", "960000", "0"]
       ]
     },
     "schemes": {
@@ -181,7 +180,7 @@
         ],
         "app": [
           ["@preset", "common_app"],
-          ["@values", "max_freq", "1996800", "#2841600"],
+          ["@values", "max_freq", "1996800", "#2246400"],
           ["@preset", "powersave_active"]
         ],
         "game": [
@@ -196,7 +195,7 @@
         ],
         "app": [
           ["@preset", "common_app"],
-          ["@values", "max_freq", "2400000", "#3283200"],
+          ["@values", "max_freq", "2400000", "#2841600"],
           ["@preset", "balance_active"]
         ],
         "game": [
@@ -211,7 +210,7 @@
         ],
         "app": [
           ["@preset", "common_app"],
-          ["@values", "max_freq", "2745600", "#3513600"],
+          ["@values", "max_freq", "2745600", "#3283200"],
           ["@preset", "performance_active"]
         ],
         "game": [
@@ -226,7 +225,7 @@
         ],
         "app": [
           ["@preset", "common_app"],
-          ["@values", "max_freq", "2918400", "#3801600"],
+          ["@values", "max_freq", "2745600", "#3513600"],
           ["@preset", "fast_active"]
         ],
         "game": [
