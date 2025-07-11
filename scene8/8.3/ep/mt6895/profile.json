@@ -78,11 +78,6 @@
       ["$max_cpus_cpu7", "#0"],
       ["$core_ctl_7", "#0"]
     ],
-    "cpu7_auto": [
-      ["$core_ctl_7", "#1"],
-      ["$min_cpus_cpu7", "#0"],
-      ["$max_cpus_cpu7", "#1"]
-    ],
     "common_active": [
       ["$cpu_max_0", "2000000"],
       ["@preset", "cpu7_on"]

@@ -105,11 +105,6 @@
         ["$min_cpus_cpu7", "#0"],
         ["$max_cpus_cpu7", "#0"]
       ],
-      "cpu7_auto": [
-        ["$core_ctl_7", "1"],
-        ["$min_cpus_cpu7", "#0"],
-        ["$max_cpus_cpu7", "#1"]
-      ],
       "limiter_off": [
         ["/proc/game_opt/disable_cpufreq_limit", "#1"],
         ["/sys/module/migt/parameters/glk_disable", "#1"],
@@ -158,7 +153,6 @@
       ],
       "powersave_inactive": [
         ["@preset", "common_inactive"],
-        ["@preset", "cpu7_off"],
         ["@target_loads",
           "85 1017600:90",
           "85 960000:90 1612800:95",
@@ -180,14 +174,12 @@
       ],
       "balance_inactive": [
         ["@preset", "common_inactive"],
-        ["@preset", "cpu7_auto"],
         ["@target_loads",
           "80 1017600:85 1689600:90",
           "80 960000:85 1708800:90",
           "80 960000:85 1708800:90",
           "80 902400:85 1478400:90"],
-        ["@values", "hispeed_freq", "0", "729600", "729600", "787200"],
-        ["@preset", "cpu7_off"]
+        ["@values", "hispeed_freq", "0", "729600", "729600", "787200"]
       ],
 
       "performance_active": [

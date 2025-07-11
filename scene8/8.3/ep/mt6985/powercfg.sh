@@ -54,7 +54,6 @@ hide_value $t_message/market_download_limit 0
 hide_value $t_message/modem_limit 0
 lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 
-
 lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 if [[ $(cat /proc/version | grep Pandora) == '' ]]; then
   hide_value /sys/kernel/fpsgo/fbt/limit_cfreq 0
@@ -70,6 +69,7 @@ lock_value 0 /sys/module/mtk_fpsgo/parameters/cfp_onoff
 chmod 444 /proc/cpumgr/core_ioctl
 
 metis=/sys/module/metis/parameters
+echo 1 > $metis/reset_clus_affinity_uidlist
 for file in $metis/*enable*; do
   lock_value 0 $file
 done

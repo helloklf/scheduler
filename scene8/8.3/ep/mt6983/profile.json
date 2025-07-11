@@ -92,14 +92,8 @@
       ["$max_cpus_cpu7", "#0"],
       ["$core_ctl_7", "#0"]
     ],
-    "cpu7_auto": [
-      ["$core_ctl_7", "#1"],
-      ["$min_cpus_cpu7", "#0"],
-      ["$max_cpus_cpu7", "#1"]
-    ],
     "common_active": [
       ["@preset", "cpu7_on"],
-      ["$ddr_max", "#5500000000"],
       ["$sched_boost", "1"]
     ],
     "common_inactive": [
@@ -109,10 +103,12 @@
       ["$sched_boost", "0"]
     ],
     "common_app": [
-      ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
+      ["$ddr_max", "#5500000000"],
+      ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
       ["$gpu_freq", "#10"]
     ],
     "common_gaming": [
+      ["$ddr_max", "#6400000000"],
       ["@preset", "common_active"],
       ["@limiters", "NONE"],
       ["$gpu_freq", "#0"],
@@ -135,8 +131,7 @@
     "powersave_inactive": [
       ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
       ["@preset", "common_inactive"],
-      ["$ddr_freq_min", "#800000000"],
-      ["@preset", "cpu7_off"]
+      ["$ddr_freq_min", "#800000000"]
     ],
     "balance_active": [
       ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
@@ -220,7 +215,7 @@
     }
   },
   "apps": [
-    { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
+    { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
     { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
