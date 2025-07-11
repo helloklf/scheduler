@@ -261,7 +261,7 @@ if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/disable_cpufreq_limit 1
   hide_value /proc/game_opt/game_pid -1
 fi
-for service in orms-hal-1-0 vendor.oplus.ormsHalService-aidl-default # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
+for service in orms-hal-1-0 vendor.oplus.ormsHalService-aidl-default
 do
   stop $service
 done
