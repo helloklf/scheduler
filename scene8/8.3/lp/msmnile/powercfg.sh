@@ -194,7 +194,7 @@ if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
 fi
 hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-for service in orms-hal-1-0 vendor.oplus.ormsHalService-aidl-default # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
+for service in orms-hal-1-0 vendor.oplus.ormsHalService-aidl-default
 do
   stop $service
 done

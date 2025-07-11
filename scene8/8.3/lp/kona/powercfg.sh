@@ -184,7 +184,7 @@ if [[ -d /proc/game_opt ]]; then
   lock_value -1 /proc/game_opt/game_pid
 fi
 hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-for service in orms-hal-1-0 vendor.oplus.ormsHalService-aidl-default # gameopt_hal_service-1-0 midas_hal_service thermal_mnt_hal_servic
+for service in orms-hal-1-0 vendor.oplus.ormsHalService-aidl-default
 do
   stop $service
 done
