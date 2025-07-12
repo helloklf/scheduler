@@ -230,6 +230,7 @@ rmdir /dev/cpuset/background/untrustedapp
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
+  chmod 664 $t_message/cpu_limits
   for i in $(seq 0 7); do
     maxfreq=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_max_freq)
     echo cpu$i $maxfreq > $t_message/cpu_limits
