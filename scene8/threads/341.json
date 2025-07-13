@@ -12,7 +12,7 @@
       "comm": {
         "7": ["GameThread"],
         "4": ["RHIThread"],
-        "3,5-6": ["TaskGraphHP", "NativeThread", "RenderThread", "AsyncLoading", "FChunk"]
+        "3,5-6": ["TaskGraphHP", "NativeThread", "RenderThread", "FChunk"]
       },
       "other": "0-3,5-6"
     }

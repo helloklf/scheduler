@@ -9,7 +9,8 @@
         "4-7": ["FChunk"],
         "4-5": ["RenderThread"],
         "6": ["RHIThread"],
-        "0-3": ["AsyncLoading", "mali-cpu", "V8", "Backgro"]
+        "0-7": ["AsyncLoading"],
+        "0-3": ["mali-cpu", "V8", "Backgro"]
       },
       "other": "0-5"
     }
