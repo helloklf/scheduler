@@ -57,8 +57,7 @@
       ["@mtk_reset"],
       ["@governor", "schedutil"],
       ["$perfmgr_enable", "#0"],
-      ["$boost_affinity", "#0"],
-      ["$ddr_max", "#5500000000"]
+      ["$boost_affinity", "#0"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
@@ -92,7 +91,8 @@
       ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#07"],
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
-      ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"]
+      ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
+      ["$ddr_max", "#5500000000"]
     ],
     "common_gaming": [
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode 1"],
@@ -100,7 +100,10 @@
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#0"],
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "#99"],
       ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "#0"],
-      ["$ddr_freq_cust", "0"]
+      ["$ddr_freq_cust", "0"],
+      ["$ddr_max", "#6400000000"],
+      ["@limiters", "NONE"],
+      ["@ddr_l3_booster"]
     ],
 
     "powersave_active": [
@@ -193,6 +196,7 @@
   },
   "apps": [
     { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
+    { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
     { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],

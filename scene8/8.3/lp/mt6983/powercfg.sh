@@ -23,6 +23,14 @@ set_value() {
   fi;
 }
 
+lock_value () {
+  if [[ -f $2 ]];then
+    chmod 644 $2
+    echo $1 > $2
+    chmod 444 $2
+  fi
+}
+
 core_ctl_policy() {
   lock_value $1 /sys/module/scheduler/holders/mtk_core_ctl/parameters/policy_enable
   lock_value $1 /sys/module/thermal_interface/holders/mtk_core_ctl/parameters/policy_enable
@@ -48,24 +56,6 @@ cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
 lock_value 4 $cpu0_core_ctl_dir/max_cpus
 lock_value 4 $cpu0_core_ctl_dir/min_cpus
 lock_value 0 $cpu0_core_ctl_dir/enable
-
-mk_cpuctl () {
-  mkdir -p "/dev/cpuctl/$1"
-  # echo $2 > /dev/cpuctl/$1/cpu.uclamp.sched_boost_no_override
-  echo $3 > /dev/cpuctl/$1/cpu.uclamp.latency_sensitive
-  echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
-  echo $5 > /dev/cpuctl/$1/cpu.uclamp.max
-  echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
-  # echo $5 > /dev/cpuctl/$1/cpu.uclamp.max
-}
-
-lock_value () {
-  if [[ -f $2 ]];then
-    chmod 644 $2
-    echo $1 > $2
-    chmod 444 $2
-  fi
-}
 
 # hide_value /sys/module/task_turbo/parameters/feats [write_value]
 hide_value() {
@@ -128,6 +118,7 @@ rmdir /dev/cpuset/foreground/boost
 
 t_message=/sys/class/thermal/thermal_message
 if [[ -f $t_message/cpu_limits ]]; then
+  chmod 664 $t_message/cpu_limits
   for i in $(seq 0 7); do
     maxfreq=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_max_freq)
     echo cpu$i $maxfreq > $t_message/cpu_limits
@@ -186,11 +177,12 @@ set_cpuset(){
   done
 }
 
-mkdir /dev/cpuset/foreground/4-5
-echo 4-5 > /dev/cpuset/foreground/4-5/cpus
-echo 0 > /dev/cpuset/foreground/4-5/mems
-echo 0-7 > /dev/cpuset/system-background/cpus
+mkdir /dev/cpuset/top-app/7
+echo 7 > /dev/cpuset/top-app/7/cpus
+echo 0 > /dev/cpuset/top-app/7/mems
 
-set_cpuset surfaceflinger 'foreground/4-5' 38
-set_cpuset update_engine 'top-app' f0
-set_cpuset android.hardware.graphics.composer 'foreground/4-5' 38
+set_cpuset touch_report 'foreground'
+set_cpuset surfaceflinger 'foreground'
+set_cpuset system_server 'foreground'
+set_cpuset update_engine 'top-app/7'
+set_cpuset vendor.qti.hardware.display.composer-service 'foreground'

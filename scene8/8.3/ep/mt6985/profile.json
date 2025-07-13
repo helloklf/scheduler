@@ -74,7 +74,7 @@
       ["@values", "min_freq", "220000", "400000", "1200000"]
     ],
     "common_app": [
-      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
+      ["@values", "latency", "1000", "0", "1000", "0", "1000", "0"],
       ["$ddr_map", "1700000:4100000 1600000:3094000 1500000:2133000 1400000:1600000"],
       ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 0|cm_aggr 0|dsu_mode_change 0|cm_mgr_dram_opp_ceiling 3"],
@@ -92,7 +92,8 @@
       ["$switch_idleprefer", "#0"],
       ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "1866000000"],
       ["$gpu_max_freq", "#3"],
-      ["$core_ctl", "#0"]
+      ["$core_ctl", "#0"],
+      ["@ddr_l3_booster"]
     ],
 
     "powersave_active": [
@@ -131,7 +132,7 @@
     ],
     "performance_active": [
       ["@preset", "common_active"],
-      ["@values", "min_freq", "700000", "900000", "1200000"],
+      ["@values", "min_freq", "800000", "900000", "1200000"],
       ["@values", "target_loads",
         "0 1500000|1 2100000|2 2100000",
         "0 25|1 25|2 25",
@@ -148,7 +149,7 @@
     ],
     "fast_active": [
       ["@preset", "common_active"],
-      ["@values", "min_freq", "1000000", "1000000", "1200000"],
+      ["@values", "min_freq", "1200000", "1200000", "1200000"],
       ["@values", "target_loads",
         "0 1500000|1 2100000|2 2100000",
         "0 25|1 25|2 25",
@@ -170,12 +171,12 @@
     ],
     "freq_middle": [
       ["$cpufreq", "0 220000 2000000|4 400000 2600000|7 1200000 2800000"],
-      ["@values", "max_freq", "1700000", "2400000", "2400000"],
+      ["@values", "max_freq", "1700000", "2600000", "2600000"],
       ["@values", "min_freq", "220000", "400000", "1200000"]
     ],
     "freq_high": [
       ["$cpufreq", "0 220000 2000000|4 400000 2850000|7 1200000 3050000"],
-      ["@values", "max_freq", "1700000", "2650000", "2800000"],
+      ["@values", "max_freq", "1700000", "2800000", "2800000"],
       ["@values", "min_freq", "220000", "400000", "1200000"]
     ],
     "freq_extreme": [
@@ -191,7 +192,7 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@preset", "freq_middle"]
+        ["@preset", "freq_low"]
       ]
     },
     "balance": {
@@ -200,7 +201,7 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@preset", "freq_high"]
+        ["@preset", "freq_middle"]
       ]
     },
     "performance": {
@@ -209,7 +210,7 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@preset", "freq_extreme"]
+        ["@preset", "freq_high"]
       ]
     },
     "fast": {
@@ -223,7 +224,8 @@
     },
     "pedestal": {
       "call": [
-        ["@preset", "reset"]
+        ["@preset", "reset"],
+        ["@preset", "freq_extreme"]
       ],
       "app": [
         ["@preset", "common_app"]

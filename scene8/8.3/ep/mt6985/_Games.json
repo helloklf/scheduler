@@ -1,8 +1,7 @@
 {
   "friendly": "游戏(Games)",
   "call": [
-    ["@preset", "common_gaming"],
-    ["@ddr_l3_booster"]
+    ["@preset", "common_gaming"]
   ],
   "modes": [
     {

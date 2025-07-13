@@ -20,7 +20,7 @@
       "mode": ["balance"],
       "call": [
         ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
-        ["@values", "max_freq", "#1700000", "#2300000", "#2800000"],
+        ["@values", "max_freq", "#1700000", "#2300000", "#2600000"],
         ["@values", "min_freq", "700000", "800000", "900000"]
       ]
     },
@@ -28,15 +28,15 @@
       "mode": ["performance"],
       "call": [
         ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 2"],
-        ["@values", "max_freq", "#1800000", "#2600000", "#3000000"],
+        ["@values", "max_freq", "#1800000", "#2600000", "#2800000"],
         ["@values", "min_freq", "800000", "800000", "900000"]
       ]
     },
     {
       "mode": ["fast"],
       "call": [
-        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling -1"],
-        ["@values", "max_freq", "#2000000", "#3000000", "#3400000"],
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 2"],
+        ["@values", "max_freq", "#2000000", "#3000000", "#3250000"],
         ["@values", "min_freq", "800000", "800000", "900000"]
       ]
     },
@@ -44,7 +44,7 @@
       "mode": ["*"],
       "call": [
         ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling -1"],
-        ["@values", "max_freq", "#2000000", "#3200000", "#3600000"],
+        ["@values", "max_freq", "#2000000", "#3000000", "#3250000"],
         ["@values", "min_freq", "800000", "900000", "1200000"]
       ]
     }

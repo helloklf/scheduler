@@ -21,46 +21,29 @@
     "limiter": {
       "ddr_boost": true,
       "params": [
-        { "id": "p1:cpu0", "max": 1400000, "min": 500000, "margin": 200, "excludes": [1] },
-        { "id": "p1:cpu4", "max": 2150000, "min": 700000, "margin": 350 },
-        { "id": "p1:cpu7", "max": 2100000, "min": 1300000, "margin": 350 },
+        { "id": "p1:cpu0", "max": 1400000, "min": 500000,  "margins": "200 1200:120", "excludes": [1] },
+        { "id": "p1:cpu4", "max": 2100000, "min": 700000,  "margins": "350 1600:200" },
+        { "id": "p1:cpu7", "max": 2100000, "min": 1300000, "margins": "350 1600:200" },
 
-        { "id": "p2:cpu0", "max": 1500000, "min": 800000, "margin": 250 },
-        { "id": "p2:cpu4", "max": 2400000, "min": 1600000, "margin": 300 },
-        { "id": "p2:cpu7", "max": 2450000, "min": 1800000, "margin": 300 },
+        { "id": "p2:cpu0", "max": 1500000, "min": 800000,  "margins": "250 1200:150" },
+        { "id": "p2:cpu4", "max": 2400000, "min": 1600000, "margins": "300 2100:150" },
+        { "id": "p2:cpu7", "max": 2400000, "min": 1800000, "margins": "300 2100:150" },
 
-        { "id": "p3:cpu0", "max": 1600000, "min": 1400000, "margin": 270 },
-        { "id": "p3:cpu4", "max": 2650000, "min": 1900000, "margin": 300 },
-        { "id": "p3:cpu7", "max": 2650000, "min": 2100000, "margin": 300 },
+        { "id": "p3:cpu0", "max": 1800000, "min": 1200000, "margins": "270 1500:100" },
+        { "id": "p3:cpu4", "max": 2650000, "min": 1900000, "margins": "300 2300:150" },
+        { "id": "p3:cpu7", "max": 2650000, "min": 2100000, "margins": "300 2400:150" },
 
-        { "id": "p4:cpu0", "max": 1600000, "min": 1500000, "margin": 300 },
-        { "id": "p4:cpu4", "max": 2650000, "min": 2450000, "margin": 300 },
-        { "id": "p4:cpu7", "max": 2800000, "min": 2450000, "margin": 300 },
-
-
-        { "id": "g1:cpu0", "max": 1400000, "min": 500000, "margin": 280, "step": -1 },
-        { "id": "g1:cpu4", "max": 2100000, "min": 1300000, "margin": 230, "step": -1 },
-        { "id": "g1:cpu7", "max": 2100000, "min": 1300000, "margin": 250, "step": -1 },
-
-        { "id": "g2:cpu0", "max": 1500000, "min": 800000,  "margin": 300, "step": -1 },
-        { "id": "g2:cpu4", "max": 2300000, "min": 1700000, "margin": 300, "step": -1 },
-        { "id": "g2:cpu7", "max": 2450000, "min": 1700000, "margin": 300, "step": -1 },
-
-        { "id": "g3:cpu0", "max": 1800000, "min": 1000000, "margin": 300,"smoothness": 4 },
-        { "id": "g3:cpu4", "max": 2650000, "min": 1900000, "margin": 350,"smoothness": 4 },
-        { "id": "g3:cpu7", "max": 2650000, "min": 1900000, "margin": 350,"smoothness": 4 },
-
-        { "id": "g4:cpu0", "max": 1800000, "min": 1200000, "margin": 280,"smoothness": 6 },
-        { "id": "g4:cpu4", "max": 2850000, "min": 2100000, "margin": 400,"smoothness": 6 },
-        { "id": "g4:cpu7", "max": 2800000, "min": 2100000, "margin": 400,"smoothness": 6 },
+        { "id": "p4:cpu0", "max": 1800000, "min": 1500000, "margins": "300" },
+        { "id": "p4:cpu4", "max": 2800000, "min": 2300000, "margins": "300 2650:150" },
+        { "id": "p4:cpu7", "max": 2800000, "min": 2300000, "margins": "300 2650:150" },
 
 
-        { "id": "inactive:cpu0", "max": 1500000, "min": 400000, "margin": 80 },
-        { "id": "inactive:cpu4", "max": 2100000, "min": 400000, "margin": 100 },
+        { "id": "inactive:cpu0", "max": 1600000, "min": 400000,  "margin": 80 },
+        { "id": "inactive:cpu4", "max": 2100000, "min": 400000,  "margin": 100 },
         { "id": "inactive:cpu7", "max": 2100000, "min": 1300000, "margin": 100, "core_ctl": true },
 
-        { "id": "idle:cpu0", "max": 1200000, "min": 400000, "margin": 50 },
-        { "id": "idle:cpu4", "max": 1800000, "min": 400000, "margin": 60 },
+        { "id": "idle:cpu0", "max": 1200000, "min": 400000,  "margin": 50 },
+        { "id": "idle:cpu4", "max": 1800000, "min": 400000,  "margin": 60 },
         { "id": "idle:cpu7", "max": 1800000, "min": 1300000, "margin": 70, "core_ctl": true }
       ]
     },
@@ -109,12 +92,10 @@
       ["$max_cpus_cpu7", "#1"]
     ],
     "common_active": [
-      ["@preset", "cpu7_on"],
-      ["@uclamp", "0.00~20.00", "0.00~max", "0.5~max"]
+      ["@preset", "cpu7_on"]
     ],
     "common_inactive": [
-      ["$gpu_min_opp", "99"],
-      ["@uclamp", "0.00~5.00", "0.00~max", "0.0~max"]
+      ["$gpu_min_opp", "99"]
     ],
     "common_app": [
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 0|cm_mgr_perf_enable 0|dsu_mode 0"],
@@ -261,21 +242,12 @@
       "categories": ["Music", "Reader", "ShortVideo", "Nav"],
       "import": "_ELP.json"
     },
-    { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
     { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
     { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
     { "friendly": "待机", "packages": ["standby"], "import": "_Standby.json" },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
-    {
-      "friendly": "双核强化",
-      "packages": [
-        "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact",
-        "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"
-      ],
-      "import": "_FASDualCore.json"
-    },
     {
       "friendly": "All",
       "packages": ["*"],

@@ -24,7 +24,7 @@
     "limiter": {
       "ddr_boost": true,
       "params": [
-        { "id": "p1:cpu0", "max": 1700000, "min": 500000,  "margins": "300 1500000:150", "excludes": [1] },
+        { "id": "p1:cpu0", "max": 1700000, "min": 1200000, "margins": "300 1500000:150", "excludes": [1] },
         { "id": "p1:cpu4", "max": 2000000, "min": 1200000, "margins": "300 1900000:150" },
         { "id": "p1:cpu7", "max": 2000000, "min": 1200000, "margins": "300 1900000:150" },
 
@@ -54,6 +54,7 @@
   "presets": {
     "reset": [
       ["@governor", "schedutil"],
+      ["@preset", "common_active"],
       ["$perfmgr_enable", "#0"],
       ["$perfmgr_enable2", "#0"],
       ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "800000000"],
@@ -102,18 +103,30 @@
       ["@values", "min_freq", "220000", "400000", "1200000"]
     ],
     "common_app": [
+      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
       ["$ddr_map", "1700000:4100000 1600000:3094000 1500000:2133000 1400000:1600000"],
       ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
       ["$cpufreq", "0 220000 1900000|4 700000 2850000|7 1200000 3050000"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 0"],
       ["$switch_idleprefer", "#1"],
+      ["@values", "target_loads",
+        "0 1200000|1 1200000|2 1200000",
+        "0 30|1 30|2 30",
+        "0 20|1 20|2 20"
+      ],
       ["$core_ctl", "#1"]
     ],
     "common_gaming": [
+      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
       ["@limiters", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 1"],
       ["$switch_idleprefer", "#0"],
+      ["@values", "target_loads",
+        "0 1500000|1 2100000|2 2100000",
+        "0 25|1 20|2 20",
+        "0 20|1 15|2 15"
+      ],
       ["$core_ctl", "#0"]
     ],
 
@@ -249,21 +262,12 @@
       "categories": ["Music", "Reader", "ShortVideo", "Nav"],
       "import": "_ELP.json"
     },
-    { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
     { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
     { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
     { "friendly": "待机", "packages": ["standby"], "import": "_Standby.json" },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
-    {
-      "friendly": "双核强化",
-      "packages": [
-        "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact",
-        "com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"
-      ],
-      "import": "_FASDualCore.json"
-    },
     {
       "friendly": "All",
       "packages": ["*"],

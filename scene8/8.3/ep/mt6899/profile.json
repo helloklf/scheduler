@@ -26,10 +26,11 @@
   "presets": {
     "reset": [
       ["@governor", "sugov_ext"],
+      ["@preset", "common_active"],
       ["$perfmgr_enable", "#0"],
       ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"],
       ["$cpus_limit", "#3300000 3600000"],
-      ["$cpufreq", "#339000 2400000 622000 3300000 798000 3600000"]
+      ["$cpufreq", "#300000 2100000 622000 3300000 798000 3600000"]
     ],
     "min_freq": [
       ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
@@ -47,7 +48,7 @@
     ],
     "common_active": [],
     "common_inactive": [
-      ["@values", "min_freq", "339000", "622000", "798000"],
+      ["@values", "min_freq", "300000", "622000", "798000"],
       ["$uclamp_boost", "0"]
     ],
     "common_app": [
@@ -121,7 +122,7 @@
     "powersave": {
       "call": [
         ["@preset", "reset"],
-        ["@values", "max_freq", "1800000", "2100000", "2400000"]
+        ["@values", "max_freq", "1800000", "2100000", "2300000"]
       ],
       "app": [
         ["@preset", "common_app"],
@@ -138,7 +139,7 @@
     "balance": {
       "call": [
         ["@preset", "reset"],
-        ["@values", "max_freq", "#2000000", "#2600000", "#3000000"]
+        ["@values", "max_freq", "#2100000", "#2600000", "#2800000"]
       ],
       "app": [
         ["@preset", "common_app"],
@@ -155,14 +156,13 @@
     "performance": {
       "call": [
         ["@preset", "reset"],
-        ["@values", "max_freq", "#2200000", "#2800000", "#3200000"]
+        ["@values", "max_freq", "#2100000", "#2800000", "#3000000"]
       ],
       "app": [
         ["@preset", "common_app"],
         ["@preset", "performance_active"]
       ],
       "game": [
-        ["@governor", "schedutil"],
         ["@ioctl", "/proc/easmgr/eas_ioctl",
           "0x40046715", "500000", "0x40046716", "28",
           "0x40046717", "200000", "0x40046718", "28",
@@ -173,12 +173,12 @@
     "fast": {
       "call": [
         ["@preset", "reset"],
-        ["@values", "max_freq", "#2400000", "#3000000", "#3500000"]
+        ["@values", "max_freq", "#2100000", "#3000000", "#3250000"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@preset", "fast_active"],
-        ["$gpu_max_freq", "#10"]
+        ["$gpu_max_freq", "#10"],
+        ["@preset", "fast_active"]
       ],
       "game": [
         ["@governor", "schedutil"],
@@ -192,7 +192,7 @@
     "pedestal": {
       "call": [
         ["@preset", "reset"],
-        ["@values", "max_freq", "#2400000", "#3300000", "#3600000"],
+        ["@values", "max_freq", "#2100000", "#3000000", "#3250000"],
         ["@preset", "fast_active"]
       ],
       "app": [
@@ -215,6 +215,13 @@
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
+    {
+      "friendly": "双核强化",
+      "packages": [
+        "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact"
+      ],
+      "import": "_DualCore.json"
+    },
     {
       "friendly": "All",
       "packages": ["*"],
