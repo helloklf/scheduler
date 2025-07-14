@@ -76,7 +76,6 @@
     ],
     "target_loads": [
       ["/sys/devices/system/cpu/sched_ctl/sched_turn_point_freq", "0 1500000|1 1700000|2 1700000"],
-      ["/sys/devices/system/cpu/sched_ctl/sched_target_margin_low", "0 20|1 20|2 20"],
       ["/sys/devices/system/cpu/sched_ctl/sched_target_margin", "0 20|1 20|2 20"]
     ],
     "cpu7_on": [
@@ -128,17 +127,15 @@
       ["@preset", "common_active"],
       ["@values", "min_freq", "500000", "700000", "1200000"],
       ["@values", "target_loads",
-        "0 1000000|1 1200000|2 1700000",
-        "0 20|1 20|2 20",
-        "0 17|1 17|2 17"
+        "0 1200000|1 1200000|2 1700000",
+        "0 15|1 15|2 15"
       ]
     ],
     "powersave_inactive": [
       ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
       ["@preset", "common_inactive"],
       ["@values", "target_loads",
-        "0 1000000|1 900000|2 1200000",
-        "0 17|1 17|2 17",
+        "0 1000000|1 700000|2 1200000",
         "0 12|1 12|2 12"
       ]
     ],
@@ -148,8 +145,7 @@
       ["@values", "min_freq", "500000", "700000", "1200000"],
       ["@values", "target_loads",
         "0 1200000|1 1600000|2 1900000",
-        "0 20|1 20|2 20",
-        "0 17|1 17|2 17"
+        "0 15|1 15|2 15"
       ]
     ],
     "balance_inactive": [
@@ -157,7 +153,6 @@
       ["@preset", "common_inactive"],
       ["@values", "target_loads",
         "0 1200000|1 1200000|2 1200000",
-        "0 20|1 20|2 20",
         "0 15|1 15|2 15"
       ]
     ],
@@ -167,8 +162,7 @@
       ["@values", "min_freq", "700000", "900000", "1200000"],
       ["@values", "target_loads",
         "0 1500000|1 2100000|2 2100000",
-        "0 25|1 25|2 25",
-        "0 20|1 20|2 20"
+        "0 15|1 15|2 15"
       ]
     ],
     "performance_inactive": [
@@ -176,7 +170,6 @@
       ["@preset", "common_inactive"],
       ["@values", "target_loads",
         "0 1200000|1 1200000|2 1200000",
-        "0 20|1 20|2 20",
         "0 15|1 15|2 15"
       ]
     ],
@@ -186,8 +179,7 @@
       ["@values", "min_freq", "1000000", "1000000", "1200000"],
       ["@values", "target_loads",
         "0 1500000|1 2100000|2 2100000",
-        "0 25|1 25|2 25",
-        "0 20|1 20|2 20"
+        "0 15|1 15|2 15"
       ]
     ],
     "fast_inactive": [
@@ -195,7 +187,6 @@
       ["@preset", "common_inactive"],
       ["@values", "target_loads",
         "0 1500000|1 1600000|2 1600000",
-        "0 20|1 20|2 20",
         "0 15|1 15|2 15"
       ]
     ],
