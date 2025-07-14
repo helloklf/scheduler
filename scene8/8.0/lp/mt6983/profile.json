@@ -46,9 +46,9 @@
         { "id": "g2:cpu4", "max": 2300000, "turning": 2300000, "min": 1700000, "margin": 300, "step": -1 },
         { "id": "g2:cpu7", "max": 2450000, "turning": 2100000, "min": 1700000, "margin": 300, "step": -1 },
 
-        { "id": "g3:cpu0", "max": 1800000, "turning": 1600000, "min": 1000000, "margin": 300, "step": -1, "smoothness": 4 },
-        { "id": "g3:cpu4", "max": 2650000, "turning": 2450000, "min": 1900000, "margin": 350, "step": -1, "smoothness": 4 },
-        { "id": "g3:cpu7", "max": 2650000, "turning": 2400000, "min": 1900000, "margin": 350, "step": -1, "smoothness": 4 },
+        { "id": "g3:cpu0", "max": 1800000, "turning": 1600000, "min": 1000000, "margin": 300, "step": -1 },
+        { "id": "g3:cpu4", "max": 2650000, "turning": 2450000, "min": 1900000, "margin": 350, "step": -1 },
+        { "id": "g3:cpu7", "max": 2650000, "turning": 2400000, "min": 1900000, "margin": 350, "step": -1 },
 
         { "id": "g4:cpu0", "max": 1800000, "turning": 1600000, "min": 1200000, "margin": 280, "step": -1, "smoothness": 6 },
         { "id": "g4:cpu4", "max": 2850000, "turning": 2650000, "min": 2100000, "margin": 400, "step": -1, "smoothness": 6 },

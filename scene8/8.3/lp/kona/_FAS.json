@@ -1,24 +1,24 @@
 {
   "friendly": "FAS",
   "limiters": [
-    { "id": "g1:cpu4", "mode": "performance", "smoothness": 4, "prefer": 3,
+    { "id": "g1:cpu4", "mode": "performance", "prefer": 3,
       "max": 2419200, "min": 1056000, "margins": "350 1670400:200" },
-    { "id": "g1:cpu7", "mode": "performance", "smoothness": 4, "prefer": 3,
+    { "id": "g1:cpu7", "mode": "performance", "prefer": 3,
       "max": 2649600, "min": 1075200, "margins": "350 2169600:200" },
 
-    { "id": "g2:cpu4", "mode": "performance", "smoothness": 5, "prefer": 3,
+    { "id": "g2:cpu4", "mode": "performance", "prefer": 3,
       "max": 2419200, "min": 1056000, "margins": "400 1862400:220" },
-    { "id": "g2:cpu7", "mode": "performance", "smoothness": 5, "prefer": 3,
+    { "id": "g2:cpu7", "mode": "performance", "prefer": 3,
       "max": 2649600, "min": 1075200, "margins": "400 2169600:250" },
 
-    { "id": "g3:cpu4", "mode": "performance", "smoothness": 5, "prefer": 3,
+    { "id": "g3:cpu4", "mode": "performance", "prefer": 3,
       "max": 2419200, "min": 1382400, "margins": "400 2150400:250" },
-    { "id": "g3:cpu7", "mode": "performance", "smoothness": 5, "prefer": 3,
+    { "id": "g3:cpu7", "mode": "performance", "prefer": 3,
       "max": 2841600, "min": 1401600, "margins": "400 2457600:250" },
 
-    { "id": "g4:cpu4", "mode": "performance", "smoothness": 5, "prefer": 3,
+    { "id": "g4:cpu4", "mode": "performance", "prefer": 3,
       "max": 2419200, "min": 1574400, "margins": "450 2246400:280" },
-    { "id": "g4:cpu7", "mode": "performance", "smoothness": 5, "prefer": 3,
+    { "id": "g4:cpu7", "mode": "performance", "prefer": 3,
       "max": 3200000, "min": 1632000, "margins": "450 2457600:280" }
   ],
   "modes": [
