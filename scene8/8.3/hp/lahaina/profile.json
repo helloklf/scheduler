@@ -1,7 +1,6 @@
 {
   "platform": "lahaina",
   "platform_name": "888/888+",
-  "framework": 210,
   "alias": {
     "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
     "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
@@ -35,8 +34,8 @@
 
 
         { "id": "inactive:cpu0", "max": 1612800, "min": 800000, "margin": 240 },
-        { "id": "inactive:cpu4", "max": 1670400, "margins": "200 1440000:100" },
-        { "id": "inactive:cpu7", "max": 1785600, "margins": "200 1555200:100" },
+        { "id": "inactive:cpu4", "max": 1670400, "margins": "150 1440000:100" },
+        { "id": "inactive:cpu7", "max": 1785600, "margins": "150 1555200:100", "core_ctl": true },
 
         { "id": "idle:cpu0", "max": 1612800, "min": 800000, "margin": 200 },
         { "id": "idle:cpu4", "max": 1555200, "margins": "100 1324800:60" },
@@ -103,7 +102,7 @@
       ["@uclamp", "0.00~20.00", "0.00~max", "1.00~max"]
     ],
     "comm_inactive": [
-      ["@values", "min_freq", "499200", "710400", "844800"],
+      ["@values", "min_freq", "#499200", "#710400", "#844800"],
       ["@repeat", "sched_config", "85 85", "95 95", "150", "400"],
       ["@sched_limit", "0 1000", "0 4000", "0 4000"],
       ["@cpuset", "0-2", "0-3", "0-6", "0-7"],
@@ -147,7 +146,7 @@
     "performance_active": [
       ["@limiters", "p3:cpu4", "p3:cpu7"],
       ["@preset", "comm_active"],
-      ["@values", "min_freq", "1401600", "1075200", "806400"],
+      ["@values", "min_freq", "1209600", "960000", "806400"],
       ["@repeat", "sched_config", "70 70", "80 85", "150", "400"]
     ],
     "performance_inactive": [
@@ -159,7 +158,7 @@
     "fast_active": [
       ["@limiters", "p4:cpu4", "p4:cpu7"],
       ["@preset", "comm_active"],
-      ["@values", "min_freq", "1497600", "1440000", "1190400"],
+      ["@values", "min_freq", "1497600", "1075200", "1190400"],
       ["@repeat", "sched_config", "65 65", "75 78", "200", "400"]
     ],
     "fast_inactive": [
@@ -183,9 +182,8 @@
       "game": [
         ["@preset", "bw_low"],
         ["@preset", "common_gaming"],
-        ["@cpu_freq", "cpu0", "1209600", "1804800"],
-        ["@cpu_freq", "cpu4", "710400", "1766400"],
-        ["@cpu_freq", "cpu7", "844800", "1900800"],
+        ["@values", "max_freq", "#1804800", "#1766400", "#1900800"],
+        ["@values", "min_freq", "#1209600", "#710400", "#844800"],
         ["$gpu_max_khz", "#608000000"],
         ["@sched_limit", "0 0", "0 4000", "0 4000"],
         ["/proc/game_opt/disable_cpufreq_limit", "0"]
@@ -204,9 +202,8 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@cpu_freq", "cpu0", "1209600", "1804800"],
-        ["@cpu_freq", "cpu4", "844800", "1996800"],
-        ["@cpu_freq", "cpu7", "844800", "2265600"],
+        ["@values", "max_freq", "#1804800", "#1996800", "#2265600"],
+        ["@values", "min_freq", "#1209600", "#710400", "#844800"],
         ["$gpu_max_khz", "#608000000"],
         ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
@@ -225,9 +222,8 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@cpu_freq", "cpu0", "1305600", "1804800"],
-        ["@cpu_freq", "cpu4", "960000", "2227200"],
-        ["@cpu_freq", "cpu7", "844800", "2496000"],
+        ["@values", "max_freq", "#1804800", "#2227200", "#2496000"],
+        ["@values", "min_freq", "#1209600", "#710400", "#844800"],
         ["$gpu_max_khz", "#738000000"],
         ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
@@ -244,9 +240,8 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@cpu_freq", "cpu0", "1401600", "1804800"],
-        ["@cpu_freq", "cpu4", "1209600", "2419200"],
-        ["@cpu_freq", "cpu7", "1075200", "2841600"],
+        ["@values", "max_freq", "#1804800", "#2419200", "#2841600"],
+        ["@values", "min_freq", "#1401600", "#844800", "#1075200"],
         ["$gpu_max_khz", "#778000000"],
         ["@preset", "bw_boost"],
         ["@preset", "lat_boost"],
@@ -256,11 +251,6 @@
   },
   "apps": [
     {
-      "friendly": "极速响应",
-      "categories": ["Launcher"],
-      "import": "_Launcher.json"
-    },
-    {
       "friendly": "扫码",
       "categories": ["Scanner"],
       "import": "_Scanner.json"
@@ -268,9 +258,7 @@
     {
       "friendly": "待机",
       "packages": ["standby"],
-      "call": [
-        ["@limiters", "NONE"]
-      ]
+      "import": "_Standby.json"
     },
     {
       "friendly": "All",
@@ -287,7 +275,7 @@
     {
       "friendly": "All",
       "packages": ["*"],
-      "import": "_GAMES.json"
+      "import": "_Games.json"
     }
   ]
 }

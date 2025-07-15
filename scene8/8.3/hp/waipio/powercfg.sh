@@ -14,14 +14,6 @@ set_value() {
   fi;
 }
 
-cpuctl () {
-  echo $2 > /dev/cpuctl/$1/cpu.uclamp.sched_boost_no_override
-  echo $3 > /dev/cpuctl/$1/cpu.uclamp.latency_sensitive
-  echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
-  echo $5 > /dev/cpuctl/$1/cpu.uclamp.max
-  echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
-}
-
 lock_value() {
   if [[ -f $2 ]];then
     chmod 644 $2
@@ -48,15 +40,6 @@ hide_value() {
     echo "$1" Not Found!
   fi
 }
-
-move_to_cpuset() {
-  pid="$1"
-  cpuset="/dev/cpuset/$2/cgroup.procs"
-  if [[ "$pid" != "" ]] && [[ -e "$cpuset" ]]; then
-    echo $pid > "$cpuset"
-  fi
-}
-
 
 
 echo N > /sys/module/lpm_levels/parameters/sleep_disabled
@@ -86,51 +69,20 @@ set_cpuset(){
   done
 }
 
-move_to_heavy() {
-  pidof $1 | while read pid; do
-    # echo $pid > /dev/stune/top-app/heavy/cgroup.procs
-    echo $pid > /dev/cpuctl/heavy/cgroup.procs
-    ls /proc/$pid/task | while read tid
-    do
-      echo $tid > /dev/cpuctl/heavy/tasks
-    done
-  done
-}
-
-mk_cpuctl () {
-  mkdir -p "/dev/cpuctl/$1"
-  echo $2 > /dev/cpuctl/$1/cpu.uclamp.sched_boost_no_override
-  echo $3 > /dev/cpuctl/$1/cpu.uclamp.latency_sensitive
-  echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
-  echo $5 > /dev/cpuctl/$1/cpu.uclamp.max
-  echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
-  echo $5 > /dev/cpuctl/$1/cpu.uclamp.max
-}
 
 process_opt() {
-  set_cpuset surfaceflinger top-app
-  set_cpuset system_server top-app
+  set_cpuset surfaceflinger foreground
+  set_cpuset system_server foreground
   set_cpuset update_engine top-app
-  set_cpuset vendor.qti.hardware.display.composer-service top-app
+  set_cpuset vendor.qti.hardware.display.composer-service foreground
   # set_cpuset mediaserver background
   # set_cpuset media.hwcodec background
 
   # set_task_affinity `pgrep com.miui.home` 11111111
   # set_task_affinity `pgrep com.miui.home` 11110000
 
-  move_to_heavy vendor.qti.hardware.display.composer-service
-  move_to_heavy camerahalserver
-  move_to_heavy surfaceflinger
-  move_to_heavy system_server
-  move_to_heavy android.hardware.audio.service_64
-  move_to_heavy audioserver
-  move_to_heavy media.audio.qc.codec.qti.media.c2audio@1.0-service
-  move_to_heavy vendor.xiaomi.hw.touchfeature@1.0-service
-  move_to_heavy 'android:ui'
   killall process-tracker
   killall traced_probes
-
-  kernel_thread_set
 
   pidof com.android.systemui | while read pid; do
     echo $pid > /dev/cpuset/$2/cgroup.procs
@@ -147,22 +99,6 @@ process_opt() {
     done
   done
 }
-
-kernel_thread_set(){
-  pgrep -ef 'kcompactd0' | while read pid
-  do
-    taskset -p 3f $pid > /dev/null
-  done
-}
-
-# cpuctl top-app 0 0 0 max
-# cpuctl foreground 0 0 0 max
-# cpuctl background 0 0 0 max
-mk_cpuctl 'heavy' 1 0 0 max
-mkdir /dev/cpuset/heavy
-echo 0-6 > /dev/cpuset/heavy/cpus
-echo '' > /proc/sys/walt/sched_lib_name
-# mk_stune 'top-app/heavy' 0 0
 
 disable_migt() {
   migt=/sys/module/migt/parameters
@@ -298,11 +234,5 @@ mk_cpuset(){
   echo $1 > /dev/cpuset/top-app/$1/cpus
   echo 0 > /dev/cpuset/top-app/$1/mems
 }
-mk_cpuset 4-5
-mk_cpuset 0-5
-
-set_cpuset touch_report "top-app/4-5"
-set_cpuset surfaceflinger "top-app/0-5"
-set_cpuset system_server "top-app/0-5"
-set_cpuset update_engine "top-app/4-5"
-set_cpuset vendor.qti.hardware.display.composer-service "top-app/0-5"
+mk_cpuset 7
+set_cpuset update_engine "top-app/7"

@@ -7,7 +7,6 @@
         ["@preset", "bw_low"]
       ],
       "fas": {
-        "l3_boost": true,
         "freq": ["2150400", "1766400", "-3"]
       }
     },
@@ -17,7 +16,6 @@
         ["@preset", "bw_low"]
       ],
       "fas": {
-        "l3_boost": true,
         "freq": ["2265600", "1996800", "-3"]
       }
     },
@@ -25,7 +23,6 @@
       "mode": ["performance"],
       "fas": {
         "mode": "normal",
-        "l3_boost": true,
         "freq": ["2496000", "1996800", "-3"]
       },
       "sensors": [
@@ -44,8 +41,7 @@
       "mode": ["*"],
       "fas": {
         "mode": "normal",
-        "l3_boost": true,
-        "freq": ["2496000", "2112000", "-3"]
+        "freq": ["2841600", "2112000", "-3"]
       }
     }
   ]
