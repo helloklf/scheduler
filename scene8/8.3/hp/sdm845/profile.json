@@ -1,7 +1,6 @@
 {
   "platform": "sdm845",
   "platform_name": "845",
-  "framework": 210,
   "alias": {
     "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
     "msm_min_freq": "/sys/module/msm_performance/parameters/cpu_min_freq",
