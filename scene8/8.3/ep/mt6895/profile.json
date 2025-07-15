@@ -30,11 +30,11 @@
 
 
         { "id": "inactive:cpu0", "max": 1800000, "min": 800000, "margins": "300 1500000:200" },
-        { "id": "inactive:cpu4", "max": 1900000, "min": 400000, "margins": "180 1800000:100" },
-        { "id": "inactive:cpu7", "max": 2300000, "min": 500000, "margins": "200 1800000:100" },
+        { "id": "inactive:cpu4", "max": 1900000, "min": 900000, "margins": "160 1800000:100" },
+        { "id": "inactive:cpu7", "max": 2300000, "min": 900000, "margins": "200 1800000:100" },
 
-        { "id": "idle:cpu0", "max": 1600000, "min": 700000, "margin": 180 },
-        { "id": "idle:cpu4", "max": 1800000, "min": 400000, "margin": 120 },
+        { "id": "idle:cpu0", "max": 1800000, "min": 700000, "margin": 200 },
+        { "id": "idle:cpu4", "max": 1800000, "min": 500000, "margin": 120 },
         { "id": "idle:cpu7", "max": 2000000, "min": 500000, "margins": "140 1800000:100", "core_ctl": true }
       ]
     },
@@ -195,7 +195,6 @@
     }
   },
   "apps": [
-    { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
     { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
     { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }

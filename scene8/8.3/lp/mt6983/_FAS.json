@@ -1,8 +1,8 @@
 {
   "friendly": "游戏(FAS)",
   "limiters": [
-    { "id": "g1:cpu0", "max": 1400000, "min": 500000, "margin": 280, "step": -1 },
-    { "id": "g1:cpu4", "max": 2100000, "min": 1300000, "margin": 230, "step": -1 },
+    { "id": "g1:cpu0", "max": 1400000, "min": 500000,  "margin": 280, "step": -1 },
+    { "id": "g1:cpu4", "max": 2100000, "min": 1100000, "margin": 230, "step": -1 },
     { "id": "g1:cpu7", "max": 2100000, "min": 1300000, "margin": 250, "step": -1 },
 
     { "id": "g2:cpu0", "max": 1500000, "min": 800000,  "margin": 300, "step": -1 },
