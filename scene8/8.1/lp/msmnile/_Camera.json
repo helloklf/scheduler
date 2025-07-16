@@ -5,7 +5,6 @@
   ],
   "modes": [{
     "mode": ["powersave", "balance"],
-    "logger": false,
     "enable": true,
     "booster": {
       "duration": 3000,

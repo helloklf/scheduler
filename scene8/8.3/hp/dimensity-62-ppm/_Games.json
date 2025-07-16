@@ -1,0 +1,9 @@
+{
+    "friendly": "All",
+    "packages": ["*"],
+    "call": [
+        ["@limiters", "NONE"]
+    ],
+    "modes": [
+    ]
+}

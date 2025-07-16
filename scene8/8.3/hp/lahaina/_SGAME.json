@@ -31,7 +31,6 @@
       ],
       "fas": {
         "use": "whitelist",
-        "l3_boost": true,
         "freq": ["2150400", "1766400", "-3"]
       }
     },
@@ -43,7 +42,6 @@
       ],
       "fas": {
         "use": "whitelist",
-        "l3_boost": true,
         "freq": ["2380800", "1996800", "-3"]
       }
     },
@@ -66,7 +64,6 @@
       "fas": {
         "use": "whitelist",
         "mode": "normal",
-        "l3_boost": true,
         "freq": ["2496000", "1996800", "-3"]
       }
     },
@@ -79,7 +76,6 @@
       "fas": {
         "use": "whitelist",
         "mode": "normal",
-        "l3_boost": true,
         "freq": ["2841600", "2112000", "-3"]
       }
     }

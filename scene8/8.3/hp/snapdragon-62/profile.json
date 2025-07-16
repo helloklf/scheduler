@@ -32,9 +32,9 @@
 
         { "id": "g2:cpu6", "max": 2208000, "min": 1478400, "margin": 400, "smoothness": 6 },
 
-        { "id": "g3:cpu6", "max": 1996800, "min": 1094400, "margin": 350, "mode": "BOTTOM", "smoothness": 6 },
+        { "id": "g3:cpu6", "max": 1996800, "min": 1094400, "margin": 350, "mode": "bottom", "smoothness": 6 },
 
-        { "id": "g4:cpu6", "max": 0, "min": 1478400, "margin": 420, "mode": "BOTTOM", "smoothness": 6  },
+        { "id": "g4:cpu6", "max": 0, "min": 1478400, "margin": 420, "mode": "bottom", "smoothness": 6  },
 
 
         { "id": "idle:cpu0", "max": 1612800, "min": 576000, "margin": 100 },
@@ -266,13 +266,6 @@
     {
       "friendly": "王者荣耀",
       "packages": ["com.tencent.tmgp.sgame"],
-      "cpuset": {
-        "comm": {
-          "6-7": ["UnityGfx", "UnityMain", "UnityPreload", "Thread-"],
-          "3-5": ["Worker Thread", "Job.worker", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"]
-        },
-        "other": "0-7"
-      },
       "modes": [
         {
           "mode": ["powersave"],
@@ -294,15 +287,6 @@
     },
     {
       "friendly": "和平精英",
-      "packages": ["com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig"],
-      "cpuset": {
-        "interval": 1000,
-        "comm": {
-          "7": ["RenderThread"],
-          "4-6": ["Thread-", "TaskGraphNP"]
-        },
-        "other": "0-5"
-      },
       "modes": [
         {
           "mode": ["fast"],

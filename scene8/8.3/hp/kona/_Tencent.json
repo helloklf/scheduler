@@ -29,7 +29,6 @@
       ],
       "fas": {
         "use": "whitelist",
-        "l3_boost": true,
         "big_min_freq": 1075200, "middle_min_freq": 710400,
         "recent_frames": 8, "fast_down_rate": 6, "slow_down_rate": 3,
         "_freq": ["2649600", "1958400", "-2"]
@@ -42,7 +41,6 @@
       ],
       "fas": {
         "use": "whitelist",
-        "l3_boost": true,
         "recent_frames": 8, "fast_down_rate": 6, "slow_down_rate": 2.2,
         "_freq": ["2841600", "2342400", "-2"]
       }
@@ -55,7 +53,6 @@
       "fas": {
         "mode": "fps",
         "use": "whitelist",
-        "l3_boost": true,
         "recent_frames": 7, "fast_down_rate": 6, "slow_down_rate": 2.0,
         "lower_freq": 1862400,
         "_freq": ["2841600", "2419200"]
@@ -68,7 +65,6 @@
       ],
       "fas": {
         "mode": "fps",
-        "l3_boost": true,
         "use": "whitelist",
         "recent_frames": 7, "fast_down_rate": 6, "slow_down_rate": 2.0,
         "lower_freq": 1862400,

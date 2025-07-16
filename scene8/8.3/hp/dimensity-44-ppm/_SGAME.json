@@ -1,7 +1,7 @@
 {
   "friendly": "王者荣耀/LOL",
   "modes": [{
-    "mode": ["powersave"],
+    "mode": ["powersave", "balance"],
     "booster": {
       "duration": 3000,
       "enter": [
@@ -10,39 +10,9 @@
       "exit": [
         ["$deisolation", "4|5|6|7"]
       ]
-    },
-    "sensors": [{
-      "sensor": "fps",
-      "interval": 10000,
-      "props": ["$min_cpu_freq", "$max_cpu_freq"],
-      "rules": [
-        { "threshold": [-1, 100], "values": ["0 1708000|1 1482000", "0 2000000|1 2529000"] },
-        { "threshold": [99, 75 ], "values": ["0 1500000|1 1482000", "0 1708000|1 2529000"] },
-        { "threshold": [70, -1 ], "values": ["0 500000|1 730000", "0 1708000|1 2245000"] }
-      ]
-    }]
-  }, {
-    "mode": ["balance"],
-    "booster": {
-      "duration": 3000,
-      "enter": [
-        ["$deisolation", "4|5|6|7"]
-      ],
-      "exit": [
-        ["$deisolation", "4|5|6|7"]
-      ]
-    },
-    "sensors": [{
-      "sensor": "fps",
-      "interval": 10000,
-      "props": ["$min_cpu_freq", "$max_cpu_freq"],
-      "rules": [
-        { "threshold": [-1, 100], "values": ["0 1708000|1 1482000", "0 2000000|1 2600000"] },
-        { "threshold": [99, 75 ], "values": ["0 1500000|1 1482000", "0 1708000|1 2600000"] },
-        { "threshold": [70, -1 ], "values": ["0 500000|1 730000", "0 1708000|1 2245000"] }
-      ]
-    }]
-  }, {
+    }
+  },
+  {
     "mode": ["*"],
     "call": [
       ["$gpu_dvfs_margin", "25"],

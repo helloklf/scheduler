@@ -2,7 +2,6 @@
   "friendly": "极速响应",
   "modes": [{
     "mode": ["powersave"],
-    "logger": false,
     "booster": {
       "duration": 3000,
       "idle_delay": 1000,

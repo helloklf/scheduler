@@ -1,7 +1,7 @@
 {
   "friendly": "待机",
   "call": [
-    ["@cpuset", "0-6", "0-6", "0-7", "0-7"],
+    ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
     ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1"],
     ["@limiters", "NONE"]
   ],

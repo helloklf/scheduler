@@ -29,8 +29,8 @@
         { "id": "p2:cpu0", "max": 2000000, "min": 1708000, "margin": 600 },
         { "id": "p2:cpu4", "max": 2600000, "min": 1998000, "margin": 600 },
 
-        { "id": "g4:cpu0", "mode": "BOTTOM", "max": 2000000, "min": 1400000, "margin": 695 },
-        { "id": "g4:cpu4", "mode": "BOTTOM", "max": 2600000, "min": 1400000, "margin": 695 },
+        { "id": "g4:cpu0", "mode": "bottom", "max": 2000000, "min": 1400000, "margin": 695 },
+        { "id": "g4:cpu4", "mode": "bottom", "max": 2600000, "min": 1400000, "margin": 695 },
 
         { "id": "idle:cpu0", "max": 1625000, "margin": 130 },
         { "id": "idle:cpu4", "max": 1624000, "margin": 150 }

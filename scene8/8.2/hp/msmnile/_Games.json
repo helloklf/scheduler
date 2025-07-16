@@ -1,24 +1,24 @@
 {
   "friendly": "游戏",
   "limiters": [
-    { "id": "g1:cpu4", "mode": "BOTTOM", "max": 1920000, "min": 1056000,
+    { "id": "g1:cpu4", "mode": "bottom", "max": 1920000, "min": 1056000,
       "margins": "200 1708800:150", "smoothness": 8 },
-    { "id": "g1:cpu7", "mode": "BOTTOM", "max": 2131200, "min": 1056000,
+    { "id": "g1:cpu7", "mode": "bottom", "max": 2131200, "min": 1056000,
       "margins": "200 1708800:150", "smoothness": 8 },
 
-    { "id": "g2:cpu4", "mode": "BOTTOM", "max": 2227200, "min": 1056000,
+    { "id": "g2:cpu4", "mode": "bottom", "max": 2227200, "min": 1056000,
       "margins": "250 2131200:180", "smoothness": 8 },
-    { "id": "g2:cpu7", "mode": "BOTTOM", "max": 2419200, "min": 1056000,
+    { "id": "g2:cpu7", "mode": "bottom", "max": 2419200, "min": 1056000,
       "margins": "250 2131200:180", "smoothness": 8 },
 
-    { "id": "g3:cpu4", "mode": "BOTTOM", "max": 2419200, "min": 1497600,
+    { "id": "g3:cpu4", "mode": "bottom", "max": 2419200, "min": 1497600,
       "margins": "300 2131200:180", "smoothness": 8 },
-    { "id": "g3:cpu7", "mode": "BOTTOM", "max": 2841600, "min": 1497600,
+    { "id": "g3:cpu7", "mode": "bottom", "max": 2841600, "min": 1497600,
       "margins": "300 2419200:200", "smoothness": 8 },
 
-    { "id": "g4:cpu4", "mode": "BOTTOM", "max": 2419200, "min": 1708800,
+    { "id": "g4:cpu4", "mode": "bottom", "max": 2419200, "min": 1708800,
       "margins": "400 2227200:220", "smoothness": 8 },
-    { "id": "g4:cpu7", "mode": "BOTTOM", "max": 2841600, "min": 1708800,
+    { "id": "g4:cpu7", "mode": "bottom", "max": 2841600, "min": 1708800,
       "margins": "400 2419200:220", "smoothness": 8 }
   ],
   "call": [

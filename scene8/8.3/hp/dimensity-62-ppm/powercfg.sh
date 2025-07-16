@@ -107,7 +107,8 @@ lock_value 0 /sys/module/ged/parameters/is_GED_KPI_enabled
 lock_value 0 /sys/kernel/ged/hal/custom_upbound_gpu_freq
 
 # PPM
-echo 1 > /proc/ppm/enabled
+echo 0 > /proc/ppm/enabled
+chmod 664 /proc/ppm/policy_status
 cat /proc/ppm/policy_status | grep -e '\[.*\]' | while read row
 do
   case "$row" in
@@ -120,17 +121,19 @@ do
   esac
   echo ${row:1:1} $v > /proc/ppm/policy_status
 done
+echo 1 > /proc/ppm/enabled
+chmod 444 /proc/ppm/policy_status
 
 lock_value 2 /sys/kernel/fpsgo/common/force_onoff
 lock_value 0 /sys/kernel/fpsgo/fbt/switch_idleprefer
 
 thermal_basic(){
-echo 95 70 > /proc/driver/thermal/clatm_gpu_threshold
-echo 3 117000 0 mtktscpu-sysrst 85000 0 cpu_adaptive_0 76000 0 cpu_adaptive_1 0 0 no-cooler 0 0 > /proc/driver/thermal/tzcpu
-echo 4 120000 0 mtk-cl-kshutdown02 110000 0 no-cooler 100000 0 no-cooler 90000 0 no-cooler 0 0 no-cooler 0 0 no-cooler 0 0 no-cooler 0 0 no-cooler 0 0 no-cooler 0 0 no-cooler 1000 > /proc/driver/thermal/tzbtspa
-echo 2 100000 90000 80000 85000 93000 85000 235000 2000 230000 2000 500 500 13500 > /proc/driver/thermal/clctm
-echo 0 3 4 11 3 15 1 15 > /proc/driver/thermal/clatm_cpu_min_opp
-echo 1 3 4 5 0 0 0 0 > /proc/driver/thermal/clatm_cpu_min_opp
+  echo 95 70 > /proc/driver/thermal/clatm_gpu_threshold
+  echo 3 117000 0 mtktscpu-sysrst 85000 0 cpu_adaptive_0 76000 0 cpu_adaptive_1 0 0 no-cooler 0 0 > /proc/driver/thermal/tzcpu
+  echo 4 120000 0 mtk-cl-kshutdown02 110000 0 no-cooler 100000 0 no-cooler 90000 0 no-cooler 0 0 no-cooler 0 0 no-cooler 0 0 no-cooler 0 0 no-cooler 0 0 no-cooler 0 0 no-cooler 1000 > /proc/driver/thermal/tzbtspa
+  echo 2 100000 90000 80000 85000 93000 85000 235000 2000 230000 2000 500 500 13500 > /proc/driver/thermal/clctm
+  echo 0 3 4 11 3 15 1 15 > /proc/driver/thermal/clatm_cpu_min_opp
+  echo 1 3 4 5 0 0 0 0 > /proc/driver/thermal/clatm_cpu_min_opp
 }
 
 echo 0 > /sys/devices/system/cpu/perf/enable

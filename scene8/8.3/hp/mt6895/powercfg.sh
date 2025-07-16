@@ -189,6 +189,7 @@ hide_value $t_message/modem_limit 0
 lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 
 lock_value 0 /sys/kernel/fpsgo/fbt/switch_idleprefer
+lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
 
 setprop persist.sys.miui_animator_sched.bigcores 4-7
 

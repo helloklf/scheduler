@@ -36,9 +36,9 @@
 
         { "id": "g2:cpu6", "max": 2208000, "min": 1478400, "margin": 400, "smoothness": 6 },
 
-        { "id": "g3:cpu6", "max": 1996800, "min": 1094400, "margin": 420, "mode": "BOTTOM", "smoothness": 6 },
+        { "id": "g3:cpu6", "max": 1996800, "min": 1094400, "margin": 420, "mode": "bottom", "smoothness": 6 },
 
-        { "id": "g4:cpu6", "max": 0, "min": 1478400, "margin": 480, "mode": "BOTTOM", "smoothness": 10  },
+        { "id": "g4:cpu6", "max": 0, "min": 1478400, "margin": 480, "mode": "bottom", "smoothness": 10  },
 
 
         { "id": "idle:cpu0", "max": 1700000, "margin": 150 },
@@ -232,59 +232,9 @@
   ],
   "games": [
     {
-      "friendly": "原神",
-      "categories": ["GenshinImpact"],
-      "sensors": [],
-      "modes": [
-        {
-          "mode": ["powersave", "balance", "performance"],
-          "cpuset": {
-            "comm": {
-              "6-7": ["UnityMain"],
-              "6": ["UnityGfx"],
-              "5": ["UnityMultiRende"],
-              "2-4": ["Worker Thread"]
-            },
-            "other": "0-5"
-          }
-        },
-        {
-          "mode": ["fast", "pedestal"],
-          "cpuset": {
-            "comm": {
-              "6-7": ["UnityMain"],
-              "6": ["UnityGfx", "UnityMultiRende"]
-            },
-            "other": "0-7"
-          }
-        }
-      ]
-    },
-    {
-      "friendly": "王者荣耀",
-      "packages": ["com.tencent.tmgp.sgame"],
-      "modes": [
-        {
-          "mode": ["powersave"],
-          "call": [["@limiters", "g1:cpu6"]]
-        },
-        {
-          "mode": ["balance"],
-          "call": []
-        },
-        {
-          "mode": ["performance"],
-          "call": []
-        },
-        {
-          "mode": ["fast"],
-          "call": [["@limiters", "g4:cpu6"]]
-        }
-      ]
-    },
-    {
       "friendly": "All",
-      "packages": ["*"]
+      "packages": ["*"],
+      "import": "_Games.json"
     }
   ]
 }

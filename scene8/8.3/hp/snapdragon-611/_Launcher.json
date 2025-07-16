@@ -1,7 +1,8 @@
 {
-    "friendly": "极速响应",
-    "categories": ["Launcher"],
-    "modes": [{
+  "friendly": "极速响应",
+  "categories": ["Launcher"],
+  "modes": [
+    {
       "mode": ["powersave"],
       "booster": {
         "duration": 3000,
@@ -13,7 +14,8 @@
           ["@preset", "balance_inactive"]
         ]
       }
-    }, {
+    },
+    {
       "mode": ["balance"],
       "booster": {
         "duration": 3000,
@@ -25,7 +27,8 @@
           ["@preset", "balance_inactive"]
         ]
       }
-    }, {
+    },
+    {
       "mode": ["*"],
       "booster": {
         "duration": 2000,
@@ -37,5 +40,6 @@
           ["@preset", "fast_inactive"]
         ]
       }
-    }]
+    }
+  ]
 }

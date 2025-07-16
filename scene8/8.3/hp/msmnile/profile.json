@@ -219,16 +219,6 @@
   ],
   "games": [
     {
-      "friendly": "腾讯游戏",
-      "packages": [
-        "com.tencent.lolm", "com.tencent.tmgp.sgame", "com.garena.game.kgtw",
-        "com.tencent.tmgp.pubgmhd", "com.tencent.tmgp.pubgmhdce",  "com.tencent.ig",
-        "com.tencent.tmgp.speedmobile", "com.garena.game.fctw",
-        "com.tencent.tmgp.gnyx"
-      ],
-      "import": "_Tencent.json"
-    },
-    {
       "friendly": "All",
       "packages": ["*"],
       "import": "_Games.json"

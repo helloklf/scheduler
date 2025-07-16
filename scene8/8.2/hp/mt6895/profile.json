@@ -122,6 +122,7 @@
       ["@preset", "common_inactive"]
     ],
     "fast_active": [
+      ["@limiters", "NONE"],
       ["@values", "max_freq", "2000000", "2850000", "3100000"],
       ["@values", "min_freq", "1200000", "1600000", "1600000"],
       ["$ddr_freq_min", "3200000000"],

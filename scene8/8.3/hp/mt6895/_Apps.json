@@ -31,7 +31,7 @@
       "mode": ["performance"],
       "booster": {
         "duration": 2500,
-        "idle_delay": 1500,
+        "idle_delay": 1000,
         "enter": [
           ["@preset", "performance_active"]
         ],
@@ -44,7 +44,7 @@
       "mode": ["fast"],
       "booster": {
         "duration": 2500,
-        "idle_delay": 1500,
+        "idle_delay": 1000,
         "enter": [
           ["@preset", "fast_active"]
         ],

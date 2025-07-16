@@ -21,7 +21,6 @@
       ],
       "fas": {
         "use": "whitelist",
-        "l3_boost": true,
         "_freq": ["2150400", "1766400"]
       }
     },
@@ -32,7 +31,6 @@
       ],
       "fas": {
         "use": "whitelist",
-        "l3_boost": true,
         "_freq": ["2265600", "1996800"]
       }
     },
