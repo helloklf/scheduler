@@ -23,6 +23,14 @@ set_value() {
   fi;
 }
 
+lock_value () {
+  if [[ -f $2 ]];then
+    chmod 644 $2
+    echo $1 > $2
+    chmod 444 $2
+  fi
+}
+
 core_ctl_policy() {
   lock_value $1 /sys/module/scheduler/holders/mtk_core_ctl/parameters/policy_enable
   lock_value $1 /sys/module/thermal_interface/holders/mtk_core_ctl/parameters/policy_enable
@@ -57,14 +65,6 @@ mk_cpuctl () {
   echo $5 > /dev/cpuctl/$1/cpu.uclamp.max
   echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
   # echo $5 > /dev/cpuctl/$1/cpu.uclamp.max
-}
-
-lock_value () {
-  if [[ -f $2 ]];then
-    chmod 644 $2
-    echo $1 > $2
-    chmod 444 $2
-  fi
 }
 
 # hide_value /sys/module/task_turbo/parameters/feats [write_value]
