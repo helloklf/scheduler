@@ -9,7 +9,7 @@
       "duration": 3000,
       "idle_delay": 1000,
       "enter": [
-        ["@preset", "balance_active"]
+        ["@preset", "powersave_active"]
       ],
       "exit": [
         ["@preset", "powersave_inactive"]
@@ -19,12 +19,12 @@
     "mode": ["balance"],
     "booster": {
       "duration": 3000,
-      "idle_delay": 2000,
+      "idle_delay": 1000,
       "enter": [
-        ["@preset", "performance_active"]
+        ["@preset", "balance_active"]
       ],
       "exit": [
-        ["@preset", "powersave_inactive"]
+        ["@preset", "balance_inactive"]
       ]
     }
   }, {
@@ -36,7 +36,7 @@
         ["@preset", "performance_active"]
       ],
       "exit": [
-        ["@preset", "balance_inactive"]
+        ["@preset", "performance_inactive"]
       ]
     }
   }, {
@@ -45,12 +45,10 @@
       "duration": 4000,
       "idle_delay": 2000,
       "enter": [
-        ["$gpu_dvfs_margin", "130"],
         ["@preset", "fast_active"]
       ],
       "exit": [
-        ["$gpu_dvfs_margin", "35"],
-        ["@preset", "balance_inactive"]
+        ["@preset", "fast_inactive"]
       ]
     }
   }]

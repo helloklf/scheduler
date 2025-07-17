@@ -23,10 +23,12 @@
         "duration": 2500,
         "idle_delay": 2000,
         "enter": [
-          ["@preset", "balance_active"]
+          ["@preset", "balance_active"],
+          ["@fps", "0"]
         ],
         "exit": [
-          ["@preset", "balance_inactive"]
+          ["@preset", "balance_inactive"],
+          ["@fps", "30"]
         ]
       }
     }, {

@@ -151,6 +151,10 @@ thermal_basic(){
 echo 0 > /sys/devices/system/cpu/perf/enable
 echo 0 > /sys/devices/system/cpu/perf/fuel_gauge_enable
 echo 0 > /sys/devices/system/cpu/perf/gpu_pmu_enable
+lock_value 3 /sys/kernel/ged/hal/dvfs_loading_mode
+lock_value 20 /sys/kernel/ged/hal/timer_base_dvfs_margin
+lock_value 20 /sys/kernel/ged/hal/dvfs_loading_mode
+lock_value 1 /sys/kernel/ged/hal/loading_base_dvfs_step
 
 echo 90 > /sys/module/ged/parameters/g_fb_dvfs_threshold
 echo 350000 > /sys/module/ged/parameters/gpu_bottom_freq

@@ -13,17 +13,17 @@
   "features": {
     "limiter": {
       "params": [
-        { "id": "p1:cpu0", "max": 1766400, "min": 403200, "margin": 400, "mode": "performance", "excludes": [1] },
-        { "id": "p1:cpu4", "max": 2323200, "min": 825600, "margin": 300, "mode": "performance" },
+        { "id": "p1:cpu0", "max": 1766400, "min": 403200, "margin": 300, "mode": "performance", "mt": 30, "excludes": [1] },
+        { "id": "p1:cpu4", "max": 2323200, "min": 825600, "margin": 150, "mode": "performance" },
 
         { "id": "p2:cpu0", "max": 1766400, "min": 403200, "margin": 400, "mode": "performance", "excludes": [1] },
-        { "id": "p2:cpu4", "max": 2649600, "min": 825600, "margin": 400, "mode": "performance" },
+        { "id": "p2:cpu4", "max": 2649600, "min": 825600, "margin": 300, "mode": "performance" },
 
         { "id": "p3:cpu0", "max": 1766400, "min": 576000, "margin": 400, "mode": "performance", "excludes": [1] },
-        { "id": "p3:cpu4", "max": 2803200, "min": 1056000, "margin": 400, "mode": "performance" },
+        { "id": "p3:cpu4", "max": 2649600, "min": 1056000, "margin": 300, "mode": "performance" },
 
         { "id": "p4:cpu0", "max": 1766400, "min": 576000, "margin": 400, "mode": "performance", "excludes": [1] },
-        { "id": "p4:cpu4", "max": 2803200, "min": 1056000, "margin": 500, "mode": "performance" },
+        { "id": "p4:cpu4", "max": 2803200, "min": 1056000, "margin": 400, "mode": "performance" },
 
         { "id": "inactive:cpu0", "max": 1689600, "min": 576000, "margin": 150, "mode": "performance" },
         { "id": "inactive:cpu4", "max": 1996800, "min": 825600, "margin": 150, "mode": "performance" },
