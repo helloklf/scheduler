@@ -8,13 +8,14 @@
     "bus_ddr_min": "/sys/devices/system/cpu/bus_dcvs/DDR/19091000.qcom,bwmon-ddr/min_freq",
     "bus_ddr": "/sys/devices/system/cpu/bus_dcvs/DDR/19091000.qcom,bwmon-ddr/max_freq",
     "l3_boost": "/sys/devices/system/cpu/bus_dcvs/L3/boost_freq",
-    "mod_percent": "/sys/class/kgsl/kgsl-3d0/devfreq/mod_percent"
+    "mod_percent": "/sys/class/kgsl/kgsl-3d0/devfreq/mod_percent",
+    "ufshc_freq": "/sys/bus/platform/devices/1d84000.ufshc/devfreq/1d84000.ufshc/max_freq"
   },
   "features": {
     "limiter": {
       "params": [
-        { "id": "p1:cpu0", "max": 1574400, "min": 614400, "margin": 160, "excludes": [1] },
-        { "id": "p1:cpu4", "max": 1766400, "min": 768000, "margin": 220 },
+        { "id": "p1:cpu0", "max": 1574400, "min": 518400, "margin": 160, "excludes": [1] },
+        { "id": "p1:cpu4", "max": 1766400, "min": 633600, "margin": 220 },
         { "id": "p1:cpu7", "max": 2054400, "min": 806400, "margin": 220 },
 
         { "id": "p2:cpu0", "max": 1574400, "min": 729600,  "margin": 180, "excludes": [1] },
@@ -104,30 +105,31 @@
     ],
     "common_active": [
       ["@preset", "cpu7_on"],
-      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
-      ["@cpuset", "0-3", "0-3", "0-6", "0-7"]
+      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
     ],
     "common_inactive": [
-      ["@values", "latency", "0", "4000", "0", "4000", "0", "4000"],
-      ["@cpuset", "0-3", "0-3", "0-6", "0-7"],
+      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
       ["@values", "hispeed_freq", "0", "0", "0"]
     ],
     "common_app": [
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:silver/max_freq", "768000"],
+      ["@cpuset", "0-3", "0-3", "0-6", "0-7"],
       ["$mod_percent", "100"],
       [
         "@target_loads",
         "80 1075200:85 1574400:90",
-        "82 1209600:85 1766400:90 2112000:95",
-        "82 1286400:85 1958400:90 2400000:95"
-      ]
+        "80 1209600:85 1766400:90 2112000:95",
+        "80 1286400:85 1958400:90 2400000:95"
+      ],
+      ["$ufshc_freq", "75000000"]
     ],
     "common_gaming": [
       ["@limiters", "NONE"],
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:silver/max_freq", "1555000"],
       ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
       ["$mod_percent", "94"],
-      ["@gesture", "PAUSE"]
+      ["@gesture", "PAUSE"],
+      ["$ufshc_freq", "300000000"]
     ],
 
     "powersave_active": [

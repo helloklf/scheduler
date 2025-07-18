@@ -7,11 +7,11 @@
       "idle_delay": 1000,
       "enter": [
         ["@preset", "powersave_active"],
-        ["@cpuset", "1"]
+        ["@cpuset", "1", "", "", ""]
       ],
       "exit": [
         ["@preset", "powersave_inactive"],
-        ["@cpuset", "0-3"]
+        ["@cpuset", "0-3", "", "", ""]
       ]
     }
   }, {

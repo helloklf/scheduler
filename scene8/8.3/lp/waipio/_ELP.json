@@ -11,11 +11,12 @@
         "idle_delay": 1000,
         "enter": [
           ["@preset", "powersave_active"],
-          ["@cpuset", "1", "0-3", "0-6", "0-7"],
+          ["@cpuset", "1", "", "", ""],
           ["@fps", "0"]
         ],
         "exit": [
           ["@preset", "powersave_inactive"],
+          ["@cpuset", "0-3", "", "", ""],
           ["@fps", "30"]
         ]
       }
@@ -27,11 +28,12 @@
         "idle_delay": 1000,
         "enter": [
           ["@preset", "balance_active"],
-          ["@cpuset", "1", "0-3", "0-6", "0-7"],
+          ["@cpuset", "1", "", "", ""],
           ["@fps", "0"]
         ],
         "exit": [
           ["@preset", "balance_inactive"],
+          ["@cpuset", "0-3", "", "", ""],
           ["@fps", "30"]
         ]
       }

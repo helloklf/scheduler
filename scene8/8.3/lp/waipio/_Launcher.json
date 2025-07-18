@@ -5,16 +5,28 @@
     "booster": {
       "duration": 2000,
       "idle_delay": 700,
-      "enter": [["@preset", "powersave_active"]],
-      "exit": [["@preset", "powersave_inactive"]]
+      "enter": [
+        ["@preset", "powersave_active"],
+        ["@cpuset", "1", "", "", ""]
+      ],
+      "exit": [
+        ["@preset", "powersave_inactive"],
+        ["@cpuset", "0-3", "", "", ""]
+      ]
     }
   }, {
     "mode": ["balance"],
     "booster": {
       "duration": 2000,
       "idle_delay": 700,
-      "enter": [["@preset", "balance_active"]],
-      "exit": [["@preset", "balance_inactive"]]
+      "enter": [
+        ["@preset", "balance_active"],
+        ["@cpuset", "1", "", "", ""]
+      ],
+      "exit": [
+        ["@preset", "balance_inactive"],
+        ["@cpuset", "0-3", "", "", ""]
+      ]
     }
   }, {
     "mode": ["performance"],
