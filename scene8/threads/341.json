@@ -157,7 +157,7 @@
     }
   },
   {
-    "friendly": "卡拉彼卡",
+    "friendly": "卡拉彼丘",
     "packages": ["com.idreamsky.klbqm"],
     "cpuset": {
       "heavy_thread": "Thread-",
@@ -192,6 +192,25 @@
         "4-6": ["UnityGfx", "Job."]
       },
       "other": "0-6"
+    }
+  },
+  {
+    "friendly": "优先大核",
+    "packages": [
+      "com.tencent.mobileqq",
+      "com.tencent.qqlive", "tv.danmaku.bili", "com.taobao.idlefish",
+      "com.taobao.taobao", "com.jingdong.app.mall",
+      "com.tencent.news", "com.sina.weibo", "com.baidu.tieba",
+      "com.netease.cloudmusic", "com.miui.player",
+      "com.tencent.mm",
+      "com.miui.notes",
+      "com.sankuai.meituan",
+      "com.android.vending"
+    ],
+    "app_cpuset": {
+      "main": "7",
+      "render": "3-6",
+      "other": "3-6"
     }
   }
 ]

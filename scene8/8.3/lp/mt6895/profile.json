@@ -24,10 +24,13 @@
 
         { "id": "p2:cpu0", "max": 2000000, "min": 1800000, "margin": 400 },
         { "id": "p2:cpu4", "max": 2600000, "min": 1800000, "margins": "400 2100000:200 2400000:120" },
-        { "id": "p2:cpu7", "max": 2650000, "min": 2150000, "margins": "400 2450000:200" },
+        { "id": "p2:cpu7", "max": 2650000, "min": 2100000, "margins": "400 2450000:200" },
 
-        { "id": "p3:cpu4", "max": 2850000, "min": 2450000, "margins": "350 2650000:150" },
-        { "id": "p3:cpu7", "max": 2850000, "min": 2650000, "margins": "350" },
+        { "id": "p3:cpu4", "max": 2850000, "min": 210000, "margins": "350 2650000:150" },
+        { "id": "p3:cpu7", "max": 2850000, "min": 2300000, "margins": "350" },
+
+        { "id": "p4:cpu4", "max": 2850000, "min": 2450000, "margins": "350 2650000:150" },
+        { "id": "p4:cpu7", "max": 2850000, "min": 2650000, "margins": "350" },
 
         { "id": "inactive:cpu0", "max": 1800000, "min": 800000, "margins": "300 1500000:200" },
         { "id": "inactive:cpu4", "max": 2000000, "min": 400000, "margins": "180 1800000:120" },
@@ -120,7 +123,7 @@
     ],
     "balance_active": [
       ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
-      ["@values", "min_freq", "1000000", "900000", "800000"],
+      ["@values", "min_freq", "1000000", "800000", "800000"],
       ["$ddr_freq_min", "#2133000000"],
       ["@preset", "common_active"]
     ],
@@ -130,7 +133,7 @@
     ],
     "performance_active": [
       ["@limiters", "p3:cpu4", "p3:cpu7"],
-      ["@values", "min_freq", "1200000", "1600000", "1600000"],
+      ["@values", "min_freq", "1200000", "1200000", "1200000"],
       ["$ddr_freq_min", "3200000000"],
       ["@preset", "common_active"]
     ],
@@ -139,7 +142,7 @@
       ["@preset", "common_inactive"]
     ],
     "fast_active": [
-      ["@values", "max_freq", "2000000", "2850000", "3100000"],
+      ["@limiters", "p4:cpu4", "p4:cpu7"],
       ["@values", "min_freq", "1200000", "1600000", "1600000"],
       ["$ddr_freq_min", "3200000000"],
       ["@preset", "common_active"]

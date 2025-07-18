@@ -195,7 +195,7 @@
     }
   },
   {
-    "friendly": "卡拉彼卡",
+    "friendly": "卡拉彼丘",
     "packages": ["com.idreamsky.klbqm"],
     "cpuset": {
       "heavy_thread": "Thread-",

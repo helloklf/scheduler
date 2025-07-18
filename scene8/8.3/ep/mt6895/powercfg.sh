@@ -1,6 +1,3 @@
-cfg_dir=$(cd $(dirname $0); pwd)
-
-
 # rm /data/system/mcd/*
 if [[ -e /data/system/mcd ]]; then
 
@@ -68,16 +65,6 @@ lock_value 4 $cpu0_core_ctl_dir/max_cpus
 lock_value 4 $cpu0_core_ctl_dir/min_cpus
 lock_value 0 $cpu0_core_ctl_dir/enable
 
-mk_cpuctl () {
-  mkdir -p "/dev/cpuctl/$1"
-  # echo $2 > /dev/cpuctl/$1/cpu.uclamp.sched_boost_no_override
-  echo $3 > /dev/cpuctl/$1/cpu.uclamp.latency_sensitive
-  echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
-  echo $5 > /dev/cpuctl/$1/cpu.uclamp.max
-  echo $4 > /dev/cpuctl/$1/cpu.uclamp.min
-  # echo $5 > /dev/cpuctl/$1/cpu.uclamp.max
-}
-
 # hide_value /sys/module/task_turbo/parameters/feats [write_value]
 hide_value() {
   if [[ -e "$1" ]]; then
@@ -120,44 +107,18 @@ move_cpuctl() {
   done
 }
 
-move_to_heavy() {
-  # pidof $1 | while read pid; do
-  for pid in $(echo "$ps_cache" | grep -i -E "$1" | awk '{print $1}'); do
-    # echo $pid > /dev/stune/top-app/heavy/cgroup.procs
-    echo $pid > /dev/cpuctl/heavy/cgroup.procs
-    ls /proc/$pid/task | while read tid
-    do
-      echo $tid > /dev/cpuctl/heavy/tasks
-    done
-  done
-}
-
 process_opt() {
   sleep 20
 
-  # change_task_cpuset 'camerahalserver' camera-daemon
-  change_task_cpuset 'android:ui|lmkd' 'top-app'
   change_task_cpuset "surfaceflinger|system_server|android.hardware.graphics.composer|toucheventcheck|vendor.xiaomi.hw.touchfeature" "foreground"
   change_task_cpuset "svendor.mediatek.hardware.pq|android.hardware.sensors|statsd|logd|scene-daemon" "foreground"
-  change_task_cpuset "aal_sof|kfps|dsp_send_thread|vdec_ipi_recv|mtk_drm_disp_id|disp_feature|hif_thread|main_thread|rx_thread|ged_" "system-background"
   change_task_cpuset 'mediaserver64|android.hardware.media.c2' 'foreground'
-
-  move_to_heavy 'android.hardware.audio.service.mediatek|android.hardware.graphics.composer'
-  move_to_heavy 'com.android.systemui|com.miui.home'
-  move_to_heavy 'system_server|surfaceflinger|camerahalserver'
-  move_to_heavy 'com.omarea.vtools|com.omarea.gesture'
-  move_to_heavy 'toucheventcheck|vendor.xiaomi.hw.touchfeature'
-  move_to_heavy 'android:ui'
-  move_cpuctl 'aal_sof|kfps|wlan%d' 'background'
 
   for name in 'kcompactd0' 'aal_sof' 'kfps' 'kworker'
   do
     taskset -p 3f $(pgrep -ef $name) > /dev/null
   done
 }
-
-mk_cpuctl 'heavy' 1 0 1 max
-# mk_stune 'top-app/heavy' 0 0
 
 process_opt &
 
@@ -192,8 +153,6 @@ lock_value 0 /sys/kernel/fpsgo/fbt/switch_idleprefer
 
 setprop persist.sys.miui_animator_sched.bigcores 4-7
 
-echo 41 > /sys/module/mtk_fpsgo/parameters/max_freq_limit_level # default 42
-echo 2 > /sys/module/mtk_fpsgo/parameters/min_freq_limit_level # default 2
 echo 10 > /sys/module/mtk_fpsgo/parameters/variance # default 40
 # lock_value 0 /sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled
 lock_value 2 /sys/kernel/fpsgo/common/force_onoff
@@ -206,11 +165,11 @@ hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
 
 # FEAS dependence, But it will not work if you change the frequency, So disable it
 lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
-
 hide_value /sys/kernel/fpsgo/fbt/enable_ceiling 0
 
 
 # echo 0 > /sys/module/millet_core/parameters/millet_freeze_switch
+
 
 # OnePlus
 if [[ -d  /proc/game_opt ]]; then
