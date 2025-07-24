@@ -7,7 +7,6 @@
     {
       "mode": ["powersave"],
       "fas": {
-        "l3 _boost": true,
         "big_min_freq": 1075200, "middle_min_freq": 710400,
         "freq": ["2649600", "1958400", "-3"]
       }
@@ -15,14 +14,12 @@
     {
       "mode": ["balance"],
       "fas": {
-        "l3 _boost": true,
         "freq": ["2841600", "2342400", "-3"]
       }
     },
     {
       "mode": ["performance"],
       "fas": {
-        "l3 _boost": true,
         "mode": "fps",
         "freq": ["3200000", "2419200", "-3"]
       }

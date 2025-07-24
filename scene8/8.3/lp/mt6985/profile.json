@@ -24,7 +24,7 @@
     "limiter": {
       "ddr_boost": true,
       "params": [
-        { "id": "p1:cpu0", "max": 1700000, "min": 1200000, "margins": "300 1500000:150", "excludes": [1] },
+        { "id": "p1:cpu0", "max": 1700000, "min": 1000000, "margins": "300 1500000:150", "excludes": [1] },
         { "id": "p1:cpu4", "max": 2000000, "min": 1200000, "margins": "300 1900000:150" },
         { "id": "p1:cpu7", "max": 2000000, "min": 1200000, "margins": "300 1900000:150" },
 
@@ -115,6 +115,7 @@
       ["$core_ctl", "#1"]
     ],
     "common_gaming": [
+      ["@preset", "common_active"],
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
       ["@limiters", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
@@ -164,23 +165,23 @@
       ["@preset", "common_inactive"]
     ],
     "freq_low": [
-      ["$cpufreq", "0 220000 1700000|4 400000 2400000|7 1200000 2400000"],
-      ["@values", "max_freq", "1700000", "2400000", "2400000"],
+      ["$cpufreq", "0 220000 1800000|4 400000 2400000|7 1200000 2400000"],
+      ["@values", "max_freq", "1800000", "2400000", "2400000"],
       ["@values", "min_freq", "220000", "400000", "1200000"]
     ],
     "freq_middle": [
-      ["$cpufreq", "0 220000 1700000|4 400000 2600000|7 1200000 2600000"],
-      ["@values", "max_freq", "1700000", "2600000", "2600000"],
+      ["$cpufreq", "0 220000 1800000|4 400000 2600000|7 1200000 2600000"],
+      ["@values", "max_freq", "1800000", "2600000", "2600000"],
       ["@values", "min_freq", "220000", "400000", "1200000"]
     ],
     "freq_high": [
-      ["$cpufreq", "0 220000 1700000|4 400000 2800000|7 1200000 2800000"],
-      ["@values", "max_freq", "1700000", "2800000", "2800000"],
+      ["$cpufreq", "0 220000 1800000|4 400000 2800000|7 1200000 2800000"],
+      ["@values", "max_freq", "1800000", "2800000", "2800000"],
       ["@values", "min_freq", "220000", "400000", "1200000"]
     ],
     "freq_extreme": [
-      ["$cpufreq", "0 220000 1900000|4 400000 2850000|7 1200000 3050000"],
-      ["@values", "max_freq", "1900000", "2850000", "3050000"],
+      ["$cpufreq", "0 220000 2000000|4 400000 2850000|7 1200000 3050000"],
+      ["@values", "max_freq", "2000000", "2850000", "3050000"],
       ["@values", "min_freq", "220000", "400000", "1200000"]
     ]
   },
@@ -188,11 +189,11 @@
     "powersave": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "powersave_active"],
         ["$gpu_max_freq", "#14"]
       ],
       "app": [
-        ["@preset", "common_app"]
+        ["@preset", "common_app"],
+        ["@preset", "powersave_active"]
       ],
       "game": [
         ["$ddr_map", "2300000:6400000 2000000:5500000 1700000:4100000 1600000:3094000"],
@@ -203,11 +204,11 @@
     "balance": {
       "call": [
         ["@preset", "reset"],
-        ["@preset", "balance_active"],
         ["$gpu_max_freq", "#14"]
       ],
       "app": [
-        ["@preset", "common_app"]
+        ["@preset", "common_app"],
+        ["@preset", "balance_active"]
       ],
       "game": [
         ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000"],
@@ -217,12 +218,12 @@
     },
     "performance": {
       "call": [
-        ["@preset", "reset"],
-        ["@preset", "performance_active"]
+        ["@preset", "reset"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$gpu_max_freq", "#14"]
+        ["$gpu_max_freq", "#14"],
+        ["@preset", "performance_active"]
       ],
       "game": [
         ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000"],
@@ -233,12 +234,12 @@
     },
     "fast": {
       "call": [
-        ["@preset", "reset"],
-        ["@preset", "fast_active"]
+        ["@preset", "reset"]
       ],
       "app": [
         ["@preset", "common_app"],
-        ["$gpu_max_freq", "#14"]
+        ["$gpu_max_freq", "#14"],
+        ["@preset", "fast_active"]
       ],
       "game": [
         ["$ddr_map", "2300000:6400000 1900000:5500000 1700000:4100000 1600000:3094000"],

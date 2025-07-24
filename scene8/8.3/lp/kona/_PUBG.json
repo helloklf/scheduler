@@ -4,14 +4,12 @@
     {
       "mode": ["powersave"],
       "fas": {
-        "l3 _boost": true,
         "freq": ["2745600", "2419200"]
       }
     },
     {
       "mode": ["balance"],
       "fas": {
-        "l3 _boost": true,
         "big_min_freq": 1670400,
         "freq": ["2841600", "2419200"]
       }
@@ -19,7 +17,6 @@
     {
       "mode": ["performance"],
       "fas": {
-        "l3 _boost": true,
         "mode": "fps",
         "recent_frames": 10, "fast_down_rate": 7, "slow_down_rate": 2,
         "big_min_freq": 1958400,
@@ -29,7 +26,6 @@
     {
       "mode": ["fast"],
       "fas": {
-        "l3 _boost": true,
         "recent_frames": 10, "fast_down_rate": 6, "slow_down_rate": 1.6,
         "big_min_freq": 2169600,
         "freq": ["2841600", "2419200"]
