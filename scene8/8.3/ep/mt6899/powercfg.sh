@@ -80,8 +80,6 @@ lock_value -1 /sys/module/migt/parameters/render_prefer_cluster
 lock_value -1 /sys/module/migt/parameters/vip_prefer_cluster
 lock_value -1 /sys/module/migt/parameters/stask_prefer_cluster
 lock_value -1 /sys/module/migt/parameters/ip_prefer_cluster
-# lock_value 1 /sys/module/migt/parameters/affinity_only
-# echo 0,0,0 > /sys/module/metis/parameters/user_min_freq
 lock_value 0 /sys/module/migt/parameters/glk_freq_limit_start
 echo '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' > /sys/module/migt/parameters/migt_ceiling_freq
 echo '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' > /sys/module/migt/parameters/migt_freq
@@ -90,13 +88,7 @@ echo 1 > /sys/module/metis/parameters/reset_rebind_task
 lock_value 0 /sys/module/metis/parameters/thermal_break_enable
 lock_value 0 /sys/module/metis/parameters/is_break_enable
 lock_value 0 /sys/module/metis/parameters/mi_freq_enable
-# lock_value '0,0,0' /sys/module/metis/parameters/user_min_freq
-# for file in /sys/kernel/fpsgo/fbt/*freq*
-# do
-#   lock_value 0 $file
-# done
 
-# chmod -R 444 /proc/perfmgr_powerhal
 chmod 444 /proc/perfmgr/global_reclaim
 
 metis=/sys/module/metis/parameters
@@ -136,17 +128,10 @@ pidof  vendor.qti.hardware.display.composer-service > /dev/memcg/scene_active/cg
 if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; then
   stop vivo-vperf-hal-1-0
   stop vendor.vivoperfservice
-  # echo 0 > /sys/rsc/svp/svp_enable
-  # echo 0 > /sys/rsc/svp/enabled
   echo 0 > /proc/powerhal_cpu_ctrl/adpf_enable
   stop thermal_core
   stop thermald
-  # stop vendor.thermal-mediatek # 会导致玩不了原神？d'n'm'd！
   stop touch_boost
-  # rmmod mtk_cg_peak_power_throttling
-  # rmmod mtk_gpu_power_throttling
-  # rmmod mtk_cpu_power_throttling
-  # rmmod mtk_md_power_throttling
 fi
 if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
   lock_value "MIN_TTJ 90000 90000 90000" /sys/kernel/thermal/min_ttj

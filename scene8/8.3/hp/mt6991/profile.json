@@ -20,36 +20,13 @@
     "limiter": {
       "ddr_boost": false,
       "params": [
-        { "id": "p1:cpu0", "max": 1800000, "min": 1200000, "margins": "300 1500000:150 1800000:120" },
-        { "id": "p1:cpu4", "max": 2300000, "min": 1700000, "margins": "300 1900000:120" },
-        { "id": "p1:cpu7", "max": 2400000, "min": 1700000, "margins": "300 2100000:120" },
-
-        { "id": "p1:cpu0", "max": 2000000, "min": 1500000, "margins": "200 1800000:120" },
-        { "id": "p2:cpu4", "max": 2400000, "min": 2000000, "margins": "300 2300000:120" },
-        { "id": "p2:cpu7", "max": 2600000, "min": 2300000, "margins": "300 2600000:120" },
-
-        { "id": "p3:cpu0", "max": 2000000, "min": 1500000, "margins": "200 1800000:100" },
-        { "id": "p3:cpu4", "max": 2600000, "min": 2400000, "margin": 300 },
-        { "id": "p3:cpu7", "max": 2800000, "min": 2600000, "margin": 300 },
-
-        { "id": "p4:cpu0", "max": 2000000, "min": 1800000, "margin": 200 },
-        { "id": "p4:cpu4", "max": 2800000, "min": 2600000, "margin": 300 },
-        { "id": "p4:cpu7", "max": 3000000, "min": 2800000, "margin": 300 },
-
-
-        { "id": "inactive:cpu0", "max": 1800000, "min": 1000000, "margin": 120 },
-        { "id": "inactive:cpu4", "max": 2100000, "min": 1000000, "margin": 120 },
-        { "id": "inactive:cpu7", "max": 2100000, "min": 1000000, "margin": 120 },
-
-        { "id": "idle:cpu0", "max": 1600000, "min": 800000, "margin": 100 },
-        { "id": "idle:cpu4", "max": 1800000, "min": 800000, "margin": 100 },
-        { "id": "idle:cpu7", "max": 1800000, "min": 800000, "margin": 100 }
       ]
     }
   },
   "presets": {
     "reset": [
       ["@governor", "sugov_ext"],
+      ["@preset", "common_active"],
       ["$perfmgr_enable", "#0"],
       ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"],
       ["$cpus_limit", "#3000000 3400000"]
@@ -68,6 +45,7 @@
       ["/sys/devices/system/cpu/cpufreq/policy7/sugov_ext/down_rate_limit_us"],
       ["/sys/devices/system/cpu/cpufreq/policy7/sugov_ext/up_rate_limit_us"]
     ],
+    "common_active": [],
     "common_inactive": [
       ["@values", "min_freq", "#339000", "622000", "798000"],
       ["$uclamp_boost", "0"]
@@ -156,11 +134,11 @@
   "schemes": {
     "powersave": {
       "call": [
-        ["@preset", "reset"],
-        ["@preset", "powersave_active"]
+        ["@preset", "reset"]
       ],
       "app": [
         ["@preset", "common_app"],
+        ["@preset", "powersave_active"],
         ["@values", "max_freq", "#1600000", "#1900000", "#2300000"]
       ],
       "game": [
@@ -173,11 +151,11 @@
     },
     "balance": {
       "call": [
-        ["@preset", "reset"],
-        ["@preset", "balance_active"]
+        ["@preset", "reset"]
       ],
       "app": [
         ["@preset", "common_app"],
+        ["@preset", "balance_active"],
         ["@values", "max_freq", "#2100000", "#2300000", "#2800000"]
       ],
       "game": [
@@ -190,11 +168,11 @@
     },
     "performance": {
       "call": [
-        ["@preset", "reset"],
-        ["@preset", "performance_active"]
+        ["@preset", "reset"]
       ],
       "app": [
         ["@preset", "common_app"],
+        ["@preset", "performance_active"],
         ["@values", "max_freq", "#2400000", "#2600000", "#3200000"]
       ],
       "game": [
@@ -207,11 +185,11 @@
     },
     "fast": {
       "call": [
-        ["@preset", "reset"],
-        ["@preset", "fast_active"]
+        ["@preset", "reset"]
       ],
       "app": [
         ["@preset", "common_app"],
+        ["@preset", "fast_active"],
         ["$gpu_max_freq", "#10"],
         ["@values", "max_freq", "#2400000", "#2800000", "#3400000"]
       ],
@@ -222,39 +200,13 @@
           "0x40046719", "200000", "0x4004671A", "25"
         ]
       ]
-    },
-    "pedestal": {
-      "call": [
-        ["@preset", "reset"],
-        ["@preset", "fast_active"]
-      ],
-      "app": [
-        ["@preset", "common_app"],
-        ["$gpu_max_freq", "#5"],
-        ["@values", "max_freq", "#2400000", "#3000000", "#3400000"]
-      ],
-      "game": [
-        ["@ioctl", "/proc/easmgr/eas_ioctl",
-          "0x40046715", "500000", "0x40046716", "30",
-          "0x40046717", "200000", "0x40046718", "30",
-          "0x40046719", "200000", "0x4004671A", "30"
-        ]
-      ]
     }
   },
   "apps": [
-    { "friendly": "极速响应", "categories": ["Launcher"], "import": "_Launcher.json" },
     { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
-    {
-      "friendly": "双核强化",
-      "packages": [
-        "com.miHoYo.Yuanshen", "com.miHoYo.ys.mi", "com.miHoYo.ys.bilibili", "com.miHoYo.GenshinImpact"
-      ],
-      "import": "_DualCore.json"
-    },
     {
       "friendly": "All",
       "packages": ["*"],
