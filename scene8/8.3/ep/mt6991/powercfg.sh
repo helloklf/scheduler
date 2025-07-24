@@ -114,15 +114,6 @@ echo 12000000 > /sys/kernel/debug/sched/latency_ns # default 24000000
 echo 2000000 > /sys/kernel/debug/sched/min_granularity_ns # default 3000000
 echo 3000000 > /sys/kernel/debug/sched/wakeup_granularity_ns # default 4000000
 
-mkdir /dev/memcg/scene_active
-echo 1 > /dev/memcg/scene_active/memory.move_charge_at_immigrate
-echo 10 > /dev/memcg/scene_active/memory.swappiness
-pidof com.android.launcher > /dev/memcg/scene_active/cgroup.procs
-pidof com.android.systemui > /dev/memcg/scene_active/cgroup.procs
-pidof surfaceflinger > /dev/memcg/scene_active/cgroup.procs
-pidof system_server > /dev/memcg/scene_active/cgroup.procs
-pidof  vendor.qti.hardware.display.composer-service > /dev/memcg/scene_active/cgroup.procs
-
 
 # vivo
 if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; then
