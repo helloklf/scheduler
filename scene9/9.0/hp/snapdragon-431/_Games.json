@@ -1,0 +1,73 @@
+{
+  "friendly": "游戏",
+  "limiters": [
+    { "id": "g1:cpu0", "max": 1600000, "min": 1000000,  "margin": 250 },
+    { "id": "g1:cpu4", "max": 2000000, "min": 750000,   "margins": "270 1700000:160" },
+    { "id": "g1:cpu7", "max": 2200000, "min": 900000,   "margins": "270 1700000:180" },
+
+    { "id": "g2:cpu0", "max": 1700000, "min": 1300000, "margins": "280 1700000:150" },
+    { "id": "g2:cpu4", "max": 2500000, "min": 1700000, "margins": "280 2100000:150" },
+    { "id": "g2:cpu7", "max": 2800000, "min": 1700000, "margins": "280 2100000:150" },
+
+    { "id": "g3:cpu0", "max": 1804800, "min": 1500000, "margins": "280 1800000:150" },
+    { "id": "g3:cpu4", "max": 2745600, "min": 2350000, "margins": "280 2450000:150" },
+    { "id": "g3:cpu7", "max": 2995200, "min": 2400000, "margins": "280 2600000:150" },
+
+    { "id": "g4:cpu0", "max": 2000000, "min": 1650000, "margin": 200 },
+    { "id": "g4:cpu4", "max": 2850000, "min": 2600000, "margin": 200 },
+    { "id": "g4:cpu7", "max": 3000000, "min": 2700000, "margin": 200 }
+  ],
+  "call": [
+    ["@preset", "common_gaming"],
+    ["@preset", "limiter_off"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiters", "g1:cpu0", "g1:cpu4", "g1:cpu7"],
+        ["@values", "min_freq", "400000", "600000", "700000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["2300000", "1900000"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiters", "g2:cpu0", "g2:cpu4", "g2:cpu7"],
+        ["@values", "min_freq", "700000", "600000", "800000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["2500000", "2300000"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"],
+        ["@values", "min_freq", "700000", "700000", "900000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "mode": "fps",
+        "freq": ["2800000", "2500000"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@limiters", "g4:cpu0", "g4:cpu4", "g4:cpu7"],
+        ["@values", "min_freq", "1000000", "1100000", "1200000"],
+        ["@values", "max_freq", "2000000", "2800000", "3000000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "mode": "fps",
+        "freq": ["3200000", "2800000"]
+      }
+    }
+  ]
+}

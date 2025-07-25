@@ -1,0 +1,11 @@
+{
+  "friendly": "相机",
+  "limiters": [
+    { "id": "camera:cpu0", "mode": "bottom", "max": 2000000, "margins": "220 1500000:120" },
+    { "id": "camera:cpu4", "mode": "bottom", "max": 2100000, "margins": "220 1700000:120" },
+    { "id": "camera:cpu7", "mode": "bottom", "max": 2300000, "margins": "220 1700000:120" }
+  ],
+  "call": [
+    ["@limiters", "camera:cpu0", "camera:cpu4", "camera:cpu7"]
+  ]
+}

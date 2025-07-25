@@ -1,0 +1,83 @@
+{
+  "friendly": "王者荣耀/LOL",
+  "limiters": [
+    {"id": "sgame0:cpu4", "mode": "performance",
+      "max": 1670400, "min": 710400, "margins": "200 1075200:150"},
+    {"id": "sgame0:cpu7", "mode": "performance",
+      "max": 1900800, "min": 844800, "margins": "265 1420800:150"},
+
+    {"id": "sgame1:cpu4", "mode": "performance",
+      "max": 1996800, "min": 844800, "margins": "200 1209600:180 1440000:150" },
+    {"id": "sgame1:cpu7", "mode": "performance",
+      "max": 2150400, "min": 1075200, "margins": "265 1420800:200 178560:180" },
+
+    {"id": "sgame2:cpu4", "mode": "performance",
+      "max": 1996800, "min": 960000, "margins": "220 1555200:170 1766400:120"},
+    {"id": "sgame2:cpu7", "mode": "performance",
+      "max": 2265600, "min": 1075200, "margins": "265 1670400:200 1900800:160"},
+
+    {"id": "sgame3:cpu4", "mode": "performance",
+      "max": 2112000, "min": 1075200, "margins": "240 1555200:200 1766400:160"},
+    {"id": "sgame3:cpu7", "mode": "performance",
+      "max": 2496000, "min": 1420800, "margins": "265 178560:210 2265600:160"}
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@preset", "bw_low"],
+        ["$cpu_max_0", "1612800"],
+        ["@limiters", "active:cpu0", "sgame0:cpu4", "sgame0:cpu7"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["2150400", "1766400", "-3"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@preset", "bw_low"],
+        ["@limiters", "active:cpu0", "sgame1:cpu4", "sgame1:cpu7"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["2380800", "1996800", "-3"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiters", "active:cpu0", "sgame2:cpu4", "sgame2:cpu7"]
+      ],
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 8000,
+          "rules": [
+            { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"]] },
+            { "threshold": [99,  75], "enter_once": [["@preset", "bw_normal"]] },
+            { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"]] }
+          ]
+        }
+      ],
+      "fas": {
+        "use": "whitelist",
+        "mode": "normal",
+        "freq": ["2496000", "1996800", "-3"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@limiters", "sgame3:cpu4", "sgame3:cpu7"],
+        ["@preset", "bw_normal"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "mode": "normal",
+        "freq": ["2841600", "2112000", "-3"]
+      }
+    }
+  ]
+}

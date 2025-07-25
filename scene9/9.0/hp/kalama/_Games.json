@@ -1,0 +1,84 @@
+{
+  "friendly": "游戏",
+  "limiters": [
+    { "id": "g1:cpu0", "max": 1555200, "min": 1113600, "margins": "200 1017600:120" },
+    { "id": "g1:cpu3", "max": 2054400, "min": 1171200, "margins": "240 1785600:170" },
+    { "id": "g1:cpu7", "max": 2092800, "min": 1248000, "margins": "300 1843200:200" },
+
+    { "id": "g2:cpu0", "max": 1670400, "min": 902400,  "margins": "300 1228800:180" },
+    { "id": "g2:cpu3", "max": 2457600, "min": 1785600, "margins": "300 2054400:200" },
+    { "id": "g2:cpu7", "max": 2476800, "min": 1843200, "margins": "300 2092800:200" },
+
+    { "id": "g3:cpu0", "max": 1785600, "min": 1017600, "margins": "300 1555200:180", "prefer": 3 },
+    { "id": "g3:cpu3", "max": 2707200, "min": 2054400, "margins": "300 2457600:200", "prefer": 3 },
+    { "id": "g3:cpu7", "max": 2841600, "min": 2092800, "margins": "300 2476800:200", "prefer": 3 }
+  ],
+  "call": [
+    ["@preset", "common_gaming"],
+    ["@preset", "limiter_off"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@values", "hispeed_freq", "902400", "729600", "729600"],
+        ["@target_loads", "80 1555200:90", "85 1651200:90", "85 1708800:90"],
+        ["@limiters", "g1:cpu0", "g1:cpu3", "g1:cpu7"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "lower_freq": 1132800,
+        "freq": ["2227200", "2054400", "-1"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@values", "hispeed_freq", "902400", "1171200", "1132800"],
+        ["@target_loads", "80 1555200:85 1670400:90", "82 1651200:85 2188800:92", "82 1708800:87 2092800:92"],
+        ["@limiters", "g2:cpu0", "g2:cpu3", "g2:cpu7"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "lower_freq": 1286400,
+        "big_min_freq": 864000,
+        "middle_min_freq": 729600,
+        "freq": ["2592000", "2457600", "-1"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@values", "hispeed_freq", "902400", "1171200", "1132800"],
+        ["@target_loads", "80 1670400:90", "80 2188800:87 2592000:92", "80 2092800:85 2476800:90"],
+        ["@limiters", "g3:cpu0", "g3:cpu3", "g3:cpu7"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "lower_freq": 1478400,
+        "big_min_freq": 864000,
+        "middle_min_freq": 729600,
+        "freq": ["2841600", "2707200", "-1"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@values", "hispeed_freq", "0", "0", "0"],
+        ["@limiters", "NONE"],
+        ["@values", "max_freq", "#1804800", "#2803200", "#2956800"],
+        ["@values", "min_freq", "1056000", "1209600", "1171200"],
+        ["@target_loads", "80 1670400:90", "80 2323200:85 2592000:90", "80 2592000:85 2841600:90"],
+        ["$l3_boost", "#1593600"],
+        ["$bus_ddr_min", "2736000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "lower_freq": 1478400,
+        "big_min_freq": 864000,
+        "middle_min_freq": 729600,
+        "freq": ["2956800", "2803200", "-1"]
+      }
+    }
+  ]
+}

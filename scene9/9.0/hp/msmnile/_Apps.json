@@ -1,54 +1,49 @@
 {
   "friendly": "一般应用",
+  "call": [
+    ["@fps", "0"]
+  ],
   "modes": [{
     "mode": ["powersave"],
-    "booster": {
-      "duration": 3000,
-      "idle_delay": 1200,
-      "enter": [
+    "state": {
+      "active": [
         ["@preset", "powersave_active"],
-        ["$sched_boost", "2"]
+        ["@values", "sched_boost", "1", "0", "0", "0"]
       ],
-      "exit": [
+      "inactive": [
         ["@preset", "powersave_inactive"]
       ]
     }
   }, {
     "mode": ["balance"],
-    "booster": {
-      "duration": 3000,
-      "idle_delay": 1500,
-      "enter": [
+    "state": {
+      "active": [
         ["@preset", "balance_active"],
-        ["$sched_boost", "1"]
+        ["@values", "sched_boost", "1", "0", "0", "0"]
       ],
-      "exit": [
+      "inactive": [
         ["@preset", "balance_inactive"]
       ]
     }
   }, {
     "mode": ["performance"],
-    "booster": {
-      "duration": 3000,
-      "idle_delay": 1500,
-      "enter": [
+    "state": {
+      "active": [
         ["@preset", "performance_active"],
-        ["$sched_boost", "1"]
+        ["@values", "sched_boost", "1", "2", "1", "0"]
       ],
-      "exit": [
+      "inactive": [
         ["@preset", "performance_inactive"]
       ]
     }
   }, {
-    "mode": ["*"],
-    "booster": {
-      "duration": 3000,
-      "idle_delay": 1500,
-      "enter": [
+      "mode": ["*"],
+    "state": {
+      "active": [
         ["@preset", "fast_active"],
-        ["$sched_boost", "1"]
+        ["@values", "sched_boost", "1", "2", "1", "25"]
       ],
-      "exit": [
+      "inactive": [
         ["@preset", "fast_inactive"]
       ]
     }

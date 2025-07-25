@@ -37,12 +37,11 @@
         ]
       }
     },
-    "presets": {
-      "reset": [
-        ["@msm_reset"],
-        ["@governor", "walt"]
-      ],
-  
+    "reset": [
+      ["@msm_reset"],
+      ["@governor", "walt"]
+    ],
+    "presets": {  
       "hispeed_freq": [
         ["/sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_freq"],
         ["/sys/devices/system/cpu/cpufreq/policy2/walt/hispeed_freq"],
@@ -227,7 +226,6 @@
     "schemes": {
       "powersave": {
         "call": [
-          ["@preset", "reset"],
           ["/sys/devices/system/cpu/cpufreq/boost", "0"]
         ],
         "app": [
@@ -242,9 +240,6 @@
         ]
       },
       "balance": {
-        "call": [
-          ["@preset", "reset"]
-        ],
         "app": [
           ["@preset", "common_app"],
           ["@values", "max_freq", "1804800", "#2438400", "#2438400", "#2476800"],
@@ -257,9 +252,6 @@
         ]
       },
       "performance": {
-        "call": [
-          ["@preset", "reset"]
-        ],
         "app": [
           ["@preset", "common_app"],
           ["@values", "max_freq", "#1804800", "#2841600", "#2841600", "#2803200"],
@@ -272,9 +264,6 @@
         ]
       },
       "fast": {
-        "call": [
-          ["@preset", "reset"]
-        ],
         "app": [
           ["@preset", "common_app"],
           ["@values", "max_freq", "#1804800", "#3148800", "#2956800", "#3187200"],
@@ -287,9 +276,6 @@
         ]
       },
       "pedestal": {
-        "call": [
-          ["@preset", "reset"]
-        ],
         "app": [
           ["@preset", "common_app"],
           ["@values", "max_freq", "#1804800", "#3148800", "#2956800", "#3187200"],
@@ -314,8 +300,6 @@
         ],
         "import": "_WhiteList.json"
       },
-      { "friendly": "扫码", "categories": ["Scanner"], "import": "_Scanner.json" },
-      { "friendly": "待机", "packages": ["standby"], "import": "_Standby.json" },
       { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
     ],
     "games": [

@@ -1,0 +1,201 @@
+#! /vendor/bin/sh
+
+cfg_dir=$(cd $(dirname $0); pwd)
+
+
+# Enable conservative pl
+# echo 1 > /proc/sys/kernel/sched_conservative_pl
+
+echo N > /sys/module/lpm_levels/parameters/sleep_disabled
+
+set_cpuset(){
+  pgrep -f $1 | while read pid; do
+    echo $pid > /dev/cpuset/$2/cgroup.procs
+    echo $pid > /dev/stune/$2/cgroup.procs
+    ls /proc/$pid/task | while read tid
+    do
+      echo $tid > /dev/cpuset/$2/tasks
+    done
+  done
+}
+
+set_value() {
+  value=$1
+  path=$2
+  if [[ -f $path ]]; then
+    current_value="$(cat $path)"
+    if [[ ! "$current_value" = "$value" ]]; then
+      chmod 0664 "$path"
+      echo "$value" > "$path"
+    fi;
+  fi;
+}
+
+lock_value() {
+  if [[ -f $2 ]];then
+    chmod 644 $2
+    echo $1 > $2
+    chmod 444 $2
+  fi
+}
+
+# hide_value /sys/module/task_turbo/parameters/feats [write_value]
+hide_value() {
+  if [[ -e "$1" ]]; then
+    umount "$1" 2>/dev/null
+    c_path="/dev/scene${1}"
+    if [[ ! -f "$c_path" ]]; then
+      mkdir -p "$c_path"
+      rm -r "$c_path"
+    fi
+    cp -f "$1" "$c_path"
+    if [[ "$2" != "" ]]; then
+      set_value "$2" "$1"
+    fi
+    mount --bind "$c_path" "$1"
+  else
+    echo "$1" Not Found!
+  fi
+}
+
+process_opt(){
+  set_cpuset surfaceflinger top-app
+  set_cpuset system_server top-app
+  set_cpuset vendor.qti.hardware.display.composer-service top-app
+}
+
+disable_migt() {
+  migt=/sys/module/migt/parameters
+  if [[ -d $migt ]]; then
+    echo 1 > $migt/force_reset_runtime
+    hide_value $migt/migt_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
+    chmod 444 $migt/add_bclus_affinity_uidlist
+    chmod 444 $migt/add_mclus_affinity_uidlist
+    chmod 444 $migt/add_lclus_affinity_uidlist
+    chmod 444 $migt/add_rebind_task_big
+    chmod 444 $migt/add_rebind_task_lit
+    chmod 444 $migt/add_rebind_task_mid
+    lock_value 0 $migt/glk_freq_limit_start '0'
+    lock_value 0 $migt/glk_freq_limit_walt '0'
+    lock_value '0 0 0' $migt/glk_maxfreq
+    lock_value '300000 710400 844800' $migt/glk_minfreq
+    lock_value '0 0 0' $migt/migt_ceiling_freq
+    lock_value 1 $migt/glk_disable
+    lock_value 0 $migt/mi_freq_enable
+    lock_value 0 $migt/force_stask_to_big
+    lock_value 0 $migt/glk_fbreak_enable
+    echo 1 > $migt/force_reset_runtime
+    echo 1 > $migt/reset_clus_affinity_uidlist
+    echo 1 > $migt/reset_rebind_task
+    hide_value $migt/enable_pkg_monitor '0'
+
+    chmod 000 $migt/*
+  fi
+
+  glk=/proc/sys/glk
+  if [[ -d $glk ]]; then
+    hide_value $glk/glk_disable '1'
+    hide_value $glk/freq_break_enable '0'
+    hide_value $glk/game_minfreq_limit '0 0 0'
+    hide_value $glk/game_maxfreq_limit '0 0 0'
+    hide_value $glk/game_lowspeed_load '30 30 30'
+    hide_value $glk/game_hispeed_load '80 80 80'
+  fi
+
+  migt=/proc/sys/migt
+  if [[ -d $migt ]]; then
+    hide_value $migt/force_stask_tob '0'
+    hide_value $migt/enable_pkg_monitor '0'
+    hide_value $migt/boost_pid '0'
+  fi
+}
+
+core_ctl_preset() {
+  cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
+  echo 50 > $cpu7_core_ctl_dir/offline_delay_ms
+  echo 30 > $cpu7_core_ctl_dir/busy_down_thres
+  echo 60 > $cpu7_core_ctl_dir/busy_up_thres
+  echo 0 > $cpu7_core_ctl_dir/enable
+
+  cpu4_core_ctl_dir=/sys/devices/system/cpu/cpu4/core_ctl
+  lock_value 3 $cpu4_core_ctl_dir/max_cpus
+  lock_value 3 $cpu4_core_ctl_dir/min_cpus
+  lock_value 0 $cpu4_core_ctl_dir/enable
+
+  cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
+  lock_value 4 $cpu0_core_ctl_dir/max_cpus
+  lock_value 4 $cpu0_core_ctl_dir/min_cpus
+  lock_value 0 $cpu0_core_ctl_dir/enable
+}
+
+hide_value /sys/class/kgsl/kgsl-3d0/devfreq/governor 'msm-adreno-tz'
+echo "0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0" > /sys/module/cpu_boost/parameters/input_boost_freq
+echo 0 > /sys/module/cpu_boost/parameters/input_boost_ms
+echo 0 > /sys/module/cpu_boost/parameters/sched_boost_on_input
+for index in 0 1 2 3 4 5 6 7; do
+  hide_value /sys/devices/system/cpu/cpu$index/online 1
+done
+
+# set_value 8000000 /proc/sys/kernel/sched_latency_ns
+# set_value 2000000 /proc/sys/kernel/sched_min_granularity_ns
+
+t_message=/sys/class/thermal/thermal_message
+if [[ -f $t_message/cpu_limits ]]; then
+  chmod 664 $t_message/cpu_limits
+  for i in $(seq 0 7); do
+    maxfreq=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_max_freq)
+    echo cpu$i $maxfreq > $t_message/cpu_limits
+  done
+  chmod 444 $t_message/cpu_limits
+fi
+hide_value $t_message/market_download_limit 0
+hide_value $t_message/cpu_nolimit_temp 49500
+lock_value 0 /sys/module/aigov/parameters/enable
+
+core_ctl_preset
+disable_migt
+
+process_opt &
+
+setprop persist.sys.miui_animator_sched.bigcores 4-7
+
+for dir in /sys/class/devfreq/*l3-lat; do
+  lock_value 1612800000 $dir/max_freq
+  lock_value 300000000 $dir/min_freq
+done
+for dir in /sys/class/devfreq/*llcc-lat; do
+  lock_value 15258 $dir/max_freq
+  lock_value 2288 $dir/min_freq
+done  
+for dir in $(ls /sys/class/devfreq | grep ddr-lat | grep -v npu); do
+  lock_value 10437 /sys/class/devfreq/$dir/max_freq
+  lock_value 762 /sys/class/devfreq/$dir/min_freq
+done
+# 2288 4577 7110 9155 12298 14236 15258
+lock_value 12298 /sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/max_freq
+# 762 1144 1720 2086 2597 2929 3879 5931 6881 7980 10437
+lock_value 6881 /sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/max_freq
+
+
+# OnePlus
+if [[ -d /proc/game_opt ]]; then
+  lock_value '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647' /proc/game_opt/cpu_max_freq
+  lock_value '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' /proc/game_opt/cpu_min_freq
+  lock_value 1 /proc/game_opt/disable_cpufreq_limit
+  lock_value -1 /proc/game_opt/game_pid
+fi
+hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
+for service in orms-hal-1-0 vendor.oplus.ormsHalService-aidl-default
+do
+  stop $service
+done
+lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
+for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
+  lock_value 0 /sys/kernel/msm_performance/parameters/$file
+done
+echo -R 444 /sys/kernel/msm_performance/parameters
+
+killall process-tracker
+killall traced
+killall traced_probes
+

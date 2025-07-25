@@ -1,0 +1,63 @@
+{
+  "friendly": "游戏(Games)",
+  "call": [
+    ["@preset", "common_gaming"],
+    ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_perf_mode_ceiling_opp 2"],
+    ["/sys/module/mtk_fpsgo/parameters/p_perf", "1"],
+    ["/sys/module/mtk_fpsgo/parameters/better_perf", "1"],
+    ["/sys/kernel/fpsgo/fbt/enable_ceiling", "#0"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
+        ["@values", "max_freq", "#1600000", "#1900000", "#2300000"],
+        ["@values", "min_freq", "400000", "622000", "798000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["2300000", "1900000", "-2"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
+        ["@values", "max_freq", "#1700000", "#2200000", "#2600000"],
+        ["@values", "min_freq", "700000", "800000", "900000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["2600000", "2200000", "-2"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 2"],
+        ["@values", "max_freq", "#1800000", "#2600000", "#3000000"],
+        ["@values", "min_freq", "800000", "800000", "900000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "lower_freq": 900000,
+        "freq": ["3000000", "2600000", "-2"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 2"],
+        ["@values", "max_freq", "#2000000", "#3000000", "#3500000"],
+        ["@values", "min_freq", "800000", "900000", "1200000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "mode": "normal",
+        "lower_freq": 1000000,
+        "freq": ["3500000", "3000000", "-2"]
+      }
+    }
+  ]
+}

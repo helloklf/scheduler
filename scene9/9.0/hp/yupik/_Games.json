@@ -1,0 +1,49 @@
+{
+  "friendly": "FAS",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@preset", "bw_max"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["2208000", "2054400"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@preset", "bw_max"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["2380000", "2131200"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@preset", "bw_boost"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "mode": "fps",
+        "recent_frames": 10, "fast_down_rate": 5, "slow_down_rate": 0.6,
+        "freq": ["2500000", "2400000"]
+      }
+    },
+    {
+      "mode": ["fast"],
+      "call": [
+        ["@preset", "bw_boost"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "mode": "normal",
+        "recent_frames": 10, "fast_down_rate": 5, "slow_down_rate": 0.6,
+        "freq": ["2500000", "2400000"]
+      }
+    }
+  ]
+}

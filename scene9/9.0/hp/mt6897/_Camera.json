@@ -1,0 +1,21 @@
+{
+  "friendly": "相机",
+  "call": [
+    ["@limiters", "NONE"]
+  ],
+  "modes": [{
+    "mode": ["powersave", "balance"],
+    "state": {
+      "active": [
+        ["@cpu_freq", "cpu0", "1500MHz", "max"],
+        ["@cpu_freq", "cpu4", "1800MHz", "2.65Ghz"],
+        ["@cpu_freq", "cpu7", "1800MHz", "2.65Ghz"]
+      ],
+      "inactive": [
+        ["@cpu_freq", "cpu0", "min", "1500MHz"],
+        ["@cpu_freq", "cpu4", "min", "1800MHz"],
+        ["@cpu_freq", "cpu7", "min", "1800MHz"]
+      ]
+    }
+  }]
+}

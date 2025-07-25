@@ -1,0 +1,28 @@
+{
+  "friendly": "相机",
+  "call": [
+    ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
+    ["@cpuset", "0-1", "0-4", "0-7", "0-7"]
+  ],
+  "modes": [{
+    "mode": ["powersave", "balance"],
+    "call": [
+      ["@target_loads", "95", "95", "95"],
+      ["@values", "latency", "0", "4000", "0", "4000", "0", "4000"]
+    ],
+    "state": {
+      "active": [
+        ["@cpu_freq", "policy0", "1200MHz", "1785600"],
+        ["@cpu_freq", "policy4", "1600MHz", "2112000"],
+        ["@cpu_freq", "policy7", "1600MHz", "2284800"],
+        ["$max_cpus_cpu7", "1"]
+      ],
+      "inactive": [
+        ["@cpu_freq", "policy0", "min", "1574400"],
+        ["@cpu_freq", "policy4", "min", "2112000"],
+        ["@cpu_freq", "policy7", "min", "1171200"],
+        ["$max_cpus_cpu7", "0"]
+      ]
+    }
+  }]
+}

@@ -1,0 +1,46 @@
+{
+  "friendly": "游戏",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "use": "whitelist",
+        "big_min_freq": 1075200, "middle_min_freq": 710400,
+        "recent_frames": 8, "fast_down_rate": 6, "slow_down_rate": 3,
+        "_freq": ["2649600", "1958400", "-2"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "use": "whitelist",
+        "recent_frames": 8, "fast_down_rate": 6, "slow_down_rate": 2.2,
+        "_freq": ["2841600", "2342400", "-2"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+      ],
+      "fas": {
+        "mode": "fps",
+        "use": "whitelist",
+        "recent_frames": 7, "fast_down_rate": 6, "slow_down_rate": 2.0,
+        "lower_freq": 1862400,
+        "_freq": ["2841600", "2419200"]
+      }
+    },
+    {
+      "mode": ["fast"],
+      "call": [
+      ],
+      "fas": {
+        "mode": "fps",
+        "use": "whitelist",
+        "recent_frames": 7, "fast_down_rate": 6, "slow_down_rate": 2.0,
+        "lower_freq": 1862400,
+        "_freq": ["3200000", "2419200"]
+      }
+    }
+  ]
+}
