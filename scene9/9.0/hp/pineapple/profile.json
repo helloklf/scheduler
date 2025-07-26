@@ -300,7 +300,7 @@
         "import": "_DualCore.json"
       },
       {
-        "friendly": "All",
+        "friendly": "Games",
         "packages": ["*"],
         "import": "_Games.json"
       }
