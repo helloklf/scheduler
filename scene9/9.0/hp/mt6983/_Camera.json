@@ -1,12 +1,17 @@
 {
   "friendly": "相机",
-  "limiters": [
-    { "id": "camera:cpu0", "mode": "bottom", "max": 1800000, "margins": "200 1500000:100" },
-    { "id": "camera:cpu4", "mode": "bottom", "max": 1900000, "margins": "200 1700000:100" },
-    { "id": "camera:cpu7", "mode": "bottom", "max": 1900000, "margins": "200 1700000:100" }
-  ],
+  "limiters": {
+    "camera": {
+      "mode": "bottom",
+      "cpus": [
+        { "max": 1800000, "margins": "200 1500000:100" },
+        { "max": 1900000, "margins": "200 1700000:100" },
+        { "max": 1900000, "margins": "200 1700000:100" }
+      ]
+    }
+  },
   "call": [
-    ["@limiters", "camera:cpu0", "camera:cpu4", "camera:cpu7"],
+    ["@limiter", "camera"],
     ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode 1"]
   ]
 }

@@ -21,8 +21,7 @@
     "features": {
       "limiter": {
         "ddr_boost": false,
-        "params": [
-        ]
+        "params": {}
       },
       "gesture_boost": {
         "enable": true,
@@ -127,7 +126,7 @@
       ],
       "common_gaming": [
         ["@preset", "common_active"],
-        ["@limiters", "NONE"],
+        ["@limiter", "NONE"],
         ["@cpuset", "0-1", "0-6", "0-6", "2-7"],
         ["$sched_boost", "0"],
         ["@values", "hispeed_load", "90", "90", "90", "90"],

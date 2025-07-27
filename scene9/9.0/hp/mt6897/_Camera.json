@@ -1,7 +1,7 @@
 {
   "friendly": "相机",
   "call": [
-    ["@limiters", "NONE"]
+    ["@limiter", "NONE"]
   ],
   "modes": [{
     "mode": ["powersave", "balance"],

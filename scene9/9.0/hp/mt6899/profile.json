@@ -19,8 +19,7 @@
   "features": {
     "limiter": {
       "ddr_boost": false,
-      "params": [
-      ]
+      "params": {}
     }
   },
   "reset": [
@@ -63,7 +62,7 @@
     ],
     "common_gaming": [
       ["@values", "latency", "10", "10", "10", "10", "10", "10"],
-      ["@limiters", "NONE"],
+      ["@limiter", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["@gesture", "PAUSE"],
       ["$gpu_max_freq", "#7"],

@@ -6,6 +6,24 @@
     ["/sys/module/mtk_fpsgo/parameters/better_perf", "1"],
     ["/sys/kernel/fpsgo/fbt/enable_ceiling", "#0"]
   ],
+  "limiters": {
+    "g3": {
+      "mode": "boost",
+      "cpus": [
+        { "max": 1800000, "min": 700000, "margins": "300" },
+        { "max": 2600000, "min": 700000, "margins": "300" },
+        { "max": 3000000, "min": 700000, "margins": "300" }
+      ]
+    },
+    "g4": {
+      "mode": "boost",
+      "cpus": [
+        { "max": 2100000, "min": 700000, "margins": "300" },
+        { "max": 3000000, "min": 700000, "margins": "300" },
+        { "max": 3250000, "min": 700000, "margins": "300" }
+      ]
+    }
+  },
   "modes": [
     {
       "mode": ["powersave"],
@@ -21,7 +39,7 @@
     {
       "mode": ["balance"],
       "call": [
-        ["@values", "max_freq", "#1700000", "#2300000", "#2600000"],
+        ["@values", "max_freq", "#1700000", "#2400000", "#2600000"],
         ["@values", "min_freq", "700000", "800000", "900000"]
       ],
       "fas": {
@@ -33,7 +51,8 @@
       "mode": ["performance"],
       "call": [
         ["@values", "max_freq", "#1800000", "#2600000", "#3000000"],
-        ["@values", "min_freq", "800000", "800000", "900000"]
+        ["@values", "min_freq", "800000", "800000", "900000"],
+        ["@limiter", "g3"]
       ],
       "fas": {
         "use": "whitelist",
@@ -44,7 +63,9 @@
       "mode": ["*"],
       "call": [
         ["@values", "max_freq", "#2000000", "#3000000", "#3250000"],
-        ["@values", "min_freq", "800000", "800000", "900000"]
+        ["@values", "min_freq", "800000", "800000", "900000"],
+        ["@governor", "schedutil"],
+        ["@ddr_l3_booster"]
       ],
       "fas": {
         "use": "whitelist",

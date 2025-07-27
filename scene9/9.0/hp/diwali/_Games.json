@@ -1,20 +1,29 @@
 {
   "friendly": "游戏",
-  "limiters": [
-    { "id": "g3:cpu0", "max": 1555200, "min": 902400, "margin": 280, "smoothness": 8, "mode": "performance" },
-    { "id": "g3:cpu4", "max": 2054400, "min": 940800, "margin": 300, "mode": "performance" },
-    { "id": "g3:cpu7", "max": 2169600, "min": 940800, "margin": 260, "mode": "performance" },
-
-    { "id": "g4:cpu0", "max": 1651200, "min": 902400, "margin": 280, "smoothness": 8, "mode": "performance" },
-    { "id": "g4:cpu4", "max": 2361600, "min": 940800, "margin": 350, "mode": "performance" },
-    { "id": "g4:cpu7", "max": 2400000, "min": 940800, "margin": 300, "mode": "performance" }
-  ],
+  "limiters": {
+    "g3": {
+      "mode": "full",
+      "cpus": [
+        { "max": 1555200, "min": 902400, "margins": "280", "smoothness": 8 },
+        { "max": 2054400, "min": 940800, "margins": "300" },
+        { "max": 2169600, "min": 940800, "margins": "260" }
+      ]
+    },
+    "g4": {
+      "mode": "full",
+      "cpus": [
+        { "max": 1651200, "min": 902400, "margins": "280", "smoothness": 8 },
+        { "max": 2361600, "min": 940800, "margins": "350" },
+        { "max": 2400000, "min": 940800, "margins": "300" }
+      ]
+    }
+  },
   "modes": [
     {
       "mode": ["powersave", "balance"],
       "call": [
         ["@values", "max_freq", "1651200", "2054400", "2169600"],
-        ["@limiters", "g3:cpu0", "g3:cpu4", "g3:cpu7"]
+        ["@limiter", "g3"]
       ],
       "fas": {
         "use": "whitelist",

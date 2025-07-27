@@ -17,8 +17,7 @@
     "features": {
       "limiter": {
         "ddr_boost": false,
-        "params": [
-        ]
+        "params": {}
       },
       "gesture_boost": {
         "enable": true,
@@ -100,7 +99,7 @@
       ],
       "common_gaming": [
         ["@preset", "common_active"],
-        ["@limiters", "NONE"],
+        ["@limiter", "NONE"],
         ["@cpuset", "0-1", "0-4", "0-4", "0-7"],
         ["$sched_boost", "0"],
         ["@values", "latency", "0", "2000", "0", "2000"],

@@ -23,32 +23,50 @@
   "features": {
     "limiter": {
       "ddr_boost": true,
-      "params": [
-        { "id": "p1:cpu0", "max": 1400000, "min": 500000, "margin": 250 },
-        { "id": "p1:cpu4", "max": 2150000, "min": 700000, "margin": 400 },
-        { "id": "p1:cpu7", "max": 2300000, "min": 1300000, "margin": 400 },
-
-        { "id": "p2:cpu0", "max": 1500000, "min": 1050000, "margin": 300 },
-        { "id": "p2:cpu4", "max": 2400000, "min": 2050000, "margin": 400 },
-        { "id": "p2:cpu7", "max": 2650000, "min": 2100000, "margin": 400 },
-
-        { "id": "p3:cpu0", "max": 1600000, "min": 1400000, "margin": 300 },
-        { "id": "p3:cpu4", "max": 2650000, "min": 2400000, "margin": 300 },
-        { "id": "p3:cpu7", "max": 2800000, "min": 2400000, "margin": 300 },
-
-        { "id": "p4:cpu0", "max": 1600000, "min": 1500000, "margin": 300 },
-        { "id": "p4:cpu4", "max": 2650000, "min": 2650000, "margin": 300 },
-        { "id": "p4:cpu7", "max": 2800000, "min": 2650000, "margin": 300 },
-
-
-        { "id": "inactive:cpu0", "max": 1500000, "min": 400000, "margin": 80 },
-        { "id": "inactive:cpu4", "max": 2100000, "min": 400000, "margin": 100 },
-        { "id": "inactive:cpu7", "max": 2100000, "min": 1300000, "margin": 130 },
-
-        { "id": "idle:cpu0", "max": 1200000, "min": 400000, "margin": 50 },
-        { "id": "idle:cpu4", "max": 1800000, "min": 400000, "margin": 60 },
-        { "id": "idle:cpu7", "max": 1800000, "min": 1300000, "margin": 70, "core_ctl": true }
-      ]
+      "params": {
+        "p1": {
+          "cpus": [
+            { "max": 1401600, "min": 500000, "margins": "250" },
+            { "max": 2150400, "min": 700000, "margins": "400" },
+            { "max": 2304000, "min": 1300000, "margins": "400" }
+          ]
+        },
+        "p2": {
+          "cpus": [
+            { "max": 1500000, "min": 1050000, "margins": "300" },
+            { "max": 2400000, "min": 2050000, "margins": "400" },
+            { "max": 2650000, "min": 2100000, "margins": "400" }
+          ]
+        },
+        "p3": {
+          "cpus": [
+            { "max": 1600000, "min": 1400000, "margins": "300" },
+            { "max": 2650000, "min": 2400000, "margins": "300" },
+            { "max": 2800000, "min": 2400000, "margins": "300" }
+          ]
+        },
+        "p4": {
+          "cpus": [
+            { "max": 1600000, "min": 1500000, "margins": "300" },
+            { "max": 2650000, "min": 2650000, "margins": "300" },
+            { "max": 2800000, "min": 2650000, "margins": "300" }
+          ]
+        },
+        "inactive": {
+          "cpus": [
+            { "max": 1500000, "min": 400000, "margins": "80" },
+            { "max": 2100000, "min": 400000, "margins": "100" },
+            { "max": 2100000, "min": 1300000, "margins": "130" }
+          ]
+        },
+        "idle": {
+          "cpus": [
+            { "max": 1200000, "min": 400000, "margins": "50" },
+            { "max": 1800000, "min": 400000, "margins": "60" },
+            { "max": 1800000, "min": 1300000, "margins": "70", "core_ctl": true }
+          ]
+        }
+      }
     },
     "gesture_boost": {
       "enable": true,
@@ -108,7 +126,7 @@
       ["$gpu_freq", "#15"]
     ],
     "common_gaming": [
-      ["@limiters", "NONE"],
+      ["@limiter", "NONE"],
       ["$gpu_freq", "#0"],
       ["$gpu_min_opp", "99"],
       ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
@@ -117,47 +135,47 @@
     ],
 
     "powersave_active": [
-      ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
+      ["@limiter", "p1"],
       ["@preset", "common_active"],
       ["$ddr_freq_min", "#1866000000"],
       ["@values", "min_freq", "400000", "700000", "1300000"]
     ],
     "powersave_inactive": [
-      ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
+      ["@limiter", "idle"],
       ["@preset", "common_inactive"],
       ["$ddr_freq_min", "#800000000"],
       ["@preset", "cpu7_off"]
     ],
     "balance_active": [
-      ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
+      ["@limiter", "p2"],
       ["@preset", "common_active"],
       ["$ddr_freq_min", "#2667000000"],
       ["@values", "min_freq", "500000", "700000", "1300000"]
     ],
     "balance_inactive": [
-      ["@limiters", "inactive:cpu0", "inactive:cpu4", "inactive:cpu7"],
+      ["@limiter", "inactive"],
       ["@preset", "common_inactive"],
       ["$ddr_freq_min", "#800000000"]
     ],
     "performance_active": [
-      ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
+      ["@limiter", "p3"],
       ["@values", "min_freq", "700000", "900000", "1300000"],
       ["@preset", "common_active"],
       ["$ddr_freq_min", "#320000000"]
     ],
     "performance_inactive": [
-      ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
+      ["@limiter", "p2"],
       ["@preset", "common_inactive"],
       ["$ddr_freq_min", "#800000000"]
     ],
     "fast_active": [
-      ["@limiters", "p4:cpu0", "p4:cpu4", "p4:cpu7"],
+      ["@limiter", "p4"],
       ["@preset", "common_active"],
       ["$ddr_freq_min", "#320000000"],
       ["@values", "min_freq", "1000000", "1000000", "1300000"]
     ],
     "fast_inactive": [
-      ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
+      ["@limiter", "p3"],
       ["@preset", "common_inactive"],
       ["$ddr_freq_min", "#1866000000"]
     ]

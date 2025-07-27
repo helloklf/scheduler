@@ -12,32 +12,50 @@
   },
   "features": {
     "limiter": {
-      "params": [
-        { "id": "p1:cpu0", "max": 1363200, "min": 614400, "margin": 160 },
-        { "id": "p1:cpu4", "max": 1766400, "min": 652800, "margin": 250 },
-        { "id": "p1:cpu7", "max": 1843200, "min": 768000, "margin": 300 },
-
-        { "id": "p2:cpu0", "max": 1478400, "min": 729600, "margin": 200 },
-        { "id": "p2:cpu4", "max": 2054400, "min": 1132800, "margin": 300 },
-        { "id": "p2:cpu7", "max": 2169600, "min": 1286400, "margin": 300 },
-
-        { "id": "p3:cpu0", "max": 1689600, "min": 1075200, "margin": 220 },
-        { "id": "p3:cpu4", "max": 2208000, "min": 1555200, "margin": 300 },
-        { "id": "p3:cpu7", "max": 2400000, "min": 1612800, "margin": 300 },
-
-        { "id": "p4:cpu0", "max": 1785600, "min": 1075200, "margin": 240 },
-        { "id": "p4:cpu4", "max": 2361600, "min": 1804800, "margin": 300 },
-        { "id": "p4:cpu7", "max": 2400000, "min": 1977600, "margin": 300 },
-
-
-        { "id": "inactive:cpu0", "max": 1363200, "margin": 100 },
-        { "id": "inactive:cpu4", "max": 1555200, "margin": 100 },
-        { "id": "inactive:cpu7", "max": 1612800, "margin": 120 },
-
-        { "id": "idle:cpu0", "max": 1228800, "margin": 40 },
-        { "id": "idle:cpu4", "max": 1382400, "margin": 60 },
-        { "id": "idle:cpu7", "max": 1401600, "margin": 80, "core_ctl": true }
-      ]
+      "params": {
+        "p1": {
+          "cpus": [
+            { "max": 1363200, "min": 614400, "margins": "160" },
+            { "max": 1766400, "min": 652800, "margins": "250" },
+            { "max": 1843200, "min": 768000, "margins": "300" }
+          ]
+        },
+        "p2": {
+          "cpus": [
+            { "max": 1478400, "min": 729600, "margins": "200" },
+            { "max": 2054400, "min": 1132800, "margins": "300" },
+            { "max": 2169600, "min": 1286400, "margins": "300" }
+          ]
+        },
+        "p3": {
+          "cpus": [
+            { "max": 1689600, "min": 1075200, "margins": "220" },
+            { "max": 2208000, "min": 1555200, "margins": "300" },
+            { "max": 2400000, "min": 1612800, "margins": "300" }
+          ]
+        },
+        "p4": {
+          "cpus": [
+            { "max": 1785600, "min": 1075200, "margins": "240" },
+            { "max": 2361600, "min": 1804800, "margins": "300" },
+            { "max": 2400000, "min": 1977600, "margins": "300" }
+          ]
+        },
+        "inactive": {
+          "cpus": [
+            { "max": 1363200, "margins": "100" },
+            { "max": 1555200, "margins": "100" },
+            { "max": 1612800, "margins": "120" }
+          ]
+        },
+        "idle": {
+          "cpus": [
+            { "max": 1228800, "margins": "40" },
+            { "max": 1382400, "margins": "60" },
+            { "max": 1401600, "margins": "80", "core_ctl": true }
+          ]
+        }
+      }
     }
   },
   "reset": [
@@ -112,14 +130,14 @@
 
     "powersave_active": [
       ["@preset", "common_active"],
-      ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
+      ["@limiter", "p1"],
       ["@preset", "perf_fg_opt"],
       ["@values", "hispeed_freq", "614400", "633600", "806400"],
       ["@values", "hispeed_load", "90", "90", "90"]
     ],
     "powersave_inactive": [
       ["@preset", "common_inactive"],
-      ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
+      ["@limiter", "idle"],
       ["@values", "min_freq", "307200", "633600", "806400"],
       ["@preset", "cpu7_off"],
       ["@values", "hispeed_freq", "0", "0", "0"],
@@ -128,14 +146,14 @@
 
     "balance_active": [
       ["@preset", "common_active"],
-      ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
+      ["@limiter", "p2"],
       ["@values", "hispeed_freq", "614400", "1113600", "1171200"],
       ["@values", "hispeed_load", "85", "85", "85"]
     ],
     "balance_inactive": [
       ["@preset", "common_inactive"],
       ["@values", "min_freq", "307200", "633600", "806400"],
-      ["@limiters", "inactive:cpu0", "idle:cpu4", "idle:cpu7"],
+      ["@limiter", "inactive"],
       ["@preset", "cpu7_auto"],
       ["@values", "hispeed_freq", "614400", "633600", "806400"],
       ["@values", "hispeed_load", "90", "90", "90"]
@@ -144,28 +162,28 @@
 
     "performance_active": [
       ["@preset", "common_active"],
-      ["@limiters", "p3:cpu0", "p3:cpu4", "p3:cpu7"],
+      ["@limiter", "p3"],
       ["@values", "hispeed_freq", "1075200", "1324800", "1286400"],
       ["@values", "hispeed_load", "82", "82", "82"]
     ],
     "performance_inactive": [
       ["@preset", "common_inactive"],
       ["@values", "min_freq", "307200", "633600", "806400"],
-      ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"],
+      ["@limiter", "p1"],
       ["@values", "hispeed_freq", "614400", "633600", "806400"],
       ["@values", "hispeed_load", "82", "82", "82"]
     ],
 
     "fast_active": [
       ["@preset", "common_active"],
-      ["@limiters", "p4:cpu0", "p4:cpu4", "p4:cpu7"],
+      ["@limiter", "p4"],
       ["@values", "hispeed_freq", "1075200", "1440000", "1497600"],
       ["@values", "hispeed_load", "82", "82", "82"]
     ],
     "fast_inactive": [
       ["@preset", "common_inactive"],
       ["@values", "min_freq", "614400", "633600", "806400"],
-      ["@limiters", "p2:cpu0", "p2:cpu4", "p2:cpu7"],
+      ["@limiter", "p2"],
       ["@values", "hispeed_freq", "614400", "633600", "806400"],
       ["@values", "hispeed_load", "82", "82", "82"]
     ]

@@ -1,7 +1,7 @@
 {
   "friendly": "相机",
   "call": [
-    ["@limiters", "NONE"],
+    ["@limiter", "NONE"],
     ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
     ["@cpuset", "0-1", "0-4", "0-7", "0-7"]
   ],

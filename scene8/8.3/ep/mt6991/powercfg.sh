@@ -58,8 +58,9 @@ lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 
 # hide_value /proc/perfmgr/perf_ioctl
 # mount --bind /proc/perfmgr/fpsgo_lr_ioctl /proc/perfmgr/perf_ioctl
-umount /proc/perfmgr/perf_ioctl
+if [[ $(grep /proc/perfmgr/perf_ioctl /proc/mounts) == '' ]]; then
 mount --bind /proc/perfmgr_touch_boost/ioctl_touch_boost /proc/perfmgr/perf_ioctl
+fi
 
 # echo 0 339000 2400000 > /proc/cpudvfs/cpufreq_debug
 # echo 4 622000 3300000 > /proc/cpudvfs/cpufreq_debug

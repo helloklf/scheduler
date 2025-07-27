@@ -41,7 +41,6 @@
       ],
       "fas": {
         "use": "whitelist",
-        "lower_freq": 900000,
         "freq": ["3000000", "2600000", "-2"]
       }
     },
@@ -55,7 +54,6 @@
       "fas": {
         "use": "whitelist",
         "mode": "normal",
-        "lower_freq": 1000000,
         "freq": ["3500000", "3000000", "-2"]
       }
     }

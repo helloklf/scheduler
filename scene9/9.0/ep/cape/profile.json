@@ -112,7 +112,7 @@
     ],
     "common_gaming": [
       ["@preset", "common_active"],
-      ["@limiters", "NONE"],
+      ["@limiter", "NONE"],
       ["@uclamp", "", "", "0.00~max"],
       ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
       ["$gpu_max_khz", "#990000000"],

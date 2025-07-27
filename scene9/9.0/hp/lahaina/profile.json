@@ -17,30 +17,50 @@
   },
   "features": {
     "limiter": {
-      "params": [
-        { "id": "active:cpu0", "max": 1612800, "min": 1094400, "margins": "350 1497600:200" },
-
-        { "id": "p1:cpu4", "max": 1996800, "min": 710400,  "margins": "250 1555200:125" },
-        { "id": "p1:cpu7", "max": 2035200, "min": 1420800, "margins": "250 1785600:125" },
-
-        { "id": "p2:cpu4", "max": 2112000, "min": 1766400, "margins": "300 1996800:150" },
-        { "id": "p2:cpu7", "max": 2265600, "min": 1785600, "margins": "320 2150400:160" },
-
-        { "id": "p3:cpu4", "max": 2342400, "min": 1996800, "margins": "300 2112000:150" },
-        { "id": "p3:cpu7", "max": 2496000, "min": 2035200, "margins": "300 2265600:150" },
-
-        { "id": "p4:cpu4", "max": 2496000, "min": 2112000, "margins": "200 2227200:100" },
-        { "id": "p4:cpu7", "max": 2841600, "min": 2265600, "margins": "200 2496000:100" },
-
-
-        { "id": "inactive:cpu0", "max": 1612800, "min": 800000, "margin": 240 },
-        { "id": "inactive:cpu4", "max": 1670400, "margins": "150 1440000:100" },
-        { "id": "inactive:cpu7", "max": 1785600, "margins": "150 1555200:100", "core_ctl": true },
-
-        { "id": "idle:cpu0", "max": 1612800, "min": 800000, "margin": 200 },
-        { "id": "idle:cpu4", "max": 1555200, "margins": "100 1324800:60" },
-        { "id": "idle:cpu7", "max": 1670400, "margins": "120 1305600:60", "core_ctl": true }
-      ]
+      "params": {
+        "p1": {
+          "cpus": [
+            { "max": 1612800, "min": 1094400, "margins": "350 1497600:200" },
+            { "max": 1996800, "min": 710400,  "margins": "250 1555200:125" },
+            { "max": 2035200, "min": 1420800, "margins": "250 1785600:125" }
+          ]
+        },
+        "p2": {
+          "cpus": [
+            null,
+            { "max": 2265600, "min": 1785600, "margins": "320 2150400:160" },
+            { "max": 2342400, "min": 1996800, "margins": "300 2112000:150" }
+          ]
+        },
+        "p3": {
+          "cpus": [
+            null,
+            { "max": 2342400, "min": 1996800, "margins": "300 2112000:150" },
+            { "max": 2496000, "min": 2035200, "margins": "300 2265600:150" }
+          ]
+        },
+        "p4": {
+          "cpus": [
+            null,
+            { "max": 2496000, "min": 2112000, "margins": "200 2227200:100" },
+            { "max": 2841600, "min": 2265600, "margins": "200 2496000:100" }
+          ]
+        },
+        "inactive": {
+          "cpus": [
+            { "max": 1612800, "min": 800000, "margins": "240" },
+            { "max": 1670400, "margins": "150 1440000:100" },
+            { "max": 1785600, "margins": "150 1555200:100", "core_ctl": true }
+          ]
+        },
+        "idle": {
+          "cpus": [
+            { "max": 1612800, "min": 800000, "margins": "200" },
+            { "max": 1555200, "margins": "100 1324800:60" },
+            { "max": 1670400, "margins": "120 1305600:60", "core_ctl": true }
+          ]
+        }
+      }
     }
   },
   "reset": [
@@ -113,56 +133,56 @@
       ["$mod_percent", "100"]
     ],
     "common_gaming": [
-      ["@limiters", "NONE"],
+      ["@limiter", "NONE"],
       ["@uclamp", "0.00~max", "0.00~max", "1.00~max"],
       ["@cpuset", "0-2", "1-3", "0-5", "0-7"],
       ["$mod_percent", "94"]
     ],
 
     "powersave_active": [
-      ["@limiters", "active:cpu0", "p1:cpu4", "p1:cpu7"],
+      ["@limiter", "p1"],
       ["@preset", "comm_active"],
       ["@values", "min_freq", "1094400", "710400", "806400"],
       ["@repeat", "sched_config", "75 75", "85 85", "150", "400"]
     ],
     "powersave_inactive": [
-      ["@limiters", "idle:cpu0", "idle:cpu4", "idle:cpu7"],
+      ["@limiter", "idle"],
       ["@preset", "cores_force_off"],
       ["@preset", "comm_inactive"]
     ],
 
     "balance_active": [
-      ["@limiters", "p2:cpu4", "p2:cpu7"],
+      ["@limiter", "p2"],
       ["@preset", "comm_active"],
       ["@values", "min_freq", "1209600", "960000", "806400"],
       ["@repeat", "sched_config", "75 75", "85 85", "150", "400"]
     ],
     "balance_inactive": [
-      ["@limiters", "inactive:cpu0", "inactive:cpu4", "inactive:cpu7"],
+      ["@limiter", "inactive"],
       ["@preset", "comm_inactive"],
       ["@preset", "cores_auto_off"]
     ],
 
     "performance_active": [
-      ["@limiters", "p3:cpu4", "p3:cpu7"],
+      ["@limiter", "p3"],
       ["@preset", "comm_active"],
       ["@values", "min_freq", "1209600", "960000", "806400"],
       ["@repeat", "sched_config", "70 70", "80 85", "150", "400"]
     ],
     "performance_inactive": [
-      ["@limiters", "NONE"],
+      ["@limiter", "NONE"],
       ["@preset", "comm_inactive"],
       ["@values", "max_freq", "1804800", "1996800", "2150400"]
     ],
 
     "fast_active": [
-      ["@limiters", "p4:cpu4", "p4:cpu7"],
+      ["@limiter", "p4"],
       ["@preset", "comm_active"],
       ["@values", "min_freq", "1497600", "1075200", "1190400"],
       ["@repeat", "sched_config", "65 65", "75 78", "200", "400"]
     ],
     "fast_inactive": [
-      ["@limiters", "NONE"],
+      ["@limiter", "NONE"],
       ["@preset", "comm_inactive"],
       ["@values", "max_freq", "1804800", "2112000", "2265600"]
     ]
