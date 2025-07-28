@@ -12,7 +12,7 @@
   },
   "features": {
     "limiter": {
-      "params": {
+      "limiters": {
         "p1": {
           "cpus": [
             { "max": 1363200, "min": 614400, "margins": "160" },

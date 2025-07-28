@@ -3,8 +3,6 @@
   "modes": [
     {
       "mode": ["powersave"],
-      "call": [
-      ],
       "fas": {
         "use": "whitelist",
         "freq": ["2400000", "1800000"]
@@ -12,8 +10,6 @@
     },
     {
       "mode": ["balance"],
-      "call": [
-      ],
       "fas": {
         "use": "whitelist",
         "freq": ["2660000", "2400000"]
@@ -21,8 +17,6 @@
     },
     {
       "mode": ["performance"],
-      "call": [
-      ],
       "fas": {
         "use": "whitelist",
         "freq": ["2800000", "2660000"]

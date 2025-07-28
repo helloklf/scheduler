@@ -20,40 +20,40 @@
     "limiter": {
       "l3_boost": true,
       "ddr_boost": true,
-      "params": {
+      "limiters": {
         "p1": {
           "cpus": [
             { "max": 1804800, "min": 1075200, "margins": "350", "excludes": [1] },
             { "max": 2419200, "min": 1766400, "margins": "400 1958400:300 2150400:220" },
-            { "max": 2649600, "min": 1977600, "margins": "400 2169600:300 2457600:200" }
+            { "max": 2457600, "min": 1862400, "margins": "400 2169600:300 2457600:200" }
           ]
         },
         "p2": {
           "cpus": [
             null,
             { "max": 2419200, "min": 2150400, "margins": "300 2246400:200" },
-            { "max": 2841600, "min": 2457600, "margins": "300 2649600:200" }
+            { "max": 2649600, "min": 2150400, "margins": "300 2649600:200" }
           ]
         },
         "p3": {
           "cpus": [
             null,
             { "max": 2419200, "min": 2246400, "margins": "300" },
-            { "max": 2457600, "min": 2457600, "margins": "300 2841600:200" }
+            { "max": 2841600, "min": 2457600, "margins": "300 2841600:200" }
           ]
         },
         "inactive": {
           "cpus": [
-            { "max": 1804800, "min": 883200, "margins": "180 1612800:100" },
-            { "max": 2419200, "margins": "100" },
-            { "max": 2457600, "margins": "140" }
+            { "max": 1804800, "min": 883200, "margins": "180" },
+            { "max": 2150400, "margins": "100" },
+            { "max": 2150400, "margins": "140" }
           ]
         },
         "idle": {
           "cpus": [
-            { "max": 1804800, "min": 883200, "margins": "130" },
-            { "max": 2419200, "margins": "80" },
-            { "max": 2419200, "margins": "90" }
+            { "max": 1804800, "min": 883200, "margins": "150" },
+            { "max": 1958400, "margins": "100" },
+            { "max": 1977600, "margins": "100" }
           ]
         }
       }
@@ -309,7 +309,6 @@
       "categories": ["Music", "Reader", "ShortVideo"],
       "import": "_ELP.json"
     },
-    { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [

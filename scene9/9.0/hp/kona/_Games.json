@@ -5,7 +5,6 @@
       "mode": ["powersave"],
       "fas": {
         "use": "whitelist",
-        "big_min_freq": 1075200, "middle_min_freq": 710400,
         "_freq": ["2649600", "1958400", "-2"]
       }
     },
@@ -18,8 +17,6 @@
     },
     {
       "mode": ["performance"],
-      "call": [
-      ],
       "fas": {
         "mode": "fps",
         "use": "whitelist",
@@ -28,8 +25,6 @@
     },
     {
       "mode": ["fast"],
-      "call": [
-      ],
       "fas": {
         "mode": "fps",
         "use": "whitelist",

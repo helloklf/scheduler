@@ -13,21 +13,48 @@
     "gpu_max_freq": "/sys/kernel/ged/hal/custom_upbound_gpu_freq",
     "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
     "cpufreq": "/proc/powerhal_cpu_ctrl/perfserv_freq",
-    "cpus_limit": "/sys/module/mtk_fpsgo/parameters/cpus_limit",
     "uclamp_boost": "/dev/cpuctl/top-app/cpu.uclamp.min"
   },
   "features": {
     "limiter": {
       "ddr_boost": false,
-      "params": {}
+      "limiters": {
+        "p1": {
+          "cpus": [
+            { "max": 2000000, "min": 1000000, "margins": "300 1600000:150" },
+            { "max": 2100000, "min": 1000000, "margins": "300 1600000:150" },
+            { "max": 2100000, "min": 1000000, "margins": "300 1600000:150" }
+          ]
+        },
+        "p2": {
+          "cpus": [
+            { "max": 2100000, "min": 1800000, "margins": "200" },
+            { "max": 2600000, "min": 2100000, "margins": "200" },
+            { "max": 2800000, "min": 2100000, "margins": "200" }
+          ]
+        },
+        "inactive": {
+          "cpus": [
+            { "max": 1800000, "min": 500000, "margins": "150 1500000:90" },
+            { "max": 2100000, "min": 500000, "margins": "150 1800000:90" },
+            { "max": 2100000, "min": 1000000, "margins": "150 1800000:90" }
+          ]
+        },
+        "idle": {
+          "cpus": [
+            { "max": 1700000, "min": 500000, "margins": "150 1500000:90" },
+            { "max": 1800000, "min": 500000, "margins": "150 1600000:90" },
+            { "max": 1800000, "min": 1000000, "margins": "150 1600000:90" }
+          ]
+        }
+      }
     }
   },
   "reset": [
     ["@governor", "sugov_ext"],
     ["@preset", "common_active"],
     ["$perfmgr_enable", "#0"],
-    ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"],
-    ["$cpus_limit", "#3000000 3250000"]
+    ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"]
   ],
   "presets": {
     "min_freq": [
@@ -67,7 +94,10 @@
       ["@gesture", "PAUSE"],
       ["$gpu_max_freq", "#7"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "#0"],
-      ["$uclamp_boost", "0"]
+      ["$uclamp_boost", "0"],
+      ["@ioctl", "/proc/easmgr/eas_ioctl",
+        "0x40046715", "500000", "0x40046717", "500000", "0x40046719", "1000000"
+      ]
     ],
     "limiter_off": [
       ["/proc/game_opt/disable_cpufreq_limit", "#1"],
@@ -138,9 +168,7 @@
       ],
       "game": [
         ["@ioctl", "/proc/easmgr/eas_ioctl",
-          "0x40046715", "500000", "0x40046716", "20",
-          "0x40046717", "500000", "0x40046718", "20",
-          "0x40046719", "1000000", "0x4004671A", "20"
+          "0x40046716", "20", "0x40046718", "20", "0x4004671A", "20"
         ]
       ]
     },
@@ -148,13 +176,11 @@
       "app": [
         ["@preset", "common_app"],
         ["@preset", "balance_active"],
-        ["@values", "max_freq", "#2100000", "#2600000", "#2800000"]
+        ["@values", "max_freq", "#2100000", "#2500000", "#2600000"]
       ],
       "game": [
         ["@ioctl", "/proc/easmgr/eas_ioctl",
-          "0x40046715", "500000", "0x40046716", "25",
-          "0x40046717", "500000", "0x40046718", "25",
-          "0x40046719", "1000000", "0x4004671A", "25"
+          "0x40046716", "25", "0x40046718", "25", "0x4004671A", "25"
         ]
       ]
     },
@@ -166,9 +192,7 @@
       ],
       "game": [
         ["@ioctl", "/proc/easmgr/eas_ioctl",
-          "0x40046715", "500000", "0x40046716", "28",
-          "0x40046717", "500000", "0x40046718", "28",
-          "0x40046719", "1000000", "0x4004671A", "28"
+          "0x40046716", "28", "0x40046718", "28", "0x4004671A", "28"
         ]
       ]
     },
@@ -181,9 +205,7 @@
       ],
       "game": [
         ["@ioctl", "/proc/easmgr/eas_ioctl",
-          "0x40046715", "500000", "0x40046716", "30",
-          "0x40046717", "500000", "0x40046718", "30",
-          "0x40046719", "1000000", "0x4004671A", "30"
+          "0x40046716", "30", "0x40046718", "30", "0x4004671A", "30"
         ]
       ]
     }

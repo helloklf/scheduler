@@ -23,7 +23,7 @@
   "features": {
     "limiter": {
       "ddr_boost": true,
-      "params": {
+      "limiters": {
         "p1": {
           "cpus": [
             { "max": 1401600, "min": 500000, "margins": "250" },

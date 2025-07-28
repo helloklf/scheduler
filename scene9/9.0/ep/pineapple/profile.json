@@ -20,7 +20,7 @@
     },
     "features": {
       "limiter": {
-        "params": {}
+        "limiters": {}
       },
       "gesture_boost": {
         "enable": true,

@@ -5,10 +5,12 @@
       "mode": ["powersave"],
       "state": {
         "active": [
-          ["@preset", "powersave_active"]
+          ["@preset", "powersave_active"],
+          ["@limiter", "p1"]
         ],
         "inactive": [
-          ["@preset", "powersave_inactive"]
+          ["@preset", "powersave_inactive"],
+          ["@limiter", "idle"]
         ]
       }
     },
@@ -16,10 +18,12 @@
       "mode": ["balance"],
       "state": {
         "active": [
-          ["@preset", "balance_active"]
+          ["@preset", "balance_active"],
+          ["@limiter", "p2"]
         ],
         "inactive": [
-          ["@preset", "balance_inactive"]
+          ["@preset", "balance_inactive"],
+          ["@limiter", "inactive"]
         ]
       }
     },

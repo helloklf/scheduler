@@ -17,8 +17,6 @@
     },
     {
       "mode": ["performance"],
-      "call": [
-      ],
       "fas": {
         "use": "whitelist",
         "freq": ["2850000", "2650000"]
@@ -26,8 +24,6 @@
     },
     {
       "mode": ["fast"],
-      "call": [
-      ],
       "fas": {
         "use": "whitelist",
         "freq": ["3100000", "2850000"]

@@ -23,7 +23,7 @@
   "features": {
     "limiter": {
       "ddr_boost": true,
-      "params": {}
+      "limiters": {}
     }
   },
   "reset": [
