@@ -39,7 +39,7 @@
     {
       "mode": ["balance"],
       "call": [
-        ["@values", "max_freq", "#1700000", "#2400000", "#2800000"],
+        ["@values", "max_freq", "#1700000", "#2300000", "#2600000"],
         ["@values", "min_freq", "700000", "800000", "900000"]
       ],
       "fas": {
@@ -50,7 +50,7 @@
     {
       "mode": ["performance"],
       "call": [
-        ["@values", "max_freq", "#1800000", "#2600000", "#3000000"],
+        ["@values", "max_freq", "#1800000", "#2600000", "#2800000"],
         ["@values", "min_freq", "800000", "800000", "900000"],
         ["@limiter", "g3"]
       ],
@@ -62,9 +62,9 @@
     {
       "mode": ["*"],
       "call": [
+        ["@governor", "schedutil", "sugov_ext"],
         ["@values", "max_freq", "#2000000", "#3000000", "#3250000"],
         ["@values", "min_freq", "800000", "800000", "900000"],
-        ["@governor", "schedutil"],
         ["@ddr_l3_booster"]
       ],
       "fas": {

@@ -288,7 +288,7 @@
     {
       "friendly": "All",
       "packages": ["*"],
-      "import": "_FAS.json"
+      "import": "_Games.json"
     }
   ]
 }

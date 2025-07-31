@@ -2,10 +2,10 @@
   "friendly": "游戏(Games)",
   "call": [
     ["@preset", "common_gaming"],
-    ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_perf_mode_ceiling_opp 2"],
     ["/sys/module/mtk_fpsgo/parameters/p_perf", "1"],
     ["/sys/module/mtk_fpsgo/parameters/better_perf", "1"],
-    ["/sys/kernel/fpsgo/fbt/enable_ceiling", "#0"]
+    ["/sys/kernel/fpsgo/fbt/enable_ceiling", "#0"],
+    ["@ddr_l3_booster"]
   ],
   "modes": [
     {
@@ -18,29 +18,32 @@
     {
       "mode": ["balance"],
       "call": [
-        ["@values", "max_freq", "#1700000", "#2300000", "#2600000"],
+        ["@values", "max_freq", "#1700000", "#2400000", "#2800000"],
         ["@values", "min_freq", "700000", "800000", "900000"]
       ]
     },
     {
       "mode": ["performance"],
       "call": [
-        ["@values", "max_freq", "#1800000", "#2600000", "#2800000"],
+        ["@governor", "schedutil", "sugov_ext"],
+        ["@values", "max_freq", "#1800000", "#2600000", "#3000000"],
         ["@values", "min_freq", "800000", "800000", "900000"]
       ]
     },
     {
       "mode": ["fast"],
       "call": [
+        ["@governor", "schedutil", "sugov_ext"],
         ["@values", "max_freq", "#2000000", "#3000000", "#3250000"],
-        ["@values", "min_freq", "800000", "800000", "900000"]
+        ["@values", "min_freq", "1000000", "1000000", "1000000"]
       ]
     },
     {
       "mode": ["*"],
       "call": [
+        ["@governor", "schedutil", "sugov_ext"],
         ["@values", "max_freq", "#2000000", "#3000000", "#3250000"],
-        ["@values", "min_freq", "800000", "900000", "1200000"]
+        ["@values", "min_freq", "1000000", "1600000", "1600000"]
       ]
     }
   ]

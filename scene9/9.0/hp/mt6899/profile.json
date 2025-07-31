@@ -139,7 +139,7 @@
       ["@preset", "common_active"],
       ["$uclamp_boost", "50"],
       ["@ioctl", "/proc/easmgr/eas_ioctl",
-        "0x40046716", "22", "0x40046718", "20", "0x4004671A", "20"]
+        "0x40046716", "20", "0x40046718", "20", "0x4004671A", "20"]
     ],
     "performance_inactive": [
       ["@preset", "common_inactive"],

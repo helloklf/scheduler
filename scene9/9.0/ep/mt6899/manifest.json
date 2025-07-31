@@ -1,11 +1,11 @@
 {
-  "version": "EP(实验性配置)",
+  "version": "EP",
   "versionCode": 20250731,
   "author": "SCENE9",
   "projectUrl": "http://vtools.omarea.com/",
   "features": {
     "strict": true,
-    "pedestal": false,
+    "pedestal": true,
     "fas": false,
     "reboot": false
   }

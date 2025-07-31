@@ -56,18 +56,13 @@ lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
 lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 
-# hide_value /proc/perfmgr/perf_ioctl
-# mount --bind /proc/perfmgr/fpsgo_lr_ioctl /proc/perfmgr/perf_ioctl
 if [[ $(grep /proc/perfmgr/perf_ioctl /proc/mounts) == '' ]]; then
 mount --bind /proc/perfmgr_touch_boost/ioctl_touch_boost /proc/perfmgr/perf_ioctl
 fi
 
-# echo 0 339000 2400000 > /proc/cpudvfs/cpufreq_debug
-# echo 4 622000 3300000 > /proc/cpudvfs/cpufreq_debug
-# echo 7 798000 3600000 > /proc/cpudvfs/cpufreq_debug
-# lock_value '339000 2400000 622000 3300000 798000 3600000' /proc/powerhal_cpu_ctrl/perfserv_freq
-# lock_value '3300000 3600000' /sys/module/mtk_fpsgo/parameters/cpus_limit
-# lock_value 1 /sys/module/mtk_fpsgo/parameters/better_perf
+umount /proc/powerhal_cpu_ctrl/perfserv_freq
+echo '339000 2400000 622000 3300000 798000 3600000' > /proc/powerhal_cpu_ctrl/perfserv_freq
+mount --bind /proc/powerhal_cpu_ctrl/adpf_enable /proc/powerhal_cpu_ctrl/perfserv_freq
 
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_tid
@@ -82,10 +77,10 @@ lock_value -1 /sys/module/migt/parameters/vip_prefer_cluster
 lock_value -1 /sys/module/migt/parameters/stask_prefer_cluster
 lock_value -1 /sys/module/migt/parameters/ip_prefer_cluster
 lock_value 0 /sys/module/migt/parameters/glk_freq_limit_start
-echo '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' > /sys/module/migt/parameters/migt_ceiling_freq
-echo '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' > /sys/module/migt/parameters/migt_freq
-echo 1 > /sys/module/metis/parameters/reset_clus_affinity_uidlist
-echo 1 > /sys/module/metis/parameters/reset_rebind_task
+set_value '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' /sys/module/migt/parameters/migt_ceiling_freq
+set_value '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' /sys/module/migt/parameters/migt_freq
+set_value 1 /sys/module/metis/parameters/reset_clus_affinity_uidlist
+set_value 1 /sys/module/metis/parameters/reset_rebind_task
 lock_value 0 /sys/module/metis/parameters/thermal_break_enable
 lock_value 0 /sys/module/metis/parameters/is_break_enable
 lock_value 0 /sys/module/metis/parameters/mi_freq_enable
@@ -111,7 +106,6 @@ lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/max_cpus
 lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/min_cpus
 lock_value 0 /sys/devices/system/cpu/cpu7/core_ctl/enable
 
-
 # vivo
 if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; then
   stop vivo-vperf-hal-1-0
@@ -123,8 +117,8 @@ if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; th
 fi
 if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
   lock_value "MIN_TTJ 90000 90000 90000" /sys/kernel/thermal/min_ttj
-  lock_value "MAX_TTJ 95000 90000 90000" /sys/kernel/thermal/max_ttj
-  lock_value "TTJ 90000 90000 90000" /sys/kernel/thermal/ttj
+  lock_value "MAX_TTJ 95000 95000 95000" /sys/kernel/thermal/max_ttj
+  lock_value "TTJ 95000 95000 95000" /sys/kernel/thermal/ttj
 fi
 
 
