@@ -338,7 +338,6 @@
         "import": "_WhiteList.json"
       },
       { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
-      { "friendly": "待机", "packages": ["standby"], "import": "_Standby.json" },
       { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
     ],
     "games": [
