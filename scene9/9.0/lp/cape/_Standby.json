@@ -1,0 +1,21 @@
+{
+  "friendly": "待机",
+  "call": [
+    ["@limiter", "NONE"]
+  ],
+  "state": {
+    "active": [
+      ["@preset", "common_active"],
+      ["@cpuset", "0-6", "0-6", "0-7", "0-7"],
+      ["@cpu_freq", "policy0", "1000MHz", "max"],
+      ["@cpu_freq", "policy4", "1000MHz", "2400MHz"],
+      ["@cpu_freq", "policy7", "1300MHz", "2500MHz"]
+    ],
+    "inactive": [
+      ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
+      ["@cpu_freq", "policy0", "min", "1800MHz"],
+      ["@cpu_freq", "policy4", "min", "1700MHz"],
+      ["@cpu_freq", "policy7", "min", "1700MHz"]
+    ]
+  }
+}

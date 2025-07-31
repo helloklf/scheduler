@@ -1,0 +1,51 @@
+{
+  "friendly": "极速响应",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "state": {
+        "active": [
+          ["@preset", "powersave_active"],
+          ["@preset", "cpu6_on"]
+        ],
+        "inactive": [
+          ["@preset", "powersave_inactive"]
+        ]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "state": {
+        "active": [
+          ["@preset", "balance_active"]
+        ],
+        "inactive": [
+          ["@preset", "balance_inactive"]
+        ]
+      }
+    },
+      {
+      "mode": ["performance"],
+      "state": {
+        "active": [
+          ["@preset", "performance_active"]
+        ],
+        "inactive": [
+          ["@preset", "balance_inactive"]
+        ]
+      }
+    },
+      {
+      "mode": ["*"],
+      "state": {
+        "active": [
+          ["@preset", "fast_active"],
+          ["$sched_boost", "1"]
+        ],
+        "inactive": [
+          ["@preset", "performance_inactive"]
+        ]
+      }
+    }
+  ]
+}

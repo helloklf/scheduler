@@ -1,0 +1,188 @@
+{
+  "platform": "mt6768",
+  "platform_name": "MTK P65&G80&G85",
+  "alias": {
+    "min_cpu_freq": "/proc/ppm/policy/hard_userlimit_min_cpu_freq",
+    "max_cpu_freq": "/proc/ppm/policy/hard_userlimit_max_cpu_freq",
+    "gpu_dvfs_margin": "/sys/kernel/ged/hal/timer_base_dvfs_margin",
+    "gpu_max_opp": "/sys/kernel/ged/hal/custom_upbound_gpu_freq",
+    "util_max_top": "/dev/stune/top-app/schedtune.util.max",
+    "util_max_fg": "/dev/stune/foreground/schedtune.util.max",
+    "util_max_bg": "/dev/stune/background/schedtune.util.max",
+    "util_min_top": "/dev/stune/top-app/schedtune.util.min",
+    "util_min_fg": "/dev/stune/foreground/schedtune.util.min",
+    "util_min_bg": "/dev/stune/background/schedtune.util.min",
+    "deisolation": "/sys/devices/system/cpu/sched/set_sched_deisolation",
+    "setolation": "/sys/devices/system/cpu/sched/set_sched_isolation",
+    "fpsgo_enable": "/sys/kernel/fpsgo/common/fpsgo_enable",
+    "stune_boost": "/dev/stune/top-app/schedtune.boost",
+    "dram_boost": "/sys/devices/platform/boot_dramboost/dramboost/dramboost",
+    "cci_mode": "/proc/cpufreq/cpufreq_cci_mode"
+  },
+  "features": {
+    "limiter": {
+      "limiters": {
+        "p1": {
+          "cpus": [
+            { "max": 2000000, "min": 1400000, "margins": "400" },
+            { "max": 2200000, "min": 1400000, "margins": "400" }
+          ]
+        },
+        "p2": {
+          "cpus": [
+            { "max": 2000000, "min": 1500000, "margins": "400" },
+            { "max": 2600000, "min": 1800000, "margins": "400" }
+          ]
+        },
+        "p3": {
+          "cpus": [
+            { "max": 2000000, "min": 1600000, "margins": "400" },
+            { "max": 2600000, "min": 2100000, "margins": "400" }
+          ]
+        },
+        "idle": {
+          "cpus": [
+            { "max": 1700000, "margins": "150" },
+            { "max": 1700000, "margins": "150" }
+          ]
+        }
+      }
+    }
+  },
+  "presets": {
+    "common_active": [
+      ["$max_cpu_freq", "0 2000000"],
+      ["$deisolation", "4|5|6|7"],
+      ["@preset", "util_active"],
+      ["$stune_top_boost", "10"]
+    ],
+    "common_inactive": [
+      ["$stune_top_boost", "0"],
+      ["$stune_top_perf", "0"],
+      ["$min_cpu_freq", "0 500000|1 500000"]
+    ],
+    "common_apps": [
+      ["@cpuset", "0-3", "0-4", "0-7", "0-7"],
+      ["/sys/kernel/ged/hal/dvfs_loading_mode", "#0"],
+      ["$gpu_dvfs_margin", "#40"],
+      ["/sys/kernel/ged/hal/dvfs_margin_value", "#130"],
+      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "10"]
+    ],
+    "common_gaming": [
+      ["@cpuset", "0-2", "0-4", "0-5", "0-7"],
+      ["/sys/kernel/ged/hal/dvfs_loading_mode", "#0"],
+      ["$gpu_dvfs_margin", "#15"],
+      ["/sys/kernel/ged/hal/dvfs_margin_value", "#130"],
+      ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
+      ["/sys/kernel/ged/hal/loading_base_dvfs_step", "8"]
+    ],
+
+    "powersave_active": [
+      ["@limiter", "p1"],
+      ["@preset", "common_active"],
+      ["$min_cpu_freq", "0 1000000|1 1000000"]
+    ],
+    "powersave_inactive": [
+      ["@limiter", "idle"],
+      ["@preset", "common_inactive"],
+      ["$min_cpu_freq", "0 500000|1 500000"]
+    ],
+    "balance_active": [
+      ["@limiter", "p2"],
+      ["@preset", "common_active"],
+      ["$min_cpu_freq", "0 1200000|1 1200000"]
+    ],
+    "balance_inactive": [
+      ["@preset", "common_inactive"],
+      ["@limiter", "p1"]
+    ],
+    "performance_active": [
+      ["@preset", "common_active"],
+      ["@limiter", "NONE"],
+      ["$max_cpu_freq", "0 2000000|1 2600000"],
+      ["$min_cpu_freq", "0 1200000|1 1300000"]
+    ],
+    "performance_inactive": [
+      ["@preset", "common_inactive"],
+      ["@limiter", "p2"]
+    ],
+    "fast_active": [
+      ["@limiter", "NONE"],
+      ["@preset", "common_active"],
+      ["$max_cpu_freq", "0 2000000|1 2600000"],
+      ["$min_cpu_freq", "0 1300000|1 1500000"]
+    ],
+    "fast_inactive": [
+      ["@preset", "common_inactive"],
+      ["@limiter", "p3"]
+    ]
+  },
+  "schemes": {
+    "powersave": {
+      "call": [
+        ["@thermal_threshold", "-1"],
+        ["@preset", "powersave_active"],
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
+      ],
+      "app": [["@preset", "common_apps"]],
+      "game": [["@preset", "common_gaming"]]
+    },
+    "balance": {
+      "call": [
+        ["@thermal_threshold", "-1"],
+        ["@preset", "balance_active"],
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
+      ],
+      "app": [["@preset", "common_apps"]],
+      "game": [["@preset", "common_gaming"]]
+    },
+    "performance": {
+      "call": [
+        ["@thermal_threshold", "-1"],
+        ["@preset", "performance_active"]
+      ],
+      "app": [
+        ["@preset", "common_apps"],
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
+      ],
+      "game": [
+        ["@preset", "common_gaming"],
+        ["$cci_mode", "1"],
+        ["$dram_boost", "1"]
+      ]
+    },
+    "fast": {
+      "call": [
+        ["@thermal_threshold", "-1"],
+        ["@preset", "fast_active"]
+      ],
+      "app": [
+        ["@preset", "common_apps"],
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
+      ],
+      "game": [
+        ["@preset", "common_gaming"],
+        ["$cci_mode", "1"],
+        ["$dram_boost", "1"]
+      ]
+    }
+  },
+  "apps": [
+    {
+      "friendly": "All",
+      "packages": ["*"],
+      "import": "_Apps.json"
+    }
+  ],
+  "games": [
+    {
+      "friendly": "All",
+      "packages": ["*"],
+      "import": "_Games.json"
+    }
+  ]
+}

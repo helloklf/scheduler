@@ -1,7 +1,5 @@
 {
   "friendly": "游戏",
-  "call": [
-  ],
   "modes": [
     {
       "mode": ["powersave"],

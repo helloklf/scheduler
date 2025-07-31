@@ -1,0 +1,49 @@
+{
+  "friendly": "游戏(FAS)",
+  "call": [
+    ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_perf_mode_ceiling_opp 2"],
+    ["/sys/module/mtk_fpsgo/parameters/p_perf", "1"],
+    ["/sys/module/mtk_fpsgo/parameters/better_perf", "1"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"]
+      ],
+      "fas": {
+        "freq": ["2300000", "2100000", "-2"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"]
+      ],
+      "fas": {
+        "freq": ["2600000", "2400000", "-2"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 2"]
+      ],
+      "fas": {
+        "lower_freq": 900000,
+        "freq": ["3000000", "2800000", "-2"]
+      }
+    },
+    {
+      "mode": ["fast"],
+      "call": [
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 2"]
+      ],
+      "fas": {
+        "mode": "normal",
+        "lower_freq": 1000000,
+        "freq": ["3250000", "2850000", "-2"]
+      }
+    }
+  ]
+}

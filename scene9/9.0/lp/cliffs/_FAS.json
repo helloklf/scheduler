@@ -1,0 +1,33 @@
+{
+  "friendly": "FAS",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "lower_freq": 940800,
+        "freq": ["2150400", "1920000"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "lower_freq": 1190400,
+        "freq": ["2457600", "2361600"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "lower_freq": 1401600,
+        "freq": ["2668800", "2611200"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "fas": {
+        "lower_freq": 1593600,
+        "freq": ["2841600", "2803200"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "friendly": "一般APP",
+  "modes": [{
+    "mode": ["powersave"],
+    "state": {
+      "active": [
+        ["@preset", "powersave_active"]
+      ],
+      "inactive": [
+        ["@preset", "powersave_inactive"]
+      ]
+    }
+  }, {
+    "mode": ["balance"],
+    "state": {
+      "active": [
+        ["@preset", "balance_active"]
+      ],
+      "inactive": [
+        ["@preset", "balance_inactive"]
+      ]
+    }
+  }, {
+    "mode": ["performance"],
+    "state": {
+      "active": [
+        ["@preset", "performance_active"]
+      ],
+      "inactive": [
+        ["@preset", "performance_inactive"]
+      ]
+    }
+  }, {
+    "mode": ["*"],
+    "state": {
+      "active": [
+        ["@preset", "fast_active"]
+      ],
+      "inactive": [
+        ["@preset", "fast_inactive"]
+      ]
+    }
+  }]
+}

@@ -1,0 +1,35 @@
+{
+  "friendly": "FAS",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "limiters": "p1",
+        "freq": ["1728000", "1651200"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "limiters": "p2",
+        "freq": ["1958400", "1766400"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "mode": "normal",
+        "limiters": "p3",
+        "freq": ["2169600", "1996800"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "fas": {
+        "mode": "normal",
+        "limiters": "p4",
+        "freq": ["2400000", "2112000"]
+      }
+    }
+  ]
+}

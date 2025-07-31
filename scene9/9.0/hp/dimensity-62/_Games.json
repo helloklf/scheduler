@@ -1,0 +1,23 @@
+{
+    "friendly": "All",
+    "packages": ["*"],
+    "limiters": {
+        "g1": {
+            "cpus": [
+                { "max": 2200000, "min": 1000000, "margins": "300", "mode": "full" },
+                { "max": 2400000, "min": 1000000, "margins": "300", "mode": "full" }
+            ]
+        }
+    },
+    "call": [
+        ["@limiter", "NONE"]
+    ],
+    "modes": [
+        {
+            "mode": ["powersave"],
+            "call": [
+                ["@limiter", "g1"]
+            ]
+        }
+    ]
+}

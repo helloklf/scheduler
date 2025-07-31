@@ -26,8 +26,7 @@
     ["@governor", "sugov_ext"],
     ["@preset", "common_active"],
     ["$perfmgr_enable", "#0"],
-    ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"],
-    ["$cpus_limit", "#3000000 3400000"]
+    ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"]
   ],
   "presets": {
     "min_freq": [
@@ -46,7 +45,7 @@
     ],
     "common_active": [],
     "common_inactive": [
-      ["@values", "min_freq", "#339000", "622000", "798000"],
+      ["@values", "min_freq", "#339000", "#622000", "#798000"],
       ["$uclamp_boost", "0"]
     ],
     "common_app": [
@@ -149,7 +148,7 @@
       "app": [
         ["@preset", "common_app"],
         ["@preset", "balance_active"],
-        ["@values", "max_freq", "#2100000", "#2300000", "#2800000"]
+        ["@values", "max_freq", "#2100000", "#2400000", "#2600000"]
       ],
       "game": [
         ["@ioctl", "/proc/easmgr/eas_ioctl",
@@ -178,7 +177,7 @@
         ["@preset", "common_app"],
         ["@preset", "fast_active"],
         ["$gpu_max_freq", "#10"],
-        ["@values", "max_freq", "#2400000", "#2800000", "#3400000"]
+        ["@values", "max_freq", "#2400000", "#3000000", "#3400000"]
       ],
       "game": [
         ["@ioctl", "/proc/easmgr/eas_ioctl",

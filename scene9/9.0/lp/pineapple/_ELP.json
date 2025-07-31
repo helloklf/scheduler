@@ -1,0 +1,60 @@
+{
+  "friendly": "一般应用",
+  "call": [
+    ["@fps", "0"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "state": {
+        "active": [
+          ["@preset", "powersave_active"],
+          ["@limiter", "p1"],
+          ["$sched_boost", "2"],
+          ["@fps", "0"]
+        ],
+        "inactive": [
+          ["@limiter", "idle"],
+          ["@preset", "powersave_inactive"],
+          ["@fps", "30"]
+        ]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "state": {
+        "active": [
+          ["@preset", "balance_active"],
+          ["$sched_boost", "2"]
+        ],
+        "inactive": [
+          ["@preset", "balance_inactive"]
+        ]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "state": {
+        "active": [
+          ["@preset", "performance_active"],
+          ["$sched_boost", "2"]
+        ],
+        "inactive": [
+          ["@preset", "performance_inactive"]
+        ]
+      }
+    },
+    {
+      "mode": ["*"],
+      "state": {
+        "active": [
+          ["@preset", "fast_active"],
+          ["$sched_boost", "1"]
+        ],
+        "inactive": [
+          ["@preset", "fast_inactive"]
+        ]
+      }
+    }
+  ]
+}

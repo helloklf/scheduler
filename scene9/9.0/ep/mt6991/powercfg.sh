@@ -62,15 +62,15 @@ if [[ $(grep /proc/perfmgr/perf_ioctl /proc/mounts) == '' ]]; then
 mount --bind /proc/perfmgr_touch_boost/ioctl_touch_boost /proc/perfmgr/perf_ioctl
 fi
 
-# echo 0 339000 2400000 > /proc/cpudvfs/cpufreq_debug
-# echo 4 622000 3300000 > /proc/cpudvfs/cpufreq_debug
-# echo 7 798000 3600000 > /proc/cpudvfs/cpufreq_debug
-# lock_value '339000 2400000 622000 3300000 798000 3600000' /proc/powerhal_cpu_ctrl/perfserv_freq
-# lock_value '3300000 3600000' /sys/module/mtk_fpsgo/parameters/cpus_limit
+umount /proc/powerhal_cpu_ctrl/perfserv_freq
+echo '339000 2400000 622000 3300000 798000 3600000' > /proc/powerhal_cpu_ctrl/perfserv_freq
+mount --bind /proc/powerhal_cpu_ctrl/adpf_enable /proc/powerhal_cpu_ctrl/perfserv_freq
+lock_value '3300000 3600000' /sys/module/mtk_fpsgo/parameters/cpus_limit
 # lock_value 1 /sys/module/mtk_fpsgo/parameters/better_perf
 
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_tid
+lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
 
 # echo 1 > /sys/module/migt/parameters/force_reset_runtime
 # lock_value 0 /sys/module/migt/parameters/enable_pkg_monitor

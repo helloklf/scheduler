@@ -24,10 +24,9 @@
   },
   "reset": [
     ["@governor", "sugov_ext"],
+    ["@preset", "common_active"],
     ["$perfmgr_enable", "#0"],
-    ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"],
-    ["$cpus_limit", "#3300000 3600000"],
-    ["$cpufreq", "#339000 2400000 622000 3300000 798000 3600000"]
+    ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"]
   ],
   "presets": {
     "min_freq": [
@@ -46,12 +45,12 @@
     ],
     "common_active": [],
     "common_inactive": [
-      ["@values", "min_freq", "339000", "622000", "798000"],
+      ["@values", "min_freq", "#339000", "#622000", "#798000"],
       ["$uclamp_boost", "0"]
     ],
     "common_app": [
       ["@values", "latency", "1000", "0", "1000", "0", "1000", "0"],
-      ["@cpuset", "0-3", "0-6", "0-6", "0-7"],
+      ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
       ["$gpu_max_freq", "#24"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
       ["/sys/module/mtk_fpsgo/parameters/p_perf", "0"],
@@ -168,7 +167,7 @@
     },
     "fast": {
       "call": [
-        ["@values", "max_freq", "#2400000", "#3000000", "#3500000"]
+        ["@values", "max_freq", "#2400000", "#3100000", "#3500000"]
       ],
       "app": [
         ["@preset", "common_app"],

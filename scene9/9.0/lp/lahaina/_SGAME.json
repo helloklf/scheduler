@@ -1,0 +1,48 @@
+{
+  "friendly": "王者荣耀/LOL",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@preset", "bw_low"]
+      ],
+      "fas": {
+        "freq": ["2150400", "1766400", "-3"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@preset", "bw_low"]
+      ],
+      "fas": {
+        "freq": ["2265600", "1996800", "-3"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "mode": "normal",
+        "freq": ["2496000", "1996800", "-3"]
+      },
+      "sensors": [
+        {
+          "sensor": "fps",
+          "interval": 8000,
+          "rules": [
+            { "threshold": [-1, 100], "enter_once": [["@preset", "bw_normal"]] },
+            { "threshold": [99,  75], "enter_once": [["@preset", "bw_normal"]] },
+            { "threshold": [70,  -1], "enter_once": [["@preset", "bw_low"]] }
+          ]
+        }
+      ]
+    },
+    {
+      "mode": ["*"],
+      "fas": {
+        "mode": "normal",
+        "freq": ["2841600", "2112000", "-3"]
+      }
+    }
+  ]
+}
