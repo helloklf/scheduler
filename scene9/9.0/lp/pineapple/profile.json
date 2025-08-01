@@ -269,9 +269,9 @@
         "packages": [
           "com.tencent.mobileqq",
           "com.tencent.tim",
-          "org.telegram.messenger"
+          "org.telegram.messenger",
+          "Music", "Reader", "ShortVideo", "Nav"
         ],
-        "categories": ["Music", "Reader", "ShortVideo", "Nav"],
         "import": "_ELP.json"
       },
       {
@@ -285,7 +285,7 @@
         ],
         "import": "_WhiteList.json"
       },
-      { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
+      { "friendly": "相机", "packages": ["Camera"], "import": "_Camera.json" },
       { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
     ],
     "games": [

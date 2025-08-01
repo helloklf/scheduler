@@ -288,9 +288,9 @@
       "packages": [
         "com.tencent.mobileqq",
         "com.tencent.tim",
-        "org.telegram.messenger"
+        "org.telegram.messenger",
+        "Music", "Reader", "ShortVideo", "Nav"
       ],
-      "categories": ["Music", "Reader", "ShortVideo"],
       "import": "_ELP.json"
     },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }

@@ -2,7 +2,6 @@
   "friendly": "游戏(Games)",
   "call": [
     ["@preset", "common_gaming"],
-    ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_perf_mode_ceiling_opp 2"],
     ["/sys/module/mtk_fpsgo/parameters/p_perf", "1"],
     ["/sys/module/mtk_fpsgo/parameters/better_perf", "1"],
     ["/sys/kernel/fpsgo/fbt/enable_ceiling", "#0"]

@@ -1,7 +1,7 @@
 [
   {
     "friendly": "原神",
-    "categories": ["GenshinImpact"],
+    "packages": ["GenshinImpact"],
     "cpuset": {
       "comm": {
         "7": ["UnityMain"],

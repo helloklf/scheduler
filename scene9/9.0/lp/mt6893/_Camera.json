@@ -1,6 +1,6 @@
 {
   "friendly": "相机",
-  "categories": ["Camera"],
+  "packages": ["Camera"],
   "call": [
     ["$util_max_top", "1024"],
     ["$util_max_bg", "100"],

@@ -35,16 +35,17 @@
         },
         "inactive": {
           "cpus": [
-            { "max": 1800000, "min": 500000, "margins": "150 1500000:90" },
-            { "max": 2100000, "min": 500000, "margins": "150 1800000:90" },
+            { "max": 1800000, "min": 500000,  "margins": "150 1500000:90" },
+            { "max": 2100000, "min": 500000,  "margins": "150 1800000:90" },
             { "max": 2100000, "min": 1000000, "margins": "150 1800000:90" }
           ]
         },
         "idle": {
+          "core_ctl": [2],
           "cpus": [
-            { "max": 1700000, "min": 500000, "margins": "150 1500000:90" },
-            { "max": 1800000, "min": 500000, "margins": "150 1600000:90" },
-            { "max": 1800000, "min": 1000000, "margins": "150 1600000:90" }
+            { "max": 1700000, "min": 400000,  "margins": "100 1500000:70" },
+            { "max": 1800000, "min": 400000,  "margins": "100 1600000:70" },
+            { "max": 1800000, "min": 1000000, "margins": "100 1600000:70" }
           ]
         }
       }
@@ -53,8 +54,7 @@
   "reset": [
     ["@governor", "sugov_ext"],
     ["@preset", "common_active"],
-    ["$perfmgr_enable", "#0"],
-    ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"]
+    ["$perfmgr_enable", "#0"]
   ],
   "presets": {
     "latency": [
@@ -65,10 +65,13 @@
       ["/sys/devices/system/cpu/cpufreq/policy7/sugov_ext/down_rate_limit_us"],
       ["/sys/devices/system/cpu/cpufreq/policy7/sugov_ext/up_rate_limit_us"]
     ],
-    "common_active": [],
+    "common_active": [
+      ["$ddr_freq_min", "^2068000000"]
+    ],
     "common_inactive": [
       ["@cpu_freqs_min", "300000", "400000", "600000"],
-      ["$uclamp_boost", "0"]
+      ["$uclamp_boost", "0"],
+      ["$ddr_freq_min", "757000000"]
     ],
     "common_app": [
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
@@ -205,6 +208,16 @@
     }
   },
   "apps": [
+    {
+      "friendly": "ELP",
+      "packages": [
+        "com.tencent.mobileqq",
+        "com.tencent.tim",
+        "org.telegram.messenger",
+        "Music", "Reader", "ShortVideo", "Nav"
+      ],
+      "import": "_ELP.json"
+    },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [

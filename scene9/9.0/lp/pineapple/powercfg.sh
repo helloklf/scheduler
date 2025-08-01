@@ -165,6 +165,7 @@ if [[ -d /proc/mz_info ]]; then
   bus_dcvs LLCC/soc:qcom,memlat:llcc:gold 1066000 300000
 fi
 
+
 echo 99 > /proc/sys/walt/walt_rtg_cfs_boost_prio # default 119
 echo 1 > /proc/sys/walt/sched_pipeline_util_thres # default 400
 echo 1 > /proc/sys/walt/walt_low_latency_task_threshold # default 325

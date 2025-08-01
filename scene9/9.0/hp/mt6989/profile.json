@@ -178,7 +178,7 @@
     }
   },
   "apps": [
-    { "friendly": "相机", "categories": ["Camera"], "import": "_Camera.json" },
+    { "friendly": "相机", "packages": ["Camera"], "import": "_Camera.json" },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [

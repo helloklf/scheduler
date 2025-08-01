@@ -9,7 +9,7 @@
       ],
       "inactive": [
         ["@preset", "powersave_inactive"],
-        ["@fps", "30"]
+        ["@fps", "15"]
       ]
     }
   }, {

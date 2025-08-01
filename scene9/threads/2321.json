@@ -56,7 +56,7 @@
   },
   {
     "friendly": "原神",
-    "categories": ["GenshinImpact"],
+    "packages": ["GenshinImpact"],
     "cpuset": {
       "unity_main": "2-4",
       "heavy_thread": "UnityGfx",

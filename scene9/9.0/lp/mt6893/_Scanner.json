@@ -1,6 +1,5 @@
 {
   "friendly": "扫码",
-  "categories": ["Scanner"],
   "call": [
     ["@limiter", "NONE"],
     ["$util_max_top", "1024"],

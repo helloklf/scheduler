@@ -4,10 +4,12 @@
     "mode": ["powersave"],
     "state": {
       "active": [
-        ["@preset", "powersave_active"]
+        ["@preset", "powersave_active"],
+        ["@fps", "0"]
       ],
       "inactive": [
-        ["@preset", "powersave_inactive"]
+        ["@preset", "powersave_inactive"],
+        ["@fps", "15"]
       ]
     }
   }, {

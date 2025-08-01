@@ -142,7 +142,7 @@ if [[ -d /proc/mz_info ]]; then
   # echo 0 > /proc/mz_thermal_boost/boost_enabled
   # echo 0 > /proc/mz_thermal_boost/sched_boost_enabled
   stop traced_probes
-  set_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
+  lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
 
   bus_dcvs DDR/soc:qcom,memlat:ddr:silver 1555000 547000
   bus_dcvs DDR/24091000.qcom,bwmon-ddr 2736000 547000
@@ -165,9 +165,17 @@ if [[ -d /proc/mz_info ]]; then
   bus_dcvs LLCC/soc:qcom,memlat:llcc:gold 1066000 300000
 fi
 
+
 echo 99 > /proc/sys/walt/walt_rtg_cfs_boost_prio # default 119
 echo 1 > /proc/sys/walt/sched_pipeline_util_thres # default 400
 echo 1 > /proc/sys/walt/walt_low_latency_task_threshold # default 325
 echo '' > /proc/sys/walt/sched_lib_name # default libunity.so, libfb.so
 echo '' > /proc/sys/walt/sched_lib_task # default UnityMain
 echo 1 > /proc/sys/walt/sched_disable_mvp_thres # default 3000
+
+for fi in /sys/devices/system/cpu/cpufreq/policy*/walt/hispeed_load
+do
+  if [[ -f $fi ]]; then
+    lock_value 90 $fi
+  fi
+done
