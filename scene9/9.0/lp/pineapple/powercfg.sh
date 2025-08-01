@@ -171,3 +171,10 @@ echo 1 > /proc/sys/walt/walt_low_latency_task_threshold # default 325
 echo '' > /proc/sys/walt/sched_lib_name # default libunity.so, libfb.so
 echo '' > /proc/sys/walt/sched_lib_task # default UnityMain
 echo 1 > /proc/sys/walt/sched_disable_mvp_thres # default 3000
+
+for fi in /sys/devices/system/cpu/cpufreq/policy*/walt/hispeed_load
+do
+  if [[ -f $fi ]]; then
+    lock_value 90 $fi
+  fi
+done

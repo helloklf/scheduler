@@ -22,7 +22,7 @@
     {
       "mode": ["powersave", "balance"],
       "call": [
-        ["@values", "max_freq", "1651200", "2054400", "2169600"],
+        ["@cpu_freqs_max", "1651200", "2054400", "2169600"],
         ["@limiter", "g3"]
       ],
       "fas": {
@@ -33,7 +33,7 @@
     {
       "mode": ["*"],
       "call": [
-        ["@values", "max_freq", "1804800", "2361600", "2400000"]
+        ["@cpu_freqs_max", "1804800", "2361600", "2400000"]
       ],
       "fas": {
         "use": "whitelist",

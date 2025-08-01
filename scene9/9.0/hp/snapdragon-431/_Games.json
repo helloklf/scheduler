@@ -39,7 +39,7 @@
       "mode": ["powersave"],
       "call": [
         ["@limiter", "g1"],
-        ["@values", "min_freq", "400000", "600000", "700000"]
+        ["@cpu_freqs_min", "400000", "600000", "700000"]
       ],
       "fas": {
         "use": "whitelist",
@@ -50,7 +50,7 @@
       "mode": ["balance"],
       "call": [
         ["@limiter", "g2"],
-        ["@values", "min_freq", "700000", "600000", "800000"]
+        ["@cpu_freqs_min", "700000", "600000", "800000"]
       ],
       "fas": {
         "use": "whitelist",
@@ -61,7 +61,7 @@
       "mode": ["performance"],
       "call": [
         ["@limiter", "g3"],
-        ["@values", "min_freq", "700000", "700000", "900000"]
+        ["@cpu_freqs_min", "700000", "700000", "900000"]
       ],
       "fas": {
         "use": "whitelist",
@@ -73,8 +73,8 @@
       "mode": ["*"],
       "call": [
         ["@limiter", "g4"],
-        ["@values", "min_freq", "1000000", "1100000", "1200000"],
-        ["@values", "max_freq", "2000000", "2800000", "3000000"]
+        ["@cpu_freqs_min", "1000000", "1100000", "1200000"],
+        ["@cpu_freqs_max", "2000000", "2800000", "3000000"]
       ],
       "fas": {
         "use": "whitelist",

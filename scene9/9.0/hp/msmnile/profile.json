@@ -93,19 +93,13 @@
       ["@values", "bw", "762", "7980", "2288", "15258"],
       ["@values", "bw", "762", "7980", "2288", "15258"]
     ],
-    "min_freq": [
-      ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
-    ],
-    "max_freq": [
-      ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
-    ],
     "common_active": [
       ["$cpu_max_0", "1785600"],
       ["@cpuset", "0-3", "0-3", "1-6", "0-7"],
       ["@sched_limit", "0 0", "0 1000", "0 1000"]
     ],
     "common_inactive": [
-      ["@values", "min_freq", "#300000", "#710400", "#825600"],
+      ["@cpu_freqs_min", "#300000", "#710400", "#825600"],
       ["@cpuset", "0-3", "0-3", "0-6", "0-7"],
       ["@values", "sched_boost", "0", "0", "0", "0"],
       ["@sched_limit", "0 0", "0 8000", "0 8000"]
@@ -123,7 +117,7 @@
     "powersave_active": [
       ["@preset", "common_active"],
       ["@limiter", "p1"],
-      ["@values", "min_freq", "#844800", "#710400", "#825600"]
+      ["@cpu_freqs_min", "#844800", "#710400", "#825600"]
     ],
     "powersave_inactive": [
       ["@preset", "common_inactive"],
@@ -133,7 +127,7 @@
     "balance_active": [
       ["@preset", "common_active"],
       ["@limiter", "p2"],
-      ["@values", "min_freq", "#1036800", "#1056000", "#1056000"]
+      ["@cpu_freqs_min", "#1036800", "#1056000", "#1056000"]
     ],
     "balance_inactive": [
       ["@limiter", "inactive"],
@@ -143,7 +137,7 @@
     "performance_active": [
       ["@limiter", "p3"],
       ["@preset", "common_active"],
-      ["@values", "min_freq", "#1036800", "#1056000", "#1171200"]
+      ["@cpu_freqs_min", "#1036800", "#1056000", "#1171200"]
     ],
     "performance_inactive": [
       ["@limiter", "p1"],
@@ -153,8 +147,8 @@
     "fast_active": [
       ["@limiter", "NONE"],
       ["@preset", "common_active"],
-      ["@values", "min_freq", "#1305600", "#1497600", "#1497600"],
-      ["@values", "max_freq", "#1785600", "#2419200", "#3200000"]
+      ["@cpu_freqs_min", "#1305600", "#1497600", "#1497600"],
+      ["@cpu_freqs_max", "#1785600", "#2419200", "#3200000"]
     ],
     "fast_inactive": [
       ["@preset", "common_inactive"],

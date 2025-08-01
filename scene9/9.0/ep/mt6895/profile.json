@@ -76,12 +76,6 @@
     ["$boost_affinity", "#0"]
   ],
   "presets": {
-    "min_freq": [
-      ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
-    ],
-    "max_freq": [
-      ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
-    ],
     "cpu7_on": [
       ["$core_ctl_7", "#1"],
       ["$max_cpus_cpu7", "#1"],
@@ -99,7 +93,7 @@
       ["@preset", "cpu7_on"]
     ],
     "common_inactive": [
-      ["@values", "min_freq", "450000", "200000", "500000"],
+      ["@cpu_freqs_min", "450000", "200000", "500000"],
       ["$ddr_freq_min", "#800000000"],
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"]
     ],
@@ -125,7 +119,7 @@
 
     "powersave_active": [
       ["@limiter", "p1"],
-      ["@values", "min_freq", "800000", "500000", "600000"],
+      ["@cpu_freqs_min", "800000", "500000", "600000"],
       ["$ddr_freq_min", "#2133000000"],
       ["@preset", "common_active"]
     ],
@@ -135,7 +129,7 @@
     ],
     "balance_active": [
       ["@limiter", "p2"],
-      ["@values", "min_freq", "1000000", "900000", "800000"],
+      ["@cpu_freqs_min", "1000000", "900000", "800000"],
       ["$ddr_freq_min", "#2133000000"],
       ["@preset", "common_active"]
     ],
@@ -145,7 +139,7 @@
     ],
     "performance_active": [
       ["@limiter", "p3"],
-      ["@values", "min_freq", "1200000", "1600000", "1600000"],
+      ["@cpu_freqs_min", "1200000", "1600000", "1600000"],
       ["$ddr_freq_min", "3200000000"],
       ["@preset", "common_active"]
     ],
@@ -154,8 +148,8 @@
       ["@preset", "common_inactive"]
     ],
     "fast_active": [
-      ["@values", "max_freq", "2000000", "2850000", "3100000"],
-      ["@values", "min_freq", "1200000", "1600000", "1600000"],
+      ["@cpu_freqs_max", "2000000", "2850000", "3100000"],
+      ["@cpu_freqs_min", "1200000", "1600000", "1600000"],
       ["$ddr_freq_min", "3200000000"],
       ["@preset", "common_active"]
     ],

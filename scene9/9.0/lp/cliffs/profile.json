@@ -69,16 +69,6 @@
     ["@governor", "uag", "walt"]
   ],
   "presets": {
-    "hispeed_freq": [
-      ["/sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_freq"],
-      ["/sys/devices/system/cpu/cpufreq/policy3/walt/hispeed_freq"],
-      ["/sys/devices/system/cpu/cpufreq/policy7/walt/hispeed_freq"]
-    ],
-    "hispeed_load": [
-      ["/sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_load"],
-      ["/sys/devices/system/cpu/cpufreq/policy3/walt/hispeed_load"],
-      ["/sys/devices/system/cpu/cpufreq/policy7/walt/hispeed_load"]
-    ],
     "latency": [
       ["/sys/devices/system/cpu/cpufreq/policy0/walt/down_rate_limit_us"],
       ["/sys/devices/system/cpu/cpufreq/policy0/walt/up_rate_limit_us"],
@@ -86,12 +76,6 @@
       ["/sys/devices/system/cpu/cpufreq/policy3/walt/up_rate_limit_us"],
       ["/sys/devices/system/cpu/cpufreq/policy7/walt/down_rate_limit_us"],
       ["/sys/devices/system/cpu/cpufreq/policy7/walt/up_rate_limit_us"]
-    ],
-    "min_freq": [
-      ["$cpu_min_0"], ["$cpu_min_3"], ["$cpu_min_7"]
-    ],
-    "max_freq": [
-      ["$cpu_max_0"], ["$cpu_max_3"], ["$cpu_max_7"]
     ],
     "cpu7_on": [
       ["$core_ctl_7", "1"],
@@ -116,9 +100,9 @@
     ],
     "common_inactive": [
       ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
-      ["@values", "min_freq", "307200", "480000", "480000"],
+      ["@cpu_freqs_min", "307200", "480000", "480000"],
       ["/dev/cpuset/top-app/sf/cpus", "0-6"],
-      ["@values", "hispeed_load", "90", "90", "90"]
+      ["@hispeed_load", "90", "90", "90"]
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],
@@ -160,67 +144,67 @@
     "powersave_active": [
       ["@preset", "common_active"],
       ["@limiter", "inactive"],
-      ["@values", "hispeed_freq", "787200", "787200", "787200"],
-      ["@values", "hispeed_load", "85", "85", "85"]
+      ["@hispeed_freq", "787200", "787200", "787200"],
+      ["@hispeed_load", "85", "85", "85"]
     ],
     "powersave_inactive": [
       ["@preset", "common_inactive"],
       ["@preset", "cpu7_off"],
       ["@limiter", "idle"],
-      ["@values", "hispeed_freq", "0", "0", "0"]
+      ["@hispeed_freq", "0", "0", "0"]
     ],
 
     "balance_active": [
       ["@preset", "common_active"],
       ["@limiter", "inactive"],
-      ["@values", "hispeed_freq", "1017600", "1056000", "1094400"],
-      ["@values", "hispeed_load", "90", "90", "90"]
+      ["@hispeed_freq", "1017600", "1056000", "1094400"],
+      ["@hispeed_load", "90", "90", "90"]
     ],
     "balance_inactive": [
       ["@preset", "common_inactive"],
       ["@preset", "cpu7_auto"],
       ["@limiter", "inactive"],
-      ["@values", "hispeed_freq", "787200", "787200", "787200"]
+      ["@hispeed_freq", "787200", "787200", "787200"]
     ],
 
     "performance_active": [
       ["@preset", "common_active"],
       ["@limiter", "inactive"],
-      ["@values", "hispeed_freq", "1017600", "1286400", "1209600"],
-      ["@values", "hispeed_load", "85", "85", "85"]
+      ["@hispeed_freq", "1017600", "1286400", "1209600"],
+      ["@hispeed_load", "85", "85", "85"]
     ],
     "performance_inactive": [
       ["@preset", "common_inactive"],
       ["@limiter", "inactive"],
-      ["@values", "hispeed_freq", "787200", "787200", "787200"]
+      ["@hispeed_freq", "787200", "787200", "787200"]
     ],
 
     "fast_active": [
       ["@preset", "common_active"],
       ["@limiter", "inactive"],
-      ["@values", "hispeed_freq", "1228800", "1401600", "1459200"],
-      ["@values", "hispeed_load", "85", "85", "85"]
+      ["@hispeed_freq", "1228800", "1401600", "1459200"],
+      ["@hispeed_load", "85", "85", "85"]
     ],
     "fast_inactive": [
       ["@preset", "common_inactive"],
       ["@limiter", "inactive"],
-      ["@values", "hispeed_freq", "787200", "787200", "787200"]
+      ["@hispeed_freq", "787200", "787200", "787200"]
     ],
     "freq_low": [
-      ["@values", "max_freq", "1708800", "#1708800", "#1766400"],
-      ["@values", "min_freq", "595200", "480000", "480000"]
+      ["@cpu_freqs_max", "1708800", "#1708800", "#1766400"],
+      ["@cpu_freqs_min", "595200", "480000", "480000"]
     ],
     "freq_middle": [
-      ["@values", "max_freq", "1708800", "#2073600", "#2150400"],
-      ["@values", "min_freq", "633600", "633600", "633600"]
+      ["@cpu_freqs_max", "1708800", "#2073600", "#2150400"],
+      ["@cpu_freqs_min", "633600", "633600", "633600"]
     ],
     "freq_high": [
-      ["@values", "max_freq", "1843200", "#2361600", "#2457600"],
-      ["@values", "min_freq", "787200", "787200", "787200"]
+      ["@cpu_freqs_max", "1843200", "#2361600", "#2457600"],
+      ["@cpu_freqs_min", "787200", "787200", "787200"]
     ],
     "freq_extreme": [
-      ["@values", "max_freq", "#1843200", "#2803200", "#2803200"],
-      ["@values", "min_freq", "1056000", "1056000", "1094400"]
+      ["@cpu_freqs_max", "#1843200", "#2803200", "#2803200"],
+      ["@cpu_freqs_min", "1056000", "1056000", "1094400"]
     ]
   },
   "schemes": {
@@ -235,7 +219,7 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@values", "hispeed_freq", "787200", "787200", "787200"],
+        ["@hispeed_freq", "787200", "787200", "787200"],
         ["@preset", "freq_low"],
         ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
@@ -251,7 +235,7 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@values", "hispeed_freq", "1017600", "1056000", "1094400"],
+        ["@hispeed_freq", "1017600", "1056000", "1094400"],
         ["@preset", "freq_middle"],
         ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
@@ -268,7 +252,7 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@values", "hispeed_freq", "1017600", "1286400", "1209600"],
+        ["@hispeed_freq", "1017600", "1286400", "1209600"],
         ["@preset", "freq_high"],
         ["$l3_boost", "#1593600"],
         ["$bus_ddr", "3187000"],
@@ -286,7 +270,7 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@values", "hispeed_freq", "1228800", "1401600", "1459200"],
+        ["@hispeed_freq", "1228800", "1401600", "1459200"],
         ["@preset", "freq_extreme"],
         ["$bus_ddr", "3187000"],
         ["$bus_ddr_min", "2736000"],

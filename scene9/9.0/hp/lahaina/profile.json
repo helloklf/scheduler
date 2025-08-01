@@ -75,19 +75,12 @@
       ["/sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_freq"],
       ["/sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq"]
     ],
-    "hispeed_load": [
-      ["/sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_load"],
-      ["/sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_load"],
-      ["/sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_load"]
-    ],
     "sched_config": [
       ["/proc/sys/kernel/sched_downmigrate"],
       ["/proc/sys/kernel/sched_upmigrate"],
       ["/proc/sys/kernel/sched_group_downmigrate"],
       ["/proc/sys/kernel/sched_group_upmigrate"]
     ],
-    "min_freq": [ ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"] ],
-    "max_freq": [ ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"] ],
     "cores_force_on": [
       ["$core_ctl_7", "1"], ["$max_cpus_cpu7", "#1"], ["$min_cpus_cpu7", "#1"], ["$core_ctl_7", "0"]
     ],
@@ -122,7 +115,7 @@
       ["@uclamp", "0.00~20.00", "0.00~max", "1.00~max"]
     ],
     "comm_inactive": [
-      ["@values", "min_freq", "#499200", "#710400", "#844800"],
+      ["@cpu_freqs_min", "#499200", "#710400", "#844800"],
       ["@repeat", "sched_config", "85 85", "95 95", "150", "400"],
       ["@sched_limit", "0 1000", "0 4000", "0 4000"],
       ["@cpuset", "0-2", "0-3", "0-6", "0-7"],
@@ -142,7 +135,7 @@
     "powersave_active": [
       ["@limiter", "p1"],
       ["@preset", "comm_active"],
-      ["@values", "min_freq", "1094400", "710400", "806400"],
+      ["@cpu_freqs_min", "1094400", "710400", "806400"],
       ["@repeat", "sched_config", "75 75", "85 85", "150", "400"]
     ],
     "powersave_inactive": [
@@ -154,7 +147,7 @@
     "balance_active": [
       ["@limiter", "p2"],
       ["@preset", "comm_active"],
-      ["@values", "min_freq", "1209600", "960000", "806400"],
+      ["@cpu_freqs_min", "1209600", "960000", "806400"],
       ["@repeat", "sched_config", "75 75", "85 85", "150", "400"]
     ],
     "balance_inactive": [
@@ -166,33 +159,33 @@
     "performance_active": [
       ["@limiter", "p3"],
       ["@preset", "comm_active"],
-      ["@values", "min_freq", "1209600", "960000", "806400"],
+      ["@cpu_freqs_min", "1209600", "960000", "806400"],
       ["@repeat", "sched_config", "70 70", "80 85", "150", "400"]
     ],
     "performance_inactive": [
       ["@limiter", "NONE"],
       ["@preset", "comm_inactive"],
-      ["@values", "max_freq", "1804800", "1996800", "2150400"]
+      ["@cpu_freqs_max", "1804800", "1996800", "2150400"]
     ],
 
     "fast_active": [
       ["@limiter", "p4"],
       ["@preset", "comm_active"],
-      ["@values", "min_freq", "1497600", "1075200", "1190400"],
+      ["@cpu_freqs_min", "1497600", "1075200", "1190400"],
       ["@repeat", "sched_config", "65 65", "75 78", "200", "400"]
     ],
     "fast_inactive": [
       ["@limiter", "NONE"],
       ["@preset", "comm_inactive"],
-      ["@values", "max_freq", "1804800", "2112000", "2265600"]
+      ["@cpu_freqs_max", "1804800", "2112000", "2265600"]
     ]
   },
   "schemes": {
     "powersave": {
       "call": [
         ["@preset", "powersave_active"],
-        ["@values", "hispeed_freq", "1209600", "960000", "960000"],
-        ["@values", "hispeed_load", "90", "90", "90"]
+        ["@hispeed_freq", "1209600", "960000", "960000"],
+        ["@hispeed_load", "90", "90", "90"]
       ],
       "app": [
         ["@preset", "common_app"],
@@ -201,8 +194,8 @@
       "game": [
         ["@preset", "bw_low"],
         ["@preset", "common_gaming"],
-        ["@values", "max_freq", "#1804800", "#1766400", "#1900800"],
-        ["@values", "min_freq", "#1209600", "#710400", "#844800"],
+        ["@cpu_freqs_max", "#1804800", "#1766400", "#1900800"],
+        ["@cpu_freqs_min", "#1209600", "#710400", "#844800"],
         ["$gpu_max_khz", "#608000000"],
         ["@sched_limit", "0 0", "0 4000", "0 4000"],
         ["/proc/game_opt/disable_cpufreq_limit", "0"]
@@ -211,8 +204,8 @@
     "balance": {
       "call": [
         ["@preset", "balance_active"],
-        ["@values", "hispeed_freq", "1497600", "1209600", "1190400"],
-        ["@values", "hispeed_load", "90", "90", "90"],
+        ["@hispeed_freq", "1497600", "1209600", "1190400"],
+        ["@hispeed_load", "90", "90", "90"],
         ["@preset", "bw_normal"]
       ],
       "app": [
@@ -220,8 +213,8 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@values", "max_freq", "#1804800", "#1996800", "#2265600"],
-        ["@values", "min_freq", "#1209600", "#710400", "#844800"],
+        ["@cpu_freqs_max", "#1804800", "#1996800", "#2265600"],
+        ["@cpu_freqs_min", "#1209600", "#710400", "#844800"],
         ["$gpu_max_khz", "#608000000"],
         ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
@@ -230,8 +223,8 @@
       "call": [
         ["@preset", "performance_active"],
         ["@sched_limit", "0 0", "0 0", "0 0"],
-        ["@values", "hispeed_freq", "1497600", "1440000", "1420800"],
-        ["@values", "hispeed_load", "87", "87", "87"],
+        ["@hispeed_freq", "1497600", "1440000", "1420800"],
+        ["@hispeed_load", "87", "87", "87"],
         ["@preset", "bw_normal"]
       ],
       "app": [
@@ -239,8 +232,8 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@values", "max_freq", "#1804800", "#2227200", "#2496000"],
-        ["@values", "min_freq", "#1209600", "#710400", "#844800"],
+        ["@cpu_freqs_max", "#1804800", "#2227200", "#2496000"],
+        ["@cpu_freqs_min", "#1209600", "#710400", "#844800"],
         ["$gpu_max_khz", "#738000000"],
         ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
@@ -248,16 +241,16 @@
     "fast": {
       "call": [
         ["@preset", "fast_active"],
-        ["@values", "hispeed_freq", "1497600", "1555200", "1670400"],
-        ["@values", "hispeed_load", "85", "85", "85"]
+        ["@hispeed_freq", "1497600", "1555200", "1670400"],
+        ["@hispeed_load", "85", "85", "85"]
       ],
       "app": [
         ["@preset", "common_app"]
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@values", "max_freq", "#1804800", "#2419200", "#2841600"],
-        ["@values", "min_freq", "#1401600", "#844800", "#1075200"],
+        ["@cpu_freqs_max", "#1804800", "#2419200", "#2841600"],
+        ["@cpu_freqs_min", "#1401600", "#844800", "#1075200"],
         ["$gpu_max_khz", "#778000000"],
         ["@preset", "bw_boost"],
         ["@preset", "lat_boost"],

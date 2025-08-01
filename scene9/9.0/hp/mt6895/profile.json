@@ -75,17 +75,11 @@
     ["$perfmgr_enable", "#0"]
   ],
   "presets": {
-    "min_freq": [
-      ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
-    ],
-    "max_freq": [
-      ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
-    ],
     "common_active": [
       ["$cpu_max_0", "2000000"]
     ],
     "common_inactive": [
-      ["@values", "min_freq", "450000", "200000", "500000"],
+      ["@cpu_freqs_min", "450000", "200000", "500000"],
       ["$ddr_freq_min", "#800000000"],
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"]
     ],
@@ -110,7 +104,7 @@
 
     "powersave_active": [
       ["@limiter", "p1"],
-      ["@values", "min_freq", "800000", "500000", "600000"],
+      ["@cpu_freqs_min", "800000", "500000", "600000"],
       ["$ddr_freq_min", "#2133000000"],
       ["@preset", "common_active"]
     ],
@@ -120,7 +114,7 @@
     ],
     "balance_active": [
       ["@limiter", "p2"],
-      ["@values", "min_freq", "1000000", "900000", "800000"],
+      ["@cpu_freqs_min", "1000000", "900000", "800000"],
       ["$ddr_freq_min", "#2133000000"],
       ["@preset", "common_active"]
     ],
@@ -130,7 +124,7 @@
     ],
     "performance_active": [
       ["@limiter3", "p3"],
-      ["@values", "min_freq", "1200000", "1600000", "1600000"],
+      ["@cpu_freqs_min", "1200000", "1600000", "1600000"],
       ["$ddr_freq_min", "#2133000000"],
       ["@preset", "common_active"]
     ],
@@ -140,8 +134,8 @@
     ],
     "fast_active": [
       ["@limiter", "NONE"],
-      ["@values", "max_freq", "2000000", "2850000", "3100000"],
-      ["@values", "min_freq", "1200000", "1600000", "1600000"],
+      ["@cpu_freqs_max", "2000000", "2850000", "3100000"],
+      ["@cpu_freqs_min", "1200000", "1600000", "1600000"],
       ["$ddr_freq_min", "3200000000"],
       ["@preset", "common_active"]
     ],
@@ -160,9 +154,9 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@values", "min_freq", "450000", "400000", "500000"],
-        ["@values", "max_freq", "#2000000", "#1900000", "#2350000"],
-        ["@values", "min_freq", "#500000", "#400000", "#500000"]
+        ["@cpu_freqs_min", "450000", "400000", "500000"],
+        ["@cpu_freqs_max", "#2000000", "#1900000", "#2350000"],
+        ["@cpu_freqs_min", "#500000", "#400000", "#500000"]
       ]
     },
     "balance": {
@@ -174,9 +168,9 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@values", "min_freq", "450000", "400000", "500000"],
-        ["@values", "max_freq", "#2000000", "#2250000", "#2650000"],
-        ["@values", "min_freq", "#500000", "#500000", "#600000"]
+        ["@cpu_freqs_min", "450000", "400000", "500000"],
+        ["@cpu_freqs_max", "#2000000", "#2250000", "#2650000"],
+        ["@cpu_freqs_min", "#500000", "#500000", "#600000"]
       ]
     },
     "performance": {
@@ -188,9 +182,9 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@values", "min_freq", "800000", "700000", "900000"],
-        ["@values", "max_freq", "#2000000", "#2650000", "#2850000"],
-        ["@values", "min_freq", "#800000", "#700000", "#900000"]
+        ["@cpu_freqs_min", "800000", "700000", "900000"],
+        ["@cpu_freqs_max", "#2000000", "#2650000", "#2850000"],
+        ["@cpu_freqs_min", "#800000", "#700000", "#900000"]
       ]
     },
     "fast": {
@@ -202,9 +196,9 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@values", "min_freq", "1600000", "1800000", "1800000"],
-        ["@values", "max_freq", "#2000000", "#2850000", "#3100000"],
-        ["@values", "min_freq", "#1600000", "#1600000", "#1800000"]
+        ["@cpu_freqs_min", "1600000", "1800000", "1800000"],
+        ["@cpu_freqs_max", "#2000000", "#2850000", "#3100000"],
+        ["@cpu_freqs_min", "#1600000", "#1600000", "#1800000"]
       ]
     }
   },

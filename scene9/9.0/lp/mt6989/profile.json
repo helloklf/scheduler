@@ -74,12 +74,6 @@
     ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"]
   ],
   "presets": {
-    "min_freq": [
-      ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
-    ],
-    "max_freq": [
-      ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
-    ],
     "latency": [
       ["/sys/devices/system/cpu/cpufreq/policy0/sugov_ext/down_rate_limit_us"],
       ["/sys/devices/system/cpu/cpufreq/policy0/sugov_ext/up_rate_limit_us"],
@@ -102,7 +96,7 @@
       ["$core_ctl_7", "#0"]
     ],
     "common_inactive": [
-      ["@values", "min_freq", "#300000", "#550000", "#600000"]
+      ["@cpu_freqs_min", "#300000", "#550000", "#600000"]
     ],
     "common_app": [
       ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],
@@ -137,7 +131,7 @@
     "powersave_active": [
       ["@limiter", "p1"],
       ["@preset", "common_active"],
-      ["@values", "min_freq", "400000", "#550000", "#600000"]
+      ["@cpu_freqs_min", "400000", "#550000", "#600000"]
     ],
     "powersave_inactive": [
       ["@limiter", "idle"],
@@ -146,7 +140,7 @@
     "balance_active": [
       ["@limiter", "p2"],
       ["@preset", "common_active"],
-      ["@values", "min_freq", "500000", "550000", "700000"],
+      ["@cpu_freqs_min", "500000", "550000", "700000"],
       ["$uclamp_boost", "20"]
     ],
     "balance_inactive": [
@@ -155,7 +149,7 @@
     ],
     "performance_active": [
       ["@limiter", "p3"],
-      ["@values", "min_freq", "700000", "700000", "700000"],
+      ["@cpu_freqs_min", "700000", "700000", "700000"],
       ["@preset", "common_active"],
       ["$uclamp_boost", "30"]
     ],
@@ -166,7 +160,7 @@
     "fast_active": [
       ["@limiter", "p4"],
       ["@preset", "common_active"],
-      ["@values", "min_freq", "700000", "700000", "700000"],
+      ["@cpu_freqs_min", "700000", "700000", "700000"],
       ["$uclamp_boost", "40"]
     ],
     "fast_inactive": [

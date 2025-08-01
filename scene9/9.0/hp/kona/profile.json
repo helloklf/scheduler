@@ -67,16 +67,6 @@
     ["@values", "input_boost", "0:0 4:0 7:0", "0", "0"]
   ],
   "presets": {
-    "hispeed_freq": [
-      ["/sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq"],
-      ["/sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_freq"],
-      ["/sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq"]
-    ],
-    "hispeed_load": [
-      ["/sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_load"],
-      ["/sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_load"],
-      ["/sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_load"]
-    ],
     "target_loads": [
       ["/sys/devices/system/cpu/cpu0/cpufreq/schedutil/target_loads"],
       ["/sys/devices/system/cpu/cpu4/cpufreq/schedutil/target_loads"],
@@ -93,12 +83,6 @@
       ["/proc/sys/kernel/sched_boost"],
       ["/dev/stune/top-app/schedtune.prefer_idle"],
       ["/dev/stune/top-app/schedtune.boost"]
-    ],
-    "min_freq": [
-      ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
-    ],
-    "max_freq": [
-      ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
     ],
     "cores_force_on": [
       ["$core_ctl_7", "1"],
@@ -148,10 +132,10 @@
       ["$cpu_max_0", "1804800"],
       ["@preset", "cores_force_on"],
       ["@sched_limit", "0 0", "0 0", "0 0"],
-      ["@values", "hispeed_load", "80", "80", "80"]
+      ["@hispeed_load", "80", "80", "80"]
     ],
     "common_inactive": [
-      ["@values", "min_freq", "#300000", "#710400", "#844800"],
+      ["@cpu_freqs_min", "#300000", "#710400", "#844800"],
       ["@repeat", "sched_config", "85 85", "95 95", "85", "100"],
       ["@sched_limit", "0 0", "0 4000", "0 4000"],
       ["@values", "target_loads", "90", "90", "90"]
@@ -170,7 +154,7 @@
     "powersave_active": [
       ["@preset", "common_active"],
       ["@limiter", "p1"],
-      ["@values", "min_freq", "1075200", "1056000", "1075200"],
+      ["@cpu_freqs_min", "1075200", "1056000", "1075200"],
       ["@repeat", "sched_config", "50 50", "65 65", "80", "90"]
     ],
     "powersave_inactive": [
@@ -181,7 +165,7 @@
     "balance_active": [
       ["@preset", "common_active"],
       ["@limiter", "p2"],
-      ["@values", "min_freq", "1209600", "1286400", "1075200"],
+      ["@cpu_freqs_min", "1209600", "1286400", "1075200"],
       ["@repeat", "sched_config", "45 45", "60 60", "80", "90"]
     ],
     "balance_inactive": [
@@ -192,7 +176,7 @@
     "performance_active": [
       ["@preset", "common_active"],
       ["@limiter", "p3"],
-      ["@values", "min_freq", "1497600", "1440000", "1401600"],
+      ["@cpu_freqs_min", "1497600", "1440000", "1401600"],
       ["@repeat", "sched_config", "45 45", "60 60", "80", "90"]
     ],
     "performance_inactive": [
@@ -203,8 +187,8 @@
     "fast_active": [
       ["@preset", "common_active"],
       ["@limiter", "NONE"],
-      ["@values", "min_freq", "1612800", "1766400", "1747200"],
-      ["@values", "max_freq", "1804800", "2419200", "3200000"],
+      ["@cpu_freqs_min", "1612800", "1766400", "1747200"],
+      ["@cpu_freqs_max", "1804800", "2419200", "3200000"],
       ["@repeat", "sched_config", "40 40", "55 55", "80", "90"]
     ],
     "fast_inactive": [
@@ -216,7 +200,7 @@
     "powersave": {
       "call": [
         ["@preset", "powersave_active"],
-        ["@values", "hispeed_freq", "1612800", "1478400", "1632000"]
+        ["@hispeed_freq", "1612800", "1478400", "1632000"]
       ],
       "app": [
         ["@preset", "common_app"],
@@ -237,7 +221,7 @@
     "balance": {
       "call": [
         ["@preset", "balance_active"],
-        ["@values", "hispeed_freq", "1516800", "1574400", "1747200"]
+        ["@hispeed_freq", "1516800", "1574400", "1747200"]
       ],
       "app": [
         ["@preset", "common_app"],
@@ -258,7 +242,7 @@
     "performance": {
       "call": [
         ["@preset", "performance_active"],
-        ["@values", "hispeed_freq", "1612800", "1670400", "1747200"]
+        ["@hispeed_freq", "1612800", "1670400", "1747200"]
       ],
       "app": [
         ["@preset", "common_app"],
@@ -279,7 +263,7 @@
     "fast": {
       "call": [
         ["@preset", "fast_active"],
-        ["@values", "hispeed_freq", "1612800", "1766400", "1747200"]
+        ["@hispeed_freq", "1612800", "1766400", "1747200"]
       ],
       "app": [
         ["@preset", "common_app"],

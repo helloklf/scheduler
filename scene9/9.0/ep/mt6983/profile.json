@@ -92,12 +92,6 @@
     ["$pandor_perfmgr_enable", "#0"]
   ],
   "presets": {
-    "min_freq": [
-      ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
-    ],
-    "max_freq": [
-      ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
-    ],
     "cpu7_on": [
       ["$core_ctl_7", "#1"],
       ["$max_cpus_cpu7", "#1"],
@@ -109,7 +103,7 @@
       ["$sched_boost", "1"]
     ],
     "common_inactive": [
-      ["@values", "min_freq", "200000", "400000", "1300000"],
+      ["@cpu_freqs_min", "200000", "400000", "1300000"],
       ["$gpu_min_opp", "99"],
       ["/sys/module/ged/parameters/gpu_cust_boost_freq",  "0"],
       ["$sched_boost", "0"],
@@ -139,7 +133,7 @@
       ["@limiter", "p1"],
       ["@preset", "common_active"],
       ["$ddr_freq_min", "#1866000000"],
-      ["@values", "min_freq", "400000", "700000", "1300000"]
+      ["@cpu_freqs_min", "400000", "700000", "1300000"]
     ],
     "powersave_inactive": [
       ["@limiter", "idle"],
@@ -149,7 +143,7 @@
       ["@limiter", "p2"],
       ["@preset", "common_active"],
       ["$ddr_freq_min", "#2667000000"],
-      ["@values", "min_freq", "500000", "700000", "1300000"]
+      ["@cpu_freqs_min", "500000", "700000", "1300000"]
     ],
     "balance_inactive": [
       ["@limiter", "inactive"],
@@ -157,7 +151,7 @@
     ],
     "performance_active": [
       ["@limiter", "p3"],
-      ["@values", "min_freq", "700000", "900000", "1300000"],
+      ["@cpu_freqs_min", "700000", "900000", "1300000"],
       ["@preset", "common_active"],
       ["$ddr_freq_min", "#320000000"]
     ],
@@ -169,7 +163,7 @@
       ["@limiter", "p4"],
       ["@preset", "common_active"],
       ["$ddr_freq_min", "#320000000"],
-      ["@values", "min_freq", "1000000", "1000000", "1300000"]
+      ["@cpu_freqs_min", "1000000", "1000000", "1300000"]
     ],
     "fast_inactive": [
       ["@limiter", "p3"],

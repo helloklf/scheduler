@@ -100,16 +100,6 @@
     ["@governor", "walt", "schedutil"]
   ],
   "presets": {
-    "hispeed_freq": [
-      ["/sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_freq"],
-      ["/sys/devices/system/cpu/cpufreq/policy4/walt/hispeed_freq"],
-      ["/sys/devices/system/cpu/cpufreq/policy7/walt/hispeed_freq"]
-    ],
-    "hispeed_load": [
-      ["/sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_load"],
-      ["/sys/devices/system/cpu/cpufreq/policy4/walt/hispeed_load"],
-      ["/sys/devices/system/cpu/cpufreq/policy7/walt/hispeed_load"]
-    ],
     "latency": [
       ["/sys/devices/system/cpu/cpufreq/policy0/walt/down_rate_limit_us"],
       ["/sys/devices/system/cpu/cpufreq/policy0/walt/up_rate_limit_us"],
@@ -122,12 +112,6 @@
       ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_loads"],
       ["/sys/devices/system/cpu/cpu4/cpufreq/walt/target_loads"],
       ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_loads"]
-    ],
-    "min_freq": [
-      ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
-    ],
-    "max_freq": [
-      ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
     ],
     "cpu7_on": [
       ["$core_ctl_7", "#1"],
@@ -150,13 +134,13 @@
       ["@preset", "cpu7_on"],
       ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],
       ["@uclamp", "0.00~max", "0.00~max", "0.5~max"],
-      ["@values", "hispeed_load", "87", "87", "87"]
+      ["@hispeed_load", "87", "87", "87"]
     ],
     "common_inactive": [
-      ["@values", "min_freq", "307200", "633600", "787200"],
+      ["@cpu_freqs_min", "307200", "633600", "787200"],
       ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
       ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
-      ["@values", "hispeed_load", "95", "95", "95"]
+      ["@hispeed_load", "95", "95", "95"]
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],
@@ -172,7 +156,7 @@
     ],
 
     "powersave_active": [
-      ["@values", "min_freq", "556800", "633600", "787200"],
+      ["@cpu_freqs_min", "556800", "633600", "787200"],
       ["@preset", "common_active"],
       ["@limiter", "p1"]
     ],
@@ -183,7 +167,7 @@
     ],
 
     "balance_active": [
-      ["@values", "min_freq", "556800", "633600", "787200"],
+      ["@cpu_freqs_min", "556800", "633600", "787200"],
       ["@preset", "common_active"],
       ["@limiter", "p2"]
     ],
@@ -222,9 +206,9 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@values", "hispeed_freq", "1056000", "0", "0"],
-        ["@values", "max_freq", "1670400", "1996800", "2131200"],
-        ["@values", "min_freq", "307200", "633600", "787200"],
+        ["@hispeed_freq", "1056000", "0", "0"],
+        ["@cpu_freqs_max", "1670400", "1996800", "2131200"],
+        ["@cpu_freqs_min", "307200", "633600", "787200"],
         ["$l3_boost", "#0"],
         ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
         ["@limiter", "g1"],
@@ -241,9 +225,9 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@values", "hispeed_freq", "1228800", "1113600", "1171200"],
-        ["@values", "max_freq", "1670400", "2457600", "2476800"],
-        ["@values", "min_freq", "691200", "633600", "787200"],
+        ["@hispeed_freq", "1228800", "1113600", "1171200"],
+        ["@cpu_freqs_max", "1670400", "2457600", "2476800"],
+        ["@cpu_freqs_min", "691200", "633600", "787200"],
         ["$l3_boost", "#0"],
         ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
         ["@limiter", "g2"],
@@ -260,8 +244,8 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@values", "max_freq", "1804800", "2572800", "2707200"],
-        ["@values", "min_freq", "691200", "768000", "921600"],
+        ["@cpu_freqs_max", "1804800", "2572800", "2707200"],
+        ["@cpu_freqs_min", "691200", "768000", "921600"],
         ["$l3_boost", "#0"],
         ["@limiter", "g3"],
         ["/proc/game_opt/disable_cpufreq_limit", "#1"]
@@ -282,8 +266,8 @@
         ["@preset", "common_gaming"],
         ["$bus_ddr", "3196000"],
         ["$bus_ddr_min", "2736000"],
-        ["@values", "max_freq", "2200000", "2850000", "3200000"],
-        ["@values", "min_freq",  "900000", "1200000", "1200000"],
+        ["@cpu_freqs_max", "2200000", "2850000", "3200000"],
+        ["@cpu_freqs_min",  "900000", "1200000", "1200000"],
         ["/proc/game_opt/disable_cpufreq_limit", "#1"]
       ]
     }

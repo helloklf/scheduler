@@ -57,12 +57,6 @@
     ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"]
   ],
   "presets": {
-    "min_freq": [
-      ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
-    ],
-    "max_freq": [
-      ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
-    ],
     "latency": [
       ["/sys/devices/system/cpu/cpufreq/policy0/sugov_ext/down_rate_limit_us"],
       ["/sys/devices/system/cpu/cpufreq/policy0/sugov_ext/up_rate_limit_us"],
@@ -73,7 +67,7 @@
     ],
     "common_active": [],
     "common_inactive": [
-      ["@values", "min_freq", "300000", "400000", "600000"],
+      ["@cpu_freqs_min", "300000", "400000", "600000"],
       ["$uclamp_boost", "0"]
     ],
     "common_app": [
@@ -112,7 +106,7 @@
 
     "powersave_active": [
       ["@preset", "common_active"],
-      ["@values", "min_freq", "^500000", "^600000", "^1000000"],
+      ["@cpu_freqs_min", "^500000", "^600000", "^1000000"],
       ["$uclamp_boost", "20"],
       ["@ioctl", "/proc/easmgr/eas_ioctl",
         "0x40046716", "15", "0x40046718", "15", "0x4004671A", "15"]
@@ -124,7 +118,7 @@
     ],
     "balance_active": [
       ["@preset", "common_active"],
-      ["@values", "min_freq", "^600000", "^700000", "^1000000"],
+      ["@cpu_freqs_min", "^600000", "^700000", "^1000000"],
       ["$uclamp_boost", "30"],
       ["@ioctl", "/proc/easmgr/eas_ioctl",
         "0x40046716", "20", "0x40046718", "18", "0x4004671A", "18"]
@@ -135,7 +129,7 @@
         "0x40046716", "12", "0x40046718", "10", "0x4004671A", "10"]
     ],
     "performance_active": [
-      ["@values", "min_freq", "^700000", "^900000", "^1200000"],
+      ["@cpu_freqs_min", "^700000", "^900000", "^1200000"],
       ["@preset", "common_active"],
       ["$uclamp_boost", "50"],
       ["@ioctl", "/proc/easmgr/eas_ioctl",
@@ -148,7 +142,7 @@
     ],
     "fast_active": [
       ["@preset", "common_active"],
-      ["@values", "min_freq", "^600000", "^900000", "^1200000"],
+      ["@cpu_freqs_min", "^600000", "^900000", "^1200000"],
       ["$uclamp_boost", "50"],
       ["@ioctl", "/proc/easmgr/eas_ioctl",
         "0x40046716", "25", "0x40046718", "25", "0x4004671A", "25"]
@@ -164,7 +158,7 @@
       "app": [
         ["@preset", "common_app"],
         ["@preset", "powersave_active"],
-        ["@values", "max_freq", "1800000", "1800000", "2100000"]
+        ["@cpu_freqs_max", "1800000", "1800000", "2100000"]
       ],
       "game": [
         ["@ioctl", "/proc/easmgr/eas_ioctl",
@@ -176,7 +170,7 @@
       "app": [
         ["@preset", "common_app"],
         ["@preset", "balance_active"],
-        ["@values", "max_freq", "#2100000", "#2500000", "#2600000"]
+        ["@cpu_freqs_max", "#2100000", "#2500000", "#2600000"]
       ],
       "game": [
         ["@ioctl", "/proc/easmgr/eas_ioctl",
@@ -188,7 +182,7 @@
       "app": [
         ["@preset", "common_app"],
         ["@preset", "performance_active"],
-        ["@values", "max_freq", "#2100000", "#2800000", "#3000000"]
+        ["@cpu_freqs_max", "#2100000", "#2800000", "#3000000"]
       ],
       "game": [
         ["@ioctl", "/proc/easmgr/eas_ioctl",
@@ -201,7 +195,7 @@
         ["@preset", "common_app"],
         ["@preset", "fast_active"],
         ["$gpu_max_freq", "#10"],
-        ["@values", "max_freq", "#2100000", "#3000000", "#3250000"]
+        ["@cpu_freqs_max", "#2100000", "#3000000", "#3250000"]
       ],
       "game": [
         ["@ioctl", "/proc/easmgr/eas_ioctl",

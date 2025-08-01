@@ -78,12 +78,6 @@
     ["$cpus_limit", "#3000000 3350000"]
   ],
   "presets": {
-    "min_freq": [
-      ["$cpu_min_0"], ["$cpu_min_4"], ["$cpu_min_7"]
-    ],
-    "max_freq": [
-      ["$cpu_max_0"], ["$cpu_max_4"], ["$cpu_max_7"]
-    ],
     "latency": [
       ["/sys/devices/system/cpu/cpufreq/policy0/sugov_ext/down_rate_limit_us"],
       ["/sys/devices/system/cpu/cpufreq/policy0/sugov_ext/up_rate_limit_us"],
@@ -117,7 +111,7 @@
       ["@preset", "cpu7_on"]
     ],
     "common_inactive": [
-      ["@values", "min_freq", "220000", "400000", "1200000"]
+      ["@cpu_freqs_min", "220000", "400000", "1200000"]
     ],
     "common_app": [
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
@@ -143,7 +137,7 @@
     "powersave_active": [
       ["@limiter", "p1"],
       ["@preset", "common_active"],
-      ["@values", "min_freq", "500000", "700000", "1200000"],
+      ["@cpu_freqs_min", "500000", "700000", "1200000"],
       ["@values", "target_loads",
         "0 1200000|1 1200000|2 1700000",
         "0 15|1 15|2 15"
@@ -160,7 +154,7 @@
     "balance_active": [
       ["@limiter", "p2"],
       ["@preset", "common_active"],
-      ["@values", "min_freq", "500000", "700000", "1200000"],
+      ["@cpu_freqs_min", "500000", "700000", "1200000"],
       ["@values", "target_loads",
         "0 1200000|1 1600000|2 1900000",
         "0 15|1 15|2 15"
@@ -177,7 +171,7 @@
     "performance_active": [
       ["@limiter", "p3"],
       ["@preset", "common_active"],
-      ["@values", "min_freq", "700000", "900000", "1200000"],
+      ["@cpu_freqs_min", "700000", "900000", "1200000"],
       ["@values", "target_loads",
         "0 1500000|1 2100000|2 2100000",
         "0 15|1 15|2 15"
@@ -194,7 +188,7 @@
     "fast_active": [
       ["@limiter", "p4"],
       ["@preset", "common_active"],
-      ["@values", "min_freq", "1000000", "1000000", "1200000"],
+      ["@cpu_freqs_min", "1000000", "1000000", "1200000"],
       ["@values", "target_loads",
         "0 1500000|1 2100000|2 2100000",
         "0 15|1 15|2 15"
@@ -210,23 +204,23 @@
     ],
     "freq_low": [
       ["$cpufreq", "0 220000 1800000|4 400000 2300000|7 1200000 2400000"],
-      ["@values", "max_freq", "1700000", "2100000", "2100000"],
-      ["@values", "min_freq", "220000", "400000", "1200000"]
+      ["@cpu_freqs_max", "1700000", "2100000", "2100000"],
+      ["@cpu_freqs_min", "220000", "400000", "1200000"]
     ],
     "freq_middle": [
       ["$cpufreq", "0 220000 1700000|4 400000 2600000|7 1200000 2600000"],
-      ["@values", "max_freq", "1700000", "#2400000", "#2400000"],
-      ["@values", "min_freq", "220000", "400000", "1200000"]
+      ["@cpu_freqs_max", "1700000", "#2400000", "#2400000"],
+      ["@cpu_freqs_min", "220000", "400000", "1200000"]
     ],
     "freq_high": [
       ["$cpufreq", "0 220000 1800000|4 400000 2800000|7 1200000 2800000"],
-      ["@values", "max_freq", "1700000", "#2650000", "#2800000"],
-      ["@values", "min_freq", "220000", "400000", "1200000"]
+      ["@cpu_freqs_max", "1700000", "#2650000", "#2800000"],
+      ["@cpu_freqs_min", "220000", "400000", "1200000"]
     ],
     "freq_extreme": [
       ["$cpufreq", "0 220000 2000000|4 400000 2850000|7 1200000 3050000"],
-      ["@values", "max_freq", "#2000000", "#2850000", "#3050000"],
-      ["@values", "min_freq", "220000", "400000", "1200000"]
+      ["@cpu_freqs_max", "#2000000", "#2850000", "#3050000"],
+      ["@cpu_freqs_min", "220000", "400000", "1200000"]
     ]
   },
   "schemes": {

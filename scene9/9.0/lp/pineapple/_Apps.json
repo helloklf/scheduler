@@ -5,11 +5,9 @@
     "state": {
       "active": [
         ["@preset", "powersave_active"],
-        ["@limiter", "p1"],
         ["$sched_boost", "2"]
       ],
       "inactive": [
-        ["@limiter", "idle"],
         ["@preset", "powersave_inactive"]
       ]
     }
