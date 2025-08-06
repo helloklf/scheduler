@@ -109,7 +109,7 @@
       "common_gaming": [
         ["@preset", "common_active"],
         ["@limiter", "NONE"],
-        ["@cpuset", "0-1", "0-6", "0-6", "2-7"],
+        ["@cpuset", "0-1", "0-6", "0-6", "0-7"],
         ["$sched_boost", "0"],
         ["@hispeed_load", "90", "90", "90", "90"],
         ["@values", "latency", "2000", "2000", "2000", "2000", "2000", "2000", "2000", "2000"],
@@ -256,17 +256,6 @@
       }
     },
     "apps": [
-      {
-        "friendly": "白名单",
-        "packages": [
-          "com.termux",
-          "xyz.chatboxapp.chatbox",
-          "com.danemadsen.maid",
-          "com.freakurl.apps.ollama",
-          "io.github.xororz.localdream"
-        ],
-        "import": "_WhiteList.json"
-      },
       { "friendly": "相机", "packages": ["Camera"], "import": "_Camera.json" },
       { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
     ],

@@ -5,10 +5,12 @@
     "state": {
       "active": [
         ["@preset", "powersave_active"],
-        ["@values", "sched_boost", "1", "0", "0", "0"]
+        ["@values", "sched_boost", "1", "0", "0", "0"],
+        ["@cpuset", "1"]
       ],
       "inactive": [
-        ["@preset", "powersave_inactive"]
+        ["@preset", "powersave_inactive"],
+        ["@cpuset", "0-3"]
       ]
     }
   }, {
