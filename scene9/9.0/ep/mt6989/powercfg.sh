@@ -70,6 +70,7 @@ echo '300000 2000000 550000 2850000 600000 3250000' > /proc/powerhal_cpu_ctrl/pe
 mount --bind /proc/powerhal_cpu_ctrl/adpf_enable /proc/powerhal_cpu_ctrl/perfserv_freq
 # lock_value '3000000 3350000' /sys/module/mtk_fpsgo/parameters/cpus_limit
 # lock_value 1 /sys/module/mtk_fpsgo/parameters/better_perf
+stop touch_boost
 
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_tid
@@ -119,7 +120,6 @@ if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; th
   echo 0 > /proc/powerhal_cpu_ctrl/adpf_enable
   stop thermal_core
   stop thermald
-  stop touch_boost
   if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
     lock_value "MAX_TTJ 95000 90000 90000" /sys/kernel/thermal/max_ttj
     lock_value "TTJ 90000 90000 90000" /sys/kernel/thermal/ttj

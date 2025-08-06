@@ -131,7 +131,8 @@
       ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
       ["$gpu_max_khz", "#680000000"],
       ["$mod_percent", "105"],
-      ["$bus_qos", "0"]
+      ["$bus_qos", "0"],
+      ["$bus_ddr", "2736000"]
     ],
     "common_gaming": [
       ["@limiter", "NONE"],
@@ -140,7 +141,8 @@
       ["$bus_qos", "0"],
       ["/proc/game_opt/disable_cpufreq_limit", "0"],
       ["$mod_percent", "95"],
-      ["@gesture", "PAUSE"]
+      ["@gesture", "PAUSE"],
+      ["$bus_ddr", "3196000"]
     ],
 
     "powersave_active": [
@@ -232,8 +234,7 @@
   "schemes": {
     "powersave": {
       "call": [
-        ["@preset", "powersave_active"],
-        ["$bus_ddr", "2736000"]
+        ["@preset", "powersave_active"]
       ],
       "app": [
         ["@preset", "common_app"]
@@ -249,8 +250,7 @@
     },
     "balance": {
       "call": [
-        ["@preset", "balance_active"],
-        ["$bus_ddr", "2736000"]
+        ["@preset", "balance_active"]
       ],
       "app": [
         ["@preset", "common_app"]
@@ -266,8 +266,7 @@
     },
     "performance": {
       "call": [
-        ["@preset", "performance_active"],
-        ["$bus_ddr", "2736000"]
+        ["@preset", "performance_active"]
       ],
       "app": [
         ["@preset", "common_app"]
@@ -289,10 +288,7 @@
       ],
       "game": [
         ["$perfmgr_enable", "#0"],
-        ["$l3_boost", "#1804800"],
         ["@preset", "common_gaming"],
-        ["$bus_ddr", "3196000"],
-        ["$bus_ddr_min", "2736000"],
         ["@cpu_freqs_min", "1056000", "998400", "1171200"],
         ["@cpu_freqs_max", "1804800", "2745600", "2995200"]
       ]

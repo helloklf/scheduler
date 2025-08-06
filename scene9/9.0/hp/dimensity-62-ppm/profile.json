@@ -1,17 +1,9 @@
 {
-  "platform": "mt6768",
-  "platform_name": "MTK P65&G80&G85",
   "alias": {
     "min_cpu_freq": "/proc/ppm/policy/hard_userlimit_min_cpu_freq",
     "max_cpu_freq": "/proc/ppm/policy/hard_userlimit_max_cpu_freq",
     "gpu_dvfs_margin": "/sys/kernel/ged/hal/timer_base_dvfs_margin",
     "gpu_max_opp": "/sys/kernel/ged/hal/custom_upbound_gpu_freq",
-    "util_max_top": "/dev/stune/top-app/schedtune.util.max",
-    "util_max_fg": "/dev/stune/foreground/schedtune.util.max",
-    "util_max_bg": "/dev/stune/background/schedtune.util.max",
-    "util_min_top": "/dev/stune/top-app/schedtune.util.min",
-    "util_min_fg": "/dev/stune/foreground/schedtune.util.min",
-    "util_min_bg": "/dev/stune/background/schedtune.util.min",
     "deisolation": "/sys/devices/system/cpu/sched/set_sched_deisolation",
     "setolation": "/sys/devices/system/cpu/sched/set_sched_isolation",
     "fpsgo_enable": "/sys/kernel/fpsgo/common/fpsgo_enable",
@@ -53,7 +45,6 @@
     "common_active": [
       ["$max_cpu_freq", "0 2000000"],
       ["$deisolation", "4|5|6|7"],
-      ["@preset", "util_active"],
       ["$stune_top_boost", "10"]
     ],
     "common_inactive": [

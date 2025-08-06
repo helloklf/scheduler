@@ -48,6 +48,7 @@
     {
       "mode": ["*"],
       "call": [
+        ["@governor", "schedutil", "sugov_ext"],
         ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 2"],
         ["@values", "max_freq", "#2000000", "#3000000", "#3500000"],
         ["@values", "min_freq", "800000", "900000", "1200000"]

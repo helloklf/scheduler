@@ -1,59 +1,17 @@
 [
   {
-    "friendly": "鸣潮",
-    "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
-    "cpuset": {
-      "main_thread": "0-5",
-      "comm": {
-        "7": ["GameThread", "mali-compile"],
-        "4-7": ["FChunk"],
-        "4-5": ["RenderThread"],
-        "6": ["RHIThread"],
-        "0-7": ["AsyncLoading"],
-        "0-3": ["mali-cpu", "V8", "Backgro"]
-      },
-      "other": "0-5"
-    }
-  },
-  {
-    "friendly": "原神",
-    "packages": ["GenshinImpact"],
-    "cpuset": {
-      "unity_main": "6",
-      "heavy_thread": "UnityGfx",
-      "heavy_cores": "7",
-      "comm": {
-        "4-5": ["UnityMultiRende", "Worker Thread", "UnityPreload"],
-        "0-5": ["FMOD", "UnityChoreograp", "NativeThread"]
-      },
-      "other": "0-5"
-    }
-  },
-  {
-    "friendly": "星穹铁道",
-    "packages": ["com.miHoYo.hkrpg", "com.miHoYo.hkrpg.bilibili", "com.HoYoverse.hkrpgoversea"],
-    "cpuset": {
-      "unity_main": "7",
-      "heavy_thread": "UnityGfx",
-      "heavy_cores": "6",
-      "comm": {
-        "4-5": ["NativeThread", "Job.Worker"]
-      },
-      "other": "0-5"
-    }
-  },
-  {
     "friendly": "王者荣耀/LOLM",
     "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece", "com.garena.game.kgtw", "com.tencent.lolm"],
     "cpuset": {
       "unity_main": "7",
       "heavy_thread": "UnityGfx;Thread-",
-      "heavy_cores": "6",
+      "heavy_cores": "4-6",
+      "ni": ["UnityMain", "HeavyThread", "CoreThread"],
       "comm": {
         "4-7": ["UnityPreload", "IL2CPP", "btm_"],
-        "4-5": ["CoreThread", "Apollo-", "NativeThread", "UnityChoreo", "Worker Thread", "Job.worker"]
+        "4-6": ["CoreThread", "Apollo-", "NativeThread", "UnityChoreo", "Worker Thread", "Job.worker"]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {
@@ -62,6 +20,7 @@
     "cpuset": {
       "heavy_thread": "Thread-",
       "heavy_cores": "7",
+      "ni": ["RenderThread", "HeavyThread", "RHIThread"],
       "comm": {
         "4-6": ["RenderThread", "RHIThread", "TaskGraphNP", "MainThread"]
       },
@@ -74,12 +33,12 @@
     "cpuset": {
       "heavy_thread": "UEGameThread;Thread-",
       "heavy_cores": "7",
+      "ni": ["UEGameThread", "HeavyThread", "RenderThread"],
       "comm": {
         "7": ["UEGameThread"],
-        "6": ["RenderThread"],
-        "3-5": ["MainThread", "TaskGraph", "NativeThread"]
+        "4-6": ["RenderThread", "MainThread", "TaskGraph", "NativeThread"]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {
@@ -88,51 +47,11 @@
     "cpuset": {
       "unity_main": "7",
       "heavy_thread": "UnityGfx;Thread-",
-      "heavy_cores": "6",
+      "heavy_cores": "4-6",
+      "ni": ["UnityGfx", "HeavyThread"],
       "comm": {
         "7": "IL2CPP",
-        "4-5": ["UnityGfxRender", "UnityChoreograp", "mhp.speedmobile", "GThreadManager"]
-      },
-      "other": "0-5"
-    }
-  },
-  {
-    "friendly": "幻塔",
-    "packages": [
-      "com.dw.h5yvzr.yt",
-      "com.pwrd.hotta.laohu",
-      "com.hottagames.hotta.bilibili",
-      "com.hottagames.hotta.mi"
-    ],
-    "cpuset": {
-      "comm": {
-        "7": ["GameThread"],
-        "4-6": ["RenderThread", "RHIThread"]
-      },
-      "other": "0-7"
-    }
-  },
-  {
-    "friendly": "COD Mobile",
-    "packages": ["com.activision.callofduty.warzone"],
-    "cpuset": {
-      "heavy_cores": "7",
-      "heavy_thread": "Main",
-      "comm": {
-        "6": ["Backend"],
-        "4-5": ["Worker"]
-      },
-      "other": "0-5"
-    }
-  },
-  {
-    "friendly": "Fortnite",
-    "packages": ["com.epicgames.fortnite"],
-    "cpuset": {
-      "comm": {
-        "7": ["GameThread"],
-        "4-6": ["RHIThread"],
-        "0-6": ["AudioMi", "Foreground", "Background"]
+        "4-6": ["UnityGfx", "UnityChoreograp", "mhp.speedmobile", "GThreadManager"]
       },
       "other": "0-6"
     }
@@ -143,14 +62,15 @@
     "cpuset": {
       "unity_main": "7",
       "heavy_thread": "UnityGfx;Thread-",
-      "heavy_cores": "6",
-      "main_thread": "4-5",
+      "heavy_cores": "4-6",
+      "main_thread": "4-6",
+      "ni": ["UnityMain", "HeavyThread"],
       "comm": {
-        "4-5": [
+        "4-6": [
           "Unity", "Thread-", "NativeThread", "Loading"
         ]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {
@@ -159,11 +79,11 @@
     "cpuset": {
       "heavy_thread": "Thread-",
       "heavy_cores": "7",
+      "ni": ["Render", "HeavyThread", "RHIThread"],
       "comm": {
-        "4-5":["Render"],
-        "6": ["RHIThread"]
+        "4-6":["Render", "RHIThread"]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {
@@ -195,28 +115,16 @@
     }
   },
   {
-    "friendly": "卡拉彼丘",
-    "packages": ["com.idreamsky.klbqm"],
-    "cpuset": {
-      "heavy_thread": "Thread-",
-      "heavy_cores": "7",
-      "comm": {
-        "6":["Render"]
-      },
-      "other": "0-5"
-    }
-  },
-  {
     "friendly": "学园偶像大师",
     "packages": ["com.bandainamcoent.idolmaster_gakuen"],
     "cpuset": {
       "unity_main": "7",
       "heavy_thread": "UnityGfx;Thread-",
-      "heavy_cores": "6",
+      "heavy_cores": "4-6",
       "comm": {
         "4-6": ["Thread-", "Job."]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {

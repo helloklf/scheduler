@@ -1,23 +1,35 @@
 {
-    "friendly": "All",
-    "packages": ["*"],
-    "limiters": {
-        "g1": {
-            "cpus": [
-                { "max": 2200000, "min": 1000000, "margins": "300", "mode": "full" },
-                { "max": 2400000, "min": 1000000, "margins": "300", "mode": "full" }
-            ]
-        }
+  "friendly": "游戏",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "use": "whitelist",
+        "_freq": ["2400000", "2000000"]
+      }
     },
-    "call": [
-        ["@limiter", "NONE"]
-    ],
-    "modes": [
-        {
-            "mode": ["powersave"],
-            "call": [
-                ["@limiter", "g1"]
-            ]
-        }
-    ]
+    {
+      "mode": ["balance"],
+      "fas": {
+        "use": "whitelist",
+        "_freq": ["2600000", "2100000"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "mode": "fps",
+        "use": "whitelist",
+        "_freq": ["2700000", "2200000"]
+      }
+    },
+    {
+      "mode": ["fast"],
+      "fas": {
+        "mode": "fps",
+        "use": "whitelist",
+        "_freq": ["2800000", "2200000"]
+      }
+    }
+  ]
 }

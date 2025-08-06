@@ -1,6 +1,4 @@
 {
-  "platform": "taro",
-  "platform_name": "8+GEN1",
   "alias": {
     "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
     "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
@@ -16,65 +14,30 @@
       "limiters": {
         "p1": {
           "cpus": [
-            { "max": 1600000, "min": 700000, "margins": "250" },
-            { "max": 2000000, "min": 800000, "margins": "270" },
-            { "max": 2200000, "min": 1000000, "margins": "250" }
+            { "max": 1700000, "min": 900000,  "margins": "300" },
+            { "max": 2100000, "min": 800000,  "margins": "270" },
+            { "max": 2100000, "min": 1000000, "margins": "250" }
           ]
         },
         "p2": {
           "cpus": [
-            { "max": 1800000, "min": 1100000, "margins": "280" },
-            { "max": 2450000, "min": 1700000, "margins": "280" },
-            { "max": 2500000, "min": 1700000, "margins": "280" }
+            { "max": 1800000, "min": 1200000, "margins": "300" },
+            { "max": 2400000, "min": 1700000, "margins": "280" },
+            { "max": 2400000, "min": 1700000, "margins": "280" }
           ]
         },
         "p3": {
           "cpus": [
-            { "max": 1800000, "min": 1500000, "margins": "280" },
-            { "max": 2600000, "min": 2250000, "margins": "280" },
-            { "max": 2850000, "min": 2350000, "margins": "280" }
+            { "max": 2000000, "min": 1500000, "margins": "300" },
+            { "max": 2600000, "min": 2100000, "margins": "280" },
+            { "max": 2850000, "min": 2100000, "margins": "280" }
           ]
         },
         "p4": {
           "cpus": [
             { "max": 2000000, "min": 1600000, "margins": "200" },
-            { "max": 2850000, "min": 2550000, "margins": "200" },
-            { "max": 3000000, "min": 2550000, "margins": "200" }
-          ]
-        },
-        "g0": {
-          "cpus": [
-            { "max": 1600000, "min": 800000, "margins": "200" },
-            { "max": 2000000, "min": 600000, "margins": "300" },
-            { "max": 2000000, "min": 700000, "margins": "300" }
-          ]
-        },
-        "g1": {
-          "cpus": [
-            { "max": 1600000, "min": 1100000, "margins": "200" },
-            { "max": 2200000, "min": 800000, "margins": "300", "mode": "full" },
-            { "max": 2300000, "min": 800000, "margins": "300", "mode": "full" }
-          ]
-        },
-        "g2": {
-          "cpus": [
-            { "max": 1800000, "min": 1100000, "margins": "250" },
-            { "max": 2500000, "min": 1100000, "margins": "300", "mode": "full" },
-            { "max": 2500000, "min": 1100000, "margins": "300", "mode": "full" }
-          ]
-        },
-        "g3": {
-          "cpus": [
-            { "max": 2000000, "min": 1500000, "margins": "250" },
-            { "max": 2750000, "min": 2100000, "margins": "300" },
-            { "max": 2850000, "min": 2100000, "margins": "300" }
-          ]
-        },
-        "g4": {
-          "cpus": [
-            null,
-            null,
-            { "max": 2700000, "min": 2700000, "margins": "300" }
+            { "max": 3000000, "min": 2400000, "margins": "200" },
+            { "max": 3000000, "min": 2400000, "margins": "200" }
           ]
         },
         "inactive": {
@@ -162,7 +125,6 @@
     ],
     "powersave_inactive": [
       ["@preset", "common_inactive"],
-      ["@preset", "cpu7_off"],
       ["@limiter", "idle"]
     ],
 
@@ -203,16 +165,6 @@
       ],
       "app": [
         ["@preset", "common_app"]
-      ],
-      "game": [
-        ["@preset", "common_gaming"],
-        ["@hispeed_freq", "1056000", "0", "0"],
-        ["@cpu_freqs_max", "1670400", "1996800", "2131200"],
-        ["@cpu_freqs_min", "307200", "633600", "787200"],
-        ["$l3_boost", "#0"],
-        ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
-        ["@limiter", "g1"],
-        ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
     },
     "balance": {
@@ -222,16 +174,6 @@
       ],
       "app": [
         ["@preset", "common_app"]
-      ],
-      "game": [
-        ["@preset", "common_gaming"],
-        ["@hispeed_freq", "1228800", "1113600", "1171200"],
-        ["@cpu_freqs_max", "1670400", "2457600", "2476800"],
-        ["@cpu_freqs_min", "691200", "633600", "787200"],
-        ["$l3_boost", "#0"],
-        ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
-        ["@limiter", "g2"],
-        ["/proc/game_opt/disable_cpufreq_limit", "0"]
       ]
     },
     "performance": {
@@ -241,14 +183,6 @@
       ],
       "app": [
         ["@preset", "common_app"]
-      ],
-      "game": [
-        ["@preset", "common_gaming"],
-        ["@cpu_freqs_max", "1804800", "2572800", "2707200"],
-        ["@cpu_freqs_min", "691200", "768000", "921600"],
-        ["$l3_boost", "#0"],
-        ["@limiter", "g3"],
-        ["/proc/game_opt/disable_cpufreq_limit", "#1"]
       ]
     },
     "fast": {
@@ -258,27 +192,15 @@
       "app": [
         ["@preset", "common_app"],
         ["$bus_ddr", "3196000"]
-      ],
-      "game": [
-        ["@limiter", "NONE"],
-        ["$perfmgr_enable", "#0"],
-        ["$l3_boost", "#1708800"],
-        ["@preset", "common_gaming"],
-        ["$bus_ddr", "3196000"],
-        ["$bus_ddr_min", "2736000"],
-        ["@cpu_freqs_max", "2200000", "2850000", "3200000"],
-        ["@cpu_freqs_min",  "900000", "1200000", "1200000"],
-        ["/proc/game_opt/disable_cpufreq_limit", "#1"]
       ]
     }
   },
   "apps": [
-    { "friendly": "相机", "packages": ["Camera"], "import": "_Camera.json" },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [
     {
-      "friendly": "All",
+      "friendly": "游戏",
       "packages": ["*"],
       "import": "_Games.json"
     }

@@ -37,10 +37,13 @@
       ["/sys/devices/system/cpu/cpufreq/policy7/sugov_ext/down_rate_limit_us"],
       ["/sys/devices/system/cpu/cpufreq/policy7/sugov_ext/up_rate_limit_us"]
     ],
-    "common_active": [],
+    "common_active": [
+      ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "2067000000"]
+    ],
     "common_inactive": [
       ["@cpu_freqs_min", "#339000", "#622000", "#798000"],
-      ["$uclamp_boost", "0"]
+      ["$uclamp_boost", "0"],
+      ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"]
     ],
     "common_app": [
       ["@values", "latency", "1000", "0", "1000", "0", "1000", "0"],
@@ -63,7 +66,8 @@
       ["@gesture", "PAUSE"],
       ["$gpu_max_freq", "#7"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "#0"],
-      ["$uclamp_boost", "0"]
+      ["$uclamp_boost", "0"],
+      ["@ddr_l3_booster"]
     ],
     "limiter_off": [
       ["/proc/game_opt/disable_cpufreq_limit", "#1"],

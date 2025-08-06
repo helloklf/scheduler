@@ -67,8 +67,10 @@ lock_value '220000 2000000 400000 3000000 1200000 3350000' /proc/powerhal_cpu_ct
 lock_value '3000000 3350000' /sys/module/mtk_fpsgo/parameters/cpus_limit
 lock_value 0 /sys/module/cpufreq_bouncing/parameters/enable
 lock_value 0 /sys/module/mtk_fpsgo/parameters/cfp_onoff
+chmod 444 /proc/cpumgr/core_ioctl
 
 metis=/sys/module/metis/parameters
+echo 1 > $metis/reset_clus_affinity_uidlist
 for file in $metis/*enable*; do
   lock_value 0 $file
 done

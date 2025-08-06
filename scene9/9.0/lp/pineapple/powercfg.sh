@@ -102,7 +102,6 @@ fi
 # OnePlus
 if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
-  chmod 444 /proc/game_opt/rt_info
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
   # hide_value /proc/game_opt/disable_cpufreq_limit 1
   lock_value 0 /sys/module/cpufreq_bouncing/parameters/enable

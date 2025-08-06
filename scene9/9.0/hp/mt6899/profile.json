@@ -4,6 +4,8 @@
   "alias": {
     "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
     "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
+    "max_cpus_cpu4": "/sys/devices/system/cpu/cpu4/core_ctl/max_cpus",
+    "min_cpus_cpu4": "/sys/devices/system/cpu/cpu4/core_ctl/min_cpus",
     "ddr_freq_min": "/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq",
     "ddr_freq_cust": "/sys/class/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq",
     "ged_kpi": "/sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled",
@@ -54,7 +56,15 @@
   "reset": [
     ["@governor", "sugov_ext"],
     ["@preset", "common_active"],
-    ["$perfmgr_enable", "#0"]
+    ["$perfmgr_enable", "#0"],
+    ["$core_ctl_7", "#1"],
+    ["$max_cpus_cpu7", "#1"],
+    ["$min_cpus_cpu7", "#1"],
+    ["$core_ctl_7", "#0"],
+    ["$core_ctl_4", "#1"],
+    ["$max_cpus_cpu4", "#3"],
+    ["$min_cpus_cpu4", "#3"],
+    ["$core_ctl_4", "#0"]
   ],
   "presets": {
     "latency": [
