@@ -154,7 +154,7 @@
       "app": [
         ["@preset", "common_app"],
         ["@preset", "performance_active"],
-        ["@cpu_freqs_max", "#2400000", "#2600000", "#3200000"]
+        ["@cpu_freqs_max", "#2400000", "#2600000", "#3000000"]
       ],
       "game": [
         ["@ioctl", "/proc/easmgr/eas_ioctl",

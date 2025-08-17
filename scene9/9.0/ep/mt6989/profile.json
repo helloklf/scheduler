@@ -20,7 +20,16 @@
   "features": {
     "limiter": {
       "ddr_boost": false,
-      "limiters": {}
+      "limiters": {
+        "gboost": {
+          "mode": "boost",
+          "cpus": [
+            { "max": 1600000, "min": 500000, "margins": "200" },
+            { "max": 2100000, "min": 500000, "margins": "200" },
+            { "max": 2100000, "min": 500000, "margins": "200" }
+          ]
+        }
+      }
     }
   },
   "reset": [
@@ -61,15 +70,14 @@
     ],
     "common_gaming": [
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
-      ["@limiter", "NONE"],
+      ["@limiter", "gboost"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["@gesture", "PAUSE"],
       ["$gpu_max_freq", "#9"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "#0"],
       ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "1"],
       ["$uclamp_boost", "0"],
-      ["$core_ctl", "#0"],
-      ["@ddr_l3_booster"]
+      ["$core_ctl", "#0"]
     ],
 
     "powersave_active": [
@@ -150,7 +158,7 @@
       "app": [
         ["@preset", "common_app"],
         ["@preset", "powersave_active"],
-        ["@cpu_freqs_max", "#1800000", "#1900000", "#2300000"]
+        ["@cpu_freqs_max", "#1800000", "#2100000", "#2300000"]
       ]
     },
     "balance": {

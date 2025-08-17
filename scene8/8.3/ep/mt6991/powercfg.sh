@@ -185,10 +185,6 @@ stop_services(){
 # stop_services
 
 gpu_ulimit(){
-  # release gpu 1.6ghz
-  for i in $(seq 0 9); do
-    echo "switch $i 0 0" > /proc/gpufreq/limit_table
-  done
   # gpt index temp opp
   echo "enable" > /sys/kernel/thermal/gpt
   echo "gpt 1 85000 7" > /sys/kernel/thermal/gpt

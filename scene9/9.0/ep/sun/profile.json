@@ -212,6 +212,18 @@
           ["@preset", "limiter_off"],
           ["@hispeed_freq", "1152000", "1401600"]
         ]
+      },
+      "pedestal": {
+        "app": [
+          ["@preset", "common_app"],
+          ["@cpu_freqs_max", "3072000", "#4320000"],
+          ["@preset", "fast_active"]
+        ],
+        "game": [
+          ["@preset", "common_gaming"],
+          ["@preset", "limiter_off"],
+          ["@hispeed_freq", "1152000", "1401600"]
+        ]
       }
     },
     "apps": [

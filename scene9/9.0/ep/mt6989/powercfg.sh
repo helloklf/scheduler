@@ -167,3 +167,5 @@ done
 
 # k70u default 2
 # resetprop --delete persist.sys.advanced_visual_release
+
+echo stop 1 > /sys/devices/platform/low-battery-throttling/low_battery_protect_stop

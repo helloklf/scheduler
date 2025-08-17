@@ -3,18 +3,12 @@
     "friendly": "鸣潮",
     "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
     "cpuset": {
-      "cgroup": {
-        "sf": "0-3,5-6",
-        "fg": "0-3,5-6",
-        "sys-bg": "0-3,5-6"
-      },
-      "main_thread": "3,5-6",
+      "main_thread": "3-6",
       "comm": {
         "7": ["GameThread"],
-        "4": ["RHIThread"],
-        "3,5-6": ["TaskGraphHP", "NativeThread", "RenderThread", "FChunk"]
+        "3-6": ["RHIThread", "TaskGraphHP", "NativeThread", "RenderThread", "FChunk"]
       },
-      "other": "0-3,5-6"
+      "other": "0-6"
     }
   },
   {
