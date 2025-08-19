@@ -4,21 +4,18 @@
     {
       "mode": ["powersave"],
       "fas": {
-        "limiters": "p1",
         "freq": ["2150400", "1881600"]
       }
     },
     {
       "mode": ["balance"],
       "fas": {
-        "limiters": "p2",
         "freq": ["2380800", "1996800"]
       }
     },
     {
       "mode": ["performance"],
       "fas": {
-        "limiters": "p3",
         "mode": "normal",
         "freq": ["2496000", "2112000"]
       }
@@ -26,7 +23,6 @@
     {
       "mode": ["fast"],
       "fas": {
-        "limiters": "p4",
         "mode": "normal",
         "freq": ["2496000", "2227200"]
       }
