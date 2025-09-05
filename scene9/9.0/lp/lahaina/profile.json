@@ -138,7 +138,7 @@
     ],
 
     "powersave_active": [
-      ["@limiter", "p1:cpu4"],
+      ["@limiter", "p1"],
       ["@preset", "comm_active"],
       ["@cpu_freqs_min", "806400", "710400", "806400"],
       ["@repeat", "sched_config", "75 75", "85 85", "150", "400"],

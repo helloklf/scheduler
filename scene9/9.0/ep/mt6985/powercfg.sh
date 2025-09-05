@@ -81,3 +81,23 @@ fi
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_tid
 lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
+
+set_cpuset(){
+  pgrep -f $1 | while read pid; do
+    echo $pid > /dev/cpuset/$2/cgroup.procs
+    ls /proc/$pid/task | while read tid
+    do
+      echo $tid > /dev/cpuset/$2/tasks
+    done
+  done
+}
+
+mkdir /dev/cpuset/top-app/7
+echo 7 > /dev/cpuset/top-app/7/cpus
+echo 0 > /dev/cpuset/top-app/7/mems
+
+set_cpuset vendor.qti.hardware.display.composer-service 'foreground'
+set_cpuset surfaceflinger 'foreground'
+set_cpuset touch_report 'foreground'
+set_cpuset system_server 'foreground'
+set_cpuset update_engine 'top-app/7'

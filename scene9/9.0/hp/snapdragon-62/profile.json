@@ -131,12 +131,12 @@
 
     "balance_active": [
       ["@preset", "common_active"],
-      ["@limiter", "p2:cpu0", "p2:cpu6"],
+      ["@limiter", "NONE"],
       ["@cpu_freqs_min", "1209600", "960000"],
       ["@repeat", "sched_config", "65", "75", "150", "400"]
     ],
     "balance_inactive": [
-      ["@limiter", "NONE"],
+      ["@limiter", "p2"],
       ["@preset", "common_inactive"],
       ["@cpu_freqs_min", "300000", "500000"],
       ["@repeat", "sched_config", "85", "95", "150", "400"]
@@ -144,26 +144,28 @@
 
     "performance_active": [
       ["@preset", "common_active"],
-      ["@limiter", "p3:cpu0", "p3:cpu6"],
+      ["@limiter", "NONE"],
+      ["@cpu_freqs_max", "#2200000", "#2450000"],
       ["@cpu_freqs_min", "1401600", "1075200"],
       ["@repeat", "sched_config", "62", "70", "150", "400"]
     ],
     "performance_inactive": [
-      ["@limiter", "NONE"],
       ["@preset", "common_inactive"],
+      ["@limiter", "p3"],
       ["@cpu_freqs_min", "1209600", "710400"],
       ["@repeat", "sched_config", "85", "95", "150", "400"]
     ],
 
     "fast_active": [
       ["@preset", "common_active"],
-      ["@limiter", "p4:cpu0", "p4:cpu6"],
+      ["@limiter", "NONE"],
+      ["@cpu_freqs_max", "#2200000", "#2850000"],
       ["@cpu_freqs_min", "1497600", "1440000"],
       ["@repeat", "sched_config", "62 62", "70 78", "300", "400"]
     ],
     "fast_inactive": [
-      ["@limiter", "NONE"],
       ["@preset", "common_inactive"],
+      ["@limiter", "p4"],
       ["@cpu_freqs_min", "1209600", "710400"],
       ["@repeat", "sched_config", "85", "95", "150", "400"]
     ]

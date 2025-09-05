@@ -135,8 +135,7 @@
     ],
     "balance_inactive": [
       ["@preset", "common_inactive"],
-      ["@limiter", "inactive"],
-      ["@preset", "cpu7_auto"]
+      ["@limiter", "inactive"]
     ],
 
     "performance_active": [

@@ -83,7 +83,8 @@
       ["@governor", "uag", "walt"],
       ["@preset", "limiter_off"],
       ["/sys/devices/system/cpu/bus_dcvs/L3/boost_freq", "364800"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/boost_freq", "547000"]
+      ["/sys/devices/system/cpu/bus_dcvs/DDR/boost_freq", "547000"],
+      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000", "1000", "1000"]
     ],
     "presets": { 
       "latency": [

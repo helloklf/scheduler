@@ -41,7 +41,8 @@
       ["@msm_reset"],
       ["@governor", "walt"],
       ["/sys/devices/system/cpu/bus_dcvs/L3/boost_freq", "364800"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/boost_freq", "547000"]
+      ["/sys/devices/system/cpu/bus_dcvs/DDR/boost_freq", "547000"],
+      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000", "1000", "1000"]
     ],
     "presets": {  
       "latency": [
@@ -102,7 +103,6 @@
       "common_app": [
         ["$perfmgr_enable", "0"],
         ["@cpuset", "0-1", "0-6", "2-6", "2-7"],
-        ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000", "1000", "1000"],
         ["$mod_percent", "125"]
       ],
       "common_gaming": [
@@ -110,7 +110,6 @@
         ["@limiter", "NONE"],
         ["@cpuset", "0-1", "0-6", "0-6", "2-7"],
         ["$sched_boost", "0"],
-        ["@values", "latency", "2000", "2000", "2000", "2000", "2000", "2000", "2000", "2000"],
         ["$mod_percent", "100"]
       ],
 

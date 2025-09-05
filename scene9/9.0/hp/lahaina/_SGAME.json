@@ -1,46 +1,11 @@
 {
   "friendly": "王者荣耀/LOL",
-  "limiters": {
-    "sgame0": {
-      "mode": "full",
-      "cpus": [
-        { "max": 1612800, "min": 1094400, "margins": "350 1497600:200" },
-        { "max": 1670400, "min": 710400, "margins": "200 1075200:150" },
-        { "max": 1900800, "min": 844800, "margins": "265 1420800:150" }
-      ]
-    },
-    "sgame1": {
-      "mode": "full",
-      "cpus": [
-        { "max": 1612800, "min": 1094400, "margins": "350 1497600:200" },
-        { "max": 1996800, "min": 844800, "margins": "200 1209600:180 1440000:150" },
-        { "max": 2150400, "min": 1075200, "margins": "265 1420800:200 178560:180" }
-      ]
-    },
-    "sgame2": {
-      "mode": "full",
-      "cpus": [
-        { "max": 1612800, "min": 1094400, "margins": "350 1497600:200" },
-        { "max": 1996800, "min": 960000, "margins": "220 1555200:170 1766400:120" },
-        { "max": 2265600, "min": 1075200, "margins": "265 1670400:200 1900800:160" }
-      ]
-    },
-    "sgame3": {
-      "mode": "full",
-      "cpus": [
-        null,
-        { "max": 2112000, "min": 1075200, "margins": "240 1555200:200 1766400:160" },
-        { "max": 2496000, "min": 1420800, "margins": "265 178560:210 2265600:160" }
-      ]
-    }
-  },
   "modes": [
     {
       "mode": ["powersave"],
       "call": [
         ["@preset", "bw_low"],
-        ["$cpu_max_0", "1612800"],
-        ["@limiter", "sgame0"]
+        ["$cpu_max_0", "1612800"]
       ],
       "fas": {
         "use": "whitelist",
@@ -50,8 +15,7 @@
     {
       "mode": ["balance"],
       "call": [
-        ["@preset", "bw_low"],
-        ["@limiter", "sgame1"]
+        ["@preset", "bw_low"]
       ],
       "fas": {
         "use": "whitelist",
@@ -60,9 +24,6 @@
     },
     {
       "mode": ["performance"],
-      "call": [
-        ["@limiter", "sgame2"]
-      ],
       "sensors": [
         {
           "sensor": "fps",
@@ -83,7 +44,6 @@
     {
       "mode": ["*"],
       "call": [
-        ["@limiter", "sgame3"],
         ["@preset", "bw_normal"]
       ],
       "fas": {
