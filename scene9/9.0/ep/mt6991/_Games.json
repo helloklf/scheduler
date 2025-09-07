@@ -36,7 +36,7 @@
       "call": [
         ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling -1"],
         ["@cpu_freqs_max", "#2000000", "#3000000", "#3400000"],
-        ["@cpu_freqs_min", "800000", "800000", "900000"]
+        ["@cpu_freqs_min", "800000", "800000", "1100000"]
       ]
     },
     {
