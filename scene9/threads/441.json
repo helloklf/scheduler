@@ -5,14 +5,14 @@
     "cpuset": {
       "rr": ["GameThread", "RenderThread", "RHIThread"],
       "ni": ["GameThread", "RenderThread", "RHIThread"],
-      "main_thread": "0-5",
+      "main_thread": "0-6",
       "comm": {
-        "7": ["GameThread", "mali-compile"],
-        "4-7": ["FChunk"],
-        "4-6": ["RenderThread", "RHIThread"],
+        "8": ["GameThread", "mali-compile"],
+        "4-8": ["FChunk"],
+        "4-7": ["RenderThread", "RHIThread"],
         "0-3": ["mali-cpu", "V8", "Backgro"]
       },
-      "other": "0-6"
+      "other": "0-7"
     }
   },
   {
@@ -21,15 +21,15 @@
     "cpuset": {
       "rr": ["UnityMain", "UnityGfx", "UnityMultiRende"],
       "ni": ["UnityMain", "UnityGfx", "UnityMultiRende"],
-      "unity_main": "7",
+      "unity_main": "8",
       "heavy_thread": "UnityGfx",
-      "heavy_cores": "6",
+      "heavy_cores": "7",
       "comm": {
-        "0-7": ["IL2CPP"],
-        "4-5": ["UnityMultiRende", "Worker Thread", "UnityPreload"],
-        "0-5": ["FMOD", "UnityChoreograp", "NativeThread"]
+        "0-8": ["IL2CPP"],
+        "4-6": ["UnityMultiRende", "Worker Thread", "UnityPreload"],
+        "0-6": ["FMOD", "UnityChoreograp", "NativeThread"]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {
@@ -38,13 +38,13 @@
     "cpuset": {
       "rr": ["UnityMain", "UnityGfx"],
       "ni": ["UnityMain", "UnityGfx"],
-      "unity_main": "7",
+      "unity_main": "8",
       "heavy_thread": "UnityGfx",
-      "heavy_cores": "6",
+      "heavy_cores": "7",
       "comm": {
-        "4-5": ["NativeThread", "Job.Worker"]
+        "4-6": ["NativeThread", "Job.Worker"]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {
@@ -53,14 +53,14 @@
     "cpuset": {
       "ni": ["UnityMain", "HeavyThread", "UnityGfx"],
       "rr": ["UnityMain", "HeavyThread", "UnityGfx"],
-      "unity_main": "7",
+      "unity_main": "8",
       "heavy_thread": "UnityGfx;Thread-",
-      "heavy_cores": "6",
+      "heavy_cores": "7",
       "comm": {
-        "4-7": ["UnityPreload", "IL2CPP", "btm_"],
-        "4-5": ["CoreThread", "Apollo-", "NativeThread", "UnityChoreo", "Worker Thread", "Job.worker"]
+        "4-8": ["UnityPreload", "IL2CPP", "btm_"],
+        "4-6": ["CoreThread", "Apollo-", "NativeThread", "UnityChoreo", "Worker Thread", "Job.worker"]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {
@@ -70,11 +70,11 @@
       "ni": ["RHIThread", "HeavyThread", "RenderThread"],
       "rr": ["RHIThread", "HeavyThread", "RenderThread"],
       "heavy_thread": "Thread-",
-      "heavy_cores": "7",
+      "heavy_cores": "8",
       "comm": {
-        "4-6": ["RenderThread", "RHIThread", "TaskGraphNP", "MainThread"]
+        "4-7": ["RenderThread", "RHIThread", "TaskGraphNP", "MainThread"]
       },
-      "other": "0-6"
+      "other": "0-7"
     }
   },
   {
@@ -84,13 +84,13 @@
       "ni": ["MainThread", "HeavyThread", "RenderThread"],
       "rr": ["MainThread", "HeavyThread", "RenderThread"],
       "heavy_thread": "UEGameThread;Thread-",
-      "heavy_cores": "7",
+      "heavy_cores": "8",
       "comm": {
-        "7": ["UEGameThread"],
-        "6": ["RenderThread"],
-        "3-5": ["MainThread", "TaskGraph", "NativeThread"]
+        "8": ["UEGameThread"],
+        "7": ["RenderThread"],
+        "3-6": ["MainThread", "TaskGraph", "NativeThread"]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {
@@ -99,14 +99,14 @@
     "cpuset": {
       "ni": ["UnityMain", "HeavyThread"],
       "rr": ["UnityMain", "HeavyThread"],
-      "unity_main": "7",
+      "unity_main": "8",
       "heavy_thread": "UnityGfx;Thread-",
-      "heavy_cores": "6",
+      "heavy_cores": "7",
       "comm": {
-        "7": "IL2CPP",
-        "4-5": ["UnityGfxRender", "UnityChoreograp", "mhp.speedmobile", "GThreadManager"]
+        "8": "IL2CPP",
+        "4-6": ["UnityGfxRender", "UnityChoreograp", "mhp.speedmobile", "GThreadManager"]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {
@@ -119,23 +119,23 @@
     ],
     "cpuset": {
       "comm": {
-        "7": ["GameThread"],
-        "4-6": ["RenderThread", "RHIThread"]
+        "8": ["GameThread"],
+        "4-7": ["RenderThread", "RHIThread"]
       },
-      "other": "0-7"
+      "other": "0-8"
     }
   },
   {
     "friendly": "COD Mobile",
     "packages": ["com.activision.callofduty.warzone"],
     "cpuset": {
-      "heavy_cores": "7",
+      "heavy_cores": "8",
       "heavy_thread": "Main",
       "comm": {
-        "6": ["Backend"],
-        "4-5": ["Worker"]
+        "7": ["Backend"],
+        "4-6": ["Worker"]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {
@@ -143,11 +143,11 @@
     "packages": ["com.epicgames.fortnite"],
     "cpuset": {
       "comm": {
-        "7": ["GameThread"],
-        "4-6": ["RHIThread"],
-        "0-6": ["AudioMi", "Foreground", "Background"]
+        "8": ["GameThread"],
+        "4-7": ["RHIThread"],
+        "0-7": ["AudioMi", "Foreground", "Background"]
       },
-      "other": "0-6"
+      "other": "0-7"
     }
   },
   {
@@ -156,16 +156,16 @@
     "cpuset": {
       "ni": ["HeavyThread"],
       "rr": ["HeavyThread"],
-      "unity_main": "7",
+      "unity_main": "8",
       "heavy_thread": "UnityGfx;Thread-",
-      "heavy_cores": "6",
-      "main_thread": "4-5",
+      "heavy_cores": "7",
+      "main_thread": "4-6",
       "comm": {
-        "4-5": [
+        "4-6": [
           "Unity", "Thread-", "NativeThread", "Loading"
         ]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {
@@ -175,21 +175,21 @@
       "ni": ["HeavyThread", "RHIThread", "Render"],
       "rr": ["HeavyThread", "RHIThread", "Render"],
       "heavy_thread": "Thread-",
-      "heavy_cores": "7",
+      "heavy_cores": "8",
       "comm": {
-        "4-5":["Render"],
-        "6": ["RHIThread"]
+        "4-6":["Render"],
+        "7": ["RHIThread"]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {
     "friendly": "闲鱼",
     "packages": ["com.taobao.idlefish"],
     "app_cpuset": {
-      "main": "4-6",
-      "render": "4-7",
-      "other": "0-6"
+      "main": "4-7",
+      "render": "4-8",
+      "other": "0-7"
     }
   },
   {
@@ -206,9 +206,9 @@
       "com.android.vending"
     ],
     "app_cpuset": {
-      "main": "7",
-      "render": "4-6",
-      "other": "0-6"
+      "main": "8",
+      "render": "4-7",
+      "other": "0-7"
     }
   },
   {
@@ -218,11 +218,11 @@
       "ni": ["HeavyThread", "Render"],
       "rr": ["HeavyThread", "Render"],
       "heavy_thread": "Thread-",
-      "heavy_cores": "7",
+      "heavy_cores": "8",
       "comm": {
-        "6":["Render"]
+        "7":["Render"]
       },
-      "other": "0-5"
+      "other": "0-6"
     }
   },
   {
@@ -231,13 +231,13 @@
     "cpuset": {
       "ni": ["UnityMain", "HeavyThread"],
       "rr": ["UnityMain", "HeavyThread"],
-      "unity_main": "7",
+      "unity_main": "8",
       "heavy_thread": "UnityGfx;Thread-",
-      "heavy_cores": "6",
+      "heavy_cores": "7",
       "comm": {
-        "4-6": ["Thread-", "Job."]
+        "4-7": ["Thread-", "Job."]
       },
-      "other": "0-5"
+      "other": "0-7"
     }
   },
   {
@@ -248,11 +248,11 @@
     "cpuset": {
       "ni": ["UnityMain", "HeavyThread"],
       "rr": ["UnityMain", "HeavyThread"],
-      "unity_main": "7",
+      "unity_main": "8",
       "comm": {
-        "4-6": ["UnityGfx", "Job."]
+        "4-7": ["UnityGfx", "Job."]
       },
-      "other": "0-6"
+      "other": "0-7"
     }
   }
 ]

@@ -4,6 +4,7 @@
       "categories": ["GenshinImpact"],
       "cpuset": {
         "comm": {
+        "0-7": ["IL2CPP"],
           "6-7": ["UnityMain"],
           "6": ["UnityGfx", "UnityMultiRende"],
           "0-5": ["Timer"]

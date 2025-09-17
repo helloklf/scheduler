@@ -168,7 +168,7 @@
         ],
         "app": [
           ["@preset", "common_app"],
-          ["@cpu_freqs_max", "1996800", "#2841600"],
+          ["@cpu_freqs_max", "2227200", "#2438400"],
           ["@preset", "powersave_active"]
         ],
         "game": [
@@ -180,7 +180,7 @@
       "balance": {
         "app": [
           ["@preset", "common_app"],
-          ["@cpu_freqs_max", "2400000", "#3513600"],
+          ["@cpu_freqs_max", "2400000", "#3283200"],
           ["@preset", "balance_active"]
         ],
         "game": [
@@ -192,7 +192,7 @@
       "performance": {
         "app": [
           ["@preset", "common_app"],
-          ["@cpu_freqs_max", "2918400", "#4089600"],
+          ["@cpu_freqs_max", "2918400", "#3513600"],
           ["@preset", "performance_active"]
         ],
         "game": [

@@ -33,10 +33,11 @@
     "friendly": "原神",
     "categories": ["GenshinImpact"],
     "cpuset": {
-      "unity_main": "6",
+      "unity_main": "7",
       "heavy_thread": "UnityGfx",
-      "heavy_cores": "7",
+      "heavy_cores": "6",
       "comm": {
+        "0-7": ["IL2CPP"],
         "3-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"]
       },
       "other": "0-5"

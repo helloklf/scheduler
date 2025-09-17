@@ -2,7 +2,6 @@
   "friendly": "游戏(Games)",
   "call": [
     ["@preset", "common_gaming"],
-    ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_perf_mode_ceiling_opp 2"],
     ["/sys/module/mtk_fpsgo/parameters/p_perf", "1"],
     ["/sys/module/mtk_fpsgo/parameters/better_perf", "1"],
     ["/sys/kernel/fpsgo/fbt/enable_ceiling", "#0"]
@@ -11,7 +10,6 @@
     {
       "mode": ["powersave"],
       "call": [
-        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
         ["@cpu_freqs_max", "#1600000", "#1900000", "#2300000"],
         ["@cpu_freqs_min", "#400000", "#622000", "#798000"]
       ],
@@ -23,7 +21,6 @@
     {
       "mode": ["balance"],
       "call": [
-        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
         ["@cpu_freqs_max", "#1700000", "#2200000", "#2600000"],
         ["@cpu_freqs_min", "#700000", "#800000", "#900000"]
       ],
@@ -35,7 +32,6 @@
     {
       "mode": ["performance"],
       "call": [
-        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 2"],
         ["@cpu_freqs_max", "#1800000", "#2600000", "#3000000"],
         ["@cpu_freqs_min", "#800000", "#800000", "#900000"]
       ],
@@ -48,7 +44,6 @@
       "mode": ["*"],
       "call": [
         ["@governor", "schedutil", "sugov_ext"],
-        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 2"],
         ["@cpu_freqs_max", "#2000000", "#3000000", "#3500000"],
         ["@cpu_freqs_min", "#800000", "#900000", "#1200000"]
       ],

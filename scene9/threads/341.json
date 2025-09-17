@@ -33,9 +33,9 @@
     "cpuset": {
       "rr": ["UnityMain", "UnityGfx", "UnityMultiRende"],
       "ni": ["UnityMain", "UnityGfx", "UnityMultiRende"],
-      "unity_main": "6",
+      "unity_main": "7",
       "heavy_thread": "UnityGfx",
-      "heavy_cores": "7",
+      "heavy_cores": "6",
       "comm": {
         "3-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"]
       },

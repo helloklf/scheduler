@@ -4,7 +4,7 @@
       "org.swiftapps.swiftbackup"
     ],
     "cpuset": {
-      "heavy_thread": "Thread-;",
+      "heavy_thread": "Thread-",
       "heavy_cores": "6-7",
       "comm": {
         "6-7": ["IntentService"]
