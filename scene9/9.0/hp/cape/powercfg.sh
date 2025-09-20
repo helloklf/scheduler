@@ -199,7 +199,6 @@ disable_migt
 process_opt &
 
 if [[ -d /my_heytap ]]; then
-  # echo 1 > /proc/sys/walt/sched_asymcap_boost
   hide_value /proc/sys/walt/sched_upmigrate '85 95'
   hide_value /proc/sys/walt/sched_downmigrate '70 80'
   hide_value /proc/sys/walt/sched_group_upmigrate 95

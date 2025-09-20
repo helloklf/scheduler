@@ -3,15 +3,13 @@
   "platform_name": "8+GEN1",
   "alias": {
     "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
-    "mod_percent": "/sys/class/kgsl/kgsl-3d0/devfreq/mod_percent",
     "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
     "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
     "bus_ddr_min": "/sys/devices/system/cpu/bus_dcvs/DDR/19091000.qcom,bwmon-ddr/min_freq",
     "bus_ddr": "/sys/devices/system/cpu/bus_dcvs/DDR/19091000.qcom,bwmon-ddr/max_freq",
     "l3_boost": "/sys/devices/system/cpu/bus_dcvs/L3/boost_freq",
     "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable",
-    "sched_boost": "/proc/sys/walt/sched_boost",
-    "sched_asymcap_boost": "/proc/sys/walt/sched_asymcap_boost"
+    "sched_boost": "/proc/sys/walt/sched_boost"
   },
   "features": {
     "gesture_boost": {
@@ -78,7 +76,7 @@
       ["@preset", "cpu7_on"],
       ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],
       ["@uclamp", "", "", "0.5~max"],
-      ["$sched_asymcap_boost", "1"]
+      ["$asymcap_boost", "1"]
     ],
     "common_inactive": [
       ["@cpu_freqs_min", "#307200", "#633600", "#787200"],
@@ -86,7 +84,7 @@
       ["@uclamp", "", "", "0.00~max"],
       ["$sched_boost", "0"],
       ["@hispeed_load", "90", "90", "90"],
-      ["$sched_asymcap_boost", "0"]
+      ["$asymcap_boost", "0"]
     ],
     "common_app": [
       ["$bus_ddr_min", "547000"],

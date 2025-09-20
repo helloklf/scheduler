@@ -8,7 +8,6 @@
     "bus_ddr_min": "/sys/devices/system/cpu/bus_dcvs/DDR/19091000.qcom,bwmon-ddr/min_freq",
     "bus_ddr": "/sys/devices/system/cpu/bus_dcvs/DDR/19091000.qcom,bwmon-ddr/max_freq",
     "l3_boost": "/sys/devices/system/cpu/bus_dcvs/L3/boost_freq",
-    "mod_percent": "/sys/class/kgsl/kgsl-3d0/devfreq/mod_percent",
     "ufshc_freq": "/sys/bus/platform/devices/1d84000.ufshc/devfreq/1d84000.ufshc/max_freq"
   },
   "features": {

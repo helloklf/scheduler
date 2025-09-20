@@ -26,7 +26,7 @@
           "p1": {
             "core_ctl": [0, 1],
             "cpus": [
-              { "max": 1785600, "min": 748800,  "margins": "150 1152000:90", "excludes": [0], "prefer": 1 },
+              { "max": 1996800, "min": 748800,  "margins": "150 1152000:90 1785600:70", "excludes": [0], "prefer": 1 },
               { "max": 1958400, "min": 1017600, "margins": "150 1209600:100" }
             ]
           },
@@ -52,8 +52,7 @@
           "idle": {
             "core_ctl": [0, 1],
             "cpus": [
-              { "max": 1555200, "min": 556800,  "margins": "100 960000:80",
-                "excludes": [0] },
+              { "max": 1555200, "min": 556800,  "margins": "100 960000:80", "excludes": [0] },
               { "max": 1689600, "min": 1017600, "margins": "100 1689600:80" }
             ]
           }
@@ -123,7 +122,7 @@
       "common_app": [
         ["$perfmgr_enable", "0"],
         ["@cpuset", "0-3", "0-5", "0-7", "0-7"],
-        ["@values", "latency", "0", "1000", "0", "1000"],
+        ["@values", "latency", "1000", "1000", "1000", "1000"],
         ["$mod_percent", "105"]
       ],
       "common_gaming": [
@@ -131,7 +130,7 @@
         ["@limiter", "NONE"],
         ["@cpuset", "0-1", "0-3", "0-4", "0-7"],
         ["$sched_boost", "0"],
-        ["@values", "latency", "0", "2000", "0", "2000"],
+        ["@values", "latency", "1000", "2000", "1000", "2000"],
         ["$mod_percent", "100"],
         ["@preset", "cpu6_on"]
       ],
@@ -253,7 +252,7 @@
       "fast": {
         "app": [
           ["@preset", "common_app"],
-          ["@cpu_freqs_max", "2400000", "#3283200"],
+          ["@cpu_freqs_max", "2745600", "#3283200"],
           ["@preset", "fast_active"]
         ],
         "game": [

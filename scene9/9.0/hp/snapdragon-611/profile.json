@@ -27,21 +27,28 @@
         "p2": {
           "cpus": [
             { "max": 2000000, "min": 1500000, "margins": "400" },
-            { "max": 2600000, "min": 1800000, "margins": "400" },
-            { "max": 2600000, "min": 1800000, "margins": "400" }
+            { "max": 2600000, "min": 1800000, "margins": "300" },
+            { "max": 2600000, "min": 1800000, "margins": "300" }
           ]
         },
         "p3": {
           "cpus": [
             { "max": 2000000, "min": 1600000, "margins": "400" },
-            { "max": 2600000, "min": 2100000, "margins": "400" },
-            { "max": 2600000, "min": 2100000, "margins": "400" }
+            { "max": 2600000, "min": 2100000, "margins": "300" },
+            { "max": 2600000, "min": 2100000, "margins": "300" }
+          ]
+        },
+        "inactive": {
+          "cpus": [
+            { "max": 2000000, "margins": "250" },
+            { "max": 2200000, "margins": "150" },
+            { "max": 2200000, "margins": "150" }
           ]
         },
         "idle": {
-          "core_ctl": [1],
+          "core_ctl": [2],
           "cpus": [
-            { "max": 1700000, "margins": "150" },
+            { "max": 1700000, "margins": "250" },
             { "max": 1700000, "margins": "150" },
             { "max": 1700000, "margins": "150" }
           ]
@@ -167,7 +174,7 @@
       ["@sched_limit", "4000 0", "4000 0", "4000 0"]
     ],
     "fast_inactive": [
-      ["@limiter", "p4"],
+      ["@limiter", "p3"],
       ["@preset", "common_inactive"],
       ["@cpu_freqs_min", "1363200", "1094400", "1094400"],
       ["@repeat", "sched_config", "85", "95", "150", "400"],

@@ -1,17 +1,5 @@
 [
   {
-    "friendly": "优先大核",
-    "packages": [
-      "com.taobao.idlefish",
-      "com.jingdong.app.mall"
-    ],
-    "app_cpuset": {
-      "main": "6-7",
-      "render": "6-7",
-      "other": "1-5"
-    }
-  },
-  {
     "packages": [
       "org.swiftapps.swiftbackup"
     ],
@@ -21,6 +9,25 @@
       "comm": {
         "6-7": ["IntentService"]
       },
+      "other": "0-7"
+    }
+  },
+  {
+    "friendly": "优先大核",
+    "packages": [
+      "com.tencent.mobileqq",
+      "com.tencent.qqlive", "tv.danmaku.bili", "com.taobao.idlefish",
+      "com.taobao.taobao", "com.jingdong.app.mall",
+      "com.tencent.news", "com.sina.weibo",
+      "com.netease.cloudmusic", "com.miui.player",
+      "com.tencent.mm",
+      "com.miui.notes",
+      "com.sankuai.meituan",
+      "com.android.vending"
+    ],
+    "app_cpuset": {
+      "main": "1-7",
+      "render": "1-7",
       "other": "0-7"
     }
   },

@@ -158,7 +158,6 @@ if [[ $(getprop ro.product.model | grep -i Note) == '' ]]; then
   echo 1017000 0 0 0 0 0 0 0 > /proc/sys/walt/input_boost/input_boost_freq
   echo 70 70 > /proc/sys/walt/sched_upmigrate
   echo 60 60 > /proc/sys/walt/sched_downmigrate
-  # echo 1 > /proc/sys/walt/sched_asymcap_boost
   echo 99 > /proc/sys/walt/walt_rtg_cfs_boost_prio # default 119
   echo 1 > /proc/sys/walt/sched_pipeline_util_thres # default 400
   echo 1 > /proc/sys/walt/walt_low_latency_task_threshold # default 325

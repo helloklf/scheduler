@@ -159,7 +159,6 @@ if [[ $(getprop ro.product.model | grep -i Note) == '' ]]; then
   echo 1017000 0 0 0 0 0 0 0 > /proc/sys/walt/input_boost/input_boost_freq
   echo 70 70 > /proc/sys/walt/sched_upmigrate
   echo 60 60 > /proc/sys/walt/sched_downmigrate
-  # echo 1 > /proc/sys/walt/sched_asymcap_boost
 fi
 
 for dir in /sys/devices/system/cpu/cpufreq/policy*;do
