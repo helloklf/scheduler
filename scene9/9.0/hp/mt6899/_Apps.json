@@ -6,11 +6,13 @@
       "state": {
         "active": [
           ["@preset", "powersave_active"],
-          ["@limiter", "p1"]
+          ["@limiter", "p1"],
+          ["@fps", "0"]
         ],
         "inactive": [
           ["@preset", "powersave_inactive"],
-          ["@limiter", "idle"]
+          ["@limiter", "idle"],
+          ["@fps", "60"]
         ]
       }
     },
