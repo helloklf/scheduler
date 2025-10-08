@@ -250,7 +250,8 @@ if [[ -d /my_heytap ]]; then
   hide_value /proc/sys/walt/sched_group_downmigrate 78
   stop miuibooster # CC'MIUI/HyperOS
   # echo 0 > /proc/sys/kernel/sched_energy_aware
-  echo "obase=16;120" | bc > /proc/touchpanel/game_switch_enable
+  # echo "obase=16;120" | bc > /proc/touchpanel/game_switch_enable
+  echo 0 > /proc/touchpanel/game_switch_enable
   chmod 444 /proc/touchpanel/game_switch_enable
 fi
 

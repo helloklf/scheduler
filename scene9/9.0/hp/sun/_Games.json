@@ -5,7 +5,7 @@
     {
       "mode": ["powersave"],
       "call": [
-        ["@cpu_freqs_max", "1996800", "#2438400"],
+        ["@cpu_freqs_max", "#1996800", "#2438400"],
         ["@cpu_freqs_min", "556800", "1017600"],
         ["@governor", "walt"],
         ["@target_loads",

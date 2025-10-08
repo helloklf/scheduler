@@ -1,13 +1,12 @@
 {
-  "version": "HP",
+  "version": "EP - 开发测试版",
   "versionCode": 20250914,
   "author": "SCENE9",
   "projectUrl": "http://vtools.omarea.com/",
   "features": {
     "strict": true,
-    "pedestal": false,
-    "fas": true,
+    "pedestal": true,
     "reboot": false,
-    "limiter": true
+    "fas": false
   }
 }

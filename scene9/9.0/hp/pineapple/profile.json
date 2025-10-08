@@ -100,16 +100,14 @@
     "common_app": [
       ["$perfmgr_enable", "0"],
       ["@cpuset", "0-1", "0-6", "2-6", "2-7"],
-      ["$mod_percent", "125"],
-      ["$asymcap_boost", "0"]
+      ["$mod_percent", "125"]
     ],
     "common_gaming": [
       ["@preset", "common_active"],
       ["@limiter", "NONE"],
       ["@cpuset", "0-1", "0-6", "0-6", "2-7"],
       ["$sched_boost", "0"],
-      ["$mod_percent", "100"],
-      ["$asymcap_boost", "1"]
+      ["$mod_percent", "100"]
     ],
 
     "powersave_active": [
@@ -201,7 +199,7 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@cpu_freqs_max", "1670400", "#1824000", "#1824000", "#2092800"],
+        ["@cpu_freqs_max", "1670400", "#1920000", "#1920000", "#2092800"],
         ["@preset", "powersave_active"]
       ],
       "game": [

@@ -101,8 +101,7 @@
       ["$perfmgr_enable", "0"],
       ["@cpuset", "0-1", "0-6", "0-6", "0-7"],
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000", "1000", "1000"],
-      ["$mod_percent", "125"],
-      ["$asymcap_boost", "0"]
+      ["$mod_percent", "125"]
     ],
     "common_gaming": [
       ["@preset", "common_active"],
@@ -111,8 +110,7 @@
       ["$sched_boost", "0"],
       ["@hispeed_load", "90", "90", "90", "90"],
       ["@values", "latency", "2000", "2000", "2000", "2000", "2000", "2000", "2000", "2000"],
-      ["$mod_percent", "100"],
-    ["$asymcap_boost", "1"]
+      ["$mod_percent", "100"]
     ],
 
     "powersave_active": [

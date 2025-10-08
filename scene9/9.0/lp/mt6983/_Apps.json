@@ -5,11 +5,13 @@
     "state": {
       "active": [
         ["@preset", "powersave_active"],
-        ["@cpuset", "1"]
+        ["@cpuset", "1"],
+        ["@fps", "0"]
       ],
       "inactive": [
         ["@preset", "powersave_inactive"],
-        ["@cpuset", "0-3"]
+        ["@cpuset", "0-3"],
+        ["@fps", "30"]
       ]
     }
   }, {

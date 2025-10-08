@@ -21,8 +21,8 @@
         "p1": {
           "cpus": [
             { "max": 1612800, "min": 1094400, "margins": "500 1497600:270", "excludes": [1] },
-            { "max": 1881600, "min": 710400, "margins": "240 1324800:120" },
-            { "max": 2035200, "min": 844800, "margins": "250 1420800:145" }
+            { "max": 1881600, "min": 710400,  "margins": "240 1324800:120" },
+            { "max": 2035200, "min": 844800,  "margins": "250 1420800:145" }
           ]
         },
         "p2": {
@@ -272,10 +272,7 @@
     {
       "friendly": "ELP",
       "packages": [
-        "com.tencent.mobileqq",
-        "com.tencent.tim",
-        "org.telegram.messenger",
-        "Music", "Reader", "ShortVideo", "Nav"
+        "IM", "Music", "Reader", "ShortVideo", "Nav", "ScrollOpt"
       ],
       "import": "_ELP.json"
     },

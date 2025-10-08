@@ -5,14 +5,10 @@
       "mode": ["powersave"],
       "state": {
         "active": [
-          ["@preset", "powersave_active"],
-          ["@limiter", "p1"],
-          ["@fps", "0"]
+          ["@preset", "powersave_active"]
         ],
         "inactive": [
-          ["@preset", "powersave_inactive"],
-          ["@limiter", "idle"],
-          ["@fps", "30"]
+          ["@preset", "powersave_inactive"]
         ]
       }
     },
@@ -20,14 +16,10 @@
       "mode": ["balance"],
       "state": {
         "active": [
-          ["@preset", "balance_active"],
-          ["@limiter", "p2"],
-          ["@fps", "0"]
+          ["@preset", "balance_active"]
         ],
         "inactive": [
-          ["@preset", "balance_inactive"],
-          ["@limiter", "inactive"],
-          ["@fps", "60"]
+          ["@preset", "balance_inactive"]
         ]
       }
     },

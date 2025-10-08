@@ -24,10 +24,10 @@
         },
         "p2": {
           "cpus": [
-            { "max": 1689600, "min": 787200, "margins": "150" },
-            { "max": 1920000, "min": 960000, "margins": "200 1708800:120" },
-            { "max": 1920000, "min": 960000, "margins": "200 1708800:120" },
-            { "max": 1939200, "min": 902400, "margins": "200 1708800:120" }
+            { "max": 1804800, "min": 787200, "margins": "150" },
+            { "max": 2246400, "min": 960000, "margins": "200 1708800:120" },
+            { "max": 2246400, "min": 960000, "margins": "200 1708800:120" },
+            { "max": 2246400, "min": 902400, "margins": "200 1708800:120" }
           ]
         },
         "p3": {
@@ -133,8 +133,7 @@
       ["@values", "latency", "0", "2000", "0", "2000", "0", "2000", "0", "2000"],
       ["/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq", "0"],
       ["/sys/devices/system/cpu/bus_dcvs/LLCC/240b7400.qcom,bwmon-llcc/max_freq", "806000"],
-      ["$mod_percent", "105"],
-      ["$asymcap_boost", "0"]
+      ["$mod_percent", "105"]
     ],
     "common_gaming": [
       ["@preset", "common_active"],
@@ -143,8 +142,7 @@
       ["/dev/cpuset/sf/cpus", "#2-3"],
       ["$sched_boost", "0"],
       ["/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq", "#1"],
-      ["$mod_percent", "95"],
-      ["$asymcap_boost", "1"]
+      ["$mod_percent", "95"]
     ],
 
     "powersave_active": [
@@ -267,10 +265,7 @@
     {
       "friendly": "ELP",
       "packages": [
-        "com.tencent.mobileqq",
-        "com.tencent.tim",
-        "org.telegram.messenger",
-        "Music", "Reader", "ShortVideo", "Nav"
+        "IM", "Music", "Reader", "ShortVideo", "Nav", "ScrollOpt"
       ],
       "import": "_ELP.json"
     },

@@ -6,12 +6,10 @@
       "state": {
         "active": [
           ["@preset", "powersave_active"],
-          ["@limiter", "p1"],
           ["$sched_boost", "2"],
           ["@fps", "0"]
         ],
         "inactive": [
-          ["@limiter", "idle"],
           ["@preset", "powersave_inactive"],
           ["@fps", "30"]
         ]

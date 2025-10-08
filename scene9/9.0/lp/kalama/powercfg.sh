@@ -131,17 +131,21 @@ disable_migt
 if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
   hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
+  # echo "obase=16;120" | bc > /proc/touchpanel/game_switch_enable
+  echo 0 > /proc/touchpanel/game_switch_enable
+  chmod 444 /proc/touchpanel/game_switch_enable
+
+  hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
+  for service in orms-hal-1-0 vendor.oplus.ormsHalService-aidl-default
+  do
+    stop $service
+  done
+  lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
+  for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
+    lock_value 0 /sys/kernel/msm_performance/parameters/$file
+  done
+  echo -R 444 /sys/kernel/msm_performance/parameters
 fi
-hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-for service in orms-hal-1-0 vendor.oplus.ormsHalService-aidl-default
-do
-  stop $service
-done
-lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
-for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
-  lock_value 0 /sys/kernel/msm_performance/parameters/$file
-done
-echo -R 444 /sys/kernel/msm_performance/parameters
 
 
 # Meizu

@@ -24,8 +24,8 @@
         "p2": {
           "cpus": [
             { "max": 1555200, "min": 787200,  "margins": "300" },
-            { "max": 2188800, "min": 1651200, "margins": "300" },
-            { "max": 2476800, "min": 1708800, "margins": "300" }
+            { "max": 2188800, "min": 1651200, "margins": "250 1920000:120" },
+            { "max": 2342400, "min": 1708800, "margins": "250 2092800:120" }
           ]
         },
         "p3": {
@@ -93,12 +93,12 @@
     ],
     "common_active": [
       ["@preset", "cpu7_on"],
-      ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],
+      ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
       ["/dev/cpuset/sf/cpus", "3-6"]
     ],
     "common_inactive": [
-      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
-      ["@cpu_freqs_min", "307200", "499200", "595200"],
+      ["@values", "latency", "1000", "2000", "1000", "2000", "1000", "2000"],
+      ["@cpu_freqs_min", "#307200", "#499200", "#595200"],
       ["@hispeed_load", "90", "90", "90"],
       ["/dev/cpuset/sf/cpus", "0-6"],
       ["$sched_boost", "#0"]
@@ -255,10 +255,7 @@
     {
       "friendly": "ELP",
       "packages": [
-        "com.tencent.mobileqq",
-        "com.tencent.tim",
-        "org.telegram.messenger",
-        "Music", "Reader", "ShortVideo", "Nav"
+        "IM", "Music", "Reader", "ShortVideo", "Nav", "ScrollOpt"
       ],
       "import": "_ELP.json"
     },

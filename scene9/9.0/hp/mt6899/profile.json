@@ -218,16 +218,6 @@
     }
   },
   "apps": [
-    {
-      "friendly": "ELP",
-      "packages": [
-        "com.tencent.mobileqq",
-        "com.tencent.tim",
-        "org.telegram.messenger",
-        "Music", "Reader", "ShortVideo", "Nav"
-      ],
-      "import": "_ELP.json"
-    },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],
   "games": [

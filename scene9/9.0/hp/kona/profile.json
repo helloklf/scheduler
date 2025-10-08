@@ -286,10 +286,7 @@
     {
       "friendly": "ELP",
       "packages": [
-        "com.tencent.mobileqq",
-        "com.tencent.tim",
-        "org.telegram.messenger",
-        "Music", "Reader", "ShortVideo", "Nav"
+        "IM", "Music", "Reader", "ShortVideo", "Nav", "ScrollOpt"
       ],
       "import": "_ELP.json"
     },

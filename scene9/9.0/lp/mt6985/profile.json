@@ -132,6 +132,7 @@
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
       ["@limiter", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
+      ["$cpufreq", "0 500000 2000000|4 500000 2850000|7 1200000 3050000"],
       ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 1"],
       ["$switch_idleprefer", "#0"],
       ["@values", "target_loads",
@@ -178,22 +179,18 @@
       ["@preset", "common_inactive"]
     ],
     "freq_low": [
-      ["$cpufreq", "0 220000 1800000|4 400000 2400000|7 1200000 2400000"],
       ["@cpu_freqs_max", "1800000", "2400000", "2400000"],
       ["@cpu_freqs_min", "220000", "400000", "1200000"]
     ],
     "freq_middle": [
-      ["$cpufreq", "0 220000 1800000|4 400000 2600000|7 1200000 2600000"],
       ["@cpu_freqs_max", "1800000", "2600000", "2600000"],
       ["@cpu_freqs_min", "220000", "400000", "1200000"]
     ],
     "freq_high": [
-      ["$cpufreq", "0 220000 1800000|4 400000 2800000|7 1200000 2800000"],
       ["@cpu_freqs_max", "1800000", "2800000", "2800000"],
       ["@cpu_freqs_min", "220000", "400000", "1200000"]
     ],
     "freq_extreme": [
-      ["$cpufreq", "0 220000 2000000|4 400000 2850000|7 1200000 3050000"],
       ["@cpu_freqs_max", "2000000", "2850000", "3050000"],
       ["@cpu_freqs_min", "220000", "400000", "1200000"]
     ]
@@ -258,10 +255,7 @@
     {
       "friendly": "ELP",
       "packages": [
-        "com.tencent.mobileqq",
-        "com.tencent.tim",
-        "org.telegram.messenger",
-        "Music", "Reader", "ShortVideo", "Nav"
+        "IM", "Music", "Reader", "ShortVideo", "Nav", "ScrollOpt"
       ],
       "import": "_ELP.json"
     },

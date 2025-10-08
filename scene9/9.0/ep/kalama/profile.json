@@ -80,7 +80,7 @@
     ],
     "common_inactive": [
       ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
-      ["@cpu_freqs_min", "307200", "499200", "595200"],
+      ["@cpu_freqs_min", "#307200", "#499200", "#595200"],
       ["@hispeed_load", "90", "90", "90"],
       ["/dev/cpuset/sf/cpus", "0-6"],
       ["$sched_boost", "#0"]
