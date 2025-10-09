@@ -103,11 +103,6 @@
       ["$max_cpus_cpu7", "#0"],
       ["$core_ctl_7", "#0"]
     ],
-    "cpu7_auto": [
-      ["$core_ctl_7", "#1"],
-      ["$min_cpus_cpu7", "#0"],
-      ["$max_cpus_cpu7", "#1"]
-    ],
     "limiter_off": [
       ["/proc/game_opt/disable_cpufreq_limit", "#1"],
       ["/sys/module/migt/parameters/glk_disable", "#1"],
@@ -184,7 +179,6 @@
         "85 1171200:90 1536000:95"
       ],
       ["@limiter", "inactive"],
-      ["@preset", "cpu7_auto"],
       ["@hispeed_freq", "691200", "633600", "787200"]
     ],
 

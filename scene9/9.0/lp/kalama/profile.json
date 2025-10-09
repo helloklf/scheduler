@@ -86,11 +86,6 @@
       ["$min_cpus_cpu7", "#0"],
       ["$max_cpus_cpu7", "#0"]
     ],
-    "cpu7_auto": [
-      ["$core_ctl_7", "1"],
-      ["$min_cpus_cpu7", "#0"],
-      ["$max_cpus_cpu7", "#1"]
-    ],
     "common_active": [
       ["@preset", "cpu7_on"],
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
@@ -106,7 +101,6 @@
     "common_app": [
       ["$perfmgr_enable", "0"],
       ["@cpuset", "0-2", "0-6", "0-6", "0-7"],
-      ["@preset", "memlat"],
       ["$mod_percent", "110"]
     ],
     "common_gaming": [
@@ -115,21 +109,7 @@
       ["/dev/cpuset/sf/cpus", "3-5"],
       ["$sched_boost", "#0"],
       ["@values", "latency", "2000", "2000", "2000", "2000", "2000", "2000"],
-      ["@values", "memlat", "#30", "#10", "#2", "#3187000"],
       ["$mod_percent", "100"]
-    ],
-
-    "l3": [
-      ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:gold/max_freq", "1804800"],
-      ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime/max_freq", "1804800"],
-      ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime-compute/max_freq", "1804800"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:l3:silver/max_freq", "1804800"]
-    ],
-    "l3_max": [
-      ["@values", "l3", "1804800", "1804800", "1804800", "1804800"]
-    ],
-    "l3_low": [
-      ["@values", "l3", "1574400", "1574400", "1574400", "1574400"]
     ],
 
     "ddr_max": [
@@ -149,14 +129,6 @@
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:prime/max_freq", "4224000"],
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:ddr:silver/max_freq", "1555000"]
     ],
-
-    "bak_memlat": [
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/decay_rate", "90"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/window_ms", "40"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/sample_ms", "4"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq", "#2736000"]
-    ],
-
     "powersave_active": [
       ["@preset", "common_active"],
       ["@limiter", "inactive"],
@@ -179,7 +151,6 @@
     ],
     "balance_inactive": [
       ["@preset", "common_inactive"],
-      ["@preset", "cpu7_auto"],
       ["@limiter", "inactive"],
       ["@hispeed_freq", "787200", "844800", "864000"]
     ],

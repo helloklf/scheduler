@@ -157,7 +157,6 @@
     ],
     "powersave_inactive": [
       ["@preset", "common_inactive"],
-      ["@preset", "cpu7_off"],
       ["@target_loads",
         "85 1017600:90",
         "85 960000:90 1612800:95",
@@ -180,15 +179,13 @@
     ],
     "balance_inactive": [
       ["@preset", "common_inactive"],
-      ["@preset", "cpu7_auto"],
       ["@target_loads",
         "85 1017600:90",
         "85 960000:90 1612800:95",
         "85 960000:90 1612800:95",
         "85 902400:90 1593600:95"],
       ["@limiter", "inactive"],
-      ["@hispeed_freq", "0", "729600", "729600", "787200"],
-      ["@preset", "cpu7_off"]
+      ["@hispeed_freq", "0", "729600", "729600", "787200"]
     ],
 
     "performance_active": [

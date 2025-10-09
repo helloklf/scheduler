@@ -155,8 +155,7 @@
     "balance_inactive": [
       ["@preset", "common_inactive"],
       ["@cpu_freqs_min", "307200", "633600", "806400"],
-      ["@limiter", "inactive"],
-      ["@preset", "cpu7_auto"]
+      ["@limiter", "inactive"]
     ],
 
 

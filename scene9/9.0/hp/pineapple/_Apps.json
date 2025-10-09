@@ -6,10 +6,12 @@
       "state": {
         "active": [
           ["@preset", "powersave_active"],
-          ["$sched_boost", "2"]
+          ["$sched_boost", "2"],
+          ["@core_ctl", "0", "0", "0", "0"]
         ],
         "inactive": [
-          ["@preset", "powersave_inactive"]
+          ["@preset", "powersave_inactive"],
+          ["@core_ctl", "0", "0", "0", "1"]
         ]
       }
     },

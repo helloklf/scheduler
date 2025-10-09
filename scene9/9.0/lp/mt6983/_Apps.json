@@ -18,10 +18,12 @@
     "mode": ["balance"],
     "state": {
       "active": [
-        ["@preset", "balance_active"]
+        ["@preset", "balance_active"],
+        ["@cpuset", "1"]
       ],
       "inactive": [
-        ["@preset", "balance_inactive"]
+        ["@preset", "balance_inactive"],
+        ["@cpuset", "0-3"]
       ]
     }
   }, {

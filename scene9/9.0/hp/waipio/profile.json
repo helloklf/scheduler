@@ -42,6 +42,7 @@
           ]
         },
         "inactive": {
+          "core_ctl": [2],
           "cpus": [
             { "max": 1689600, "min": 518400, "margins": "100 1075200:50" },
             { "max": 1651200, "margins": "100 1113600:60" },
@@ -49,10 +50,11 @@
           ]
         },
         "idle": {
+          "core_ctl": [2],
           "cpus": [
             { "max": 1574400, "min": 403200, "margins": "80 1075200:50" },
             { "max": 1555200, "margins": "60 1113600:40" },
-            { "max": 1612800, "margins": "80 1286400:40", "core_ctl": true }
+            { "max": 1612800, "margins": "80 1286400:40" }
           ]
         }
       }
@@ -130,8 +132,7 @@
     "powersave_inactive": [
       ["@preset", "common_inactive"],
       ["@limiter", "idle"],
-      ["@cpu_freqs_min", "307200", "633600", "806400"],
-      ["@preset", "cpu7_off"]
+      ["@cpu_freqs_min", "307200", "633600", "806400"]
     ],
 
     "balance_active": [
@@ -142,8 +143,7 @@
     "balance_inactive": [
       ["@preset", "common_inactive"],
       ["@cpu_freqs_min", "307200", "633600", "806400"],
-      ["@limiter", "inactive"],
-      ["@preset", "cpu7_auto"]
+      ["@limiter", "inactive"]
     ],
 
 
