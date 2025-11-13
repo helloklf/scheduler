@@ -1,12 +1,12 @@
 {
-  "version": "EP",
+  "version": "LP(Experimental)",
   "versionCode": 20251111,
   "author": "SCENE9",
   "projectUrl": "http://vtools.omarea.com/",
   "features": {
     "strict": true,
-    "pedestal": true,
+    "pedestal": false,
     "reboot": false,
-    "fas": false
+    "fas": true
   }
 }

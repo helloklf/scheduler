@@ -127,7 +127,6 @@ if [[ -d  /proc/game_opt ]]; then
   # hide_value /proc/game_opt/disable_cpufreq_limit 1
   set_value '1000' /proc/oplus-votable/GAUGE_UPDATE/force_val
   set_value '1' /proc/oplus-votable/GAUGE_UPDATE/force_active
-  stop thermal-engine
   stop oplusHmbirdBpfManager
   echo -1 > /proc/oplus_hmbird/manager_pid
 fi
