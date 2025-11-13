@@ -99,7 +99,7 @@
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],
-      ["@cpuset", "0-1", "0-6", "2-6", "2-7"],
+      ["@cpuset", "0-1", "0-6", "2-7", "2-7"],
       ["$mod_percent", "125"]
     ],
     "common_gaming": [
@@ -112,6 +112,7 @@
 
     "powersave_active": [
       ["@preset", "common_active"],
+      ["@cpu_freqs_min", "#787200", "#614400", "#614400", "#576000"],
       ["@target_loads",
         "80 1574400:90",
         "80 960000:85 1612800:90",

@@ -6,7 +6,6 @@
     "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
     "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
     "bus_ddr_min": "/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/min_freq",
-    "bus_ddr": "/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq",
     "l3_boost": "/sys/devices/system/cpu/bus_dcvs/L3/boost_freq",
     "ddr_boost": "/sys/devices/system/cpu/bus_dcvs/DDR/boost_freq",
     "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable",
@@ -111,7 +110,6 @@
     ],
     "common_inactive": [
       ["@cpu_freqs_min", "#307200", "#499200", "#595200"],
-      ["@hispeed_load", "90", "90", "90"],
       ["$sched_boost", "0"]
     ],
     "common_app": [
@@ -126,18 +124,17 @@
       ["$mod_percent", "100"]
     ],
 
-    "l3_max": [
+    "l3": [
       ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:gold/max_freq", "1804800"],
       ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime/max_freq", "1804800"],
       ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime-compute/max_freq", "1804800"],
       ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:l3:silver/max_freq", "1804800"]
     ],
-
+    "l3_max": [
+      ["@values", "l3", "1804800", "1804800", "1804800", "1804800"]
+    ],
     "l3_low": [
-      ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:gold/max_freq", "1574400"],
-      ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime/max_freq", "1574400"],
-      ["/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime-compute/max_freq", "1574400"],
-      ["/sys/devices/system/cpu/bus_dcvs/DDR/soc:qcom,memlat:l3:silver/max_freq", "1574400"]
+      ["@values", "l3", "1574400", "1574400", "1574400", "1574400"]
     ],
     "ddr": [
       ["/sys/devices/system/cpu/bus_dcvs/DDR/24091000.qcom,bwmon-ddr/max_freq", "4224000"],
@@ -151,11 +148,9 @@
     "ddr_max": [
       ["@values", "ddr", "4224000", "1555000", "4224000", "4224000", "4224000", "1555000"]
     ],
-
     "ddr_mid": [
-      ["@values", "ddr", "3187000", "1555000", "3187000", "3187000", "3187000", "1555000"]
+      ["@values", "ddr", "2736000", "1555000", "3187000", "3187000", "3187000", "1555000"]
     ],
-
     "ddr_low": [
       ["@values", "ddr", "2736000", "1555000", "2736000", "2736000", "2736000", "1555000"]
     ],

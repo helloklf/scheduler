@@ -130,24 +130,6 @@ if [[ -d  /proc/game_opt ]]; then
   stop thermal-engine
 fi
 
-# MeiZu
-if [[ -d /proc/mz_info ]]; then
-  echo 4 > /proc/mz_scheduler/vip_task/enabled
-  echo 0 > /proc/mz_thermal_dcvs/dcvs_enabled
-  echo 0 > /proc/mz_mm_vip/vip_enable
-  echo 0 > /proc/mz_frame_sync/enable
-  echo 0 > /proc/mz_frame_sync/freq_enable
-  # chmod 444 > /proc/mz_frame_sync/ctrl # Boom!
-  echo 1 > /proc/mz_lock/enabled
-  echo 0 > /proc/mz_freq/adapt_sched_boost/enabled_one
-  echo 0 > /proc/mz_freq/adapt_sched_boost/enabled_two
-  echo 0 > /proc/mz_freq/adapt_sched_boost/enabled_three
-  # echo 0 > /proc/mz_thermal_boost/boost_enabled
-  # echo 0 > /proc/mz_thermal_boost/sched_boost_enabled
-  stop traced_probes
-  # lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
-fi
-
 
 echo 99 > /proc/sys/walt/walt_rtg_cfs_boost_prio # default 119
 echo 1 > /proc/sys/walt/sched_pipeline_util_thres # default 400
