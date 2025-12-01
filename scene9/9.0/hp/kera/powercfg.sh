@@ -144,22 +144,6 @@ done
 echo -R 444 /sys/kernel/msm_performance/parameters
 
 
-# Meizu
-if [[ $(getprop ro.product.model | grep -i Note) == '' ]]; then
-  lock_value 0 /proc/mz_scheduler/vip_task/enabled
-  # [MB] [swappiness] [MB] [swappiness] [MB] [swappiness]
-  echo 3072 125 2048 150 1024 160 > /proc/mz_memory/reclaim_opt/kswapd_reclaim_swappiness
-  for tz in /sys/class/thermal/*/mode
-  do
-    echo disabled > $tz
-  done
-  stop traced_probes
-  # lock_value 0 /sys/devices/platform/main_touch.0/screen_mode_node
-  echo 1017000 0 0 0 0 0 0 0 > /proc/sys/walt/input_boost/input_boost_freq
-  echo 70 70 > /proc/sys/walt/sched_upmigrate
-  echo 60 60 > /proc/sys/walt/sched_downmigrate
-fi
-
 for dir in /sys/devices/system/cpu/cpufreq/policy*;do
   lock_value 0 $dir/walt/adaptive_high_freq
   lock_value 0 $dir/walt/adaptive_low_freq
@@ -185,10 +169,7 @@ rmdir /dev/cpuset/foreground/boost
 mkdir /dev/cpuset/top-app/$cpus
 echo $cpus > /dev/cpuset/top-app/$cpus/cpus
 echo 0 > /dev/cpuset/top-app/$cpus/mems
-mkdir /dev/cpuset/sf
-echo $cpus > /dev/cpuset/sf/cpus
-echo 0 > /dev/cpuset/sf/mems
-set_cpuset surfaceflinger "sf"
+set_cpuset surfaceflinger "foreground"
 set_cpuset touch_report "foreground"
 set_cpuset system_server "foreground"
 set_cpuset update_engine "top-app/$cpus"

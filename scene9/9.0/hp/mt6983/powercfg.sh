@@ -98,7 +98,7 @@ process_opt() {
   for name in 'kcompactd0' 'aal_sof' 'kfps' 'kworker'
     do
     # 0-5
-    taskset -p 3f $(pgrep -ef $name) > /dev/null
+    taskset -p 3f $(pgrep -f $name) > /dev/null
     done
 }
 

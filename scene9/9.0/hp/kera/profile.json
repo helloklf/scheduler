@@ -74,7 +74,6 @@
     ["$l3_boost", "0"],
     ["$ddr_boost", "0"],
     ["@governor", "walt"],
-    ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
     ["@preset", "ddr_max"]
   ],
   "presets": {
@@ -107,9 +106,11 @@
       ["/sys/module/migt/parameters/glk_disable", "0"]
     ],
     "common_active": [
+      ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],
       ["@preset", "cpu7_on"]
     ],
     "common_inactive": [
+      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
       ["@cpu_freqs_min", "#441600", "#480000", "#480000"],
       ["$sched_boost", "0"]
     ],
@@ -119,6 +120,7 @@
       ["$mod_percent", "110"]
     ],
     "common_gaming": [
+      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
       ["@cpuset", "0-2", "0-5", "0-5", "0-7"],
       ["@preset", "l3_max"],
       ["$sched_boost", "0"],
@@ -158,7 +160,7 @@
         "82 1651200:90"
       ],
       ["@limiter", "p1"],
-      ["@hispeed_freq", "787200", "1056000", "1094400"]
+      ["@hispeed_freq", "787200", "940800", "960000"]
     ],
     "powersave_inactive": [
       ["@preset", "common_inactive"],
@@ -271,6 +273,13 @@
     }
   },
   "apps": [
+    {
+      "friendly": "ELP",
+      "packages": [
+        "IM", "Music", "Reader", "ShortVideo", "Nav", "ScrollOpt"
+      ],
+      "import": "_ELP.json"
+    },
     { "friendly": "相机", "packages": ["Camera"], "import": "_Camera.json" },
     { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
   ],

@@ -111,13 +111,13 @@
     "friendly": "PUBG(UE4)",
     "packages": ["com.pubg.imobile", "com.pubg.krmobile", "com.tencent.ig"],
     "cpuset": {
-      "ni": ["MainThread", "HeavyThread", "RenderThread"],
-      "rr": ["MainThread", "HeavyThread", "RenderThread"],
+      "ni": ["MainThread", "HeavyThread", "RenderThread", "RHIThread"],
+      "rr": ["MainThread", "HeavyThread", "RenderThread", "RHIThread"],
       "heavy_thread": "UEGameThread;Thread-",
       "heavy_cores": "7",
       "comm": {
         "7": ["UEGameThread"],
-        "2-4": ["RenderThread"],
+        "2-4": ["RenderThread", "RHIThread"],
         "2-6": ["MainThread", "TaskGraph", "NativeThread"]
       },
       "other": "2-6"

@@ -67,7 +67,7 @@ lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
 
 rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost
-echo $(pgrep -ef kcompactd0) > /dev/cpuset/foreground/tasks
+echo $(pgrep -f kcompactd0) > /dev/cpuset/foreground/tasks
 
 # Xiaomi
 if [[ -d /sys/module/migt ]]; then

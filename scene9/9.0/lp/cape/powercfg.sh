@@ -124,7 +124,7 @@ process_opt() {
 }
 
 kernel_thread_set(){
-  pgrep -ef 'kcompactd0' | while read pid
+  pgrep -f 'kcompactd0' | while read pid
   do
     taskset -p 3f $pid > /dev/null
   done

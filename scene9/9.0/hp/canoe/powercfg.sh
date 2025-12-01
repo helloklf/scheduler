@@ -66,7 +66,7 @@ lock_value 1 /sys/module/perfmgr/parameters/load_scaling_y
 
 rmdir /dev/cpuset/background/untrustedapp
 rmdir /dev/cpuset/foreground/boost
-echo $(pgrep -ef kcompactd0) > /dev/cpuset/foreground/tasks
+echo $(pgrep -f kcompactd0) > /dev/cpuset/foreground/tasks
 echo 80 80 > /sys/devices/system/cpu/cpu6/core_ctl/busy_up_thres
 echo 55 55 > /sys/devices/system/cpu/cpu6/core_ctl/busy_down_thres
 echo 24 > /sys/devices/system/cpu/cpu6/core_ctl/offline_delay_ms
@@ -129,6 +129,8 @@ if [[ -d  /proc/game_opt ]]; then
   set_value '1' /proc/oplus-votable/GAUGE_UPDATE/force_active
   stop oplusHmbirdBpfManager
   echo -1 > /proc/oplus_hmbird/manager_pid
+  stop thermal-engine
+  start thermal-engine
 fi
 
 echo 99 > /proc/sys/walt/walt_rtg_cfs_boost_prio # default 119
