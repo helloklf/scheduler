@@ -43,7 +43,7 @@ for c in 0 2 5 7; do
   lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_low_freq
 done
 echo 1024 > /proc/sys/kernel/sched_util_clamp_max
-echo 1024 > /proc/sys/kernel/sched_util_clamp_min
+# echo 1024 > /proc/sys/kernel/sched_util_clamp_min
 
 hide_value /sys/module/msm_performance/parameters/cpu_max_freq '0:4294967295 1:4294967295 2:4294967295 3:4294967295 4:4294967295 5:4294967295 6:4294967295 7:4294967295'
 chattr +i  /sys/module/msm_performance/parameters/cpu_max_freq

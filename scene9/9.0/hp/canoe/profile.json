@@ -3,7 +3,6 @@
     "platform_name": "8GEN4",
     "alias": {
       "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
-      "mod_percent": "/sys/class/kgsl/kgsl-3d0/devfreq/mod_percent",
       "max_cpus_cpu6": "/sys/devices/system/cpu/cpu6/core_ctl/max_cpus",
       "min_cpus_cpu6": "/sys/devices/system/cpu/cpu6/core_ctl/min_cpus",
       "core_ctl_5": "/sys/devices/system/cpu/cpu5/core_ctl/enable",
@@ -81,16 +80,14 @@
       "common_app": [
         ["$perfmgr_enable", "0"],
         ["@cpuset", "0-3", "0-5", "0-7", "0-7"],
-        ["@values", "latency", "0", "1000", "0", "1000"],
-        ["$mod_percent", "125"]
+        ["@values", "latency", "0", "1000", "0", "1000"]
       ],
       "common_gaming": [
         ["@preset", "common_active"],
         ["@limiter", "NONE"],
         ["@cpuset", "0-1", "0-4", "0-4", "0-7"],
         ["$sched_boost", "0"],
-        ["@values", "latency", "1000", "1000", "1000", "1000"],
-        ["$mod_percent", "100"]
+        ["@values", "latency", "1000", "1000", "1000", "1000"]
       ],
 
       "powersave_active": [

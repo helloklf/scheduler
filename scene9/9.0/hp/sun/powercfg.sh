@@ -42,7 +42,7 @@ for c in 0 6; do
   lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_low_freq
 done
 echo 1024 > /proc/sys/kernel/sched_util_clamp_max
-echo 1024 > /proc/sys/kernel/sched_util_clamp_min
+# echo 1024 > /proc/sys/kernel/sched_util_clamp_min
 
 hide_value /sys/module/msm_performance/parameters/cpu_max_freq '0:4294967295 1:4294967295 2:4294967295 3:4294967295 4:4294967295 5:4294967295 6:4294967295 7:4294967295'
 chattr +i  /sys/module/msm_performance/parameters/cpu_max_freq
@@ -138,3 +138,6 @@ echo 1 > /proc/sys/walt/walt_low_latency_task_threshold # default 325
 echo '' > /proc/sys/walt/sched_lib_name # default libunity.so, libfb.so
 echo '' > /proc/sys/walt/sched_lib_task # default UnityMain
 echo 1 > /proc/sys/walt/sched_disable_mvp_thres # default 3000
+
+echo '2400000 2400000 2745600 2745600 2918400' > /proc/sys/walt/cluster0/smart_freq/ipc_freq_levels
+echo '3513600 3801600 3801600 4089600 4089600' > /proc/sys/walt/cluster1/smart_freq/ipc_freq_levels

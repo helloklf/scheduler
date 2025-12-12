@@ -131,10 +131,9 @@
     ],
     "powersave_active": [
       ["@preset", "common_active"],
-      ["@limiter", "inactive"],
+      ["@limiter", "p1"],
       ["@hispeed_freq", "787200", "844800", "864000"],
-      ["@hispeed_load", "85", "85", "85"],
-      ["@cpuset", "1", "0-6", "0-7", "0-7"]
+      ["@hispeed_load", "85", "85", "85"]
     ],
     "powersave_inactive": [
       ["@preset", "common_inactive"],
@@ -145,7 +144,7 @@
 
     "balance_active": [
       ["@preset", "common_active"],
-      ["@limiter", "inactive"],
+      ["@limiter", "p2"],
       ["@hispeed_freq", "1075200", "1056000", "1132800"],
       ["@hispeed_load", "87", "87", "87"]
     ],
@@ -157,25 +156,25 @@
 
     "performance_active": [
       ["@preset", "common_active"],
-      ["@limiter", "inactive"],
+      ["@limiter", "p3"],
       ["@hispeed_freq", "1075200", "1401600", "1478400"],
       ["@hispeed_load", "85", "85", "85"]
     ],
     "performance_inactive": [
       ["@preset", "common_inactive"],
-      ["@limiter", "inactive"],
+      ["@limiter", "p1"],
       ["@hispeed_freq", "1075200", "1056000", "1132800"]
     ],
 
     "fast_active": [
       ["@preset", "common_active"],
-      ["@limiter", "inactive"],
+      ["@limiter", "p4"],
       ["@hispeed_freq", "1017600", "1555200", "1651200"],
       ["@hispeed_load", "82", "82", "82"]
     ],
     "fast_inactive": [
       ["@preset", "common_inactive"],
-      ["@limiter", "inactive"],
+      ["@limiter", "p2"],
       ["@hispeed_freq", "1075200", "1056000", "1132800"]
     ]
   },

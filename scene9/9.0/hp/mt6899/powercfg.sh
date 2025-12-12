@@ -61,7 +61,7 @@ mount --bind /proc/perfmgr_touch_boost/ioctl_touch_boost /proc/perfmgr/perf_ioct
 fi
 
 umount /proc/powerhal_cpu_ctrl/perfserv_freq
-echo '339000 2400000 622000 3300000 798000 3600000' > /proc/powerhal_cpu_ctrl/perfserv_freq
+echo '300000 2400000 400000 3000000 600000 3250000' > /proc/powerhal_cpu_ctrl/perfserv_freq
 mount --bind /proc/powerhal_cpu_ctrl/adpf_enable /proc/powerhal_cpu_ctrl/perfserv_freq
 stop touch_boost
 

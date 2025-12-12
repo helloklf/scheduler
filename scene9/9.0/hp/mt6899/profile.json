@@ -54,17 +54,14 @@
     }
   },
   "reset": [
+    ["@mtk_reset"],
     ["@governor", "sugov_ext"],
     ["@preset", "common_active"],
     ["$perfmgr_enable", "#0"],
     ["$core_ctl_7", "#1"],
     ["$max_cpus_cpu7", "#1"],
     ["$min_cpus_cpu7", "#1"],
-    ["$core_ctl_7", "#0"],
-    ["$core_ctl_4", "#1"],
-    ["$max_cpus_cpu4", "#3"],
-    ["$min_cpus_cpu4", "#3"],
-    ["$core_ctl_4", "#0"]
+    ["$core_ctl_7", "#0"]
   ],
   "presets": {
     "latency": [

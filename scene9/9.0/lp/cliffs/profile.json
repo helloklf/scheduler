@@ -139,7 +139,7 @@
 
     "powersave_active": [
       ["@preset", "common_active"],
-      ["@limiter", "inactive"],
+      ["@limiter", "p1"],
       ["@hispeed_freq", "787200", "787200", "787200"],
       ["@hispeed_load", "85", "85", "85"]
     ],
@@ -151,7 +151,7 @@
 
     "balance_active": [
       ["@preset", "common_active"],
-      ["@limiter", "inactive"],
+      ["@limiter", "p2"],
       ["@hispeed_freq", "1017600", "1056000", "1094400"],
       ["@hispeed_load", "90", "90", "90"]
     ],
@@ -163,25 +163,25 @@
 
     "performance_active": [
       ["@preset", "common_active"],
-      ["@limiter", "inactive"],
+      ["@limiter", "p3"],
       ["@hispeed_freq", "1017600", "1286400", "1209600"],
       ["@hispeed_load", "85", "85", "85"]
     ],
     "performance_inactive": [
       ["@preset", "common_inactive"],
-      ["@limiter", "inactive"],
+      ["@limiter", "p1"],
       ["@hispeed_freq", "787200", "787200", "787200"]
     ],
 
     "fast_active": [
       ["@preset", "common_active"],
-      ["@limiter", "inactive"],
+      ["@limiter", "p4"],
       ["@hispeed_freq", "1228800", "1401600", "1459200"],
       ["@hispeed_load", "85", "85", "85"]
     ],
     "fast_inactive": [
       ["@preset", "common_inactive"],
-      ["@limiter", "inactive"],
+      ["@limiter", "p2"],
       ["@hispeed_freq", "787200", "787200", "787200"]
     ],
     "freq_low": [

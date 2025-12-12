@@ -77,7 +77,7 @@
   },
   {
     "friendly": "PUBG(UE4)",
-    "packages": ["com.pubg.imobile", "com.pubg.krmobile", "com.tencent.ig"],
+    "packages": ["com.pubg.imobile", "com.pubg.krmobile", "com.tencent.ig", "com.rekoo.pubgm"],
     "cpuset": {
       "ni": ["MainThread", "HeavyThread", "RenderThread", "RHIThread"],
       "rr": ["MainThread", "HeavyThread", "RenderThread", "RHIThread"],
