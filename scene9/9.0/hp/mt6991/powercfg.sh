@@ -116,11 +116,10 @@ if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; th
   echo 0 > /proc/powerhal_cpu_ctrl/adpf_enable
   stop thermal_core
   stop thermald
-fi
-if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
-  lock_value "MIN_TTJ 90000 90000 90000" /sys/kernel/thermal/min_ttj
-  lock_value "MAX_TTJ 95000 95000 95000" /sys/kernel/thermal/max_ttj
-  lock_value "TTJ 95000 95000 95000" /sys/kernel/thermal/ttj
+  if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
+    lock_value "MAX_TTJ 95000 90000 90000" /sys/kernel/thermal/max_ttj
+    lock_value "TTJ 95000 90000 90000" /sys/kernel/thermal/ttj
+  fi
 fi
 
 lock_value 1 /proc/game_opt/disable_cpufreq_limit

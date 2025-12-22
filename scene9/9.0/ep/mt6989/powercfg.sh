@@ -122,7 +122,7 @@ if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; th
   stop thermald
   if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
     lock_value "MAX_TTJ 95000 90000 90000" /sys/kernel/thermal/max_ttj
-    lock_value "TTJ 90000 90000 90000" /sys/kernel/thermal/ttj
+    lock_value "TTJ 95000 90000 90000" /sys/kernel/thermal/ttj
   fi
 fi
 

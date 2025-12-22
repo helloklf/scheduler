@@ -96,7 +96,7 @@ if [[ -d /proc/mi_display ]]; then
           migt_ceiling_freq|migt_freq)
             lock_value '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' $dir/$file
           ;;
-          glk_fbreak_enable|force_cluster_sched_enable|glk_freq_limit_start|glk_freq_limit_walt|thermal_break_enable|is_break_enable|mi_freq_enable|force_stask_to_big|freq_break_enable|enable_pkg_monitor|flt_enable_other|flt_in_frame_enable|cluaff_control|override_schedboost_in_coldstart|metis_schlat_enable|limit_bgtask_sched)
+          glk_fbreak_enable|force_cluster_sched_enable|glk_freq_limit_start|glk_freq_limit_walt|thermal_break_enable|is_break_enable|mi_freq_enable|force_stask_to_big|freq_break_enable|enable_pkg_monitor|flt_enable_other|flt_in_frame_enable|cluaff_control|override_schedboost_in_coldstart|metis_schlat_enable|limit_bgtask_sched|choose_cpu_exclusive_enable)
             lock_value 0 $dir/$file
           ;;
           # 导致Xiaomi 15上日常会非常激进的使用大核

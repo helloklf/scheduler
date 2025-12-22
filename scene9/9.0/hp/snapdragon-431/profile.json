@@ -108,14 +108,12 @@
     "common_app": [
       ["$perfmgr_enable", "0"],
       ["@cpuset", "0-3", "0-3", "0-7", "0-7"],
-      ["$l3_boost", "0"],
-      ["$gpu_max_khz", "#680000000"]
+      ["$l3_boost", "0"]
     ],
     "common_gaming": [
       ["@limiter", "NONE"],
       ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
-      ["@cpuset", "0-2", "0-3", "0-5", "0-7"],
-      ["$gpu_max_khz", "#990000000"]
+      ["@cpuset", "0-2", "0-3", "0-5", "0-7"]
     ],
 
     "powersave_active": [

@@ -123,7 +123,6 @@
     "common_app": [
       ["$perfmgr_enable", "0"],
       ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
-      ["$gpu_max_khz", "#680000000"],
       ["$mod_percent", "105"],
       ["$bus_qos", "0"],
       ["$bus_ddr", "2736000"]
@@ -131,7 +130,6 @@
     "common_gaming": [
       ["@limiter", "NONE"],
       ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
-      ["$gpu_max_khz", "#990000000"],
       ["$bus_qos", "0"],
       ["/proc/game_opt/disable_cpufreq_limit", "0"],
       ["$mod_percent", "95"],
