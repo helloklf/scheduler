@@ -1,6 +1,4 @@
 {
-  "platform": "sun",
-  "platform_name": "8GEN4",
   "alias": {
     "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
     "mod_percent": "/sys/class/kgsl/kgsl-3d0/devfreq/mod_percent",
@@ -93,7 +91,7 @@
 
     "powersave_active": [
       ["@preset", "common_active"],
-      ["@cpu_freqs_min", "556800", "^1017600"],
+      ["@cpu_freqs_min", "556800", "1017600"],
       ["@target_loads",
         "85 1152000:90 1555200:95",
         "85 1401600:90 1958400:95"],
@@ -109,7 +107,7 @@
 
     "balance_active": [
       ["@preset", "common_active"],
-      ["@cpu_freqs_min", "748800", "1017600"],
+      ["@cpu_freqs_min", "748800", "^1017600"],
       ["@target_loads",
         "80 1152000:85 1555200:90 1996800:95",
         "80 1401600:85 1958400:90"],

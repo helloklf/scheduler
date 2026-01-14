@@ -1,6 +1,4 @@
 {
-  "platform": "mt6983",
-  "platform_name": "D9000",
   "alias": {
     "gpu_freq": "/sys/kernel/ged/hal/custom_upbound_gpu_freq",
     "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",

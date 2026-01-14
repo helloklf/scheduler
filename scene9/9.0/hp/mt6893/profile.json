@@ -1,6 +1,4 @@
 {
-  "platform": "mt6893",
-  "platform_name": "D1200",
   "alias": {
     "min_cpu_freq": "/proc/ppm/policy/hard_userlimit_min_cpu_freq",
     "max_cpu_freq": "/proc/ppm/policy/hard_userlimit_max_cpu_freq",

@@ -1,6 +1,4 @@
 {
-  "platform": "dimensity 4+4",
-  "platform_name": "dimensity-44-ppm",
   "alias": {
     "min_cpu_freq": "/proc/ppm/policy/hard_userlimit_min_cpu_freq",
     "max_cpu_freq": "/proc/ppm/policy/hard_userlimit_max_cpu_freq",
