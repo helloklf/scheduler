@@ -229,5 +229,18 @@
       },
       "other": "2-6"
     }
+  },
+  {
+    "friendly": "明日方舟：终末地",
+    "packages": ["com.hypergryph.endfield"],
+    "cpuset": {
+      "ni": ["UnityMain", "UnityGfx"],
+      "rr": ["UnityMain", "UnityGfx"],
+      "unity_main": "7",
+      "comm": {
+        "2-4": ["UnityGfx"]
+      },
+      "other": "2-6"
+    }
   }
 ]
