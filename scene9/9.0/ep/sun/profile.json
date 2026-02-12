@@ -100,7 +100,7 @@
     ],
     "powersave_inactive": [
       ["@preset", "common_inactive"],
-      ["@preset", "cpu6_off"],
+      ["@preset", "cpu6_auto"],
       ["@target_loads",
         "85 1152000:90",
         "85 1401600:90 1958400:95"],
@@ -118,7 +118,6 @@
     ],
     "balance_inactive": [
       ["@preset", "common_inactive"],
-      ["@preset", "cpu6_auto"],
       ["@target_loads",
         "85 1363200:90",
         "85 1401600:90 1958400:95"],

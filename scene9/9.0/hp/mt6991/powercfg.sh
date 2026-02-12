@@ -10,7 +10,7 @@ set_value() {
   fi;
 }
 
-lock_value () {
+lock_value() {
   if [[ -f $2 ]];then
     chmod 644 $2
     echo $1 > $2
@@ -116,10 +116,11 @@ if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; th
   echo 0 > /proc/powerhal_cpu_ctrl/adpf_enable
   stop thermal_core
   stop thermald
-  if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
-    lock_value "MAX_TTJ 95000 90000 90000" /sys/kernel/thermal/max_ttj
-    lock_value "TTJ 95000 90000 90000" /sys/kernel/thermal/ttj
-  fi
+fi
+if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
+  lock_value "MIN_TTJ 90000 90000 90000" /sys/kernel/thermal/min_ttj
+  lock_value "MAX_TTJ 95000 90000 90000" /sys/kernel/thermal/max_ttj
+  lock_value "TTJ 90000 90000 90000" /sys/kernel/thermal/ttj
 fi
 
 lock_value 1 /proc/game_opt/disable_cpufreq_limit
@@ -140,6 +141,7 @@ set_slc_force_ratio(){
   echo 2,$2 > /proc/oplus_slc/force_ratio # gpu
   chmod 444 /proc/oplus_slc/force_ratio
 }
+set_slc_force_ratio 100 0
 
 set_cpuset(){
   pgrep -f $1 | while read pid; do

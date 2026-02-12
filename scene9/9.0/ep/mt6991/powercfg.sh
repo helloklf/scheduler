@@ -61,6 +61,7 @@ lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 if [[ $(grep /proc/perfmgr/perf_ioctl /proc/mounts) == '' ]]; then
 mount --bind /proc/perfmgr_touch_boost/ioctl_touch_boost /proc/perfmgr/perf_ioctl
 fi
+chmod 444 /proc/perfmgr/global_reclaim
 
 umount /proc/powerhal_cpu_ctrl/perfserv_freq
 echo '339000 2400000 622000 3300000 798000 3600000' > /proc/powerhal_cpu_ctrl/perfserv_freq
@@ -91,8 +92,6 @@ lock_value 0 /sys/module/metis/parameters/thermal_break_enable
 lock_value 0 /sys/module/metis/parameters/is_break_enable
 lock_value 0 /sys/module/metis/parameters/mi_freq_enable
 
-chmod 444 /proc/perfmgr/global_reclaim
-
 metis=/sys/module/metis/parameters
 for file in $metis/*enable*; do
   lock_value 0 $file
@@ -112,7 +111,6 @@ lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/max_cpus
 lock_value 1 /sys/devices/system/cpu/cpu7/core_ctl/min_cpus
 lock_value 0 /sys/devices/system/cpu/cpu7/core_ctl/enable
 
-
 # vivo
 if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; then
   stop vivo-vperf-hal-1-0
@@ -126,7 +124,6 @@ if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
   lock_value "MAX_TTJ 95000 90000 90000" /sys/kernel/thermal/max_ttj
   lock_value "TTJ 90000 90000 90000" /sys/kernel/thermal/ttj
 fi
-
 
 lock_value 1 /proc/game_opt/disable_cpufreq_limit
 lock_value 1 /sys/module/migt/parameters/glk_disable
@@ -145,6 +142,7 @@ set_slc_force_ratio(){
   echo 2,$2 > /proc/oplus_slc/force_ratio # gpu
   chmod 444 /proc/oplus_slc/force_ratio
 }
+set_slc_force_ratio 100 0
 
 set_cpuset(){
   pgrep -f $1 | while read pid; do
