@@ -132,6 +132,17 @@ if [[ -d  /proc/game_opt ]]; then
 fi
 
 
+# AYANEO
+if [[ "$(getprop ro.product.manufacturer)" == 'AYANEO' ]]; then
+  stop thermal-engine
+  for tz in `ls /sys/class/thermal | grep thermal_zone`
+  do
+    if [[ -f /sys/class/thermal/$tz/trip_point_0_temp ]] && [[ $(cat /sys/class/thermal/$tz/trip_point_0_temp) -lt "105000" ]] && [[ $(cat /sys/class/thermal/$tz/trip_point_0_temp) -gt "70000" ]]; then
+      echo 105000 > /sys/class/thermal/$tz/trip_point_0_temp
+    fi
+  done
+fi
+
 echo 99 > /proc/sys/walt/walt_rtg_cfs_boost_prio # default 119
 echo 1 > /proc/sys/walt/sched_pipeline_util_thres # default 400
 echo 1 > /proc/sys/walt/walt_low_latency_task_threshold # default 325
