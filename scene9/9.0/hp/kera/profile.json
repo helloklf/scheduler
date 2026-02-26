@@ -215,6 +215,7 @@
 
     "fast_active": [
       ["@preset", "common_active"],
+      ["@cpu_freqs_min", "#1017600", "#1286400", "#1209600"],
       ["@target_loads",
         "80 1593600:85",
         "80 2073600:85",
@@ -231,6 +232,28 @@
         "80 1766400:87 2150400:95"
       ],
       ["@limiter", "p2"],
+      ["@hispeed_freq", "787200", "787200", "787200"]
+    ],
+
+    "pedestal_active": [
+      ["@preset", "common_active"],
+      ["@cpu_freqs_min", "#1017600", "#1612800", "#1651200"],
+      ["@target_loads",
+        "70",
+        "70",
+        "70"
+      ],
+      ["@limiter", "NONE"],
+      ["@hispeed_freq", "1228800", "1497600", "1459200"]
+    ],
+    "pedestal_inactive": [
+      ["@preset", "common_inactive"],
+      ["@target_loads",
+        "80",
+        "80",
+        "80"
+      ],
+      ["@limiter", "NONE"],
       ["@hispeed_freq", "787200", "787200", "787200"]
     ]
   },
@@ -264,6 +287,14 @@
     "fast": {
       "call": [
         ["@preset", "fast_active"]
+      ],
+      "app": [
+        ["@preset", "common_app"]
+      ]
+    },
+    "pedestal": {
+      "call": [
+        ["@preset", "pedestal_active"]
       ],
       "app": [
         ["@preset", "common_app"]

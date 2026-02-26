@@ -37,13 +37,24 @@
       }
     },
     {
-      "mode": ["*"],
+      "mode": ["fast"],
       "state": {
         "active": [
           ["@preset", "fast_active"]
         ],
         "inactive": [
           ["@preset", "fast_inactive"]
+        ]
+      }
+    },
+    {
+      "mode": ["*"],
+      "state": {
+        "active": [
+          ["@preset", "pedestal_active"]
+        ],
+        "inactive": [
+          ["@preset", "pedestal_inactive"]
         ]
       }
     }

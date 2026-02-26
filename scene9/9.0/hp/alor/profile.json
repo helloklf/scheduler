@@ -151,6 +151,21 @@
         "85",
         "85"],
       ["@hispeed_freq", "902400", "0"]
+    ],
+
+    "pedestal_active": [
+      ["@preset", "common_active"],
+      ["@cpu_freqs_min", "1401600", "1497600"],
+      ["@target_loads",
+        "70",
+        "70"],
+      ["@hispeed_freq", "1651200", "0"]
+    ],
+    "pedestal_inactive": [
+      ["@target_loads",
+        "80",
+        "80"],
+      ["@hispeed_freq", "902400", "0"]
     ]
   },
   "schemes": {
@@ -198,6 +213,18 @@
         ["@preset", "common_app"],
         ["@cpu_freqs_max", "3129600", "#3724800"],
         ["@preset", "fast_active"]
+      ],
+      "game": [
+        ["@preset", "common_gaming"],
+        ["@preset", "limiter_off"],
+        ["@hispeed_freq", "1152000", "1382400"]
+      ]
+    },
+    "pedestal": {
+      "app": [
+        ["@preset", "common_app"],
+        ["@cpu_freqs_max", "3321600", "#3801600"],
+        ["@preset", "pedestal_active"]
       ],
       "game": [
         ["@preset", "common_gaming"],
