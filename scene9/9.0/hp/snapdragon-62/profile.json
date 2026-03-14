@@ -165,7 +165,7 @@
     ],
     "fast_inactive": [
       ["@preset", "common_inactive"],
-      ["@limiter", "p4"],
+      ["@limiter", "NONE"],
       ["@cpu_freqs_min", "1209600", "710400"],
       ["@repeat", "sched_config", "85", "95", "150", "400"]
     ]
