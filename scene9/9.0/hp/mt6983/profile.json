@@ -69,8 +69,8 @@
     "gesture_boost": {
       "enable": true,
       "enter": [
-        ["$gpu_min_opp", "28"],
-        ["$ddr_freq_cust", "4266000000"]
+        ["$gpu_min_opp", "#28"],
+        ["$ddr_freq_cust", "#4266000000"]
       ],
       "exit": [
         ["$gpu_min_opp", "99"],
