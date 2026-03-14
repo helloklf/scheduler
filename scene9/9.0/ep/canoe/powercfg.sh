@@ -70,7 +70,10 @@ echo $(pgrep -f kcompactd0) > /dev/cpuset/foreground/tasks
 echo 80 80 > /sys/devices/system/cpu/cpu6/core_ctl/busy_up_thres
 echo 55 55 > /sys/devices/system/cpu/cpu6/core_ctl/busy_down_thres
 echo 24 > /sys/devices/system/cpu/cpu6/core_ctl/offline_delay_ms
-pgrep kswapd0 > /dev/cpuset/top-app/tasks
+mkdir /dev/cpuset/top-app/kswapd
+echo 0 > /dev/cpuset/top-app/kswapd/mems
+echo 6-7 > /dev/cpuset/top-app/kswapd/cpus
+pgrep kswapd0 > /dev/cpuset/top-app/kswapd/tasks
 
 c_min(){
   echo $(cat /sys/devices/system/cpu/cpufreq/policy*/cpuinfo_min_freq)

@@ -113,15 +113,17 @@
     "common_app": [
       ["$perfmgr_enable", "0"],
       ["@cpuset", "0-3", "0-5", "0-7", "0-7"],
-      ["@values", "latency", "1000", "1000", "1000", "1000"]
+      ["@values", "latency", "1000", "1000", "1000", "1000"],
+      ["/dev/cpuset/top-app/kswapd/cpus", "6-7"]
     ],
     "common_gaming": [
       ["@preset", "common_active"],
       ["@limiter", "NONE"],
-      ["@cpuset", "0-1", "0-3", "0-4", "0-7"],
+      ["@cpuset", "0-3", "0-3", "0-4", "0-7"],
       ["$sched_boost", "0"],
       ["@values", "latency", "1000", "2000", "1000", "2000"],
-      ["@preset", "cpu6_on"]
+      ["@preset", "cpu6_on"],
+      ["/dev/cpuset/top-app/kswapd/cpus", "1-4"]
     ],
 
     "powersave_active": [
