@@ -35,7 +35,7 @@
       }
     },
     {
-      "mode": ["fast"],
+      "mode": ["*"],
       "state": {
         "active": [
           ["@preset", "fast_active"]

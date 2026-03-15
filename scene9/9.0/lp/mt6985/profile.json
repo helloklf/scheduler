@@ -66,6 +66,17 @@
           ]
         }
       }
+    },
+    "gesture_boost": {
+      "enable": true,
+      "enter": [
+        ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "#40"],
+        ["$ddr_freq_cust", "#6400000000"]
+      ],
+      "exit": [
+        ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
+        ["$ddr_freq_cust", "#0"]
+      ]
     }
   },
   "reset": [
