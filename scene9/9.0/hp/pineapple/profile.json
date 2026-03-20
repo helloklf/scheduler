@@ -98,12 +98,14 @@
     "common_app": [
       ["$perfmgr_enable", "0"],
       ["@cpuset", "0-1", "0-6", "2-7", "2-7"],
+      ["/dev/cpuset/sf/cpus", "#2-7"],
       ["$mod_percent", "125"]
     ],
     "common_gaming": [
       ["@preset", "common_active"],
       ["@limiter", "NONE"],
-      ["@cpuset", "0-1", "0-6", "0-6", "2-7"],
+      ["@cpuset", "0-1", "0-6", "0-6", "0-7"],
+      ["/dev/cpuset/sf/cpus", "#2-6"],
       ["$sched_boost", "0"],
       ["$mod_percent", "100"]
     ],

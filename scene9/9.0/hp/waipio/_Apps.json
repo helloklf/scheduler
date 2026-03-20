@@ -44,6 +44,17 @@
           ["@preset", "fast_inactive"]
         ]
       }
+    },
+    {
+      "mode": ["*"],
+      "state": {
+        "active": [
+          ["@preset", "fast_active"]
+        ],
+        "inactive": [
+          ["@preset", "performance_active"]
+        ]
+      }
     }
   ]
 }

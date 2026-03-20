@@ -127,7 +127,7 @@
     ],
     "common_app": [
       ["@cpuset", "0-1", "0-6", "2-7", "2-7"],
-      ["/dev/cpuset/sf/cpus", "#2-6"],
+      ["/dev/cpuset/sf/cpus", "#2-7"],
       ["@values", "latency", "0", "2000", "0", "2000", "0", "2000", "0", "2000"],
       ["/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq", "0"],
       ["/sys/devices/system/cpu/bus_dcvs/LLCC/240b7400.qcom,bwmon-llcc/max_freq", "806000"],
@@ -136,8 +136,8 @@
     "common_gaming": [
       ["@preset", "common_active"],
       ["@limiter", "NONE"],
-      ["@cpuset", "0-1", "0-3,5-6", "0-3,5-6", "0-7"],
-      ["/dev/cpuset/sf/cpus", "#2-3"],
+      ["@cpuset", "0-1", "0-6", "0-6", "0-7"],
+      ["/dev/cpuset/sf/cpus", "#2-6"],
       ["$sched_boost", "0"],
       ["/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq", "#1"],
       ["$mod_percent", "95"]
