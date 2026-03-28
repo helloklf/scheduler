@@ -164,7 +164,7 @@
       ],
       "app": [
         ["@preset", "common_app"],
-        ["@cpu_freqs_max", "2361600", "#2438400"],
+        ["@cpu_freqs_max", "#2361600", "#2438400"],
         ["@preset", "powersave_active"]
       ],
       "game": [
@@ -176,7 +176,7 @@
     "balance": {
       "app": [
         ["@preset", "common_app"],
-        ["@cpu_freqs_max", "2496000", "#3129600"],
+        ["@cpu_freqs_max", "#2496000", "#3129600"],
         ["@preset", "balance_active"]
       ],
       "game": [
@@ -188,7 +188,7 @@
     "performance": {
       "app": [
         ["@preset", "common_app"],
-        ["@cpu_freqs_max", "2899200", "#3648000"],
+        ["@cpu_freqs_max", "#2899200", "#3648000"],
         ["@preset", "performance_active"]
       ],
       "game": [
@@ -200,7 +200,7 @@
     "fast": {
       "app": [
         ["@preset", "common_app"],
-        ["@cpu_freqs_max", "2899200", "#4070400"],
+        ["@cpu_freqs_max", "#2899200", "#4070400"],
         ["@preset", "fast_active"]
       ],
       "game": [
@@ -212,7 +212,7 @@
     "pedestal": {
       "app": [
         ["@preset", "common_app"],
-        ["@cpu_freqs_max", "3033600", "#4396800"],
+        ["@cpu_freqs_max", "#3033600", "#4396800"],
         ["@preset", "fast_active"]
       ],
       "game": [
