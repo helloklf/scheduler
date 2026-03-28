@@ -82,7 +82,7 @@
   "reset": [
     ["@governor", "sugov_ext"],
     ["$perfmgr_enable", "0"],
-    ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"]
+    ["$ddr_freq_min", "754000000"]
   ],
   "presets": {
     "latency": [

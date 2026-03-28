@@ -84,7 +84,7 @@
     ["@preset", "common_active"],
     ["$perfmgr_enable", "#0"],
     ["$perfmgr_enable2", "#0"],
-    ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "800000000"],
+    ["$ddr_freq_min", "800000000"],
     ["$cpus_limit", "#3000000 3350000"]
   ],
   "presets": {
@@ -128,7 +128,7 @@
       ["$ddr_map", "1700000:4100000 1600000:3094000 1500000:2133000 1400000:1600000"],
       ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
       ["$cpufreq", "0 220000 1900000|4 400000 2850000|7 1200000 3050000"],
-      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 0"],
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 0|cm_aggr 0|cm_mgr_dram_opp_ceiling 3|dsu_perf 0|dsu_aggr 0"],
       ["$switch_idleprefer", "#1"],
       ["@values", "target_loads",
         "0 200000|1 200000|2 200000",
@@ -142,7 +142,7 @@
       ["@limiter", "NONE"],
       ["@cpuset", "0-3", "0-5", "0-5", "0-7"],
       ["$cpufreq", "0 500000 2000000|4 500000 2850000|7 1200000 3050000"],
-      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 1"],
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "dsu_mode 1|cm_aggr 1|cm_mgr_dram_opp_ceiling -1|dsu_perf 1|dsu_aggr 1"],
       ["$switch_idleprefer", "#0"],
       ["@values", "target_loads",
         "0 1500000|1 2100000|2 2100000",

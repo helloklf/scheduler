@@ -82,7 +82,7 @@
     ["@governor", "schedutil"],
     ["$perfmgr_enable", "#0"],
     ["$perfmgr_enable2", "#0"],
-    ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "800000000"],
+    ["$ddr_freq_min", "800000000"],
     ["$cpus_limit", "#3200000 3350000"]
   ],
   "presets": {

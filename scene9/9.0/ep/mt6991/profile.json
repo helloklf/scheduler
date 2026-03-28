@@ -37,7 +37,7 @@
     ["@governor", "sugov_ext"],
     ["@preset", "common_active"],
     ["$perfmgr_enable", "#0"],
-    ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"]
+    ["$ddr_freq_min", "754000000"]
   ],
   "presets": {
     "latency": [
@@ -49,11 +49,11 @@
       ["/sys/devices/system/cpu/cpufreq/policy7/sugov_ext/up_rate_limit_us"]
     ],
     "common_active": [
-      ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "2067000000"]
+      ["$ddr_freq_min", "2067000000"]
     ],
     "common_inactive": [
       ["@cpu_freqs_min", "#339000", "#622000", "#798000"],
-      ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"]
+      ["$ddr_freq_min", "754000000"]
     ],
     "common_app": [
       ["@values", "latency", "1000", "0", "1000", "0", "1000", "0"],
@@ -62,6 +62,7 @@
       ["/sys/module/mtk_fpsgo/parameters/p_perf", "0"],
       ["/sys/module/mtk_fpsgo/parameters/better_perf", "0"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "1"],
+      ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "0"],
       ["@ioctl", "/proc/easmgr/eas_ioctl",
         "0x40046715", "500000", "0x40046716", "25",
         "0x40046717", "200000", "0x40046718", "25",
@@ -75,6 +76,7 @@
       ["@gesture", "PAUSE"],
       ["$gpu_max_freq", "#7"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "#0"],
+      ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "1"],
       ["@ddr_l3_booster"]
     ],
     "limiter_off": [

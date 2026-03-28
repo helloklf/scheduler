@@ -47,7 +47,7 @@
     ["@governor", "sugov_ext"],
     ["@preset", "common_active"],
     ["$perfmgr_enable", "#0"],
-    ["/sys/class/devfreq/mtk-dvfsrc-devfreq/min_freq", "754000000"],
+    ["$ddr_freq_min", "754000000"],
     ["$cpus_limit", "#2850000 3250000"]
   ],
   "presets": {
