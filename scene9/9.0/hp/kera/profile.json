@@ -237,13 +237,14 @@
 
     "pedestal_active": [
       ["@preset", "common_active"],
+      ["@limiter", "NONE"],
+      ["@cpu_freqs_max", "#1843200", "#2400000", "#2803200"],
       ["@cpu_freqs_min", "#1017600", "#1612800", "#1651200"],
       ["@target_loads",
         "70",
         "70",
         "70"
       ],
-      ["@limiter", "NONE"],
       ["@hispeed_freq", "1228800", "1497600", "1459200"]
     ],
     "pedestal_inactive": [

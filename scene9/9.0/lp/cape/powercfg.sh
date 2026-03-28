@@ -283,8 +283,9 @@ fi
 
 
 bus_dcvs(){
+  chmod 0664 /sys/devices/system/cpu/bus_dcvs/$1
   echo $2 > /sys/devices/system/cpu/bus_dcvs/$1
-  chmod 444 /sys/devices/system/cpu/bus_dcvs/$1
+  chmod 0444 /sys/devices/system/cpu/bus_dcvs/$1
 }
 bus_dcvs DDR/soc:qcom,memlat:ddr:silver/max_freq 1555000
 bus_dcvs DDR/19091000.qcom,bwmon-ddr/max_freq 2736000
