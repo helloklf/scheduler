@@ -1,7 +1,8 @@
 {
   "friendly": "相机",
   "call": [
-    ["@limiter", "NONE"]
+    ["@limiter", "NONE"],
+    ["@preset", "cpu6_on"]
   ],
   "state": {
     "active": [
