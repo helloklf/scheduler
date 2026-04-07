@@ -30,8 +30,8 @@
     "cpuset": {
       "main_thread": "1-5",
       "comm": {
-        "6-7": ["GameThread", "RHIThread"],
-        "1-7": ["AsyncLoading", "FChunk"]
+        "7": ["GameThread"],
+        "1-6": ["AsyncLoading", "FChunk", "RHIThread"]
       },
       "other": "1-5"
     }
@@ -50,7 +50,12 @@
   },
   {
     "friendly": "原神",
-    "packages": ["GenshinImpact"],
+    "packages": [
+      "com.miHoYo.Yuanshen",
+      "com.miHoYo.ys.mi",
+      "com.miHoYo.ys.bilibili",
+      "com.miHoYo.GenshinImpact"
+    ],
     "cpuset": {
       "rr": ["UnityMain", "UnityGfx", "UnityMultiRende"],
       "ni": ["UnityMain", "UnityGfx", "UnityMultiRende"],

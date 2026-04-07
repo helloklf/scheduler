@@ -1,7 +1,12 @@
 [
   {
     "friendly": "原神",
-    "categories": ["GenshinImpact"],
+    "packages": [
+      "com.miHoYo.Yuanshen",
+      "com.miHoYo.ys.mi",
+      "com.miHoYo.ys.bilibili",
+      "com.miHoYo.GenshinImpact"
+    ],
     "cpuset": {
       "unity_main": "6",
       "heavy_thread": "UnityGfx",

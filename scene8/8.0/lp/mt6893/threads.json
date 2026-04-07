@@ -37,7 +37,12 @@
   {
       
     "friendly": "原神",
-    "categories": ["GenshinImpact"],
+    "packages": [
+      "com.miHoYo.Yuanshen",
+      "com.miHoYo.ys.mi",
+      "com.miHoYo.ys.bilibili",
+      "com.miHoYo.GenshinImpact"
+    ],
     "cpuset": {
       "heavy_thread": "UnityGfx",
       "heavy_cores": "7",

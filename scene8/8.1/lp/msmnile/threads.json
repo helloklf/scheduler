@@ -29,7 +29,12 @@
   },
   {
     "friendly": "原神",
-    "categories": ["GenshinImpact"],
+    "packages": [
+      "com.miHoYo.Yuanshen",
+      "com.miHoYo.ys.mi",
+      "com.miHoYo.ys.bilibili",
+      "com.miHoYo.GenshinImpact"
+    ],
     "cpuset": {
       "comm": {
         "7": ["UnityMain"],

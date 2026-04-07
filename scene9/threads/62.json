@@ -1,7 +1,12 @@
 [
   {
     "friendly": "原神",
-    "packages": ["GenshinImpact"],
+    "packages": [
+      "com.miHoYo.Yuanshen",
+      "com.miHoYo.ys.mi",
+      "com.miHoYo.ys.bilibili",
+      "com.miHoYo.GenshinImpact"
+    ],
     "cpuset": {
       "comm": {
         "0-7": ["IL2CPP"],
