@@ -140,7 +140,7 @@
       ["/dev/cpuset/sf/cpus", "#2-6"],
       ["$sched_boost", "0"],
       ["/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq", "#1"],
-      ["$mod_percent", "95"]
+      ["$mod_percent", "96"]
     ],
 
     "powersave_active": [

@@ -3,14 +3,14 @@
     "friendly": "鸣潮",
     "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
     "cpuset": {
-      "rr": ["GameThread", "RenderThread", "RHIThread"],
-      "ni": ["GameThread", "RenderThread", "RHIThread"],
+      "rr": ["GameThread", "RenderThread"],
+      "ni": ["GameThread", "RenderThread"],
       "main_thread": "0-5",
       "comm": {
         "7": ["GameThread", "mali-compile"],
         "4-7": ["FChunk"],
         "4-6": ["RenderThread", "RHIThread"],
-        "0-3": ["mali-cpu", "V8", "Backgro"]
+        "0-3": ["Pool", "TAsync", "mali-cpu", "V8", "Backgro"]
       },
       "other": "0-6"
     }
