@@ -35,6 +35,7 @@
     }
   },
   "reset": [
+    ["@mtk_reset"],
     ["@governor", "sugov_ext"],
     ["$perfmgr_enable", "#0"],
     ["$ddr_freq_min", "754000000"],

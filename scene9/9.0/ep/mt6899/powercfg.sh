@@ -120,6 +120,21 @@ if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; th
   fi
 fi
 
+# Low Battery Throttling
+echo "low_battery_throttling"
+echo "Utest 0" > /sys/devices/platform/low-battery-throttling/low_battery_protect_ut
+echo "stop 1"  > /sys/devices/platform/low-battery-throttling/low_battery_protect_stop
+echo "bp_thl (battery percent)"
+echo "Utest 0" > /sys/devices/platform/bp-thl/bp_thl_ut
+echo "stop 1"  > /sys/devices/platform/bp-thl/bp_thl_stop
+
+# dynamicc throttling / tas?
+lock_value 0 /sys/kernel/fpsgo/fbt/powerRL_enable
+# lock_value "0 0" /sys/kernel/fpsgo/fstb/fstb_debug
+chmod 444 /sys/kernel/fpsgo/common/render_attr_params
+chmod 444 /sys/kernel/fpsgo/common/render_attr_params_tid
+chmod 444 /sys/kernel/fpsgo/common/render_info
+chmod 444 /sys/kernel/fpsgo/common/render_info_params
 
 lock_value 1 /proc/game_opt/disable_cpufreq_limit
 lock_value 1 /sys/module/migt/parameters/glk_disable
@@ -130,14 +145,6 @@ lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
 lock_value 0 /proc/task_overload/skip_goplus_enabled
 lock_value 0 /sys/module/mtk_fpsgo/parameters/cfp_onoff
 stop vendor.oplus.ormsHalService-aidl-default
-
-# set_slc [cpu%] [gpu%]
-set_slc_force_ratio(){
-  chmod 777 /proc/oplus_slc/force_ratio
-  echo 1,$1 > /proc/oplus_slc/force_ratio # cpu
-  echo 2,$2 > /proc/oplus_slc/force_ratio # gpu
-  chmod 444 /proc/oplus_slc/force_ratio
-}
 
 set_cpuset(){
   pgrep -f $1 | while read pid; do
@@ -181,3 +188,11 @@ gpu_ulimit(){
   echo "disable" > /sys/kernel/thermal/gpt
 }
 gpu_ulimit
+
+# MingChao Vulkan
+for pkg in com.kurogame.mingchao com.kurogame.wutheringwaves.global; do
+  f="/sdcard/Android/data/$pkg/files/UE4Game/Client/Client/Saved/Config/Android/Engine.ini"
+  if [[ -f  $f ]]; then
+    grep -qx "r.Android.DisableVulkanSupport=0" "$f" || echo -e "\n[/Script/Engine.RendererSettings]\nr.Android.DisableVulkanSupport=0" >> "$f"
+  fi
+done

@@ -126,6 +126,22 @@ if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; th
   fi
 fi
 
+# Low Battery Throttling
+echo "low_battery_throttling"
+echo "Utest 0" > /sys/devices/platform/low-battery-throttling/low_battery_protect_ut
+echo "stop 1"  > /sys/devices/platform/low-battery-throttling/low_battery_protect_stop
+echo "bp_thl (battery percent)"
+echo "Utest 0" > /sys/devices/platform/bp-thl/bp_thl_ut
+echo "stop 1"  > /sys/devices/platform/bp-thl/bp_thl_stop
+
+# dynamicc throttling / tas?
+lock_value 0 /sys/kernel/fpsgo/fbt/powerRL_enable
+# lock_value "0 0" /sys/kernel/fpsgo/fstb/fstb_debug
+chmod 444 /sys/kernel/fpsgo/common/render_attr_params
+chmod 444 /sys/kernel/fpsgo/common/render_attr_params_tid
+chmod 444 /sys/kernel/fpsgo/common/render_info
+chmod 444 /sys/kernel/fpsgo/common/render_info_params
+
 lock_value 1 /proc/game_opt/disable_cpufreq_limit
 lock_value 1 /sys/module/migt/parameters/glk_disable
 lock_value 0 /sys/module/perfmgr/parameters/perfmgr_enable

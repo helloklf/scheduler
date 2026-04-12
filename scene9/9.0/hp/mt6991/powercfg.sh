@@ -123,6 +123,30 @@ if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
   lock_value "TTJ 90000 90000 90000" /sys/kernel/thermal/ttj
 fi
 
+# Low Battery Throttling
+echo "low_battery_throttling"
+echo "Utest 0" > /sys/devices/platform/low-battery-throttling/low_battery_protect_ut
+echo "stop 1"  > /sys/devices/platform/low-battery-throttling/low_battery_protect_stop
+echo "bp_thl (battery percent)"
+echo "Utest 0" > /sys/devices/platform/bp-thl/bp_thl_ut
+echo "stop 1"  > /sys/devices/platform/bp-thl/bp_thl_stop
+
+# FPSGO
+# lock_value 0 /sys/kernel/fpsgo/common/force_onoff
+#   enable_ceiling related
+echo 0 > /sys/kernel/fpsgo/fbt/limit_cfreq
+echo 0 > /sys/kernel/fpsgo/fbt/limit_cfreq_m
+echo 0 > /sys/kernel/fpsgo/fbt/limit_rfreq
+echo 0 > /sys/kernel/fpsgo/fbt/limit_rfreq_m
+lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
+# dynamicc throttling / tas?
+lock_value 0 /sys/kernel/fpsgo/fbt/powerRL_enable
+# lock_value "0 0" /sys/kernel/fpsgo/fstb/fstb_debug
+chmod 444 /sys/kernel/fpsgo/common/render_attr_params
+chmod 444 /sys/kernel/fpsgo/common/render_attr_params_tid
+chmod 444 /sys/kernel/fpsgo/common/render_info
+chmod 444 /sys/kernel/fpsgo/common/render_info_params
+
 lock_value 1 /proc/game_opt/disable_cpufreq_limit
 lock_value 1 /sys/module/migt/parameters/glk_disable
 lock_value 0 /sys/module/perfmgr/parameters/perfmgr_enable
@@ -134,14 +158,21 @@ lock_value 0 /sys/module/mtk_fpsgo/parameters/cfp_onoff
 lock_value 0 /proc/touch_boost/enable
 stop vendor.oplus.ormsHalService-aidl-default
 
-# set_slc [cpu%] [gpu%]
+# set_slc_force_ratio [cpu%] [gpu%]
 set_slc_force_ratio(){
   chmod 777 /proc/oplus_slc/force_ratio
   echo 1,$1 > /proc/oplus_slc/force_ratio # cpu
   echo 2,$2 > /proc/oplus_slc/force_ratio # gpu
   chmod 444 /proc/oplus_slc/force_ratio
+  if [[ "$1" == "100" ]]; then
+    echo "slbc_cg_priority 1" > /proc/slbc/dbg_slbc
+  elif [[ "$2" == "100" ]]; then
+    echo "slbc_cg_priority 2" > /proc/slbc/dbg_slbc
+  fi
 }
-set_slc_force_ratio 100 0
+# echo "slbc_force 0x80640001" > /proc/slbc/dbg_slbc
+echo "slbc_cg_priority 1" > /proc/slbc/dbg_slbc
+set_slc_force_ratio 0 100
 
 set_cpuset(){
   pgrep -f $1 | while read pid; do
@@ -181,7 +212,13 @@ gpu_ulimit(){
   # gpt index temp opp
   echo "enable" > /sys/kernel/thermal/gpt
   echo "gpt 1 80000 7" > /sys/kernel/thermal/gpt
-  echo "gpt 2 85000 12" > /sys/kernel/thermal/gpt
+  echo "gpt 2 88000 12" > /sys/kernel/thermal/gpt
   # echo "disable" > /sys/kernel/thermal/gpt
 }
 gpu_ulimit
+
+
+if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
+  lock_value "MAX_TTJ 95000 95000 95000" /sys/kernel/thermal/max_ttj
+  lock_value "TTJ 95000 95000 95000" /sys/kernel/thermal/ttj
+fi
