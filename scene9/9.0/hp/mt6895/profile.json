@@ -82,7 +82,7 @@
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"]
     ],
     "common_app": [
-      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1"],
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode 0"],
       ["@cpuset", "0-3", "0-7", "0-7", "0-7"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#07"],
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
@@ -91,7 +91,7 @@
     ],
     "common_gaming": [
       ["@limiter", "NONE"],
-      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1"],
+      ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_enable 1|cm_mgr_perf_enable 1|dsu_mode 1"],
       ["@cpuset", "0-2", "1-3", "0-5", "0-7"],
       ["/sys/kernel/ged/hal/custom_upbound_gpu_freq", "#0"],
       ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "#99"],

@@ -29,6 +29,7 @@
     "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
     "cpuset": {
       "main_thread": "1-5",
+      "trashy": ["Pool", "TAsync"],
       "comm": {
         "7": ["GameThread"],
         "6": ["RenderThread"],

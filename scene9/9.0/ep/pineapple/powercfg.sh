@@ -18,11 +18,12 @@ lock_value() {
   fi
 }
 
+dev_mount=/dev/$(cat /dev/urandom | tr -dc 'a-z_' | head -c 8; echo)
 # hide_value /sys/module/task_turbo/parameters/feats [write_value]
 hide_value() {
   if [[ -e "$1" ]]; then
     umount "$1" 2>/dev/null
-    c_path="/dev/scene${1}"
+    c_path="$dev_mount${1}"
     if [[ ! -f "$c_path" ]]; then
       mkdir -p "$c_path"
       rm -r "$c_path"
@@ -38,6 +39,7 @@ hide_value() {
 }
 
 echo 2265600 3148800 2956800 3302400 > /proc/sys/walt/sched_fmax_cap
+echo 0 > /proc/sys/walt/sched_sbt_enable
 for c in 0 2 5 7; do
   lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_high_freq
   lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_low_freq

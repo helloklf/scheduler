@@ -6,6 +6,7 @@
       "rr": ["GameThread", "RenderThread", "RHIThread"],
       "ni": ["GameThread", "RenderThread", "RHIThread"],
       "main_thread": "3-6",
+      "trashy": ["Pool", "TAsync"],
       "comm": {
         "7": ["GameThread"],
         "3-6": ["RHIThread", "TaskGraphHP", "NativeThread", "RenderThread", "FChunk"]

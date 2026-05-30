@@ -2,6 +2,8 @@
   "alias": {
     "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
     "mod_percent": "/sys/class/kgsl/kgsl-3d0/devfreq/mod_percent",
+    "max_cpus_cpu0": "/sys/devices/system/cpu/cpu0/core_ctl/max_cpus",
+    "min_cpus_cpu0": "/sys/devices/system/cpu/cpu0/core_ctl/min_cpus",
     "max_cpus_cpu6": "/sys/devices/system/cpu/cpu6/core_ctl/max_cpus",
     "min_cpus_cpu6": "/sys/devices/system/cpu/cpu6/core_ctl/min_cpus",
     "core_ctl_0": "/sys/devices/system/cpu/cpu0/core_ctl/enable",
@@ -43,6 +45,10 @@
       ["/sys/devices/system/cpu/cpu6/cpufreq/walt/target_loads"]
     ],
     "cpu6_on": [
+      ["$core_ctl_0", "1"],
+      ["$max_cpus_cpu0", "#6"],
+      ["$min_cpus_cpu0", "#6"],
+      ["$core_ctl_0", "0"],
       ["$core_ctl_6", "1"],
       ["$max_cpus_cpu6", "#2"],
       ["$min_cpus_cpu6", "#2"],
@@ -65,8 +71,7 @@
       ["/sys/module/migt/parameters/glk_freq_limit_walt", "#0"]
     ],
     "limiter_on": [
-      ["/proc/game_opt/disable_cpufreq_limit", "0"],
-      ["/sys/module/migt/parameters/glk_disable", "0"]
+      ["/proc/game_opt/disable_cpufreq_limit", "0"]
     ],
     "common_active": [
       ["@preset", "cpu6_on"]

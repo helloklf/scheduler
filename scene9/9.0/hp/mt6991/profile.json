@@ -22,6 +22,7 @@
     }
   },
   "reset": [
+    ["@mtk_reset"],
     ["@governor", "sugov_ext"],
     ["@preset", "common_active"],
     ["$perfmgr_enable", "#0"],

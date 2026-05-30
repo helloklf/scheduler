@@ -5,6 +5,7 @@
     "cpuset": {
       "rr": ["GameThread", "RenderThread", "RHIThread"],
       "ni": ["GameThread", "RenderThread", "RHIThread"],
+      "trashy": ["Pool", "TAsync"],
       "comm": {
         "5": ["GameThread", "mali-compile"],
         "1-5": ["FChunk"],

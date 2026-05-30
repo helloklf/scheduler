@@ -102,8 +102,7 @@
       ["/sys/module/migt/parameters/glk_freq_limit_walt", "#0"]
     ],
     "limiter_on": [
-      ["/proc/game_opt/disable_cpufreq_limit", "0"],
-      ["/sys/module/migt/parameters/glk_disable", "0"]
+      ["/proc/game_opt/disable_cpufreq_limit", "0"]
     ],
     "common_active": [
     ],

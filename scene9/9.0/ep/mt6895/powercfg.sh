@@ -65,11 +65,12 @@ lock_value 4 $cpu0_core_ctl_dir/max_cpus
 lock_value 4 $cpu0_core_ctl_dir/min_cpus
 lock_value 0 $cpu0_core_ctl_dir/enable
 
+dev_mount=/dev/$(cat /dev/urandom | tr -dc 'a-z_' | head -c 8; echo)
 # hide_value /sys/module/task_turbo/parameters/feats [write_value]
 hide_value() {
   if [[ -e "$1" ]]; then
     umount "$1" 2>/dev/null
-    c_path="/dev/scene${1}"
+    c_path="$dev_mount${1}"
     if [[ ! -f "$c_path" ]]; then
       mkdir -p "$c_path"
       rm -r "$c_path"

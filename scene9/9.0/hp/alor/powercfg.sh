@@ -18,11 +18,12 @@ lock_value() {
   fi
 }
 
+dev_mount=/dev/$(cat /dev/urandom | tr -dc 'a-z_' | head -c 8; echo)
 # hide_value /sys/module/task_turbo/parameters/feats [write_value]
 hide_value() {
   if [[ -e "$1" ]]; then
     umount "$1" 2>/dev/null
-    c_path="/dev/scene${1}"
+    c_path="$dev_mount${1}"
     if [[ ! -f "$c_path" ]]; then
       mkdir -p "$c_path"
       rm -r "$c_path"
@@ -126,6 +127,7 @@ if [[ -d /proc/mi_display ]]; then
     fi
   done
   chmod 444 /sys/module/metis/parameters
+  chmod 444 /sys/module/migt/parameters
   am force-stop com.xiaomi.joyose
 fi
 

@@ -6,6 +6,7 @@
       "rr": ["GameThread", "RenderThread", "RHIThread"],
       "ni": ["GameThread", "RenderThread", "RHIThread"],
       "main_thread": "0-6",
+      "trashy": ["Pool", "TAsync"],
       "comm": {
         "8": ["GameThread", "mali-compile"],
         "4-8": ["FChunk"],

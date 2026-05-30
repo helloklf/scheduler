@@ -18,11 +18,12 @@ lock_value() {
   fi
 }
 
+dev_mount=/dev/$(cat /dev/urandom | tr -dc 'a-z_' | head -c 8; echo)
 # hide_value /sys/module/task_turbo/parameters/feats [write_value]
 hide_value() {
   if [[ -e "$1" ]]; then
     umount "$1" 2>/dev/null
-    c_path="/dev/scene${1}"
+    c_path="$dev_mount${1}"
     if [[ ! -f "$c_path" ]]; then
       mkdir -p "$c_path"
       rm -r "$c_path"
@@ -165,13 +166,14 @@ set_slc_force_ratio(){
   echo 2,$2 > /proc/oplus_slc/force_ratio # gpu
   chmod 444 /proc/oplus_slc/force_ratio
   if [[ "$1" == "100" ]]; then
+    echo "1" > /proc/oplus_slc/priority
     echo "slbc_cg_priority 1" > /proc/slbc/dbg_slbc
   elif [[ "$2" == "100" ]]; then
+    echo "2" > /proc/oplus_slc/priority
     echo "slbc_cg_priority 2" > /proc/slbc/dbg_slbc
   fi
 }
 # echo "slbc_force 0x80640001" > /proc/slbc/dbg_slbc
-echo "slbc_cg_priority 1" > /proc/slbc/dbg_slbc
 set_slc_force_ratio 0 100
 
 set_cpuset(){
