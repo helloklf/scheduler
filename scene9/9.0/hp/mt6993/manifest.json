@@ -1,0 +1,13 @@
+{
+  "version": "HP(Developer Test)",
+  "versionCode": 20260603,
+  "author": "SCENE9",
+  "projectUrl": "http://vtools.omarea.com/",
+  "features": {
+    "strict": true,
+    "pedestal": true,
+    "fas": true,
+    "reboot": false,
+    "limiter": false
+  }
+}

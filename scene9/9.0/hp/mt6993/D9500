@@ -1,0 +1,79 @@
+# /sys/devices/system/cpu/cpufreq/policy0/scaling_available_frequencies
+2700000 2600000 2500000 2400000 2300000 2200000 2100000 2000000 1900000 1800000 1700000 1600000 1500000 1400000 1300000 1200000 1100000 1000000 900000 800000 700000 600000 500000 400000 300000
+
+# /sys/devices/system/cpu/cpufreq/policy4/scaling_available_frequencies
+3500000 3400000 3200000 3000000 2900000 2800000 2700000 2600000 2500000 2400000 2300000 2200000 2100000 2000000 1900000 1800000 1700000 1600000 1500000 1400000 1300000 1200000 1100000 1000000 900000 800000 700000 600000 500000 400000 300000
+
+# /sys/devices/system/cpu/cpufreq/policy7/scaling_available_frequencies
+4210000 4184000 4050000 3950000 3800000 3650000 3500000 3350000 3200000 3050000 2900000 2750000 2600000 2450000 2300000 2150000 2000000 1850000 1700000 1550000 1400000 1250000 1100000 1000000 900000 800000 700000 600000 500000 400000 300000
+
+# /proc/gpufreqv2/stack_working_opp_table
+[00] freq: 1716000, volt:  85000, vsram:  75000
+[01] freq: 1690000, volt:  85000, vsram:  75000
+[02] freq: 1664000, volt:  84500, vsram:  75000
+[03] freq: 1638000, volt:  84000, vsram:  75000
+[04] freq: 1612000, volt:  83500, vsram:  75000
+[05] freq: 1586000, volt:  83000, vsram:  75000
+[06] freq: 1560000, volt:  82500, vsram:  75000
+[07] freq: 1534000, volt:  82000, vsram:  75000
+[08] freq: 1508000, volt:  81500, vsram:  75000
+[09] freq: 1482000, volt:  81000, vsram:  75000
+[10] freq: 1456000, volt:  81000, vsram:  75000
+[11] freq: 1430000, volt:  80500, vsram:  75000
+[12] freq: 1404000, volt:  80000, vsram:  75000
+[13] freq: 1378000, volt:  79500, vsram:  75000
+[14] freq: 1352000, volt:  79000, vsram:  75000
+[15] freq: 1326000, volt:  78500, vsram:  75000
+[16] freq: 1300000, volt:  78000, vsram:  75000
+[17] freq: 1274000, volt:  77500, vsram:  75000
+[18] freq: 1248000, volt:  77000, vsram:  75000
+[19] freq: 1222000, volt:  77000, vsram:  75000
+[20] freq: 1196000, volt:  76500, vsram:  75000
+[21] freq: 1170000, volt:  76000, vsram:  75000
+[22] freq: 1144000, volt:  75500, vsram:  75000
+[23] freq: 1118000, volt:  75000, vsram:  75000
+[24] freq: 1092000, volt:  74500, vsram:  75000
+[25] freq: 1066000, volt:  74000, vsram:  75000
+[26] freq: 1040000, volt:  73500, vsram:  75000
+[27] freq: 1014000, volt:  73000, vsram:  75000
+[28] freq:  988000, volt:  72500, vsram:  75000
+[29] freq:  962000, volt:  72500, vsram:  75000
+[30] freq:  936000, volt:  72000, vsram:  75000
+[31] freq:  910000, volt:  71500, vsram:  75000
+[32] freq:  884000, volt:  71000, vsram:  75000
+[33] freq:  858000, volt:  70500, vsram:  75000
+[34] freq:  832000, volt:  70000, vsram:  75000
+[35] freq:  806000, volt:  69500, vsram:  75000
+[36] freq:  780000, volt:  69000, vsram:  75000
+[37] freq:  754000, volt:  68500, vsram:  75000
+[38] freq:  728000, volt:  68500, vsram:  75000
+[39] freq:  702000, volt:  68000, vsram:  75000
+[40] freq:  676000, volt:  67500, vsram:  75000
+[41] freq:  650000, volt:  67000, vsram:  75000
+[42] freq:  624000, volt:  66500, vsram:  75000
+[43] freq:  598000, volt:  66000, vsram:  75000
+[44] freq:  572000, volt:  65500, vsram:  75000
+[45] freq:  546000, volt:  65000, vsram:  75000
+[46] freq:  520000, volt:  64500, vsram:  75000
+[47] freq:  494000, volt:  64500, vsram:  75000
+[48] freq:  468000, volt:  64000, vsram:  75000
+[49] freq:  442000, volt:  63500, vsram:  75000
+[50] freq:  416000, volt:  63000, vsram:  75000
+[51] freq:  390000, volt:  62500, vsram:  75000
+[52] freq:  364000, volt:  62000, vsram:  75000
+[53] freq:  338000, volt:  61500, vsram:  75000
+[54] freq:  312000, volt:  61000, vsram:  75000
+[55] freq:  286000, volt:  60500, vsram:  75000
+[56] freq:  260000, volt:  60000, vsram:  7500
+
+
+# single thread
+# ddr   cpu   score       power(total)
+auto    3950              9.7w
+auto    3800              9w
+auto    3650              7.5w
+auto    3500              6.5w
+auto    3350              5.5w
+auto    3200              5w
+auto    3050              4.5w
+auto    2900              4w
