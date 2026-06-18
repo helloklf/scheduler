@@ -71,10 +71,9 @@
     {
       "mode": ["powersave", "balance"],
       "call": [],
-      "booster": {
-        "duration": 2000,
-        "enter": [],
-        "exit": []
+      "state": {
+        "active": [],
+        "inactive": []
       },
       "sensors": []
     }
@@ -82,7 +81,7 @@
 }
 ```
 
-- 在这里 `call` 会采用合并覆盖策略，而 `cpuset` `booster` `sensors` 则是子级配置直接覆盖富集配置
+- 在这里 `call` 会采用合并覆盖策略，而 `cpuset` `state` `sensors` 则是子级配置直接覆盖富集配置
 
 
 #### 模式通配
@@ -111,8 +110,9 @@
 ```
 
 #### 类目
-- 也可以通过应用分类`categories`而非包名`packages`来指定命中的应用
-- 例如，我打算为聊天工具、小说阅读器做一组配置，就像这样：
+- 类目就像是一些PackageName的集合
+- 也可以在`packages`中添加来类目，来直接匹配一系列应用
+- 例如，我打算为聊天工具、小说阅读器指定一组配置，就像这样：
 
 ```json
 {
@@ -120,7 +120,7 @@
   "apps": [
     {
       "friendly": "即时通讯、阅读",
-      "categories": ["IM", "Reader"],
+      "packages": ["IM", "Reader"],
       "call": [
         ["@cpu_freq", "cpu7", "300000", "1500000"]
       ]

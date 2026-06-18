@@ -138,21 +138,30 @@
       "com.google.android.apps.nexuslauncher",
       "ch.deletescape.lawnchair.plah",
       "com.android.launcher",
-      "com.tencent.mm.plugin.appbrand.ui.AppBrandLauncherUI",
       "com.bbk.launcher2",
       "com.zte.mifavor.launcher"
+    ],
+    "activities": [
+      "com.tencent.mm.plugin.appbrand.ui.AppBrandLauncherUI",
+      "com.tencent.mm.plugin.appbrand.launching.AppBrandLaunchProxyUI"
     ],
     "category": "Launcher"
   },
   {
     "friendly": "扫码",
-    "packages": [
+    "activities": [
       "com.tencent.mm.plugin.scanner.ui.BaseScanUI",
-      "com.tencent.mobileqq.olympic.activity.ScanTorchActivity",
       "com.tencent.mobileqq.olympic.activity.ScanTorchActivity",
       "com.alipay.mobile.scan.as.main.MainCaptureActivity",
       "com.jd.lib.scan.lib.zxing.client.android.CaptureActivity",
-      "com.etao.feimagesearch.capture.CaptureActivity"
+      "com.jd.lib.scan.lib.zxing.client.android.NewCaptureActivity",
+      "com.etao.feimagesearch.capture.CaptureActivity",
+      "com.bilibili.app.qrcode.QRcodeCaptureActivity",
+      "com.oplus.scanner.ui.main.CameraActivity",
+      "com.xiaomi.scanner.app.ScanActivity",
+      "com.flyme.scanner.CaptureActivity",
+      "com.tencent.wework.login.controller.LoginScannerActivity",
+      "kt.com.fcbox.hiveconsumer.app.business.scan.ScanActivity"
     ],
     "category": "Scanner"
   },

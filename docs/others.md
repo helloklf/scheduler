@@ -48,17 +48,6 @@
 ```
 
 
-### `@perf_turbo`
-- 适用于天玑1100 1200 8100 9000的一些关于GPU的调整
-- 非常乱，调来调去也调不好，建议不要使用
-
-
-### `@msm_feas` `@mtk_feas`
-- 使用指定参数尝试开启小米的FEAS(如果支持)
-- 如果开启成功，会自动清掉`@limiters`指定的辅助调速器
-- 用法如 ["@msm_feas", "MIN_FREQ_INDEX", "MAX_FREQ_INDEX"]
-- FREQ_INDEX 指定频率索引范围(0~N)，值越小频率越高，N的最大值取决于内核模块中的定义
-
 ### Utilization Clamping @uclamp
 - uclamp作为schedtune的替代方案，在Linux Kernel中引入
 - 因此，并非所有设备都能使用该特性
@@ -69,7 +58,7 @@
 ```
 - 3个参数分别对应cpuctl中background、foreground、top-app的cpu.uclamp.min和cpu.uclamp.max，两个值之间以 ~ 符号分隔
 
-### 
+### 匹配和切换cpu调速器
 - 使用@governor可以切换CPU调速器
 - 允许指定两个或更多值，实现调速器优选（仅限Scene7.0+）
 ```js

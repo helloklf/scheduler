@@ -1,42 +1,74 @@
 ### 辅助调速器
-- SCENE提供了辅助调速器来帮助控制CPU余量，用于解决使用内核/系统自带的调速器在特定场景下过于激进或过于保守
-- 如果有需要，可以选择使用它。
+- SCENE提供了辅助调速器来帮助控制CPU余量
+- 用于解决使用内核/系统自带的调速器在特定场景下过于激进或过于保守
+- 如果有需要，可以选择使用它
 
 
 ### 基本配置
 - Limiter 的基础配置位于在 `features`， 但它并不是必须
+- 一个简单的示例
 
 ```json
+// profile.json
 {
   "features": {
-    "limiter": {
-      "logger": false,
-      "params": [
-        { "id": "p1:cpu0", "max": 1555200, "min": 691200, "margin": 250 },
-        { "id": "p1:cpu4", "max": 2112000, "min": 768000, "margin": 270 },
-        { "id": "p1:cpu7", "max": 2246400, "min": 1171200, "margin": 250 },
 
-        { "id": "idle:cpu0", "max": 1440000, "margin": 70 },
-        { "id": "idle:cpu4", "max": 1555200, "margin": 70 },
-        { "id": "idle:cpu7", "max": 1536000, "margin": 80 }
-      ]
+    "limiter": {
+      "ddr_boost": true,
+      "l3_boost": true,
+      "params": {
+        "p1": {
+          // 工作模式，upper表示控制频率上限
+          "mode": "upper",
+          // 指定低负载时允许从哪些cluster关闭部分核心
+          "core_ctl": [],
+          // 这里有3条配置，分别对应处理器的3个cluster，实际数目应与硬件保持一致
+          "cpus": [
+            { "max": 1555200, "min": 691200, "margin": 250 },
+            { "max": 2112000, "min": 768000, "margin": 270 },
+            { "max": 2246400, "min": 1171200, "margin": 250 },
+          ]
+        },
+        "p2": {
+          "mode": "upper",
+          // cpus 字段中包含的数据条数，必须与cpu的cluster数量一致，
+          // 如果不需要控制某一cluster，则对应的cluster配置至少应保留一个null 
+          "cpus": [
+            null,
+            { "max": 2450000, "min": 768000, "margin": 270 },
+            { "max": 2850000, "min": 1171200, "margin": 250 },
+          ]
+        }
+      }
     }
+
   },
+
   "schemes": {
     "powersave": {
       "call": [
-        ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"]
+        ["@limiter", "p1"]
+      ]
+    },
+    "balance": {
+      "call": [
+        ["@limiter", "p2"]
       ]
     }
   }
+
 }
 ```
 
-> 下面的 `params` 则是添加了6条`limiter`执行策略
-- 留意ID格式，例如：`p1:cpu0` 的 `:`后其实一个 `clusterExpr`，说明可以在[基础](./basic.md)章节找到
+- ddr_boost、l3_boost 是辅助调速器的附带功能，开启后会根据CPU频率适当提升ddr、l3频率，前提是设备硬件受支持
+  > 主要用于改善游戏性能，避免ddr、l3升频不积极无法释放最佳性能
+- core_ctl 用于指定低负载时允许从哪些cluster关闭部分核心，
+  > 适合需要实现极限节能的场景，
 
-> 通过 `@limiters` 就可以使用已添加的执行策略
-- 调用`@limiters`时会先移除已经启用的限速器，再添加指定的限速器
+  > 例如配置为[1,2]表示允许停用cluster 1, cluster 2的核心，
+
+  > 在3 cluster的处理器中，对应中核、大核
+
 
 
 ### 工作模式
@@ -48,14 +80,14 @@
 | upper | 根据负载和余量调整频率上限，频率写入`scaling_max_freq` |
 | bottom | 根据负载和余量调整频率下限，频率写入`scaling_min_freq` |
 | performance | 将CPU调速器更改为performance，并以upper模式继续工作 |
+| boost | 类似于bottom模式，但使用Hw Cycles统计负载 |
 
 
 ### 完整配置
 
 | 参数 | 含义 | 类型 |
 | :- | :- | :-: |
-| id | 格式为`**:[clusterExpr]`，必须在整套配置里保持不重名 | string |
-| mode | 工作模式 | string |
+| mode | 工作模式，若不单独配置，默认跟随上级 | string |
 | max | 最高频率限制(kHz)，0或不配置为不限制 | int |
 | min | 最低频率限制(kHz)，0或不配置为不限制 | int |
 | margin | 固定的余量(M Cycles) | int |
@@ -63,7 +95,7 @@
 | perfect | 能效/功耗最佳平衡频率，默认是cluster支持的最高频率×0.8 | int |
 | smoothness | 频率平滑度，默认`4`，最小为`1` | int |
 | mt | 计算此cluster的负载时的多核负载权重, `0 ~ 100`，默认 `0` | int |
-| excludes | 计算负载时排除的cpu核心，例如: [2, 3] | []int |
+| excludes | 计算负载时排除的cpu核心，例如: `[2, 3]` | []int |
 | prefer | 偏好，可配置为 `1`、`2`、`3`，默认`2` | int |
 
 
@@ -87,8 +119,8 @@
 - 先来看看Limiter的固定余量运算逻辑
 
   ```
-  loadRatio = 0.8
-  margin = 288
+  const loadRatio = 0.8
+  const margin = 288
 
   currentFreq = 700
   expectCycles = currentFreq * loadRatio      // 560
@@ -116,8 +148,8 @@
 - 假设，我们期望CPU负载达到70%时升频，所以marginRatio应该是0.3，看看运算逻辑
 
   ```
-  loadRatio = 0.8
-  marginRatio = 0.3
+  const loadRatio = 0.8
+  const marginRatio = 0.3
 
   currentFreq = 700
   expectCycles = currentFreq * loadRatio      // 560
@@ -132,7 +164,7 @@
   currentFreq = 2450
   expectCycles = currentFreq * loadRatio      // 1960
   nextFreq = expectCycles * (1 + marginRatio) // 2548
-  // nextFreq - nextFreq = 588，expectCycles ÷ nextFreq = 0.77
+  // nextFreq - expectCycles = 588，expectCycles ÷ nextFreq = 0.77
   ```
 
   - 可以看出来，按比例设置余量并不科学，这会导致频率越高CPU的空余性能越多
@@ -140,15 +172,19 @@
 
 
 ##### 目标余量
-- Scene7.3 新增特性 target_margin，8.0后改名为`margins`，用于取代`margin`，支持设置不同频率下的余量
-- 配置格式如：`400 2100000:300 2650000:200`
-- 这个例子表示：
-  > CPU频率处于 `0 ~ 2100000KHz` 余量为400MHz <br>
-  > CPU频率处于 `2100000KHz ~ 2650000KHz` 余量为300MHz <br>
-  > CPU频率高于 `2650000KHz` 余量为200Mhz
+- `margins`用于取代`margin`，支持分频段设置余量
+
+  ```js
+  { "max": 2850000, "margins": "400 2100000:300 2650000:200" }
+  ```
+
+  - 这个例子表示：
+    > CPU频率处于 `0 ~ 2100000KHz` 余量为400MHz <br>
+    > CPU频率处于 `2100000KHz ~ 2650000KHz` 余量为300MHz <br>
+    > CPU频率高于 `2650000KHz` 余量为200Mhz
 
 
-#### 多核负载权重(Scene7.2+)
+#### 多核负载权重
 - 先说两个定义
   > stLoad = Single Thread Load = cluster的各个核心最高负载<br>
   > mtLoad = Multiple Thread Load = cluster的各个核心平均负载
@@ -160,35 +196,36 @@
 * 不要在只有一颗核心的cluster上使用，以及确保设置`excludes`后参与负载计算的核心不少于两个
 
 
-#### 排除核心(Scene7.2+)
+#### 排除核心
 - 有时候我们会故意把所有垃圾进程、线程集中在一颗核心，从而把更多的核心留给重要的进程、线程
-- 但是，一颗核心承载大量任务，可能会导致该cluster持续高负载，设置更高的`mt`又不利于该`cluster`上的其它任务正常运行
+- 但是，一颗核心承载大量任务，可能会导致该cluster持续高负载，
+- 但设置更高的`mt`又不利于该`cluster`上的其它任务正常运行
 
 - 你只将核心添加到 `excludes` 即可解决问题，典型搭配示例如：
 
-  ```
-  // 内核cpuset配置
-  ["/dev/cpuset/background/cpus", "1"],
-  ["/dev/cpuset/top-app/cpus", "0-7"]
+  ```js
+  // 内核cpuset配置 确保后台进程只使用特定核心
+  ["/dev/cpuset/background/cpus", "1"]
 
-  // 调速器
-  {
-    "id": "p1:cpu0", "margin": 300, "excludes": [1] }
-  }
+  // 调速器 计算负载时排除调专用于后提阿进程的核心
+  { "max": 1800000, "margin": 300, "excludes": [1] }
   ```
+
+
+#### 注意事项
+- `mt` `core_ctl` `excludes` 组合使用可能导致负载计算变得非常困难
+- 尤其是`core_ctl`应尽量避免和另外两个特性同时使用
+
 
 ### 启用辅助调速器
-- `@limiters` 或 `@limiters+fas` 函数更换生效的调速器
+- 使用`@limiter`函数变更激活的辅助调速器
 - 发生场景切换(切换应用)后，SCENE会自动停止已经开启的调速器
-- 因此，配置中通常只需要执行 `开启` 命令
-- 如果一定要在某些时候主动关闭所有辅助调速器，可以用 `["@limiters", "NONE"]`来完成
-- SCENE8新增了FAS增强的辅助调速器，用于增强游戏体验。
-- 基本原理是，如果近几秒发生明显的帧率波动，则自动适当提高余量，以提升频率或延缓降频。
+- 因此，配置中通常只需要考虑何时开启，而无需考虑为上一个场景停止辅助调速器
+- 如果需要要在某些时候主动关闭所有辅助调速器，可以用 `["@limiter", "NONE"]`来完成
 
   ```json
-  // 开启普通的辅助调速器(完全基于余量)
-  ["@limiters", "p1:cpu0", "p1:cpu4", "p1:cpu7"]
-
-  // 开启FAS增强的辅助调速器
-  ["@limiters+fas", "p1:cpu0", "p1:cpu4", "p1:cpu7"]
+  // 激活一个id为p1的辅助调速器分组
+  ["@limiter", "p1"]
+  // 关闭所有正在运行的辅助调速器
+  ["@limiter", "NONE"]
   ```

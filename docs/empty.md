@@ -1,10 +1,12 @@
-## 创建一个配置文件
+## 空配置
 
-- 如下所示，这是一个名为`profile.json`的配置文件
+- 如下所示，这是一个最基本的`profile.json`配置格式
+> reset 部分表示每次每次发生档位切换前要执行的“重置”
 > `schemes` 的五个子项分别对应SCENE的5个模式
 
 ```json
 {
+  "reset": [],
   "schemes": {
     "powersave": {
       "call": [],
@@ -47,4 +49,4 @@
 - `app` 是用于`普通APP`的额外设定
 - `game` 是用于`游戏`的额外设定
 
-- 如需配置`pedestal`模式，需先在描述文件中声明！
+- 如需配置`pedestal`模式，需先在[描述文件](./manifest.md)中声明！

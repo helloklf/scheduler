@@ -1,7 +1,7 @@
-
 ### 传感器 `sensors`
-- Scene实现录简单的数值监听。注意，是数值，也就是说监听的值必须是个数字
-- 它的作用是，定时轮询(读取)某个文件或虚拟传感器，并根据所得的值决定要修改什么参数
+- Scen提供了简单的数值轮询。
+- 并允许在设置不同数值范围内做什么操作
+- 注意，是数值，也就是说被轮询的值必须是个数字！
 
 - 完整用法 如：
 ```json
@@ -38,7 +38,8 @@
               "note": "[capacity] < 16 && [capacity] >= MIN, GPU limited to 370MHz",
               "enter_once" : [],
               "enter": [
-                ["/proc/mali/dvfs_enable", "0"], ["/proc/gpufreq/gpufreq_opp_freq", "370000"]
+                ["/proc/mali/dvfs_enable", "0"],
+                ["/proc/gpufreq/gpufreq_opp_freq", "370000"]
               ],
               "values": []
             }

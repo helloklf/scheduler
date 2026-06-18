@@ -1,19 +1,15 @@
 ## 调用
-- Scene的性能调节配置并未采用完全固定的格式
-- 而是以*调用(call)*为核心构成各个场景的设定
-- 配置的作用就是声明各个场景，要调用Scene提供的哪些函数，将参数改成什么样
+- *调用(call)*是Scene性能调节配置的核心单元
+- Scene执行配置入口时，总是从主文件`profile.json`入口开始
+- 自上而下逐级匹配和执行对应的操作
 
 ### 写入数值
-- 例如，使用`@set_value`函数可以向指定路径写入值
   ```js
-  // 示例
-  ["@set_value", "/proc/sys/kernel/sched_boost", "1]
-
-  // @set_value较为特殊，Scene建议省略函数名直接写path和value
+  // 示例 正常的写入一个值
   ["/proc/sys/kernel/sched_boost", "1"]
   ```
-- 如果需要再写入数值后，将文件设为只读(0444)，可以在value前加#
-  > 这么做主要是防止第三方应用或系统再覆盖写入的数值，并不影响Scene下次写入该文件
+- 如果需要想要在写入数值后，将文件设为只读(0444)，可以在value前加#
+  > 这么做主要是防止参数被第三方应用或系统再覆盖，并不影响Scene下次写入
 
   ```js
   ["/proc/sys/kernel/sched_boost", "#1"]
@@ -75,7 +71,7 @@
 
 #### GPU频率范围 `@gpu_freq`
 - 参数格式为 **@gpu_freq [freqExpr] [freqExpr]**
-- 例如，我准备在省电模式下将CPU小核限制为最高500Mhz
+- 例如，我准备在省电模式下将GPU最大频率限制500Mhz
 ```json
 {
   "schemes": {
