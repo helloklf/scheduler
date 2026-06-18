@@ -11,33 +11,39 @@
       "mode": ["powersave"],
       "call": [
         ["@cpu_freqs_max", "#1600000", "#1900000", "#2300000"],
-        ["@cpu_freqs_min", "#500000", "#622000", "#798000"]
+        ["@cpu_freqs_min", "#500000", "#600000", "#700000"]
       ],
       "fas": {
         "use": "whitelist",
-        "freq": ["2300000", "1900000"]
+        "freq": ["2300000", "1900000"],
+        "big_min_freq": 800000,
+        "middle_min_freq": 700000
       }
     },
     {
       "mode": ["balance"],
       "call": [
         ["@cpu_freqs_max", "#1700000", "#2200000", "#2600000"],
-        ["@cpu_freqs_min", "#700000", "#800000", "#900000"]
+        ["@cpu_freqs_min", "#700000", "#700000", "#800000"]
       ],
       "fas": {
         "use": "whitelist",
-        "freq": ["2600000", "2200000"]
+        "freq": ["2600000", "2200000"],
+        "big_min_freq": 900000,
+        "middle_min_freq": 700000
       }
     },
     {
       "mode": ["performance"],
       "call": [
         ["@cpu_freqs_max", "#1800000", "#2600000", "#3000000"],
-        ["@cpu_freqs_min", "#800000", "#800000", "#900000"]
+        ["@cpu_freqs_min", "#800000", "#900000", "#900000"]
       ],
       "fas": {
         "use": "whitelist",
-        "freq": ["3000000", "2600000"]
+        "freq": ["3000000", "2600000"],
+        "big_min_freq": 900000,
+        "middle_min_freq": 700000
       }
     },
     {
@@ -45,12 +51,14 @@
       "call": [
         ["@governor", "schedutil", "sugov_ext"],
         ["@cpu_freqs_max", "#2000000", "#3000000", "#3500000"],
-        ["@cpu_freqs_min", "#800000", "#900000", "#1200000"]
+        ["@cpu_freqs_min", "#800000", "#1100000", "#1000000"]
       ],
       "fas": {
         "use": "whitelist",
         "mode": "normal",
-        "freq": ["3500000", "3000000"]
+        "freq": ["3350000", "3000000"],
+        "big_min_freq": 900000,
+        "middle_min_freq": 700000
       }
     },
     {
@@ -63,7 +71,9 @@
       "fas": {
         "use": "whitelist",
         "mode": "normal",
-        "freq": ["3800000", "3200000"]
+        "freq": ["3500000", "3200000"],
+        "big_min_freq": 900000,
+        "middle_min_freq": 700000
       }
     }
   ]

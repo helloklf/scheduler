@@ -118,11 +118,6 @@ if [[ -e /sys/module/vivo_board_info ]] || [[ -e /sys/module/vivo_display ]]; th
   stop thermal_core
   stop thermald
 fi
-if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
-  lock_value "MIN_TTJ 90000 90000 90000" /sys/kernel/thermal/min_ttj
-  lock_value "MAX_TTJ 95000 90000 90000" /sys/kernel/thermal/max_ttj
-  lock_value "TTJ 90000 90000 90000" /sys/kernel/thermal/ttj
-fi
 
 # Low Battery Throttling
 echo "low_battery_throttling"
@@ -213,14 +208,15 @@ stop_services(){
 gpu_ulimit(){
   # gpt index temp opp
   echo "enable" > /sys/kernel/thermal/gpt
-  echo "gpt 1 80000 7" > /sys/kernel/thermal/gpt
-  echo "gpt 2 88000 12" > /sys/kernel/thermal/gpt
+  echo "gpt 1 88000 7" > /sys/kernel/thermal/gpt
+  echo "gpt 2 92000 12" > /sys/kernel/thermal/gpt
   # echo "disable" > /sys/kernel/thermal/gpt
 }
 gpu_ulimit
 
 
 if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
+  lock_value "MIN_TTJ 95000 95000 95000" /sys/kernel/thermal/min_ttj
   lock_value "MAX_TTJ 95000 95000 95000" /sys/kernel/thermal/max_ttj
   lock_value "TTJ 95000 95000 95000" /sys/kernel/thermal/ttj
 fi
