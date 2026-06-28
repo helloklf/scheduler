@@ -9,7 +9,7 @@
       "trashy": ["Pool", "TAsync"],
       "comm": {
         "8": ["GameThread", "mali-compile"],
-        "4-8": ["FChunk"],
+        "4-8": ["FChunk", "BinPatch"],
         "4-7": ["RenderThread", "RHIThread"],
         "0-3": ["mali-cpu", "V8", "Backgro"]
       },

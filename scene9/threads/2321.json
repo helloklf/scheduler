@@ -39,7 +39,7 @@
       "trashy": ["Pool", "TAsync"],
       "comm": {
         "7": ["GameThread"],
-        "2-7": ["FChunk"],
+        "2-7": ["FChunk", "BinPatch"],
         "2-4": ["RenderThread", "RHIThread"]
       },
       "other": "2-6"

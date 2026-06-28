@@ -33,6 +33,7 @@
       "comm": {
         "7": ["GameThread"],
         "6": ["RenderThread"],
+        "6-7": ["BinPatch"],
         "1-5": ["AsyncLoading", "FChunk", "RHIThread"]
       },
       "other": "1-5"
