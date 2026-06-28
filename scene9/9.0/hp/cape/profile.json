@@ -9,7 +9,9 @@
     "ddr_boost": "/sys/devices/system/cpu/bus_dcvs/DDR/boost_freq",
     "memlat_low": "/sys/devices/system/cpu/bus_dcvs/DDR/memlat",
     "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable",
-    "sched_boost": "/proc/sys/walt/sched_boost"
+    "sched_boost": "/proc/sys/walt/sched_boost",
+    "sched_assist": "/proc/oplus_scheduler/sched_assist/sched_assist_enabled",
+    "sf_cpus": "/dev/cpuset/top-app/sf/cpus"
   },
   "features": {
     "limiter": {
@@ -126,10 +128,13 @@
     "common_app": [
       ["$perfmgr_enable", "0"],
       ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
-      ["$mod_percent", "110"]
+      ["$sf_cpus", "0-7"],
+      ["$mod_percent", "110"],
+      ["$sched_assist", "1"]
     ],
     "common_gaming": [
       ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
+      ["$sf_cpus", "0-5"],
       ["$sched_boost", "0"],
       ["$mod_percent", "100"]
     ],

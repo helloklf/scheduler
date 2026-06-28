@@ -10,7 +10,9 @@
     "memlat_low": "/sys/devices/system/cpu/bus_dcvs/DDR/memlat",
     "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable",
     "bus_qos": "/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq",
-    "tchg": "/proc/touchpanel/game_switch_enable"
+    "tchg": "/proc/touchpanel/game_switch_enable",
+    "sched_assist": "/proc/oplus_scheduler/sched_assist/sched_assist_enabled",
+    "sf_cpus": "/dev/cpuset/top-app/sf/cpus"
   },
   "features": {
     "limiter": {
@@ -121,13 +123,16 @@
     "common_app": [
       ["$perfmgr_enable", "0"],
       ["@cpuset", "0-3", "0-6", "0-7", "0-7"],
+      ["$sf_cpus", "0-7"],
       ["$mod_percent", "105"],
       ["$bus_qos", "0"],
-      ["$bus_ddr", "2736000"]
+      ["$bus_ddr", "2736000"],
+      ["$sched_assist", "1"]
     ],
     "common_gaming": [
       ["@limiter", "NONE"],
       ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
+      ["$sf_cpus", "0-5"],
       ["$bus_qos", "0"],
       ["/proc/game_opt/disable_cpufreq_limit", "0"],
       ["$mod_percent", "95"],

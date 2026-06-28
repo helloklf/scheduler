@@ -132,12 +132,13 @@ rmdir /dev/cpuset/foreground/boost
 # OnePlus
 if [[ -d  /proc/game_opt ]]; then
   hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
-  # hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
-  # hide_value /proc/game_opt/disable_cpufreq_limit 1
+  hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
 fi
-# hide_value /proc/task_info/task_sched_info/task_sched_info_enable 0
-# hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
-
+lock_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
+for service in orms-hal-1-0 vendor.oplus.ormsHalService-aidl-default
+do
+  stop $service
+done
 lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
 for file in silver_core_boost splh_notif lplh_notif dplh_notif l3_boost; do
   lock_value 0 /sys/kernel/msm_performance/parameters/$file
@@ -150,6 +151,8 @@ for dir in /sys/devices/system/cpu/cpufreq/policy*;do
 done
 
 
+cpus=3-6
+
 set_cpuset(){
   pgrep -f $1 | while read pid; do
     echo $pid > /dev/cpuset/$2/cgroup.procs
@@ -161,18 +164,16 @@ set_cpuset(){
 }
 
 rmdir /dev/cpuset/background/untrustedapp
-cpus=3-6
-mkdir /dev/cpuset/top-app/$cpus
-echo $cpus > /dev/cpuset/top-app/$cpus/cpus
-echo 0 > /dev/cpuset/top-app/$cpus/mems
-
 rmdir /dev/cpuset/foreground/boost
-set_cpuset surfaceflinger "top-app/$cpus"
+mkdir /dev/cpuset/top-app/sf
+echo $cpus > /dev/cpuset/top-app/sf/cpus
+echo 0 > /dev/cpuset/top-app/sf/mems
+set_cpuset surfaceflinger "top-app/sf"
+
+set_cpuset touch_report "foreground"
 set_cpuset system_server "foreground"
 set_cpuset update_engine "top-app/$cpus"
-set_cpuset audioserver 'foreground'
-set_cpuset android.hardware.audio.service_64 'foreground'
-set_cpuset vendor.qti.hardware.display.composer-service "top-app/$cpus"
+set_cpuset kswapd 'foreground'
 
 
 for file in /sys/devices/system/cpu/bus_dcvs/LLCC/*/min_freq; do
