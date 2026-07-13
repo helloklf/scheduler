@@ -6,5 +6,13 @@
   "features": {
     "strict": true,
     "pedestal": false
-  }
+  },
+  "files": [
+    "_Apps.json",
+    "_ELP.json",
+    "_Games.json",
+    "_SGAME.json",
+    "powercfg.sh",
+    "profile.json"
+  ]
 }

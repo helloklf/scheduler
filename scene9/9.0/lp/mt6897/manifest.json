@@ -6,5 +6,14 @@
   "features": {
     "strict": true,
     "pedestal": false
-  }
+  },
+  "files": [
+    "_Apps.json",
+    "_Camera.json",
+    "_ELP.json",
+    "_Games.json",
+    "DDR_MAPPING.CONF",
+    "powercfg.sh",
+    "profile.json"
+  ]
 }

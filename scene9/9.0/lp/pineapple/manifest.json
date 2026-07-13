@@ -7,5 +7,16 @@
     "strict": true,
     "pedestal": false,
     "reboot": false
-  }
+  },
+  "files": [
+    "_Apps.json",
+    "_Camera.json",
+    "_ELP.json",
+    "_Games.json",
+    "_WhiteList.json",
+    "DDR_MAPPING.CONF",
+    "fas_offset.conf",
+    "powercfg.sh",
+    "profile.json"
+  ]
 }

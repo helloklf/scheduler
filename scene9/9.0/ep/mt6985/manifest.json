@@ -7,5 +7,13 @@
     "strict": true,
     "pedestal": true,
     "reboot": false
-  }
+  },
+  "files": [
+    "_Apps.json",
+    "_Camera.json",
+    "_Games.json",
+    "DDR_MAPPING.CONF",
+    "powercfg.sh",
+    "profile.json"
+  ]
 }
