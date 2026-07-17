@@ -173,7 +173,7 @@ do
 done
 
 stop_services(){
-  services="magt fpsgo ged oiface midasd frs uart_launcher touch_boost oplus_sched oplus_sched_rename"
+  services="magt fpsgo ged oiface midasd frs touch_boost oplus_sched oplus_sched_rename"
   for service in $services; do
     stop $service
     killall $service

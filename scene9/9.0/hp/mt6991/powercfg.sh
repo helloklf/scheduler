@@ -73,18 +73,6 @@ chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_tid
 lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
 
-# echo 1 > /sys/module/migt/parameters/force_reset_runtime
-# lock_value 0 /sys/module/migt/parameters/enable_pkg_monitor
-lock_value 1 /sys/module/migt/parameters/glk_disable
-lock_value 0 /sys/module/migt/parameters/glk_fbreak_enable
-lock_value 0 /sys/module/migt/parameters/force_cluster_sched_enable
-lock_value -1 /sys/module/migt/parameters/render_prefer_cluster
-lock_value -1 /sys/module/migt/parameters/vip_prefer_cluster
-lock_value -1 /sys/module/migt/parameters/stask_prefer_cluster
-lock_value -1 /sys/module/migt/parameters/ip_prefer_cluster
-lock_value 0 /sys/module/migt/parameters/glk_freq_limit_start
-set_value '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' /sys/module/migt/parameters/migt_ceiling_freq
-set_value '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0' /sys/module/migt/parameters/migt_freq
 set_value 1 /sys/module/metis/parameters/reset_clus_affinity_uidlist
 set_value 1 /sys/module/metis/parameters/reset_rebind_task
 lock_value 0 /sys/module/metis/parameters/thermal_break_enable
@@ -199,7 +187,7 @@ do
 done
 
 stop_services(){
-  services="magt fpsgo ged oiface midasd frs uart_launcher touch_boost oplus_sched oplus_sched_rename"
+  services="magt fpsgo ged oiface midasd frs touch_boost oplus_sched oplus_sched_rename"
   for service in $services; do
     stop $service
     killall $service
