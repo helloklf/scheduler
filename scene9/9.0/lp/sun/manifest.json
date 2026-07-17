@@ -8,5 +8,13 @@
     "pedestal": false,
     "reboot": false,
     "fas": true
-  }
+  },
+  "files": [
+    "_Apps.json",
+    "_Camera.json",
+    "_ELP.json",
+    "_Games.json",
+    "powercfg.sh",
+    "profile.json"
+  ]
 }

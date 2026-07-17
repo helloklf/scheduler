@@ -9,5 +9,15 @@
     "reboot": false,
     "fas": true,
     "limiter": false
-  }
+  },
+  "files": [
+    "_Apps.json",
+    "_Camera.json",
+    "_Games.json",
+    "_WhiteList.json",
+    "DDR_MAPPING.CONF",
+    "FAS_OFFSET.CONF",
+    "powercfg.sh",
+    "profile.json"
+  ]
 }

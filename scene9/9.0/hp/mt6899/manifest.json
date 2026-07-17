@@ -8,5 +8,13 @@
     "pedestal": false,
     "fas": true,
     "reboot": false
-  }
+  },
+  "files": [
+    "_Apps.json",
+    "_Games.json",
+    "DDR_MAPPING.CONF",
+    "fas_offset.conf",
+    "powercfg.sh",
+    "profile.json"
+  ]
 }

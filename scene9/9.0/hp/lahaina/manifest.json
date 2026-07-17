@@ -7,5 +7,12 @@
     "strict": true,
     "pedestal": false,
     "fas": true
-  }
+  },
+  "files": [
+    "_Apps.json",
+    "_Games.json",
+    "_SGAME.json",
+    "powercfg.sh",
+    "profile.json"
+  ]
 }
