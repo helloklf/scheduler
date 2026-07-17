@@ -54,11 +54,6 @@
       ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "0"],
       ["@ioctl", "/proc/easmgr/eas_ioctl",
         "0x40046715", "500000", "0x40046717", "500000", "0x40046719", "500000"
-      ],
-      ["@ioctl", "/proc/easmgr/eas_ioctl",
-        "0x4004672c", "60", "0x4004672d", "72", "0x4004672e", "0",
-        "0x4004672c", "70", "0x4004672d", "80", "0x4004672e", "1",
-        "0x40046706", "5000"
       ]
     ],
     "common_gaming": [
@@ -69,11 +64,6 @@
       ["$gpu_max_freq", "#9"],
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "#0"],
       ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "1"],
-      ["@ioctl", "/proc/easmgr/eas_ioctl",
-        "0x4004672c", "50", "0x4004672d", "70", "0x4004672e", "0",
-        "0x4004672c", "75", "0x4004672d", "90", "0x4004672e", "1",
-        "0x40046706", "5000"
-      ],
       ["@ddr_l3_booster"]
     ],
     "limiter_off": [

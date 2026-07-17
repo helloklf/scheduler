@@ -63,9 +63,9 @@ fi
 chmod 444 /proc/perfmgr/global_reclaim
 
 umount /proc/powerhal_cpu_ctrl/perfserv_freq
-echo '339000 2400000 622000 3300000 798000 3600000' > /proc/powerhal_cpu_ctrl/perfserv_freq
+echo '500000 2400000 500000 3400000 500000 3800000' > /proc/powerhal_cpu_ctrl/perfserv_freq
 mount --bind /proc/powerhal_cpu_ctrl/adpf_enable /proc/powerhal_cpu_ctrl/perfserv_freq
-lock_value '3300000 3600000' /sys/module/mtk_fpsgo/parameters/cpus_limit
+lock_value '3400000 3800000' /sys/module/mtk_fpsgo/parameters/cpus_limit
 # lock_value 1 /sys/module/mtk_fpsgo/parameters/better_perf
 stop touch_boost
 
@@ -101,6 +101,13 @@ fi
 
 # echo 1 > /sys/module/mtk_core_ctl/parameters/policy_enable
 lock_value 1 /sys/devices/system/cpu/cpu4/core_ctl/enable
+echo 0  > /sys/devices/system/cpu/cpu4/core_ctl/consider_VIP
+echo 90 > /sys/devices/system/cpu/cpu4/core_ctl/up_thres
+echo 1 1 0 > /sys/devices/system/cpu/cpu4/core_ctl/not_preferred
+echo 90 > /sys/devices/system/cpu/cpu4/core_ctl/thermal_up_thres
+echo 90 > /sys/devices/system/cpu/cpu4/core_ctl/cpu_busy_up_thres
+echo 70 > /sys/devices/system/cpu/cpu4/core_ctl/cpu_busy_down_thres
+echo 90 > /sys/devices/system/cpu/cpu4/core_ctl/cpu_active_loading_thres
 lock_value 3 /sys/devices/system/cpu/cpu4/core_ctl/max_cpus
 lock_value 3 /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
 lock_value 0 /sys/devices/system/cpu/cpu4/core_ctl/enable
@@ -142,6 +149,7 @@ chmod 444 /sys/kernel/fpsgo/common/render_attr_params
 chmod 444 /sys/kernel/fpsgo/common/render_attr_params_tid
 chmod 444 /sys/kernel/fpsgo/common/render_info
 chmod 444 /sys/kernel/fpsgo/common/render_info_params
+lock_value 0 /sys/kernel/fpsgo/minitop/enable
 
 lock_value 1 /proc/game_opt/disable_cpufreq_limit
 lock_value 1 /sys/module/migt/parameters/glk_disable
@@ -153,6 +161,17 @@ lock_value 0 /proc/task_overload/skip_goplus_enabled
 lock_value 0 /sys/module/mtk_fpsgo/parameters/cfp_onoff
 lock_value 0 /proc/touch_boost/enable
 stop vendor.oplus.ormsHalService-aidl-default
+resetprop sys.oplus.hmbird.manager.enable 0
+echo -1 > /proc/oplus_hmbird/manager_pid
+for file in /sys/module/vip_engine/parameters/*
+do
+  if [[ "$file" == *enable* ]]; then
+    echo 0 > "$file"
+  fi
+done
+lock_value N /sys/module/cpufreq_sugov_ext/parameters/runnable_boost_enable
+lock_value N /sys/module/cpufreq_sugov_ext/parameters/runnable_boost_default
+
 
 # set_slc_force_ratio [cpu%] [gpu%]
 set_slc_force_ratio(){
@@ -197,10 +216,10 @@ do
 done
 
 stop_services(){
-  services="magt fpsgo ged oiface midasd frs uart_launcher touch_boost oplus_sched oplus_sched_rename"
+  services="magt fpsgo ged oiface midasd frs uart_launcher touch_boost oplus_sched oplus_sched_rename vendor.mtkpower_applist-default vendor.urcc-hal-aidl"
   for service in $services; do
     stop $service
-    killall $service
+    killall $service 2>/dev/null
   done
 }
 # stop_services
@@ -220,3 +239,4 @@ if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
   lock_value "MAX_TTJ 95000 95000 95000" /sys/kernel/thermal/max_ttj
   lock_value "TTJ 95000 95000 95000" /sys/kernel/thermal/ttj
 fi
+

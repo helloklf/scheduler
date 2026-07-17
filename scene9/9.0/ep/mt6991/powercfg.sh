@@ -154,6 +154,8 @@ lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
 lock_value 0 /proc/task_overload/skip_goplus_enabled
 lock_value 0 /sys/module/mtk_fpsgo/parameters/cfp_onoff
 stop vendor.oplus.ormsHalService-aidl-default
+resetprop sys.oplus.hmbird.manager.enable 0
+echo -1 > /proc/oplus_hmbird/manager_pid
 
 # set_slc_force_ratio [cpu%] [gpu%]
 set_slc_force_ratio(){

@@ -67,7 +67,7 @@
 [56] freq:  260000, volt:  60000, vsram:  7500
 
 
-# single thread
+# single thread (cpu7)
 # ddr   cpu   score       power(total)
 auto    3950              9.7w
 auto    3800              9w
