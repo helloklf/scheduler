@@ -12,7 +12,9 @@
     "gpu_min_opp": "/sys/kernel/ged/hal/custom_boost_gpu_freq",
     "cpufreq": "/proc/powerhal_cpu_ctrl/perfserv_freq",
     "cpus_limit": "/sys/module/mtk_fpsgo/parameters/cpus_limit",
-    "uclamp_boost": "/dev/cpuctl/top-app/cpu.uclamp.min"
+    "uclamp_boost": "/dev/cpuctl/top-app/cpu.uclamp.min",
+    "dcs": "/sys/kernel/ged/hal/dcs_mode",
+    "l3_ct": "/sys/kernel/fpsgo/fbt/set_l3_cache_ct"
   },
   "features": {
     "limiter": {
@@ -56,10 +58,11 @@
         "0x40046715", "500000", "0x40046717", "500000", "0x40046719", "500000"
       ],
       ["@ioctl", "/proc/easmgr/eas_ioctl",
-        "0x4004672c", "70", "0x4004672d", "80", "0x4004672e", "0",
-        "0x4004672c", "70", "0x4004672d", "80", "0x4004672e", "1",
-        "0x40046706", "2000"
-      ]
+        "0x40046706", "1000"
+      ],
+      ["$dcs", "1"],
+      ["$l3_ct", "0"],
+      ["@ioctl", "/proc/cpuqosmgr/cpuqos_ioctl", "0x4020670E", "2"]
     ],
     "common_gaming": [
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
@@ -70,11 +73,12 @@
       ["/sys/module/mtk_fpsgo/parameters/boost_affinity", "#0"],
       ["@ioctl", "/proc/perfmgr_powerhal/ioctl_powerhal", "0x40046703", "1"],
       ["@ioctl", "/proc/easmgr/eas_ioctl",
-        "0x4004672c", "70", "0x4004672d", "85", "0x4004672e", "0",
-        "0x4004672c", "75", "0x4004672d", "90", "0x4004672e", "1",
         "0x40046706", "5000"
       ],
-      ["@ddr_l3_booster"]
+      ["@ddr_l3_booster"],
+      ["$dcs", "#0"],
+      ["$l3_ct", "2"],
+      ["@ioctl", "/proc/cpuqosmgr/cpuqos_ioctl", "0x4020670E", "0"]
     ],
     "limiter_off": [
       ["/proc/game_opt/disable_cpufreq_limit", "#1"],
@@ -89,7 +93,7 @@
 
     "powersave_active": [
       ["@preset", "common_active"],
-      ["@cpu_freqs_min", "#500000", "#600000", "#600000"],
+      ["@cpu_freqs_min", "#600000", "#600000", "#600000"],
       ["@ioctl", "/proc/easmgr/eas_ioctl",
         "0x40046716", "15", "0x40046718", "15", "0x4004671A", "15"]
     ],
@@ -100,7 +104,7 @@
     ],
     "balance_active": [
       ["@preset", "common_active"],
-      ["@cpu_freqs_min", "500000", "700000", "700000"],
+      ["@cpu_freqs_min", "#600000", "#700000", "#700000"],
       ["@ioctl", "/proc/easmgr/eas_ioctl",
         "0x40046716", "20", "0x40046718", "18", "0x4004671A", "18"]
     ],

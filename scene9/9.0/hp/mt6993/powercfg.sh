@@ -63,11 +63,18 @@ fi
 chmod 444 /proc/perfmgr/global_reclaim
 
 umount /proc/powerhal_cpu_ctrl/perfserv_freq
-echo '500000 2400000 500000 3400000 500000 3800000' > /proc/powerhal_cpu_ctrl/perfserv_freq
-mount --bind /proc/powerhal_cpu_ctrl/adpf_enable /proc/powerhal_cpu_ctrl/perfserv_freq
-lock_value '3400000 3800000' /sys/module/mtk_fpsgo/parameters/cpus_limit
+little_min=300000
+middle_min=300000
+big_min=300000
+little_max=2700000
+middle_max=3500000
+big_max=4210000
+echo "$little_min $little_max $little_min $little_max $little_min $little_max $little_min $little_max $middle_min $middle_max $middle_min $middle_max $middle_min $middle_max $big_min $big_max" > /proc/powerhal_cpu_ctrl/perfserv_freq
+mount --bind /proc/powerhal_cpu_ctrl/enable_cpu_timing_hint /proc/powerhal_cpu_ctrl/perfserv_freq
+lock_value "$middle_max $big_max" /sys/module/mtk_fpsgo/parameters/cpus_limit
+lock_value "0:$little_max 1:$little_max 2:$little_max 3:$little_max 4:$middle_max 5:$middle_max 6:$middle_max 7:$big_max" /sys/kernel/qos_arbiter/parameters/cpu_max_freq
+lock_value "0:$little_min 1:$little_min 2:$little_min 3:$little_min 4:$middle_min 5:$middle_min 6:$middle_min 7:$big_min" /sys/kernel/qos_arbiter/parameters/cpu_min_freq
 # lock_value 1 /sys/module/mtk_fpsgo/parameters/better_perf
-stop touch_boost
 
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
 chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_tid
@@ -182,7 +189,7 @@ echo "Utest 0" > /sys/devices/platform/bp-thl/bp_thl_ut
 echo "stop 1"  > /sys/devices/platform/bp-thl/bp_thl_stop
 
 # FPSGO
-# lock_value 0 /sys/kernel/fpsgo/common/force_onoff
+lock_value 0 /sys/kernel/fpsgo/common/force_onoff
 #   enable_ceiling related
 echo 0 > /sys/kernel/fpsgo/fbt/limit_cfreq
 echo 0 > /sys/kernel/fpsgo/fbt/limit_cfreq_m
@@ -191,7 +198,7 @@ echo 0 > /sys/kernel/fpsgo/fbt/limit_rfreq_m
 lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 # dynamicc throttling / tas?
 lock_value 0 /sys/kernel/fpsgo/fbt/powerRL_enable
-# lock_value "0 0" /sys/kernel/fpsgo/fstb/fstb_debug
+lock_value "0 0" /sys/kernel/fpsgo/fstb/fstb_debug
 chmod 444 /sys/kernel/fpsgo/common/render_attr_params
 chmod 444 /sys/kernel/fpsgo/common/render_attr_params_tid
 chmod 444 /sys/kernel/fpsgo/common/render_info
@@ -261,7 +268,7 @@ do
 done
 
 stop_services(){
-  services="magt fpsgo ged oiface midasd frs touch_boost oplus_sched oplus_sched_rename vendor.mtkpower_applist-default vendor.urcc-hal-aidl"
+  services="magt ged fpsgo oiface midasd frs touch_boost oplus_sched oplus_sched_rename vendor.mtkpower_applist-default vendor.urcc-hal-aidl"
   for service in $services; do
     stop $service
     killall $service 2>/dev/null

@@ -64,7 +64,7 @@
 [53] freq:  338000, volt:  61500, vsram:  75000
 [54] freq:  312000, volt:  61000, vsram:  75000
 [55] freq:  286000, volt:  60500, vsram:  75000
-[56] freq:  260000, volt:  60000, vsram:  7500
+[56] freq:  260000, volt:  60000, vsram:  75000
 
 
 # single thread (cpu7)
