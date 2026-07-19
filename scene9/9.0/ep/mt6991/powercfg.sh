@@ -65,9 +65,17 @@ fi
 chmod 444 /proc/perfmgr/global_reclaim
 
 umount /proc/powerhal_cpu_ctrl/perfserv_freq
-echo '339000 2400000 622000 3300000 798000 3600000' > /proc/powerhal_cpu_ctrl/perfserv_freq
-mount --bind /proc/powerhal_cpu_ctrl/adpf_enable /proc/powerhal_cpu_ctrl/perfserv_freq
-lock_value '3300000 3600000' /sys/module/mtk_fpsgo/parameters/cpus_limit
+little_min=339000
+middle_min=622000
+big_min=798000
+little_max=2700000
+middle_max=3300000
+big_max=3600000
+echo "$little_min $little_max $little_min $little_max $little_min $little_max $little_min $little_max $middle_min $middle_max $middle_min $middle_max $middle_min $middle_max $big_min $big_max" > /proc/powerhal_cpu_ctrl/perfserv_freq
+mount --bind /proc/powerhal_cpu_ctrl/enable_cpu_timing_hint /proc/powerhal_cpu_ctrl/perfserv_freq
+lock_value "$middle_max $big_max" /sys/module/mtk_fpsgo/parameters/cpus_limit
+lock_value "0:$little_max 1:$little_max 2:$little_max 3:$little_max 4:$middle_max 5:$middle_max 6:$middle_max 7:$big_max" /sys/kernel/qos_arbiter/parameters/cpu_max_freq
+lock_value "0:$little_min 1:$little_min 2:$little_min 3:$little_min 4:$middle_min 5:$middle_min 6:$middle_min 7:$big_min" /sys/kernel/qos_arbiter/parameters/cpu_min_freq
 # lock_value 1 /sys/module/mtk_fpsgo/parameters/better_perf
 stop touch_boost
 
@@ -192,13 +200,12 @@ chmod 444 /sys/kernel/fpsgo/common/render_info
 chmod 444 /sys/kernel/fpsgo/common/render_info_params
 
 lock_value 1 /proc/game_opt/disable_cpufreq_limit
-lock_value 1 /sys/module/migt/parameters/glk_disable
 lock_value 0 /sys/module/perfmgr/parameters/perfmgr_enable
-lock_value 0 /sys/module/migt/parameters/glk_freq_limit_walt
 lock_value 0 /sys/module/cpufreq_bouncing/parameters/enable
 lock_value 0 /sys/devices/platform/soc/soc:oplus-omrg/oplus-omrg0/ruler_enable
 lock_value 0 /proc/task_overload/skip_goplus_enabled
 lock_value 0 /sys/module/mtk_fpsgo/parameters/cfp_onoff
+lock_value 0 /proc/touch_boost/enable
 stop vendor.oplus.ormsHalService-aidl-default
 resetprop sys.oplus.hmbird.manager.enable 0
 echo -1 > /proc/oplus_hmbird/manager_pid
@@ -246,10 +253,10 @@ do
 done
 
 stop_services(){
-  services="magt fpsgo ged oiface midasd frs touch_boost oplus_sched oplus_sched_rename"
+  services="magt ged fpsgo oiface midasd frs touch_boost oplus_sched oplus_sched_rename vendor.mtkpower_applist-default vendor.urcc-hal-aidl"
   for service in $services; do
     stop $service
-    killall $service
+    killall $service 2>/dev/null
   done
 }
 # stop_services
