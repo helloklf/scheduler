@@ -69,7 +69,9 @@ big_min=300000
 little_max=2700000
 middle_max=3500000
 big_max=4210000
-echo "$little_min $little_max $little_min $little_max $little_min $little_max $little_min $little_max $middle_min $middle_max $middle_min $middle_max $middle_min $middle_max $big_min $big_max" > /proc/powerhal_cpu_ctrl/perfserv_freq
+echo "0 $little_min $little_max" > /proc/powerhal_cpu_ctrl/perfserv_freq
+echo "4 $middle_min $middle_max" > /proc/powerhal_cpu_ctrl/perfserv_freq
+echo "7 $big_min $big_max" > /proc/powerhal_cpu_ctrl/perfserv_freq
 mount --bind /proc/powerhal_cpu_ctrl/enable_cpu_timing_hint /proc/powerhal_cpu_ctrl/perfserv_freq
 lock_value "$middle_max $big_max" /sys/module/mtk_fpsgo/parameters/cpus_limit
 lock_value "0:$little_max 1:$little_max 2:$little_max 3:$little_max 4:$middle_max 5:$middle_max 6:$middle_max 7:$big_max" /sys/kernel/qos_arbiter/parameters/cpu_max_freq
@@ -291,4 +293,3 @@ if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
   lock_value "MAX_TTJ 95000 95000 95000" /sys/kernel/thermal/max_ttj
   lock_value "TTJ 95000 95000 95000" /sys/kernel/thermal/ttj
 fi
-
