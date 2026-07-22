@@ -60,6 +60,7 @@ lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 # hide_value /proc/perfmgr/perf_ioctl
 # mount --bind /proc/perfmgr/fpsgo_lr_ioctl /proc/perfmgr/perf_ioctl
 if [[ $(grep /proc/perfmgr/perf_ioctl /proc/mounts) == '' ]]; then
+chmod 664 /proc/perfmgr_touch_boost/ioctl_touch_boost
 mount --bind /proc/perfmgr_touch_boost/ioctl_touch_boost /proc/perfmgr/perf_ioctl
 fi
 chmod 444 /proc/perfmgr/global_reclaim

@@ -58,6 +58,7 @@ lock_value 0 /sys/kernel/fpsgo/fbt/enable_ceiling
 lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
 
 if [[ $(grep /proc/perfmgr/perf_ioctl /proc/mounts) == '' ]]; then
+chmod 664 /proc/perfmgr_touch_boost/ioctl_touch_boost
 mount --bind /proc/perfmgr_touch_boost/ioctl_touch_boost /proc/perfmgr/perf_ioctl
 fi
 
