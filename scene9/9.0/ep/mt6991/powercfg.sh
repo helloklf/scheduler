@@ -256,7 +256,7 @@ do
 done
 
 stop_services(){
-  services="magt ged fpsgo oiface midasd frs touch_boost oplus_sched oplus_sched_rename vendor.mtkpower_applist-default vendor.urcc-hal-aidl"
+  services="magt ged fpsgo oiface midasd frs touch_boost oplus_sched oplus_sched_rename vendor.urcc-hal-aidl"
   for service in $services; do
     stop $service
     killall $service 2>/dev/null
