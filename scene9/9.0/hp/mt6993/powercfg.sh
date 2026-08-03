@@ -288,9 +288,3 @@ gpu_ulimit(){
 }
 gpu_ulimit
 
-
-if [[ $(getprop vtools.thermal.disguise) != '1' ]]; then
-  lock_value "MIN_TTJ 95000 95000 95000" /sys/kernel/thermal/min_ttj
-  lock_value "MAX_TTJ 95000 95000 95000" /sys/kernel/thermal/max_ttj
-  lock_value "TTJ 95000 95000 95000" /sys/kernel/thermal/ttj
-fi
