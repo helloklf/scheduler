@@ -62,7 +62,8 @@
       ],
       ["$dcs", "1"],
       ["$l3_ct", "0"],
-      ["@ioctl", "/proc/cpuqosmgr/cpuqos_ioctl", "0x4020670E", "2"]
+      ["@ioctl", "/proc/cpuqosmgr/cpuqos_ioctl", "0x4020670E", "2"],
+      ["/proc/cpuqosmgr/custpd", "0,0,0,0,0,0,0,0"]
     ],
     "common_gaming": [
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
@@ -78,7 +79,8 @@
       ["@ddr_l3_booster"],
       ["$dcs", "#0"],
       ["$l3_ct", "2"],
-      ["@ioctl", "/proc/cpuqosmgr/cpuqos_ioctl", "0x4020670E", "0"]
+      ["@ioctl", "/proc/cpuqosmgr/cpuqos_ioctl", "0x4020670E", "0"],
+      ["/proc/cpuqosmgr/custpd", "3,3,3,3,0,0,0,2"]
     ],
     "limiter_off": [
       ["/proc/game_opt/disable_cpufreq_limit", "#1"],
