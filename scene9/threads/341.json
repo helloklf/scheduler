@@ -38,12 +38,12 @@
     ],
     "cpuset": {
       "rr": ["UnityMain", "UnityGfx", "UnityMultiRende"],
-      "ni": ["UnityMain", "UnityGfx", "UnityMultiRende"],
+      "ni": ["UnityMain", "UnityGfx", "UnityMultiRende", "Download"],
       "unity_main": "7",
       "heavy_thread": "UnityGfx",
       "heavy_cores": "6",
       "comm": {
-        "3-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage"]
+        "3-5": ["UnityChoreograp", "NativeThread", "Worker Thread", "UnityMultiRende", "FMOD", "UnityPreload", "AsyncReadManage", "Download"]
       },
       "other": "0-5"
     }

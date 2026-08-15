@@ -26,13 +26,14 @@
     ],
     "cpuset": {
       "rr": ["UnityMain", "UnityGfx", "UnityMultiRende"],
-      "ni": ["UnityMain", "UnityGfx", "UnityMultiRende"],
+      "ni": ["UnityMain", "UnityGfx", "UnityMultiRende", "Download"],
       "unity_main": "7",
       "heavy_thread": "UnityGfx",
       "heavy_cores": "6",
       "comm": {
         "0-7": ["IL2CPP"],
-        "4-5": ["UnityMultiRende", "Worker Thread", "UnityPreload"],
+        "4-7": ["Download"],
+        "4-5": ["UnityMultiRende", "Worker Thread", "UnityPreload", "UnityChoreo"],
         "0-5": ["FMOD", "UnityChoreograp", "NativeThread"]
       },
       "other": "0-5"
