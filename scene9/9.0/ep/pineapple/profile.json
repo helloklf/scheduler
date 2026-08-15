@@ -11,7 +11,8 @@
     "cpu_max_5": "/sys/devices/system/cpu/cpufreq/policy5/scaling_max_freq",
     "sched_boost": "/proc/sys/walt/sched_boost",
     "glk_disable": "/sys/module/migt/parameters/glk_disable",
-    "input_boost": "/proc/sys/walt/input_boost/sched_boost_on_input"
+    "input_boost": "/proc/sys/walt/input_boost/sched_boost_on_input",
+    "sched_assist": "/proc/oplus_scheduler/sched_assist/sched_assist_enabled"
   },
   "features": {
     "limiter": {
@@ -102,7 +103,8 @@
       ["$perfmgr_enable", "0"],
       ["@cpuset", "0-1", "0-6", "2-7", "2-7"],
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000", "1000", "1000"],
-      ["$mod_percent", "125"]
+      ["$mod_percent", "125"],
+      ["$sched_assist", "1"]
     ],
     "common_gaming": [
       ["@preset", "common_active"],

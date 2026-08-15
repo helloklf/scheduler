@@ -6,7 +6,8 @@
     "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable",
     "cpu_min_5": "/sys/devices/system/cpu/cpufreq/policy5/scaling_min_freq",
     "cpu_max_5": "/sys/devices/system/cpu/cpufreq/policy5/scaling_max_freq",
-    "sched_boost": "/proc/sys/walt/sched_boost"
+    "sched_boost": "/proc/sys/walt/sched_boost",
+    "sched_assist": "/proc/oplus_scheduler/sched_assist/sched_assist_enabled"
   },
   "features": {
     "limiter": {
@@ -132,7 +133,8 @@
       ["/sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq", "0"],
       ["/sys/devices/system/cpu/bus_dcvs/LLCC/240b7400.qcom,bwmon-llcc/max_freq", "806000"],
       ["$mod_percent", "105"],
-      ["/sys/block/zram0/hybridswap_swapd_pause", "1"]
+      ["/sys/block/zram0/hybridswap_swapd_pause", "1"],
+      ["$sched_assist", "1"]
     ],
     "common_gaming": [
       ["@preset", "common_active"],
