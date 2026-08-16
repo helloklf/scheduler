@@ -130,7 +130,7 @@ c_min(){
 }
 # Xiaomi
 if [[ -d /proc/mi_display ]]; then
-  for dir in /sys/module/migt/parameters /sys/module/metis/parameters /proc/sys/migt /sys/class/misc/migt;do
+  for dir in /sys/module/migt/parameters /sys/module/metis/parameters /proc/sys/migt /sys/class/misc/migt /sys/module/mi_game/parameters;do
     if [[ -d $dir ]];then
       for file in `ls $dir`; do
         case "$file" in
