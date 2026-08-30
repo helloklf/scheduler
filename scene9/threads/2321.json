@@ -93,7 +93,7 @@
       "comm": {
         "7": ["UnityMain"],
         "2-7": ["IL2CPP", "btm_"],
-        "2-4": ["CoreThread", "Apollo-", "NativeThread", "UnityChoreo", "Worker Thread", "Job.worker"]
+        "2-4": ["CoreThread", "Apollo-", "GfxRenderWorker", "NativeThread", "UnityChoreo", "Worker Thread", "Job.worker"]
       },
       "other": "2-6"
     }

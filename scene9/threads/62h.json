@@ -79,9 +79,9 @@
       "rr": ["UnityMain", "HeavyThread", "UnityGfx"],
       "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "1-5",
+      "unity_main": "7",
       "comm": {
-        "1-7": ["IL2CPP", "btm_"],
-        "7": ["UnityMain"]
+        "1-7": ["IL2CPP", "btm_"]
       },
       "other": "1-5"
     }
