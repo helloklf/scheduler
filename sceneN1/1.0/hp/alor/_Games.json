@@ -1,0 +1,79 @@
+{
+  "friendly": "所有游戏",
+  "call": [],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@cpu_freqs_max", "#2016000", "#2476800"],
+        ["@cpu_freqs_min", "556800", "556800"],
+        ["@governor", "walt"],
+        ["@target_loads",
+          "80",
+          "80"
+        ]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["2688000", "2188800"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@cpu_freqs_max", "#2476800", "#2841600"],
+        ["@cpu_freqs_min", "691200", "556800"],
+        ["@governor", "walt"],
+        ["@target_loads",
+          "78",
+          "78"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["3091200", "2841600"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@cpu_freqs_max", "#2707200", "#3244800"],
+        ["@cpu_freqs_min", "806400", "806400"],
+        ["@target_loads",
+          "78",
+          "78"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["3532800", "3033600"]
+      }
+    },
+    {
+      "mode": ["fast"],
+      "call": [
+        ["@cpu_freqs_max", "#2841600", "#3532800"],
+        ["@cpu_freqs_min", "1152000", "1152000"],
+        ["@target_loads",
+          "75",
+          "75"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["3801600", "3321600"]
+      }
+    },
+    {
+      "mode": ["pedestal"],
+      "call": [
+        ["@cpu_freqs_max", "#3033600", "#3648000"],
+        ["@cpu_freqs_min", "1267200", "1497600"],
+        ["@target_loads",
+          "70",
+          "70"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["3801600", "3321600"]
+      }
+    }
+  ]
+}

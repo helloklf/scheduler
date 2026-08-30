@@ -1,0 +1,33 @@
+{
+  "friendly": "游戏",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["2400000", "1800000"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["2660000", "2400000"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["2800000", "2660000"]
+      }
+    },
+    {
+      "mode": ["fast"],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["3000000", "2800000"]
+      }
+    }
+  ]
+}

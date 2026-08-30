@@ -1,0 +1,75 @@
+{
+  "friendly": "游戏",
+  "call": [
+    ["@preset", "common_gaming"],
+    ["@preset", "limiter_off"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@preset", "common_gaming"],
+        ["@hispeed_freq", "1056000", "0", "0"],
+        ["@cpu_freqs_max", "1670400", "1996800", "2131200"],
+        ["@cpu_freqs_min", "400000", "600000", "700000"],
+        ["$l3_boost", "#0"],
+        ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
+        ["@limiter", "g1"],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["2300000", "1900000"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@hispeed_freq", "1228800", "1113600", "1171200"],
+        ["@cpu_freqs_max", "1670400", "2457600", "2476800"],
+        ["@cpu_freqs_min", "700000", "600000", "800000"],
+        ["$l3_boost", "#0"],
+        ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
+        ["@limiter", "g2"],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["2500000", "2300000"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@cpu_freqs_max", "1804800", "2572800", "2707200"],
+        ["@cpu_freqs_min", "700000", "700000", "900000"],
+        ["$l3_boost", "#0"],
+        ["@limiter", "g3"],
+        ["/proc/game_opt/disable_cpufreq_limit", "#1"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "mode": "fps",
+        "freq": ["2800000", "2500000"]
+      }
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@limiter", "NONE"],
+        ["$perfmgr_enable", "#0"],
+        ["$l3_boost", "#1708800"],
+        ["$bus_ddr", "3196000"],
+        ["$bus_ddr_min", "2736000"],
+        ["@cpu_freqs_max", "2200000", "2850000", "3200000"],
+        ["@cpu_freqs_min",  "900000", "1200000", "1200000"],
+        ["/proc/game_opt/disable_cpufreq_limit", "#1"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "mode": "fps",
+        "freq": ["3200000", "2800000"]
+      }
+    }
+  ]
+}

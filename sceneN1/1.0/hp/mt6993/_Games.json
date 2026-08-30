@@ -1,0 +1,80 @@
+{
+  "friendly": "游戏(Games)",
+  "call": [
+    ["@preset", "common_gaming"],
+    ["/sys/module/mtk_fpsgo/parameters/p_perf", "1"],
+    ["/sys/module/mtk_fpsgo/parameters/better_perf", "1"],
+    ["/sys/kernel/fpsgo/fbt/enable_ceiling", "#0"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@cpu_freqs_max", "#1600000", "#1900000", "#2300000"],
+        ["@cpu_freqs_min", "#500000", "#500000", "#600000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["2300000", "1900000"],
+        "big_min_freq": 600000,
+        "middle_min_freq": 500000
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@cpu_freqs_max", "#1700000", "#2200000", "#2600000"],
+        ["@cpu_freqs_min", "#600000", "#600000", "#700000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["2600000", "2200000"],
+        "big_min_freq": 700000,
+        "middle_min_freq": 600000
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@cpu_freqs_max", "#1800000", "#2600000", "#3050000"],
+        ["@cpu_freqs_min", "#600000", "#600000", "#700000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "freq": ["3000000", "2600000"],
+        "big_min_freq": 700000,
+        "middle_min_freq": 600000
+      }
+    },
+    {
+      "mode": ["fast"],
+      "call": [
+        ["@governor", "sugov_ext"],
+        ["@cpu_freqs_max", "#2400000", "#3000000", "#3500000"],
+        ["@cpu_freqs_min", "#800000", "#800000", "#800000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "mode": "normal",
+        "freq": ["3350000", "3000000"],
+        "big_min_freq": 800000,
+        "middle_min_freq": 800000
+      }
+    },
+    {
+      "mode": ["*"],
+      "call": [
+        ["@governor", "sugov_ext"],
+        ["@cpu_freqs_max", "#2400000", "#3400000", "#3800000"],
+        ["@cpu_freqs_min", "#800000", "#900000", "#900000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "mode": "normal",
+        "freq": ["3350000", "3000000"],
+        "big_min_freq": 800000,
+        "middle_min_freq": 800000
+      }
+    }
+  ]
+}

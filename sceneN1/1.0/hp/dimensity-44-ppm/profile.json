@@ -1,0 +1,169 @@
+{
+  "alias": {
+    "min_cpu_freq": "/proc/ppm/policy/hard_userlimit_min_cpu_freq",
+    "max_cpu_freq": "/proc/ppm/policy/hard_userlimit_max_cpu_freq",
+    "gpu_dvfs_margin": "/sys/kernel/ged/hal/timer_base_dvfs_margin",
+    "gpu_max_opp": "/sys/kernel/ged/hal/custom_upbound_gpu_freq",
+    "deisolation": "/sys/devices/system/cpu/sched/set_sched_deisolation",
+    "setolation": "/sys/devices/system/cpu/sched/set_sched_isolation",
+    "fpsgo_enable": "/sys/kernel/fpsgo/common/fpsgo_enable",
+    "stune_boost": "/dev/stune/top-app/schedtune.boost",
+    "dram_boost": "/sys/devices/platform/boot_dramboost/dramboost/dramboost",
+    "cci_mode": "/proc/cpufreq/cpufreq_cci_mode"
+  },
+  "features": {
+    "limiter": {
+      "limiters": {
+        "p1": {
+          "cpus": [
+            { "max": 2000000, "min": 1400000, "margins": "400" },
+            { "max": 2200000, "min": 1400000, "margins": "400" }
+          ]
+        },
+        "p2": {
+          "cpus": [
+            { "max": 2000000, "min": 1500000, "margins": "400" },
+            { "max": 2600000, "min": 1800000, "margins": "400" }
+          ]
+        },
+        "p3": {
+          "cpus": [
+            { "max": 2000000, "min": 1600000, "margins": "400" },
+            { "max": 2600000, "min": 2100000, "margins": "400" }
+          ]
+        },
+        "idle": {
+          "cpus": [
+            { "max": 1700000, "margins": "150" },
+            { "max": 1700000, "margins": "150" }
+          ]
+        }
+      }
+    }
+  },
+  "reset": [
+    ["@thermal_threshold", "-1"],
+    ["@cpuset", "0-3", "0-4", "0-7", "0-7"]
+  ],
+  "presets": {
+    "common_active": [
+      ["$max_cpu_freq", "0 2000000"],
+      ["$deisolation", "4|5|6|7"],
+      ["$stune_top_boost", "10"]
+    ],
+    "common_inactive": [
+      ["$stune_top_boost", "0"],
+      ["$stune_top_perf", "0"],
+      ["$min_cpu_freq", "0 500000|1 500000"]
+    ],
+
+    "powersave_active": [
+      ["@limiter", "p1"],
+      ["@preset", "common_active"],
+      ["$min_cpu_freq", "0 862000|1 774000"]
+    ],
+    "powersave_inactive": [
+      ["@limiter", "idle"],
+      ["@preset", "common_inactive"],
+      ["$min_cpu_freq", "0 500000|1 500000"]
+    ],
+    "balance_active": [
+      ["@limiter", "p2"],
+      ["@preset", "common_active"],
+      ["$min_cpu_freq", "0 1075000|1 841000"]
+    ],
+    "balance_inactive": [
+      ["@preset", "common_inactive"],
+      ["@limiter", "p1"]
+    ],
+    "performance_active": [
+      ["@preset", "common_active"],
+      ["@limiter", "p3"],
+      ["$min_cpu_freq", "0 1075000|1 1050000"]
+    ],
+    "performance_inactive": [
+      ["@preset", "common_inactive"],
+      ["@limiter", "p2"]
+    ],
+    "fast_active": [
+      ["@limiter", "NONE"],
+      ["@preset", "common_active"],
+      ["$max_cpu_freq", "0 2000000|1 2600000"],
+      ["$min_cpu_freq", "0 1287000|1 1175000"]
+    ],
+    "fast_inactive": [
+      ["@limiter", "NONE"],
+      ["@preset", "common_inactive"],
+      ["@limiter", "p"]
+    ]
+  },
+  "schemes": {
+    "powersave": {
+      "call": [
+        ["@preset", "powersave_active"],
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
+      ]
+    },
+    "balance": {
+      "call": [
+        ["@preset", "balance_active"],
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
+      ]
+    },
+    "performance": {
+      "call": [
+        ["@preset", "performance_active"]
+      ],
+      "app": [
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
+      ],
+      "game": [
+        ["$cci_mode", "1"],
+        ["$dram_boost", "1"]
+      ]
+    },
+    "fast": {
+      "call": [
+        ["@preset", "fast_active"]
+      ],
+      "app": [
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
+      ],
+      "game": [
+        ["$cci_mode", "1"],
+        ["$dram_boost", "1"]
+      ]
+    },
+    "pedestal": {
+      "call": [
+        ["@preset", "pedestal_active"]
+      ],
+      "app": [
+        ["$cci_mode", "0"],
+        ["$dram_boost", "0"]
+      ],
+      "game": [
+        ["$cci_mode", "1"],
+        ["$dram_boost", "1"]
+      ]
+    }
+  },
+  "apps": [
+    {
+      "friendly": "All",
+      "packages": ["*"],
+      "import": "_Apps.json"
+    }
+  ],
+  "games": [
+    {
+      "friendly": "All",
+      "packages": ["*"],
+      "import": "_Games.json"
+    }
+  ]
+}

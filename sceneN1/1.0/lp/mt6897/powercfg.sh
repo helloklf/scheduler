@@ -1,0 +1,90 @@
+cfg_dir=$(cd $(dirname $0); pwd)
+
+set_value() {
+  value=$1
+  path=$2
+  if [[ -f $path ]]; then
+    current_value="$(cat $path)"
+    if [[ ! "$current_value" = "$value" ]]; then
+      chmod 0664 "$path"
+      echo "$value" > "$path"
+    fi;
+  fi;
+}
+
+lock_value () {
+  if [[ -f $2 ]];then
+    chmod 644 $2
+    echo $1 > $2
+    chmod 444 $2
+  fi
+}
+
+dev_mount=/dev/$(cat /dev/urandom | tr -dc 'a-z_' | head -c 8; echo)
+# hide_value /sys/module/task_turbo/parameters/feats [write_value]
+hide_value() {
+  if [[ -e "$1" ]]; then
+    umount "$1" 2>/dev/null
+    c_path="$dev_mount${1}"
+    if [[ ! -f "$c_path" ]]; then
+      mkdir -p "$c_path"
+      rm -r "$c_path"
+    fi
+    cp -f "$1" "$c_path"
+    if [[ "$2" != "" ]]; then
+      set_value "$2" "$1"
+    fi
+    mount --bind "$c_path" "$1"
+  else
+    echo "$1" Not Found!
+  fi
+}
+
+rmdir /dev/cpuset/background/untrustedapp
+rmdir /dev/cpuset/foreground/boost
+
+t_message=/sys/class/thermal/thermal_message
+if [[ -f $t_message/cpu_limits ]]; then
+  chmod 664 $t_message/cpu_limits
+  for i in $(seq 0 7); do
+    maxfreq=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_max_freq)
+    echo cpu$i $maxfreq > $t_message/cpu_limits
+  done
+  chmod 444 $t_message/cpu_limits
+fi
+lock_value 0 $t_message/market_download_limit
+lock_value 0 $t_message/modem_limit
+lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
+
+
+hide_value /sys/kernel/fpsgo/fbt/limit_cfreq 0
+hide_value /sys/kernel/fpsgo/fbt/limit_rfreq 0
+hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
+hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
+lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
+
+
+if [[ -e /data/system/mcd/df ]]; then
+  chattr -i /data/system/mcd/df
+  rm /data/system/mcd/df
+  echo '' > /data/system/mcd/df
+  chattr +i /data/system/mcd/df
+fi
+
+lock_value 4 /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
+lock_value 3 /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
+lock_value 1 /sys/devices/system/cpu/cpu7/online
+lock_value 0 /sys/devices/system/cpu/sched_ctl/sched_core_pause_info
+lock_value 0 /sys/devices/system/cpu/sched_ctl/sched_util_est_ctrl
+lock_value 0 /proc/touch_boost/enable
+
+lock_value 128 /sys/kernel/fpsgo/fbt/cpumask_heavy
+lock_value 64 /sys/kernel/fpsgo/fbt/cpumask_second
+lock_value 63 /sys/kernel/fpsgo/fbt/cpumask_others
+lock_value 0 /sys/kernel/fpsgo/fbt/boost_VIP
+lock_value 0 /sys/kernel/fpsgo/fbt/set_vvip
+lock_value 0 /sys/kernel/fpsgo/fbt/set_ls
+lock_value 0 /sys/kernel/fpsgo/fbt/blc_boost
+chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_pid
+chmod 444 /sys/kernel/fpsgo/fbt/fbt_attr_by_tid
+lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity

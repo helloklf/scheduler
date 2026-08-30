@@ -1,0 +1,19 @@
+{
+  "version": "EP",
+  "versionCode": 20260830,
+  "author": "SCENE9",
+  "projectUrl": "http://vtools.omarea.com/",
+  "features": {
+    "strict": true,
+    "pedestal": true,
+    "fas": false,
+    "reboot": false
+  },
+  "files": [
+    "_Apps.json",
+    "_Games.json",
+    "DDR_MAPPING.CONF",
+    "powercfg.sh",
+    "profile.json"
+  ]
+}

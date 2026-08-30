@@ -1,0 +1,21 @@
+{
+  "version": "HP",
+  "versionCode": 20260830,
+  "author": "SCENE9",
+  "projectUrl": "http://vtools.omarea.com/",
+  "features": {
+    "strict": true,
+    "pedestal": false,
+    "reboot": false,
+    "fas": true,
+    "limiter": false
+  },
+  "files": [
+    "_Apps.json",
+    "_Camera.json",
+    "_Games.json",
+    "FAS_OFFSET.CONF",
+    "powercfg.sh",
+    "profile.json"
+  ]
+}

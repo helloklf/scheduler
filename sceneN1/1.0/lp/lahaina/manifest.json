@@ -1,0 +1,18 @@
+{
+  "version": "LP",
+  "versionCode": 20260830,
+  "author": "SCENE9",
+  "projectUrl": "http://vtools.omarea.com/",
+  "features": {
+    "strict": true,
+    "pedestal": false
+  },
+  "files": [
+    "_Apps.json",
+    "_ELP.json",
+    "_Games.json",
+    "_SGAME.json",
+    "powercfg.sh",
+    "profile.json"
+  ]
+}

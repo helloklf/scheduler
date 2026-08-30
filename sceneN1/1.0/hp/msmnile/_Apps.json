@@ -1,0 +1,50 @@
+{
+  "friendly": "一般应用",
+  "modes": [{
+    "mode": ["powersave"],
+    "state": {
+      "active": [
+        ["@preset", "powersave_active"],
+        ["@values", "sched_boost", "1", "0", "0", "0"],
+        ["@cpuset", "1"]
+      ],
+      "inactive": [
+        ["@preset", "powersave_inactive"],
+        ["@cpuset", "0-3"]
+      ]
+    }
+  }, {
+    "mode": ["balance"],
+    "state": {
+      "active": [
+        ["@preset", "balance_active"],
+        ["@values", "sched_boost", "1", "0", "0", "0"]
+      ],
+      "inactive": [
+        ["@preset", "balance_inactive"]
+      ]
+    }
+  }, {
+    "mode": ["performance"],
+    "state": {
+      "active": [
+        ["@preset", "performance_active"],
+        ["@values", "sched_boost", "1", "2", "1", "0"]
+      ],
+      "inactive": [
+        ["@preset", "performance_inactive"]
+      ]
+    }
+  }, {
+      "mode": ["*"],
+    "state": {
+      "active": [
+        ["@preset", "fast_active"],
+        ["@values", "sched_boost", "1", "2", "1", "25"]
+      ],
+      "inactive": [
+        ["@preset", "fast_inactive"]
+      ]
+    }
+  }]
+}

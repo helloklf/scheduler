@@ -1,0 +1,205 @@
+{
+  "alias": {
+    "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
+    "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
+    "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
+    "bus_ddr_min": "/sys/devices/system/cpu/bus_dcvs/DDR/19091000.qcom,bwmon-ddr/min_freq",
+    "bus_ddr": "/sys/devices/system/cpu/bus_dcvs/DDR/19091000.qcom,bwmon-ddr/max_freq",
+    "l3_boost": "/sys/devices/system/cpu/bus_dcvs/L3/boost_freq",
+    "memlat_low": "/sys/devices/system/cpu/bus_dcvs/DDR/memlat",
+    "perfmgr_enable": "/sys/module/perfmgr/parameters/perfmgr_enable"
+  },
+  "features": {
+    "limiter": {
+      "limiters": {
+        "p1": {
+          "cpus": [
+            { "max": 1700000, "min": 900000,  "margins": "300" },
+            { "max": 2100000, "min": 800000,  "margins": "270" },
+            { "max": 2100000, "min": 1000000, "margins": "250" }
+          ]
+        },
+        "p2": {
+          "cpus": [
+            { "max": 1800000, "min": 1200000, "margins": "300" },
+            { "max": 2400000, "min": 1700000, "margins": "280" },
+            { "max": 2400000, "min": 1700000, "margins": "280" }
+          ]
+        },
+        "p3": {
+          "cpus": [
+            { "max": 2000000, "min": 1500000, "margins": "300" },
+            { "max": 2600000, "min": 2100000, "margins": "280" },
+            { "max": 2850000, "min": 2100000, "margins": "280" }
+          ]
+        },
+        "p4": {
+          "cpus": [
+            { "max": 2000000, "min": 1600000, "margins": "200" },
+            { "max": 3000000, "min": 2400000, "margins": "200" },
+            { "max": 3000000, "min": 2400000, "margins": "200" }
+          ]
+        },
+        "inactive": {
+          "cpus": [
+            { "max": 1600000, "min": 600000, "margins": "120" },
+            { "max": 1900000, "min": 500000, "margins": "130" },
+            { "max": 1900000, "min": 1200000, "margins": "140" }
+          ]
+        },
+        "idle": {
+          "cpus": [
+            { "max": 1500000, "min": 500000, "margins": "90" },
+            { "max": 1700000, "min": 500000, "margins": "90" },
+            { "max": 1700000, "min": 400000, "margins": "90", "core_ctl": true }
+          ]
+        }
+      }
+    }
+  },
+  "reset": [
+    ["@msm_reset"],
+    ["$bus_ddr_min", "547000"],
+    ["@governor", "walt", "schedutil"]
+  ],
+  "presets": {
+    "latency": [
+      ["/sys/devices/system/cpu/cpufreq/policy0/walt/down_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy0/walt/up_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy4/walt/down_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy4/walt/up_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy7/walt/down_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy7/walt/up_rate_limit_us"]
+    ],
+    "target_loads": [
+      ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_loads"],
+      ["/sys/devices/system/cpu/cpu4/cpufreq/walt/target_loads"],
+      ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_loads"]
+    ],
+    "cpu7_on": [
+      ["$core_ctl_7", "#1"],
+      ["$max_cpus_cpu7", "#1"],
+      ["$min_cpus_cpu7", "#1"],
+      ["$core_ctl_7", "#0"]
+    ],
+    "cpu7_off": [
+      ["$core_ctl_7", "#1"],
+      ["$min_cpus_cpu7", "#0"],
+      ["$max_cpus_cpu7", "#0"],
+      ["$core_ctl_7", "#0"]
+    ],
+    "cpu7_auto": [
+      ["$core_ctl_7", "#1"],
+      ["$min_cpus_cpu7", "#0"],
+      ["$max_cpus_cpu7", "#1"]
+    ],
+    "common_active": [
+      ["@preset", "cpu7_on"],
+      ["@values", "latency", "0", "1000", "0", "1000", "0", "1000"],
+      ["@uclamp", "0.00~max", "0.00~max", "0.5~max"],
+      ["@hispeed_load", "87", "87", "87"]
+    ],
+    "common_inactive": [
+      ["@cpu_freqs_min", "307200", "633600", "787200"],
+      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
+      ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
+      ["@hispeed_load", "95", "95", "95"]
+    ],
+    "common_app": [
+      ["$perfmgr_enable", "0"],
+      ["@cpuset", "0-3", "0-3", "0-7", "0-7"],
+      ["$l3_boost", "0"]
+    ],
+    "common_gaming": [
+      ["@limiter", "NONE"],
+      ["@uclamp", "0.00~max", "0.00~max", "0.00~max"],
+      ["@cpuset", "0-2", "0-3", "0-5", "0-7"]
+    ],
+
+    "powersave_active": [
+      ["@cpu_freqs_min", "556800", "633600", "787200"],
+      ["@preset", "common_active"],
+      ["@limiter", "p1"]
+    ],
+    "powersave_inactive": [
+      ["@preset", "common_inactive"],
+      ["@limiter", "idle"]
+    ],
+
+    "balance_active": [
+      ["@cpu_freqs_min", "556800", "633600", "787200"],
+      ["@preset", "common_active"],
+      ["@limiter", "p2"]
+    ],
+    "balance_inactive": [
+      ["@preset", "common_inactive"],
+      ["@limiter", "inactive"]
+    ],
+
+    "performance_active": [
+      ["@preset", "common_active"],
+      ["@limiter", "p3"]
+    ],
+    "performance_inactive": [
+      ["@preset", "common_inactive"],
+      ["@limiter", "p2"]
+    ],
+
+    "fast_active": [
+      ["@preset", "common_active"],
+      ["@limiter", "p4"]
+    ],
+    "fast_inactive": [
+      ["@preset", "common_inactive"],
+      ["@limiter", "p3"]
+    ]
+  },
+  "schemes": {
+    "powersave": {
+      "call": [
+        ["@preset", "powersave_active"],
+        ["$bus_ddr", "2736000"]
+      ],
+      "app": [
+        ["@preset", "common_app"]
+      ]
+    },
+    "balance": {
+      "call": [
+        ["@preset", "balance_active"],
+        ["$bus_ddr", "2736000"]
+      ],
+      "app": [
+        ["@preset", "common_app"]
+      ]
+    },
+    "performance": {
+      "call": [
+        ["@preset", "performance_active"],
+        ["$bus_ddr", "2736000"]
+      ],
+      "app": [
+        ["@preset", "common_app"]
+      ]
+    },
+    "fast": {
+      "call": [
+        ["@preset", "fast_active"]
+      ],
+      "app": [
+        ["@preset", "common_app"],
+        ["$bus_ddr", "3196000"]
+      ]
+    }
+  },
+  "apps": [
+    { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
+  ],
+  "games": [
+    {
+      "friendly": "游戏",
+      "packages": ["*"],
+      "import": "_Games.json"
+    }
+  ]
+}

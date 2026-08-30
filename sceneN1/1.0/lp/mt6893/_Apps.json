@@ -1,0 +1,47 @@
+{
+  "friendly": "一般APP",
+  "packages": ["*"],
+  "modes": [{
+    "mode": ["powersave"],
+    "state": {
+      "active": [
+        ["@preset", "powersave_active"]
+      ],
+      "inactive": [
+        ["@preset", "powersave_inactive"]
+      ]
+    }
+  }, {
+    "mode": ["balance"],
+    "state": {
+      "active": [
+        ["@preset", "balance_active"]
+      ],
+      "inactive": [
+        ["@preset", "balance_inactive"]
+      ]
+    }
+  }, {
+    "mode": ["performance"],
+    "state": {
+      "active": [
+        ["@preset", "performance_active"]
+      ],
+      "inactive": [
+        ["@preset", "performance_inactive"]
+      ]
+    }
+  }, {
+    "mode": ["*"],
+    "state": {
+      "active": [
+        ["$stune_top_boost", "100"],
+        ["$sched_boost", "2"],
+        ["@preset", "fast_active"]
+      ],
+      "inactive": [
+        ["@preset", "fast_inactive"]
+      ]
+    }
+  }]
+}

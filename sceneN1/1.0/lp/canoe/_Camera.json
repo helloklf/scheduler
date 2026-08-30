@@ -1,0 +1,17 @@
+{
+  "friendly": "相机",
+  "call": [
+    ["@limiter", "NONE"],
+    ["@preset", "cpu6_on"]
+  ],
+  "state": {
+    "active": [
+      ["@cpu_freq", "policy0", "min", "2496000"],
+      ["@cpu_freq", "policy6", "min", "3398400"]
+    ],
+    "inactive": [
+      ["@cpu_freq", "policy0", "min", "1996800"],
+      ["@cpu_freq", "policy6", "min", "2880000"]
+    ]
+  }
+}

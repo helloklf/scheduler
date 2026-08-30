@@ -1,0 +1,189 @@
+# rm /data/system/mcd/*
+if [[ -e /data/system/mcd ]]; then
+
+migl='yuanshen 1600 720 -1
+pubg -1 -1 -1
+'
+  if [[ -f /data/system/mcd/migl ]]; then
+    chmod 666 /data/system/mcd/migl
+  fi
+  chmod 664 /data/system/mcd/migl
+  echo -n "$migl" > /data/system/mcd/migl
+  chmod 444 /data/system/mcd/migl
+
+  if [[ -e /data/system/mcd/df ]]; then
+    chattr -i /data/system/mcd/df
+    rm /data/system/mcd/df
+    echo '' > /data/system/mcd/df
+    chattr +i /data/system/mcd/df
+  fi
+fi
+
+set_value() {
+  value=$1
+  path=$2
+  if [[ -f $path ]]; then
+    current_value="$(cat $path)"
+    if [[ ! "$current_value" = "$value" ]]; then
+      chmod 0664 "$path"
+      echo "$value" > "$path"
+    fi;
+  fi;
+}
+
+lock_value () {
+  if [[ -f $2 ]];then
+    chmod 644 $2
+    echo $1 > $2
+    chmod 444 $2
+  fi
+}
+
+core_ctl_policy() {
+  lock_value $1 /sys/module/scheduler/holders/mtk_core_ctl/parameters/policy_enable
+  lock_value $1 /sys/module/thermal_interface/holders/mtk_core_ctl/parameters/policy_enable
+  lock_value $1 /sys/module/mtk_core_ctl/parameters/policy_enable
+  lock_value $1 /sys/module/cpufreq_sugov_ext/holders/mtk_core_ctl/parameters/policy_enable
+  lock_value $1 /sys/devices/system/cpu/cpu0/core_ctl/enable
+  lock_value $1 /sys/devices/system/cpu/cpu4/core_ctl/enable
+  lock_value $1 /sys/devices/system/cpu/cpu7/core_ctl/enable
+  lock_value $1 /sys/module/cpufreq_sugov_ext/holders/mtk_core_ctl/parameters/policy_enable
+}
+core_ctl_policy 0
+cpu7_core_ctl_dir=/sys/devices/system/cpu/cpu7/core_ctl
+lock_value 0 $cpu7_core_ctl_dir/enable
+lock_value 1 $cpu7_core_ctl_dir/max_cpus
+lock_value 1 $cpu7_core_ctl_dir/min_cpus
+
+cpu4_core_ctl_dir=/sys/devices/system/cpu/cpu4/core_ctl
+lock_value 3 $cpu4_core_ctl_dir/max_cpus
+lock_value 3 $cpu4_core_ctl_dir/min_cpus
+lock_value 0 $cpu4_core_ctl_dir/enable
+
+cpu0_core_ctl_dir=/sys/devices/system/cpu/cpu0/core_ctl
+lock_value 4 $cpu0_core_ctl_dir/max_cpus
+lock_value 4 $cpu0_core_ctl_dir/min_cpus
+lock_value 0 $cpu0_core_ctl_dir/enable
+
+
+dev_mount=/dev/$(cat /dev/urandom | tr -dc 'a-z_' | head -c 8; echo)
+# hide_value /sys/module/task_turbo/parameters/feats [write_value]
+hide_value() {
+  if [[ -e "$1" ]]; then
+    umount "$1" 2>/dev/null
+    c_path="$dev_mount${1}"
+    if [[ ! -f "$c_path" ]]; then
+      mkdir -p "$c_path"
+      rm -r "$c_path"
+    fi
+    cp -f "$1" "$c_path"
+    if [[ "$2" != "" ]]; then
+      set_value "$2" "$1"
+    fi
+    mount --bind "$c_path" "$1"
+  else
+    echo "$1" Not Found!
+  fi
+}
+
+# Derived from uperf
+ps_cache="$(ps -Ao pid,args)"
+# $1:task_name $2:cgroup_name
+change_task_cpuset() {
+  for temp_pid in $(echo "$ps_cache" | grep -i -E "$1" | awk '{print $1}'); do
+    for temp_tid in $(ls "/proc/$temp_pid/task/"); do
+      echo "$temp_tid" >"/dev/cpuset/$2/tasks"
+    done
+  done
+}
+
+move_cpuctl() {
+  # pidof $1 | while read pid; do
+  for pid in $(echo "$ps_cache" | grep -i -E "$1" | awk '{print $1}'); do
+    # echo $pid > /dev/stune/top-app/heavy/cgroup.procs
+    echo $pid > /dev/cpuctl/heavy/cgroup.procs
+    ls /proc/$pid/task | while read tid
+    do
+      echo $tid > /dev/cpuctl/$2/tasks
+    done
+  done
+}
+
+process_opt() {
+  sleep 20
+
+  change_task_cpuset "surfaceflinger|system_server|android.hardware.graphics.composer|toucheventcheck|vendor.xiaomi.hw.touchfeature" "foreground"
+  change_task_cpuset "svendor.mediatek.hardware.pq|android.hardware.sensors|statsd|logd|scene-daemon" "foreground"
+  change_task_cpuset 'mediaserver64|android.hardware.media.c2' 'foreground'
+
+  for name in 'kcompactd0' 'aal_sof' 'kfps' 'kworker'
+  do
+    taskset -p 3f $(pgrep -f $name) > /dev/null
+  done
+}
+
+process_opt &
+
+core_ctl_preset
+
+clear_cpuset(){
+  rmdir /dev/cpuset/background/untrustedapp
+  rmdir /dev/cpuset/foreground/boost
+  if [[ -d /dev/cpuset/ui ]]; then
+    cat /dev/cpuset/ui/tasks | while read tid;
+    do
+      echo $tid > /dev/cpuset/top-app/tasks
+    done
+    rmdir /dev/cpuset/ui
+  fi
+}
+clear_cpuset
+clear_cpuset
+
+
+t_message=/sys/class/thermal/thermal_message
+if [[ -f $t_message/cpu_limits ]]; then
+  chmod 664 $t_message/cpu_limits
+  for i in $(seq 0 7); do
+    maxfreq=$(cat /sys/devices/system/cpu/cpu$i/cpufreq/cpuinfo_max_freq)
+    echo cpu$i $maxfreq > $t_message/cpu_limits
+  done
+  chmod 444 $t_message/cpu_limits
+fi
+hide_value $t_message/market_download_limit 0
+hide_value $t_message/modem_limit 0
+lock_value 0 0 0 0 /sys/class/thermal/thermal_message/boost
+
+lock_value 0 /sys/kernel/fpsgo/fbt/switch_idleprefer
+lock_value 0 /sys/module/mtk_fpsgo/parameters/boost_affinity
+
+setprop persist.sys.miui_animator_sched.bigcores 4-7
+
+echo 10 > /sys/module/mtk_fpsgo/parameters/variance # default 40
+# lock_value 1 /sys/module/sspm_v3/holders/ged/parameters/is_GED_KPI_enabled
+lock_value 2 /sys/kernel/fpsgo/common/force_onoff
+lock_value 1 /sys/kernel/fpsgo/common/fpsgo_enable
+
+hide_value /sys/kernel/fpsgo/fbt/limit_cfreq 0
+hide_value /sys/kernel/fpsgo/fbt/limit_rfreq 0
+hide_value /sys/kernel/fpsgo/fbt/limit_cfreq_m 0
+hide_value /sys/kernel/fpsgo/fbt/limit_rfreq_m 0
+
+# FEAS dependence, But it will not work if you change the frequency, So disable it
+lock_value 0 /sys/module/mtk_fpsgo/parameters/perfmgr_enable
+hide_value /sys/kernel/fpsgo/fbt/enable_ceiling 0
+
+
+# echo 0 > /sys/module/millet_core/parameters/millet_freeze_switch
+
+
+# OnePlus
+if [[ -d  /proc/game_opt ]]; then
+  hide_value /proc/game_opt/cpu_max_freq '0:2147483647 1:2147483647 2:2147483647 3:2147483647 4:2147483647 5:2147483647 6:2147483647 7:2147483647'
+  hide_value /proc/game_opt/cpu_min_freq '0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0'
+fi
+hide_value /proc/oplus_scheduler/sched_assist/sched_assist_enabled 0
+for service in orms-hal-1-0 vendor.oplus.ormsHalService-aidl-default
+do
+  stop $service
+done

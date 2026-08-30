@@ -1,0 +1,79 @@
+{
+  "friendly": "游戏",
+  "limiters": {
+    "g1": {
+      "cpus": [
+        { "max": 1400000, "min": 500000, "margins": "280", "step": -1 },
+        { "max": 2100000, "min": 700000, "margins": "300", "step": -1 },
+        { "max": 2100000, "min": 1300000, "margins": "300", "step": -1 }
+      ]
+    },
+    "g2": {
+      "cpus": [
+        { "max": 1500000, "min": 800000, "margins": "250", "step": -1 },
+        { "max": 2450000, "min": 1600000, "margins": "300", "step": -1 },
+        { "max": 2450000, "min": 1600000, "margins": "300", "step": -1 }
+      ]
+    },
+    "g3": {
+      "cpus": [
+        { "max": 1800000, "min": 800000, "margins": "250", "step": -1 },
+        { "max": 2650000, "min": 1900000, "margins": "300", "step": -1 },
+        { "max": 2650000, "min": 1900000, "margins": "300", "step": -1 }
+      ]
+    },
+    "g4": {
+      "cpus": [
+        { "max": 2000000, "min": 1600000, "margins": "300", "step": -1 },
+        { "max": 2850000, "min": 2450000, "margins": "400", "step": -1 },
+        { "max": 3000000, "min": 2450000, "margins": "400", "step": -1 }
+      ]
+    }
+  },
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@limiter", "g1"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "middle_min_freq": 700000,
+        "freq": ["2300000", "2100000"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@limiter", "g2"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "middle_min_freq": 1000000,
+        "freq": ["2600000", "2400000"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@limiter", "g3"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "middle_min_freq": 1000000,
+        "freq": ["2800000", "2650000"]
+      }
+    },
+    {
+      "mode": ["fast"],
+      "call": [
+        ["@limiter", "g4"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "middle_min_freq": 1000000,
+        "freq": ["3000000", "2850000"]
+      }
+    }
+  ]
+}

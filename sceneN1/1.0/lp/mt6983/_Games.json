@@ -1,0 +1,33 @@
+{
+  "friendly": "游戏(FAS)",
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "fas": {
+        "middle_min_freq": 700000,
+        "freq": ["2300000", "2100000"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "fas": {
+        "middle_min_freq": 1000000,
+        "freq": ["2600000", "2400000"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "fas": {
+        "middle_min_freq": 1000000,
+        "freq": ["2800000", "2650000"]
+      }
+    },
+    {
+      "mode": ["fast"],
+      "fas": {
+        "middle_min_freq": 1000000,
+        "freq": ["3000000", "2850000"]
+      }
+    }
+  ]
+}

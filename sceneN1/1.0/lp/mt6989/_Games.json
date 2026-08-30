@@ -1,0 +1,57 @@
+{
+  "friendly": "游戏(FAS)",
+  "call": [
+    ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_perf_mode_ceiling_opp 2"],
+    ["/sys/module/mtk_fpsgo/parameters/p_perf", "1"],
+    ["/sys/module/mtk_fpsgo/parameters/better_perf", "1"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
+        ["@cpu_freqs_max", "#1600000", "#1800000", "#2200000"],
+        ["@cpu_freqs_min", "400000", "550000", "600000"]
+      ],
+      "fas": {
+        "freq": ["2400000", "2100000"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 3"],
+        ["@cpu_freqs_max", "#1700000", "#2100000", "#2600000"],
+        ["@cpu_freqs_min", "700000", "800000", "900000"]
+      ],
+      "fas": {
+        "freq": ["2600000", "2300000"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 2"],
+        ["@cpu_freqs_max", "#1700000", "#2400000", "#2800000"],
+        ["@cpu_freqs_min", "800000", "800000", "900000"]
+      ],
+      "fas": {
+        "lower_freq": 900000,
+        "freq": ["3000000", "2600000"]
+      }
+    },
+    {
+      "mode": ["fast"],
+      "call": [
+        ["/sys/kernel/cm_mgr/dbg_cm_mgr", "cm_mgr_dram_opp_ceiling 2"],
+        ["@cpu_freqs_max", "#2000000", "#2600000", "#3000000"],
+        ["@cpu_freqs_min", "800000", "900000", "1200000"]
+      ],
+      "fas": {
+        "mode": "normal",
+        "lower_freq": 1000000,
+        "freq": ["3250000", "2850000"]
+      }
+    }
+  ]
+}

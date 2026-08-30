@@ -1,0 +1,20 @@
+{
+  "version": "HP(Developer Test)",
+  "versionCode": 20260830,
+  "author": "SCENE9",
+  "projectUrl": "http://vtools.omarea.com/",
+  "features": {
+    "strict": true,
+    "pedestal": true,
+    "fas": true,
+    "reboot": false,
+    "limiter": false
+  },
+  "files": [
+    "_Apps.json",
+    "_Games.json",
+    "DDR_MAPPING.CONF",
+    "powercfg.sh",
+    "profile.json"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "friendly": "游戏",
+  "call": [
+    ["@preset", "common_gaming"],
+    ["@preset", "limiter_off"]
+  ],
+  "modes": [
+    {
+      "mode": ["powersave"],
+      "call": [
+        ["@hispeed_freq", "902400", "787200", "787200"],
+        ["@target_loads", "80 1497600:90", "85 1612800:90", "85 1651200:90"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "big_min_freq": 787200,
+        "middle_min_freq": 633600,
+        "freq": ["2150400", "1920000", "-1"]
+      }
+    },
+    {
+      "mode": ["balance"],
+      "call": [
+        ["@hispeed_freq", "902400", "940800", "960000"],
+        ["@target_loads", "80 1593600:85 1708800:90", "82 1612800:85 2073600:92", "82 1766400:87 2016000:92"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "big_min_freq": 864000,
+        "middle_min_freq": 729600,
+        "freq": ["2496000", "2400000", "-1"]
+      }
+    },
+    {
+      "mode": ["performance"],
+      "call": [
+        ["@hispeed_freq", "902400", "940800", "960000"],
+        ["@target_loads", "80 1708800:85", "80 1920000:87 2361600:92", "80 2150400:85 2476800:90"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "big_min_freq": 864000,
+        "middle_min_freq": 729600,
+        "freq": ["2630400", "2400000", "-1"]
+      }
+    },
+    {
+      "mode": ["fast"],
+      "call": [
+        ["@hispeed_freq", "0", "0", "0"],
+        ["@limiter", "NONE"],
+        ["@cpu_freqs_max", "#1843200", "#2400000", "#2803200"],
+        ["@cpu_freqs_min", "1017600", "1190400", "1209600"],
+        ["@target_loads", "80 1017600:90", "80 2361600:90", "80 2496000:85 2803200:90"],
+        ["$l3_boost", "#1593600"],
+        ["$bus_ddr_min", "2736000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "big_min_freq": 864000,
+        "middle_min_freq": 787200,
+        "freq": ["2803200", "2400000", "-1"]
+      }
+    },
+    {
+      "mode": ["pedestal"],
+      "call": [
+        ["@hispeed_freq", "0", "0", "0"],
+        ["@limiter", "NONE"],
+        ["@cpu_freqs_max", "#1843200", "#2400000", "#2803200"],
+        ["@cpu_freqs_min", "1228800", "1612800", "1766400"],
+        ["@target_loads", "70", "70", "70"],
+        ["$l3_boost", "#1593600"],
+        ["$bus_ddr_min", "2736000"]
+      ],
+      "fas": {
+        "use": "whitelist",
+        "big_min_freq": 864000,
+        "middle_min_freq": 787200,
+        "freq": ["2803200", "2400000", "-1"]
+      }
+    }
+  ]
+}

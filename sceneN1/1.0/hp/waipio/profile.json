@@ -1,0 +1,255 @@
+{
+  "alias": {
+    "gpu_max_khz": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
+    "max_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/max_cpus",
+    "min_cpus_cpu7": "/sys/devices/system/cpu/cpu7/core_ctl/min_cpus",
+    "bus_ddr_min": "/sys/devices/system/cpu/bus_dcvs/DDR/19091000.qcom,bwmon-ddr/min_freq",
+    "bus_ddr": "/sys/devices/system/cpu/bus_dcvs/DDR/19091000.qcom,bwmon-ddr/max_freq",
+    "l3_boost": "/sys/devices/system/cpu/bus_dcvs/L3/boost_freq",
+    "mod_percent": "/sys/class/kgsl/kgsl-3d0/devfreq/mod_percent"
+  },
+  "features": {
+    "limiter": {
+      "limiters": {
+        "p1": {
+          "cpus": [
+            { "max": 1689600, "min": 614400, "margins": "180 1075200:90", "mt":70 },
+            { "max": 1766400, "min": 768000, "margins": "220 1555200:100" },
+            { "max": 2054400, "min": 806400, "margins": "220 1612800:100" }
+          ]
+        },
+        "p2": {
+          "cpus": [
+            { "max": 1689600, "min": 729600, "margins": "210 1363200:100" },
+            { "max": 2112000, "min": 1209600, "margins": "280 1766400:140" },
+            { "max": 2169600, "min": 1286400, "margins": "280 1728000:140" }
+          ]
+        },
+        "p3": {
+          "cpus": [
+            { "max": 1689600, "min": 1075200, "margins": "280 1478400:140" },
+            { "max": 2112000, "min": 1766400, "margins": "300 1996800:150" },
+            { "max": 2400000, "min": 1728000, "margins": "300 2054400:150" }
+          ]
+        },
+        "p4": {
+          "cpus": [
+            { "max": 1785600, "min": 1075200, "margins": "280 1574400:140" },
+            { "max": 2496000, "min": 1996800, "margins": "300 2112000:100" },
+            { "max": 2822400, "min": 2054400, "margins": "300 2284800:150 2400000:90" }
+          ]
+        },
+        "inactive": {
+          "core_ctl": [2],
+          "cpus": [
+            { "max": 1689600, "min": 518400, "margins": "100 1075200:50" },
+            { "max": 1651200, "margins": "100 1113600:60" },
+            { "max": 1843200, "margins": "120 1171200:60" }
+          ]
+        },
+        "idle": {
+          "core_ctl": [2],
+          "cpus": [
+            { "max": 1574400, "min": 403200, "margins": "80 1075200:50" },
+            { "max": 1555200, "margins": "60 1113600:40" },
+            { "max": 1612800, "margins": "80 1286400:40" }
+          ]
+        }
+      }
+    }
+  },
+  "reset": [
+    ["@msm_reset"],
+    ["$bus_ddr_min", "547000"],
+    ["$l3_boost", "0"],
+    ["@governor", "walt"],
+    ["@hispeed_load", "90", "90", "90"],
+    ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"]
+  ],
+  "presets": {
+    "latency": [
+      ["/sys/devices/system/cpu/cpufreq/policy0/walt/down_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy0/walt/up_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy4/walt/down_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy4/walt/up_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy7/walt/down_rate_limit_us"],
+      ["/sys/devices/system/cpu/cpufreq/policy7/walt/up_rate_limit_us"]
+    ],
+    "target_loads": [
+      ["/sys/devices/system/cpu/cpu0/cpufreq/walt/target_loads"],
+      ["/sys/devices/system/cpu/cpu4/cpufreq/walt/target_loads"],
+      ["/sys/devices/system/cpu/cpu7/cpufreq/walt/target_loads"]
+    ],
+    "cpu7_on": [
+      ["$core_ctl_7", "#1"],
+      ["$max_cpus_cpu7", "#1"],
+      ["$min_cpus_cpu7", "#1"],
+      ["$core_ctl_7", "#0"]
+    ],
+    "cpu7_off": [
+      ["$core_ctl_7", "#1"],
+      ["$min_cpus_cpu7", "#0"],
+      ["$max_cpus_cpu7", "#0"],
+      ["$core_ctl_7", "#0"]
+    ],
+    "cpu7_auto": [
+      ["$core_ctl_7", "#1"],
+      ["$min_cpus_cpu7", "#0"],
+      ["$max_cpus_cpu7", "#1"]
+    ],
+    "common_active": [
+      ["@preset", "cpu7_on"],
+      ["@values", "latency", "0", "2000", "0", "2000", "0", "2000"],
+      ["@cpuset", "0-3", "0-3", "0-6", "0-7"]
+    ],
+    "common_inactive": [
+      ["@values", "latency", "0", "4000", "0", "4000", "0", "4000"],
+      ["@cpuset", "0-3", "0-3", "0-6", "0-7"],
+      ["@hispeed_freq", "614400", "633600", "806400"]
+    ],
+    "common_app": [
+      [
+        "@target_loads",
+        "80 1075200:85 1574400:90",
+        "82 1209600:85 1766400:90 2112000:95",
+        "82 1286400:85 1958400:90 2400000:95"
+      ],
+      ["$mod_percent", "100"]
+    ],
+    "common_gaming": [
+      ["@cpuset", "0-3", "0-3", "0-5", "0-7"],
+      ["$mod_percent", "94"],
+      ["@gesture", "PAUSE"]
+    ],
+
+    "powersave_active": [
+      ["@preset", "common_active"],
+      ["@limiter", "p1"],
+      ["@hispeed_freq", "614400", "633600", "806400"]
+    ],
+    "powersave_inactive": [
+      ["@preset", "common_inactive"],
+      ["@limiter", "idle"],
+      ["@cpu_freqs_min", "307200", "633600", "806400"]
+    ],
+
+    "balance_active": [
+      ["@preset", "common_active"],
+      ["@limiter", "p2"],
+      ["@hispeed_freq", "614400", "1113600", "1171200"]
+    ],
+    "balance_inactive": [
+      ["@preset", "common_inactive"],
+      ["@cpu_freqs_min", "307200", "633600", "806400"],
+      ["@limiter", "inactive"]
+    ],
+
+
+    "performance_active": [
+      ["@preset", "common_active"],
+      ["@limiter", "p3"],
+      ["@hispeed_freq", "1075200", "1324800", "1286400"]
+    ],
+    "performance_inactive": [
+      ["@preset", "common_inactive"],
+      ["@cpu_freqs_min", "307200", "633600", "806400"],
+      ["@limiter", "p1"]
+    ],
+
+    "fast_active": [
+      ["@preset", "common_active"],
+      ["@limiter", "p4"],
+      ["@hispeed_freq", "1075200", "1440000", "1497600"]
+    ],
+    "fast_inactive": [
+      ["@preset", "common_inactive"],
+      ["@cpu_freqs_min", "614400", "633600", "806400"],
+      ["@limiter", "p2"]
+    ]
+  },
+  "schemes": {
+    "powersave": {
+      "call": [
+        ["@preset", "powersave_active"]
+      ],
+      "app": [
+        ["@preset", "common_app"],
+        ["$bus_ddr", "1708000"]
+      ],
+      "game": [
+        ["@preset", "common_gaming"],
+        ["$bus_ddr", "2092000"],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
+      ]
+    },
+    "balance": {
+      "call": [
+        ["@preset", "balance_active"]
+      ],
+      "app": [
+        ["@preset", "common_app"],
+        ["$bus_ddr", "2092000"]
+      ],
+      "game": [
+        ["@preset", "common_gaming"],
+        ["$bus_ddr", "2736000"],
+        ["/proc/game_opt/disable_cpufreq_limit", "0"]
+      ]
+    },
+    "performance": {
+      "call": [
+        ["@preset", "performance_active"]
+      ],
+      "app": [
+        ["@preset", "common_app"],
+        ["$bus_ddr", "2736000"]
+      ],
+      "game": [
+        ["@preset", "common_gaming"],
+        ["$bus_ddr", "2736000"],
+        ["/proc/game_opt/disable_cpufreq_limit", "#1"]
+      ]
+    },
+    "fast": {
+      "call": [
+        ["@preset", "fast_active"],
+        ["$bus_ddr", "3196000"]
+      ],
+      "app": [
+        ["@preset", "common_app"]
+      ],
+      "game": [
+        ["$l3_boost", "1651200"],
+        ["$bus_ddr_min", "2736000"],
+        ["@preset", "common_gaming"],
+        ["/proc/game_opt/disable_cpufreq_limit", "#1"]
+      ]
+    },
+    "pedestal": {
+      "call": [
+        ["@preset", "fast_active"],
+        ["$bus_ddr", "3196000"]
+      ],
+      "app": [
+        ["@preset", "common_app"]
+      ],
+      "game": [
+        ["$l3_boost", "1651200"],
+        ["$bus_ddr_min", "2736000"],
+        ["@preset", "common_gaming"],
+        ["/proc/game_opt/disable_cpufreq_limit", "#1"]
+      ]
+    }
+  },
+  "apps": [
+    { "friendly": "相机", "packages": ["Camera"], "import": "_Camera.json" },
+    { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
+  ],
+  "games": [
+    {
+      "friendly": "All",
+      "packages": ["*"],
+      "import": "_Games.json"
+    }
+  ]
+}
