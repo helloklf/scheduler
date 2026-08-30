@@ -1,0 +1,89 @@
+[
+  {
+    "friendly": "原神",
+    "packages": [
+      "com.miHoYo.Yuanshen",
+      "com.miHoYo.ys.mi",
+      "com.miHoYo.ys.bilibili",
+      "com.miHoYo.GenshinImpact"
+    ],
+    "cpuset": {
+      "comm": {
+        "0-7": ["IL2CPP"],
+        "7": ["UnityMain"],
+        "6": ["UnityGfx", "UnityMultiRende"],
+        "0-5": ["Timer"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "王者荣耀",
+    "packages": ["com.tencent.tmgp.sgame", "com.tencent.tmgp.sgamece", "com.tencent.lolm"],
+    "cpuset": {
+      "heaviest_thread": "UnityMain",
+      "heaviest_cores": "7",
+      "heavy_thread": "UnityGfx;Thread-",
+      "heavy_cores": "6",
+      "comm": {
+        "0-7": ["IL2CPP", "btm_"],
+        "6-7": ["UnityPreload"],
+        "3-5": ["Worker Thread", "Job.worker", "NativeThread", "Audio", "NDK Media", "GVoice", "FMOD mixer", "FMOD stream", "ff_read"],
+        "0-6": ["CoreThread"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "和平精英",
+    "packages": ["com.tencent.tmgp.pubgmhd"],
+    "cpuset": {
+      "heavy_thread": "Thread-",
+      "heavy_cores": "7",
+      "comm": {
+        "6": ["RenderThread"],
+        "2-6": ["RHIThread"],
+        "2-5": ["TaskGraphNP"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "QQ飞车",
+    "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
+    "cpuset": {
+      "heaviest_thread": "UnityMain",
+      "heaviest_cores": "7",
+      "comm": {
+        "7": "IL2CPP",
+        "6": ["UnityGfx"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "PUBG(UE4)",
+    "packages": ["com.pubg.imobile", "com.pubg.krmobile", "com.tencent.ig", "com.rekoo.pubgm"],
+    "cpuset": {
+      "heavy_thread": "UEGameThread;Thread-",
+      "heavy_cores": "7",
+      "comm": {
+        "7": ["UEGameThread"],
+        "6": ["RenderThread"],
+        "1-5": ["MainThread", "TaskGraph", "NativeThread"]
+      },
+      "other": "0-5"
+    }
+  },
+  {
+    "friendly": "QQ飞车",
+    "packages": ["com.tencent.tmgp.speedmobile", "com.garena.game.fctw"],
+    "cpuset": {
+      "heaviest_thread": "UnityMain",
+      "heaviest_cores": "7",
+      "heavy_thread": "UnityGfx;Thread-",
+      "heavy_cores": "1-6",
+      "other": "1-5"
+    }
+  }
+]
