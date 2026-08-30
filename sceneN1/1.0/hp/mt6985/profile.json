@@ -131,7 +131,9 @@
       ["$switch_idleprefer", "#1"],
       ["/sys/kernel/helio-dvfsrc/dvfsrc_qos_mode", "0"],
       ["$gpu_max_freq", "#14"],
-      ["$core_ctl", "#1"]
+      ["$core_ctl", "#1"],
+      ["@ioctl", "/proc/cpuqosmgr/cpuqos_ioctl", "0x4014670E", "1"],
+      ["/sys/devices/system/cpu/cpuqos/cpuqos_set_cache_size", "1:3:3"]
     ],
     "common_gaming": [
       ["@values", "latency", "1000", "1000", "1000", "1000", "1000", "1000"],
@@ -142,7 +144,9 @@
       ["$switch_idleprefer", "#0"],
       ["$ddr_freq_min", "1866000000"],
       ["$gpu_max_freq", "#3"],
-      ["$core_ctl", "#0"]
+      ["$core_ctl", "#0"],
+      ["@ioctl", "/proc/cpuqosmgr/cpuqos_ioctl", "0x4014670E", "0"],
+      ["/sys/devices/system/cpu/cpuqos/cpuqos_set_cache_size", "1:3:3"]
     ],
 
     "powersave_active": [
