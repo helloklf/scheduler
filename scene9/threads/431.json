@@ -65,7 +65,7 @@
       "heavy_cores": "6",
       "comm": {
         "4-7": ["UnityPreload", "IL2CPP", "btm_"],
-        "4-5": ["CoreThread", "Apollo-", "NativeThread", "UnityChoreo", "Worker Thread", "Job.worker"]
+        "4-5": ["CoreThread", "Apollo-", "GfxRenderWorker", "NativeThread", "UnityChoreo", "Worker Thread", "Job.worker"]
       },
       "other": "0-5"
     }
