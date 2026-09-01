@@ -20,7 +20,7 @@
       "ddr_boost": false,
       "limiters": {
         "gboost": {
-          "mode": "boost",
+          "mode": "bottom",
           "cpus": [
             { "max": 1600000, "min": 500000, "margins": "200" },
             { "max": 2100000, "min": 500000, "margins": "200" },

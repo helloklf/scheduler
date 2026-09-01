@@ -215,6 +215,7 @@
 #### 注意事项
 - `mt` `core_ctl` `excludes` 组合使用可能导致负载计算变得非常困难
 - 尤其是`core_ctl`应尽量避免和另外两个特性同时使用
+- `core_ctl` 开关核的负载/频率阈值，由Scene根据CPU架构设定，不可自定义
 
 
 ### 启用辅助调速器
@@ -227,5 +228,19 @@
   // 激活一个id为p1的辅助调速器分组
   ["@limiter", "p1"]
   // 关闭所有正在运行的辅助调速器
+  // 切换应用时默认会清除已开启的辅助调速器，不用考虑应用切换残留。NONE的用法，更多是实现子分支设定覆盖主分支设定
   ["@limiter", "NONE"]
+  ```
+
+
+### 其它亲缘函数
+- 如果你不想控制CPU频率，只想用它的部分功能特性，还有 `@core_ctl` `@ddr_l3_booster`
+- 它们和 `@limiter` 不可同时工作，后启动的会替换掉先启动的
+  ```json
+  // 设置特定cluster的core_ctl，比如说在8gen3上，动态启/停第4个cluster
+  ["@core_ctl", "0", "0", "0", "true"]
+
+  // 根据CPU和DDR频率映射关系，按实际cycles boost L3/DDR频率下限。对于mtk设备需要先参考 conf.md 定义 DDR_MAPPING.CONF
+  // 什么时候用呢？比如，mtk的内存频率调度很烂，用ep的时候ddr频率跑不上去性能难以释放，所以需要使用@ddr_l3_booster辅助ddr升频
+  ["@ddr_l3_booster"]
   ```
