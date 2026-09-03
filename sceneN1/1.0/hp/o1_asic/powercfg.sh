@@ -108,3 +108,5 @@ if [[ -d /proc/mi_display ]]; then
   chmod 444 /sys/module/migt/parameters
   am force-stop com.xiaomi.joyose
 fi
+
+echo 95 > /sys/devices/virtual/xr_thermal/lpc/throttle
