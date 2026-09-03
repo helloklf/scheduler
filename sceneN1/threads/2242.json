@@ -70,10 +70,9 @@
       "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "8",
       "comm": {
-        "2-7": ["IL2CPP", "btm_"],
-        "4-7": ["UnityGfxRender", "CoreThread", "Apollo-", "NativeThread", "UnityChoreo", "Worker Thread", "Job.worker"]
+        "4-7": ["IL2CPP", "btm_", "UnityGfxRender", "CoreThread", "Apollo-", "NativeThread", "UnityChoreo", "Worker Thread", "Job.worker"]
       },
-      "other": "2-7"
+      "other": "4-7"
     }
   },
   {

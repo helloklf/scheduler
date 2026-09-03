@@ -31,7 +31,7 @@
     }
   },
   "reset": [
-    ["@msm_reset"],
+    ["@xring_reset"],
     ["@governor", "xres"],
     ["/sys/class/devfreq/ddr_devfreq/min_freq", "836000000"]
   ],
