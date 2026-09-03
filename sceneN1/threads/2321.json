@@ -30,6 +30,15 @@
     }
   },
   {
+    "friendly": "你见过这么卡的？",
+    "packages": ["com.coolapk.market"],
+    "app_cpuset": {
+      "main": "2-4",
+      "render": "7",
+      "other": "2-6"
+    }
+  },
+  {
     "friendly": "鸣潮",
     "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
     "cpuset": {
@@ -94,7 +103,7 @@
       "heavy_cores": "2-4",
       "comm": {
         "2-7": ["IL2CPP", "btm_"],
-        "2-4": ["CoreThread", "Apollo-", "NativeThread", "UnityChoreo", "Worker Thread", "Job.worker"]
+        "2-4": ["UnityGfxRender", "CoreThread", "Apollo-", "NativeThread", "UnityChoreo", "Worker Thread", "Job.worker"]
       },
       "other": "2-6"
     }

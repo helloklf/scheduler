@@ -20,6 +20,15 @@
     }
   },
   {
+    "friendly": "你见过这么卡的？",
+    "packages": ["com.coolapk.market"],
+    "app_cpuset": {
+      "main": "4-7",
+      "render": "8",
+      "other": "0-7"
+    }
+  },
+  {
     "friendly": "原神",
     "packages": [
       "com.miHoYo.Yuanshen",

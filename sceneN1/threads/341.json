@@ -19,6 +19,15 @@
     }
   },
   {
+    "friendly": "你见过这么卡的？",
+    "packages": ["com.coolapk.market"],
+    "app_cpuset": {
+      "main": "4-6",
+      "render": "7",
+      "other": "0-6"
+    }
+  },
+  {
     "friendly": "鸣潮",
     "packages": ["com.kurogame.mingchao", "com.kurogame.wutheringwaves.global"],
     "cpuset": {
