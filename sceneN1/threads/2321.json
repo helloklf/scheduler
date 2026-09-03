@@ -148,7 +148,7 @@
       "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "2-4",
       "comm": {
-        "3-7": "IL2CPP",
+        "3-7": ["IL2CPP"],
         "2-4": ["UnityGfxRender"],
         "2-6": ["UnityChoreograp", "Job.Worker", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
       },

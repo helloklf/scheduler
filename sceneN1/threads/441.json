@@ -118,7 +118,7 @@
       "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "7",
       "comm": {
-        "8": "IL2CPP",
+        "8": ["IL2CPP"],
         "4-6": ["UnityGfxRender", "UnityChoreograp", "mhp.speedmobile", "GThreadManager"]
       },
       "other": "4-6"

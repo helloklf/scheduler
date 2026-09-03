@@ -53,7 +53,7 @@
     "cpuset": {
       "unity_main": "7",
       "comm": {
-        "7": "IL2CPP",
+        "7": ["IL2CPP"],
         "6": ["UnityGfx"]
       },
       "other": "0-5"

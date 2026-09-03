@@ -54,7 +54,7 @@
       "heavy_thread": "UnityGfx;Thread-",
       "heavy_cores": "4-6",
       "comm": {
-        "7": "IL2CPP",
+        "7": ["IL2CPP"],
         "4-6": ["UnityGfx", "UnityChoreograp", "mhp.speedmobile", "GThreadManager"]
       },
       "other": "0-6"
