@@ -59,7 +59,7 @@
     }
   },
   "reset": [
-    ["@thermal_threshold", "-1"],
+    ["@ttj", "-1"],
     ["$gpu_dvfs_margin", "15"]
   ],
   "presets": {

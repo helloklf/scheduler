@@ -65,7 +65,7 @@
   "reset": [
     ["@msm_reset"],
     ["@governor", "schedutil"],
-    ["@thermal_threshold", "95000"],
+    ["@ttj", "95000"],
     ["@preset", "lat_normal"],
     ["$perfmgr_enable", "0"]
   ],

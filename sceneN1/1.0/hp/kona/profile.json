@@ -59,7 +59,7 @@
   },
   "reset": [
     ["@msm_reset"],
-    ["@thermal_threshold", "95000"],
+    ["@ttj", "95000"],
     ["@governor", "schedutil"],
     ["$perfmgr_enable", "0"],
     ["@values", "input_boost", "0:0 4:0 7:0", "0", "0"]

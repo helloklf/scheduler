@@ -57,7 +57,7 @@
   },
   "reset": [
     ["@msm_reset"],
-    ["@thermal_threshold", "99800"],
+    ["@ttj", "99800"],
     ["@governor", "schedutil"],
     ["@preset", "ufshc_perf_off", "bw_max"],
     ["$gpu_min_khz", "#0"]

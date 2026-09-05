@@ -111,7 +111,7 @@
   "schemes": {
     "powersave": {
       "call": [
-        ["@thermal_threshold", "-1"],
+        ["@ttj", "-1"],
         ["@preset", "powersave_active"],
         ["$cci_mode", "0"],
         ["$dram_boost", "0"]
@@ -121,7 +121,7 @@
     },
     "balance": {
       "call": [
-        ["@thermal_threshold", "-1"],
+        ["@ttj", "-1"],
         ["@preset", "balance_active"],
         ["$cci_mode", "0"],
         ["$dram_boost", "0"]
@@ -131,7 +131,7 @@
     },
     "performance": {
       "call": [
-        ["@thermal_threshold", "-1"],
+        ["@ttj", "-1"],
         ["@preset", "performance_active"]
       ],
       "app": [
@@ -147,7 +147,7 @@
     },
     "fast": {
       "call": [
-        ["@thermal_threshold", "-1"],
+        ["@ttj", "-1"],
         ["@preset", "fast_active"]
       ],
       "app": [

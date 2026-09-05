@@ -60,7 +60,7 @@
   },
   "presets": {
     "reset": [
-      ["@thermal_threshold", "100000"],
+      ["@ttj", "100000"],
       ["@msm_reset"]
     ],
     "hispeed_freq": [
