@@ -9,7 +9,7 @@
     "sched_boost": "/proc/sys/walt/sched_boost",
     "glk_disable": "/sys/module/migt/parameters/glk_disable",
     "input_boost": "/proc/sys/walt/input_boost/sched_boost_on_input",
-    "sched_assist": "/proc/oplus_scheduler/sched_assist/sched_assist_enabled"
+    "core_ctl": "/sys/devices/system/cpu/cpu8/core_ctl/enable"
   },
   "features": {
     "limiter": {
@@ -33,7 +33,15 @@
   "reset": [
     ["@xring_reset"],
     ["@governor", "xres"],
-    ["/sys/class/devfreq/ddr_devfreq/min_freq", "836000000"]
+    ["/sys/class/devfreq/ddr_devfreq/min_freq", "836000000"],
+    ["/sys/devices/system/cpu/cpu0/cpufreq/xres/adaptive_high_freq", "#0"],
+    ["/sys/devices/system/cpu/cpu0/cpufreq/xres/adaptive_low_freq", "#0"],
+    ["/sys/devices/system/cpu/cpu2/cpufreq/xres/adaptive_high_freq", "#0"],
+    ["/sys/devices/system/cpu/cpu2/cpufreq/xres/adaptive_low_freq", "#0"],
+    ["/sys/devices/system/cpu/cpu4/cpufreq/xres/adaptive_high_freq", "#0"],
+    ["/sys/devices/system/cpu/cpu4/cpufreq/xres/adaptive_low_freq", "#0"],
+    ["/sys/devices/system/cpu/cpu8/cpufreq/xres/adaptive_high_freq", "#0"],
+    ["/sys/devices/system/cpu/cpu8/cpufreq/xres/adaptive_low_freq", "#0"]
   ],
   "presets": {
     "target_loads": [
@@ -42,28 +50,49 @@
       ["/sys/devices/system/cpu/cpu4/cpufreq/xres/target_loads"],
       ["/sys/devices/system/cpu/cpu8/cpufreq/xres/target_loads"]
     ],
+    "xres_c0": [
+      ["/sys/devices/system/cpu/cpu0/cpufreq/xres/hispeed_freq"],
+      ["/sys/devices/system/cpu/cpu0/cpufreq/xres/rtg_boost_freq"],
+      ["/sys/devices/system/cpu/cpu0/cpufreq/xres/irq_boost_freq"]
+    ],
+    "xres_c1": [
+      ["/sys/devices/system/cpu/cpu2/cpufreq/xres/hispeed_freq"],
+      ["/sys/devices/system/cpu/cpu2/cpufreq/xres/rtg_boost_freq"],
+      ["/sys/devices/system/cpu/cpu2/cpufreq/xres/irq_boost_freq"]
+    ],
+    "xres_c2": [
+      ["/sys/devices/system/cpu/cpu4/cpufreq/xres/hispeed_freq"],
+      ["/sys/devices/system/cpu/cpu4/cpufreq/xres/rtg_boost_freq"],
+      ["/sys/devices/system/cpu/cpu4/cpufreq/xres/irq_boost_freq"]
+    ],
+    "xres_c3": [
+      ["/sys/devices/system/cpu/cpu8/cpufreq/xres/hispeed_freq"],
+      ["/sys/devices/system/cpu/cpu8/cpufreq/xres/rtg_boost_freq"],
+      ["/sys/devices/system/cpu/cpu8/cpufreq/xres/irq_boost_freq"]
+    ],
     "limiter_off": [
       ["/proc/game_opt/disable_cpufreq_limit", "#1"],
       ["/sys/module/migt/parameters/glk_disable", "#1"],
       ["/sys/module/perfmgr/parameters/perfmgr_enable", "#0"],
       ["/sys/module/migt/parameters/glk_freq_limit_walt", "#0"]
     ],
-    "limiter_on": [
-      ["/proc/game_opt/disable_cpufreq_limit", "0"],
-      ["/sys/module/migt/parameters/glk_disable", "0"]
-    ],
     "common_active": [
+      ["@values", "xres_c0", "#1036800", "#1228800", "#1228800"],
+      ["@values", "xres_c2", "#1017600",  "#1017600",  "#844800"],
+      ["@values", "xres_c3", "#1017600", "#816000", "#816000"]
     ],
     "common_inactive": [
       ["@cpu_freqs_min", "334230", "417790", "691200", "1891200"],
-      ["$sched_boost", "0"]
+      ["$sched_boost", "0"],
+      ["@values", "xres_c0", "#835200", "#1036800", "#1036800"],
+      ["@values", "xres_c2", "#844800", "#844800", "#844800"],
+      ["@values", "xres_c3", "#816000", "#816000", "#816000"]
     ],
     "common_app": [
       ["$perfmgr_enable", "0"],
       ["@cpuset", "0-1", "0-3", "2-7", "2-9"],
       ["/dev/cpuset/sf/cpus", "#2-7"],
-      ["$mod_percent", "125"],
-      ["$sched_assist", "1"]
+      ["$core_ctl", "#1"]
     ],
     "common_gaming": [
       ["@preset", "common_active"],
@@ -71,7 +100,7 @@
       ["@cpuset", "0-1", "0-3", "2-7", "2-9"],
       ["/dev/cpuset/sf/cpus", "#2-6"],
       ["$sched_boost", "0"],
-      ["$mod_percent", "100"]
+      ["$core_ctl", "#0"]
     ],
 
     "powersave_active": [
@@ -80,18 +109,16 @@
       ["@target_loads",
         "80 1603200:90",
         "80 1017600:85 1536000:90",
-        "80 940800:85 1555200:90",
-        "80 1891200:85 1891200:90"],
-      ["@hispeed_freq", "0", "844800", "816000", "1891200"]
+        "80 1017600:85 1555200:90",
+        "80 1891200:85 1891200:90"]
     ],
     "powersave_inactive": [
       ["@preset", "common_inactive"],
       ["@target_loads",
         "85 1036800:90",
-        "85 1017600:90 1536000:95",
+        "85 844800:90 1536000:95",
         "85 940800:90 1555200:95",
-        "95"],
-      ["@hispeed_freq", "0", "0", "0", "0"]
+        "95"]
     ],
 
     "balance_active": [
@@ -99,19 +126,17 @@
       ["@cpu_freqs_min", "835200", "691200", "691200", "1891200"],
       ["@target_loads",
         "80 1603200:90",
-        "80 1718400:85 1891200:90",
-        "80 1728000:85 2083200:90",
-        "85 2044800:90"],
-      ["@hispeed_freq", "0", "1017600", "940800", "1891200"]
+        "80 1555200:85 1718400:90",
+        "80 1555200:85 1900800:90",
+        "85 2044800:90"]
     ],
     "balance_inactive": [
       ["@preset", "common_inactive"],
       ["@target_loads",
         "85 1036800:90",
-        "85 1017600:90 1536000:95",
+        "85 844800:90 1536000:95",
         "85 940800:90 1555200:95",
-        "95"],
-      ["@hispeed_freq", "0", "691200", "691200", "1891200"]
+        "95"]
     ],
 
     "performance_active": [
@@ -121,17 +146,15 @@
         "80 1603200:90",
         "80 1718400:85 1891200:90",
         "80 1728000:85 2083200:90",
-        "85 2044800:90"],
-      ["@hispeed_freq", "0", "1017600", "1142400", "1891200"]
+        "85 2044800:90"]
     ],
     "performance_inactive": [
       ["@preset", "common_inactive"],
       ["@target_loads",
         "85 1036800:90",
-        "83 1017600:85 1718400:90",
-        "83 940800:85 1728000:90",
-        "85 1891200:90"],
-      ["@hispeed_freq", "0", "844800", "816000", "1891200"]
+        "85 1017600:90 1536000:95",
+        "85 940800:90 1555200:95",
+        "90"]
     ],
 
     "fast_active": [
@@ -141,8 +164,7 @@
         "80 1603200:85",
         "80 1891200:85",
         "80 2083200:85",
-        "80 2044800:85"],
-      ["@hispeed_freq", "0", "1017600", "1344000", "1891200"]
+        "80 2044800:85"]
     ],
     "fast_inactive": [
       ["@preset", "common_inactive"],
@@ -150,8 +172,7 @@
         "85 1603200:90",
         "83 1718400:87 1891200:95",
         "83 1728000:87 2083200:95",
-        "87 2044800:95"],
-      ["@hispeed_freq", "0", "844800", "816000", "1891200"]
+        "87 2044800:95"]
     ]
   },
   "schemes": {
@@ -165,9 +186,7 @@
         ["@preset", "powersave_active"]
       ],
       "game": [
-        ["@preset", "common_gaming"],
-        ["@preset", "limiter_on"],
-        ["@hispeed_freq", "0", "0", "0", "0"]
+        ["@preset", "common_gaming"]
       ]
     },
     "balance": {
@@ -177,9 +196,7 @@
         ["@preset", "balance_active"]
       ],
       "game": [
-        ["@preset", "common_gaming"],
-        ["@preset", "limiter_on"],
-        ["@hispeed_freq", "0", "1017600", "1142400", "1891200"]
+        ["@preset", "common_gaming"]
       ]
     },
     "performance": {
@@ -190,8 +207,7 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@preset", "limiter_off"],
-        ["@hispeed_freq", "1036800", "1536000", "1555200", "1891200"]
+        ["@preset", "limiter_off"]
       ]
     },
     "fast": {
@@ -202,8 +218,7 @@
       ],
       "game": [
         ["@preset", "common_gaming"],
-        ["@preset", "limiter_off"],
-        ["@hispeed_freq", "1603200", "1718400", "1728000", "1891200"]
+        ["@preset", "limiter_off"]
       ]
     }
   },

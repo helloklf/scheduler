@@ -108,3 +108,23 @@ if [[ -d /proc/mi_display ]]; then
   chmod 444 /sys/module/migt/parameters
   am force-stop com.xiaomi.joyose
 fi
+
+
+
+cpu4=/sys/devices/system/cpu/cpu4/core_ctl
+lock_value 1 1 1 1 $cpu4/not_preferred
+lock_value 4 $cpu4/min_cpus
+lock_value 4 $cpu4/max_cpus
+lock_value 20 $cpu4/offline_delay_ms
+lock_value 80 80 80 80 $cpu4/busy_up_thres
+lock_value 50 50 50 50 $cpu4/busy_down_thres
+# lock_value 0 $cpu4/enable
+
+cpu8=/sys/devices/system/cpu/cpu8/core_ctl
+lock_value 1 1 $cpu8/not_preferred
+lock_value 0 $cpu8/min_cpus
+lock_value 2 $cpu8/max_cpus
+lock_value 20 $cpu8/offline_delay_ms
+lock_value 80 80 $cpu8/busy_up_thres
+lock_value 50 50 $cpu8/busy_down_thres
+# lock_value 0 $cpu8/enable

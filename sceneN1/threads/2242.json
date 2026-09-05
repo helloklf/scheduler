@@ -68,7 +68,7 @@
       "heaviest_thread": "UnityMain",
       "heaviest_cores": "9",
       "heavy_thread": "UnityGfx;Thread-",
-      "heavy_cores": "8",
+      "heavy_cores": "4-7",
       "comm": {
         "4-7": ["IL2CPP", "btm_", "UnityGfxRender", "CoreThread", "Apollo-", "NativeThread", "UnityChoreo", "Worker Thread", "Job.worker"]
       },
@@ -83,7 +83,7 @@
       "heaviest_thread": "Thread-",
       "heaviest_cores": "9",
       "heavy_thread": "RHIThread",
-      "heavy_cores": "8",
+      "heavy_cores": "4-8",
       "comm": {
         "4-7": ["RenderThread"],
         "2-7": ["FAsyncLoading", "MainThread", "TaskGraph", "NativeThread"]
@@ -100,7 +100,7 @@
       "heaviest_cores": "9",
       "comm": {
         "9": ["UEGameThread"],
-        "4-7": ["RenderThread", "RHIThread"],
+        "4-8": ["RenderThread", "RHIThread"],
         "2-7": ["MainThread", "TaskGraph", "NativeThread"]
       },
       "other": "2-7"
@@ -113,7 +113,7 @@
       "heaviest_thread": "UnityMain",
       "heaviest_cores": "9",
       "heavy_thread": "UnityGfx;Thread-",
-      "heavy_cores": "8",
+      "heavy_cores": "4-8",
       "comm": {
         "4-7": ["IL2CPP", "UnityGfxRender"],
         "2-7": ["UnityChoreograp", "Job.Worker", "NativeThread", "mhp.speedmobile", "AudioTrack", "GThreadManager", "binder."]
@@ -156,7 +156,7 @@
       "heaviest_thread": "UnityMain",
       "heaviest_cores": "9",
       "heavy_thread": "UnityGfx;Thread-",
-      "heavy_cores": "8",
+      "heavy_cores": "4-8",
       "other": "2-7"
     }
   },
@@ -168,7 +168,7 @@
       "heaviest_thread": "Thread-",
       "heaviest_cores": "9",
       "comm": {
-        "8":["Render", "RHIThread"]
+        "4-7":["Render", "RHIThread"]
       },
       "other": "2-7"
     }
@@ -192,7 +192,7 @@
       "heaviest_thread": "UnityMain",
       "heaviest_cores": "9",
       "heavy_thread": "UnityGfx;Thread-",
-      "heavy_cores": "8",
+      "heavy_cores": "4-8",
       "other": "2-7"
     }
   },
@@ -205,7 +205,7 @@
       "heaviest_thread": "UnityMain",
       "heaviest_cores": "9",
       "heavy_thread": "UnityGfx",
-      "heavy_cores": "8",
+      "heavy_cores": "4-8",
       "comm": {},
       "other": "4-7"
     }
@@ -217,7 +217,7 @@
       "heaviest_thread": "UnityMain",
       "heaviest_cores": "9",
       "heavy_thread": "UnityGfx",
-      "heavy_cores": "8",
+      "heavy_cores": "4-8",
       "comm": {},
       "other": "4-7"
     }
