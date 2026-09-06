@@ -20,39 +20,59 @@
 - 如果我们为了省电，把处理器余量调的很小或频率调的很低，就容易发生卡顿
 - 利用手势BOOST，可以实现短时间的性能大幅提升，避免过场动画卡顿
 - 例如
-
-```
-{
-    "features": {
-        "gesture_boost": {
-            "enter": [
-                ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "24"],
-                ["/sys/class/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq", "4266000000"]
-            ],
-            "exit": [
-                ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
-                ["/sys/class/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq", "#0"]
-            ]
+    ```json
+    {
+        "features": {
+            "gesture_boost": {
+                "enter": [
+                    ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "24"],
+                    ["/sys/class/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq", "4266000000"]
+                ],
+                "exit": [
+                    ["/sys/kernel/ged/hal/custom_boost_gpu_freq", "99"],
+                    ["/sys/class/devfreq/mtk-dvfsrc-devfreq/userspace/set_freq", "#0"]
+                ]
+            }
         }
     }
-}
-```
+    ```
 
+- 可恢复性，你需要通过便于恢复的方式配置性能调节
+    ```json
+    // ✅ boost本身具有属性备份机制，使用路径直写是良好的配置方式，框架可自动恢复
+    "gesture_boost": {
+      "enable": true,
+      "enter": [
+        ["/proc/sys/walt/sched_boost", "1"],
+        ["/sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq", "^2112000"],
+        ["/sys/devices/system/cpu/cpufreq/policy6/scaling_max_freq", "^2880000"]
+      ],
+      "exit": []
+    }
+    // ❌ 通过@函数修属性，会让变化难以追溯，boost结束时无法自动恢复原来的设定
+    "gesture_boost": {
+      "enable": true,
+      "enter": [
+        ["/proc/sys/walt/sched_boost", "1"],
+        ["@cpu_freq_min", "^2112000", "^2880000"]
+      ],
+      "exit": [
+        // 由于无法自动恢复，你需要自行声明如何结束boost
+        ["@cpu_freq_min", "384000", "768000"]
+      ]
+    }
+    // ✅ 但支持 $路径别名（@preset 和 @values 也可以使用，因为会自动展开为路径直写）
+    "gesture_boost": {
+      "enable": true,
+      "enter": [
+        ["$sched_boost", "1"],
+        ["$cpu_min_0", "^2112000"],
+        ["$cpu_min_6", "^2880000"]
+      ],
+      "exit": []
+    }
+    ```
 
-> 调度矛盾
-- 遗憾的是，在触发手势的同时，其它性能调节策略仍然处于运行状态
-- 因此手势BOOST不可避免的会与之产生矛盾，这会让BOOST的效果变差
-- 临时性的解决办法是在手势BOOST中，采用优先级更高的修改方式(当然，并不建议这么做)
-- 例如
-
-```js
-高通可以用msm_performance
-["/sys/module/msm_performance/parameters/cpu_min_freq", "0:1400000 4:1800000 7:2000000"]
-["/sys/kernel/msm_performance/parameters/cpu_min_freq", "0:1400000 4:1800000 7:2000000"]
-
-新款天玑(8000/9000等)可以用
-["/proc/cpudvfs/cpufreq_debug", "0 1400000 2000000 |4 1800000 2850000|7 2000000 3050000"]
-```
-
-> 无需担忧的情形
+> 其它情形
 - SCENE的辅助调速器已针对手势Boost做出优化，也就是用户触发手势时，Scene会自行临时提高余量以确保动画流畅运行
+- SCENE FAS运行期间因为停止检测输入，gesture_boost 完全不生效，这是处于能耗和性能开销考虑的设定
