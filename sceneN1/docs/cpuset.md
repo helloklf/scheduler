@@ -61,7 +61,7 @@
 | `heavy_thread` | 第二重负载线程的名称 | string |
 | `heavy_cores` | 第二重负载线程可以使用的cpu核心 | string |
 | `main_thread` | 指定运行主线程的cpu核心(通常，游戏的主线程都不是重负载线程) | string |
-| `other` | 非 comm、unity_main、heavy_thead 命中的线程可使用的CPU核心 | string |
+| `other` | 未被comm、heaviest_thread、heavy_thead命中的线程可使用的CPU核心 | string |
 | `trashy` | 指定垃圾线程，本质上是通过cpuctl(cpu.uclamp.max)对线程进行限制，因此需要LinuxKernel 5+ | string[] |
 | `ni` | 需要通过修改nice值提高优先级的线程 | string[] |
 
@@ -75,10 +75,10 @@
     "heavy_thread": "Thread-"
   }
   ```
-- 如果一个游戏里，真的有很多个叫 Thread-xx 的负载线程怎么办呢？建议不写预设配置，让Scene自行处理
+- 如果一个游戏里，真的有很多个叫 Thread-xx 的负载线程怎么办呢？建议不为这类游戏写配置，让Scene自动分析和决策
 
 - 使用 heaviest_thread 和 heavy_thread 匹配重要线程，除了完成核心绑定
-- 还**可能**附带 `优先使用L2/L3；提高优先级；作用于FAS和辅助调速器的性能需求提示` 这些额外联动优化效果
+- 还**可能**附带 `优先使用L2/L3；提高优先级；作用于FAS和辅助调速器的[性能需求提示]` 这些额外联动优化效果
   ```json
   // 推荐做法 ✅️ 专用配置位，表明线程重要性，不要嫌格式啰嗦
   {
@@ -167,3 +167,7 @@
 | `other` | 其它线程使用的核心 | string |
 | `webview` | 是否检测webview沙盒进程中的渲染线程 | string |
 | `children` | 是否检测子进程 | string |
+
+- 与 `辅助调速器` 联动的 `性能需求提示`
+> Scene会跟踪应用主线程和负载最重的RenderThread <br>
+> 如果线程持续运行，超出绘制1帧所需的时间，则提示辅助调速器提升性能
