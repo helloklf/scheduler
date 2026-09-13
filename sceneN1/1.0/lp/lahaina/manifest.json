@@ -8,10 +8,10 @@
     "pedestal": false
   },
   "files": [
-    "_Apps.json",
-    "_ELP.json",
-    "_Games.json",
-    "_SGAME.json",
+    "_apps.json",
+    "_elp.json",
+    "_games.json",
+    "_sgame.json",
     "powercfg.sh",
     "profile.json"
   ]

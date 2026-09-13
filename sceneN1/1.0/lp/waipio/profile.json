@@ -244,17 +244,17 @@
       "packages": [
         "IM", "Music", "Reader", "ShortVideo", "Nav", "ScrollOpt"
       ],
-      "import": "_ELP.json"
+      "import": "_elp.json"
     },
-    { "friendly": "极速响应", "packages": ["Launcher"], "import": "_Launcher.json" },
-    { "friendly": "相机", "packages": ["Camera"], "import": "_Camera.json" },
-    { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
+    { "friendly": "极速响应", "packages": ["Launcher"], "import": "_launcher.json" },
+    { "friendly": "相机", "packages": ["Camera"], "import": "_camera.json" },
+    { "friendly": "All", "packages": ["*"], "import": "_apps.json" }
   ],
   "games": [
     {
       "friendly": "All",
       "packages": ["*"],
-      "import": "_Games.json"
+      "import": "_games.json"
     }
   ]
 }

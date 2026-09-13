@@ -11,12 +11,12 @@
     "limiter": false
   },
   "files": [
-    "_Apps.json",
-    "_Camera.json",
-    "_Games.json",
-    "_WhiteList.json",
-    "DDR_MAPPING.CONF",
-    "FAS_OFFSET.CONF",
+    "_apps.json",
+    "_camera.json",
+    "_games.json",
+    "_whitelist.json",
+    "ddr_mapping.conf",
+    "fas_offset.conf",
     "powercfg.sh",
     "profile.json"
   ]

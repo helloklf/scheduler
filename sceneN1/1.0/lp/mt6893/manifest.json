@@ -8,11 +8,11 @@
     "pedestal": false
   },
   "files": [
-    "_Apps.json",
-    "_Camera.json",
-    "_ELP.json",
-    "_Games.json",
-    "_Scanner.json",
+    "_apps.json",
+    "_camera.json",
+    "_elp.json",
+    "_games.json",
+    "_scanner.json",
     "fas_offset.conf",
     "powercfg.sh",
     "profile.json"

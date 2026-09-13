@@ -8,13 +8,13 @@
     "pedestal": false
   },
   "files": [
-    "_Apps.json",
-    "_Camera.json",
-    "_ELP.json",
-    "_Games.json",
-    "_Scanner.json",
-    "_Standby.json",
-    "DDR_MAPPING.CONF",
+    "_apps.json",
+    "_camera.json",
+    "_elp.json",
+    "_games.json",
+    "_scanner.json",
+    "_standby.json",
+    "ddr_mapping.conf",
     "fas_offset.conf",
     "powercfg.sh",
     "profile.json"

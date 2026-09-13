@@ -193,13 +193,13 @@
     }
   },
   "apps": [
-    { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
+    { "friendly": "All", "packages": ["*"], "import": "_apps.json" }
   ],
   "games": [
     {
       "friendly": "游戏",
       "packages": ["*"],
-      "import": "_Games.json"
+      "import": "_games.json"
     }
   ]
 }

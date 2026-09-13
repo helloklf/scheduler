@@ -277,15 +277,15 @@
         "com.freakurl.apps.ollama",
         "io.github.xororz.localdream"
       ],
-      "import": "_WhiteList.json"
+      "import": "_whitelist.json"
     },
-    { "friendly": "All", "packages": ["*"], "import": "_Apps.json" }
+    { "friendly": "All", "packages": ["*"], "import": "_apps.json" }
   ],
   "games": [
     {
       "friendly": "All",
       "packages": ["*"],
-      "import": "_Games.json"
+      "import": "_games.json"
     }
   ]
 }

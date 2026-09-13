@@ -1,4 +1,4 @@
-## DDR_MAPPING.CONF
+## ddr_mapping.conf
 - 此配置用于指定CPU频率与DDR频率(下限)的映射关系
 - 用于`辅助调速器`和`FAS、FAS Lite`控制频率的同时拉升DDR频率
 - 此功能通常用于内存频率控制不佳的天玑处理器

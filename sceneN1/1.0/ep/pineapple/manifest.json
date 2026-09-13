@@ -8,10 +8,10 @@
     "pedestal": true
   },
   "files": [
-    "_Apps.json",
-    "_Games.json",
-    "_WhiteList.json",
-    "DDR_MAPPING.CONF",
+    "_apps.json",
+    "_games.json",
+    "_whitelist.json",
+    "ddr_mapping.conf",
     "powercfg.sh",
     "profile.json"
   ]

@@ -10,9 +10,9 @@
     "fas": false
   },
   "files": [
-    "_Apps.json",
-    "_Camera.json",
-    "_Games.json",
+    "_apps.json",
+    "_camera.json",
+    "_games.json",
     "powercfg.sh",
     "profile.json"
   ]

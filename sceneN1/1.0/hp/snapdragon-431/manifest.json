@@ -9,8 +9,8 @@
     "fas": true
   },
   "files": [
-    "_Apps.json",
-    "_Games.json",
+    "_apps.json",
+    "_games.json",
     "powercfg.sh",
     "profile.json"
   ]

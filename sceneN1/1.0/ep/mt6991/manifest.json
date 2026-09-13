@@ -10,9 +10,9 @@
     "reboot": false
   },
   "files": [
-    "_Apps.json",
-    "_Games.json",
-    "DDR_MAPPING.CONF",
+    "_apps.json",
+    "_games.json",
+    "ddr_mapping.conf",
     "powercfg.sh",
     "profile.json"
   ]

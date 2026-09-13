@@ -260,19 +260,19 @@
     {
       "friendly": "All",
       "packages": ["*"],
-      "import": "_Apps.json"
+      "import": "_apps.json"
     }
   ],
   "games": [
     {
       "friendly": "王者荣耀/LOL",
       "packages": ["com.tencent.lolm", "com.tencent.tmgp.sgame", "com.garena.game.kgtw"],
-      "import": "_SGAME.json"
+      "import": "_sgame.json"
     },
     {
       "friendly": "All",
       "packages": ["*"],
-      "import": "_Games.json"
+      "import": "_games.json"
     }
   ]
 }
