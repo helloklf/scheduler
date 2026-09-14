@@ -39,7 +39,7 @@ hide_value() {
 }
 
 echo 2265600 3148800 2956800 3302400 > /proc/sys/walt/sched_fmax_cap
-echo 0 > /proc/sys/walt/sched_sbt_enable
+echo 1 > /proc/sys/walt/sched_sbt_enable
 for c in 0 2 5 7; do
   lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_high_freq
   lock_value 0 /sys/devices/system/cpu/cpufreq/policy$c/walt/adaptive_low_freq
