@@ -1,0 +1,3 @@
+[submodule "sceneN1"]
+	path = sceneN1
+	url = https://github.com/helloklf/scheduler-n1.git
